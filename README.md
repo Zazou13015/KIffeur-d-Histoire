@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Kiffeurs d'Histoire
 
-## Getting Started
+Jeu web de dates historiques : placer des événements sur une frise, en solo, en lobby, en 1v1 classé, et réviser le programme de terminale.
 
-First, run the development server:
+Stack : Next.js (App Router, TypeScript, Tailwind) sur Vercel, Supabase (Postgres, Auth, Realtime, Storage). Architecture détaillée dans [docs/architecture.md](docs/architecture.md).
+
+## Démarrer en local
+
+Prérequis : [Node.js 22](https://nodejs.org), [Docker Desktop](https://www.docker.com/products/docker-desktop/) (pour la base locale), Git.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <url-du-depot>
+cd kiffeurs-histoire
+npm install
+
+# 1. Base de données locale (Docker doit être lancé)
+npm run db:start          # démarre Supabase en local et applique migrations + données de test
+                          # note l'« API URL » et la « Publishable key » affichées
+
+# 2. Variables d'environnement
+cp .env.example .env.local
+# colle la Publishable key dans .env.local
+
+# 3. Application
+npm run dev               # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+La page d'accueil liste les événements de test : si tu les vois, l'app parle bien à la base.
+Le tableau de bord Supabase local est sur http://127.0.0.1:54323 (tu peux y créer un utilisateur de test dans *Authentication* pour essayer la connexion).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Commandes utiles
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Commande | Effet |
+|---|---|
+| `npm run dev` | Lance le site en local |
+| `npm run lint` / `npm run typecheck` | Vérifications avant de pousser (la CI fait pareil) |
+| `npm run db:start` / `npm run db:stop` | Démarre / arrête la base locale |
+| `npm run db:reset` | Recrée la base locale depuis les migrations + `supabase/seed.sql` |
+| `npm run db:new nom_du_changement` | Crée un nouveau fichier de migration vide |
 
-## Learn More
+## Travailler à deux
 
-To learn more about Next.js, take a look at the following resources:
+1. Pars toujours de `main` à jour : `git checkout main && git pull`.
+2. Crée une branche : `git checkout -b ma-fonctionnalite`.
+3. Commit, pousse, ouvre une Pull Request. La CI vérifie lint, types et build ; Vercel publie une URL de prévisualisation.
+4. L'autre relit, puis on merge dans `main`, qui part en production.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## La base de données (important)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+En production, ce jeu utilise **le même projet Supabase que KFFR contrée** : les joueurs ont un seul compte pour les deux jeux.
 
-## Deploy on Vercel
+- Toutes nos tables sont dans le schéma `histoire`. On ne touche jamais au schéma `public` (celui de KFFR).
+- Une modification de la base = un fichier de migration (`npm run db:new ...`), testé en local avec `npm run db:reset`, relu en PR.
+- On n'édite jamais les tables de prod depuis le tableau de bord Supabase.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Mise en production de la base (une seule fois au départ, puis à chaque nouvelle migration)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npx supabase login
+npx supabase link --project-ref <ref-du-projet-KFFR>
+npx supabase db push --dry-run   # affiche ce qui va être appliqué : vérifier qu'il n'y a que du « histoire »
+npx supabase db push
+```
+
+Puis, dans le tableau de bord du projet KFFR :
+- *Settings → API → Exposed schemas* : ajouter `histoire` ;
+- *Authentication → URL Configuration → Redirect URLs* : ajouter l'URL Vercel du jeu.
+
+## Déploiement Vercel
+
+1. Sur vercel.com, *Add New → Project*, importer ce dépôt GitHub (Vercel détecte Next.js tout seul).
+2. Dans *Settings → Environment Variables*, ajouter `NEXT_PUBLIC_SUPABASE_URL` et `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` du projet Supabase de KFFR.
+3. Inviter Antonin/Maxou dans l'équipe Vercel pour que chacun voie les déploiements.

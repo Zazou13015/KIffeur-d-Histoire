@@ -1,9 +1,11 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
+import { isSupabaseConfigured } from "./config";
 
 // Rafraîchit la session Supabase avant chaque page et recopie les cookies mis à jour.
 export async function updateSession(request: NextRequest) {
   let response = NextResponse.next({ request });
+  if (!isSupabaseConfigured) return response;
 
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,

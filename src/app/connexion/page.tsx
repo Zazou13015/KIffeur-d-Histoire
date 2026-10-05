@@ -1,6 +1,9 @@
+import { redirect } from "next/navigation";
+import { isSupabaseConfigured } from "@/lib/supabase/config";
 import { signIn } from "./actions";
 
 export default async function ConnexionPage({ searchParams }: PageProps<"/connexion">) {
+  if (!isSupabaseConfigured) redirect("/");
   const { erreur } = await searchParams;
 
   return (

@@ -34,3 +34,31 @@ export function gapInUnit(answer: HistoricDate, expected: HistoricDate, unit: Pr
   if (unit === "mois") return Math.round(days / 30.44);
   return Math.round(days / 365.25);
 }
+
+// Phrase d'écart dans l'unité de la question, convertie quand l'écart devient grand
+// (« 3 jours », « 5 mois », « 12 ans »). null si la réponse est exacte.
+export function gapText(answer: HistoricDate, expected: HistoricDate, unit: Precision): string | null {
+  const pluriel = (n: number, mot: string) => `${n} ${mot}${n > 1 ? "s" : ""}`;
+  if (unit === "annee") {
+    const n = gapInUnit(answer, expected, "annee");
+    return n === 0 ? null : pluriel(n, "an");
+  }
+  if (unit === "mois") {
+    const n = gapInUnit(answer, expected, "mois");
+    if (n === 0) return null;
+    return n < 24 ? `${n} mois` : pluriel(Math.round(n / 12), "an");
+  }
+  const n = gapInUnit(answer, expected, "jour");
+  if (n === 0) return null;
+  if (n < 62) return pluriel(n, "jour");
+  return n < 730 ? `${Math.round(n / 30.44)} mois` : pluriel(Math.round(n / 365.25), "an");
+}
+
+// Points d'une réponse : 1000 si exacte, décroissance exponentielle avec l'écart.
+// Exemple de calcul, formule à calibrer après les premiers tests.
+const ECHELLE_SCORE: Record<Precision, number> = { annee: 60, mois: 4 * 12, jour: 0.2 * 365.25 };
+
+export function score(answer: HistoricDate, expected: HistoricDate, unit: Precision): number {
+  const ecart = gapInUnit(answer, expected, unit);
+  return Math.round(1000 * Math.exp(-ecart / ECHELLE_SCORE[unit]));
+}

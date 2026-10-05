@@ -1,0 +1,133 @@
+/* Écran de partie, d'après la charte « Cabinet de curiosités » (maquette n° 4).
+   Carte de question à gauche, frise zoomable à droite, bande des époques sous la frise. */
+
+.jeu {
+  background: var(--color-papier);
+  border: 1px solid var(--color-filet);
+  display: grid;
+  grid-template-columns: 330px minmax(0, 1fr);
+}
+
+/* ---------- Carte de question ---------- */
+.carte {
+  border-right: 1px solid var(--color-filet);
+  padding: 20px;
+  display: grid;
+  gap: 12px;
+  align-content: start;
+  background: var(--color-blanc-cartel);
+}
+.illustration { background: #e9e6da; border: 1px solid #d6d2c4; padding: 18px 26px; color: var(--color-encre); }
+.illustration svg { width: 100%; height: auto; display: block; }
+.inventaire { font-family: var(--font-mono); font-size: 11px; color: var(--color-oxyde); letter-spacing: 0.06em; text-transform: uppercase; }
+.carte h2 { font-size: 26px; line-height: 1.1; }
+.carte p { margin: 0; font-size: 15px; color: var(--color-encre-douce); }
+.meta { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; border-top: 1px solid #d6d2c4; padding-top: 10px; font-size: 13px; color: var(--color-encre-douce); }
+.meta b { font-weight: 700; color: var(--color-encre); }
+
+/* ---------- Saisie jour / mois / année ---------- */
+.saisie { display: grid; gap: 4px; padding: 12px 14px; background: var(--color-papier); border: 1px solid var(--color-filet); }
+.consigneSaisie { font-size: 12px; color: var(--color-encre-douce); }
+.cases { display: flex; gap: 6px; align-items: end; }
+.case { display: grid; gap: 2px; width: 62px; flex: none; }
+.caseAnnee { flex: 1; width: auto; min-width: 0; }
+.case label { font-size: 11px; color: var(--color-encre-douce); }
+.case input {
+  width: 100%;
+  min-width: 0;
+  font-size: 42px;
+  line-height: 1;
+  color: var(--color-oxyde);
+  background: var(--color-blanc-cartel);
+  border: 1px solid var(--color-filet);
+  border-bottom: 2px solid var(--color-encre);
+  padding: 4px 8px 2px;
+  letter-spacing: 0.02em;
+}
+.case input::placeholder { color: #b9bdb3; font-size: 22px; }
+.case input:focus { outline: none; border-color: var(--color-encre); box-shadow: var(--shadow-focus); }
+.case input:disabled { opacity: 0.7; }
+.ere { display: flex; gap: 4px; }
+.ere button { border: 1px solid var(--color-filet); background: var(--color-blanc-cartel); color: var(--color-encre-douce); font-size: 12px; padding: 2px 8px; white-space: nowrap; }
+.ere button[aria-pressed="true"] { background: var(--color-encre); color: var(--color-papier); border-color: var(--color-encre); }
+.aideSaisie { font-size: 12px; color: var(--color-encre-douce); }
+
+.valider { background: var(--color-encre); color: var(--color-papier); border: 0; padding: 12px 16px; font-weight: 700; letter-spacing: 0.02em; }
+.valider:hover { background: #2b3c51; }
+.valider:disabled { background: #9aa3ad; cursor: not-allowed; }
+
+.resultat { display: grid; gap: 6px; padding: 12px 14px; border: 1px solid var(--color-laiton); background: var(--color-fond-resultat); font-size: 14px; }
+.points { font-size: 38px; line-height: 1; color: var(--color-oxyde); }
+
+/* ---------- Plateau ---------- */
+.plateau { min-width: 0; padding: 16px 20px 18px; display: grid; gap: 12px; align-content: start; }
+.outils { display: flex; align-items: center; justify-content: flex-end; gap: 6px; }
+.outils button { width: 34px; height: 34px; border: 1px solid var(--color-encre); background: var(--color-blanc-cartel); color: var(--color-encre); font-size: 20px; line-height: 1; display: grid; place-items: center; }
+.echelle { font-size: 12px; color: var(--color-encre-douce); font-family: var(--font-mono); min-width: 0; }
+
+/* ---------- Frise ---------- */
+.frise { position: relative; height: 340px; overflow: hidden; background: var(--color-blanc-cartel); border: 1px solid var(--color-filet); touch-action: none; cursor: crosshair; user-select: none; }
+.bandeau { position: absolute; top: 180px; height: 30px; overflow: hidden; }
+.bandeau span { position: absolute; top: 7px; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-encre); white-space: nowrap; opacity: 0.75; }
+.grille { position: absolute; top: 0; width: 1px; height: 210px; background: var(--color-encre); opacity: 0.06; }
+.axe { position: absolute; left: 0; right: 0; top: 210px; height: 2px; background: var(--color-encre); }
+.trait { position: absolute; top: 212px; width: 1px; height: 9px; background: var(--color-encre); }
+.majeur { height: 14px; width: 2px; background: var(--color-oxyde); }
+.etiquette { position: absolute; top: 224px; transform: translateX(-50%); font-size: 16px; color: var(--color-encre); white-space: nowrap; }
+.etiquette b { color: var(--color-oxyde); }
+.etiquette small { font-family: var(--font-texte); font-size: 10px; font-weight: 400; color: var(--color-encre-douce); }
+.rappel { position: absolute; left: 12px; top: 8px; font-size: 18px; color: var(--color-encre-douce); background: rgb(251 251 248 / 0.85); padding: 0 6px; pointer-events: none; z-index: 2; }
+.motif { position: absolute; color: var(--color-encre); opacity: 0.85; pointer-events: none; }
+.motif svg { width: 100%; height: 100%; display: block; overflow: visible; }
+.discret { opacity: 0.45; }
+
+.tige { position: absolute; top: 52px; height: 128px; width: 1px; background: var(--color-encre); opacity: 0.35; }
+.puce { position: absolute; top: 12px; transform: translateX(-50%); background: var(--color-fond-resultat); border: 1px solid var(--color-laiton); box-shadow: 0 0 0 2px var(--color-laiton); padding: 4px 9px 5px; white-space: nowrap; font-size: 13px; line-height: 1.25; }
+.puce span { display: block; font-size: 14px; color: var(--color-oxyde); line-height: 1.1; }
+.ecart { position: absolute; top: 246px; height: 2px; background: var(--color-oxyde); }
+
+.losange, .bonne { position: absolute; top: 201px; width: 20px; height: 20px; transform: translateX(-50%) rotate(45deg); border: 2px solid var(--color-encre); }
+.losange { background: var(--color-oxyde); cursor: ew-resize; z-index: 3; }
+.bonne { background: var(--color-laiton); z-index: 2; }
+.reponseEtiquette, .bonneEtiquette { position: absolute; transform: translateX(-50%); padding: 2px 10px 3px; white-space: nowrap; font-size: 13px; }
+.reponseEtiquette { top: 254px; background: var(--color-oxyde); color: var(--color-blanc-cartel); z-index: 3; }
+.bonneEtiquette { top: 292px; background: var(--color-laiton); color: var(--color-encre); }
+.reponseEtiquette b, .bonneEtiquette b { font-family: var(--font-date); font-weight: 700; font-size: 18px; margin-left: 4px; }
+.enSaisie { box-shadow: 0 0 0 3px rgb(176 138 62 / 0.55); }
+
+.fantome { position: absolute; top: 0; height: 222px; pointer-events: none; z-index: 2; }
+.fantome i { position: absolute; left: 0; top: 0; bottom: 0; border-left: 1px dashed var(--color-oxyde); }
+.fantome span { position: absolute; left: 6px; top: 6px; background: var(--color-blanc-cartel); border: 1px solid var(--color-oxyde); color: var(--color-oxyde); padding: 0 6px; font-size: 16px; white-space: nowrap; }
+.aide { position: absolute; right: 10px; bottom: 8px; font-size: 12px; color: var(--color-encre-douce); background: rgb(251 251 248 / 0.85); padding: 2px 6px; }
+
+/* ---------- Bande des époques ---------- */
+.epoques { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; }
+.piste { position: relative; display: grid; grid-template-columns: var(--colonnes); border: 1px solid var(--color-encre); min-width: 0; }
+.piste button { border: 0; border-right: 1px solid rgb(29 42 58 / 0.25); color: var(--color-encre); padding: 8px 4px 7px; display: grid; gap: 2px; justify-items: center; align-content: center; text-align: center; min-width: 0; position: relative; overflow: hidden; }
+.piste button:last-of-type { border-right: 0; }
+.piste button b { font-size: 12.5px; line-height: 1.2; }
+.piste button small { font-size: 13px; color: var(--color-encre-douce); line-height: 1.1; }
+.piste button:hover b { text-decoration: underline; text-underline-offset: 3px; }
+.piste .active { box-shadow: inset 0 -4px 0 var(--color-encre); }
+.court { display: none; }
+.fenetre { position: absolute; top: -5px; height: 4px; background: var(--color-oxyde); pointer-events: none; min-width: 4px; }
+.tout { max-width: 88px; border: 1px solid var(--color-encre); background: var(--color-blanc-cartel); color: var(--color-encre); font-size: 12px; font-weight: 700; line-height: 1.2; padding: 6px 12px; }
+.tout.active { background: var(--color-encre); color: var(--color-papier); }
+
+@media (max-width: 860px) {
+  .jeu { grid-template-columns: 1fr; }
+  .carte { border-right: 0; border-bottom: 1px solid var(--color-filet); grid-template-columns: 110px minmax(0, 1fr); }
+  .illustration { grid-row: span 3; padding: 10px; align-self: start; }
+  .carte > :not(.illustration) { grid-column: 2; }
+  .carte > .meta, .carte > .saisie, .carte > .valider, .carte > .resultat { grid-column: 1 / -1; }
+}
+
+@media (max-width: 600px) {
+  .epoques { grid-template-columns: 1fr; }
+  .tout { padding: 8px 12px; max-width: none; }
+  .piste button { padding-inline: 2px; }
+  .long { display: none; }
+  .court { display: inline; }
+  .piste button b { font-size: 10.5px; }
+  .piste button small { display: none; }
+}

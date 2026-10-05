@@ -1,26 +1,80 @@
 @import "tailwindcss";
 
+/*
+ * Charte graphique « Cabinet de curiosités ».
+ * Référence : https://claude.ai/artifact/SGJG157QiCPsPsM3vRKTUQ
+ * Les noms reprennent ceux de la charte : bg-encre, text-oxyde, font-date, etc.
+ * Univers unique, pas de thème sombre.
+ */
+@theme {
+  --color-encre: #1d2a3a;
+  --color-encre-douce: #4d5866;
+  --color-vert-de-gris: #dfe3dc;
+  --color-papier: #f3f2ec;
+  --color-blanc-cartel: #fbfbf8;
+  --color-laiton: #b08a3e;
+  --color-laiton-clair: #d9c48f;
+  --color-oxyde: #8a2f2b;
+  --color-sauge: #7e8c7a;
+  --color-filet: #c3c8bd;
+  --color-fond-resultat: #f6efdd;
+  --color-epoque-prehistoire: #cfd5c6;
+  --color-epoque-antiquite: #e3d6b4;
+  --color-epoque-moyen-age: #d4dcd0;
+  --color-epoque-temps-modernes: #e6cdc6;
+  --color-epoque-contemporaine: #cdd5df;
+
+  /* Les variables --police-* sont posées par next/font dans layout.tsx */
+  --font-titre: var(--police-titre), Georgia, serif;
+  --font-texte: var(--police-texte), system-ui, sans-serif;
+  --font-date: var(--police-date), "Arial Narrow", sans-serif;
+  --font-mono: var(--police-mono), ui-monospace, monospace;
+
+  --radius-sceau: 9999px;
+  --shadow-cartel: 0 1px 0 #c3c8bd, 0 8px 24px -12px rgb(29 42 58 / 0.35);
+  --shadow-focus: 0 0 0 3px rgb(176 138 62 / 0.35);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  color-scheme: light;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-vert-de-gris);
+  color: var(--color-encre);
+  font-family: var(--font-texte);
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-titre);
+  font-weight: 400;
+  text-wrap: balance;
+}
+
+button {
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-oxyde);
+  outline-offset: 2px;
+}
+
+/* Toutes les dates et tous les nombres de jeu */
+@utility date {
+  font-family: var(--font-date);
+  font-weight: 700;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+/* Petites étiquettes techniques : numéro d'inventaire, sur-titres */
+@utility inventaire {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-oxyde);
 }

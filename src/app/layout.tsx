@@ -1,16 +1,13 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Atkinson_Hyperlegible, Big_Shoulders, JetBrains_Mono, Young_Serif } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+// Polices de la charte : titres, texte courant, dates, étiquettes techniques.
+const titre = Young_Serif({ variable: "--police-titre", weight: "400", subsets: ["latin"] });
+const texte = Atkinson_Hyperlegible({ variable: "--police-texte", weight: ["400", "700"], subsets: ["latin"] });
+// Big Shoulders à axe optique : prend le dessin « Display » aux grandes tailles.
+const date = Big_Shoulders({ variable: "--police-date", weight: "variable", axes: ["opsz"], subsets: ["latin"] });
+const mono = JetBrains_Mono({ variable: "--police-mono", subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Kiffeurs d'Histoire",
@@ -21,7 +18,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="fr"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${titre.variable} ${texte.variable} ${date.variable} ${mono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

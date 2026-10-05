@@ -47,27 +47,37 @@ Le tableau de bord Supabase local est sur http://127.0.0.1:54323 (tu peux y cré
 
 ## La base de données (important)
 
-En production, ce jeu utilise **le même projet Supabase que KFFR contrée** : les joueurs ont un seul compte pour les deux jeux.
+Il y a deux projets Supabase, avec exactement la même structure pour le jeu :
 
-- Toutes nos tables sont dans le schéma `histoire`. On ne touche jamais au schéma `public` (celui de KFFR).
-- Une modification de la base = un fichier de migration (`npm run db:new ...`), testé en local avec `npm run db:reset`, relu en PR.
+| Base | Propriétaire | Sert à | Branchée sur |
+|---|---|---|---|
+| **Test** (`baezxgddyoweryeivivs`) | Maxou | Développer et tester sans risque | Les PC de dev, les prévisualisations Vercel |
+| **Production** (projet KFFR contrée) | Antonin | Les vrais joueurs, comptes partagés avec KFFR contrée | Le site de production |
+
+- Toutes nos tables sont dans le schéma `histoire`. On ne touche jamais aux schémas `public`, `private` ni `auth` (ceux de KFFR).
+- Une modification de la base = un fichier de migration (`npm run db:new ...`), relu en PR, appliqué d'abord sur la base de test, puis seulement ensuite sur la production.
+- Chaque migration se termine par une ligne dans le registre : `insert into histoire.migrations_appliquees (version, nom) values ('<version>', '<nom>');`
 - On n'édite jamais les tables de prod depuis le tableau de bord Supabase.
 
-### Mise en production de la base (une seule fois au départ, puis à chaque nouvelle migration)
+### Base de test
 
-```bash
-npx supabase login
-npx supabase link --project-ref <ref-du-projet-KFFR>
-npx supabase db push --dry-run   # affiche ce qui va être appliqué : vérifier qu'il n'y a que du « histoire »
-npx supabase db push
-```
+Les migrations s'y appliquent normalement (`npx supabase link --project-ref baezxgddyoweryeivivs` puis `npx supabase db push`, ou via l'agent Claude).
 
-Puis, dans le tableau de bord du projet KFFR :
-- *Settings → API → Exposed schemas* : ajouter `histoire` ;
-- *Authentication → URL Configuration → Redirect URLs* : ajouter l'URL Vercel du jeu.
+### Mise en production de la base (projet KFFR)
+
+**Pas de `supabase db push` vers le projet KFFR.** Sa liste de migrations (`supabase_migrations.schema_migrations`) appartient au dépôt [Contree-KFFR](https://github.com/AntoninKFFR/Contree-KFFR) : y inscrire nos versions bloquerait les prochains `db push` d'Antonin. Nos migrations sont suivies dans `histoire.migrations_appliquees` à la place.
+
+Pour chaque migration pas encore présente dans ce registre (`select version from histoire.migrations_appliquees`) :
+1. Relire le fichier à deux (Maxou + Antonin) : il ne doit toucher qu'à `histoire` (et aux extensions `unaccent`/`pg_trgm` du schéma `extensions`).
+2. L'exécuter tel quel dans une transaction (*SQL Editor* du projet KFFR, ou l'agent Claude via le connecteur Supabase), dans l'ordre des versions. Le fichier inscrit lui-même sa ligne dans le registre.
+3. Vérifier que KFFR contrée fonctionne toujours.
+
+Une fois au départ, dans le tableau de bord du projet KFFR (Antonin) :
+- *Project Settings → Data API → Exposed schemas* : ajouter `histoire`, sans retirer les schémas déjà exposés ;
+- *Authentication → URL Configuration → Redirect URLs* : ajouter `https://k-iffeur-d-histoire.vercel.app/**` et `https://*-kffrh.vercel.app/**` (ne pas changer la *Site URL*, c'est celle de KFFR).
 
 ## Déploiement Vercel
 
 1. Sur vercel.com, *Add New → Project*, importer ce dépôt GitHub (Vercel détecte Next.js tout seul).
-2. Dans *Settings → Environment Variables*, ajouter `NEXT_PUBLIC_SUPABASE_URL` et `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` du projet Supabase de KFFR.
+2. Dans *Settings → Environment Variables*, ajouter `NEXT_PUBLIC_SUPABASE_URL` et `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` : celles du projet KFFR pour *Production*, celles de la base de test pour *Preview* et *Development*.
 3. Inviter Antonin/Maxou dans l'équipe Vercel pour que chacun voie les déploiements.

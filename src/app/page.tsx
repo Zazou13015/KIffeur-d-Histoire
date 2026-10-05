@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
+import { isSupabaseConfigured } from "@/lib/supabase/config";
 import { formatHistoricDate, type Precision } from "@/lib/game/dates";
 import { signOut } from "./connexion/actions";
 
@@ -13,6 +14,18 @@ type EventRow = {
 };
 
 export default async function Home() {
+  if (!isSupabaseConfigured) {
+    return (
+      <main className="mx-auto flex w-full max-w-2xl flex-1 flex-col justify-center gap-4 px-4 py-12">
+        <h1 className="text-3xl font-bold">Kiffeurs d&apos;Histoire</h1>
+        <p className="text-stone-600">
+          Le site est en ligne, mais pas encore relié à sa base de données. Il manque les variables
+          NEXT_PUBLIC_SUPABASE_URL et NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY.
+        </p>
+      </main>
+    );
+  }
+
   const supabase = await createClient();
   const { data: claims } = await supabase.auth.getClaims();
   const email = claims?.claims.email as string | undefined;

@@ -1,0 +1,10 @@
+﻿event_relation_id,parent_event_id,child_event_id,relation_type,notes
+EREL-0001,EVT-0251,EVT-0252,END_MILESTONE,"Chute du camp le 7 mai 1954, jalon final de la bataille."
+EREL-0002,EVT-0322,EVT-0323,MILESTONE_OF,Note du 23 mars 1896 au sein de la série de communications de Becquerel.
+EREL-0003,EVT-0212,EVT-0211,START_MILESTONE,21 mars 1918 : début de l’opération Michael.
+EREL-0004,EVT-0066,EVT-0075,START_MILESTONE,10 mars 1661 : début du gouvernement personnel de Louis XIV.
+EREL-0005,EVT-0067,EVT-0077,END_MILESTONE,"1er septembre 1715 : mort de Louis XIV, fin de son règne."
+EREL-0006,EVT-0455,EVT-0548,ENTRY_INTO_FORCE_MILESTONE,28 Aug 1833 = Royal Assent; 1 Aug 1834 = principal entry into force.
+EREL-0007,EVT-0073,EVT-0617,START_MILESTONE,Massacre de Wassy : jalon de déclenchement des guerres de Religion.
+EREL-0008,EVT-0502,EVT-0811,END_MILESTONE,1er avril 1939 : fin de la guerre civile espagnole.
+EREL-0009,EVT-0464,EVT-0707,FOLLOWUP_MILESTONE,1866 : câble transatlantique durable après le premier échange officiel de 1858.

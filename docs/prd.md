@@ -137,7 +137,7 @@ Chaque événement doit porter au minimum :
 - un ou plusieurs thèmes ;
 - une illustration simple (à produire si la base n'en a pas).
 
-Pour le mode pédagogique, chaque chapitre a besoin en plus de cartes d'explication posées sur sa frise. La base d'Antonin n'est pas encore transmise : son format, son volume et ce qui manque seront vérifiés à réception. Les cartes pédagogiques seront rédigées par un agent IA. Les illustrations des événements (format carte) restent à trancher : images libres de droit, ou dessins simplifiés dans la charte graphique du jeu.
+Pour le mode pédagogique, chaque chapitre a besoin en plus de cartes d'explication posées sur sa frise. La base d'Antonin (dataset v18, reçu le 5 octobre) compte 2 000 événements : 507 rattachés au programme du CM1 à la terminale (46 chapitres) et 1 493 de culture générale, déjà répartis en 24 packs prêts à jouer. Il manque des variantes de titres pour 394 événements scolaires, des descriptions pour 304, et aucune illustration n'est fournie. Les fichiers sont dans `content/dataset-v18/`. Les cartes pédagogiques seront rédigées par un agent IA. Les illustrations des événements (format carte) restent à trancher : images libres de droit, ou dessins simplifiés dans la charte graphique du jeu.
 
 ## Comptes, progression et supports
 
@@ -190,7 +190,7 @@ Les packs de thèmes ne dépendent pas de cette feuille de route : ils s'ajouten
 
 Ce PRD est validé à deux, par Maxou et Antonin. Restent ouverts :
 
-- [ ] Réception de la base d'Antonin : format, volume, niveaux couverts, explications et variantes de titres pour le mode inversé.
+- [ ] Dataset v18 : compléter les variantes de titres (394 événements scolaires) et les descriptions (304), remplir les 8 chapitres sans événement, et décider si les 1 000 ajouts en attente de relecture entrent dans la V1.
 - [ ] Illustrations : images libres de droit ou dessins simplifiés dans la charte graphique ?
 - [ ] Calibrer le score après les premiers tests : valeurs de E₀, part de la rapidité (30 %), durée du chrono (30 s).
 - [ ] Longueurs de partie proposées en plus des 10 questions (20, période entière).

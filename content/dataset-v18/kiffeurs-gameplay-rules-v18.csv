@@ -1,0 +1,6 @@
+﻿field,scale,definition,rule
+importance,1-5,"Importance historique générale, distincte de la difficulté.",Curriculum multi-niveaux + importance historique reconnue + statut pédagogique ; overrides sur événements majeurs.
+difficulty,1-5,Difficulté moyenne à connaître/dater correctement.,"Notoriété, nombre de niveaux, précision demandée, caractère technique/juridique et statut de date."
+aliases,text,Réponses alternatives acceptables pour le mode inversé.,Aliases V7 + intitulés curriculum compatibles + variantes iconiques contrôlées.
+playable,TRUE/FALSE,Éligibilité à une question de date automatique.,"FALSE pour processus/périodes trop flous, datations mixtes ou conflits incompatibles avec une réponse unique."
+playable_mode,DAY/MONTH/YEAR/RANGE/NOT_AUTOMATIC,Mode recommandé pour poser la question.,"Dérivé de la précision historique réellement stockée, sans inventer de précision."

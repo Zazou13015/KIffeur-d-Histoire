@@ -1,0 +1,105 @@
+﻿collection_id,title,collection_type,ready_to_play,event_count,playable_event_count,context_event_count,avg_importance,avg_difficulty,earliest_year,latest_year,source_rule
+COL-0001,Programme scolaire 2026-2027,CURRICULUM_CORPUS,FALSE,507,486,21,3.41,3.01,-10000,2026,tag:school-curriculum
+COL-0002,Programme 3e,CURRICULUM_LEVEL,FALSE,121,121,0,3.83,2.82,1914,1991,tag:level-3e
+COL-0003,Programme 4e,CURRICULUM_LEVEL,FALSE,55,51,4,3.69,2.78,1670,1907,tag:level-4e
+COL-0004,Programme 5e,CURRICULUM_LEVEL,FALSE,66,65,1,3.62,2.89,507,1715,tag:level-5e
+COL-0005,Programme 6e,CURRICULUM_LEVEL,FALSE,50,41,9,3.32,3.18,-10000,451,tag:level-6e
+COL-0006,Programme CM1,CURRICULUM_LEVEL,FALSE,14,13,1,4.21,2.14,476,1789,tag:level-cm1
+COL-0007,Programme CM2,CURRICULUM_LEVEL,FALSE,21,20,1,4.05,2.24,1820,1992,tag:level-cm2
+COL-0008,Programme Première HGGSP,CURRICULUM_LEVEL,FALSE,33,32,1,3.52,3.21,-461,1995,tag:level-premiere-hggsp
+COL-0009,Programme Première générale,CURRICULUM_LEVEL,FALSE,81,80,1,3.06,3.05,1789,1923,tag:level-premiere-generale
+COL-0010,Programme Seconde générale et technologique,CURRICULUM_LEVEL,FALSE,60,55,5,3.15,2.85,-461,1938,tag:level-seconde-generale-et-technologique
+COL-0011,Programme Terminale HGGSP,CURRICULUM_LEVEL,FALSE,60,58,2,3.57,2.92,-10000,2026,tag:level-terminale-hggsp
+COL-0012,Programme Terminale générale,CURRICULUM_LEVEL,FALSE,21,21,0,2.67,3.24,1933,1994,tag:level-terminale-generale
+COL-0013,CM2 — Thème 1 — Le temps de la République,CURRICULUM_THEME,FALSE,8,8,0,3.62,2.38,1880,1945,tag:theme-thm-001
+COL-0014,CM2 — Thème 2 — L’âge industriel en France,CURRICULUM_THEME,FALSE,3,2,1,3.00,2.67,1820,1931,tag:theme-thm-002
+COL-0015,CM2 — Thème 3 — Guerres mondiales et construction européenne,CURRICULUM_THEME,FALSE,10,10,0,4.70,2.00,1914,1992,tag:theme-thm-003
+COL-0016,6e — Thème 1 — La longue histoire de l’humanité et des migrations,CURRICULUM_THEME,FALSE,7,3,4,3.43,3.14,-10000,-1750,tag:theme-thm-004
+COL-0017,"6e — Thème 2 — Récits fondateurs, croyances et citoyenneté dans la Méditerranée antique",CURRICULUM_THEME,FALSE,19,14,5,3.47,3.32,-776,-323,tag:theme-thm-005
+COL-0018,6e — Thème 3 — L’Empire romain dans le monde antique,CURRICULUM_THEME,FALSE,24,24,0,3.17,3.08,-509,451,tag:theme-thm-006
+COL-0019,"5e — Thème 1 — Chrétientés et islam (VIe-XIIIe siècles), des mondes en contact",CURRICULUM_THEME,FALSE,11,11,0,3.36,3.18,507,1206,tag:theme-thm-007
+COL-0020,5e — Événements complémentaires directement utiles au thème 1,CURRICULUM_THEME,FALSE,6,6,0,4.00,2.83,527,1258,tag:theme-thm-008
+COL-0021,"5e — Thème 2 — Société, Église et pouvoir politique dans l'Occident féodal (XIe-XVe siècles)",CURRICULUM_THEME,FALSE,15,14,1,3.47,2.87,911,1453,tag:theme-thm-009
+COL-0022,5e — Autres événements directement exploitables pour le thème 2,CURRICULUM_THEME,FALSE,8,8,0,3.25,2.88,1180,1453,tag:theme-thm-010
+COL-0023,5e — Thème 3 — Transformations de l'Europe et ouverture sur le monde aux XVIe et XVIIe siècles,CURRICULUM_THEME,FALSE,14,14,0,4.14,2.43,1453,1661,tag:theme-thm-011
+COL-0024,5e — Événements complémentaires directement utiles au thème 3,CURRICULUM_THEME,FALSE,21,21,0,3.81,2.76,1271,1715,tag:theme-thm-012
+COL-0025,"4e — Thème 1 — Le XVIIIe siècle. Expansions, Lumières et révolutions",CURRICULUM_THEME,FALSE,21,18,3,3.86,2.67,1670,1804,tag:theme-thm-013
+COL-0026,4e — Thème 2 — L'Europe et le monde au XIXe siècle,CURRICULUM_THEME,FALSE,22,21,1,3.55,3.05,1831,1900,tag:theme-thm-014
+COL-0027,"4e — Thème 3 — Société, culture et politique dans la France du XIXe siècle",CURRICULUM_THEME,FALSE,12,12,0,3.67,2.50,1848,1907,tag:theme-thm-015
+COL-0028,"3e — Thème 1 — L'Europe, un théâtre majeur des guerres totales (1914-1945)",CURRICULUM_THEME,FALSE,60,60,0,3.82,2.77,1914,1945,tag:theme-thm-016
+COL-0029,3e — Thème 2 — Le monde depuis 1945,CURRICULUM_THEME,FALSE,42,42,0,4.00,2.76,1945,1991,tag:theme-thm-017
+COL-0030,3e — Thème 3 — Françaises et Français dans une République repensée,CURRICULUM_THEME,FALSE,21,21,0,3.57,3.10,1944,1988,tag:theme-thm-018
+COL-0031,Seconde générale et technologique — Thème 1 — Le monde méditerranéen : empreintes de l’Antiquité et du Moyen Âge,CURRICULUM_THEME,FALSE,9,8,1,3.22,2.78,-461,1147,tag:theme-thm-019
+COL-0032,"Seconde générale et technologique — Thème 2 — XVe-XVIe siècles : un nouveau rapport au monde, un temps de mutation intellectuelle",CURRICULUM_THEME,FALSE,10,9,1,3.10,2.60,1453,1550,tag:theme-thm-020
+COL-0033,Seconde générale et technologique — Thème 3 — L’État à l’époque moderne : France et Angleterre,CURRICULUM_THEME,FALSE,16,16,0,3.12,3.06,1539,1789,tag:theme-thm-021
+COL-0034,Seconde générale et technologique — Thème 4 — Dynamiques et ruptures dans les sociétés des XVIIe et XVIIIe siècles,CURRICULUM_THEME,FALSE,10,7,3,2.30,3.20,1610,1759,tag:theme-thm-022
+COL-0035,Seconde générale et technologique — Les autres PPO du thème 4 sont surtout des processus sociaux,CURRICULUM_THEME,FALSE,0,0,0,,,,,tag:theme-thm-023
+COL-0036,Première générale — Thème 1 — L’Europe face aux révolutions,CURRICULUM_THEME,FALSE,26,26,0,3.50,2.77,1789,1832,tag:theme-thm-024
+COL-0037,Première générale — Thème 2 — La France dans l’Europe des nationalités : politique et société (1848-1871),CURRICULUM_THEME,FALSE,23,23,0,3.13,3.09,1848,1871,tag:theme-thm-025
+COL-0038,"Première générale — Thème 3 — La Troisième République avant 1914 : un régime politique, un empire colonial",CURRICULUM_THEME,FALSE,12,11,1,2.67,3.08,1871,1900,tag:theme-thm-026
+COL-0039,Première générale — Thème 4 — La Première Guerre mondiale : le « suicide de l’Europe » et la fin des empires européens,CURRICULUM_THEME,FALSE,7,7,0,3.29,3.00,1914,1918,tag:theme-thm-027
+COL-0040,"Seconde générale et technologique — Thème 1 — Fragilités des démocraties, totalitarismes et Seconde Guerre mondiale (1929-1945)",CURRICULUM_THEME,FALSE,20,20,0,3.40,2.95,1929,1940,tag:theme-thm-028
+COL-0041,Terminale générale — Thème 2 — La multiplication des acteurs internationaux dans un monde bipolaire (1945-début des années 1970),CURRICULUM_THEME,FALSE,6,6,0,3.00,3.17,1946,1954,tag:theme-thm-029
+COL-0042,"Terminale générale — Thème 3 — Les remises en cause économiques, politiques et sociales des années 1970 à 1991",CURRICULUM_THEME,FALSE,0,0,0,,,,,tag:theme-thm-030
+COL-0043,"Terminale générale — Thème 4 — Le monde, l’Europe et la France depuis les années 1990, entre coopérations et conflits",CURRICULUM_THEME,FALSE,6,6,0,1.33,3.67,1990,1994,tag:theme-thm-031
+COL-0044,Terminale générale — Thème 1,CURRICULUM_THEME,FALSE,0,0,0,,,,,tag:theme-thm-032
+COL-0045,Terminale générale — Thème 2,CURRICULUM_THEME,FALSE,0,0,0,,,,,tag:theme-thm-033
+COL-0046,Terminale générale — Thème 3,CURRICULUM_THEME,FALSE,0,0,0,,,,,tag:theme-thm-034
+COL-0047,Terminale générale — Thème 4,CURRICULUM_THEME,FALSE,0,0,0,,,,,tag:theme-thm-035
+COL-0048,Première HGGSP — Thème 1 — Comprendre un régime politique : la démocratie,CURRICULUM_THEME,FALSE,13,12,1,3.31,3.54,-461,1993,tag:theme-thm-036
+COL-0049,Première HGGSP — Thème 2 — Analyser les dynamiques des puissances internationales,CURRICULUM_THEME,FALSE,1,1,0,5.00,2.00,1991,1991,tag:theme-thm-037
+COL-0050,Première HGGSP — Thème 3 — Étudier les divisions politiques du monde : les frontières,CURRICULUM_THEME,FALSE,10,10,0,3.40,3.30,1884,1995,tag:theme-thm-038
+COL-0051,Première HGGSP — Thème 4 — S’informer : un regard critique sur les sources et modes de communication,CURRICULUM_THEME,FALSE,7,7,0,3.57,2.86,1835,1957,tag:theme-thm-039
+COL-0052,Première HGGSP — Thème 5 — Analyser les relations entre États et religions,CURRICULUM_THEME,FALSE,2,2,0,4.50,2.50,800,1924,tag:theme-thm-040
+COL-0053,Terminale HGGSP — Thème 1 — De nouveaux espaces de conquête,CURRICULUM_THEME,FALSE,10,10,0,3.80,2.80,1957,2026,tag:theme-thm-041
+COL-0054,"Terminale HGGSP — Thème 2 — Faire la guerre, faire la paix : formes de conflits et modes de résolution",CURRICULUM_THEME,FALSE,8,8,0,3.50,3.00,1648,2006,tag:theme-thm-042
+COL-0055,Terminale HGGSP — Thème 3 — Histoire et mémoires,CURRICULUM_THEME,FALSE,13,13,0,3.54,2.77,1914,2017,tag:theme-thm-043
+COL-0056,"Terminale HGGSP — Thème 4 — Identifier, protéger et valoriser le patrimoine : enjeux géopolitiques",CURRICULUM_THEME,FALSE,8,7,1,3.50,3.00,1682,2016,tag:theme-thm-044
+COL-0057,"Terminale HGGSP — Thème 5 — L’environnement, entre exploitation et protection : un enjeu planétaire",CURRICULUM_THEME,FALSE,13,12,1,3.62,2.92,-10000,2016,tag:theme-thm-045
+COL-0058,Terminale HGGSP — Thème 6 — L’enjeu de la connaissance,CURRICULUM_THEME,FALSE,8,8,0,3.38,3.12,1861,2009,tag:theme-thm-046
+COL-0059,50 dates incontournables,READY_PACK,TRUE,50,50,0,5.00,1.50,313,2015,TOP_N_SCORE
+COL-0060,100 dates incontournables,READY_PACK,TRUE,100,100,0,5.00,1.31,313,2015,TOP_N_SCORE
+COL-0061,France,READY_PACK,TRUE,382,382,0,2.63,3.20,451,2025,HIGH_TAG
+COL-0062,Europe,READY_PACK,TRUE,987,987,0,2.79,3.11,-776,2025,HIGH_TAG
+COL-0063,Première Guerre mondiale,READY_PACK,TRUE,32,32,0,3.12,3.22,1914,1923,HIGH_CONTEXT
+COL-0064,Seconde Guerre mondiale,READY_PACK,TRUE,40,40,0,3.90,2.65,1933,1947,HIGH_CONTEXT
+COL-0065,Guerre froide,READY_PACK,TRUE,55,55,0,4.24,2.31,1946,2000,HIGH_CONTEXT
+COL-0066,Révolution française,READY_PACK,TRUE,19,19,0,3.47,2.58,1789,1799,HIGH_CONTEXT
+COL-0067,Époque napoléonienne,READY_PACK,TRUE,4,4,0,4.25,2.50,1804,1815,HIGH_CONTEXT
+COL-0068,Révolutions et insurrections,READY_PACK,TRUE,98,98,0,3.85,2.39,-10000,2010,HIGH_TAG
+COL-0069,Guerres et batailles,READY_PACK,TRUE,259,259,0,3.98,2.52,-1457,2023,HIGH_TAG_UNION
+COL-0070,Espace,READY_PACK,TRUE,24,24,0,4.58,1.79,1610,2023,HIGH_TAG
+COL-0071,Sciences,READY_PACK,TRUE,71,71,0,4.45,1.66,1543,2023,HIGH_TAG
+COL-0072,Religions,READY_PACK,TRUE,90,90,0,3.82,2.60,-1353,2023,HIGH_TAG
+COL-0073,Droits et libertés,READY_PACK,TRUE,87,87,0,4.00,2.39,-776,2020,HIGH_TAG
+COL-0074,Construction européenne,READY_PACK,TRUE,19,19,0,4.26,2.37,1951,2024,HIGH_TAG
+COL-0075,Décolonisation,READY_PACK,TRUE,31,31,0,4.10,2.16,1945,2002,HIGH_TAG
+COL-0076,Environnement,READY_PACK,TRUE,30,30,0,4.20,2.10,-10000,2019,HIGH_TAG
+COL-0077,Mode expert — 50 dates,READY_PACK,TRUE,50,50,0,3.12,4.08,-1750,2016,TOP_N_EXPERT
+COL-0078,Antiquité,READY_PACK,TRUE,94,94,0,3.45,3.32,-3200,476,YEAR_RANGE
+COL-0079,Moyen Âge,READY_PACK,TRUE,102,102,0,3.61,3.09,476,1492,YEAR_RANGE
+COL-0080,Époque moderne,READY_PACK,TRUE,151,151,0,3.91,2.30,1492,1789,YEAR_RANGE
+COL-0081,XIXe siècle,READY_PACK,TRUE,265,265,0,3.61,2.55,1801,1900,YEAR_RANGE
+COL-0082,XXe siècle,READY_PACK,TRUE,996,996,0,2.50,3.18,1901,2000,YEAR_RANGE
+COL-0083,Culture générale V1 — 493 événements,GENERAL_CULTURE_CORPUS,FALSE,493,484,9,4.50,1.63,-3100,2024,tag:corpus-general-culture-v1
+COL-0084,Corpus complet V15 — 1 000 événements,MASTER_CORPUS,FALSE,1000,970,30,3.95,2.33,-10000,2026,ALL_EVENTS_V15
+COL-0085,Culture générale V2 — 1 000 nouveaux événements,GENERAL_CULTURE_CORPUS,FALSE,1000,999,1,1.67,3.79,-1457,2025,tag:corpus-general-culture-v2
+COL-0086,Corpus complet V18 — 2 000 événements,MASTER_CORPUS,FALSE,2000,1969,31,2.81,3.06,-10000,2026,ALL_EVENTS_V18
+COL-0087,Jeux olympiques d’été,GENERAL_CULTURE_SERIES,FALSE,21,21,0,2.38,3.62,1900,2016,tag:series-summer-olympics
+COL-0088,Jeux olympiques d’hiver,GENERAL_CULTURE_SERIES,FALSE,23,23,0,2.00,4.00,1928,2022,tag:series-winter-olympics
+COL-0089,Coupe du monde de football,GENERAL_CULTURE_SERIES,FALSE,21,21,0,3.00,3.00,1934,2022,tag:series-fifa-world-cup
+COL-0090,Championnat d’Europe de football,GENERAL_CULTURE_SERIES,FALSE,17,17,0,2.00,4.00,1960,2024,tag:series-uefa-euro
+COL-0091,Coupe du monde de rugby,GENERAL_CULTURE_SERIES,FALSE,10,10,0,2.00,4.00,1987,2023,tag:series-rugby-world-cup
+COL-0092,Élections présidentielles américaines,GENERAL_CULTURE_SERIES,FALSE,60,60,0,2.08,3.92,1788,2024,tag:series-us-presidential-election
+COL-0093,Élections présidentielles françaises,GENERAL_CULTURE_SERIES,FALSE,10,10,0,3.00,3.00,1965,2022,tag:series-fr-presidential
+COL-0094,Oscars,GENERAL_CULTURE_SERIES,FALSE,85,85,0,1.05,4.00,1929,2025,tag:series-oscars
+COL-0095,Formule 1,GENERAL_CULTURE_SERIES,FALSE,60,60,0,1.02,4.00,1950,2025,tag:series-formula-one
+COL-0096,Tour de France,GENERAL_CULTURE_SERIES,FALSE,90,90,0,1.02,4.00,1904,2025,tag:series-tour-de-france
+COL-0097,Eurovision,GENERAL_CULTURE_SERIES,FALSE,55,55,0,1.02,4.00,1956,2025,tag:series-eurovision
+COL-0098,Grammy Awards,GENERAL_CULTURE_SERIES,FALSE,55,55,0,1.02,4.00,1959,2025,tag:series-grammys
+COL-0099,César,GENERAL_CULTURE_SERIES,FALSE,39,39,0,1.03,4.00,1976,2025,tag:series-cesar
+COL-0100,Berlinale,GENERAL_CULTURE_SERIES,FALSE,55,55,0,1.02,4.00,1951,2025,tag:series-berlinale
+COL-0101,Golden Globes,GENERAL_CULTURE_SERIES,FALSE,55,55,0,1.02,4.00,1944,2025,tag:series-golden-globes
+COL-0102,BAFTA Film Awards,GENERAL_CULTURE_SERIES,FALSE,55,55,0,1.02,4.00,1949,2025,tag:series-bafta
+COL-0103,Super Bowl,GENERAL_CULTURE_SERIES,FALSE,40,40,0,1.00,4.00,1967,2025,tag:series-super-bowl
+COL-0104,Wimbledon,GENERAL_CULTURE_SERIES,FALSE,85,85,0,1.00,4.00,1878,2025,tag:series-wimbledon

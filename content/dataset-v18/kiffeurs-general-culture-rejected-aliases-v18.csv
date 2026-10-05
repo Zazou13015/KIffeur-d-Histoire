@@ -1,0 +1,4 @@
+﻿event_id,title_canonical,alias_candidate,collision_with_event_id,reason
+EVT-0983,Entrée en fonction de la Cour pénale internationale,CPI,EVT-0942,COLLISION_WITH_EXISTING_TITLE_OR_ALIAS
+EVT-1011,Entrée en application du RGPD dans l’Union européenne,UE,EVT-0987,COLLISION_WITH_EXISTING_TITLE_OR_ALIAS
+EVT-1016,Retrait du Royaume-Uni de l’Union européenne,UE,EVT-0987,COLLISION_WITH_EXISTING_TITLE_OR_ALIAS

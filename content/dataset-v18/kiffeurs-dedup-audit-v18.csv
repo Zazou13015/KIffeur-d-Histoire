@@ -1,0 +1,12 @@
+﻿old_event_id,canonical_event_id,old_title,canonical_title_before,reason,date_text
+EVT-0081,EVT-0004,Loi sur l'enseignement primaire,Instruction primaire obligatoire / laïcisation de l’enseignement public,CONFIRMED_DUPLICATE_V7,28 mars 1882
+EVT-0125,EVT-0006,Ordonnance accordant aux femmes le droit de vote et d'éligibilité,Droit de vote et d’éligibilité des femmes,CONFIRMED_DUPLICATE_V7,21 avril 1944
+EVT-0126,EVT-0007,"Première participation des femmes françaises à un scrutin, élections municipales",Premier vote effectif des Françaises,CONFIRMED_DUPLICATE_V7,29 avril 1945
+EVT-0071,EVT-0064,95 thèses de Luther,Diffusion conventionnelle des 95 thèses de Martin Luther,CONFIRMED_DUPLICATE_V7,31 octobre 1517
+EVT-0245,EVT-0103,formation du gouvernement Pétain,Philippe Pétain devient président du Conseil,CONFIRMED_DUPLICATE_V7,16 juin 1940
+EVT-0217,EVT-0191,prestation de serment du premier président,prestation de serment / entrée en fonction de Louis-Napoléon,CONFIRMED_DUPLICATE_V7,20 décembre 1848
+EVT-0218,EVT-0193,Haussmann nommé préfet de la Seine,Haussmann,CONFIRMED_DUPLICATE_V7,22 juin 1853 pour la nomination selon Wikipédia EN ; 23 juin 1853 comme début de fonction dans l’infobox Wikipédia FR
+EVT-0223,EVT-0201,début de la Commune,début de l’insurrection / début conventionnel de la Commune,CONFIRMED_DUPLICATE_V7,18 mars 1871
+EVT-0242,EVT-0241,début de la présidence Roosevelt,première investiture de Franklin D. Roosevelt,CONFIRMED_DUPLICATE_V7,4 mars 1933
+EVT-0252,EVT-0251,chute du camp de Diên Biên Phu,Bataille de Diên Biên Phu,KEPT_SEPARATE_END_MILESTONE,7 mai 1954
+EVT-0323,EVT-0322,Communication de Becquerel du 23 mars 1896,Premières communications de Becquerel,KEPT_SEPARATE_MILESTONE,23 mars 1896

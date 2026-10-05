@@ -1,0 +1,287 @@
+﻿tag_id,slug,name,tag_type,description,assignment_source,active
+TAG-0001,school-curriculum,Corpus scolaire,CORPUS,Événement rattaché au corpus scolaire audité.,CURRICULUM,TRUE
+TAG-0002,level-3e,3e,CURRICULUM_LEVEL,Niveau scolaire 3e.,CURRICULUM,TRUE
+TAG-0003,level-4e,4e,CURRICULUM_LEVEL,Niveau scolaire 4e.,CURRICULUM,TRUE
+TAG-0004,level-5e,5e,CURRICULUM_LEVEL,Niveau scolaire 5e.,CURRICULUM,TRUE
+TAG-0005,level-6e,6e,CURRICULUM_LEVEL,Niveau scolaire 6e.,CURRICULUM,TRUE
+TAG-0006,level-cm1,CM1,CURRICULUM_LEVEL,Niveau scolaire CM1.,CURRICULUM,TRUE
+TAG-0007,level-cm2,CM2,CURRICULUM_LEVEL,Niveau scolaire CM2.,CURRICULUM,TRUE
+TAG-0008,level-premiere-hggsp,Première HGGSP,CURRICULUM_LEVEL,Niveau scolaire Première HGGSP.,CURRICULUM,TRUE
+TAG-0009,level-premiere-generale,Première générale,CURRICULUM_LEVEL,Niveau scolaire Première générale.,CURRICULUM,TRUE
+TAG-0010,level-seconde-generale-et-technologique,Seconde générale et technologique,CURRICULUM_LEVEL,Niveau scolaire Seconde générale et technologique.,CURRICULUM,TRUE
+TAG-0011,level-terminale-hggsp,Terminale HGGSP,CURRICULUM_LEVEL,Niveau scolaire Terminale HGGSP.,CURRICULUM,TRUE
+TAG-0012,level-terminale-generale,Terminale générale,CURRICULUM_LEVEL,Niveau scolaire Terminale générale.,CURRICULUM,TRUE
+TAG-0013,theme-thm-001,CM2 — Thème 1 — Le temps de la République,CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
+TAG-0014,theme-thm-002,CM2 — Thème 2 — L’âge industriel en France,CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
+TAG-0015,theme-thm-003,CM2 — Thème 3 — Guerres mondiales et construction européenne,CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
+TAG-0016,theme-thm-004,6e — Thème 1 — La longue histoire de l’humanité et des migrations,CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
+TAG-0017,theme-thm-005,"6e — Thème 2 — Récits fondateurs, croyances et citoyenneté dans la Méditerranée antique",CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
+TAG-0018,theme-thm-006,6e — Thème 3 — L’Empire romain dans le monde antique,CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
+TAG-0019,theme-thm-007,"5e — Thème 1 — Chrétientés et islam (VIe-XIIIe siècles), des mondes en contact",CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
+TAG-0020,theme-thm-008,5e — Événements complémentaires directement utiles au thème 1,CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
+TAG-0021,theme-thm-009,"5e — Thème 2 — Société, Église et pouvoir politique dans l'Occident féodal (XIe-XVe siècles)",CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
+TAG-0022,theme-thm-010,5e — Autres événements directement exploitables pour le thème 2,CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
+TAG-0023,theme-thm-011,5e — Thème 3 — Transformations de l'Europe et ouverture sur le monde aux XVIe et XVIIe siècles,CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
+TAG-0024,theme-thm-012,5e — Événements complémentaires directement utiles au thème 3,CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
+TAG-0025,theme-thm-013,"4e — Thème 1 — Le XVIIIe siècle. Expansions, Lumières et révolutions",CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
+TAG-0026,theme-thm-014,4e — Thème 2 — L'Europe et le monde au XIXe siècle,CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
+TAG-0027,theme-thm-015,"4e — Thème 3 — Société, culture et politique dans la France du XIXe siècle",CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
+TAG-0028,theme-thm-016,"3e — Thème 1 — L'Europe, un théâtre majeur des guerres totales (1914-1945)",CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
+TAG-0029,theme-thm-017,3e — Thème 2 — Le monde depuis 1945,CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
+TAG-0030,theme-thm-018,3e — Thème 3 — Françaises et Français dans une République repensée,CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
+TAG-0031,theme-thm-019,Seconde générale et technologique — Thème 1 — Le monde méditerranéen : empreintes de l’Antiquité et du Moyen Âge,CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
+TAG-0032,theme-thm-020,"Seconde générale et technologique — Thème 2 — XVe-XVIe siècles : un nouveau rapport au monde, un temps de mutation intellectuelle",CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
+TAG-0033,theme-thm-021,Seconde générale et technologique — Thème 3 — L’État à l’époque moderne : France et Angleterre,CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
+TAG-0034,theme-thm-022,Seconde générale et technologique — Thème 4 — Dynamiques et ruptures dans les sociétés des XVIIe et XVIIIe siècles,CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
+TAG-0035,theme-thm-023,Seconde générale et technologique — Les autres PPO du thème 4 sont surtout des processus sociaux,CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
+TAG-0036,theme-thm-024,Première générale — Thème 1 — L’Europe face aux révolutions,CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
+TAG-0037,theme-thm-025,Première générale — Thème 2 — La France dans l’Europe des nationalités : politique et société (1848-1871),CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
+TAG-0038,theme-thm-026,"Première générale — Thème 3 — La Troisième République avant 1914 : un régime politique, un empire colonial",CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
+TAG-0039,theme-thm-027,Première générale — Thème 4 — La Première Guerre mondiale : le « suicide de l’Europe » et la fin des empires européens,CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
+TAG-0040,theme-thm-028,"Seconde générale et technologique — Thème 1 — Fragilités des démocraties, totalitarismes et Seconde Guerre mondiale (1929-1945)",CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
+TAG-0041,theme-thm-029,Terminale générale — Thème 2 — La multiplication des acteurs internationaux dans un monde bipolaire (1945-début des années 1970),CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
+TAG-0042,theme-thm-030,"Terminale générale — Thème 3 — Les remises en cause économiques, politiques et sociales des années 1970 à 1991",CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
+TAG-0043,theme-thm-031,"Terminale générale — Thème 4 — Le monde, l’Europe et la France depuis les années 1990, entre coopérations et conflits",CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
+TAG-0044,theme-thm-032,Terminale générale — Thème 1,CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
+TAG-0045,theme-thm-033,Terminale générale — Thème 2,CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
+TAG-0046,theme-thm-034,Terminale générale — Thème 3,CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
+TAG-0047,theme-thm-035,Terminale générale — Thème 4,CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
+TAG-0048,theme-thm-036,Première HGGSP — Thème 1 — Comprendre un régime politique : la démocratie,CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
+TAG-0049,theme-thm-037,Première HGGSP — Thème 2 — Analyser les dynamiques des puissances internationales,CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
+TAG-0050,theme-thm-038,Première HGGSP — Thème 3 — Étudier les divisions politiques du monde : les frontières,CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
+TAG-0051,theme-thm-039,Première HGGSP — Thème 4 — S’informer : un regard critique sur les sources et modes de communication,CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
+TAG-0052,theme-thm-040,Première HGGSP — Thème 5 — Analyser les relations entre États et religions,CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
+TAG-0053,theme-thm-041,Terminale HGGSP — Thème 1 — De nouveaux espaces de conquête,CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
+TAG-0054,theme-thm-042,"Terminale HGGSP — Thème 2 — Faire la guerre, faire la paix : formes de conflits et modes de résolution",CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
+TAG-0055,theme-thm-043,Terminale HGGSP — Thème 3 — Histoire et mémoires,CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
+TAG-0056,theme-thm-044,"Terminale HGGSP — Thème 4 — Identifier, protéger et valoriser le patrimoine : enjeux géopolitiques",CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
+TAG-0057,theme-thm-045,"Terminale HGGSP — Thème 5 — L’environnement, entre exploitation et protection : un enjeu planétaire",CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
+TAG-0058,theme-thm-046,Terminale HGGSP — Thème 6 — L’enjeu de la connaissance,CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
+TAG-0059,pedagogy-connaissance-explicite,CONNAISSANCE_EXPLICITE,PEDAGOGY_STATUS,Statut pédagogique CONNAISSANCE_EXPLICITE.,EVENT_METADATA,TRUE
+TAG-0060,pedagogy-extension-programme,EXTENSION_PROGRAMME,PEDAGOGY_STATUS,Statut pédagogique EXTENSION_PROGRAMME.,EVENT_METADATA,TRUE
+TAG-0061,pedagogy-ppo-bo,PPO_BO,PEDAGOGY_STATUS,Statut pédagogique PPO_BO.,EVENT_METADATA,TRUE
+TAG-0062,pedagogy-programme-bo,PROGRAMME_BO,PEDAGOGY_STATUS,Statut pédagogique PROGRAMME_BO.,EVENT_METADATA,TRUE
+TAG-0063,pedagogy-repere-eduscol,REPERE_EDUSCOL,PEDAGOGY_STATUS,Statut pédagogique REPERE_EDUSCOL.,EVENT_METADATA,TRUE
+TAG-0064,gameplay-day,DAY,GAMEPLAY_MODE,Mode de gameplay DAY.,GAMEPLAY,TRUE
+TAG-0065,gameplay-month,MONTH,GAMEPLAY_MODE,Mode de gameplay MONTH.,GAMEPLAY,TRUE
+TAG-0066,gameplay-not-automatic,NOT_AUTOMATIC,GAMEPLAY_MODE,Mode de gameplay NOT_AUTOMATIC.,GAMEPLAY,TRUE
+TAG-0067,gameplay-range,RANGE,GAMEPLAY_MODE,Mode de gameplay RANGE.,GAMEPLAY,TRUE
+TAG-0068,gameplay-year,YEAR,GAMEPLAY_MODE,Mode de gameplay YEAR.,GAMEPLAY,TRUE
+TAG-0069,event-type-event,EVENT,EVENT_TYPE,Type structurel EVENT.,EVENT_METADATA,TRUE
+TAG-0070,event-type-period,PERIOD,EVENT_TYPE,Type structurel PERIOD.,EVENT_METADATA,TRUE
+TAG-0071,event-type-point,POINT,EVENT_TYPE,Type structurel POINT.,EVENT_METADATA,TRUE
+TAG-0072,event-type-process,PROCESS,EVENT_TYPE,Type structurel PROCESS.,EVENT_METADATA,TRUE
+TAG-0073,date-status-approximate,APPROXIMATE,DATE_STATUS,Statut de date APPROXIMATE.,EVENT_METADATA,TRUE
+TAG-0074,date-status-conventional,CONVENTIONAL,DATE_STATUS,Statut de date CONVENTIONAL.,EVENT_METADATA,TRUE
+TAG-0075,date-status-disputed,DISPUTED,DATE_STATUS,Statut de date DISPUTED.,EVENT_METADATA,TRUE
+TAG-0076,date-status-exact,EXACT,DATE_STATUS,Statut de date EXACT.,EVENT_METADATA,TRUE
+TAG-0077,date-status-traditional,TRADITIONAL,DATE_STATUS,Statut de date TRADITIONAL.,EVENT_METADATA,TRUE
+TAG-0078,century-bce-01,Ie siècle av. J.-C.,CENTURY,Siècle dérivé d’une borne structurée.,DATE_DERIVED,TRUE
+TAG-0079,century-bce-02,IIe siècle av. J.-C.,CENTURY,Siècle dérivé d’une borne structurée.,DATE_DERIVED,TRUE
+TAG-0080,century-bce-05,Ve siècle av. J.-C.,CENTURY,Siècle dérivé d’une borne structurée.,DATE_DERIVED,TRUE
+TAG-0081,century-bce-06,VIe siècle av. J.-C.,CENTURY,Siècle dérivé d’une borne structurée.,DATE_DERIVED,TRUE
+TAG-0082,century-bce-08,VIIIe siècle av. J.-C.,CENTURY,Siècle dérivé d’une borne structurée.,DATE_DERIVED,TRUE
+TAG-0083,century-bce-100,Ce siècle av. J.-C.,CENTURY,Siècle dérivé d’une borne structurée.,DATE_DERIVED,TRUE
+TAG-0084,century-bce-32,XXXIIe siècle av. J.-C.,CENTURY,Siècle dérivé d’une borne structurée.,DATE_DERIVED,TRUE
+TAG-0085,century-ce-01,Ie siècle,CENTURY,Siècle dérivé d’une borne structurée.,DATE_DERIVED,TRUE
+TAG-0086,century-ce-02,IIe siècle,CENTURY,Siècle dérivé d’une borne structurée.,DATE_DERIVED,TRUE
+TAG-0087,century-ce-03,IIIe siècle,CENTURY,Siècle dérivé d’une borne structurée.,DATE_DERIVED,TRUE
+TAG-0088,century-ce-04,IVe siècle,CENTURY,Siècle dérivé d’une borne structurée.,DATE_DERIVED,TRUE
+TAG-0089,century-ce-05,Ve siècle,CENTURY,Siècle dérivé d’une borne structurée.,DATE_DERIVED,TRUE
+TAG-0090,century-ce-06,VIe siècle,CENTURY,Siècle dérivé d’une borne structurée.,DATE_DERIVED,TRUE
+TAG-0091,century-ce-07,VIIe siècle,CENTURY,Siècle dérivé d’une borne structurée.,DATE_DERIVED,TRUE
+TAG-0092,century-ce-08,VIIIe siècle,CENTURY,Siècle dérivé d’une borne structurée.,DATE_DERIVED,TRUE
+TAG-0093,century-ce-09,IXe siècle,CENTURY,Siècle dérivé d’une borne structurée.,DATE_DERIVED,TRUE
+TAG-0094,century-ce-10,Xe siècle,CENTURY,Siècle dérivé d’une borne structurée.,DATE_DERIVED,TRUE
+TAG-0095,century-ce-11,XIe siècle,CENTURY,Siècle dérivé d’une borne structurée.,DATE_DERIVED,TRUE
+TAG-0096,century-ce-12,XIIe siècle,CENTURY,Siècle dérivé d’une borne structurée.,DATE_DERIVED,TRUE
+TAG-0097,century-ce-13,XIIIe siècle,CENTURY,Siècle dérivé d’une borne structurée.,DATE_DERIVED,TRUE
+TAG-0098,century-ce-14,XIVe siècle,CENTURY,Siècle dérivé d’une borne structurée.,DATE_DERIVED,TRUE
+TAG-0099,century-ce-15,XVe siècle,CENTURY,Siècle dérivé d’une borne structurée.,DATE_DERIVED,TRUE
+TAG-0100,century-ce-16,XVIe siècle,CENTURY,Siècle dérivé d’une borne structurée.,DATE_DERIVED,TRUE
+TAG-0101,century-ce-17,XVIIe siècle,CENTURY,Siècle dérivé d’une borne structurée.,DATE_DERIVED,TRUE
+TAG-0102,century-ce-18,XVIIIe siècle,CENTURY,Siècle dérivé d’une borne structurée.,DATE_DERIVED,TRUE
+TAG-0103,century-ce-19,XIXe siècle,CENTURY,Siècle dérivé d’une borne structurée.,DATE_DERIVED,TRUE
+TAG-0104,century-ce-20,XXe siècle,CENTURY,Siècle dérivé d’une borne structurée.,DATE_DERIVED,TRUE
+TAG-0105,century-ce-21,XXIe siècle,CENTURY,Siècle dérivé d’une borne structurée.,DATE_DERIVED,TRUE
+TAG-0106,semantic_topic-politics,Politique,SEMANTIC_TOPIC,"Institutions, gouvernements, dirigeants et vie politique.",SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0107,semantic_topic-democracy,Démocratie,SEMANTIC_TOPIC,"Élections, suffrage, représentation et régime démocratique.",SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0108,semantic_topic-state-building,Construction de l’État,SEMANTIC_TOPIC,"Formation, transformation et organisation des États.",SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0109,semantic_topic-law,Droit et législation,SEMANTIC_TOPIC,"Lois, constitutions, ordonnances, codes et actes juridiques.",SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0110,semantic_topic-rights,Droits et libertés,SEMANTIC_TOPIC,"Droits civiques, libertés publiques et égalité juridique.",SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0111,semantic_topic-war,Guerres et conflits,SEMANTIC_TOPIC,"Conflits armés, campagnes, armistices et capitulations.",SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0112,semantic_topic-battle,Batailles et opérations,SEMANTIC_TOPIC,"Batailles, sièges, débarquements et opérations militaires.",SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0113,semantic_topic-revolution,Révolutions et insurrections,SEMANTIC_TOPIC,"Révolutions, soulèvements et ruptures politiques.",SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0114,semantic_topic-diplomacy,Diplomatie,SEMANTIC_TOPIC,"Traités, conférences, accords, négociations et relations internationales.",SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0115,semantic_topic-empire,Empires,SEMANTIC_TOPIC,"Empires, dynasties impériales et pouvoir impérial.",SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0116,semantic_topic-colonialism,Colonisation et impérialisme,SEMANTIC_TOPIC,"Expansion coloniale, empires coloniaux et impérialismes.",SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0117,semantic_topic-decolonization,Décolonisation,SEMANTIC_TOPIC,"Indépendances, guerres de décolonisation et fin des empires coloniaux.",SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0118,semantic_topic-slavery,Esclavage et traites,SEMANTIC_TOPIC,"Esclavage, traites négrières et économies de plantation.",SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0119,semantic_topic-religion,Religions,SEMANTIC_TOPIC,"Religions, Églises, croyances, conciles et réformes religieuses.",SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0120,semantic_topic-church-state,Religions et États,SEMANTIC_TOPIC,Relations institutionnelles entre pouvoirs politiques et religieux.,SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0121,semantic_topic-economy,Économie,SEMANTIC_TOPIC,"Commerce, finance, production, crises et politiques économiques.",SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0122,semantic_topic-industrialization,Industrialisation,SEMANTIC_TOPIC,"Révolutions industrielles, usines, machines et transformations productives.",SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0123,semantic_topic-social-history,Histoire sociale,SEMANTIC_TOPIC,"Sociétés, populations, conditions de vie et transformations sociales.",SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0124,semantic_topic-labor,Travail et mouvement social,SEMANTIC_TOPIC,"Travail, monde ouvrier, grèves et droits sociaux.",SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0125,semantic_topic-women-gender,Femmes et genre,SEMANTIC_TOPIC,"Droits des femmes, condition féminine et égalité.",SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0126,semantic_topic-education,Éducation,SEMANTIC_TOPIC,"École, enseignement, diplômes et transmission scolaire.",SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0127,semantic_topic-science,Sciences,SEMANTIC_TOPIC,"Découvertes, savants et développement des sciences.",SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0128,semantic_topic-medicine,Médecine et santé,SEMANTIC_TOPIC,"Médecine, santé publique, épidémies et innovations médicales.",SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0129,semantic_topic-technology,Techniques et technologies,SEMANTIC_TOPIC,"Inventions, infrastructures, communications et technologies.",SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0130,semantic_topic-space,Espace,SEMANTIC_TOPIC,"Exploration spatiale, satellites, vols habités et stations orbitales.",SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0131,semantic_topic-exploration,Explorations,SEMANTIC_TOPIC,"Voyages, découvertes, circumnavigations et exploration du monde.",SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0132,semantic_topic-art-culture,Arts et culture,SEMANTIC_TOPIC,"Arts, littérature, patrimoine culturel et grandes œuvres.",SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0133,semantic_topic-media-information,Médias et information,SEMANTIC_TOPIC,"Presse, agences, information, communication et cyberspace.",SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0134,semantic_topic-environment,Environnement,SEMANTIC_TOPIC,"Protection de l’environnement, climat et politiques environnementales.",SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0135,semantic_topic-international-organization,Organisations internationales,SEMANTIC_TOPIC,"ONU, juridictions et institutions internationales.",SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0136,semantic_topic-european-integration,Construction européenne,SEMANTIC_TOPIC,"CECA, CEE/UE, Schengen et intégration européenne.",SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0137,semantic_topic-genocide-mass-violence,Génocides et violences de masse,SEMANTIC_TOPIC,"Génocides, persécutions et crimes de masse.",SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0138,semantic_topic-memory-heritage,Mémoire et patrimoine,SEMANTIC_TOPIC,"Commémoration, patrimoine, mémoire collective et protection culturelle.",SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0139,semantic_topic-migration,Migrations,SEMANTIC_TOPIC,"Migrations, exils et déplacements de populations.",SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0140,semantic_topic-urbanization,Urbanisation,SEMANTIC_TOPIC,"Croissance urbaine, aménagement des villes et métropolisation.",SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0141,semantic_topic-agriculture,Agriculture et sédentarisation,SEMANTIC_TOPIC,"Agriculture, sédentarisation et transformations néolithiques.",SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0142,semantic_topic-geopolitics,Géopolitique,SEMANTIC_TOPIC,"Rapports de puissance, rivalités, souverainetés et espaces stratégiques.",SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0143,semantic_topic-borders-territory,Frontières et territoires,SEMANTIC_TOPIC,"Frontières, souveraineté, annexions et contrôle territorial.",SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0144,semantic_topic-knowledge,Savoirs et connaissance,SEMANTIC_TOPIC,"Production, diffusion et contrôle des savoirs.",SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0145,semantic_topic-sport,Sport,SEMANTIC_TOPIC,Événements sportifs et histoire du sport.,SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0146,semantic_topic-nationalism,Nationalismes,SEMANTIC_TOPIC,"Nationalités, mouvements nationaux et formation nationale.",SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0147,semantic_topic-totalitarianism,Totalitarismes,SEMANTIC_TOPIC,Régimes totalitaires et autoritaires de masse.,SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0148,historical_context-world-war-i,Première Guerre mondiale,HISTORICAL_CONTEXT,Contexte de la Première Guerre mondiale et de ses conséquences immédiates.,SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0149,historical_context-world-war-ii,Seconde Guerre mondiale,HISTORICAL_CONTEXT,Contexte de la Seconde Guerre mondiale.,SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0150,historical_context-cold-war,Guerre froide,HISTORICAL_CONTEXT,Contexte de la confrontation Est-Ouest.,SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0151,historical_context-french-revolution,Révolution française,HISTORICAL_CONTEXT,Contexte de la Révolution française.,SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0152,historical_context-napoleonic-era,Époque napoléonienne,HISTORICAL_CONTEXT,"Consulat, Empire et conséquences napoléoniennes.",SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0153,geography-global,Monde / global,GEOGRAPHY,Événement de portée mondiale ou multirégionale.,SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0154,geography-europe,Europe,GEOGRAPHY,Espace européen.,SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0155,geography-mediterranean,Méditerranée,GEOGRAPHY,Espace méditerranéen.,SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0156,geography-atlantic-world,Monde atlantique,GEOGRAPHY,"Espace atlantique reliant Europe, Afrique et Amériques.",SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0157,geography-france,France,GEOGRAPHY,France et territoires français.,SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0158,geography-united-kingdom,Royaume-Uni / Angleterre,GEOGRAPHY,Angleterre et Royaume-Uni.,SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0159,geography-germany,Allemagne,GEOGRAPHY,Espaces allemands et Allemagne.,SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0160,geography-italy,Italie,GEOGRAPHY,Italie et péninsule italienne.,SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0161,geography-greece,Grèce,GEOGRAPHY,Monde grec et Grèce.,SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0162,geography-spain,Espagne,GEOGRAPHY,Espagne.,SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0163,geography-portugal,Portugal,GEOGRAPHY,Portugal.,SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0164,geography-russia-ussr,Russie / URSS,GEOGRAPHY,"Russie impériale, soviétique ou contemporaine.",SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0165,geography-usa,États-Unis,GEOGRAPHY,États-Unis d’Amérique.,SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0166,geography-china,Chine,GEOGRAPHY,Chine.,SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0167,geography-japan,Japon,GEOGRAPHY,Japon.,SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0168,geography-india,Inde,GEOGRAPHY,Inde.,SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0169,geography-turkey-ottoman,Turquie / Empire ottoman,GEOGRAPHY,Turquie et Empire ottoman.,SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0170,geography-byzantine-empire,Empire byzantin,GEOGRAPHY,Empire romain d’Orient / byzantin.,SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0171,geography-middle-east,Moyen-Orient,GEOGRAPHY,Moyen-Orient.,SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0172,geography-israel-palestine,Israël / Palestine,GEOGRAPHY,"Israël, Palestine et espaces associés.",SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0173,geography-iraq-mesopotamia,Irak / Mésopotamie,GEOGRAPHY,Irak et Mésopotamie.,SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0174,geography-africa,Afrique,GEOGRAPHY,Continent africain.,SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0175,geography-north-africa,Afrique du Nord,GEOGRAPHY,Maghreb et Afrique du Nord.,SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0176,geography-algeria,Algérie,GEOGRAPHY,Algérie.,SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0177,geography-sub-saharan-africa,Afrique subsaharienne,GEOGRAPHY,Afrique subsaharienne.,SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0178,geography-rwanda,Rwanda,GEOGRAPHY,Rwanda.,SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0179,geography-mali,Mali,GEOGRAPHY,Mali.,SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0180,geography-asia,Asie,GEOGRAPHY,Continent asiatique.,SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0181,geography-east-asia,Asie orientale,GEOGRAPHY,Asie orientale.,SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0182,geography-south-asia,Asie du Sud,GEOGRAPHY,Sous-continent indien.,SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0183,geography-vietnam-indochina,Vietnam / Indochine,GEOGRAPHY,Vietnam et Indochine.,SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0184,geography-korea,Corée,GEOGRAPHY,Péninsule coréenne.,SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0185,geography-americas,Amériques,GEOGRAPHY,Continent américain.,SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0186,geography-north-america,Amérique du Nord,GEOGRAPHY,Amérique du Nord.,SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0187,geography-latin-america,Amérique latine,GEOGRAPHY,Amérique latine.,SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0188,geography-chile,Chili,GEOGRAPHY,Chili.,SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0189,geography-balkans,Balkans,GEOGRAPHY,Balkans et Europe du Sud-Est.,SEMANTIC_TAXONOMY_V11,TRUE
+TAG-0190,pedagogy-complement-school-corpus,COMPLEMENT_SCHOOL_CORPUS,PEDAGOGY_STATUS,"Repère complémentaire ajouté pour enrichir un chapitre, distinct des repères officiels obligatoires.",V13,TRUE
+TAG-0191,century-bce-26,XXVIe siècle av. J.-C.,CENTURY,Siècle correspondant à une borne structurée de l’événement.,DATE_DERIVED,TRUE
+TAG-0192,century-bce-18,XVIIIe siècle av. J.-C.,CENTURY,Siècle correspondant à une borne structurée de l’événement.,DATE_DERIVED,TRUE
+TAG-0193,century-bce-03,IIIe siècle av. J.-C.,CENTURY,Siècle correspondant à une borne structurée de l’événement.,DATE_DERIVED,TRUE
+TAG-0194,century-bce-04,IVe siècle av. J.-C.,CENTURY,Siècle correspondant à une borne structurée de l’événement.,DATE_DERIVED,TRUE
+TAG-0195,geography-egypt,Égypte,GEOGRAPHY,Égypte ancienne et contemporaine.,V14_TARGETED_SEMANTIC_AUDIT,TRUE
+TAG-0196,geography-caribbean,Caraïbes,GEOGRAPHY,Espace caribéen.,V14_TARGETED_SEMANTIC_AUDIT,TRUE
+TAG-0197,geography-haiti,Haïti / Saint-Domingue,GEOGRAPHY,Saint-Domingue et Haïti.,V14_TARGETED_SEMANTIC_AUDIT,TRUE
+TAG-0198,geography-belgium,Belgique,GEOGRAPHY,Belgique.,V14_TARGETED_SEMANTIC_AUDIT,TRUE
+TAG-0199,geography-ireland,Irlande,GEOGRAPHY,Irlande.,V14_TARGETED_SEMANTIC_AUDIT,TRUE
+TAG-0200,geography-sudan,Soudan,GEOGRAPHY,Soudan et Haut-Nil.,V14_TARGETED_SEMANTIC_AUDIT,TRUE
+TAG-0201,geography-cuba,Cuba,GEOGRAPHY,Cuba.,V14_TARGETED_SEMANTIC_AUDIT,TRUE
+TAG-0202,geography-iran,Iran,GEOGRAPHY,Iran / Perse.,V14_TARGETED_SEMANTIC_AUDIT,TRUE
+TAG-0203,geography-afghanistan,Afghanistan,GEOGRAPHY,Afghanistan.,V14_TARGETED_SEMANTIC_AUDIT,TRUE
+TAG-0204,geography-poland,Pologne,GEOGRAPHY,Pologne.,V14_TARGETED_SEMANTIC_AUDIT,TRUE
+TAG-0205,geography-ukraine,Ukraine,GEOGRAPHY,"Ukraine, y compris la période soviétique.",V14_TARGETED_SEMANTIC_AUDIT,TRUE
+TAG-0206,corpus-general-culture-v1,Culture générale V1,CORPUS,Événements ajoutés au premier palier culture générale de la V15.,GENERAL_CULTURE_V15,TRUE
+TAG-0207,semantic_topic-archaeology,Archéologie,SEMANTIC_TOPIC,Catégorie transversale : Archéologie.,GENERAL_CULTURE_V15,TRUE
+TAG-0208,semantic_topic-transport,Transports,SEMANTIC_TOPIC,Catégorie transversale : Transports.,GENERAL_CULTURE_V15,TRUE
+TAG-0209,semantic_topic-terrorism,Terrorisme,SEMANTIC_TOPIC,Catégorie transversale : Terrorisme.,GENERAL_CULTURE_V15,TRUE
+TAG-0210,century-bce-31,XXXIe siècle av. J.-C.,CENTURY,Siècle dérivé de l’année de l’événement.,DATE_DERIVED,TRUE
+TAG-0211,century-bce-24,XXIVe siècle av. J.-C.,CENTURY,Siècle dérivé de l’année de l’événement.,DATE_DERIVED,TRUE
+TAG-0212,century-bce-13,XIIIe siècle av. J.-C.,CENTURY,Siècle dérivé de l’année de l’événement.,DATE_DERIVED,TRUE
+TAG-0213,century-bce-12,XIIe siècle av. J.-C.,CENTURY,Siècle dérivé de l’année de l’événement.,DATE_DERIVED,TRUE
+TAG-0214,century-bce-16,XVIe siècle av. J.-C.,CENTURY,Siècle dérivé de l’année de l’événement.,DATE_DERIVED,TRUE
+TAG-0215,century-bce-07,VIIe siècle av. J.-C.,CENTURY,Siècle dérivé de l’année de l’événement.,DATE_DERIVED,TRUE
+TAG-0216,geography-mexico,Mexique,GEOGRAPHY,Zone géographique : Mexique.,GENERAL_CULTURE_V15,TRUE
+TAG-0217,geography-canada,Canada,GEOGRAPHY,Zone géographique : Canada.,GENERAL_CULTURE_V15,TRUE
+TAG-0218,geography-czechia,Tchéquie / Tchécoslovaquie,GEOGRAPHY,Zone géographique : Tchéquie / Tchécoslovaquie.,GENERAL_CULTURE_V15,TRUE
+TAG-0219,geography-brazil,Brésil,GEOGRAPHY,Zone géographique : Brésil.,GENERAL_CULTURE_V15,TRUE
+TAG-0220,geography-panama,Panama,GEOGRAPHY,Zone géographique : Panama.,GENERAL_CULTURE_V15,TRUE
+TAG-0221,geography-switzerland,Suisse,GEOGRAPHY,Zone géographique : Suisse.,GENERAL_CULTURE_V15,TRUE
+TAG-0222,geography-malta,Malte,GEOGRAPHY,Zone géographique : Malte.,GENERAL_CULTURE_V15,TRUE
+TAG-0223,geography-netherlands,Pays-Bas,GEOGRAPHY,Zone géographique : Pays-Bas.,GENERAL_CULTURE_V15,TRUE
+TAG-0224,geography-sweden,Suède,GEOGRAPHY,Zone géographique : Suède.,GENERAL_CULTURE_V15,TRUE
+TAG-0225,geography-austria,Autriche,GEOGRAPHY,Zone géographique : Autriche.,GENERAL_CULTURE_V15,TRUE
+TAG-0226,geography-australia,Australie,GEOGRAPHY,Zone géographique : Australie.,GENERAL_CULTURE_V15,TRUE
+TAG-0227,geography-oceania,Océanie,GEOGRAPHY,Zone géographique : Océanie.,GENERAL_CULTURE_V15,TRUE
+TAG-0228,geography-indonesia,Indonésie,GEOGRAPHY,Zone géographique : Indonésie.,GENERAL_CULTURE_V15,TRUE
+TAG-0229,geography-new-zealand,Nouvelle-Zélande,GEOGRAPHY,Zone géographique : Nouvelle-Zélande.,GENERAL_CULTURE_V15,TRUE
+TAG-0230,geography-argentina,Argentine,GEOGRAPHY,Zone géographique : Argentine.,GENERAL_CULTURE_V15,TRUE
+TAG-0231,geography-liberia,Liberia,GEOGRAPHY,Zone géographique : Liberia.,GENERAL_CULTURE_V15,TRUE
+TAG-0232,geography-tunisia,Tunisie,GEOGRAPHY,Zone géographique : Tunisie.,GENERAL_CULTURE_V15,TRUE
+TAG-0233,geography-congo,Congo,GEOGRAPHY,Zone géographique : Congo.,GENERAL_CULTURE_V15,TRUE
+TAG-0234,geography-norway,Norvège,GEOGRAPHY,Zone géographique : Norvège.,GENERAL_CULTURE_V15,TRUE
+TAG-0235,geography-antarctica,Antarctique,GEOGRAPHY,Zone géographique : Antarctique.,GENERAL_CULTURE_V15,TRUE
+TAG-0236,geography-uruguay,Uruguay,GEOGRAPHY,Zone géographique : Uruguay.,GENERAL_CULTURE_V15,TRUE
+TAG-0237,geography-ethiopia,Éthiopie,GEOGRAPHY,Zone géographique : Éthiopie.,GENERAL_CULTURE_V15,TRUE
+TAG-0238,geography-south-africa,Afrique du Sud,GEOGRAPHY,Zone géographique : Afrique du Sud.,GENERAL_CULTURE_V15,TRUE
+TAG-0239,geography-saudi-arabia,Arabie saoudite,GEOGRAPHY,Zone géographique : Arabie saoudite.,GENERAL_CULTURE_V15,TRUE
+TAG-0240,geography-pakistan,Pakistan,GEOGRAPHY,Zone géographique : Pakistan.,GENERAL_CULTURE_V15,TRUE
+TAG-0241,geography-marshall-islands,Îles Marshall,GEOGRAPHY,Zone géographique : Îles Marshall.,GENERAL_CULTURE_V15,TRUE
+TAG-0242,geography-pacific,Pacifique,GEOGRAPHY,Zone géographique : Pacifique.,GENERAL_CULTURE_V15,TRUE
+TAG-0243,geography-nepal,Népal,GEOGRAPHY,Zone géographique : Népal.,GENERAL_CULTURE_V15,TRUE
+TAG-0244,geography-hungary,Hongrie,GEOGRAPHY,Zone géographique : Hongrie.,GENERAL_CULTURE_V15,TRUE
+TAG-0245,geography-ghana,Ghana,GEOGRAPHY,Zone géographique : Ghana.,GENERAL_CULTURE_V15,TRUE
+TAG-0246,geography-singapore,Singapour,GEOGRAPHY,Zone géographique : Singapour.,GENERAL_CULTURE_V15,TRUE
+TAG-0247,geography-bangladesh,Bangladesh,GEOGRAPHY,Zone géographique : Bangladesh.,GENERAL_CULTURE_V15,TRUE
+TAG-0248,geography-romania,Roumanie,GEOGRAPHY,Zone géographique : Roumanie.,GENERAL_CULTURE_V15,TRUE
+TAG-0249,geography-philippines,Philippines,GEOGRAPHY,Zone géographique : Philippines.,GENERAL_CULTURE_V15,TRUE
+TAG-0250,geography-madagascar,Madagascar,GEOGRAPHY,Zone géographique : Madagascar.,GENERAL_CULTURE_V15,TRUE
+TAG-0251,geography-nigeria,Nigeria,GEOGRAPHY,Zone géographique : Nigeria.,GENERAL_CULTURE_V15,TRUE
+TAG-0252,geography-iceland,Islande,GEOGRAPHY,Zone géographique : Islande.,GENERAL_CULTURE_V15,TRUE
+TAG-0253,geography-mozambique,Mozambique,GEOGRAPHY,Zone géographique : Mozambique.,GENERAL_CULTURE_V15,TRUE
+TAG-0254,geography-angola,Angola,GEOGRAPHY,Zone géographique : Angola.,GENERAL_CULTURE_V15,TRUE
+TAG-0255,geography-zimbabwe,Zimbabwe,GEOGRAPHY,Zone géographique : Zimbabwe.,GENERAL_CULTURE_V15,TRUE
+TAG-0256,geography-south-sudan,Soudan du Sud,GEOGRAPHY,Zone géographique : Soudan du Sud.,GENERAL_CULTURE_V15,TRUE
+TAG-0257,geography-timor-leste,Timor oriental,GEOGRAPHY,Zone géographique : Timor oriental.,GENERAL_CULTURE_V15,TRUE
+TAG-0258,corpus-general-culture-v2,Culture générale V2,CORPUS,"Deuxième palier de 1 000 événements de culture générale, ajouté en V18.",GENERAL_CULTURE_V18,TRUE
+TAG-0259,century-bce-15,XVe siècle av. J.-C.,CENTURY,Siècle dérivé de l’année de l’événement.,DATE_DERIVED,TRUE
+TAG-0260,century-bce-14,XIVe siècle av. J.-C.,CENTURY,Siècle dérivé de l’année de l’événement.,DATE_DERIVED,TRUE
+TAG-0261,century-bce-09,IXe siècle av. J.-C.,CENTURY,Siècle dérivé de l’année de l’événement.,DATE_DERIVED,TRUE
+TAG-0262,geography-arctic,Arctique,GEOGRAPHY,Zone géographique : Arctique.,GENERAL_CULTURE_V18,TRUE
+TAG-0263,geography-finland,Finlande,GEOGRAPHY,Zone géographique : Finlande.,GENERAL_CULTURE_V18,TRUE
+TAG-0264,geography-namibia,Namibie,GEOGRAPHY,Zone géographique : Namibie.,GENERAL_CULTURE_V18,TRUE
+TAG-0265,geography-baltic,Baltique,GEOGRAPHY,Zone géographique : Baltique.,GENERAL_CULTURE_V18,TRUE
+TAG-0266,geography-qatar,Qatar,GEOGRAPHY,Zone géographique : Qatar.,GENERAL_CULTURE_V18,TRUE
+TAG-0267,series-v15-leftover,Candidats historiques V15,SERIES,Série de culture générale : Candidats historiques V15.,GENERAL_CULTURE_V18,TRUE
+TAG-0268,series-curated-history-v18,Repères historiques V18,SERIES,Série de culture générale : Repères historiques V18.,GENERAL_CULTURE_V18,TRUE
+TAG-0269,series-summer-olympics,Jeux olympiques d’été,SERIES,Série de culture générale : Jeux olympiques d’été.,GENERAL_CULTURE_V18,TRUE
+TAG-0270,series-winter-olympics,Jeux olympiques d’hiver,SERIES,Série de culture générale : Jeux olympiques d’hiver.,GENERAL_CULTURE_V18,TRUE
+TAG-0271,series-fifa-world-cup,Coupe du monde de football,SERIES,Série de culture générale : Coupe du monde de football.,GENERAL_CULTURE_V18,TRUE
+TAG-0272,series-uefa-euro,Championnat d’Europe de football,SERIES,Série de culture générale : Championnat d’Europe de football.,GENERAL_CULTURE_V18,TRUE
+TAG-0273,series-rugby-world-cup,Coupe du monde de rugby,SERIES,Série de culture générale : Coupe du monde de rugby.,GENERAL_CULTURE_V18,TRUE
+TAG-0274,series-us-presidential-election,Élections présidentielles américaines,SERIES,Série de culture générale : Élections présidentielles américaines.,GENERAL_CULTURE_V18,TRUE
+TAG-0275,series-fr-presidential,Élections présidentielles françaises,SERIES,Série de culture générale : Élections présidentielles françaises.,GENERAL_CULTURE_V18,TRUE
+TAG-0276,series-oscars,Oscars,SERIES,Série de culture générale : Oscars.,GENERAL_CULTURE_V18,TRUE
+TAG-0277,series-formula-one,Formule 1,SERIES,Série de culture générale : Formule 1.,GENERAL_CULTURE_V18,TRUE
+TAG-0278,series-tour-de-france,Tour de France,SERIES,Série de culture générale : Tour de France.,GENERAL_CULTURE_V18,TRUE
+TAG-0279,series-eurovision,Eurovision,SERIES,Série de culture générale : Eurovision.,GENERAL_CULTURE_V18,TRUE
+TAG-0280,series-grammys,Grammy Awards,SERIES,Série de culture générale : Grammy Awards.,GENERAL_CULTURE_V18,TRUE
+TAG-0281,series-cesar,César,SERIES,Série de culture générale : César.,GENERAL_CULTURE_V18,TRUE
+TAG-0282,series-berlinale,Berlinale,SERIES,Série de culture générale : Berlinale.,GENERAL_CULTURE_V18,TRUE
+TAG-0283,series-golden-globes,Golden Globes,SERIES,Série de culture générale : Golden Globes.,GENERAL_CULTURE_V18,TRUE
+TAG-0284,series-bafta,BAFTA Film Awards,SERIES,Série de culture générale : BAFTA Film Awards.,GENERAL_CULTURE_V18,TRUE
+TAG-0285,series-super-bowl,Super Bowl,SERIES,Série de culture générale : Super Bowl.,GENERAL_CULTURE_V18,TRUE
+TAG-0286,series-wimbledon,Wimbledon,SERIES,Série de culture générale : Wimbledon.,GENERAL_CULTURE_V18,TRUE

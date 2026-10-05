@@ -1,0 +1,25 @@
+﻿collection_id,slug,title,collection_type,description,source_rule,level,theme_id,active,ready_to_play,target_size,selection_rule_version,membership_confidence
+COL-0059,50-incontournables,50 dates incontournables,READY_PACK,Sélection courte des événements scolaires les plus importants et accessibles.,TOP_N_SCORE,,,TRUE,TRUE,50,V12.1,CURATED_SCORE
+COL-0060,100-incontournables,100 dates incontournables,READY_PACK,"Socle généraliste de 100 événements majeurs, incluant intégralement le pack de 50.",TOP_N_SCORE,,,TRUE,TRUE,100,V12.1,CURATED_SCORE
+COL-0061,france,France,READY_PACK,Événements directement rattachés à la France.,HIGH_TAG,,,TRUE,TRUE,,V12.1,HIGH
+COL-0062,europe,Europe,READY_PACK,Événements directement rattachés à l’espace européen.,HIGH_TAG,,,TRUE,TRUE,,V12.1,HIGH
+COL-0063,premiere-guerre-mondiale,Première Guerre mondiale,READY_PACK,Événements du contexte Première Guerre mondiale.,HIGH_CONTEXT,,,TRUE,TRUE,,V12.1,HIGH
+COL-0064,seconde-guerre-mondiale,Seconde Guerre mondiale,READY_PACK,Événements du contexte Seconde Guerre mondiale.,HIGH_CONTEXT,,,TRUE,TRUE,,V12.1,HIGH
+COL-0065,guerre-froide,Guerre froide,READY_PACK,Événements du contexte Guerre froide.,HIGH_CONTEXT,,,TRUE,TRUE,,V12.1,HIGH
+COL-0066,revolution-francaise,Révolution française,READY_PACK,Événements directement associés à la Révolution française.,HIGH_CONTEXT,,,TRUE,TRUE,,V12.1,HIGH
+COL-0067,epoque-napoleonienne,Époque napoléonienne,READY_PACK,"Consulat, Empire et principaux jalons napoléoniens.",HIGH_CONTEXT,,,TRUE,TRUE,,V12.1,HIGH
+COL-0068,revolutions,Révolutions et insurrections,READY_PACK,"Révolutions, soulèvements et ruptures politiques.",HIGH_TAG,,,TRUE,TRUE,,V12.1,HIGH
+COL-0069,guerres-batailles,Guerres et batailles,READY_PACK,"Guerres, conflits, batailles et opérations militaires.",HIGH_TAG_UNION,,,TRUE,TRUE,,V12.1,HIGH
+COL-0070,espace,Espace,READY_PACK,"Exploration spatiale, satellites, vols habités et stations orbitales.",HIGH_TAG,,,TRUE,TRUE,,V12.1,HIGH
+COL-0071,sciences,Sciences,READY_PACK,"Découvertes, savants et événements scientifiques.",HIGH_TAG,,,TRUE,TRUE,,V12.1,HIGH
+COL-0072,religions,Religions,READY_PACK,Événements religieux directement identifiés.,HIGH_TAG,,,TRUE,TRUE,,V12.1,HIGH
+COL-0073,droits-libertes,Droits et libertés,READY_PACK,"Droits civiques, libertés publiques, suffrage et égalité juridique.",HIGH_TAG,,,TRUE,TRUE,,V12.1,HIGH
+COL-0074,construction-europeenne,Construction européenne,READY_PACK,"CECA, traités européens, Schengen et autres jalons associés.",HIGH_TAG,,,TRUE,TRUE,,V12.1,HIGH
+COL-0075,decolonisation,Décolonisation,READY_PACK,Indépendances et conflits de décolonisation.,HIGH_TAG,,,TRUE,TRUE,,V12.1,HIGH
+COL-0076,environnement,Environnement,READY_PACK,"Protection de l’environnement, climat et grands accords.",HIGH_TAG,,,TRUE,TRUE,,V12.1,HIGH
+COL-0077,mode-expert-50,Mode expert — 50 dates,READY_PACK,"Les 50 événements jouables les plus difficiles, départagés par importance et diffusion scolaire.",TOP_N_EXPERT,,,TRUE,TRUE,50,V12.1,CURATED_SCORE
+COL-0078,antiquite,Antiquité,READY_PACK,Événements jouables conventionnellement situés entre les premières écritures et 476.,YEAR_RANGE,,,TRUE,TRUE,,V12.1,DATE_RULE
+COL-0079,moyen-age,Moyen Âge,READY_PACK,Événements jouables conventionnellement situés de 476 à 1492.,YEAR_RANGE,,,TRUE,TRUE,,V12.1,DATE_RULE
+COL-0080,epoque-moderne,Époque moderne,READY_PACK,Événements jouables conventionnellement situés de 1492 à 1789.,YEAR_RANGE,,,TRUE,TRUE,,V12.1,DATE_RULE
+COL-0081,xixe-siecle,XIXe siècle,READY_PACK,Événements jouables de 1801 à 1900.,YEAR_RANGE,,,TRUE,TRUE,,V12.1,DATE_RULE
+COL-0082,xxe-siecle,XXe siècle,READY_PACK,Événements jouables de 1901 à 2000.,YEAR_RANGE,,,TRUE,TRUE,,V12.1,DATE_RULE

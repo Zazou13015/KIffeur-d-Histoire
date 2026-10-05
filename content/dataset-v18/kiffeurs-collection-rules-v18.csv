@@ -1,0 +1,25 @@
+﻿collection_id,slug,title,rule_type,target_size,tag_slugs,minimum_tag_confidence,playable_required,ranking_formula,notes
+COL-0059,50-incontournables,50 dates incontournables,TOP_N_SCORE,50,,,TRUE,importance*100 + curriculum_level_count*7 + occurrence_count*2 + source_bonus - difficulty*9,Sélection courte des événements scolaires les plus importants et accessibles.
+COL-0060,100-incontournables,100 dates incontournables,TOP_N_SCORE,100,,,TRUE,importance*100 + curriculum_level_count*7 + occurrence_count*2 + source_bonus - difficulty*9,"Socle généraliste de 100 événements majeurs, incluant intégralement le pack de 50."
+COL-0061,france,France,HIGH_TAG,,geography-france,HIGH,TRUE,,Événements directement rattachés à la France.
+COL-0062,europe,Europe,HIGH_TAG,,geography-europe,HIGH,TRUE,,Événements directement rattachés à l’espace européen.
+COL-0063,premiere-guerre-mondiale,Première Guerre mondiale,HIGH_CONTEXT,,historical_context-world-war-i,HIGH,TRUE,,Événements du contexte Première Guerre mondiale.
+COL-0064,seconde-guerre-mondiale,Seconde Guerre mondiale,HIGH_CONTEXT,,historical_context-world-war-ii,HIGH,TRUE,,Événements du contexte Seconde Guerre mondiale.
+COL-0065,guerre-froide,Guerre froide,HIGH_CONTEXT,,historical_context-cold-war,HIGH,TRUE,,Événements du contexte Guerre froide.
+COL-0066,revolution-francaise,Révolution française,HIGH_CONTEXT,,historical_context-french-revolution,HIGH,TRUE,,Événements directement associés à la Révolution française.
+COL-0067,epoque-napoleonienne,Époque napoléonienne,HIGH_CONTEXT,,historical_context-napoleonic-era,HIGH,TRUE,,"Consulat, Empire et principaux jalons napoléoniens."
+COL-0068,revolutions,Révolutions et insurrections,HIGH_TAG,,semantic_topic-revolution,HIGH,TRUE,,"Révolutions, soulèvements et ruptures politiques."
+COL-0069,guerres-batailles,Guerres et batailles,HIGH_TAG_UNION,,semantic_topic-war;semantic_topic-battle,HIGH,TRUE,,"Guerres, conflits, batailles et opérations militaires."
+COL-0070,espace,Espace,HIGH_TAG,,semantic_topic-space,HIGH,TRUE,,"Exploration spatiale, satellites, vols habités et stations orbitales."
+COL-0071,sciences,Sciences,HIGH_TAG,,semantic_topic-science,HIGH,TRUE,,"Découvertes, savants et événements scientifiques."
+COL-0072,religions,Religions,HIGH_TAG,,semantic_topic-religion,HIGH,TRUE,,Événements religieux directement identifiés.
+COL-0073,droits-libertes,Droits et libertés,HIGH_TAG,,semantic_topic-rights,HIGH,TRUE,,"Droits civiques, libertés publiques, suffrage et égalité juridique."
+COL-0074,construction-europeenne,Construction européenne,HIGH_TAG,,semantic_topic-european-integration,HIGH,TRUE,,"CECA, traités européens, Schengen et autres jalons associés."
+COL-0075,decolonisation,Décolonisation,HIGH_TAG,,semantic_topic-decolonization,HIGH,TRUE,,Indépendances et conflits de décolonisation.
+COL-0076,environnement,Environnement,HIGH_TAG,,semantic_topic-environment,HIGH,TRUE,,"Protection de l’environnement, climat et grands accords."
+COL-0077,mode-expert-50,Mode expert — 50 dates,TOP_N_EXPERT,50,,,TRUE,difficulty*100 + importance*15 + curriculum_level_count*3 + source_bonus,"Les 50 événements jouables les plus difficiles, départagés par importance et diffusion scolaire."
+COL-0078,antiquite,Antiquité,YEAR_RANGE,,,,TRUE,,Événements jouables conventionnellement situés entre les premières écritures et 476.
+COL-0079,moyen-age,Moyen Âge,YEAR_RANGE,,,,TRUE,,Événements jouables conventionnellement situés de 476 à 1492.
+COL-0080,epoque-moderne,Époque moderne,YEAR_RANGE,,,,TRUE,,Événements jouables conventionnellement situés de 1492 à 1789.
+COL-0081,xixe-siecle,XIXe siècle,YEAR_RANGE,,century-ce-19,,TRUE,,Événements jouables de 1801 à 1900.
+COL-0082,xxe-siecle,XXe siècle,YEAR_RANGE,,century-ce-20,,TRUE,,Événements jouables de 1901 à 2000.

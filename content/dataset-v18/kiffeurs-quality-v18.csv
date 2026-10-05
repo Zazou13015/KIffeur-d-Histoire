@@ -1,0 +1,97 @@
+﻿quality_id,event_id,severity,flag,detail
+QA16-0001,EVT-0022,INFO,CENTURY_TEXT,"VIIIe siècle av. J.-C. (datation approximative, débats savants)"
+QA16-0002,EVT-0022,INFO,APPROXIMATE,"VIIIe siècle av. J.-C. (datation approximative, débats savants)"
+QA16-0003,EVT-0023,INFO,TRADITIONAL,776 av. J.-C.
+QA16-0004,EVT-0024,INFO,TRADITIONAL,21 avril 753 av. J.-C.
+QA16-0005,EVT-0025,INFO,CENTURY_TEXT,VIIIe siècle av. J.-C. et siècles suivants
+QA16-0006,EVT-0025,INFO,PROCESS,VIIIe siècle av. J.-C. et siècles suivants
+QA16-0007,EVT-0026,INFO,CENTURY_TEXT,du VIIe siècle av. J.-C. au début de notre ère
+QA16-0008,EVT-0026,INFO,APPROXIMATE,du VIIe siècle av. J.-C. au début de notre ère
+QA16-0009,EVT-0029,INFO,CENTURY_TEXT,Ve siècle av. J.-C.
+QA16-0010,EVT-0033,INFO,CONVENTIONAL,"conventionnellement de l’époque d’Auguste jusqu’au IIe siècle, souvent env. 27 av. J.-C.-180 apr. J.-C."
+QA16-0011,EVT-0043,INFO,CONVENTIONAL,événement calendaire distinct de la migration réelle
+QA16-0012,EVT-0052,INFO,DISPUTED,Éduscol n'exige que l'année
+QA16-0013,EVT-0053,INFO,CENTURY_TEXT,processus XIe-XIVe siècles
+QA16-0014,EVT-0053,INFO,PROCESS,surtout ne pas créer une date artificielle
+QA16-0015,EVT-0055,INFO,CONVENTIONAL,"guerre discontinue, avec trêves"
+QA16-0016,EVT-0063,INFO,CONVENTIONAL,12 octobre 1492
+QA16-0017,EVT-0064,INFO,CONVENTIONAL,31 octobre 1517
+QA16-0018,EVT-0090,INFO,CONVENTIONAL,24 avril 1915
+QA16-0019,EVT-0136,INFO,APPROXIMATE,"PPO de personnage, pas une date unique"
+QA16-0020,EVT-0142,INFO,PROCESS,surtout XIe-XVe siècles selon l’objet étudié
+QA16-0021,EVT-0145,INFO,PROCESS,processus pluriséculaire
+QA16-0022,EVT-0149,INFO,APPROXIMATE,v. 1466/1469-1536
+QA16-0023,EVT-0168,INFO,CENTURY_TEXT,XVIIIe siècle
+QA16-0024,EVT-0168,INFO,PROCESS,XVIIIe siècle
+QA16-0025,EVT-0169,INFO,CENTURY_TEXT,première moitié du XVIIIe siècle
+QA16-0026,EVT-0169,INFO,PROCESS,première moitié du XVIIIe siècle
+QA16-0027,EVT-0170,INFO,CENTURY_TEXT,XVIIe-XVIIIe siècles
+QA16-0028,EVT-0170,INFO,PROCESS,XVIIe-XVIIIe siècles
+QA16-0029,EVT-0192,INFO,PROCESS,1853-1870 environ
+QA16-0030,EVT-0194,INFO,PROCESS,années 1850-1860
+QA16-0031,EVT-0198,INFO,PROCESS,plébiscites et mise en œuvre à conserver séparément si ajoutés
+QA16-0032,EVT-0208,INFO,PROCESS,1915 - janvier 1916 selon la phase
+QA16-0033,EVT-0243,INFO,CONVENTIONAL,à partir de mars 1933
+QA16-0034,EVT-0301,INFO,CONVENTIONAL,28 février 1991
+QA16-0035,EVT-0309,INFO,APPROXIMATE,≈ 30 juin → 11 juillet 2012
+QA16-0036,EVT-0315,INFO,CONVENTIONAL,2 décembre 1970
+QA16-0037,EVT-0327,INFO,CONVENTIONAL,bornes scolaires conventionnelles ; ne pas présenter comme limites universelles absolues [repère scolaire: 476-1492]
+QA16-0038,EVT-0329,INFO,CURRICULUM_CONFLICT,sources patrimoniales situent l’arrivée en France en 1516 ; mort le 2 mai 1519
+QA16-0039,EVT-0338,INFO,APPROXIMATE,bon support scientifique ; ne pas l’assimiler automatiquement au « premier Homo »
+QA16-0040,EVT-0339,INFO,CONVENTIONAL,ne jamais proposer une fausse date exacte
+QA16-0041,EVT-0340,INFO,PROCESS,"conserver ~10000 av. J.-C. comme repère scolaire, pas comme événement mondial unique"
+QA16-0042,EVT-0341,INFO,APPROXIMATE_NUMERIC_YEAR,"sources muséales modernes situent généralement les premières écritures sumériennes vers -3200, avec proto-écriture antérieure ; mieux stocker une fourchette/approximation que -3500 exact [repère scolaire: vers -3500]"
+QA16-0043,EVT-0341,INFO,APPROXIMATE,"réponse scolaire ≈ -3500 ; donnée historique ≈ fin IVe millénaire, à préciser par source/site"
+QA16-0044,EVT-0342,INFO,PROCESS,"créer des événements par cité/royaume, pas une date mondiale unique"
+QA16-0045,EVT-0027,INFO,HISTORICAL_VS_CURRICULUM_DATE,Historique : 587/586 av. J.-C.; repère pédagogique Éduscol : 587 av. J.-C.
+QA16-0046,EVT-0037,INFO,DAY_UNCERTAIN,Concile de Nicée : année 325 sûre pour le dataset; ne pas générer de question au jour sans source spécialisée.
+QA16-0047,EVT-0141,INFO,RANGE_VARIANT,Deuxième croisade : 1147-1149 retenu comme plage scolaire; certaines présentations prolongent jusqu'en 1150.
+QA16-0048,EVT-0339,INFO,DEFINITION_DEPENDENT,"Le début de la préhistoire dépend du critère retenu (hominines, Homo, outils); ne pas imposer une date ponctuelle."
+QA16-0049,EVT-0340,INFO,PROCESS_NOT_POINT,"Sédentarisation/agriculture : processus régionaux étalés; -10 000 reste un repère scolaire, pas un jour zéro universel."
+QA16-0050,EVT-0342,INFO,PROCESS_NOT_POINT,Premiers États : émergence multiple et progressive; ne pas transformer en date exacte unique.
+QA16-0051,EVT-0048,INFO,DAY_UNCERTAIN,Traité de Verdun : août 843 assuré ; jour exact non connu avec certitude.
+QA16-0052,EVT-0348,INFO,CONVENTIONAL_PERIOD_BOUNDARIES,Period/process record: gameplay must respect the stored precision/status and should not imply universally objective boundaries.
+QA16-0053,EVT-0349,INFO,CONVENTIONAL_PERIOD_BOUNDARIES,Period/process record: gameplay must respect the stored precision/status and should not imply universally objective boundaries.
+QA16-0054,EVT-0350,INFO,CONVENTIONAL_PERIOD_BOUNDARIES,Period/process record: gameplay must respect the stored precision/status and should not imply universally objective boundaries.
+QA16-0055,EVT-0351,INFO,CONVENTIONAL_PERIOD_BOUNDARIES,Period/process record: gameplay must respect the stored precision/status and should not imply universally objective boundaries.
+QA16-0056,EVT-0352,INFO,CONVENTIONAL_PERIOD_BOUNDARIES,Period/process record: gameplay must respect the stored precision/status and should not imply universally objective boundaries.
+QA16-0057,EVT-0354,INFO,CONVENTIONAL_PERIOD_BOUNDARIES,Period/process record: gameplay must respect the stored precision/status and should not imply universally objective boundaries.
+QA16-0058,EVT-0355,INFO,CONVENTIONAL_PERIOD_BOUNDARIES,Period/process record: gameplay must respect the stored precision/status and should not imply universally objective boundaries.
+QA16-0059,EVT-0356,INFO,CONVENTIONAL_PERIOD_BOUNDARIES,Period/process record: gameplay must respect the stored precision/status and should not imply universally objective boundaries.
+QA16-0060,EVT-0359,INFO,CONVENTIONAL_PERIOD_BOUNDARIES,Period/process record: gameplay must respect the stored precision/status and should not imply universally objective boundaries.
+QA16-0061,EVT-0365,INFO,EVENT_VS_PERIODIZATION,4 September 476 dates the deposition of Romulus Augustule; using it as the absolute 'end of Antiquity' or of all Roman authority is a convention.
+QA16-0062,EVT-0367,INFO,MONTH_PRECISION_ONLY,The curriculum anchor is the ordinance of August 1669; no day was forced into the database.
+QA16-0063,EVT-0193,INFO,APPOINTMENT_VS_START_OF_OFFICE,Haussmann : 22 juin 1853 = nomination selon Wikipédia EN ; 23 juin = début de fonction dans l’infobox Wikipédia FR. Le titre canonique porte désormais explicitement sur la nomination.
+QA16-0064,EVT-0251,INFO,PARENT_CHILD_DISTINCTION,"La bataille de Diên Biên Phu (13 mars-7 mai 1954) et la chute du camp (7 mai) sont conservées comme deux granularités reliées, pas comme doublons."
+QA16-0065,EVT-0322,INFO,SERIES_AND_MILESTONE,Les premières communications de Becquerel couvrent février-mars 1896 ; la note précise du 23 mars reste un jalon enfant.
+QA16-0066,EVT-0309,INFO,ICC_APPROXIMATE_RANGE,La CPI formule la période comme 'entre environ le 30 juin et le 11 juillet 2012' : DAY_RANGE conservé avec statut APPROXIMATE.
+QA16-0067,EVT-0368,INFO,V13_DATE_NUANCE,Date status APPROXIMATE: vers 2560 av. J.-C.
+QA16-0068,EVT-0369,INFO,V13_DATE_NUANCE,Date status APPROXIMATE: vers 1755-1750 av. J.-C.
+QA16-0069,EVT-0372,INFO,V13_DATE_NUANCE,Date status CONVENTIONAL: 508/507 av. J.-C.
+QA16-0070,EVT-0382,INFO,V13_DATE_NUANCE,Date status TRADITIONAL: 509 av. J.-C.
+QA16-0071,EVT-0388,INFO,V13_DATE_NUANCE,Date status CONVENTIONAL: février 313 ; mise en œuvre par rescrit en juin 313
+QA16-0072,EVT-0395,INFO,V13_DATE_NUANCE,"Date status CONVENTIONAL: 732 ; date conventionnelle, parfois 733"
+QA16-0073,EVT-0414,INFO,V13_DATE_NUANCE,Date status APPROXIMATE: vers 1455
+QA16-0074,EVT-0429,INFO,V13_DATE_NUANCE,Date status CONVENTIONAL: 5 novembre-23 décembre 1688
+QA16-0075,EVT-0449,INFO,V13_DATE_NUANCE,Date status CONVENTIONAL: 25 mars 1821
+QA16-0076,EVT-0457,INFO,V13_DATE_NUANCE,Date status CONVENTIONAL: 1845-1852
+QA16-0077,EVT-0461,INFO,V13_DATE_NUANCE,Date status CONVENTIONAL: 16 octobre 1853-30 mars 1856
+QA16-0078,EVT-0466,INFO,V13_DATE_NUANCE,Date status CONVENTIONAL: 12 avril 1861-9 avril 1865
+QA16-0079,EVT-0536,INFO,V13_DATE_NUANCE,Date status CONVENTIONAL: 5 janvier-21 août 1968
+QA16-0080,EVT-0537,INFO,V13_DATE_NUANCE,Date status CONVENTIONAL: 2 mai-23 juin 1968
+QA16-0081,EVT-0368,INFO,APPROXIMATE_CONSTRUCTION_DATE,"Grande pyramide : datation estimative, non jouable automatiquement."
+QA16-0082,EVT-0388,INFO,TRADITIONAL_DOCUMENT_NAME,« Édit de Milan » est une appellation traditionnelle ; l’accord et le rescrit sont distingués.
+QA16-0083,EVT-0429,INFO,PERIOD_RANGE_REFINED,Glorieuse Révolution normalisée en 1688-1689.
+QA16-0084,EVT-0449,INFO,TRADITIONAL_NATIONAL_DATE,25 mars 1821 est un repère national/traditionnel ; les soulèvements commencent plus tôt en mars.
+QA16-0085,EVT-0455,INFO,LEGAL_MILESTONE_SPLIT,Sanction royale séparée de l’entrée en vigueur principale EVT-0548.
+QA16-0086,EVT-0464,INFO,TITLE_DATE_ALIGNMENT,"16 août 1858 correspond au premier message officiel, non à une liaison durable."
+QA16-0087,EVT-0475,INFO,DATE_RANGE_CORRECTED,Fachoda corrigé au 10 juillet-3 novembre 1898.
+QA16-0088,EVT-0489,INFO,OFFICE_START_VS_GOVERNMENT_FORMATION,31 octobre = début de mandat ; formation du gouvernement amorcée les 29-30 octobre.
+QA16-0089,EVT-0543,INFO,DATE_CORRECTED,Début formel de l’invasion soviétique corrigé au 25 décembre 1979.
+QA16-0090,EVT-0548,INFO,LEGAL_EFFECT_DATE,Entrée en vigueur principale du Slavery Abolition Act le 1er août 1834.
+QA16-0091,EVT-0552,INFO,ERUPTION_DATE_DISPUTED,"Vésuve 79 : le 24 août est traditionnel, mais une datation automnale reste défendue."
+QA16-0092,EVT-0570,INFO,ARCHAEOLOGICAL_DATE_RANGE,"Éruption minoenne : datation discutée, à ne pas transformer en date unique de quiz."
+QA16-0093,EVT-0663,INFO,CALENDAR_SYSTEM,Boyne : 1er juillet 1690 julien = 11 juillet grégorien.
+QA16-0094,EVT-0692,INFO,PHOTO_DATE_DISPUTED,Point de vue du Gras : 1826 ou 1827 selon les travaux.
+QA16-0095,EVT-0715,INFO,FALSE_DAY_PRECISION_REMOVED,La date du 21 octobre 1879 n’est plus stockée comme jour exact.
+QA16-0096,EVT-0928,INFO,FALSE_DAY_PRECISION_REMOVED,"Première page Web : « fin 1990 » retenu, sans forcer le 20 décembre."

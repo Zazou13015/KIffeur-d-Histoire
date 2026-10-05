@@ -1,0 +1,1327 @@
+﻿year,title,series,status,reason
+1896,Jeux olympiques d’été de la Ie Olympiade à Athènes,SUMMER_OLYMPICS,DUPLICATE_EXISTING,EVT-0724 — Ouverture des premiers Jeux olympiques modernes à Athènes (SAME_OLYMPIC_EDITION)
+1936,Jeux olympiques d’été de la XIe Olympiade à Berlin,SUMMER_OLYMPICS,DUPLICATE_EXISTING,EVT-1036 — Ouverture des Jeux olympiques de Berlin (SAME_OLYMPIC_EDITION)
+1924,Ie Jeux olympiques d’hiver à Chamonix,WINTER_OLYMPICS,DUPLICATE_EXISTING,EVT-0850 — Ouverture des premiers Jeux olympiques d’hiver à Chamonix (SAME_WINTER_OLYMPICS)
+1930,Ie Coupe du monde de football organisée en Uruguay,FIFA_WORLD_CUP,DUPLICATE_EXISTING,EVT-0806 — Début de la première Coupe du monde de football (SAME_FIRST_WORLD_CUP)
+1981,Élection présidentielle française remportée par François Mitterrand,FR_PRESIDENTIAL,DUPLICATE_EXISTING,EVT-0364 — Élection de François Mitterrand à la présidence de la République (SAME_FR_ELECTION)
+1903,1re édition du Tour de France,TOUR_DE_FRANCE,DUPLICATE_EXISTING,EVT-0829 — Départ du premier Tour de France cycliste (SAME_FIRST_TOUR)
+1877,1re édition des Championnats de Wimbledon,WIMBLEDON,DUPLICATE_EXISTING,EVT-0759 — Début du premier tournoi de Wimbledon (SAME_FIRST_WIMBLEDON)
+1964,Jeux olympiques d’été de la XVIIIe Olympiade à Tokyo,SUMMER_OLYMPICS,DUPLICATE_WITH_NEW_CANDIDATE,A more precise Olympic opening event from V15 leftover was retained.
+1992,Jeux olympiques d’été de la XXVe Olympiade à Barcelone,SUMMER_OLYMPICS,DUPLICATE_WITH_NEW_CANDIDATE,A more precise Olympic opening event from V15 leftover was retained.
+2000,Jeux olympiques d’été de la XXVIIe Olympiade à Sydney,SUMMER_OLYMPICS,DUPLICATE_WITH_NEW_CANDIDATE,A more precise Olympic opening event from V15 leftover was retained.
+2008,Jeux olympiques d’été de la XXIXe Olympiade à Pékin,SUMMER_OLYMPICS,DUPLICATE_WITH_NEW_CANDIDATE,A more precise Olympic opening event from V15 leftover was retained.
+2012,Jeux olympiques d’été de la XXXe Olympiade à Londres,SUMMER_OLYMPICS,DUPLICATE_WITH_NEW_CANDIDATE,A more precise Olympic opening event from V15 leftover was retained.
+2021,Jeux olympiques d’été de la XXXIIe Olympiade à Tokyo,SUMMER_OLYMPICS,DUPLICATE_WITH_NEW_CANDIDATE,A more precise Olympic opening event from V15 leftover was retained.
+2024,Jeux olympiques d’été de la XXXIIIe Olympiade à Paris,SUMMER_OLYMPICS,DUPLICATE_WITH_NEW_CANDIDATE,A more precise Olympic opening event from V15 leftover was retained.
+1624,Fondation de la colonie de Nouvelle-Néerlande,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+1672,Début de la guerre de Hollande,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+1697,Traité de Ryswick mettant fin à la guerre de la Ligue d’Augsbourg,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+1720,Éclatement de la bulle des mers du Sud,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+1733,Invention de la navette volante par John Kay,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+1792,"Accord du Buttonwood, origine de la Bourse de New York",V15_LEFTOVER,SELECTED_V18,Selected for V18.
+1800,Création de la Bibliothèque du Congrès des États-Unis,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+1838,Arrivée du Great Western à New York après une traversée transatlantique à vapeur,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+1843,Publication de A Christmas Carol de Charles Dickens,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+1851,Publication de Moby-Dick aux États-Unis,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+1854,Charge de la brigade légère à Balaklava,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+1886,Première vente de Coca-Cola à Atlanta,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+1887,Publication de la langue internationale espéranto,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+1888,Brevet de l’appareil photographique Kodak,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+1897,Jubilé de diamant de la reine Victoria,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+1909,Robert Peary affirme avoir atteint le pôle Nord,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+1919,Premier vol transatlantique aller-retour du dirigeable R34 achevé,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+1925,Ouverture du procès Scopes sur l’enseignement de l’évolution,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+1926,Mise en service officielle de l’U.S. Route 66,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+1937,Disparition d’Amelia Earhart,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+1955,Ouverture du parc Disneyland en Californie,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+1964,Ouverture des Jeux olympiques de Tokyo,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+1968,Dick Fosbury remporte l’or olympique au saut en hauteur avec sa technique révolutionnaire,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+1986,Signature de l’Acte unique européen,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+1986,Big Bang de la place financière de Londres,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+1987,Krach boursier du Black Monday,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+1988,Attentat contre le vol Pan Am 103 à Lockerbie,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+1988,Entrée en vigueur du cessez-le-feu mettant fin à la guerre Iran-Irak,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+1990,Indépendance de la Namibie,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+1991,Déclarations d’indépendance de la Slovénie et de la Croatie,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+1991,Admission des États baltes à l’ONU après le rétablissement de leur indépendance,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+1991,Sortie de l’album Nevermind de Nirvana,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+1992,Ouverture des Jeux olympiques de Barcelone,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+1993,Dissolution de la Tchécoslovaquie et naissance de la Tchéquie et de la Slovaquie,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+1993,Premier attentat contre le World Trade Center,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+1994,Inauguration du tunnel sous la Manche,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+1994,Première connexion publique commerciale au World Wide Web par Amazon?,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+1995,Lancement de Windows 95,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+1997,Publication britannique de Harry Potter à l’école des sorciers,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+1997,"Mort de Diana, princesse de Galles",V15_LEFTOVER,SELECTED_V18,Selected for V18.
+2000,Ouverture des Jeux olympiques de Sydney,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+2003,Désintégration de la navette Columbia,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+2005,Création de YouTube,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+2005,Attentats de Londres,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+2006,Premier message publié sur Twitter,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+2006,Pluton reclassée comme planète naine par l’Union astronomique internationale,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+2006,Victoire de l’Italie à la Coupe du monde de football,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+2008,Ouverture des Jeux olympiques de Pékin,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+2009,Création du bloc Genesis de Bitcoin,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+2009,Investiture de Barack Obama,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+2009,L’OMS déclare la pandémie de grippe H1N1,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+2009,Sortie américaine d’Avatar de James Cameron,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+2010,Victoire de l’Espagne à la Coupe du monde de football,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+2011,Mort de Steve Jobs,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+2012,Atterrissage du rover Curiosity sur Mars,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+2012,Gangnam Style devient la première vidéo YouTube à dépasser un milliard de vues,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+2012,Ouverture des Jeux olympiques de Londres,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+2013,Lancement de la mission indienne Mars Orbiter Mission,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+2014,L’OMS déclare l’épidémie d’Ebola en Afrique de l’Ouest urgence de santé publique,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+2014,Victoire de l’Allemagne à la Coupe du monde de football,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+2016,Leicester City devient champion d’Angleterre de football,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+2017,Le mouvement #MeToo devient viral sur les réseaux sociaux,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+2017,Référendum d’indépendance de la Catalogne,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+2018,Sommet de Singapour entre Donald Trump et Kim Jong-un,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+2019,Attentats contre les mosquées de Christchurch,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+2021,Ouverture des Jeux olympiques de Tokyo 2020 reportés,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+2022,Mort de la reine Élisabeth II,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+2022,Victoire de l’Argentine à la Coupe du monde de football,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+2023,Couronnement de Charles III,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+2024,Ouverture des Jeux olympiques de Paris 2024,V15_LEFTOVER,SELECTED_V18,Selected for V18.
+1900,Jeux olympiques d’été de la IIe Olympiade à Paris,SUMMER_OLYMPICS,SELECTED_V18,Selected for V18.
+1904,Jeux olympiques d’été de la IIIe Olympiade à Saint-Louis,SUMMER_OLYMPICS,SELECTED_V18,Selected for V18.
+1908,Jeux olympiques d’été de la IVe Olympiade à Londres,SUMMER_OLYMPICS,SELECTED_V18,Selected for V18.
+1912,Jeux olympiques d’été de la Ve Olympiade à Stockholm,SUMMER_OLYMPICS,SELECTED_V18,Selected for V18.
+1920,Jeux olympiques d’été de la VIIe Olympiade à Anvers,SUMMER_OLYMPICS,SELECTED_V18,Selected for V18.
+1924,Jeux olympiques d’été de la VIIIe Olympiade à Paris,SUMMER_OLYMPICS,SELECTED_V18,Selected for V18.
+1928,Jeux olympiques d’été de la IXe Olympiade à Amsterdam,SUMMER_OLYMPICS,SELECTED_V18,Selected for V18.
+1932,Jeux olympiques d’été de la Xe Olympiade à Los Angeles,SUMMER_OLYMPICS,SELECTED_V18,Selected for V18.
+1948,Jeux olympiques d’été de la XIVe Olympiade à Londres,SUMMER_OLYMPICS,SELECTED_V18,Selected for V18.
+1952,Jeux olympiques d’été de la XVe Olympiade à Helsinki,SUMMER_OLYMPICS,SELECTED_V18,Selected for V18.
+1956,Jeux olympiques d’été de la XVIe Olympiade à Melbourne,SUMMER_OLYMPICS,SELECTED_V18,Selected for V18.
+1960,Jeux olympiques d’été de la XVIIe Olympiade à Rome,SUMMER_OLYMPICS,SELECTED_V18,Selected for V18.
+1968,Jeux olympiques d’été de la XIXe Olympiade à Mexico,SUMMER_OLYMPICS,SELECTED_V18,Selected for V18.
+1972,Jeux olympiques d’été de la XXe Olympiade à Munich,SUMMER_OLYMPICS,SELECTED_V18,Selected for V18.
+1976,Jeux olympiques d’été de la XXIe Olympiade à Montréal,SUMMER_OLYMPICS,SELECTED_V18,Selected for V18.
+1980,Jeux olympiques d’été de la XXIIe Olympiade à Moscou,SUMMER_OLYMPICS,SELECTED_V18,Selected for V18.
+1984,Jeux olympiques d’été de la XXIIIe Olympiade à Los Angeles,SUMMER_OLYMPICS,SELECTED_V18,Selected for V18.
+1988,Jeux olympiques d’été de la XXIVe Olympiade à Séoul,SUMMER_OLYMPICS,SELECTED_V18,Selected for V18.
+1996,Jeux olympiques d’été de la XXVIe Olympiade à Atlanta,SUMMER_OLYMPICS,SELECTED_V18,Selected for V18.
+2004,Jeux olympiques d’été de la XXVIIIe Olympiade à Athènes,SUMMER_OLYMPICS,SELECTED_V18,Selected for V18.
+2016,Jeux olympiques d’été de la XXXIe Olympiade à Rio de Janeiro,SUMMER_OLYMPICS,SELECTED_V18,Selected for V18.
+1928,IIe Jeux olympiques d’hiver à Saint-Moritz,WINTER_OLYMPICS,SELECTED_V18,Selected for V18.
+1932,IIIe Jeux olympiques d’hiver à Lake Placid,WINTER_OLYMPICS,SELECTED_V18,Selected for V18.
+1936,IVe Jeux olympiques d’hiver à Garmisch-Partenkirchen,WINTER_OLYMPICS,SELECTED_V18,Selected for V18.
+1948,Ve Jeux olympiques d’hiver à Saint-Moritz,WINTER_OLYMPICS,SELECTED_V18,Selected for V18.
+1952,VIe Jeux olympiques d’hiver à Oslo,WINTER_OLYMPICS,SELECTED_V18,Selected for V18.
+1956,VIIe Jeux olympiques d’hiver à Cortina d’Ampezzo,WINTER_OLYMPICS,SELECTED_V18,Selected for V18.
+1960,VIIIe Jeux olympiques d’hiver à Squaw Valley,WINTER_OLYMPICS,SELECTED_V18,Selected for V18.
+1964,IXe Jeux olympiques d’hiver à Innsbruck,WINTER_OLYMPICS,SELECTED_V18,Selected for V18.
+1968,Xe Jeux olympiques d’hiver à Grenoble,WINTER_OLYMPICS,SELECTED_V18,Selected for V18.
+1972,XIe Jeux olympiques d’hiver à Sapporo,WINTER_OLYMPICS,SELECTED_V18,Selected for V18.
+1976,XIIe Jeux olympiques d’hiver à Innsbruck,WINTER_OLYMPICS,SELECTED_V18,Selected for V18.
+1980,XIIIe Jeux olympiques d’hiver à Lake Placid,WINTER_OLYMPICS,SELECTED_V18,Selected for V18.
+1984,XIVe Jeux olympiques d’hiver à Sarajevo,WINTER_OLYMPICS,SELECTED_V18,Selected for V18.
+1988,XVe Jeux olympiques d’hiver à Calgary,WINTER_OLYMPICS,SELECTED_V18,Selected for V18.
+1992,XVIe Jeux olympiques d’hiver à Albertville,WINTER_OLYMPICS,SELECTED_V18,Selected for V18.
+1994,XVIIe Jeux olympiques d’hiver à Lillehammer,WINTER_OLYMPICS,SELECTED_V18,Selected for V18.
+1998,XVIIIe Jeux olympiques d’hiver à Nagano,WINTER_OLYMPICS,SELECTED_V18,Selected for V18.
+2002,XIXe Jeux olympiques d’hiver à Salt Lake City,WINTER_OLYMPICS,SELECTED_V18,Selected for V18.
+2006,XXe Jeux olympiques d’hiver à Turin,WINTER_OLYMPICS,SELECTED_V18,Selected for V18.
+2010,XXIe Jeux olympiques d’hiver à Vancouver,WINTER_OLYMPICS,SELECTED_V18,Selected for V18.
+2014,XXIIe Jeux olympiques d’hiver à Sotchi,WINTER_OLYMPICS,SELECTED_V18,Selected for V18.
+2018,XXIIIe Jeux olympiques d’hiver à Pyeongchang,WINTER_OLYMPICS,SELECTED_V18,Selected for V18.
+2022,XXIVe Jeux olympiques d’hiver à Pékin,WINTER_OLYMPICS,SELECTED_V18,Selected for V18.
+1934,IIe Coupe du monde de football organisée en Italie,FIFA_WORLD_CUP,SELECTED_V18,Selected for V18.
+1938,IIIe Coupe du monde de football organisée en France,FIFA_WORLD_CUP,SELECTED_V18,Selected for V18.
+1950,IVe Coupe du monde de football organisée en Brésil,FIFA_WORLD_CUP,SELECTED_V18,Selected for V18.
+1954,Ve Coupe du monde de football organisée en Suisse,FIFA_WORLD_CUP,SELECTED_V18,Selected for V18.
+1958,VIe Coupe du monde de football organisée en Suède,FIFA_WORLD_CUP,SELECTED_V18,Selected for V18.
+1962,VIIe Coupe du monde de football organisée en Chili,FIFA_WORLD_CUP,SELECTED_V18,Selected for V18.
+1966,VIIIe Coupe du monde de football organisée en Angleterre,FIFA_WORLD_CUP,SELECTED_V18,Selected for V18.
+1970,IXe Coupe du monde de football organisée en Mexique,FIFA_WORLD_CUP,SELECTED_V18,Selected for V18.
+1974,Xe Coupe du monde de football organisée en Allemagne de l’Ouest,FIFA_WORLD_CUP,SELECTED_V18,Selected for V18.
+1978,XIe Coupe du monde de football organisée en Argentine,FIFA_WORLD_CUP,SELECTED_V18,Selected for V18.
+1982,XIIe Coupe du monde de football organisée en Espagne,FIFA_WORLD_CUP,SELECTED_V18,Selected for V18.
+1986,XIIIe Coupe du monde de football organisée en Mexique,FIFA_WORLD_CUP,SELECTED_V18,Selected for V18.
+1990,XIVe Coupe du monde de football organisée en Italie,FIFA_WORLD_CUP,SELECTED_V18,Selected for V18.
+1994,XVe Coupe du monde de football organisée en États-Unis,FIFA_WORLD_CUP,SELECTED_V18,Selected for V18.
+1998,XVIe Coupe du monde de football organisée en France,FIFA_WORLD_CUP,SELECTED_V18,Selected for V18.
+2002,XVIIe Coupe du monde de football organisée en Corée du Sud et Japon,FIFA_WORLD_CUP,SELECTED_V18,Selected for V18.
+2006,XVIIIe Coupe du monde de football organisée en Allemagne,FIFA_WORLD_CUP,SELECTED_V18,Selected for V18.
+2010,XIXe Coupe du monde de football organisée en Afrique du Sud,FIFA_WORLD_CUP,SELECTED_V18,Selected for V18.
+2014,XXe Coupe du monde de football organisée en Brésil,FIFA_WORLD_CUP,SELECTED_V18,Selected for V18.
+2018,XXIe Coupe du monde de football organisée en Russie,FIFA_WORLD_CUP,SELECTED_V18,Selected for V18.
+2022,XXIIe Coupe du monde de football organisée en Qatar,FIFA_WORLD_CUP,SELECTED_V18,Selected for V18.
+1960,Ie Championnat d’Europe de football organisé en France,UEFA_EURO,SELECTED_V18,Selected for V18.
+1964,IIe Championnat d’Europe de football organisé en Espagne,UEFA_EURO,SELECTED_V18,Selected for V18.
+1968,IIIe Championnat d’Europe de football organisé en Italie,UEFA_EURO,SELECTED_V18,Selected for V18.
+1972,IVe Championnat d’Europe de football organisé en Belgique,UEFA_EURO,SELECTED_V18,Selected for V18.
+1976,Ve Championnat d’Europe de football organisé en Yougoslavie,UEFA_EURO,SELECTED_V18,Selected for V18.
+1980,VIe Championnat d’Europe de football organisé en Italie,UEFA_EURO,SELECTED_V18,Selected for V18.
+1984,VIIe Championnat d’Europe de football organisé en France,UEFA_EURO,SELECTED_V18,Selected for V18.
+1988,VIIIe Championnat d’Europe de football organisé en Allemagne de l’Ouest,UEFA_EURO,SELECTED_V18,Selected for V18.
+1992,IXe Championnat d’Europe de football organisé en Suède,UEFA_EURO,SELECTED_V18,Selected for V18.
+1996,Xe Championnat d’Europe de football organisé en Angleterre,UEFA_EURO,SELECTED_V18,Selected for V18.
+2000,XIe Championnat d’Europe de football organisé en Belgique et Pays-Bas,UEFA_EURO,SELECTED_V18,Selected for V18.
+2004,XIIe Championnat d’Europe de football organisé en Portugal,UEFA_EURO,SELECTED_V18,Selected for V18.
+2008,XIIIe Championnat d’Europe de football organisé en Autriche et Suisse,UEFA_EURO,SELECTED_V18,Selected for V18.
+2012,XIVe Championnat d’Europe de football organisé en Pologne et Ukraine,UEFA_EURO,SELECTED_V18,Selected for V18.
+2016,XVe Championnat d’Europe de football organisé en France,UEFA_EURO,SELECTED_V18,Selected for V18.
+2021,XVIe Championnat d’Europe de football organisé en plusieurs pays européens,UEFA_EURO,SELECTED_V18,Selected for V18.
+2024,XVIIe Championnat d’Europe de football organisé en Allemagne,UEFA_EURO,SELECTED_V18,Selected for V18.
+1987,Ie Coupe du monde de rugby organisée en Nouvelle-Zélande et Australie,RUGBY_WORLD_CUP,SELECTED_V18,Selected for V18.
+1991,"IIe Coupe du monde de rugby organisée en Royaume-Uni, Irlande et France",RUGBY_WORLD_CUP,SELECTED_V18,Selected for V18.
+1995,IIIe Coupe du monde de rugby organisée en Afrique du Sud,RUGBY_WORLD_CUP,SELECTED_V18,Selected for V18.
+1999,IVe Coupe du monde de rugby organisée en Pays de Galles,RUGBY_WORLD_CUP,SELECTED_V18,Selected for V18.
+2003,Ve Coupe du monde de rugby organisée en Australie,RUGBY_WORLD_CUP,SELECTED_V18,Selected for V18.
+2007,VIe Coupe du monde de rugby organisée en France,RUGBY_WORLD_CUP,SELECTED_V18,Selected for V18.
+2011,VIIe Coupe du monde de rugby organisée en Nouvelle-Zélande,RUGBY_WORLD_CUP,SELECTED_V18,Selected for V18.
+2015,VIIIe Coupe du monde de rugby organisée en Angleterre,RUGBY_WORLD_CUP,SELECTED_V18,Selected for V18.
+2019,IXe Coupe du monde de rugby organisée en Japon,RUGBY_WORLD_CUP,SELECTED_V18,Selected for V18.
+2023,Xe Coupe du monde de rugby organisée en France,RUGBY_WORLD_CUP,SELECTED_V18,Selected for V18.
+1788,Première élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1792,2e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1796,3e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1800,4e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1804,5e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1808,6e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1812,7e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1816,8e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1820,9e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1824,10e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1828,11e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1832,12e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1836,13e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1840,14e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1844,15e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1848,16e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1852,17e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1856,18e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1860,19e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1864,20e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1868,21e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1872,22e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1876,23e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1880,24e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1884,25e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1888,26e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1892,27e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1896,28e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1900,29e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1904,30e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1908,31e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1912,32e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1916,33e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1920,34e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1924,35e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1928,36e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1932,37e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1936,38e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1940,39e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1944,40e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1948,41e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1952,42e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1956,43e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1960,44e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1964,45e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1968,46e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1972,47e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1976,48e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1980,49e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1984,50e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1988,51e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1992,52e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1996,53e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+2000,54e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+2004,55e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+2008,56e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+2012,57e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+2016,58e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+2020,59e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+2024,60e élection présidentielle des États-Unis,US_PRESIDENTIAL_ELECTION,SELECTED_V18,Selected for V18.
+1965,Élection présidentielle française remportée par Charles de Gaulle,FR_PRESIDENTIAL,SELECTED_V18,Selected for V18.
+1969,Élection présidentielle française remportée par Georges Pompidou,FR_PRESIDENTIAL,SELECTED_V18,Selected for V18.
+1974,Élection présidentielle française remportée par Valéry Giscard d’Estaing,FR_PRESIDENTIAL,SELECTED_V18,Selected for V18.
+1988,Élection présidentielle française remportée par François Mitterrand,FR_PRESIDENTIAL,SELECTED_V18,Selected for V18.
+1995,Élection présidentielle française remportée par Jacques Chirac,FR_PRESIDENTIAL,SELECTED_V18,Selected for V18.
+2002,Élection présidentielle française remportée par Jacques Chirac,FR_PRESIDENTIAL,SELECTED_V18,Selected for V18.
+2007,Élection présidentielle française remportée par Nicolas Sarkozy,FR_PRESIDENTIAL,SELECTED_V18,Selected for V18.
+2012,Élection présidentielle française remportée par François Hollande,FR_PRESIDENTIAL,SELECTED_V18,Selected for V18.
+2017,Élection présidentielle française remportée par Emmanuel Macron,FR_PRESIDENTIAL,SELECTED_V18,Selected for V18.
+2022,Élection présidentielle française remportée par Emmanuel Macron,FR_PRESIDENTIAL,SELECTED_V18,Selected for V18.
+1929,1re cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1930,2e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1931,3e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1932,4e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1933,5e cérémonie des Oscars,OSCARS,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1934,6e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1935,7e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1936,8e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1937,9e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1938,10e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1939,11e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1940,12e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1941,13e cérémonie des Oscars,OSCARS,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1942,14e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1943,15e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1944,16e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1945,17e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1946,18e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1947,19e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1948,20e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1949,21e cérémonie des Oscars,OSCARS,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1950,22e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1951,23e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1952,24e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1953,25e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1954,26e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1955,27e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1956,28e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1957,29e cérémonie des Oscars,OSCARS,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1958,30e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1959,31e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1960,32e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1961,33e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1962,34e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1963,35e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1964,36e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1965,37e cérémonie des Oscars,OSCARS,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1966,38e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1967,39e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1968,40e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1969,41e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1970,42e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1971,43e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1972,44e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1973,45e cérémonie des Oscars,OSCARS,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1974,46e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1975,47e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1976,48e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1977,49e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1978,50e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1979,51e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1980,52e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1981,53e cérémonie des Oscars,OSCARS,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1982,54e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1983,55e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1984,56e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1985,57e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1986,58e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1987,59e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1988,60e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1989,61e cérémonie des Oscars,OSCARS,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1990,62e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1991,63e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1992,64e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1993,65e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1994,66e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1995,67e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1996,68e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1997,69e cérémonie des Oscars,OSCARS,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1998,70e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1999,71e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+2000,72e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+2001,73e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+2002,74e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+2003,75e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+2004,76e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+2005,77e cérémonie des Oscars,OSCARS,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2006,78e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+2007,79e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+2008,80e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+2009,81e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+2010,82e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+2011,83e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+2012,84e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+2013,85e cérémonie des Oscars,OSCARS,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2014,86e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+2015,87e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+2016,88e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+2017,89e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+2018,90e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+2019,91e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+2020,92e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+2021,93e cérémonie des Oscars,OSCARS,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2022,94e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+2023,95e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+2024,96e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+2025,97e cérémonie des Oscars,OSCARS,SELECTED_V18,Selected for V18.
+1950,Saison inaugurale du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+1951,2e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+1952,3e saison du championnat du monde de Formule 1,FORMULA_ONE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1953,4e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+1954,5e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+1955,6e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+1956,7e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+1957,8e saison du championnat du monde de Formule 1,FORMULA_ONE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1958,9e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+1959,10e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+1960,11e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+1961,12e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+1962,13e saison du championnat du monde de Formule 1,FORMULA_ONE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1963,14e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+1964,15e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+1965,16e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+1966,17e saison du championnat du monde de Formule 1,FORMULA_ONE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1967,18e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+1968,19e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+1969,20e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+1970,21e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+1971,22e saison du championnat du monde de Formule 1,FORMULA_ONE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1972,23e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+1973,24e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+1974,25e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+1975,26e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+1976,27e saison du championnat du monde de Formule 1,FORMULA_ONE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1977,28e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+1978,29e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+1979,30e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+1980,31e saison du championnat du monde de Formule 1,FORMULA_ONE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1981,32e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+1982,33e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+1983,34e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+1984,35e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+1985,36e saison du championnat du monde de Formule 1,FORMULA_ONE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1986,37e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+1987,38e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+1988,39e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+1989,40e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+1990,41e saison du championnat du monde de Formule 1,FORMULA_ONE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1991,42e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+1992,43e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+1993,44e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+1994,45e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+1995,46e saison du championnat du monde de Formule 1,FORMULA_ONE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1996,47e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+1997,48e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+1998,49e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+1999,50e saison du championnat du monde de Formule 1,FORMULA_ONE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2000,51e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+2001,52e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+2002,53e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+2003,54e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+2004,55e saison du championnat du monde de Formule 1,FORMULA_ONE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2005,56e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+2006,57e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+2007,58e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+2008,59e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+2009,60e saison du championnat du monde de Formule 1,FORMULA_ONE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2010,61e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+2011,62e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+2012,63e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+2013,64e saison du championnat du monde de Formule 1,FORMULA_ONE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2014,65e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+2015,66e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+2016,67e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+2017,68e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+2018,69e saison du championnat du monde de Formule 1,FORMULA_ONE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2019,70e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+2020,71e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+2021,72e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+2022,73e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+2023,74e saison du championnat du monde de Formule 1,FORMULA_ONE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2024,75e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+2025,76e saison du championnat du monde de Formule 1,FORMULA_ONE,SELECTED_V18,Selected for V18.
+1904,2e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1905,3e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1906,4e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1907,5e édition du Tour de France,TOUR_DE_FRANCE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1908,6e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1909,7e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1910,8e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1911,9e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1912,10e édition du Tour de France,TOUR_DE_FRANCE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1913,11e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1914,12e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1919,13e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1920,14e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1921,15e édition du Tour de France,TOUR_DE_FRANCE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1922,16e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1923,17e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1924,18e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1925,19e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1926,20e édition du Tour de France,TOUR_DE_FRANCE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1927,21e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1928,22e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1929,23e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1930,24e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1931,25e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1932,26e édition du Tour de France,TOUR_DE_FRANCE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1933,27e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1934,28e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1935,29e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1936,30e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1937,31e édition du Tour de France,TOUR_DE_FRANCE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1938,32e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1939,33e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1947,34e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1948,35e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1949,36e édition du Tour de France,TOUR_DE_FRANCE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1950,37e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1951,38e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1952,39e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1953,40e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1954,41e édition du Tour de France,TOUR_DE_FRANCE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1955,42e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1956,43e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1957,44e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1958,45e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1959,46e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1960,47e édition du Tour de France,TOUR_DE_FRANCE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1961,48e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1962,49e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1963,50e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1964,51e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1965,52e édition du Tour de France,TOUR_DE_FRANCE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1966,53e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1967,54e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1968,55e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1969,56e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1970,57e édition du Tour de France,TOUR_DE_FRANCE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1971,58e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1972,59e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1973,60e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1974,61e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1975,62e édition du Tour de France,TOUR_DE_FRANCE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1976,63e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1977,64e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1978,65e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1979,66e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1980,67e édition du Tour de France,TOUR_DE_FRANCE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1981,68e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1982,69e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1983,70e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1984,71e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1985,72e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1986,73e édition du Tour de France,TOUR_DE_FRANCE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1987,74e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1988,75e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1989,76e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1990,77e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1991,78e édition du Tour de France,TOUR_DE_FRANCE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1992,79e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1993,80e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1994,81e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1995,82e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1996,83e édition du Tour de France,TOUR_DE_FRANCE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1997,84e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1998,85e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1999,86e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+2000,87e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+2001,88e édition du Tour de France,TOUR_DE_FRANCE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2002,89e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+2003,90e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+2004,91e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+2005,92e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+2006,93e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+2007,94e édition du Tour de France,TOUR_DE_FRANCE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2008,95e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+2009,96e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+2010,97e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+2011,98e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+2012,99e édition du Tour de France,TOUR_DE_FRANCE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2013,100e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+2014,101e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+2015,102e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+2016,103e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+2017,104e édition du Tour de France,TOUR_DE_FRANCE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2018,105e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+2019,106e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+2020,107e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+2021,108e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+2022,109e édition du Tour de France,TOUR_DE_FRANCE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2023,110e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+2024,111e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+2025,112e édition du Tour de France,TOUR_DE_FRANCE,SELECTED_V18,Selected for V18.
+1956,1er Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+1957,2e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+1958,3e Concours Eurovision de la chanson,EUROVISION,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1959,4e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+1960,5e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+1961,6e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+1962,7e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+1963,8e Concours Eurovision de la chanson,EUROVISION,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1964,9e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+1965,10e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+1966,11e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+1967,12e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+1968,13e Concours Eurovision de la chanson,EUROVISION,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1969,14e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+1970,15e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+1971,16e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+1972,17e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+1973,18e Concours Eurovision de la chanson,EUROVISION,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1974,19e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+1975,20e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+1976,21e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+1977,22e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+1978,23e Concours Eurovision de la chanson,EUROVISION,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1979,24e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+1980,25e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+1981,26e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+1982,27e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+1983,28e Concours Eurovision de la chanson,EUROVISION,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1984,29e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+1985,30e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+1986,31e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+1987,32e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+1988,33e Concours Eurovision de la chanson,EUROVISION,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1989,34e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+1990,35e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+1991,36e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+1992,37e Concours Eurovision de la chanson,EUROVISION,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1993,38e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+1994,39e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+1995,40e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+1996,41e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+1997,42e Concours Eurovision de la chanson,EUROVISION,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1998,43e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+1999,44e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+2000,45e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+2001,46e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+2002,47e Concours Eurovision de la chanson,EUROVISION,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2003,48e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+2004,49e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+2005,50e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+2006,51e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+2007,52e Concours Eurovision de la chanson,EUROVISION,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2008,53e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+2009,54e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+2010,55e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+2011,56e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+2012,57e Concours Eurovision de la chanson,EUROVISION,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2013,58e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+2014,59e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+2015,60e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+2016,61e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+2017,62e Concours Eurovision de la chanson,EUROVISION,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2018,63e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+2019,64e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+2021,65e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+2022,66e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+2023,67e Concours Eurovision de la chanson,EUROVISION,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2024,68e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+2025,69e Concours Eurovision de la chanson,EUROVISION,SELECTED_V18,Selected for V18.
+1959,1re cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+1960,2e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+1961,3e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+1962,4e cérémonie des Grammy Awards,GRAMMYS,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1963,5e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+1964,6e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+1965,7e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+1966,8e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+1967,9e cérémonie des Grammy Awards,GRAMMYS,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1968,10e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+1969,11e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+1970,12e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+1971,13e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+1972,14e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+1973,15e cérémonie des Grammy Awards,GRAMMYS,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1974,16e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+1975,17e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+1976,18e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+1977,19e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+1978,20e cérémonie des Grammy Awards,GRAMMYS,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1979,21e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+1980,22e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+1981,23e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+1982,24e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+1983,25e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+1984,26e cérémonie des Grammy Awards,GRAMMYS,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1985,27e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+1986,28e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+1987,29e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+1988,30e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+1989,31e cérémonie des Grammy Awards,GRAMMYS,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1990,32e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+1991,33e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+1992,34e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+1993,35e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+1994,36e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+1995,37e cérémonie des Grammy Awards,GRAMMYS,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1996,38e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+1997,39e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+1998,40e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+1999,41e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+2000,42e cérémonie des Grammy Awards,GRAMMYS,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2001,43e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+2002,44e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+2003,45e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+2004,46e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+2005,47e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+2006,48e cérémonie des Grammy Awards,GRAMMYS,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2007,49e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+2008,50e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+2009,51e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+2010,52e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+2011,53e cérémonie des Grammy Awards,GRAMMYS,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2012,54e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+2013,55e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+2014,56e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+2015,57e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+2016,58e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+2017,59e cérémonie des Grammy Awards,GRAMMYS,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2018,60e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+2019,61e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+2020,62e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+2021,63e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+2022,64e cérémonie des Grammy Awards,GRAMMYS,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2023,65e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+2024,66e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+2025,67e cérémonie des Grammy Awards,GRAMMYS,SELECTED_V18,Selected for V18.
+1976,1re cérémonie des César,CESAR,SELECTED_V18,Selected for V18.
+1977,2e cérémonie des César,CESAR,SELECTED_V18,Selected for V18.
+1978,3e cérémonie des César,CESAR,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1979,4e cérémonie des César,CESAR,SELECTED_V18,Selected for V18.
+1980,5e cérémonie des César,CESAR,SELECTED_V18,Selected for V18.
+1981,6e cérémonie des César,CESAR,SELECTED_V18,Selected for V18.
+1982,7e cérémonie des César,CESAR,SELECTED_V18,Selected for V18.
+1983,8e cérémonie des César,CESAR,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1984,9e cérémonie des César,CESAR,SELECTED_V18,Selected for V18.
+1985,10e cérémonie des César,CESAR,SELECTED_V18,Selected for V18.
+1986,11e cérémonie des César,CESAR,SELECTED_V18,Selected for V18.
+1987,12e cérémonie des César,CESAR,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1988,13e cérémonie des César,CESAR,SELECTED_V18,Selected for V18.
+1989,14e cérémonie des César,CESAR,SELECTED_V18,Selected for V18.
+1990,15e cérémonie des César,CESAR,SELECTED_V18,Selected for V18.
+1991,16e cérémonie des César,CESAR,SELECTED_V18,Selected for V18.
+1992,17e cérémonie des César,CESAR,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1993,18e cérémonie des César,CESAR,SELECTED_V18,Selected for V18.
+1994,19e cérémonie des César,CESAR,SELECTED_V18,Selected for V18.
+1995,20e cérémonie des César,CESAR,SELECTED_V18,Selected for V18.
+1996,21e cérémonie des César,CESAR,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1997,22e cérémonie des César,CESAR,SELECTED_V18,Selected for V18.
+1998,23e cérémonie des César,CESAR,SELECTED_V18,Selected for V18.
+1999,24e cérémonie des César,CESAR,SELECTED_V18,Selected for V18.
+2000,25e cérémonie des César,CESAR,SELECTED_V18,Selected for V18.
+2001,26e cérémonie des César,CESAR,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2002,27e cérémonie des César,CESAR,SELECTED_V18,Selected for V18.
+2003,28e cérémonie des César,CESAR,SELECTED_V18,Selected for V18.
+2004,29e cérémonie des César,CESAR,SELECTED_V18,Selected for V18.
+2005,30e cérémonie des César,CESAR,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2006,31e cérémonie des César,CESAR,SELECTED_V18,Selected for V18.
+2007,32e cérémonie des César,CESAR,SELECTED_V18,Selected for V18.
+2008,33e cérémonie des César,CESAR,SELECTED_V18,Selected for V18.
+2009,34e cérémonie des César,CESAR,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2010,35e cérémonie des César,CESAR,SELECTED_V18,Selected for V18.
+2011,36e cérémonie des César,CESAR,SELECTED_V18,Selected for V18.
+2012,37e cérémonie des César,CESAR,SELECTED_V18,Selected for V18.
+2013,38e cérémonie des César,CESAR,SELECTED_V18,Selected for V18.
+2014,39e cérémonie des César,CESAR,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2015,40e cérémonie des César,CESAR,SELECTED_V18,Selected for V18.
+2016,41e cérémonie des César,CESAR,SELECTED_V18,Selected for V18.
+2017,42e cérémonie des César,CESAR,SELECTED_V18,Selected for V18.
+2018,43e cérémonie des César,CESAR,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2019,44e cérémonie des César,CESAR,SELECTED_V18,Selected for V18.
+2020,45e cérémonie des César,CESAR,SELECTED_V18,Selected for V18.
+2021,46e cérémonie des César,CESAR,SELECTED_V18,Selected for V18.
+2022,47e cérémonie des César,CESAR,SELECTED_V18,Selected for V18.
+2023,48e cérémonie des César,CESAR,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2024,49e cérémonie des César,CESAR,SELECTED_V18,Selected for V18.
+2025,50e cérémonie des César,CESAR,SELECTED_V18,Selected for V18.
+1951,1re édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+1952,2e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+1953,3e édition de la Berlinale,BERLINALE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1954,4e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+1955,5e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+1956,6e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+1957,7e édition de la Berlinale,BERLINALE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1958,8e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+1959,9e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+1960,10e édition de la Berlinale,BERLINALE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1961,11e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+1962,12e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+1963,13e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+1964,14e édition de la Berlinale,BERLINALE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1965,15e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+1966,16e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+1967,17e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+1968,18e édition de la Berlinale,BERLINALE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1969,19e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+1970,20e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+1971,21e édition de la Berlinale,BERLINALE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1972,22e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+1973,23e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+1974,24e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+1975,25e édition de la Berlinale,BERLINALE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1976,26e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+1977,27e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+1978,28e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+1979,29e édition de la Berlinale,BERLINALE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1980,30e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+1981,31e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+1982,32e édition de la Berlinale,BERLINALE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1983,33e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+1984,34e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+1985,35e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+1986,36e édition de la Berlinale,BERLINALE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1987,37e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+1988,38e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+1989,39e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+1990,40e édition de la Berlinale,BERLINALE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1991,41e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+1992,42e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+1993,43e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+1994,44e édition de la Berlinale,BERLINALE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1995,45e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+1996,46e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+1997,47e édition de la Berlinale,BERLINALE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1998,48e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+1999,49e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+2000,50e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+2001,51e édition de la Berlinale,BERLINALE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2002,52e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+2003,53e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+2004,54e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+2005,55e édition de la Berlinale,BERLINALE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2006,56e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+2007,57e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+2008,58e édition de la Berlinale,BERLINALE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2009,59e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+2010,60e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+2011,61e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+2012,62e édition de la Berlinale,BERLINALE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2013,63e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+2014,64e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+2015,65e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+2016,66e édition de la Berlinale,BERLINALE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2017,67e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+2018,68e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+2019,69e édition de la Berlinale,BERLINALE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2020,70e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+2021,71e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+2022,72e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+2023,73e édition de la Berlinale,BERLINALE,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2024,74e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+2025,75e édition de la Berlinale,BERLINALE,SELECTED_V18,Selected for V18.
+1944,1re cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+1945,2e cérémonie des Golden Globes,GOLDEN_GLOBES,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1946,3e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+1947,4e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+1948,5e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+1949,6e cérémonie des Golden Globes,GOLDEN_GLOBES,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1950,7e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+1951,8e cérémonie des Golden Globes,GOLDEN_GLOBES,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1952,9e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+1953,10e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+1954,11e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+1955,12e cérémonie des Golden Globes,GOLDEN_GLOBES,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1956,13e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+1957,14e cérémonie des Golden Globes,GOLDEN_GLOBES,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1958,15e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+1959,16e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+1960,17e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+1961,18e cérémonie des Golden Globes,GOLDEN_GLOBES,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1962,19e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+1963,20e cérémonie des Golden Globes,GOLDEN_GLOBES,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1964,21e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+1965,22e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+1966,23e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+1967,24e cérémonie des Golden Globes,GOLDEN_GLOBES,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1968,25e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+1969,26e cérémonie des Golden Globes,GOLDEN_GLOBES,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1970,27e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+1971,28e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+1972,29e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+1973,30e cérémonie des Golden Globes,GOLDEN_GLOBES,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1974,31e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+1975,32e cérémonie des Golden Globes,GOLDEN_GLOBES,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1976,33e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+1977,34e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+1978,35e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+1979,36e cérémonie des Golden Globes,GOLDEN_GLOBES,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1980,37e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+1981,38e cérémonie des Golden Globes,GOLDEN_GLOBES,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1982,39e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+1983,40e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+1984,41e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+1985,42e cérémonie des Golden Globes,GOLDEN_GLOBES,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1986,43e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+1987,44e cérémonie des Golden Globes,GOLDEN_GLOBES,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1988,45e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+1989,46e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+1990,47e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+1991,48e cérémonie des Golden Globes,GOLDEN_GLOBES,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1992,49e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+1993,50e cérémonie des Golden Globes,GOLDEN_GLOBES,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1994,51e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+1995,52e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+1996,53e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+1997,54e cérémonie des Golden Globes,GOLDEN_GLOBES,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1998,55e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+1999,56e cérémonie des Golden Globes,GOLDEN_GLOBES,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2000,57e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+2001,58e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+2002,59e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+2003,60e cérémonie des Golden Globes,GOLDEN_GLOBES,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2004,61e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+2005,62e cérémonie des Golden Globes,GOLDEN_GLOBES,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2006,63e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+2007,64e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+2008,65e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+2009,66e cérémonie des Golden Globes,GOLDEN_GLOBES,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2010,67e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+2011,68e cérémonie des Golden Globes,GOLDEN_GLOBES,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2012,69e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+2013,70e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+2014,71e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+2015,72e cérémonie des Golden Globes,GOLDEN_GLOBES,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2016,73e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+2017,74e cérémonie des Golden Globes,GOLDEN_GLOBES,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2018,75e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+2019,76e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+2020,77e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+2021,78e cérémonie des Golden Globes,GOLDEN_GLOBES,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2022,79e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+2023,80e cérémonie des Golden Globes,GOLDEN_GLOBES,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2024,81e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+2025,82e cérémonie des Golden Globes,GOLDEN_GLOBES,SELECTED_V18,Selected for V18.
+1949,1re cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+1950,2e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+1951,3e cérémonie des British Academy Film Awards,BAFTA,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1952,4e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+1953,5e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+1954,6e cérémonie des British Academy Film Awards,BAFTA,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1955,7e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+1956,8e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+1957,9e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+1958,10e cérémonie des British Academy Film Awards,BAFTA,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1959,11e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+1960,12e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+1961,13e cérémonie des British Academy Film Awards,BAFTA,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1962,14e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+1963,15e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+1964,16e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+1965,17e cérémonie des British Academy Film Awards,BAFTA,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1966,18e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+1967,19e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+1968,20e cérémonie des British Academy Film Awards,BAFTA,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1969,21e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+1970,22e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+1971,23e cérémonie des British Academy Film Awards,BAFTA,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1972,24e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+1973,25e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+1974,26e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+1975,27e cérémonie des British Academy Film Awards,BAFTA,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1976,28e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+1977,29e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+1978,30e cérémonie des British Academy Film Awards,BAFTA,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1979,31e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+1980,32e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+1981,33e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+1982,34e cérémonie des British Academy Film Awards,BAFTA,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1983,35e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+1984,36e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+1985,37e cérémonie des British Academy Film Awards,BAFTA,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1986,38e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+1987,39e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+1988,40e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+1989,41e cérémonie des British Academy Film Awards,BAFTA,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1990,42e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+1991,43e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+1992,44e cérémonie des British Academy Film Awards,BAFTA,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1993,45e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+1994,46e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+1995,47e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+1996,48e cérémonie des British Academy Film Awards,BAFTA,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1997,49e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+1998,50e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+1999,51e cérémonie des British Academy Film Awards,BAFTA,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2000,52e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+2001,53e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+2002,54e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+2003,55e cérémonie des British Academy Film Awards,BAFTA,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2004,56e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+2005,57e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+2006,58e cérémonie des British Academy Film Awards,BAFTA,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2007,59e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+2008,60e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+2009,61e cérémonie des British Academy Film Awards,BAFTA,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2010,62e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+2011,63e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+2012,64e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+2013,65e cérémonie des British Academy Film Awards,BAFTA,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2014,66e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+2015,67e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+2016,68e cérémonie des British Academy Film Awards,BAFTA,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2017,69e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+2018,70e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+2019,71e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+2020,72e cérémonie des British Academy Film Awards,BAFTA,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2021,73e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+2022,74e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+2023,75e cérémonie des British Academy Film Awards,BAFTA,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2024,76e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+2025,77e cérémonie des British Academy Film Awards,BAFTA,SELECTED_V18,Selected for V18.
+1967,Super Bowl I,SUPER_BOWL,SELECTED_V18,Selected for V18.
+1968,Super Bowl II,SUPER_BOWL,SELECTED_V18,Selected for V18.
+1969,Super Bowl III,SUPER_BOWL,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1970,Super Bowl IV,SUPER_BOWL,SELECTED_V18,Selected for V18.
+1971,Super Bowl V,SUPER_BOWL,SELECTED_V18,Selected for V18.
+1972,Super Bowl VI,SUPER_BOWL,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1973,Super Bowl VII,SUPER_BOWL,SELECTED_V18,Selected for V18.
+1974,Super Bowl VIII,SUPER_BOWL,SELECTED_V18,Selected for V18.
+1975,Super Bowl IX,SUPER_BOWL,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1976,Super Bowl X,SUPER_BOWL,SELECTED_V18,Selected for V18.
+1977,Super Bowl XI,SUPER_BOWL,SELECTED_V18,Selected for V18.
+1978,Super Bowl XII,SUPER_BOWL,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1979,Super Bowl XIII,SUPER_BOWL,SELECTED_V18,Selected for V18.
+1980,Super Bowl XIV,SUPER_BOWL,SELECTED_V18,Selected for V18.
+1981,Super Bowl XV,SUPER_BOWL,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1982,Super Bowl XVI,SUPER_BOWL,SELECTED_V18,Selected for V18.
+1983,Super Bowl XVII,SUPER_BOWL,SELECTED_V18,Selected for V18.
+1984,Super Bowl XVIII,SUPER_BOWL,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1985,Super Bowl XIX,SUPER_BOWL,SELECTED_V18,Selected for V18.
+1986,Super Bowl XX,SUPER_BOWL,SELECTED_V18,Selected for V18.
+1987,Super Bowl XXI,SUPER_BOWL,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1988,Super Bowl XXII,SUPER_BOWL,SELECTED_V18,Selected for V18.
+1989,Super Bowl XXIII,SUPER_BOWL,SELECTED_V18,Selected for V18.
+1990,Super Bowl XXIV,SUPER_BOWL,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1991,Super Bowl XXV,SUPER_BOWL,SELECTED_V18,Selected for V18.
+1992,Super Bowl XXVI,SUPER_BOWL,SELECTED_V18,Selected for V18.
+1993,Super Bowl XXVII,SUPER_BOWL,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1994,Super Bowl XXVIII,SUPER_BOWL,SELECTED_V18,Selected for V18.
+1995,Super Bowl XXIX,SUPER_BOWL,SELECTED_V18,Selected for V18.
+1996,Super Bowl XXX,SUPER_BOWL,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1997,Super Bowl XXXI,SUPER_BOWL,SELECTED_V18,Selected for V18.
+1998,Super Bowl XXXII,SUPER_BOWL,SELECTED_V18,Selected for V18.
+1999,Super Bowl XXXIII,SUPER_BOWL,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2000,Super Bowl XXXIV,SUPER_BOWL,SELECTED_V18,Selected for V18.
+2001,Super Bowl XXXV,SUPER_BOWL,SELECTED_V18,Selected for V18.
+2002,Super Bowl XXXVI,SUPER_BOWL,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2003,Super Bowl XXXVII,SUPER_BOWL,SELECTED_V18,Selected for V18.
+2004,Super Bowl XXXVIII,SUPER_BOWL,SELECTED_V18,Selected for V18.
+2005,Super Bowl XXXIX,SUPER_BOWL,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2006,Super Bowl XL,SUPER_BOWL,SELECTED_V18,Selected for V18.
+2007,Super Bowl XLI,SUPER_BOWL,SELECTED_V18,Selected for V18.
+2008,Super Bowl XLII,SUPER_BOWL,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2009,Super Bowl XLIII,SUPER_BOWL,SELECTED_V18,Selected for V18.
+2010,Super Bowl XLIV,SUPER_BOWL,SELECTED_V18,Selected for V18.
+2011,Super Bowl XLV,SUPER_BOWL,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2012,Super Bowl XLVI,SUPER_BOWL,SELECTED_V18,Selected for V18.
+2013,Super Bowl XLVII,SUPER_BOWL,SELECTED_V18,Selected for V18.
+2014,Super Bowl XLVIII,SUPER_BOWL,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2015,Super Bowl XLIX,SUPER_BOWL,SELECTED_V18,Selected for V18.
+2016,Super Bowl L,SUPER_BOWL,SELECTED_V18,Selected for V18.
+2017,Super Bowl LI,SUPER_BOWL,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2018,Super Bowl LII,SUPER_BOWL,SELECTED_V18,Selected for V18.
+2019,Super Bowl LIII,SUPER_BOWL,SELECTED_V18,Selected for V18.
+2020,Super Bowl LIV,SUPER_BOWL,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2021,Super Bowl LV,SUPER_BOWL,SELECTED_V18,Selected for V18.
+2022,Super Bowl LVI,SUPER_BOWL,SELECTED_V18,Selected for V18.
+2023,Super Bowl LVII,SUPER_BOWL,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2024,Super Bowl LVIII,SUPER_BOWL,SELECTED_V18,Selected for V18.
+2025,Super Bowl LIX,SUPER_BOWL,SELECTED_V18,Selected for V18.
+1878,2e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1879,3e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1880,4e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1881,5e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1882,6e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1883,7e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1884,8e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1885,9e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1886,10e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1887,11e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1888,12e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1889,13e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1890,14e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1891,15e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1892,16e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1893,17e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1894,18e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1895,19e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1896,20e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1897,21e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1898,22e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1899,23e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1900,24e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1901,25e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1902,26e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1903,27e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1904,28e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1905,29e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1906,30e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1907,31e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1908,32e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1909,33e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1910,34e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1911,35e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1912,36e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1913,37e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1914,38e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1919,39e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1920,40e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1921,41e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1922,42e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1923,43e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1924,44e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1925,45e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1926,46e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1927,47e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1928,48e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1929,49e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1930,50e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1931,51e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1932,52e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1933,53e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1934,54e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1935,55e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1936,56e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1937,57e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1938,58e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1939,59e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1946,60e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1947,61e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1948,62e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1949,63e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1950,64e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1951,65e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1952,66e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1953,67e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1954,68e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1955,69e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1956,70e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1957,71e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1958,72e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1959,73e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1960,74e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1961,75e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1962,76e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1963,77e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1964,78e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1965,79e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1966,80e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1967,81e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1968,82e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1969,83e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1970,84e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1971,85e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1972,86e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1973,87e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1974,88e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1975,89e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1976,90e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1977,91e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1978,92e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1979,93e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1980,94e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1981,95e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1982,96e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1983,97e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1984,98e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1985,99e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1986,100e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1987,101e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1988,102e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1989,103e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1990,104e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1991,105e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1992,106e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1993,107e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1994,108e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1995,109e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1996,110e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1997,111e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+1998,112e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+1999,113e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2000,114e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+2001,115e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+2002,116e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2003,117e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+2004,118e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2005,119e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+2006,120e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+2007,121e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2008,122e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+2009,123e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+2010,124e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2011,125e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+2012,126e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2013,127e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+2014,128e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+2015,129e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2016,130e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+2017,131e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2018,132e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+2019,133e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+2021,134e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2022,135e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+2023,136e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+2024,137e édition des Championnats de Wimbledon,WIMBLEDON,NOT_SELECTED_QUOTA,Valid candidate held for later expansion.
+2025,138e édition des Championnats de Wimbledon,WIMBLEDON,SELECTED_V18,Selected for V18.
+-478,Formation de la Ligue de Délos,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0375 — Création de la ligue de Délos (FUZZY 0.50/0.92)
+-323,Mort d’Alexandre le Grand à Babylone,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0381 — Mort d’Alexandre le Grand (FUZZY 0.67/0.82)
+-264,Début de la première guerre punique,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0383 — Première guerre punique (FUZZY 0.67/0.79)
+-146,Destruction de Carthage par Rome,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0384 — Destruction de Carthage par Rome (EXACT)
+-49,Jules César franchit le Rubicon,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0385 — Jules César franchit le Rubicon (EXACT)
+-44,Assassinat de Jules César,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0386 — Assassinat de Jules César (EXACT)
+-31,Bataille d’Actium,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0387 — Bataille d’Actium (EXACT)
+70,Destruction du Second Temple de Jérusalem par les Romains,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0036 — Prise de Jérusalem et destruction du Second Temple (FUZZY 0.67/0.52)
+325,Premier concile de Nicée,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0037 — Concile de Nicée (FUZZY 1.00/0.80)
+410,Sac de Rome par les Wisigoths d’Alaric,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0390 — Sac de Rome par Alaric (FUZZY 0.75/0.73)
+800,Couronnement impérial de Charlemagne à Rome,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0044 — Couronnement impérial de Charlemagne à Rome (EXACT)
+911,Traité de Saint-Clair-sur-Epte et création de la Normandie,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0396 — Traité de Saint-Clair-sur-Epte (FUZZY 0.67/0.68)
+962,Couronnement impérial d’Otton Ier,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0397 — Couronnement impérial d’Otton Ier (EXACT)
+1071,Bataille de Manzikert,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0400 — Bataille de Manzikert (EXACT)
+1095,Appel à la première croisade au concile de Clermont,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0399 — Appel à la première croisade au concile de Clermont (EXACT)
+1215,Promulgation de la Magna Carta,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0401 — Magna Carta (FUZZY 0.67/0.54)
+1271,Départ de Marco Polo vers l’Asie selon la tradition,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0404 — Départ de Marco Polo vers l’Asie (FUZZY 0.71/0.77)
+1346,Bataille de Crécy,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0406 — Bataille de Crécy (EXACT)
+1378,Début du Grand Schisme d’Occident,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0409 — Début du Grand Schisme d’Occident (EXACT)
+1415,Bataille d’Azincourt,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0410 — Bataille d’Azincourt (EXACT)
+1431,Exécution de Jeanne d’Arc à Rouen,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0413 — Exécution de Jeanne d’Arc (FUZZY 0.75/0.86)
+1478,Création de l’Inquisition espagnole,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0416 — Création de l’Inquisition espagnole (EXACT)
+1509,Henri VIII devient roi d’Angleterre,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0640 — Henri VIII devient roi d’Angleterre (EXACT)
+1524,Début de la guerre des Paysans allemands,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0642 — Début de la guerre des Paysans allemands (EXACT)
+1543,Publication de De revolutionibus de Copernic,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0420 — Publication de De revolutionibus de Copernic (EXACT)
+1545,Ouverture du concile de Trente,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0072 — Concile de Trente (FUZZY 1.00/0.72)
+1555,Paix d’Augsbourg,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0421 — Paix d’Augsbourg (EXACT)
+1572,Massacre de la Saint-Barthélemy,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0422 — Massacre de la Saint-Barthélemy (EXACT)
+1600,Fondation de la Compagnie anglaise des Indes orientales,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0650 — Charte royale fondant la Compagnie anglaise des Indes orientales (FUZZY 0.57/0.82)
+1602,Fondation de la Compagnie néerlandaise des Indes orientales,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0651 — Fondation de la Compagnie néerlandaise des Indes orientales (EXACT)
+1607,Fondation de Jamestown en Virginie,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0424 — Fondation de Jamestown (FUZZY 0.50/0.79)
+1642,Début de la guerre civile anglaise,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0427 — Début de la guerre civile anglaise (EXACT)
+1649,Exécution de Charles Ier d’Angleterre,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0428 — Exécution de Charles Ier d’Angleterre (EXACT)
+1651,Publication du Léviathan de Thomas Hobbes,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0657 — Publication du Léviathan de Thomas Hobbes (EXACT)
+1660,Restauration de la monarchie anglaise,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0659 — Restauration de la monarchie anglaise avec Charles II (FUZZY 0.75/0.82)
+1694,Fondation de la Banque d’Angleterre,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0664 — Fondation de la Banque d’Angleterre (EXACT)
+1701,Début de la guerre de Succession d’Espagne,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0665 — Début de la guerre de Succession d’Espagne (EXACT)
+1713,Traités d’Utrecht,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0666 — Traité d’Utrecht (FUZZY 0.33/0.97)
+1748,Publication de De l’esprit des lois de Montesquieu,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0670 — Publication de De l’esprit des lois de Montesquieu (EXACT)
+1751,Début de la publication de l’Encyclopédie de Diderot et d’Alembert,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0166 — publication de l’*Encyclopédie* de Diderot et d’Alembert (FUZZY 0.75/0.90)
+1756,Début de la guerre de Sept Ans,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0431 — Guerre de Sept Ans (FUZZY 0.67/0.75)
+1769,Brevet de James Watt pour l’amélioration de la machine à vapeur,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0630 — Brevet de James Watt pour une machine à vapeur améliorée (FUZZY 0.71/0.74)
+1773,Boston Tea Party,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0433 — Boston Tea Party (EXACT)
+1787,Signature de la Constitution des États-Unis,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0438 — Signature de la Constitution des États-Unis (EXACT)
+1793,Exécution de Louis XVI,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0179 — exécution de Louis XVI (EXACT)
+1799,Découverte de la pierre de Rosette,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0637 — Découverte de la pierre de Rosette (EXACT)
+1803,Vente de la Louisiane par la France aux États-Unis,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0681 — Signature de la vente de la Louisiane aux États-Unis (FUZZY 0.67/0.71)
+1804,Indépendance d’Haïti,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0447 — Indépendance d’Haïti (EXACT)
+1805,Bataille de Trafalgar,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0683 — Bataille de Trafalgar (EXACT)
+1806,Dissolution du Saint-Empire romain germanique,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0730 — Dissolution du Saint-Empire romain germanique (EXACT)
+1807,Abolition de la traite négrière dans l’Empire britannique,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0684 — Abolition britannique de la traite négrière (FUZZY 0.80/0.62)
+1815,Bataille de Waterloo,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0448 — Bataille de Waterloo (EXACT)
+1819,Massacre de Peterloo à Manchester,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0735 — Massacre de Peterloo à Manchester (EXACT)
+1821,Début de la guerre d’indépendance grecque,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0449 — Début conventionnel de la guerre d’indépendance grecque (FUZZY 0.75/0.85)
+1822,Indépendance du Brésil,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0688 — Déclaration d’indépendance du Brésil (FUZZY 0.67/0.76)
+1823,Doctrine Monroe,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0690 — Proclamation de la doctrine Monroe (FUZZY 1.00/0.61)
+1825,Ouverture du chemin de fer Stockton-Darlington,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0691 — Ouverture du chemin de fer Stockton-Darlington (EXACT)
+1839,Début de la première guerre de l’Opium,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0694 — Début de la première guerre de l’Opium (EXACT)
+1842,Traité de Nankin mettant fin à la première guerre de l’Opium,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0695 — Traité de Nankin mettant fin à la première guerre de l’Opium (EXACT)
+1848,Publication du Manifeste du Parti communiste,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0697 — Publication du Manifeste du Parti communiste (EXACT)
+1848,Abolition définitive de l’esclavage dans les colonies françaises,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0188 — abolition de l’esclavage dans les colonies françaises (FUZZY 0.80/0.91)
+1854,Ouverture du Japon par la convention de Kanagawa,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0748 — Convention de Kanagawa entre le Japon et les États-Unis (FUZZY 0.60/0.43)
+1856,Fin de la guerre de Crimée par le traité de Paris,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0462 — Traité de Paris mettant fin à la guerre de Crimée (FUZZY 0.75/0.49)
+1859,Publication de L’Origine des espèces de Darwin,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0700 — Publication de L’Origine des espèces de Charles Darwin (FUZZY 0.75/0.92)
+1860,Expédition des Mille de Garibaldi,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0751 — Départ de l’expédition des Mille de Garibaldi (FUZZY 0.75/0.85)
+1863,Bataille de Gettysburg,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0468 — Bataille de Gettysburg (EXACT)
+1864,Première Convention de Genève,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0470 — Première Convention de Genève (EXACT)
+1865,Assassinat d’Abraham Lincoln,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0706 — Assassinat d’Abraham Lincoln (EXACT)
+1866,Guerre austro-prussienne,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0753 — Début de la guerre austro-prussienne (FUZZY 0.67/0.80)
+1867,Confédération canadienne,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0708 — Confédération canadienne (EXACT)
+1868,Restauration de Meiji au Japon,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0709 — Restauration de Meiji au Japon (EXACT)
+1869,Ouverture du canal de Suez,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0471 — Ouverture du canal de Suez (EXACT)
+1870,Début de la guerre franco-prussienne,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0472 — Guerre franco-prussienne (FUZZY 0.67/0.80)
+1871,Proclamation de l’Empire allemand à Versailles,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0200 — Proclamation de Guillaume Ier comme empereur allemand à Versailles (FUZZY 0.29/0.80)
+1881,Assassinat du tsar Alexandre II,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0761 — Assassinat du tsar Alexandre II (EXACT)
+1882,"Triple Alliance entre Allemagne, Autriche-Hongrie et Italie",CURATED_HISTORY_V18,DUPLICATE_EXISTING,"EVT-0763 — Formation de la Triple Alliance entre Allemagne, Autriche-Hongrie et Italie (FUZZY 0.86/0.88)"
+1883,Éruption du Krakatoa,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0716 — Éruption cataclysmique du Krakatoa (FUZZY 0.67/0.74)
+1884,Ouverture de la conférence de Berlin sur l’Afrique,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0273 — Conférence de Berlin / conférence d’Afrique occidentale (FUZZY 0.75/0.60)
+1886,Inauguration de la Statue de la Liberté à New York,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0719 — Inauguration de la statue de la Liberté (FUZZY 0.60/0.88)
+1889,Inauguration de la tour Eiffel,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0477 — Inauguration de la tour Eiffel (EXACT)
+1890,Massacre de Wounded Knee,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0770 — Massacre de Wounded Knee (EXACT)
+1893,Nouvelle-Zélande accorde le droit de vote aux femmes,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0721 — Droit de vote accordé aux femmes en Nouvelle-Zélande (FUZZY 1.00/0.31)
+1895,Découverte des rayons X par Wilhelm Röntgen,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0722 — Découverte des rayons X par Wilhelm Röntgen (EXACT)
+1897,Premier congrès sioniste à Bâle,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-1032 — Ouverture du premier congrès sioniste à Bâle (FUZZY 1.00/0.83)
+1898,Guerre hispano-américaine,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-0726 — Début de la guerre hispano-américaine (FUZZY 0.67/0.81)
+1899,Début de la seconde guerre des Boers,CURATED_HISTORY_V18,DUPLICATE_EXISTING,EVT-1034 — Début de la seconde guerre des Boers (EXACT)
+-1457,Bataille de Megiddo sous Thoutmôsis III,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+-1353,Début du règne d’Akhenaton et révolution religieuse d’Amarna,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+-1323,Mort de Toutânkhamon,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+-1177,Crise des Peuples de la mer à la fin de l’âge du bronze,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+-814,Fondation traditionnelle de Carthage,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+-722,Prise de Samarie par l’Empire assyrien,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+-612,Chute de Ninive et effondrement de l’Empire néo-assyrien,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+-539,Prise de Babylone par Cyrus le Grand,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+-525,Conquête de l’Égypte par Cambyse II,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+-499,Début de la révolte ionienne contre l’Empire perse,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+-415,Début de l’expédition de Sicile d’Athènes,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+-399,Procès et mort de Socrate,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+-305,Ptolémée Ier prend le titre de pharaon en Égypte,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+-280,Début de la guerre de Pyrrhus contre Rome,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+-241,Fin de la première guerre punique,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+-149,Début de la troisième guerre punique,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+-133,Mort de Tiberius Gracchus et crise politique romaine,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+-91,Début de la guerre sociale en Italie,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+43,Conquête romaine de la Bretagne sous Claude,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+60,Révolte de Boadicée contre Rome,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+122,Début de la construction du mur d’Hadrien,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+165,Début de la peste antonine,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+212,Édit de Caracalla accordant largement la citoyenneté romaine,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+250,Début de la persécution de Dèce contre les chrétiens,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+313,Accord de Milan sur la liberté de culte dans l’Empire romain,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+330,Constantinople devient capitale impériale de Constantin,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+378,Bataille d’Andrinople et mort de Valens,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+529,Publication du Code de Justinien,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+568,Invasion lombarde de l’Italie,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+610,Héraclius devient empereur byzantin,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+732,Bataille de Poitiers entre Francs et Omeyyades,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+751,Pépin le Bref devient roi des Francs,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+862,Début traditionnel de la dynastie rurikide à Novgorod,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+955,Bataille du Lechfeld contre les Magyars,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+987,Hugues Capet devient roi des Francs,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1016,Knut le Grand devient roi d’Angleterre,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1054,Grand schisme entre les Églises d’Orient et d’Occident,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1147,Début de la deuxième croisade,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1209,Début de la croisade des Albigeois,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1236,Début des conquêtes mongoles en Europe orientale,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1337,Début conventionnel de la guerre de Cent Ans,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1356,Bataille de Poitiers pendant la guerre de Cent Ans,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1405,Début des grandes expéditions maritimes de Zheng He,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1455,Début de la guerre des Deux-Roses,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1494,Début des guerres d’Italie,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1501,Ismaïl Ier fonde l’Empire safavide en Perse,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1513,Bataille de Flodden entre Angleterre et Écosse,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1526,Bataille de Mohács et effondrement du royaume médiéval de Hongrie,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1532,Conquête de l’Empire inca par les Espagnols autour de Cajamarca,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1580,Union ibérique sous Philippe II,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1605,Conspiration des Poudres à Londres,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1620,Arrivée du Mayflower à Plymouth,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1633,Procès de Galilée par l’Inquisition,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1683,Échec du second siège ottoman de Vienne,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1721,Proclamation de l’Empire russe sous Pierre le Grand,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1740,Début de la guerre de Succession d’Autriche,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1765,Adoption du Stamp Act dans les colonies britanniques d’Amérique,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1781,Victoire franco-américaine à Yorktown,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1783,Traité de Paris reconnaissant l’indépendance des États-Unis,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1791,Début de la révolution haïtienne,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1794,Première abolition de l’esclavage dans les colonies françaises,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1796,Première vaccination antivariolique de Jenner,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1798,Début de l’expédition d’Égypte de Bonaparte,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1801,Acte d’Union entre la Grande-Bretagne et l’Irlande,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1808,Début de la guerre d’indépendance espagnole,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1810,Début des guerres d’indépendance hispano-américaines,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1812,Campagne de Russie de Napoléon,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1829,Émancipation des catholiques au Royaume-Uni,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1830,Indépendance de la Belgique,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1831,Insurrection polonaise de Novembre écrasée par la Russie,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1832,Great Reform Act au Royaume-Uni,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1833,Slavery Abolition Act dans l’Empire britannique,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1837,Début du règne de la reine Victoria,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1840,Traité de Waitangi en Nouvelle-Zélande,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1845,Début de la Grande Famine en Irlande,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1846,Début de la guerre américano-mexicaine,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1849,Fin de la ruée vers l’or de Californie comme phénomène déclencheur,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1850,Compromis de 1850 aux États-Unis,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1853,Début de la guerre de Crimée,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1857,Révolte des Cipayes en Inde,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1861,Début de la guerre de Sécession américaine,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1862,Proclamation préliminaire d’émancipation par Abraham Lincoln,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1867,Compromis austro-hongrois créant la Double Monarchie,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1871,Grand incendie de Chicago,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1873,Début de la Grande Dépression du XIXe siècle après le krach de Vienne,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1876,Invention pratique du téléphone par Alexander Graham Bell,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1878,Congrès de Berlin redessinant les Balkans,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1879,Guerre anglo-zouloue,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1885,Fin de la conférence de Berlin et partage colonial accéléré de l’Afrique,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1888,Abolition de l’esclavage au Brésil par la Loi d’or,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1891,Début de la construction du Transsibérien,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1894,Début de la première guerre sino-japonaise,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1896,Couronnement de Nicolas II comme tsar de Russie,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.
+1896,Bataille d’Adoua et victoire éthiopienne sur l’Italie,CURATED_HISTORY_V18,SELECTED_V18,Selected for V18 historical balancing.

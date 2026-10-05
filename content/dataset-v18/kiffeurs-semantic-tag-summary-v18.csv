@@ -1,0 +1,146 @@
+﻿tag_id,slug,name,tag_type,event_count,high_confidence_count,medium_confidence_count,description
+TAG-0106,semantic_topic-politics,Politique,SEMANTIC_TOPIC,393,327,66,"Institutions, gouvernements, dirigeants et vie politique."
+TAG-0107,semantic_topic-democracy,Démocratie,SEMANTIC_TOPIC,201,155,46,"Élections, suffrage, représentation et régime démocratique."
+TAG-0108,semantic_topic-state-building,Construction de l’État,SEMANTIC_TOPIC,281,196,85,"Formation, transformation et organisation des États."
+TAG-0109,semantic_topic-law,Droit et législation,SEMANTIC_TOPIC,108,97,11,"Lois, constitutions, ordonnances, codes et actes juridiques."
+TAG-0110,semantic_topic-rights,Droits et libertés,SEMANTIC_TOPIC,112,93,19,"Droits civiques, libertés publiques et égalité juridique."
+TAG-0111,semantic_topic-war,Guerres et conflits,SEMANTIC_TOPIC,296,257,39,"Conflits armés, campagnes, armistices et capitulations."
+TAG-0112,semantic_topic-battle,Batailles et opérations,SEMANTIC_TOPIC,84,84,0,"Batailles, sièges, débarquements et opérations militaires."
+TAG-0113,semantic_topic-revolution,Révolutions et insurrections,SEMANTIC_TOPIC,131,102,29,"Révolutions, soulèvements et ruptures politiques."
+TAG-0114,semantic_topic-diplomacy,Diplomatie,SEMANTIC_TOPIC,193,144,49,"Traités, conférences, accords, négociations et relations internationales."
+TAG-0115,semantic_topic-empire,Empires,SEMANTIC_TOPIC,108,95,13,"Empires, dynasties impériales et pouvoir impérial."
+TAG-0116,semantic_topic-colonialism,Colonisation et impérialisme,SEMANTIC_TOPIC,100,64,36,"Expansion coloniale, empires coloniaux et impérialismes."
+TAG-0117,semantic_topic-decolonization,Décolonisation,SEMANTIC_TOPIC,65,31,34,"Indépendances, guerres de décolonisation et fin des empires coloniaux."
+TAG-0118,semantic_topic-slavery,Esclavage et traites,SEMANTIC_TOPIC,37,21,16,"Esclavage, traites négrières et économies de plantation."
+TAG-0119,semantic_topic-religion,Religions,SEMANTIC_TOPIC,174,92,82,"Religions, Églises, croyances, conciles et réformes religieuses."
+TAG-0120,semantic_topic-church-state,Religions et États,SEMANTIC_TOPIC,10,9,1,Relations institutionnelles entre pouvoirs politiques et religieux.
+TAG-0121,semantic_topic-economy,Économie,SEMANTIC_TOPIC,113,66,47,"Commerce, finance, production, crises et politiques économiques."
+TAG-0122,semantic_topic-industrialization,Industrialisation,SEMANTIC_TOPIC,54,28,26,"Révolutions industrielles, usines, machines et transformations productives."
+TAG-0123,semantic_topic-social-history,Histoire sociale,SEMANTIC_TOPIC,149,102,47,"Sociétés, populations, conditions de vie et transformations sociales."
+TAG-0124,semantic_topic-labor,Travail et mouvement social,SEMANTIC_TOPIC,19,19,0,"Travail, monde ouvrier, grèves et droits sociaux."
+TAG-0125,semantic_topic-women-gender,Femmes et genre,SEMANTIC_TOPIC,18,18,0,"Droits des femmes, condition féminine et égalité."
+TAG-0126,semantic_topic-education,Éducation,SEMANTIC_TOPIC,3,3,0,"École, enseignement, diplômes et transmission scolaire."
+TAG-0127,semantic_topic-science,Sciences,SEMANTIC_TOPIC,101,71,30,"Découvertes, savants et développement des sciences."
+TAG-0128,semantic_topic-medicine,Médecine et santé,SEMANTIC_TOPIC,28,28,0,"Médecine, santé publique, épidémies et innovations médicales."
+TAG-0129,semantic_topic-technology,Techniques et technologies,SEMANTIC_TOPIC,155,144,11,"Inventions, infrastructures, communications et technologies."
+TAG-0130,semantic_topic-space,Espace,SEMANTIC_TOPIC,24,24,0,"Exploration spatiale, satellites, vols habités et stations orbitales."
+TAG-0131,semantic_topic-exploration,Explorations,SEMANTIC_TOPIC,52,21,31,"Voyages, découvertes, circumnavigations et exploration du monde."
+TAG-0132,semantic_topic-art-culture,Arts et culture,SEMANTIC_TOPIC,502,453,49,"Arts, littérature, patrimoine culturel et grandes œuvres."
+TAG-0133,semantic_topic-media-information,Médias et information,SEMANTIC_TOPIC,461,461,0,"Presse, agences, information, communication et cyberspace."
+TAG-0134,semantic_topic-environment,Environnement,SEMANTIC_TOPIC,33,33,0,"Protection de l’environnement, climat et politiques environnementales."
+TAG-0135,semantic_topic-international-organization,Organisations internationales,SEMANTIC_TOPIC,85,35,50,"ONU, juridictions et institutions internationales."
+TAG-0136,semantic_topic-european-integration,Construction européenne,SEMANTIC_TOPIC,26,19,7,"CECA, CEE/UE, Schengen et intégration européenne."
+TAG-0137,semantic_topic-genocide-mass-violence,Génocides et violences de masse,SEMANTIC_TOPIC,29,29,0,"Génocides, persécutions et crimes de masse."
+TAG-0138,semantic_topic-memory-heritage,Mémoire et patrimoine,SEMANTIC_TOPIC,33,21,12,"Commémoration, patrimoine, mémoire collective et protection culturelle."
+TAG-0139,semantic_topic-migration,Migrations,SEMANTIC_TOPIC,19,17,2,"Migrations, exils et déplacements de populations."
+TAG-0140,semantic_topic-urbanization,Urbanisation,SEMANTIC_TOPIC,13,13,0,"Croissance urbaine, aménagement des villes et métropolisation."
+TAG-0141,semantic_topic-agriculture,Agriculture et sédentarisation,SEMANTIC_TOPIC,7,1,6,"Agriculture, sédentarisation et transformations néolithiques."
+TAG-0142,semantic_topic-geopolitics,Géopolitique,SEMANTIC_TOPIC,153,89,64,"Rapports de puissance, rivalités, souverainetés et espaces stratégiques."
+TAG-0143,semantic_topic-borders-territory,Frontières et territoires,SEMANTIC_TOPIC,29,23,6,"Frontières, souveraineté, annexions et contrôle territorial."
+TAG-0144,semantic_topic-knowledge,Savoirs et connaissance,SEMANTIC_TOPIC,52,45,7,"Production, diffusion et contrôle des savoirs."
+TAG-0145,semantic_topic-sport,Sport,SEMANTIC_TOPIC,397,397,0,Événements sportifs et histoire du sport.
+TAG-0146,semantic_topic-nationalism,Nationalismes,SEMANTIC_TOPIC,31,27,4,"Nationalités, mouvements nationaux et formation nationale."
+TAG-0147,semantic_topic-totalitarianism,Totalitarismes,SEMANTIC_TOPIC,26,19,7,Régimes totalitaires et autoritaires de masse.
+TAG-0148,historical_context-world-war-i,Première Guerre mondiale,HISTORICAL_CONTEXT,32,32,0,Contexte de la Première Guerre mondiale et de ses conséquences immédiates.
+TAG-0149,historical_context-world-war-ii,Seconde Guerre mondiale,HISTORICAL_CONTEXT,40,40,0,Contexte de la Seconde Guerre mondiale.
+TAG-0150,historical_context-cold-war,Guerre froide,HISTORICAL_CONTEXT,55,55,0,Contexte de la confrontation Est-Ouest.
+TAG-0151,historical_context-french-revolution,Révolution française,HISTORICAL_CONTEXT,19,19,0,Contexte de la Révolution française.
+TAG-0152,historical_context-napoleonic-era,Époque napoléonienne,HISTORICAL_CONTEXT,5,5,0,"Consulat, Empire et conséquences napoléoniennes."
+TAG-0153,geography-global,Monde / global,GEOGRAPHY,667,501,166,Événement de portée mondiale ou multirégionale.
+TAG-0154,geography-europe,Europe,GEOGRAPHY,1051,1001,50,Espace européen.
+TAG-0155,geography-mediterranean,Méditerranée,GEOGRAPHY,107,78,29,Espace méditerranéen.
+TAG-0156,geography-atlantic-world,Monde atlantique,GEOGRAPHY,97,30,67,"Espace atlantique reliant Europe, Afrique et Amériques."
+TAG-0157,geography-france,France,GEOGRAPHY,398,390,8,France et territoires français.
+TAG-0158,geography-united-kingdom,Royaume-Uni / Angleterre,GEOGRAPHY,284,283,1,Angleterre et Royaume-Uni.
+TAG-0159,geography-germany,Allemagne,GEOGRAPHY,121,121,0,Espaces allemands et Allemagne.
+TAG-0160,geography-italy,Italie,GEOGRAPHY,78,78,0,Italie et péninsule italienne.
+TAG-0161,geography-greece,Grèce,GEOGRAPHY,31,31,0,Monde grec et Grèce.
+TAG-0162,geography-spain,Espagne,GEOGRAPHY,30,30,0,Espagne.
+TAG-0163,geography-portugal,Portugal,GEOGRAPHY,15,15,0,Portugal.
+TAG-0164,geography-russia-ussr,Russie / URSS,GEOGRAPHY,44,44,0,"Russie impériale, soviétique ou contemporaine."
+TAG-0165,geography-usa,États-Unis,GEOGRAPHY,478,478,0,États-Unis d’Amérique.
+TAG-0166,geography-china,Chine,GEOGRAPHY,30,30,0,Chine.
+TAG-0167,geography-japan,Japon,GEOGRAPHY,19,19,0,Japon.
+TAG-0168,geography-india,Inde,GEOGRAPHY,17,17,0,Inde.
+TAG-0169,geography-turkey-ottoman,Turquie / Empire ottoman,GEOGRAPHY,16,16,0,Turquie et Empire ottoman.
+TAG-0170,geography-byzantine-empire,Empire byzantin,GEOGRAPHY,6,6,0,Empire romain d’Orient / byzantin.
+TAG-0171,geography-middle-east,Moyen-Orient,GEOGRAPHY,61,61,0,Moyen-Orient.
+TAG-0172,geography-israel-palestine,Israël / Palestine,GEOGRAPHY,13,13,0,"Israël, Palestine et espaces associés."
+TAG-0173,geography-iraq-mesopotamia,Irak / Mésopotamie,GEOGRAPHY,19,19,0,Irak et Mésopotamie.
+TAG-0174,geography-africa,Afrique,GEOGRAPHY,44,44,0,Continent africain.
+TAG-0175,geography-north-africa,Afrique du Nord,GEOGRAPHY,14,14,0,Maghreb et Afrique du Nord.
+TAG-0176,geography-algeria,Algérie,GEOGRAPHY,6,6,0,Algérie.
+TAG-0177,geography-sub-saharan-africa,Afrique subsaharienne,GEOGRAPHY,5,5,0,Afrique subsaharienne.
+TAG-0178,geography-rwanda,Rwanda,GEOGRAPHY,2,2,0,Rwanda.
+TAG-0179,geography-mali,Mali,GEOGRAPHY,2,2,0,Mali.
+TAG-0180,geography-asia,Asie,GEOGRAPHY,113,113,0,Continent asiatique.
+TAG-0181,geography-east-asia,Asie orientale,GEOGRAPHY,10,10,0,Asie orientale.
+TAG-0182,geography-south-asia,Asie du Sud,GEOGRAPHY,8,8,0,Sous-continent indien.
+TAG-0183,geography-vietnam-indochina,Vietnam / Indochine,GEOGRAPHY,10,10,0,Vietnam et Indochine.
+TAG-0184,geography-korea,Corée,GEOGRAPHY,6,6,0,Péninsule coréenne.
+TAG-0185,geography-americas,Amériques,GEOGRAPHY,40,40,0,Continent américain.
+TAG-0186,geography-north-america,Amérique du Nord,GEOGRAPHY,129,129,0,Amérique du Nord.
+TAG-0187,geography-latin-america,Amérique latine,GEOGRAPHY,16,16,0,Amérique latine.
+TAG-0188,geography-chile,Chili,GEOGRAPHY,3,3,0,Chili.
+TAG-0189,geography-balkans,Balkans,GEOGRAPHY,16,16,0,Balkans et Europe du Sud-Est.
+TAG-0195,geography-egypt,Égypte,GEOGRAPHY,14,14,0,Égypte ancienne et contemporaine.
+TAG-0196,geography-caribbean,Caraïbes,GEOGRAPHY,8,8,0,Espace caribéen.
+TAG-0197,geography-haiti,Haïti / Saint-Domingue,GEOGRAPHY,4,4,0,Saint-Domingue et Haïti.
+TAG-0198,geography-belgium,Belgique,GEOGRAPHY,7,7,0,Belgique.
+TAG-0199,geography-ireland,Irlande,GEOGRAPHY,8,8,0,Irlande.
+TAG-0200,geography-sudan,Soudan,GEOGRAPHY,1,1,0,Soudan et Haut-Nil.
+TAG-0201,geography-cuba,Cuba,GEOGRAPHY,4,4,0,Cuba.
+TAG-0202,geography-iran,Iran,GEOGRAPHY,6,6,0,Iran / Perse.
+TAG-0203,geography-afghanistan,Afghanistan,GEOGRAPHY,4,4,0,Afghanistan.
+TAG-0204,geography-poland,Pologne,GEOGRAPHY,9,9,0,Pologne.
+TAG-0205,geography-ukraine,Ukraine,GEOGRAPHY,5,5,0,"Ukraine, y compris la période soviétique."
+TAG-0207,semantic_topic-archaeology,Archéologie,SEMANTIC_TOPIC,3,3,0,Catégorie transversale : Archéologie.
+TAG-0208,semantic_topic-transport,Transports,SEMANTIC_TOPIC,10,10,0,Catégorie transversale : Transports.
+TAG-0209,semantic_topic-terrorism,Terrorisme,SEMANTIC_TOPIC,10,10,0,Catégorie transversale : Terrorisme.
+TAG-0216,geography-mexico,Mexique,GEOGRAPHY,11,11,0,Zone géographique : Mexique.
+TAG-0217,geography-canada,Canada,GEOGRAPHY,7,7,0,Zone géographique : Canada.
+TAG-0218,geography-czechia,Tchéquie / Tchécoslovaquie,GEOGRAPHY,5,5,0,Zone géographique : Tchéquie / Tchécoslovaquie.
+TAG-0219,geography-brazil,Brésil,GEOGRAPHY,7,7,0,Zone géographique : Brésil.
+TAG-0220,geography-panama,Panama,GEOGRAPHY,2,2,0,Zone géographique : Panama.
+TAG-0221,geography-switzerland,Suisse,GEOGRAPHY,13,13,0,Zone géographique : Suisse.
+TAG-0222,geography-malta,Malte,GEOGRAPHY,1,1,0,Zone géographique : Malte.
+TAG-0223,geography-netherlands,Pays-Bas,GEOGRAPHY,7,7,0,Zone géographique : Pays-Bas.
+TAG-0224,geography-sweden,Suède,GEOGRAPHY,6,6,0,Zone géographique : Suède.
+TAG-0225,geography-austria,Autriche,GEOGRAPHY,11,11,0,Zone géographique : Autriche.
+TAG-0226,geography-australia,Australie,GEOGRAPHY,5,5,0,Zone géographique : Australie.
+TAG-0227,geography-oceania,Océanie,GEOGRAPHY,7,7,0,Zone géographique : Océanie.
+TAG-0228,geography-indonesia,Indonésie,GEOGRAPHY,2,2,0,Zone géographique : Indonésie.
+TAG-0229,geography-new-zealand,Nouvelle-Zélande,GEOGRAPHY,6,6,0,Zone géographique : Nouvelle-Zélande.
+TAG-0230,geography-argentina,Argentine,GEOGRAPHY,3,3,0,Zone géographique : Argentine.
+TAG-0231,geography-liberia,Liberia,GEOGRAPHY,1,1,0,Zone géographique : Liberia.
+TAG-0232,geography-tunisia,Tunisie,GEOGRAPHY,2,2,0,Zone géographique : Tunisie.
+TAG-0233,geography-congo,Congo,GEOGRAPHY,2,2,0,Zone géographique : Congo.
+TAG-0234,geography-norway,Norvège,GEOGRAPHY,4,4,0,Zone géographique : Norvège.
+TAG-0235,geography-antarctica,Antarctique,GEOGRAPHY,2,2,0,Zone géographique : Antarctique.
+TAG-0236,geography-uruguay,Uruguay,GEOGRAPHY,1,1,0,Zone géographique : Uruguay.
+TAG-0237,geography-ethiopia,Éthiopie,GEOGRAPHY,2,2,0,Zone géographique : Éthiopie.
+TAG-0238,geography-south-africa,Afrique du Sud,GEOGRAPHY,12,12,0,Zone géographique : Afrique du Sud.
+TAG-0239,geography-saudi-arabia,Arabie saoudite,GEOGRAPHY,1,1,0,Zone géographique : Arabie saoudite.
+TAG-0240,geography-pakistan,Pakistan,GEOGRAPHY,2,2,0,Zone géographique : Pakistan.
+TAG-0241,geography-marshall-islands,Îles Marshall,GEOGRAPHY,1,1,0,Zone géographique : Îles Marshall.
+TAG-0242,geography-pacific,Pacifique,GEOGRAPHY,2,2,0,Zone géographique : Pacifique.
+TAG-0243,geography-nepal,Népal,GEOGRAPHY,1,1,0,Zone géographique : Népal.
+TAG-0244,geography-hungary,Hongrie,GEOGRAPHY,2,2,0,Zone géographique : Hongrie.
+TAG-0245,geography-ghana,Ghana,GEOGRAPHY,1,1,0,Zone géographique : Ghana.
+TAG-0246,geography-singapore,Singapour,GEOGRAPHY,2,2,0,Zone géographique : Singapour.
+TAG-0247,geography-bangladesh,Bangladesh,GEOGRAPHY,1,1,0,Zone géographique : Bangladesh.
+TAG-0248,geography-romania,Roumanie,GEOGRAPHY,1,1,0,Zone géographique : Roumanie.
+TAG-0249,geography-philippines,Philippines,GEOGRAPHY,1,1,0,Zone géographique : Philippines.
+TAG-0250,geography-madagascar,Madagascar,GEOGRAPHY,1,1,0,Zone géographique : Madagascar.
+TAG-0251,geography-nigeria,Nigeria,GEOGRAPHY,1,1,0,Zone géographique : Nigeria.
+TAG-0252,geography-iceland,Islande,GEOGRAPHY,1,1,0,Zone géographique : Islande.
+TAG-0253,geography-mozambique,Mozambique,GEOGRAPHY,1,1,0,Zone géographique : Mozambique.
+TAG-0254,geography-angola,Angola,GEOGRAPHY,1,1,0,Zone géographique : Angola.
+TAG-0255,geography-zimbabwe,Zimbabwe,GEOGRAPHY,1,1,0,Zone géographique : Zimbabwe.
+TAG-0256,geography-south-sudan,Soudan du Sud,GEOGRAPHY,1,1,0,Zone géographique : Soudan du Sud.
+TAG-0257,geography-timor-leste,Timor oriental,GEOGRAPHY,1,1,0,Zone géographique : Timor oriental.
+TAG-0262,geography-arctic,Arctique,GEOGRAPHY,1,1,0,Zone géographique : Arctique.
+TAG-0263,geography-finland,Finlande,GEOGRAPHY,1,1,0,Zone géographique : Finlande.
+TAG-0264,geography-namibia,Namibie,GEOGRAPHY,1,1,0,Zone géographique : Namibie.
+TAG-0265,geography-baltic,Baltique,GEOGRAPHY,1,1,0,Zone géographique : Baltique.
+TAG-0266,geography-qatar,Qatar,GEOGRAPHY,2,2,0,Zone géographique : Qatar.

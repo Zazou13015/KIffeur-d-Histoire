@@ -137,7 +137,16 @@ Chaque événement doit porter au minimum :
 - un ou plusieurs thèmes ;
 - une illustration simple (à produire si la base n'en a pas).
 
-Pour le mode pédagogique, chaque chapitre a besoin en plus de cartes d'explication posées sur sa frise. La base d'Antonin (dataset v18, reçu le 5 octobre) compte 2 000 événements : 507 rattachés au programme du CM1 à la terminale (46 chapitres) et 1 493 de culture générale, déjà répartis en 24 packs prêts à jouer. Les variantes de titres des 394 événements scolaires qui n'en avaient pas ont été proposées par un agent (`kiffeurs-alias-additions-v18.csv`, à faire relire par Antonin) ; il manque encore des descriptions pour 304 événements, et aucune illustration n'est fournie. Les fichiers sont dans `content/dataset-v18/`. Les cartes pédagogiques seront rédigées par un agent IA. Les illustrations des événements (format carte) restent à trancher : images libres de droit, ou dessins simplifiés dans la charte graphique du jeu.
+Pour le mode pédagogique, chaque chapitre a besoin en plus de cartes d'explication posées sur sa frise. La base d'Antonin (dataset v18, reçu le 5 octobre) compte 2 000 événements : 507 rattachés au programme du CM1 à la terminale (46 chapitres) et 1 493 de culture générale, déjà répartis en 24 packs prêts à jouer. Les variantes de titres des 394 événements scolaires qui n'en avaient pas ont été proposées par un agent (`kiffeurs-alias-additions-v18.csv`, à faire relire par Antonin) ; il manque encore des descriptions pour 304 événements, et aucune illustration n'est fournie. Les fichiers sont dans `content/dataset-v18/`. Les cartes pédagogiques seront rédigées par un agent IA. Les illustrations des événements sont des dessins simplifiés dans la charte graphique du jeu (voir « Illustrations » ci-dessous).
+
+### Illustrations
+
+Décision proposée (issue 1.6, comparatif dans `docs/illustrations/`) : pas de photos ni d'images libres de droit dans l'interface. Chaque carte porte un dessin simple à l'encre (`#1D2A3A`) sur papier (`#F3F2EC`), avec les accents laiton et oxyde de la charte « Cabinet de curiosités ».
+
+- Format : SVG, `viewBox="0 0 160 120"` (4:3), fond papier opaque, tracé de 2 px, 5 couleurs de la charte au maximum, aucun texte dans l'image.
+- Poids maximal : 8 Ko par fichier (les exemples font moins de 1,5 Ko).
+- Stockage : Supabase Storage, servi par CDN (voir `docs/architecture.md`) ; aucune licence tierce à suivre.
+- Lancement : un événement sans dessin affiche le pictogramme de son thème (`public/motifs.svg`).
 
 ## Comptes, progression et supports
 
@@ -191,7 +200,7 @@ Les packs de thèmes ne dépendent pas de cette feuille de route : ils s'ajouten
 Ce PRD est validé à deux, par Maxou et Antonin. Restent ouverts :
 
 - [ ] Dataset v18 : faire relire par Antonin les variantes de titres proposées (394 événements scolaires) et compléter les descriptions (304), remplir les 8 chapitres sans événement, et décider si les 1 000 ajouts en attente de relecture entrent dans la V1.
-- [ ] Illustrations : images libres de droit ou dessins simplifiés dans la charte graphique ?
+- [x] Illustrations : dessins simplifiés dans la charte graphique (proposé, à confirmer par Maxou et Antonin ; voir « Illustrations »).
 - [ ] Calibrer le score après les premiers tests : valeurs de E₀, part de la rapidité (30 %), durée du chrono (30 s).
 - [ ] Longueurs de partie proposées en plus des 10 questions (20, période entière).
 - [ ] Faut-il des meilleurs scores visibles par tous en solo pour le grand public ?

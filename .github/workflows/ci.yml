@@ -22,7 +22,7 @@ jobs:
       - run: python3 scripts/verifier-alias.py
       - run: python3 scripts/verifier-descriptions.py --exiger-revue-documentaire
       - run: python3 scripts/test-verifier-descriptions.py
-      - run: node node_modules/tsx/dist/cli.mjs --test scripts/import-descriptions.test.ts
+      - run: npm test
       - run: npm run lint
       - run: npm run typecheck
       - run: npm run build

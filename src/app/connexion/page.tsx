@@ -1,22 +1,31 @@
 import { redirect } from "next/navigation";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
 import { signIn } from "./actions";
+import { safeNextPath } from "@/lib/authRedirect";
+import GoogleSignInButton from "./GoogleSignInButton";
 
 export default async function ConnexionPage({ searchParams }: PageProps<"/connexion">) {
   if (!isSupabaseConfigured) redirect("/");
-  const { erreur } = await searchParams;
+  const { erreur, next } = await searchParams;
+  const nextPath = safeNextPath(typeof next === "string" ? next : null);
 
   return (
     <main className="mx-auto flex w-full max-w-sm flex-1 flex-col justify-center gap-6 px-4">
       <h1 className="text-2xl font-bold">Connexion</h1>
       <p className="text-sm text-stone-600">
-        Utilise le même email et le même mot de passe que sur KFFR contrée.
+        Utilise ton compte KFFR contrée, avec Google ou ton email et ton mot de passe.
       </p>
       {erreur && (
-        <p className="rounded bg-red-100 px-3 py-2 text-sm text-red-800">
-          Email ou mot de passe incorrect.
+        <p role="alert" className="rounded bg-red-100 px-3 py-2 text-sm text-red-800">
+          {erreur === "oauth" ? "Connexion Google impossible. Réessaie." : "Email ou mot de passe incorrect."}
         </p>
       )}
+      <GoogleSignInButton next={nextPath} />
+      <div role="separator" aria-label="ou" className="flex items-center gap-3 text-sm text-stone-600">
+        <span aria-hidden="true" className="h-px flex-1 bg-stone-300" />
+        <span>ou</span>
+        <span aria-hidden="true" className="h-px flex-1 bg-stone-300" />
+      </div>
       <form action={signIn} className="flex flex-col gap-3">
         <input name="email" type="email" required placeholder="Email" autoComplete="email"
           className="rounded border border-stone-300 px-3 py-2" />

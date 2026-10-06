@@ -132,6 +132,13 @@ En place depuis l'étape 2.1 (migration `20261006210000_score.sql`, tests `supab
 ### Solo
 Pas de temps réel. Le serveur tire les questions, le client répond, une RPC `submit_answer` corrige et enregistre.
 
+En place depuis l'étape 2.2 : `games` et `game_questions` privées (RLS, aucune
+lecture/écriture directe), RPC `start_game`, `next_question`, `submit_answer`,
+`finish_game`. Identité connectée issue de `auth.uid()` ; accès anonyme par secret
+aléatoire de session `httpOnly` côté Next.js, dont seule l'empreinte est en base.
+Le correcteur inversé sans partie `check_event_answer` devient interne pour
+éviter de sonder les alias datés. Contrat, chrono et tests : [Solo serveur](solo-serveur.md).
+
 ### Lobby casual (beaucoup de joueurs)
 - **Presence** Realtime sur le canal `lobby:<id>` : liste des joueurs connectés.
 - L'hôte lance la manche → RPC qui crée la manche en base → **Broadcast** « nouvelle question » à tous.

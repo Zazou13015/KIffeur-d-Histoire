@@ -44,7 +44,7 @@ Points connus (voir `docs/prd.md`, Questions ouvertes) : les 394 événements sc
 
 ## Descriptions scolaires proposées (issue #8)
 
-Le recompte trouve toujours 304 descriptions scolaires vides : **287 événements jouables et 17 non jouables**. Les 287 explications sont proposées dans `kiffeurs-description-additions-v18.csv`, sans modification du CSV canonique. Toutes les validations d'Antonin restent vides ; **115 réserves** sont documentées. Le niveau minimal tient compte de `levels_seen` et des liens de chapitre actuels, notamment Haussmann au CM2. Lire le [dossier de validation, les 50 exemples et toutes les réserves](dataset-v18/kiffeurs-description-additions-v18-README.md).
+Le recompte trouve toujours 304 descriptions scolaires vides : **287 événements jouables et 17 non jouables**. Les 287 explications sont proposées dans `kiffeurs-description-additions-v18.csv`, sans modification du CSV canonique. Toutes les validations d'Antonin restent vides ; **120 réserves** sont documentées. Le niveau minimal tient compte de `levels_seen` et des liens de chapitre actuels, notamment Haussmann au CM2. Lire le [dossier de validation, les 50 exemples et toutes les réserves](dataset-v18/kiffeurs-description-additions-v18-README.md).
 
 Contrôle : `python3 scripts/verifier-descriptions.py` ; tests anti-date : `python3 scripts/test-verifier-descriptions.py`. Les dates explicites sont interdites ; les nombres suspects sont signalés pour relecture sans suppression automatique. Le contrôle et les tests de fusion sont requis en CI.
 

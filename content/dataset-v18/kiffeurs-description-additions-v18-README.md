@@ -1,6 +1,6 @@
 # Issue #8 — descriptions scolaires proposées, en attente d'Antonin
 
-**287 descriptions produites sur 287 événements scolaires jouables sans explication ; 115 lignes à vérifier ; zéro date suspecte, zéro erreur objective.** Toutes les cellules `antonin_validation` restent vides. Le fichier canonique `events` et tous les CSV préexistants sont intégralement conservés. Ce dossier prépare la revue humaine ; il ne la remplace pas.
+**287 descriptions produites sur 287 événements scolaires jouables sans explication ; 120 lignes à vérifier ; zéro date suspecte, zéro erreur objective.** Toutes les cellules `antonin_validation` restent vides. Le fichier canonique `events` et tous les CSV préexistants sont intégralement conservés. Ce dossier prépare la revue humaine ; il ne la remplace pas.
 
 ## Recompte et périmètre
 
@@ -100,7 +100,7 @@ Pour chaque ligne, les références historiques sont lues via `event-sources` �
 
 La consultation des sources associées hors Wikipédia a porté sur 158 URL distinctes : 119 ont fourni une page HTTP, 36 étaient indisponibles, trois demandaient la lecture d'un PDF. Une réponse HTTP n'est pas à elle seule une preuve : certains liens ne fournissent qu'une notice, une page de navigation ou un contexte trop général. Des consultations web de repli et sources institutionnelles supplémentaires sont utilisées lorsque disponibles. Les lignes insuffisamment étayées restent marquées OUI ; aucune consultation indisponible n'est présentée comme une vérification réussie.
 
-Les **115 réserves** couvrent les sources insuffisantes/inaccessibles ainsi que les ambiguïtés historiques ou pédagogiques. Exemples précis : le lien historique d'EVT-0087 mène à une loi de simplification de 2007 plutôt qu'à l'ouverture du barreau aux femmes ; la notice BnF associée à Justinien/Verdun/Bagdad porte sur Jérusalem ; EVT-0211/0212 se chevauchent sur Michael ; les accords de Genève distinguent signature, clôture et application échelonnée du cessez-le-feu. Les dates et autres données restent inchangées. Une description proposée sur une source insuffisante demeure un texte à confirmer, pas une certification historique.
+Les **120 réserves** couvrent les sources insuffisantes/inaccessibles ainsi que les ambiguïtés historiques ou pédagogiques. Exemples précis : le lien historique d'EVT-0087 mène à une loi de simplification de 2007 plutôt qu'à l'ouverture du barreau aux femmes ; la notice BnF associée à Justinien/Verdun/Bagdad porte sur Jérusalem ; EVT-0211/0212 se chevauchent sur Michael ; les accords de Genève distinguent signature, clôture et application échelonnée du cessez-le-feu. Les dates et autres données restent inchangées. Une description proposée sur une source insuffisante demeure un texte à confirmer, pas une certification historique.
 
 ## Deuxième passe LLM sur les 287 textes
 
@@ -132,7 +132,7 @@ py -3 scripts/verifier-import-chapitres-local.py --exiger-cinq-partout --avec-de
 
 Le fichier de capture contient un objet JSON `event_id → description` provenant uniquement du conteneur local. Les descriptions canoniques ont priorité, puis une description déjà présente dans cette capture, puis la proposition locale. La capture ne doit contenir ni clé ni variable de connexion et ne fait pas partie du dataset.
 
-Lint, typecheck, build et diff vérifiés avant push ; avertissement préexistant de fallback Big Shoulders au build. Contrôle des descriptions et tests de fusion ajoutés à la CI. Aucun changement d'auth/public/private, migration, Supabase distant/Maxou/KFFR/prod ou configuration Vercel/environnement. **PR DRAFT vers main, sans merge ; Antonin doit relire au moins les 50 exemples ci-dessous et les 115 lignes OUI.**
+Lint, typecheck, build et diff vérifiés avant push ; avertissement préexistant de fallback Big Shoulders au build. Contrôle des descriptions et tests de fusion ajoutés à la CI. Aucun changement d'auth/public/private, migration, Supabase distant/Maxou/KFFR/prod ou configuration Vercel/environnement. **PR DRAFT vers main, sans merge ; Antonin doit relire au moins les 50 exemples ci-dessous et les 120 lignes OUI.**
 
 ## Échantillon représentatif de 50 descriptions
 
@@ -191,7 +191,7 @@ Le choix couvre primaire, collège, lycée et HGGSP ; Antiquité, Moyen Âge, é
 | EVT-0310 — Jugement Al Mahdi par la CPI | Terminale HGGSP | Époque contemporaine / 3 | La Cour pénale internationale condamne Ahmad Al Faqi Al Mahdi pour les attaques contre des monuments à Tombouctou. Le jugement reconnaît la gravité de la destruction intentionnelle du patrimoine en temps de conflit. |
 | EVT-0340 — Sédentarisation / débuts de l’agriculture | 6e | Préhistoire / 2 | Dans certaines régions, des groupes humains cultivent des plantes et élèvent des animaux. Avec la vie en villages, ces changements transforment progressivement le travail et l'organisation des sociétés. |
 
-## Relecture humaine : toutes les 115 lignes OUI
+## Relecture humaine : toutes les 120 lignes OUI
 
 Même lorsqu’une ligne figure déjà dans l’échantillon, sa réserve est reprise ici. Les sources complètes sont dans le CSV ; aucune ligne OUI n’est omise.
 
@@ -288,6 +288,11 @@ Même lorsqu’une ligne figure déjà dans l’échantillon, sa réserve est re
 | EVT-0208 | Les Alliés tentent de forcer les Dardanelles puis combattent à Gallipoli. L'échec de la campagne contre l'Empire ottoman montre les difficultés des opérations navales et terrestres combinées. | Source historique associée uniquement Wikipédia : confronter cette proposition à une source institutionnelle ou académique avant validation ; le contexte est proposé sans certifier la borne canonique. |
 | EVT-0211 | L'armée allemande lance l'opération Michael sur le front occidental. Elle tente de rompre les lignes alliées et d'obtenir une victoire décisive avant l'arrivée de renforts américains plus nombreux. | EVT-0211 et EVT-0212 renvoient au lancement de Michael : vérifier la différence attendue entre opération précise et première offensive, sans modifier ni fusionner les événements ici. |
 | EVT-0212 | L'opération Michael ouvre la série des grandes offensives allemandes de printemps. Malgré les avancées initiales, elle ne permet pas une victoire décisive sur les Alliés. | Chevauchement avec EVT-0211 sur le lancement de Michael : distinction pédagogique à confirmer, pas deux offensives indépendantes. |
+| EVT-0232 | Le traité de Saint-Germain fixe la paix avec l'Autriche après la disparition de l'Empire austro-hongrois. Il reconnaît de nouvelles frontières et limite les ambitions d'un rattachement à l'Allemagne. | Notice d'archives de la conférence : confirmer dans le traité les frontières et l'interdiction de l'union avec l'Allemagne. |
+| EVT-0233 | Le traité de Neuilly impose à la Bulgarie des pertes territoriales et des réparations. Il participe à la réorganisation des Balkans après la guerre et nourrit des tensions durables. | Notice d'archives générale : vérifier dans le traité les pertes territoriales et réparations imposées à la Bulgarie. |
+| EVT-0234 | Le traité de Trianon redéfinit les frontières de la Hongrie après l'effondrement de l'Empire austro-hongrois. De nombreuses populations hongroises se retrouvent hors du nouvel État, alimentant les tensions. | La notice identifie le traité ; confirmer les conséquences des frontières pour les populations hongroises dans une étude dédiée. |
+| EVT-0235 | Le traité de Sèvres prévoit le démantèlement d'une grande partie de l'Empire ottoman. Contesté par les nationalistes turcs, il n'est pas appliqué comme prévu et sera remplacé par un autre accord. | La notice identifie Sèvres et son remplacement ; vérifier les clauses territoriales et la portée de la non-application. |
+| EVT-0240 | Le traité de Lausanne remplace les dispositions du traité de Sèvres et reconnaît les frontières de la Turquie. Il accompagne une recomposition régionale qui comprend aussi des déplacements forcés de populations. | La notice vérifie le remplacement et les frontières ; confirmer séparément le lien avec les échanges forcés de populations. |
 | EVT-0262 | Benjamin Constant distingue la participation politique des citoyens antiques des libertés individuelles modernes. Son discours interroge les moyens de protéger les droits dans un gouvernement représentatif. | La notice bibliographique identifie le personnage, l'œuvre ou le repère, mais ne suffit pas à étayer toute l'explication ; vérifier le contexte dans le document ou une étude dédiée. |
 | EVT-0263 | Tocqueville publie un premier ensemble d'analyses sur la démocratie américaine. Il étudie les institutions, l'égalité des conditions et les moyens de limiter la concentration du pouvoir. | La notice bibliographique identifie le personnage, l'œuvre ou le repère, mais ne suffit pas à étayer toute l'explication ; vérifier le contexte dans le document ou une étude dédiée. |
 | EVT-0264 | Le second ensemble de De la démocratie en Amérique examine les effets sociaux et intellectuels de l'égalité. Tocqueville s'interroge sur la liberté, l'individualisme et les risques d'un pouvoir tutélaire. | La notice bibliographique identifie le personnage, l'œuvre ou le repère, mais ne suffit pas à étayer toute l'explication ; vérifier le contexte dans le document ou une étude dédiée. |

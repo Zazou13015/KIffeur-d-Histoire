@@ -27,6 +27,6 @@
 
 ## Libérer l'issue
 
-- PR fusionnée : l'issue se ferme toute seule (`Closes #…`) ; retirer alors le label `en cours`.
+- PR fusionnée : l'issue se ferme toute seule (`Closes #…`) ; retirer alors le label `en cours` et cocher l'étape dans l'issue de suivi #31.
 - PR fermée sans fusion, ou travail abandonné : retirer le label `en cours` et l'assignation, et dire en commentaire pourquoi.
 - Une issue qui garde `en cours` sans PR ni activité depuis plusieurs jours est probablement oubliée : demander à Maxou ou Antonin avant de la reprendre.

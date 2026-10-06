@@ -49,20 +49,29 @@ begin
     raise exception 'ÉCHEC (%) : % tag(s) de siècle visibles sur des événements', role_courant, nb;
   end if;
 
-  -- 4. Le contenu public reste lisible, et la correction passe par la fonction security definer.
+  -- 4. Le contenu public reste lisible. Le correcteur sans partie est désormais
+  -- interne : des alias contiennent des dates, le sonder permettrait de tricher.
   select count(*) into nb from histoire.events;
   if nb = 0 then
     raise exception 'ÉCHEC (%) : aucun événement lisible (base vide ou droits manquants)', role_courant;
   end if;
-  if not histoire.check_event_answer('EVT-0173', 'La prise de la Bastile') then
-    raise exception 'ÉCHEC (%) : check_event_answer ne reconnaît pas « La prise de la Bastile »', role_courant;
-  end if;
+  begin
+    perform histoire.check_event_answer('EVT-0173', 'La prise de la Bastile');
+    raise exception 'ÉCHEC (%) : le correcteur sans partie est appelable', role_courant;
+  exception when insufficient_privilege then null;
+  end;
 
   return format('OK : %s ne voit ni dates, ni alias, ni descriptions (%s événements lisibles)', role_courant, nb);
 end;
 $$;
 
 grant execute on function pg_temp.verifier_reponses_invisibles() to anon, authenticated;
+
+do $$ begin
+  if not histoire.check_event_answer('EVT-0173', 'La prise de la Bastile') then
+    raise exception 'ÉCHEC : le correcteur interne ne reconnaît pas « La prise de la Bastile »';
+  end if;
+end $$;
 
 set local role anon;
 select pg_temp.verifier_reponses_invisibles() as resultat;

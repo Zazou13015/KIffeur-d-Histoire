@@ -23,7 +23,9 @@ end $$;
 create schema if not exists extensions;
 create schema if not exists auth;
 create table if not exists auth.users (id uuid primary key);
-create or replace function auth.uid() returns uuid language sql as 'select null::uuid';
+-- Simulation locale des claims JWT, sans insérer de comptes dans auth.users.
+create or replace function auth.uid() returns uuid language sql as
+  'select nullif(current_setting(''request.jwt.claim.sub'', true), '''')::uuid';
 SQL
 
 for f in supabase/migrations/*.sql supabase/seed.sql; do
@@ -35,3 +37,5 @@ for f in supabase/tests/*.sql; do
   echo "→ $f"
   psql_q -f "$f"
 done
+
+bash scripts/tests-solo-concurrence.sh

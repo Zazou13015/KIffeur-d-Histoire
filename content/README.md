@@ -42,6 +42,14 @@ Le JSON (24 Mo) et le classeur Excel du pack d'origine ne sont pas versionnés :
 
 Points connus (voir `docs/prd.md`, Questions ouvertes) : les 394 événements scolaires sans alias ont maintenant des variantes ajoutées (issue 1.3, relecture d'Antonin en attente), 304 sans description, aucune illustration, 1 000 ajouts encore à relire.
 
+## Descriptions scolaires proposées (issue #8)
+
+Le recompte trouve toujours 304 descriptions scolaires vides : **287 événements jouables et 17 non jouables**. Les 287 explications sont proposées dans `kiffeurs-description-additions-v18.csv`, sans modification du CSV canonique. Toutes les validations d'Antonin restent vides ; **115 réserves** sont documentées. Le niveau minimal tient compte de `levels_seen` et des liens de chapitre actuels, notamment Haussmann au CM2. Lire le [dossier de validation, les 50 exemples et toutes les réserves](dataset-v18/kiffeurs-description-additions-v18-README.md).
+
+Contrôle : `python3 scripts/verifier-descriptions.py` ; tests anti-date : `python3 scripts/test-verifier-descriptions.py`. Les dates explicites sont interdites ; les nombres suspects sont signalés pour relecture sans suppression automatique. Le contrôle et les tests de fusion sont requis en CI.
+
+L'importeur lit ce fichier facultatif, complète uniquement les descriptions vides et conserve une explication différente déjà présente en base. **Les propositions non validées sont fusionnées uniquement en local** ; à distance elles sont ignorées tant qu'Antonin n'a pas renseigné VALIDE. L'import et sa sécurité sont testés uniquement sur la pile locale. Les descriptions restent dans `histoire.event_answers`, invisibles pour anon/authenticated avant correction. Aucune base distante n'est utilisée pour cette issue ; la PR reste en brouillon pour la revue humaine.
+
 ## Nettoyage des chapitres (issue #9)
 
 **Toutes les validations humaines nécessaires à l'issue #9 sont faites par Antonin.** Les cinq traces de propositions consignent 45 décisions : huit structures, 23 + 7 rattachements existants, six candidats initiaux différés et le dernier candidat Çatalhöyük validé et intégré. Lire le [dossier d'application et de validation](dataset-v18/kiffeurs-chapter-fixes-v18-README.md).
@@ -50,4 +58,4 @@ Le canonique contient **2 001 événements, 41 chapitres titrés/non vides et 53
 
 [Çatalhöyük, EVT-2042](dataset-v18/kiffeurs-chapter-thm004-candidates-v18-README.md), complète THM-004 à cinq jouables : PERIOD, -7100 à -5950, YEAR_RANGE, APPROXIMATE, RANGE, sans jour/mois. Les variantes chronologiques et les réserves validées restent dans les notes privées. Les sources, alias, tags, collections et tables dérivées sont complets ; le pack Expert conserve 50 membres après recalcul. Les six candidats initiaux restent validés et différés pour une étape contenu distincte.
 
-Contrôle strict CSV : `python3 scripts/verifier-chapitres.py --exiger-validation --exiger-cinq-partout`, aussi exécuté en CI. Après reset et import Supabase **LOCAL uniquement** : `python3 scripts/verifier-import-chapitres-local.py --exiger-cinq-partout` (Windows : `py -3`). Import complet, second import idempotent et tests anon/authenticated vérifiés ; aucun Supabase distant/KFFR/prod, nouvelle migration ni variable Vercel touché. **PR #38 en brouillon, sans merge, pour la dernière revue d'Antonin.**
+Contrôle strict CSV : `python3 scripts/verifier-chapitres.py --exiger-validation --exiger-cinq-partout`, aussi exécuté en CI. Après reset et import Supabase **LOCAL uniquement** : `python3 scripts/verifier-import-chapitres-local.py --exiger-cinq-partout` (Windows : `py -3`). Import complet, second import idempotent et tests anon/authenticated vérifiés ; aucun Supabase distant/KFFR/prod, nouvelle migration ni variable Vercel touché. **La PR #38 a été fusionnée dans main le 6 octobre 2026 ; les dossiers de validation conservent la trace de sa préparation avant merge.** Avec les propositions de l'issue #8 importées localement, ajouter les options de comparaison décrites dans leur dossier.

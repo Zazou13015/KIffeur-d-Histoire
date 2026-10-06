@@ -1,13 +1,17 @@
-# Partie solo côté serveur (issue #13)
+# Partie solo et inversée côté serveur (issues #13 et #14)
 
 Migrations : `20261006214244_solo_server.sql` (moteur), après celle du score de #12,
 puis `20261006220620_solo_anonymous_retention.sql` (rétention/budget anonyme).
+Le mode inversé ajoute `20261006225007_inverse_server.sql`, sans modifier les
+migrations déjà livrées. Son déploiement attend une revue et les GO écrits de
+Max et Antonin ; cette branche ne touche aucune base distante.
 Cette livraison est testée uniquement en local et en CI. Aucune migration ni
 écriture Supabase distante n'est exécutée par ce travail.
 
 ## Stockage et autorisation
 
-`histoire.games` conserve le propriétaire, la difficulté (`YEAR`, `MONTH`, `DAY`),
+`histoire.games` conserve le propriétaire, le sens (`direction`: `date` par
+défaut, ou `inverse`), la difficulté (`YEAR`, `MONTH`, `DAY`),
 le nombre de questions, l'état et le résultat final. `histoire.game_questions`
 conserve le tirage ordonné, les horodatages serveur et les réponses/scorings.
 Les contraintes uniques empêchent de tirer deux fois le même événement.
@@ -94,10 +98,11 @@ envisager si l'usage le nécessite ; un quota par jeton librement renouvelable
 ne suffirait pas. Conformément au périmètre demandé, aucune limitation ni purge
 des parties connectées n'est ajoutée : leurs créations restent sans quota.
 
-Le correcteur inversé historique `check_event_answer(text,text)` devient
+Le correcteur inversé historique `check_event_answer(text,text)` reste
 **interne** : il permettait de tester librement des alias qui contiennent parfois
-une date, sans jouer une question. Le moteur inversé de #14 pourra le réutiliser
-à travers une RPC autorisée, après validation de la question.
+une date, sans jouer une question. Le moteur inversé de #14 le réutilise
+à travers `submit_answer`, après validation du propriétaire, du sens, de la
+question active et de la deadline. Aucune RPC n'accepte un `event_id` à corriger.
 
 ## Contrat RPC et actions
 
@@ -106,10 +111,19 @@ future interface #18. Aucune page ni aucun composant graphique n'est ajouté.
 
 | Action | RPC / paramètres | Résultat |
 | --- | --- | --- |
-| `startGame(filters?)` | `start_game(p_token, p_pack_id, p_tag_id, p_year_min, p_year_max, p_level_id, p_chapter_ids, p_difficulty, p_question_count)` | UUID de partie, longueur, difficulté, état, indicateur anonyme |
+| `startGame(filters?)` | `start_game(p_token, p_pack_id, p_tag_id, p_year_min, p_year_max, p_level_id, p_chapter_ids, p_difficulty, p_question_count, p_direction)` | UUID de partie, longueur, difficulté, sens, état, indicateur anonyme |
 | `nextQuestion(gameId)` | `next_question(p_game_id, p_token)` | Question active ou `null` quand le tirage est épuisé |
-| `submitAnswer(gameId, questionId, dateOrNull)` | `submit_answer(p_game_id, p_question_id, p_year, p_month, p_day, p_token)` | Bonne date, écart, unité, précision, points, expiration, description de correction |
-| `finishGame(gameId)` | `finish_game(p_game_id, p_token)` | État terminé, longueur, précision moyenne, total et récapitulatif des questions |
+| `submitAnswer(gameId, questionId, dateOrTextOrNull)` | `submit_answer(p_game_id, p_question_id, p_year, p_month, p_day, p_token, p_answer_text)` | Correction adaptée au sens, précision, points, expiration |
+| `finishGame(gameId)` | `finish_game(p_game_id, p_token)` | État terminé, sens, longueur, précision moyenne, total et récapitulatif des questions |
+
+`filters.direction` vaut `date` par défaut. Les nouvelles signatures remplacent
+les anciennes, sans surcharge : les paramètres ajoutés en dernière position
+sont optionnels, donc les appels SQL/PostgREST existants restent valides.
+Les parties déjà stockées reçoivent `direction = 'date'`. La réponse datée
+garde son contrat ; `start_game` et `finish_game` ajoutent la clé `direction`.
+Les types TypeScript distinguent les questions par la présence du champ `date`,
+et les bilans par `direction`. Les actions transmettent le texte brut : aucune
+normalisation, correction, décision de délai ou formule de score en TypeScript.
 
 Les filtres se combinent avec **ET** ; plusieurs chapitres se combinent avec
 **OU**, dans le niveau demandé. Packs/tags inactifs et tags `CENTURY` sont exclus.
@@ -120,7 +134,7 @@ insuffisante est refusée sans liste de candidats, dates ou décompte disponible
 Les événements non jouables ou connus moins précisément que l'unité demandée
 sont exclus. Les événements de type plage sont datés par leur **début**.
 
-Avant réponse, seules les clés `question_id`, `position`, `title`,
+En sens `date`, avant réponse, seules les clés `question_id`, `position`, `title`,
 `image_path`, `difficulty`, `asked_at`, `deadline`, `server_time` sont renvoyées.
 Le champ `description` est absent : les descriptions actuelles restent réservées
 à la correction. Les chiffres, mois et mentions de siècle sont
@@ -151,7 +165,69 @@ refusées avant expiration. `finish_game` refuse toute question non répondue,
 calcule en SQL les agrégats et devient idempotente. `next_question` renvoie ensuite
 `null` ; le récapitulatif permet de relire les corrections.
 
-## Vérification locale / CI
+## Sens inverse : tirage, question et correction (#14)
+
+Le même moteur, le même verrou de partie, les mêmes filtres, chrono, cookies,
+expiration, purge et plafonds sont utilisés. `game_questions.answer_text`
+conserve la réponse (1 000 caractères au maximum). Une réponse date dans une
+partie inverse ou texte dans une partie date est refusée ; le sens vient de la
+partie privée, jamais d'un paramètre de soumission. Un texte vide est refusé
+avant la deadline. `null` après la deadline permet d'obtenir la correction à zéro.
+
+Le tirage inverse groupe les candidats filtrés par **date à afficher** : année
+en `YEAR`, année/mois en `MONTH`, année/mois/jour en `DAY`. Un événement est choisi
+au hasard dans chaque groupe, puis les groupes sont tirés au hasard. Une partie
+ne contient donc jamais deux dates affichées identiques. Le mode date conserve
+tous les candidats, même s'ils ont la même date. La date d'une plage est son
+début ; aucune précision absente n'est inventée. Tirage et instantanés sont lus
+ensemble, pour que les changements concurrents de contenu ne créent pas de
+collision après la déduplication. Si le nombre de dates distinctes est
+insuffisant, l'erreur reste « Pas assez de questions pour ces filtres », sans
+décompte, liste de candidats ni partie résiduelle.
+
+Cette unicité concerne **le tirage de la partie**, conformément à #14. Deux
+événements du catalogue ayant la même date peuvent chacun être sélectionnés
+dans des parties différentes. Une réponse désignant l'autre événement sera
+évaluée uniquement contre celui retenu. Écarter tous les doublons du catalogue
+serait une règle produit plus restrictive, à décider séparément.
+
+Avant réponse, la liste exacte des clés est : `question_id`, `position`, `date`,
+`date_label`, `date_precision`, `difficulty`, `asked_at`, `deadline`, `server_time`.
+`date` contient `year/month/day`, avec `null` pour les composantes non demandées.
+`date_label` est généré depuis ces entiers en français, sans utiliser le texte
+éditorial privé : `1947`, `février 1947`, `3 février 1947`, `44 av. J.-C.`,
+`mars 44 av. J.-C.`, `15 mars 44 av. J.-C.`. Aucune année 0. Aucun titre, description,
+identifiant d'événement, alias, tag ou chemin d'illustration. Le PRD n'autorise
+pas explicitement d'illustration pour ce sens ; aucune n'est envoyée.
+Le catalogue public `events` existe toujours : il ne donne pas le lien privé
+entre une question UUID et son événement. Les tables de parties et d'alias
+restent fermées aux deux rôles API.
+
+Après autorisation et vérification de la question active, une seule réponse
+peut être enregistrée, même avec deux transactions simultanées. Avant expiration,
+`check_event_answer` compare uniquement l'événement privé de cette question.
+Il conserve `normalize_answer` et le seuil `pg_trgm` **0,6**. La précision vaut
+100 si accepté, 0 sinon ; `score_points` de #12 calcule le bonus avec la fraction
+du chrono figé. Après la deadline, le correcteur n'est pas appelé et précision
+et points valent zéro. La correction ajoute `direction: 'inverse'`, `title`
+(attendu), `correct`, et conserve `correct_date`, `description`, `accuracy`,
+`points`, `expired`, `unit` et `gap` (toujours `null` en inverse).
+Le bilan n'est disponible qu'après toutes les réponses ; il ajoute le sens et
+conserve la réponse texte, les précisions 100/0 et la somme des points. Il est
+idempotent. Les alias ne sont jamais renvoyés, même dans le bilan.
+
+**Décision humaine à prévoir sur la tolérance** : le seuil actuel accepte bien
+« Guerre froide », « la guerre froide », « guere froide », la casse et les
+accents. Il peut aussi confondre des événements distincts : les titres du dataset
+`EVT-0111` (« Début du blocus de Berlin », 1948) et `EVT-0112` (« Fin du blocus de
+Berlin », 1949) ont une similarité de **0,72** après normalisation, supérieure
+au seuil. Ce faux positif est reproduit dans le test SQL, sans changer la règle.
+Un ajustement du seuil ou une règle distinguant début/fin nécessite une décision
+produit et une revue du contenu. Les alias acceptés restent ceux du catalogue
+au moment de répondre ; date, titre affiché à la correction et description
+restent les instantanés du tirage comme en #13.
+
+## Vérifications du moteur commun
 
 `scripts/tests-sql.sh` attend un **Postgres vide**, recrée le strict simulateur
 Supabase déjà utilisé en CI puis applique les migrations et le seed. Les claims
@@ -166,15 +242,21 @@ npm run db:test-securite
 npm run db:test-score
 npm run db:test-solo
 npm run db:test-solo-retention
+npm run db:test-inverse
 npm test
 npm run lint
 npm run typecheck
 npm run build
 ```
 
-La CI exécute automatiquement `supabase/tests/solo.sql`,
+La CI exécute automatiquement `supabase/tests/inverse.sql`, `supabase/tests/solo.sql`,
 `supabase/tests/solo_anonymous_retention.sql` et les tests de deux transactions
-concurrentes `scripts/tests-solo-concurrence.sh` (réponse et création au quota).
+concurrentes `scripts/tests-solo-concurrence.sh` (réponse date/inverse et création au quota).
+La suite inverse couvre les deux identités, les filtres, les collisions aux trois
+précisions, le manque de dates, les formats antiques, la tolérance, les erreurs
+génériques, l'isolation, l'absence de correction arbitraire, les réponses futures,
+la deadline, le bonus, le bilan et la rétention. Les suites #12/#13 restent
+exécutées pour vérifier le score, les parties date, les filtres et la rétention.
 Couverture : expiration à 24 h, refus des trois accès expirés, purge des anonymes
 en cours/terminées, cascade, conservation des non-expirées et des comptes,
 interdiction de changer l'expiration/budget, budgets de parties/questions et

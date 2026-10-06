@@ -118,6 +118,14 @@ Toutes les tables ont la RLS activée : un joueur lit le contenu historique, mai
 ### Correction des fautes (mode inversé)
 Normalisation côté serveur : minuscules, suppression des accents (`unaccent`), des articles en tête (« la », « le », « l' », « les »), de la ponctuation. Puis comparaison floue avec l'extension Postgres `pg_trgm` (similarité ≥ seuil, ex. 0,6) contre le titre et les alias. La réponse attendue n'est jamais envoyée au navigateur avant la correction.
 
+L'étape 2.3 étend le moteur solo avec `games.direction = date | inverse`
+(`date` par défaut). Les filtres et le chrono sont communs ; le tirage inverse
+ne retient qu'un événement par date affichée, à la précision de la difficulté.
+`next_question` publie seulement cette date et le chrono ; `submit_answer`
+appelle le correcteur interne après contrôle de la partie/question, puis la
+formule de points commune avec précision 100/0. Aucun oracle d'alias n'est
+réouvert. Contrat et limite du seuil 0,6 : [Solo serveur](solo-serveur.md).
+
 ### Difficulté et score
 L'écart se calcule dans l'unité de la difficulté (années, mois ou jours). Solo : pourcentage de précision dérivé de l'écart. 1v1 : l'écart retire des points de vie. Une seule fonction SQL de scoring, partagée par tous les modes, pour que les règles soient identiques partout.
 

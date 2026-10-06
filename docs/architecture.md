@@ -73,14 +73,31 @@ Navigateur (Next.js / React)
 
 Vercel exécute des fonctions courtes et ne garde pas de connexion WebSocket ouverte : c'est pour ça que le temps réel passe par Supabase Realtime et non par Next.js.
 
-## 4. Modèle de données (schéma `histoire`, première version)
+## 4. Modèle de données (schéma `histoire`)
 
-**Contenu historique**
-- `events` : `id`, `title`, `description`, `year` (entier, années négatives pour av. J.-C.), `month`, `day` (nullable), `precision` (année / mois / jour), `image_path`, `difficulty`.
-  - On stocke **année/mois/jour en entiers** plutôt qu'un type `date` Postgres : plus simple pour les dates av. J.-C., les dates connues seulement à l'année, et le calcul d'écart.
-- `event_aliases` : formulations acceptées pour le mode inversé (« Guerre froide », « la guerre froide », « cold war »…).
-- `themes` (grandes inventions, dates françaises, Seconde Guerre mondiale…) et `event_themes` (lien n‑n). Les périodes (siècle, millénaire) se calculent depuis l'année, pas besoin de les stocker.
-- `curricula` → `chapters` → `chapter_cards` : programme de terminale, chapitres, cartes pédagogiques placées sur la frise (texte d'explication, événements liés).
+**Contenu historique** (aligné sur le dataset v18 d'Antonin, migration `modele_dataset_v18`, issue #5)
+
+Les identifiants et les codes du dataset sont repris tels quels (`EVT-0173`, `THM-001`, `COL-0059`, `TAG-0001`, `DAY`, `YEAR_RANGE`…), pour que chaque nouvel import d'Antonin mette simplement la base à jour.
+
+| Table | Contenu | Navigateur |
+|---|---|---|
+| `events` | `id` (`EVT-xxxx`), `title`, `event_type` (POINT, EVENT, PERIOD, PROCESS), `precision` (DAY, MONTH, YEAR, DAY_RANGE, YEAR_RANGE, CENTURY, PERIOD_TEXT, MIXED_RANGE), `date_status`, `playable`, `playable_mode` (DAY, MONTH, YEAR, RANGE, NOT_AUTOMATIC), `importance` et `difficulty` (1 à 5), `image_path`, `source_status` | lisible |
+| `event_answers` | La réponse : `start_year/month/day`, `end_year/month/day` (année négative = av. J.-C., jamais 0), `date_text`, `secondary_dates`, `calendar_system`, `description` (elle cite la date dans 3 cas sur 4), `notes` | **fermée** |
+| `event_aliases` | Formulations acceptées pour le mode inversé | **fermée** |
+| `levels` | Les 11 niveaux, du CM1 à la Terminale HGGSP (`id`, libellé du dataset, cycle, ordre), remplis par la migration | lisible |
+| `event_levels` | Niveaux où l'événement est au programme (`levels_seen`) | lisible |
+| `chapters` | Les 46 chapitres du programme (« thèmes » dans le dataset) : niveau, année scolaire, tronc commun ou HGGSP, titre | lisible |
+| `event_chapters` | Lien événement ↔ chapitre, avec le statut (`PROGRAMME_BO`, `REPERE_EDUSCOL`…) | lisible |
+| `packs`, `pack_events` | Les 24 packs prêts à jouer (50 incontournables, Guerre froide, Antiquité…) et leurs événements ordonnés | lisible |
+| `tags`, `event_tags` | Tags de thème, géographie, siècle, série (JO, Coupes du monde…) | lisible, **sauf les tags de siècle sur un événement** (ils donnent presque la réponse) |
+
+Règles :
+- On stocke **année/mois/jour en entiers** plutôt qu'un type `date` Postgres : plus simple pour les dates av. J.-C., les dates connues seulement à l'année, et le calcul d'écart.
+- Tout ce qui donne la réponse vit dans `event_answers` et `event_aliases` : RLS active, aucune policy, aucun droit pour `anon` ni `authenticated`. Seules des fonctions SQL `security definer` les lisent : `check_event_answer(id, réponse)` aujourd'hui (mode inversé), la correction des dates et l'affichage de la description après réponse avec le moteur de jeu (étape 2.1).
+- Les autres tables ont la RLS active avec une lecture publique.
+- Vérification : `supabase/tests/reponses_invisibles.sql` (voir README).
+- Les périodes (siècle, millénaire) se calculent depuis l'année, pas besoin de les stocker.
+- Plus tard : `chapter_cards` (cartes pédagogiques placées sur la frise d'un chapitre), avec le mode pédagogique.
 
 **Joueurs et parties**
 - `player_stats` : statistiques solo par joueur et par thème (précision moyenne, meilleur score).

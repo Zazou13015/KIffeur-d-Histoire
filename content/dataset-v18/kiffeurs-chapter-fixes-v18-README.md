@@ -102,6 +102,7 @@ Les nouveaux liens reprennent niveau, année, scope et titre du chapitre, date/s
 
 **Limite de l'objectif général « cinq événements jouables partout »** : quatre chapitres préexistants hors des huit cas restent en dessous de cinq : THM-002 (2), THM-004 (3), THM-039 (3), THM-044 (4). Ils ne sont pas vides. Le contrôle les affiche et le résultat global n'est pas présenté comme satisfait. Leur enrichissement exigerait des correspondances supplémentaires à soumettre à Antonin ; seuls les 23 rattachements déjà validés sont appliqués ici.
 
+Sept compléments supplémentaires, **non validés et non appliqués**, sont maintenant examinables dans [le dossier séparé](kiffeurs-chapter-extra-proposals-v18-README.md) et `kiffeurs-chapter-extra-proposals-v18.csv` : trois pour THM-002, deux pour THM-039, un pour THM-044 et un choix à discuter pour THM-004. Même tous acceptés, ils laisseraient THM-004 à quatre jouables ; une étape contenu ou un arbitrage du seuil reste nécessaire. Les sept nouvelles cellules de validation sont vides ; elles ne font pas partie des 37 validations initiales.
 
 ## Contrôle reproductible
 

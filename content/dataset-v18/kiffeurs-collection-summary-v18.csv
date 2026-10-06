@@ -33,24 +33,19 @@ COL-0031,Seconde générale et technologique — Thème 1 — Le monde méditerr
 COL-0032,"Seconde générale et technologique — Thème 2 — XVe-XVIe siècles : un nouveau rapport au monde, un temps de mutation intellectuelle",CURRICULUM_THEME,FALSE,10,9,1,3.10,2.60,1453,1550,tag:theme-thm-020
 COL-0033,Seconde générale et technologique — Thème 3 — L’État à l’époque moderne : France et Angleterre,CURRICULUM_THEME,FALSE,16,16,0,3.12,3.06,1539,1789,tag:theme-thm-021
 COL-0034,Seconde générale et technologique — Thème 4 — Dynamiques et ruptures dans les sociétés des XVIIe et XVIIIe siècles,CURRICULUM_THEME,FALSE,10,7,3,2.30,3.20,1610,1759,tag:theme-thm-022
-COL-0035,Seconde générale et technologique — Les autres PPO du thème 4 sont surtout des processus sociaux,CURRICULUM_THEME,FALSE,0,0,0,,,,,tag:theme-thm-023
 COL-0036,Première générale — Thème 1 — L’Europe face aux révolutions,CURRICULUM_THEME,FALSE,26,26,0,3.50,2.77,1789,1832,tag:theme-thm-024
 COL-0037,Première générale — Thème 2 — La France dans l’Europe des nationalités : politique et société (1848-1871),CURRICULUM_THEME,FALSE,23,23,0,3.13,3.09,1848,1871,tag:theme-thm-025
 COL-0038,"Première générale — Thème 3 — La Troisième République avant 1914 : un régime politique, un empire colonial",CURRICULUM_THEME,FALSE,12,11,1,2.67,3.08,1871,1900,tag:theme-thm-026
 COL-0039,Première générale — Thème 4 — La Première Guerre mondiale : le « suicide de l’Europe » et la fin des empires européens,CURRICULUM_THEME,FALSE,7,7,0,3.29,3.00,1914,1918,tag:theme-thm-027
-COL-0040,"Seconde générale et technologique — Thème 1 — Fragilités des démocraties, totalitarismes et Seconde Guerre mondiale (1929-1945)",CURRICULUM_THEME,FALSE,20,20,0,3.40,2.95,1929,1940,tag:theme-thm-028
+COL-0040,"Terminale générale — Thème 1 — Fragilités des démocraties, totalitarismes et Seconde Guerre mondiale (1929-1945)",CURRICULUM_THEME,FALSE,20,20,0,3.40,2.95,1929,1940,tag:theme-thm-028
 COL-0041,Terminale générale — Thème 2 — La multiplication des acteurs internationaux dans un monde bipolaire (1945-début des années 1970),CURRICULUM_THEME,FALSE,6,6,0,3.00,3.17,1946,1954,tag:theme-thm-029
-COL-0042,"Terminale générale — Thème 3 — Les remises en cause économiques, politiques et sociales des années 1970 à 1991",CURRICULUM_THEME,FALSE,0,0,0,,,,,tag:theme-thm-030
+COL-0042,"Terminale générale — Thème 3 — Les remises en cause économiques, politiques et sociales des années 1970 à 1991",CURRICULUM_THEME,FALSE,10,10,0,4.10,2.70,1973,1991,tag:theme-thm-030
 COL-0043,"Terminale générale — Thème 4 — Le monde, l’Europe et la France depuis les années 1990, entre coopérations et conflits",CURRICULUM_THEME,FALSE,6,6,0,1.33,3.67,1990,1994,tag:theme-thm-031
-COL-0044,Terminale générale — Thème 1,CURRICULUM_THEME,FALSE,0,0,0,,,,,tag:theme-thm-032
-COL-0045,Terminale générale — Thème 2,CURRICULUM_THEME,FALSE,0,0,0,,,,,tag:theme-thm-033
-COL-0046,Terminale générale — Thème 3,CURRICULUM_THEME,FALSE,0,0,0,,,,,tag:theme-thm-034
-COL-0047,Terminale générale — Thème 4,CURRICULUM_THEME,FALSE,0,0,0,,,,,tag:theme-thm-035
 COL-0048,Première HGGSP — Thème 1 — Comprendre un régime politique : la démocratie,CURRICULUM_THEME,FALSE,13,12,1,3.31,3.54,-461,1993,tag:theme-thm-036
-COL-0049,Première HGGSP — Thème 2 — Analyser les dynamiques des puissances internationales,CURRICULUM_THEME,FALSE,1,1,0,5.00,2.00,1991,1991,tag:theme-thm-037
+COL-0049,Première HGGSP — Thème 2 — Analyser les dynamiques des puissances internationales,CURRICULUM_THEME,FALSE,8,8,0,4.12,2.12,1453,2014,tag:theme-thm-037
 COL-0050,Première HGGSP — Thème 3 — Étudier les divisions politiques du monde : les frontières,CURRICULUM_THEME,FALSE,10,10,0,3.40,3.30,1884,1995,tag:theme-thm-038
 COL-0051,Première HGGSP — Thème 4 — S’informer : un regard critique sur les sources et modes de communication,CURRICULUM_THEME,FALSE,7,7,0,3.57,2.86,1835,1957,tag:theme-thm-039
-COL-0052,Première HGGSP — Thème 5 — Analyser les relations entre États et religions,CURRICULUM_THEME,FALSE,2,2,0,4.50,2.50,800,1924,tag:theme-thm-040
+COL-0052,Première HGGSP — Thème 5 — Analyser les relations entre États et religions,CURRICULUM_THEME,FALSE,5,5,0,4.60,2.00,800,1947,tag:theme-thm-040
 COL-0053,Terminale HGGSP — Thème 1 — De nouveaux espaces de conquête,CURRICULUM_THEME,FALSE,10,10,0,3.80,2.80,1957,2026,tag:theme-thm-041
 COL-0054,"Terminale HGGSP — Thème 2 — Faire la guerre, faire la paix : formes de conflits et modes de résolution",CURRICULUM_THEME,FALSE,8,8,0,3.50,3.00,1648,2006,tag:theme-thm-042
 COL-0055,Terminale HGGSP — Thème 3 — Histoire et mémoires,CURRICULUM_THEME,FALSE,13,13,0,3.54,2.77,1914,2017,tag:theme-thm-043

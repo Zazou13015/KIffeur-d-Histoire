@@ -30,7 +30,7 @@ Connexion : `SUPABASE_URL` et `SUPABASE_SERVICE_ROLE_KEY`, lus dans l'environnem
 | Fichier | Contenu |
 | --- | --- |
 | `kiffeurs-events-v18.csv` | Les 2 000 événements : titre, dates structurées (`start_year`, `start_month`, `start_day`, années négatives avant J.-C.), précision, importance et difficulté (1 à 5), `playable` et `playable_mode`, alias, description, niveaux scolaires |
-| `kiffeurs-themes-v18.csv` | Les 46 chapitres du programme (CM1 à terminale) |
+| `kiffeurs-themes-v18.csv` | Les 41 chapitres actifs du programme (CM1 à terminale), après les 5 fusions validées de l’issue #9 |
 | `kiffeurs-curriculum-links-v18.csv` | Liens événement ↔ chapitre |
 | `kiffeurs-ready-collections-v18.csv`, `kiffeurs-ready-collection-events-v18.csv` | Les 24 packs prêts à jouer et leurs événements |
 | `kiffeurs-tags-v18.csv`, `kiffeurs-event-tags-v18.csv` | Tags (thème, géographie, siècle, série) et leur attribution |
@@ -40,10 +40,14 @@ Connexion : `SUPABASE_URL` et `SUPABASE_SERVICE_ROLE_KEY`, lus dans l'environnem
 
 Le JSON (24 Mo) et le classeur Excel du pack d'origine ne sont pas versionnés : ils reprennent les mêmes données que les CSV.
 
-Points connus (voir `docs/prd.md`, Questions ouvertes) : les 394 événements scolaires sans alias ont maintenant des variantes ajoutées (issue 1.3, relecture d'Antonin en attente), 304 sans description, 8 chapitres sans événement, aucune illustration, 1 000 ajouts encore à relire.
+Points connus (voir `docs/prd.md`, Questions ouvertes) : les 394 événements scolaires sans alias ont maintenant des variantes ajoutées (issue 1.3, relecture d'Antonin en attente), 304 sans description, aucune illustration, 1 000 ajouts encore à relire.
 
-## Propositions de nettoyage des chapitres (issue #9)
+## Nettoyage des chapitres (issue #9)
 
-Les huit décisions sont préparées dans `dataset-v18/kiffeurs-chapter-fixes-v18.csv`, avec leurs événements détaillés dans `kiffeurs-chapter-event-proposals-v18.csv` et les nouveaux candidats dans `kiffeurs-chapter-new-events-v18.csv`. Lire le [dossier de validation](dataset-v18/kiffeurs-chapter-fixes-v18-README.md) pour les sources officielles, les limites et les arbitrages d'Antonin.
+Antonin a validé les 8 décisions, les 23 rattachements et les 6 nouveaux candidats le 6 octobre 2026. Les trois fichiers `kiffeurs-chapter-fixes-v18.csv`, `kiffeurs-chapter-event-proposals-v18.csv` et `kiffeurs-chapter-new-events-v18.csv` restent intacts comme trace de validation ; ils ne sont pas lus directement par l'importeur. Lire le [dossier d'application et de validation](dataset-v18/kiffeurs-chapter-fixes-v18-README.md).
 
-Ces fichiers ne sont pas importés et ne modifient pas le dataset canonique. Antonin a validé les 8 décisions, les 23 rattachements et les 6 nouveaux candidats le 6 octobre 2026 ; les colonnes `antonin_validation` consignent cette validation, la condition d'EVT-0905 et le souhait explicite pour PROP-INDE et PROP-DEVISE. La correction du niveau de THM-028 et de ses 11 liens reste obligatoire lors d'une future application autorisée. La PR #38 reste en brouillon, sans merge ni accès Supabase/production. Contrôle local sans base : `python3 scripts/verifier-chapitres.py --exiger-validation` (Windows : `py -3 scripts/verifier-chapitres.py --exiger-validation`).
+Les cinq fusions et les 23 rattachements validés sont appliqués aux CSV canoniques locaux : 41 chapitres titrés/non vides, 526 liens, THM-030/037/040 complétés avec 10/8/5 événements jouables. THM-028 et ses 11 liens erronés sont corrigés vers Terminale générale, sans remplacement global des niveaux des événements. EVT-0905 conserve sa date, CONVENTIONAL et la distinction du 17/19 octobre. Les six nouveaux événements restent des candidats validés pour une étape contenu dédiée, sans création d'EVT arbitraire.
+
+Contrôle local : `python3 scripts/verifier-chapitres.py --exiger-validation`. Après reset/import Supabase strictement local : `python3 scripts/verifier-import-chapitres-local.py` (Windows : `py -3`). La CI exécute le contrôle CSV. L'import réel et les tests de sécurité passent sur la pile locale ; aucune base distante/KFFR, migration nouvelle ou variable Vercel n'est touchée. La PR #38 reste en brouillon, sans merge.
+
+Quatre autres chapitres préexistants restent sous cinq événements jouables : THM-002 (2), THM-004 (3), THM-039 (3), THM-044 (4). Ils ne sont pas vides ; l'objectif général de cinq événements partout reste à traiter séparément avec validation des correspondances supplémentaires.

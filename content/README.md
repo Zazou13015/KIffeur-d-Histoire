@@ -25,12 +25,12 @@ Connexion : `SUPABASE_URL` et `SUPABASE_SERVICE_ROLE_KEY`, lus dans l'environnem
 
 ## `dataset-v18/` (reçu le 5 octobre 2026)
 
-2 000 événements : 507 rattachés au programme d'histoire du CM1 à la terminale, 1 493 de culture générale. Lire d'abord `kiffeurs-dataset-v18-README.md`. Les CSV sont en UTF-8 avec BOM, séparateur virgule ; les listes dans une cellule (alias, niveaux) sont séparées par `;`.
+2 001 événements après validation de Çatalhöyük (issue #9) : 508 rattachés au programme d'histoire du CM1 à la terminale, 1 493 de culture générale. Lire d'abord `kiffeurs-dataset-v18-README.md`. Les CSV sont en UTF-8 avec BOM, séparateur virgule ; les listes dans une cellule (alias, niveaux) sont séparées par `;`.
 
 | Fichier | Contenu |
 | --- | --- |
-| `kiffeurs-events-v18.csv` | Les 2 000 événements : titre, dates structurées (`start_year`, `start_month`, `start_day`, années négatives avant J.-C.), précision, importance et difficulté (1 à 5), `playable` et `playable_mode`, alias, description, niveaux scolaires |
-| `kiffeurs-themes-v18.csv` | Les 46 chapitres du programme (CM1 à terminale) |
+| `kiffeurs-events-v18.csv` | Les 2 001 événements : titre, dates structurées (`start_year`, `start_month`, `start_day`, années négatives avant J.-C.), précision, importance et difficulté (1 à 5), `playable` et `playable_mode`, alias, description, niveaux scolaires |
+| `kiffeurs-themes-v18.csv` | Les 41 chapitres actifs du programme (CM1 à terminale), après les 5 fusions validées de l’issue #9 |
 | `kiffeurs-curriculum-links-v18.csv` | Liens événement ↔ chapitre |
 | `kiffeurs-ready-collections-v18.csv`, `kiffeurs-ready-collection-events-v18.csv` | Les 24 packs prêts à jouer et leurs événements |
 | `kiffeurs-tags-v18.csv`, `kiffeurs-event-tags-v18.csv` | Tags (thème, géographie, siècle, série) et leur attribution |
@@ -40,4 +40,14 @@ Connexion : `SUPABASE_URL` et `SUPABASE_SERVICE_ROLE_KEY`, lus dans l'environnem
 
 Le JSON (24 Mo) et le classeur Excel du pack d'origine ne sont pas versionnés : ils reprennent les mêmes données que les CSV.
 
-Points connus (voir `docs/prd.md`, Questions ouvertes) : les 394 événements scolaires sans alias ont maintenant des variantes ajoutées (issue 1.3, relecture d'Antonin en attente), 304 sans description, 8 chapitres sans événement, aucune illustration, 1 000 ajouts encore à relire.
+Points connus (voir `docs/prd.md`, Questions ouvertes) : les 394 événements scolaires sans alias ont maintenant des variantes ajoutées (issue 1.3, relecture d'Antonin en attente), 304 sans description, aucune illustration, 1 000 ajouts encore à relire.
+
+## Nettoyage des chapitres (issue #9)
+
+**Toutes les validations humaines nécessaires à l'issue #9 sont faites par Antonin.** Les cinq traces de propositions consignent 45 décisions : huit structures, 23 + 7 rattachements existants, six candidats initiaux différés et le dernier candidat Çatalhöyük validé et intégré. Lire le [dossier d'application et de validation](dataset-v18/kiffeurs-chapter-fixes-v18-README.md).
+
+Le canonique contient **2 001 événements, 41 chapitres titrés/non vides et 534 liens uniques ; 41/41 chapitres ont au moins cinq événements jouables**. THM-028 et ses 11 liens erronés sont corrigés vers Terminale générale ; les cinq IDs fusionnés n'ont plus de référence active. Les 30 rattachements validés restent présents. EVT-0905 conserve CONVENTIONAL et la distinction du 17/19 octobre ; Sargon conserve CONVENTIONAL et ses réserves Louvre/Met.
+
+[Çatalhöyük, EVT-2042](dataset-v18/kiffeurs-chapter-thm004-candidates-v18-README.md), complète THM-004 à cinq jouables : PERIOD, -7100 à -5950, YEAR_RANGE, APPROXIMATE, RANGE, sans jour/mois. Les variantes chronologiques et les réserves validées restent dans les notes privées. Les sources, alias, tags, collections et tables dérivées sont complets ; le pack Expert conserve 50 membres après recalcul. Les six candidats initiaux restent validés et différés pour une étape contenu distincte.
+
+Contrôle strict CSV : `python3 scripts/verifier-chapitres.py --exiger-validation --exiger-cinq-partout`, aussi exécuté en CI. Après reset et import Supabase **LOCAL uniquement** : `python3 scripts/verifier-import-chapitres-local.py --exiger-cinq-partout` (Windows : `py -3`). Import complet, second import idempotent et tests anon/authenticated vérifiés ; aucun Supabase distant/KFFR/prod, nouvelle migration ni variable Vercel touché. **PR #38 en brouillon, sans merge, pour la dernière revue d'Antonin.**

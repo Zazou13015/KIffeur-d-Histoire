@@ -16,7 +16,7 @@ TAG-0119,semantic_topic-religion,Religions,SEMANTIC_TOPIC,174,92,82,"Religions, 
 TAG-0120,semantic_topic-church-state,Religions et États,SEMANTIC_TOPIC,10,9,1,Relations institutionnelles entre pouvoirs politiques et religieux.
 TAG-0121,semantic_topic-economy,Économie,SEMANTIC_TOPIC,113,66,47,"Commerce, finance, production, crises et politiques économiques."
 TAG-0122,semantic_topic-industrialization,Industrialisation,SEMANTIC_TOPIC,54,28,26,"Révolutions industrielles, usines, machines et transformations productives."
-TAG-0123,semantic_topic-social-history,Histoire sociale,SEMANTIC_TOPIC,149,102,47,"Sociétés, populations, conditions de vie et transformations sociales."
+TAG-0123,semantic_topic-social-history,Histoire sociale,SEMANTIC_TOPIC,150,103,47,"Sociétés, populations, conditions de vie et transformations sociales."
 TAG-0124,semantic_topic-labor,Travail et mouvement social,SEMANTIC_TOPIC,19,19,0,"Travail, monde ouvrier, grèves et droits sociaux."
 TAG-0125,semantic_topic-women-gender,Femmes et genre,SEMANTIC_TOPIC,18,18,0,"Droits des femmes, condition féminine et égalité."
 TAG-0126,semantic_topic-education,Éducation,SEMANTIC_TOPIC,3,3,0,"École, enseignement, diplômes et transmission scolaire."
@@ -34,7 +34,7 @@ TAG-0137,semantic_topic-genocide-mass-violence,Génocides et violences de masse,
 TAG-0138,semantic_topic-memory-heritage,Mémoire et patrimoine,SEMANTIC_TOPIC,33,21,12,"Commémoration, patrimoine, mémoire collective et protection culturelle."
 TAG-0139,semantic_topic-migration,Migrations,SEMANTIC_TOPIC,19,17,2,"Migrations, exils et déplacements de populations."
 TAG-0140,semantic_topic-urbanization,Urbanisation,SEMANTIC_TOPIC,13,13,0,"Croissance urbaine, aménagement des villes et métropolisation."
-TAG-0141,semantic_topic-agriculture,Agriculture et sédentarisation,SEMANTIC_TOPIC,7,1,6,"Agriculture, sédentarisation et transformations néolithiques."
+TAG-0141,semantic_topic-agriculture,Agriculture et sédentarisation,SEMANTIC_TOPIC,8,2,6,"Agriculture, sédentarisation et transformations néolithiques."
 TAG-0142,semantic_topic-geopolitics,Géopolitique,SEMANTIC_TOPIC,153,89,64,"Rapports de puissance, rivalités, souverainetés et espaces stratégiques."
 TAG-0143,semantic_topic-borders-territory,Frontières et territoires,SEMANTIC_TOPIC,29,23,6,"Frontières, souveraineté, annexions et contrôle territorial."
 TAG-0144,semantic_topic-knowledge,Savoirs et connaissance,SEMANTIC_TOPIC,52,45,7,"Production, diffusion et contrôle des savoirs."
@@ -62,9 +62,9 @@ TAG-0165,geography-usa,États-Unis,GEOGRAPHY,478,478,0,États-Unis d’Amérique
 TAG-0166,geography-china,Chine,GEOGRAPHY,30,30,0,Chine.
 TAG-0167,geography-japan,Japon,GEOGRAPHY,19,19,0,Japon.
 TAG-0168,geography-india,Inde,GEOGRAPHY,17,17,0,Inde.
-TAG-0169,geography-turkey-ottoman,Turquie / Empire ottoman,GEOGRAPHY,16,16,0,Turquie et Empire ottoman.
+TAG-0169,geography-turkey-ottoman,Turquie / Empire ottoman,GEOGRAPHY,17,17,0,Turquie et Empire ottoman.
 TAG-0170,geography-byzantine-empire,Empire byzantin,GEOGRAPHY,6,6,0,Empire romain d’Orient / byzantin.
-TAG-0171,geography-middle-east,Moyen-Orient,GEOGRAPHY,61,61,0,Moyen-Orient.
+TAG-0171,geography-middle-east,Moyen-Orient,GEOGRAPHY,62,62,0,Moyen-Orient.
 TAG-0172,geography-israel-palestine,Israël / Palestine,GEOGRAPHY,13,13,0,"Israël, Palestine et espaces associés."
 TAG-0173,geography-iraq-mesopotamia,Irak / Mésopotamie,GEOGRAPHY,19,19,0,Irak et Mésopotamie.
 TAG-0174,geography-africa,Afrique,GEOGRAPHY,44,44,0,Continent africain.
@@ -73,7 +73,7 @@ TAG-0176,geography-algeria,Algérie,GEOGRAPHY,6,6,0,Algérie.
 TAG-0177,geography-sub-saharan-africa,Afrique subsaharienne,GEOGRAPHY,5,5,0,Afrique subsaharienne.
 TAG-0178,geography-rwanda,Rwanda,GEOGRAPHY,2,2,0,Rwanda.
 TAG-0179,geography-mali,Mali,GEOGRAPHY,2,2,0,Mali.
-TAG-0180,geography-asia,Asie,GEOGRAPHY,113,113,0,Continent asiatique.
+TAG-0180,geography-asia,Asie,GEOGRAPHY,114,114,0,Continent asiatique.
 TAG-0181,geography-east-asia,Asie orientale,GEOGRAPHY,10,10,0,Asie orientale.
 TAG-0182,geography-south-asia,Asie du Sud,GEOGRAPHY,8,8,0,Sous-continent indien.
 TAG-0183,geography-vietnam-indochina,Vietnam / Indochine,GEOGRAPHY,10,10,0,Vietnam et Indochine.

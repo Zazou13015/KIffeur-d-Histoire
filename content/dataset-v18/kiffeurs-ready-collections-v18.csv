@@ -17,7 +17,7 @@ COL-0073,droits-libertes,Droits et libertés,READY_PACK,"Droits civiques, libert
 COL-0074,construction-europeenne,Construction européenne,READY_PACK,"CECA, traités européens, Schengen et autres jalons associés.",HIGH_TAG,,,TRUE,TRUE,,V12.1,HIGH
 COL-0075,decolonisation,Décolonisation,READY_PACK,Indépendances et conflits de décolonisation.,HIGH_TAG,,,TRUE,TRUE,,V12.1,HIGH
 COL-0076,environnement,Environnement,READY_PACK,"Protection de l’environnement, climat et grands accords.",HIGH_TAG,,,TRUE,TRUE,,V12.1,HIGH
-COL-0077,mode-expert-50,Mode expert — 50 dates,READY_PACK,"Les 50 événements jouables les plus difficiles, départagés par importance et diffusion scolaire.",TOP_N_EXPERT,,,TRUE,TRUE,50,V12.1,CURATED_SCORE
+COL-0077,mode-expert-50,Mode expert — 50 dates,READY_PACK,"Les 50 événements jouables les plus difficiles, départagés par importance et diffusion scolaire.",TOP_N_EXPERT,,,TRUE,TRUE,50,V18.1 / issue #9,CURATED_SCORE
 COL-0078,antiquite,Antiquité,READY_PACK,Événements jouables conventionnellement situés entre les premières écritures et 476.,YEAR_RANGE,,,TRUE,TRUE,,V12.1,DATE_RULE
 COL-0079,moyen-age,Moyen Âge,READY_PACK,Événements jouables conventionnellement situés de 476 à 1492.,YEAR_RANGE,,,TRUE,TRUE,,V12.1,DATE_RULE
 COL-0080,epoque-moderne,Époque moderne,READY_PACK,Événements jouables conventionnellement situés de 1492 à 1789.,YEAR_RANGE,,,TRUE,TRUE,,V12.1,DATE_RULE

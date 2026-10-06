@@ -33,19 +33,14 @@ TAG-0031,theme-thm-019,Seconde générale et technologique — Thème 1 — Le m
 TAG-0032,theme-thm-020,"Seconde générale et technologique — Thème 2 — XVe-XVIe siècles : un nouveau rapport au monde, un temps de mutation intellectuelle",CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
 TAG-0033,theme-thm-021,Seconde générale et technologique — Thème 3 — L’État à l’époque moderne : France et Angleterre,CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
 TAG-0034,theme-thm-022,Seconde générale et technologique — Thème 4 — Dynamiques et ruptures dans les sociétés des XVIIe et XVIIIe siècles,CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
-TAG-0035,theme-thm-023,Seconde générale et technologique — Les autres PPO du thème 4 sont surtout des processus sociaux,CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
 TAG-0036,theme-thm-024,Première générale — Thème 1 — L’Europe face aux révolutions,CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
 TAG-0037,theme-thm-025,Première générale — Thème 2 — La France dans l’Europe des nationalités : politique et société (1848-1871),CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
 TAG-0038,theme-thm-026,"Première générale — Thème 3 — La Troisième République avant 1914 : un régime politique, un empire colonial",CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
 TAG-0039,theme-thm-027,Première générale — Thème 4 — La Première Guerre mondiale : le « suicide de l’Europe » et la fin des empires européens,CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
-TAG-0040,theme-thm-028,"Seconde générale et technologique — Thème 1 — Fragilités des démocraties, totalitarismes et Seconde Guerre mondiale (1929-1945)",CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
+TAG-0040,theme-thm-028,"Terminale générale — Thème 1 — Fragilités des démocraties, totalitarismes et Seconde Guerre mondiale (1929-1945)",CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
 TAG-0041,theme-thm-029,Terminale générale — Thème 2 — La multiplication des acteurs internationaux dans un monde bipolaire (1945-début des années 1970),CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
 TAG-0042,theme-thm-030,"Terminale générale — Thème 3 — Les remises en cause économiques, politiques et sociales des années 1970 à 1991",CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
 TAG-0043,theme-thm-031,"Terminale générale — Thème 4 — Le monde, l’Europe et la France depuis les années 1990, entre coopérations et conflits",CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
-TAG-0044,theme-thm-032,Terminale générale — Thème 1,CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
-TAG-0045,theme-thm-033,Terminale générale — Thème 2,CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
-TAG-0046,theme-thm-034,Terminale générale — Thème 3,CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
-TAG-0047,theme-thm-035,Terminale générale — Thème 4,CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
 TAG-0048,theme-thm-036,Première HGGSP — Thème 1 — Comprendre un régime politique : la démocratie,CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
 TAG-0049,theme-thm-037,Première HGGSP — Thème 2 — Analyser les dynamiques des puissances internationales,CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
 TAG-0050,theme-thm-038,Première HGGSP — Thème 3 — Étudier les divisions politiques du monde : les frontières,CURRICULUM_THEME,Thème scolaire issu du référentiel.,CURRICULUM,TRUE
@@ -285,3 +280,5 @@ TAG-0283,series-golden-globes,Golden Globes,SERIES,Série de culture générale 
 TAG-0284,series-bafta,BAFTA Film Awards,SERIES,Série de culture générale : BAFTA Film Awards.,GENERAL_CULTURE_V18,TRUE
 TAG-0285,series-super-bowl,Super Bowl,SERIES,Série de culture générale : Super Bowl.,GENERAL_CULTURE_V18,TRUE
 TAG-0286,series-wimbledon,Wimbledon,SERIES,Série de culture générale : Wimbledon.,GENERAL_CULTURE_V18,TRUE
+TAG-0287,century-bce-71,LXXIe siècle av. J.-C.,CENTURY,Siècle dérivé d’une borne structurée.,DATE_DERIVED,TRUE
+TAG-0288,century-bce-60,LXe siècle av. J.-C.,CENTURY,Siècle dérivé d’une borne structurée.,DATE_DERIVED,TRUE

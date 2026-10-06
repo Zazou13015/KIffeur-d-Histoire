@@ -53,7 +53,7 @@ export async function nextQuestion(gameId: string): Promise<SoloQuestion | null>
   return rpc("next_question", { p_game_id: gameId, p_token: token });
 }
 
-// null = passer la question (0 point) ou constater l'expiration et voir la correction.
+// null = constater l'expiration (0 point) et voir la correction.
 export async function submitAnswer(gameId: string, questionId: string, answer: SoloDate | null): Promise<SoloCorrection> {
   const token = (await cookies()).get(cookieName(gameId))?.value ?? null;
   return rpc("submit_answer", {

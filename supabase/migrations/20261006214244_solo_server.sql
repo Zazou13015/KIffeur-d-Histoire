@@ -197,8 +197,8 @@ begin
   -- Prendre l'heure après le verrou : attendre une transaction ne prolonge pas le chrono.
   server_time := clock_timestamp();
   timed_out := server_time > q.deadline;
-  if not timed_out and p_year is not null then
-    if p_year = 0 or p_year not between -10000000 and 10000000
+  if not timed_out then
+    if p_year is null or p_year = 0 or p_year not between -10000000 and 10000000
       or (p_month is not null and p_month not between 1 and 12)
       or (p_day is not null and (p_month is null or p_day not between 1 and 31))
       or (q.difficulty in ('MONTH', 'DAY') and p_month is null)

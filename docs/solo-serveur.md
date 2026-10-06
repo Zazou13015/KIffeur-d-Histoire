@@ -86,8 +86,8 @@ du score utilisent leur valeur actuelle. Les points sont bornés à 100 par
 question, donc 1 000 pour dix questions.
 
 Après la deadline, la réponse est enregistrée avec précision/points à zéro et
-la correction est disponible. Une date `null` permet de passer une question ou
-de constater l'expiration : elle vaut aussi zéro. L'expiration ne révèle rien
+la correction est disponible. Une date `null` permet de constater l'expiration :
+elle vaut zéro et est refusée avant la deadline. L'expiration ne révèle rien
 automatiquement ; l'interface doit appeler `submitAnswer(..., null)` à la fin du
 chrono. Aucun appel ne peut répondre à une question future ou déjà répondue.
 Les mois/jours requis dépendent de la difficulté et les dates impossibles sont

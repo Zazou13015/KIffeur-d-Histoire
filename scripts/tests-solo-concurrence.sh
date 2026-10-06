@@ -15,7 +15,7 @@ trap cleanup EXIT
 answer() {
   # Le gagnant garde son verrou une seconde : l'autre transaction doit attendre,
   # puis constater answered_at au lieu d'écraser le résultat.
-  psql_q -c "begin; set local role anon; select histoire.submit_answer('$game_id','$question_id',p_token => repeat('f',64)); select pg_sleep(1); commit;"
+  psql_q -c "begin; set local role anon; select histoire.submit_answer('$game_id','$question_id',p_year => 2000,p_token => repeat('f',64)); select pg_sleep(1); commit;"
 }
 answer >"$logs/first" 2>&1 & first=$!
 answer >"$logs/second" 2>&1 & second=$!

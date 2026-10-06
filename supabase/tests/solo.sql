@@ -214,9 +214,18 @@ do $$ declare c contexte; r jsonb; g jsonb; q jsonb; begin
   perform pg_temp.verifier((r->>'average_accuracy')::numeric = 49.45 and (r->>'total_points')::int between 90 and 93, 'agrégation en SQL');
   g := histoire.start_game(p_token => repeat('e',64), p_tag_id => 'SOLO-THEME', p_question_count => 1);
   q := histoire.next_question((g->>'game_id')::uuid,repeat('e',64));
-  r := histoire.submit_answer((g->>'game_id')::uuid,(q->>'question_id')::uuid,p_token => repeat('e',64));
-  perform pg_temp.verifier(r->>'accuracy' = '0' and r->>'points' = '0' and r->>'expired' = 'false', 'passer sans réponse = zéro');
-  perform histoire.finish_game((g->>'game_id')::uuid,repeat('e',64));
+  perform pg_temp.refuser(format('select histoire.submit_answer(%L,%L,p_token => %L)',g->>'game_id',q->>'question_id',repeat('e',64)), '22023');
+  update contexte set timed_id = (g->>'game_id')::uuid, timed_question = (q->>'question_id')::uuid;
+end $$;
+reset role;
+update histoire.game_questions set asked_at = clock_timestamp()-interval '31 seconds', deadline = clock_timestamp()-interval '1 second'
+where id = (select timed_question from contexte);
+set local role anon;
+do $$ declare c contexte; r jsonb; begin
+  select * into c from contexte;
+  r := histoire.submit_answer(c.timed_id,c.timed_question,p_token => repeat('e',64));
+  perform pg_temp.verifier(r->>'accuracy' = '0' and r->>'points' = '0' and r->>'expired' = 'true', 'absence de réponse après expiration = zéro');
+  perform histoire.finish_game(c.timed_id,repeat('e',64));
 end $$;
 reset role;
 do $$ begin

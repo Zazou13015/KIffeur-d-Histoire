@@ -19,25 +19,32 @@ if (!url || !cle) throw new Error("SUPABASE_URL et SUPABASE_SERVICE_ROLE_KEY son
 
 const supabase = createClient(url, cle, { db: { schema: "histoire" }, auth: { persistSession: false } });
 
-const fichiers = readdirSync(DOSSIER).filter((f) => /^EVT-\d+\.svg$/.test(f));
-for (const f of fichiers) {
-  const poids = statSync(path.join(DOSSIER, f)).size;
-  if (poids > POIDS_MAX) throw new Error(`${f} pèse ${poids} octets (maximum ${POIDS_MAX}).`);
+async function main() {
+  const fichiers = readdirSync(DOSSIER).filter((f) => /^EVT-\d+\.svg$/.test(f));
+  for (const f of fichiers) {
+    const poids = statSync(path.join(DOSSIER, f)).size;
+    if (poids > POIDS_MAX) throw new Error(`${f} pèse ${poids} octets (maximum ${POIDS_MAX}).`);
+  }
+
+  const { error: erreurBucket } = await supabase.storage.createBucket(BUCKET, { public: true });
+  if (erreurBucket && !/already exists/i.test(erreurBucket.message)) throw erreurBucket;
+
+  let envoyes = 0;
+  for (const f of fichiers) {
+    const eventId = f.replace(".svg", "");
+    const { error: e1 } = await supabase.storage
+      .from(BUCKET)
+      .upload(f, readFileSync(path.join(DOSSIER, f)), { contentType: "image/svg+xml", upsert: true });
+    if (e1) throw new Error(`Envoi de ${f} : ${e1.message}`);
+    const { data, error: e2 } = await supabase.from("events").update({ image_path: f }).eq("id", eventId).select("id");
+    if (e2) throw new Error(`Mise à jour de ${eventId} : ${e2.message}`);
+    if (!data?.length) console.warn(`Événement ${eventId} introuvable en base, chemin non renseigné.`);
+    envoyes++;
+  }
+  console.log(`${envoyes} illustrations envoyées dans ${BUCKET}.`);
 }
 
-const { error: erreurBucket } = await supabase.storage.createBucket(BUCKET, { public: true });
-if (erreurBucket && !/already exists/i.test(erreurBucket.message)) throw erreurBucket;
-
-let envoyes = 0;
-for (const f of fichiers) {
-  const eventId = f.replace(".svg", "");
-  const { error: e1 } = await supabase.storage
-    .from(BUCKET)
-    .upload(f, readFileSync(path.join(DOSSIER, f)), { contentType: "image/svg+xml", upsert: true });
-  if (e1) throw new Error(`Envoi de ${f} : ${e1.message}`);
-  const { data, error: e2 } = await supabase.from("events").update({ image_path: f }).eq("id", eventId).select("id");
-  if (e2) throw new Error(`Mise à jour de ${eventId} : ${e2.message}`);
-  if (!data?.length) console.warn(`Événement ${eventId} introuvable en base, chemin non renseigné.`);
-  envoyes++;
-}
-console.log(`${envoyes} illustrations envoyées dans ${BUCKET}.`);
+main().catch((erreur: unknown) => {
+  console.error(`\nÉchec de l'envoi des illustrations : ${erreur instanceof Error ? erreur.message : String(erreur)}`);
+  process.exit(1);
+});

@@ -12,7 +12,8 @@
     "db:stop": "supabase stop",
     "db:reset": "supabase db reset",
     "db:new": "supabase migration new",
-    "db:test-securite": "docker exec -i supabase_db_kiffeurs-histoire psql -U postgres -v ON_ERROR_STOP=1 -q -f - < supabase/tests/reponses_invisibles.sql"
+    "db:test-securite": "docker exec -i supabase_db_kiffeurs-histoire psql -U postgres -v ON_ERROR_STOP=1 -q -f - < supabase/tests/reponses_invisibles.sql",
+    "content:import": "tsx --env-file-if-exists=.env.local scripts/import-dataset.ts"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",
@@ -30,6 +31,7 @@
     "eslint-config-next": "16.3.8",
     "supabase": "^2.119.0",
     "tailwindcss": "^4",
+    "tsx": "^4.23.15",
     "typescript": "^5"
   }
 }

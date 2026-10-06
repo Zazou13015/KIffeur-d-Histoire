@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
 """Vérifie l'import réel dans le conteneur Supabase LOCAL du dépôt, puis sa sécurité.
 
-Usage : python3 scripts/verifier-import-chapitres-local.py
+Usage : python3 scripts/verifier-import-chapitres-local.py [--exiger-cinq-partout]
 Ne lit aucun fichier d'environnement et ne peut pas se connecter à une base distante.
 À lancer après un reset local et l'import de content/dataset-v18.
 """
+import argparse
 import csv
 import json
 import os
 import subprocess
+import sys
 from collections import Counter
 from pathlib import Path
 
@@ -30,6 +32,9 @@ def requete(sql):
 
 
 def main():
+    p = argparse.ArgumentParser(description=__doc__)
+    p.add_argument("--exiger-cinq-partout", action="store_true", help="Refuser l'import si un chapitre reste sous cinq événements jouables.")
+    args = p.parse_args()
     endpoint = subprocess.check_output(["docker", "context", "inspect", "--format", "{{.Endpoints.docker.Host}}"], text=True).strip()
     if not endpoint.startswith(("npipe://", "unix://")):
         raise RuntimeError("Contrôle refusé : le contexte Docker n'est pas un moteur local.")
@@ -63,12 +68,18 @@ def main():
         assert nombres_jouables[cid] >= minimum, f"{cid} : événements jouables insuffisants après import."
     print("OK import local : 41 chapitres titrés/non vides, 526 liens canoniques et 2 000 événements avec dates intactes.")
     print("OK : THM-030/037/040 ont 10/8/5 événements jouables ; THM-028 est en Terminale ; condition EVT-0905 importée.")
-    print("Chapitres préexistants hors des huit cas avec moins de cinq jouables :", {cid: nombres_jouables[cid] for cid in themes if nombres_jouables[cid] < 5})
+    insuffisants = {cid: nombres_jouables[cid] for cid in themes if nombres_jouables[cid] < 5}
+    print("Chapitres préexistants hors des huit cas avec moins de cinq jouables :", insuffisants)
     test = (RACINE / "supabase/tests/reponses_invisibles.sql").read_text(encoding="utf-8-sig")
     resultat = subprocess.run(["docker", "exec", "-i", CONTENEUR, "psql", "-U", "postgres", "-v", "ON_ERROR_STOP=1", "-q", "-f", "-"], input=test, text=True, encoding="utf-8", capture_output=True, check=True)
     assert "OK : anon" in resultat.stdout and "OK : authenticated" in resultat.stdout, "Résultats de sécurité manquants."
     print(resultat.stdout.strip())
+    if args.exiger_cinq_partout and insuffisants:
+        for cid, nombre in insuffisants.items():
+            print(f"ÉCHEC seuil global après import local : {cid} a {nombre} événements jouables ; minimum attendu : 5.")
+        return 1
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

@@ -108,9 +108,12 @@ Les nouveaux liens reprennent niveau, année, scope et titre du chapitre, date/s
 ```bash
 python3 scripts/verifier-chapitres.py
 python3 scripts/verifier-chapitres.py --exiger-validation
+python3 scripts/verifier-chapitres.py --exiger-validation --exiger-cinq-partout
 ```
 
 Sous Windows : `py -3 scripts/verifier-chapitres.py --exiger-validation`. Le script lit uniquement les CSV locaux : trace des huit validations, absence des cinq IDs fusionnés dans tous les CSV hors traces, 41 titres non vides, 526 liens uniques, absence d'orphelins, correction des 11 liens, application des 23 rattachements, cohérence des collections/tags/résumés, dates et statuts de validation intacts. L'option `--exiger-validation` refuse une cellule encore vide ; attendu : **37/37 validations renseignées**. Le contrôle protège aussi `CONVENTIONAL` et la note du 17/19 octobre d'EVT-0905 dans le canonique et les propositions. Il ne se connecte à aucun service et contrôle la transcription des validations, sans se substituer à Antonin.
+
+L'option `--exiger-cinq-partout` contrôle séparément l'objectif global : **échec attendu (code 1)** pour THM-002, THM-004, THM-039 et THM-044. Après import local, `py -3 scripts/verifier-import-chapitres-local.py --exiger-cinq-partout` échoue sur les mêmes quatre chapitres, après vérification des données et des tests de sécurité. Le succès du contrôle ordinaire et de la CI confirme l'application des décisions validées ; il ne signifie pas que ce seuil global est atteint.
 
 Contrôler aussi le diff : les neuf CSV canoniques listés ci-dessus, les contrôles de contenu, la CI et la documentation portent cette application. Les trois CSV de propositions restent intacts. Les fichiers Supabase et migrations existants, `auth`, `public`, `private` et paramètres Vercel restent inchangés. L'import utilise exclusivement la clé générée pour la pile locale et son API `http://127.0.0.1:54321`, jamais une clé distante. Lint/typecheck/build utilisent les valeurs locales factices de la CI.
 

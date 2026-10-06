@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Contrôle local, sans réseau ni base, des propositions de l'issue #9.
 
-Usage : python3 scripts/verifier-chapitres.py [--dossier content/dataset-v18] [--exiger-validation]
+Usage : python3 scripts/verifier-chapitres.py [--dossier content/dataset-v18] [--exiger-validation] [--exiger-cinq-partout]
 Ce script ne valide pas la pertinence pédagogique à la place d'Antonin.
 """
 import argparse
@@ -29,6 +29,7 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--dossier", type=Path, default=Path(__file__).resolve().parents[1] / "content/dataset-v18")
     p.add_argument("--exiger-validation", action="store_true", help="Refuser toute proposition encore sans validation d'Antonin.")
+    p.add_argument("--exiger-cinq-partout", action="store_true", help="Vérifier le seuil global de cinq événements jouables sur tous les chapitres.")
     args = p.parse_args()
     d = args.dossier
     lignes_themes = lire(d, "themes")
@@ -206,6 +207,11 @@ def main():
             verifier(s.get("event_count") == str(len(membres)) and s.get("playable_event_count") == str(sum(events[e]["playable"] == "TRUE" for e in membres)),
                      f"{cid} : résumé de collection incohérent.")
             verifier(c["level"] == themes[cid]["level"] and c["title"] == tag["name"] == s.get("title"), f"{cid} : libellés scolaires incohérents.")
+    insuffisants = [(cid, sum(events.get(e, {}).get("playable") == "TRUE" for e in liens[cid])) for cid in themes
+                    if sum(events.get(e, {}).get("playable") == "TRUE" for e in liens[cid]) < 5]
+    if args.exiger_cinq_partout:
+        for cid, nombre in insuffisants:
+            verifier(False, f"Seuil global : {cid} a {nombre} événements jouables ; minimum attendu : 5.")
     for erreur in erreurs:
         print(f"ERREUR : {erreur}")
     if erreurs:
@@ -215,7 +221,6 @@ def main():
     print(f"Métadonnées, dates et précision conservées ; {validations}/{len(fixes) + len(details) + len(nouveaux)} validations d'Antonin renseignées.")
     print(f"Canonique : {len(themes)} chapitres titrés et non vides, {len(paires)} liens uniques, cinq fusions appliquées et THM-028/11 liens corrigés.")
     print("THM-030/037/040 : 10/8/5 événements jouables ; EVT-0905 : CONVENTIONAL et note du 17/19 octobre conservés.")
-    insuffisants = [(cid, sum(events[e]["playable"] == "TRUE" for e in liens[cid])) for cid in themes if sum(events[e]["playable"] == "TRUE" for e in liens[cid]) < 5]
     print(f"Information hors des huit cas de l'issue #9 : chapitres préexistants avec moins de cinq événements jouables : {insuffisants}")
     return 0
 

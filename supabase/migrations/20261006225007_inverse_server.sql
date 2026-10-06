@@ -4,6 +4,29 @@ alter table histoire.games add column direction text not null default 'date'
 alter table histoire.game_questions add column answer_text text
   check (char_length(answer_text) <= 1000);
 
+-- Décision produit : 0,75 conserve les fautes légères (« guere froide » : 0,80)
+-- et refuse la confusion début/fin du blocus de Berlin (0,72).
+-- L'ancienne migration appliquée et la normalisation restent inchangées.
+create or replace function histoire.check_event_answer(p_event_id text, p_answer text)
+returns boolean
+language sql
+stable
+security definer
+set search_path = ''
+as $$
+  with candidates as (
+    select title as label from histoire.events where id = p_event_id
+    union all
+    select alias from histoire.event_aliases where event_id = p_event_id
+  )
+  select coalesce(bool_or(
+    histoire.normalize_answer(label) = histoire.normalize_answer(p_answer)
+    or extensions.similarity(histoire.normalize_answer(label), histoire.normalize_answer(p_answer)) >= 0.75
+  ), false)
+  from candidates;
+$$;
+revoke all on function histoire.check_event_answer(text, text) from public, anon, authenticated;
+
 -- Format déterministe, sans dépendre de la locale ni de date_text (texte éditorial).
 -- Les composantes plus précises que la difficulté ne quittent pas la base.
 create function histoire.question_date(p_year integer, p_month integer, p_day integer, p_precision text)

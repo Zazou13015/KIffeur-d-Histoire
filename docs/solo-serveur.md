@@ -206,7 +206,8 @@ restent fermées aux deux rôles API.
 Après autorisation et vérification de la question active, une seule réponse
 peut être enregistrée, même avec deux transactions simultanées. Avant expiration,
 `check_event_answer` compare uniquement l'événement privé de cette question.
-Il conserve `normalize_answer` et le seuil `pg_trgm` **0,6**. La précision vaut
+Il conserve `normalize_answer` et utilise le seuil `pg_trgm` **0,75**, fixé dans
+la migration #14 par décision produit. La précision vaut
 100 si accepté, 0 sinon ; `score_points` de #12 calcule le bonus avec la fraction
 du chrono figé. Après la deadline, le correcteur n'est pas appelé et précision
 et points valent zéro. La correction ajoute `direction: 'inverse'`, `title`
@@ -216,14 +217,18 @@ Le bilan n'est disponible qu'après toutes les réponses ; il ajoute le sens et
 conserve la réponse texte, les précisions 100/0 et la somme des points. Il est
 idempotent. Les alias ne sont jamais renvoyés, même dans le bilan.
 
-**Décision humaine à prévoir sur la tolérance** : le seuil actuel accepte bien
-« Guerre froide », « la guerre froide », « guere froide », la casse et les
-accents. Il peut aussi confondre des événements distincts : les titres du dataset
-`EVT-0111` (« Début du blocus de Berlin », 1948) et `EVT-0112` (« Fin du blocus de
-Berlin », 1949) ont une similarité de **0,72** après normalisation, supérieure
-au seuil. Ce faux positif est reproduit dans le test SQL, sans changer la règle.
-Un ajustement du seuil ou une règle distinguant début/fin nécessite une décision
-produit et une revue du contenu. Les alias acceptés restent ceux du catalogue
+**Tolérance validée** : « Guerre froide », « la guerre froide », « guere froide »,
+la casse et les accents restent acceptés. La faute « guere froide » a une
+similarité de **0,80** ; l'article est supprimé par la normalisation existante.
+Les titres du dataset `EVT-0111` (« Début du blocus de Berlin », 1948) et
+`EVT-0112` (« Fin du blocus de Berlin », 1949), similaires à **0,72**, sont
+désormais refusés l'un pour l'autre. Les tests vérifient les deux refus dans
+le correcteur interne et dans la RPC de partie. La migration #14 redéfinit
+uniquement le correcteur avec 0,75 : la migration déjà appliquée
+`20261006084353_modele_dataset_v18.sql` et `normalize_answer` restent inchangés.
+Le correcteur conserve `SECURITY DEFINER`, `search_path = ''` et l'interdiction
+d'EXECUTE pour `PUBLIC`, `anon` et `authenticated`.
+Les alias acceptés restent ceux du catalogue
 au moment de répondre ; date, titre affiché à la correction et description
 restent les instantanés du tirage comme en #13.
 

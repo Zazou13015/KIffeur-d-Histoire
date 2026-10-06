@@ -16,7 +16,8 @@ end $$;
 
 insert into histoire.packs(id,slug,title) values
   ('INV-TEST','inv-test','Fixture inverse'), ('INV-COLD','inv-cold','Guerre froide'),
-  ('INV-COLLISION','inv-collision','Dates communes'), ('INV-BC','inv-bc','Antiquité');
+  ('INV-COLLISION','inv-collision','Dates communes'), ('INV-BC','inv-bc','Antiquité'),
+  ('INV-BLOCK','inv-block','Blocus de Berlin');
 insert into histoire.tags(id,slug,name,tag_type) values
   ('INV-THEME','inv-theme','Fixture','SEMANTIC_TOPIC'), ('INV-CENTURY','inv-century','Siècle','CENTURY');
 insert into histoire.chapters(id,level_id,school_year,program_scope,title) values
@@ -59,16 +60,26 @@ insert into histoire.event_answers(event_id,start_year,start_month,start_day,end
 insert into histoire.event_aliases(event_id,alias) values
   ('EVT-9820','Cold War'), ('EVT-9820','Alias strictement privé');
 insert into histoire.pack_events(pack_id,event_id,position) values
-  ('INV-COLD','EVT-9820',1), ('INV-BC','EVT-9821',1);
+  ('INV-COLD','EVT-9820',1), ('INV-BC','EVT-9821',1),
+  ('INV-BLOCK','EVT-0111',1), ('INV-BLOCK','EVT-0112',2);
 insert into histoire.pack_events(pack_id,event_id,position)
 select 'INV-COLLISION','EVT-'||(9830+i),i+1 from generate_series(0,7) i;
 
--- Faux positif connu, laissé inchangé et documenté pour décision humaine.
--- Ces deux titres/dates sont ceux du dataset v18, pas des fautes de frappe.
+-- Seuil 0,75 : faute légère conservée, confusion début/fin refusée dans les deux sens.
+-- Ces deux titres/dates sont ceux du dataset v18.
 do $$ begin
   perform pg_temp.verifier(abs(extensions.similarity(histoire.normalize_answer('Début du blocus de Berlin'),
     histoire.normalize_answer('Fin du blocus de Berlin')) - 0.72) < 0.00001
-    and histoire.check_event_answer('EVT-0111','Fin du blocus de Berlin'), 'limite documentée du seuil 0,6 : début/fin');
+    and not histoire.check_event_answer('EVT-0111','Fin du blocus de Berlin')
+    and not histoire.check_event_answer('EVT-0112','Début du blocus de Berlin'), 'début/fin refusés dans les deux sens');
+  perform pg_temp.verifier(abs(extensions.similarity(histoire.normalize_answer('Guerre froide'),
+    histoire.normalize_answer('guere froide')) - 0.80) < 0.00001
+    and histoire.normalize_answer('Guerre froide') = histoire.normalize_answer('la guerre froide'), 'normalisation et faute légère inchangées');
+  perform pg_temp.verifier((select prosecdef and proconfig @> array['search_path=""']
+    from pg_proc where oid='histoire.check_event_answer(text,text)'::regprocedure)
+    and not has_function_privilege('anon','histoire.check_event_answer(text,text)','EXECUTE')
+    and not has_function_privilege('authenticated','histoire.check_event_answer(text,text)','EXECUTE'),
+    'correcteur SECURITY DEFINER, search_path vide et EXECUTE interne');
 end $$;
 
 create temporary table contexte(kind text primary key, game_id uuid, active_id uuid, future_id uuid, snapshot jsonb);
@@ -104,7 +115,7 @@ end $$;
 
 set local role anon;
 insert into contexte(kind,game_id) values ('complete-anon',pg_temp.partie_complete(repeat('a',64)));
--- Tolérance actuelle, seuil 0,6 inchangé ; chaque essai consomme une nouvelle question.
+-- Tolérance à 0,75 ; chaque essai consomme une nouvelle question.
 do $$ declare g jsonb; q jsonb; r jsonb; answer text; begin
   foreach answer in array array['Guerre froide','la guerre froide','guere froide','LA GUÈRRE FROIDE!','Cold War','Prise de la Bastille'] loop
     g := histoire.start_game(p_token=>repeat('a',64),p_direction=>'inverse',p_pack_id=>'INV-COLD',p_question_count=>1);
@@ -116,6 +127,20 @@ do $$ declare g jsonb; q jsonb; r jsonb; answer text; begin
       'tolérance et mauvais événement : '||answer);
     perform pg_temp.verifier(r->>'title'='Guerre froide' and r->>'description'='Explication de la Guerre froide', 'titre et correction attendus');
     if answer='Prise de la Bastille' then perform pg_temp.verifier(r->>'points'='0','mauvaise réponse sans bonus'); end if;
+    perform histoire.finish_game((g->>'game_id')::uuid,repeat('a',64));
+  end loop;
+end $$;
+-- Les deux confusions sont aussi refusées par la RPC réelle de partie autorisée.
+do $$ declare g jsonb; q jsonb; r jsonb; expected text; answer text; begin
+  for question_year in 1948..1949 loop
+    expected := case question_year when 1948 then 'Début du blocus de Berlin' else 'Fin du blocus de Berlin' end;
+    answer := case question_year when 1948 then 'Fin du blocus de Berlin' else 'Début du blocus de Berlin' end;
+    g := histoire.start_game(p_token=>repeat('a',64),p_direction=>'inverse',p_pack_id=>'INV-BLOCK',
+      p_year_min=>question_year,p_year_max=>question_year,p_question_count=>1);
+    q := histoire.next_question((g->>'game_id')::uuid,repeat('a',64));
+    r := histoire.submit_answer((g->>'game_id')::uuid,(q->>'question_id')::uuid,p_token=>repeat('a',64),p_answer_text=>answer);
+    perform pg_temp.verifier(r->>'correct'='false' and r->>'accuracy'='0' and r->>'points'='0'
+      and r->>'expired'='false' and r->>'title'=expected, 'RPC refuse la confusion : '||answer);
     perform histoire.finish_game((g->>'game_id')::uuid,repeat('a',64));
   end loop;
 end $$;

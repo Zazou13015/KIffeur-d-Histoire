@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
-"""Contrôle les propositions non validées de l'issue #8, sans réseau ni base.
+"""Contrôle les 304 descriptions validées par Antonin de l'issue #8, sans réseau ni base.
 
 Usage : python3 scripts/verifier-descriptions.py [--dossier content/dataset-v18]
 Les nombres suspects sont signalés pour relecture ; une date explicite reste une erreur.
 """
 import argparse
 import csv
+import hashlib
+import json
 import re
 import sys
 from collections import Counter, defaultdict
@@ -15,6 +17,10 @@ NIVEAUX = ["CM1", "CM2", "6e", "5e", "4e", "3e", "Seconde générale et technolo
            "Première générale", "Première HGGSP", "Terminale générale", "Terminale HGGSP"]
 COLONNES = ["event_id", "title_canonical", "lowest_level", "description_short", "a_verifier",
             "verification_note", "sources", "antonin_validation"]
+# Dataset canonique à la validation de l'issue #8 : aucune mutation silencieuse,
+# y compris jouabilité et explications préexistantes. Indépendant du BOM/CRLF/ordre.
+EMPREINTE_CANONIQUE = "8329f8eecd7871ca0a2365551812ad9016b1a6d1fb6289a57004579cc5db6862"
+SUIVIS_DIFFERES = {"EVT-0151", "EVT-0153", "EVT-0211", "EVT-0212"}
 MOIS = r"janvier|février|fevrier|mars|avril|mai|juin|juillet|août|aout|septembre|octobre|novembre|décembre|decembre"
 DATES = [
     ("année contextualisée", r"\b(?:en|vers|depuis|avant|après|entre|année|an)\s+[-−]?\d{1,4}\b"),
@@ -58,6 +64,12 @@ def main():
     # Une frise pédagogique a aussi besoin des explications des événements non jouables.
     cibles = {e["event_id"] for e in evenements if niveaux[e["event_id"]] and not e["description_short"].strip()}
     erreurs, suspects = [], []
+    empreinte = hashlib.sha256(json.dumps(sorted(evenements, key=lambda r: r["event_id"]),
+                                         ensure_ascii=False, sort_keys=True).encode("utf-8")).hexdigest()
+    if empreinte != EMPREINTE_CANONIQUE:
+        erreurs.append("Dataset canonique modifié : jouabilité, dates, métadonnées et descriptions préexistantes doivent être conservées.")
+    if len(cibles) != 304 or len(propositions) != 304:
+        erreurs.append("Attendu exactement 304 cibles et 304 descriptions validées pour l'issue #8.")
     if colonnes != COLONNES:
         erreurs.append("Colonnes différentes du format de proposition demandé.")
     ids = [r.get("event_id", "") for r in propositions]
@@ -82,6 +94,8 @@ def main():
         elif niveaux[eid] and r.get("lowest_level") != min(niveaux[eid], key=NIVEAUX.index):
             erreurs.append(f"{eid} : niveau minimal incorrect.")
         texte = r.get("description_short", "")
+        if re.search(r"Ã[\x80-\xBF€]|â[€\x80]", texte):
+            erreurs.append(f"{eid} : accents mal encodés dans la description.")
         if not texte.strip() or len(texte) > 280:
             erreurs.append(f"{eid} : description vide ou supérieure à 280 caractères ({len(texte)}).")
         # Les points des abréviations usuelles ne terminent pas une phrase.
@@ -99,6 +113,8 @@ def main():
             erreurs.append(f"{eid} : nombre potentiellement chronologique non signalé pour relecture.")
         if r.get("a_verifier") not in ("OUI", "NON"):
             erreurs.append(f"{eid} : a_verifier doit valoir OUI ou NON.")
+        elif r.get("a_verifier") != "NON":
+            erreurs.append(f"{eid} : description encore à vérifier après validation finale.")
         if r.get("a_verifier") == "OUI" and not r.get("verification_note", "").strip():
             erreurs.append(f"{eid} : cas douteux sans explication précise.")
         if r.get("verification_note", "").strip() and r.get("a_verifier") != "OUI":
@@ -106,11 +122,8 @@ def main():
         urls = [x.strip() for x in r.get("sources", "").split(";") if x.strip()]
         if not urls or any(not re.match(r"^https?://[^\s/]+/", x) for x in urls):
             erreurs.append(f"{eid} : sources absentes ou URL invalide.")
-        if urls and (all("wikipedia.org/" in u for u in urls) or
-                     all(any(h in u for h in ("catalogue.bnf.fr/", "ccfr.bnf.fr/")) for u in urls)) and r.get("a_verifier") != "OUI":
-            erreurs.append(f"{eid} : sources uniquement secondaires ou bibliographiques à signaler pour vérification.")
-        if r.get("antonin_validation") != "":
-            erreurs.append(f"{eid} : aucune validation d'Antonin ne doit être remplie à cette étape.")
+        if r.get("antonin_validation") != "VALIDE":
+            erreurs.append(f"{eid} : antonin_validation doit valoir VALIDE après relecture humaine.")
     repetitions = [t for t, n in Counter(r.get("description_short", "") for r in propositions).items() if n > 1]
     if repetitions:
         erreurs.append("Descriptions intégralement identiques sur plusieurs événements.")
@@ -124,6 +137,8 @@ def main():
         nouveaux = {eid for eid in cibles if canon[eid]["playable"] == "FALSE"}
         if {r["event_id"] for r in revue if r["flag_initial"] == "NOUVELLE"} != nouveaux:
             erreurs.append("Revue documentaire : les ajouts ne couvrent pas les 17 non-jouables.")
+        if {r["event_id"] for r in revue if r["decision"] == "MAINTENUE"} != SUIVIS_DIFFERES:
+            erreurs.append("Revue documentaire : les quatre réserves historiques doivent rester conservées.")
         for r in revue:
             eid = r["event_id"]
             proposition = par_id.get(eid)
@@ -131,21 +146,27 @@ def main():
             if not proposition or decision not in {"LEVEE", "MAINTENUE", "AJOUTEE"}:
                 erreurs.append(f"{eid} : revue absente, hors cible ou encore inachevée.")
                 continue
-            if (decision == "MAINTENUE") != (proposition["a_verifier"] == "OUI"):
-                erreurs.append(f"{eid} : décision de revue incohérente avec la réserve.")
-            if r["sources_consultees"] != proposition["sources"] or r["reserve_restante"] != proposition["verification_note"]:
-                erreurs.append(f"{eid} : sources ou réserve différentes entre revue et proposition.")
+            # MAINTENUE décrit la revue avant validation, pas un blocage actuel.
+            if decision == "MAINTENUE" and (not r["reserve_restante"].strip() or not r.get("suivi_qualite_differe", "").strip()):
+                erreurs.append(f"{eid} : réserve historique ou suivi de qualité différé supprimé.")
+            if decision != "MAINTENUE" and r["reserve_restante"] != proposition["verification_note"]:
+                erreurs.append(f"{eid} : réserve différente entre revue et proposition.")
+            if r["sources_consultees"] != proposition["sources"]:
+                erreurs.append(f"{eid} : sources différentes entre revue et proposition.")
+            if r.get("antonin_validation") != "VALIDE" or not r.get("date_validation", "").strip():
+                erreurs.append(f"{eid} : validation humaine ou date de validation absente de la revue.")
             if not r["justification_documentaire"].strip() or not r["date_revue"].strip():
                 erreurs.append(f"{eid} : revue sans preuve documentaire ou date de consultation.")
             if r["flag_initial"] == "OUI" and not r["raison_initiale"].strip():
                 erreurs.append(f"{eid} : raison initiale de la réserve manquante.")
-        print(f"{len(revue)} revues documentaires ; {sum(r['decision'] == 'LEVEE' for r in revue)} réserves levées")
+        print(f"{len(revue)} revues documentaires ; {sum(r['decision'] == 'LEVEE' for r in revue)} réserves levées avant validation ; 4 réserves historiques conservées en suivi différé")
     for eid, causes in suspects:
         print(f"SUSPECT : {eid} : {', '.join(causes)}")
     for erreur in erreurs:
         print(f"ERREUR : {erreur}")
     print(f"{len(cibles)} événements à compléter")
     print(f"{len(propositions)} descriptions produites")
+    print(f"{sum(r.get('antonin_validation') == 'VALIDE' for r in propositions)} descriptions validées par Antonin")
     print(f"{sum(r.get('a_verifier') == 'OUI' for r in propositions)} cas à vérifier")
     print(f"{len(suspects)} descriptions suspectes contenant potentiellement une date")
     print(f"{len(erreurs)} erreurs")

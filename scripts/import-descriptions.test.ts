@@ -33,6 +33,13 @@ test("conserve le canonique déjà décrit et une explication différente prése
   assert.equal(resultat.bilan.baseConservees, 1);
   const texteAvecEspaces = "  Explication déjà relue.\n";
   assert.equal(fusionnerDescriptions([vide], [proposition], new Map([[vide.event_id, texteAvecEspaces]]), local).evenements[0].description_short, texteAvecEspaces);
+  for (const url of [local, distantFictif]) {
+    const validee = { ...proposition, antonin_validation: "VALIDE" };
+    assert.deepEqual(fusionnerDescriptions([canonique], [validee], new Map(), url).evenements[0], canonique);
+    const conservee = fusionnerDescriptions([vide], [validee], new Map([[vide.event_id, texteAvecEspaces]]), url);
+    assert.equal(conservee.evenements[0].description_short, texteAvecEspaces);
+    assert.equal(conservee.bilan.baseConservees, 1);
+  }
 });
 test("second import identique et absence du fichier facultatif préservent la base", () => {
   const base = new Map([[vide.event_id, proposition.description_short]]);

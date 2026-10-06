@@ -52,7 +52,10 @@ def main():
     events = {e["event_id"]: e for e in lire("events")}
     propositions = {}
     if args.avec_descriptions_proposees:
-        propositions = {r["event_id"]: r["description_short"] for r in lire("description-additions")}
+        lignes = lire("description-additions")
+        assert len(lignes) == len({r["event_id"] for r in lignes}) == 304, "Attendu 304 propositions distinctes."
+        assert all(r["antonin_validation"] == "VALIDE" and r["a_verifier"] == "NON" for r in lignes), "Les 304 descriptions doivent être validées par Antonin."
+        propositions = {r["event_id"]: r["description_short"] for r in lignes}
     avant = json.loads(args.descriptions_existantes.read_text(encoding="utf-8")) if args.descriptions_existantes else {}
     links = {(l["theme_id"], l["event_id"]): l for l in lire("curriculum-links") if l["theme_id"] and l["event_id"]}
     chapitres = requete("select coalesce(json_agg(x), '[]') from (select c.id,c.title,l.name as level from histoire.chapters c join histoire.levels l on l.id=c.level_id) x")
@@ -112,7 +115,7 @@ def main():
     if args.avec_descriptions_proposees:
         completees = sum(not events[eid]["description_short"] and not avant.get(eid) for eid in propositions)
         conservees = sum(not events[eid]["description_short"] and bool(avant.get(eid)) for eid in propositions)
-        print(f"OK descriptions : {completees} propositions importées, {conservees} explications préexistantes conservées, comparaison intégrale des 2 001 réponses privées.")
+        print(f"OK descriptions : 304 validées par Antonin ; {completees} propositions importées, {conservees} explications préexistantes conservées, comparaison intégrale des 2 001 réponses privées.")
     print(f"OK : {len(tags_attendus)} tags et {len(paires_tags)} associations événement/tag canoniques importés sans doublon.")
     insuffisants = {cid: nombres_jouables[cid] for cid in themes if nombres_jouables[cid] < 5}
     print("Chapitres préexistants hors des huit cas avec moins de cinq jouables :", insuffisants)

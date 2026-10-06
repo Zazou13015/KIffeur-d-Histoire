@@ -174,6 +174,19 @@ async function importer() {
     // Fichier facultatif.
   }
 
+  // Variantes de titres ajoutées en plus des alias d'Antonin (issue 1.3), sans toucher à ses fichiers.
+  let ajoutsAlias: Ligne[] = [];
+  try {
+    ajoutsAlias = csv("alias-additions");
+  } catch {
+    // Fichier facultatif.
+  }
+  const aliasAjoutes = new Map(ajoutsAlias.map((l) => [l.event_id, liste(l.aliases_added)]));
+  for (const e of evenements) {
+    const complement = aliasAjoutes.get(e.event_id);
+    if (complement) e.aliases = liste(`${e.aliases};${complement.join(";")}`).join(";");
+  }
+
   // Anciens identifiants fusionnés par Antonin (doublons) → identifiant canonique.
   const redirection = new Map(redirections.map((r) => [r.old_event_id, r.canonical_event_id]));
   const idsEvenements = new Set(evenements.map((e) => e.event_id));

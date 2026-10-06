@@ -5,7 +5,7 @@ r=pathlib.Path(__file__).resolve().parents[1]; d=r/'content/dataset-v18'
 def lire(p):
  with p.open(encoding='utf-8-sig',newline='') as f:return list(csv.DictReader(f))
 def executer(p):
- return subprocess.run([sys.executable,str(r/'scripts/verifier-descriptions.py'),'--dossier',str(p)],capture_output=True,text=True,encoding='utf-8')
+ return subprocess.run([sys.executable,'-X','utf8',str(r/'scripts/verifier-descriptions.py'),'--dossier',str(p)],capture_output=True,text=True,encoding='utf-8')
 cas=[
  ('année explicite', {'description_short':'La loi est votée en 1789. Elle transforme les droits.'}),
  ('année ancienne courte', {'description_short':'La décision est prise en 64. Elle change le gouvernement.'}),
@@ -42,7 +42,12 @@ with tempfile.TemporaryDirectory(prefix='issue8-tests-') as temp:
   assert result.returncode==1 and 'ERREUR :' in result.stdout, f'{nom} non détecté\n{result.stdout}\n{result.stderr}'
  for nom,rows in [('couverture manquante',base[:-1]),('doublon',base+[base[0]]),('orphelin',[dict(base[0],event_id='EVT-INCONNU')]+base[1:])]:
   ecrire(rows);result=executer(cible);assert result.returncode==1 and 'ERREUR :' in result.stdout, nom
+ non_jouables={e['event_id'] for e in lire(cible/'kiffeurs-events-v18.csv') if e['playable']=='FALSE'}
+ rows=[x for x in base if x['event_id'] not in non_jouables]
+ assert len(base)-len(rows)==17, 'Les 17 événements non jouables doivent figurer dans les propositions.'
+ ecrire(rows);result=executer(cible)
+ assert result.returncode==1 and 'Couverture incorrecte' in result.stdout, 'Exclusion des non-jouables non détectée.'
  rows=[dict(x) for x in base];rows[0].update(description_short='Une foule de 1000 personnes participe à la mobilisation. Elle réclame de nouveaux droits.',a_verifier='OUI',verification_note='Nombre de participants, pas une année ; à confirmer dans la source.')
  ecrire(rows);result=executer(cible);assert result.returncode==0 and 'SUSPECT :' in result.stdout, 'Un nombre non chronologique doit être signalé, pas supprimé ni automatiquement interdit.'
  p.write_bytes(original);assert executer(cible).returncode==0
-print(f'OK : {len(cas)+3} contrôles négatifs refusés ; nombre non chronologique signalé sans erreur ; dataset original intact.')
+print(f'OK : {len(cas)+4} contrôles négatifs refusés, dont omission des 17 non-jouables ; nombre non chronologique signalé sans erreur ; dataset original intact.')

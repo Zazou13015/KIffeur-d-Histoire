@@ -19,7 +19,7 @@ jobs:
           cache: npm
       - run: npm ci
       - run: python3 scripts/verifier-chapitres.py --exiger-validation --exiger-cinq-partout
-      - run: python3 scripts/verifier-descriptions.py
+      - run: python3 scripts/verifier-descriptions.py --exiger-revue-documentaire
       - run: python3 scripts/test-verifier-descriptions.py
       - run: node node_modules/tsx/dist/cli.mjs --test scripts/import-descriptions.test.ts
       - run: npm run lint

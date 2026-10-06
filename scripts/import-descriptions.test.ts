@@ -13,6 +13,18 @@ test("complète localement une description vide sans modifier le canonique en m�
   assert.equal(resultat.bilan.completees, 1);
   assert.equal(vide.description_short, "");
 });
+test("décrit aussi les événements non jouables sans modifier les dates ni les métadonnées de jeu", () => {
+  const nonJouable = { ...vide, playable: "FALSE", playable_mode: "NOT_AUTOMATIC", event_type: "PROCESS", date_status: "APPROXIMATE", start_year: "", precision: "PERIOD_TEXT", importance: "2", difficulty: "4" };
+  const copie = { ...nonJouable };
+  const resultat = fusionnerDescriptions([nonJouable], [proposition], new Map(), local);
+  assert.equal(resultat.bilan.completees, 1);
+  assert.deepEqual(resultat.evenements[0], { ...copie, description_short: proposition.description_short });
+  assert.deepEqual(nonJouable, copie);
+  const distant = fusionnerDescriptions([nonJouable], [proposition], new Map(), distantFictif);
+  assert.deepEqual(distant.evenements[0], copie);
+  assert.equal(distant.bilan.nonValideesIgnorees, 1);
+  assert.deepEqual(fusionnerDescriptions([nonJouable], [{ ...proposition, antonin_validation: "VALIDE" }], new Map(), distantFictif).evenements[0], { ...copie, description_short: proposition.description_short });
+});
 test("conserve le canonique déjà décrit et une explication différente présente en base", () => {
   const canonique = { ...vide, description_short: "Explication canonique." };
   assert.equal(fusionnerDescriptions([canonique], [proposition], new Map(), local).evenements[0].description_short, canonique.description_short);

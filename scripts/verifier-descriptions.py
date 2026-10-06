@@ -48,13 +48,15 @@ def niveaux_par_evenement(evenements, liens):
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--dossier", type=Path, default=Path(__file__).resolve().parents[1] / "content/dataset-v18")
+    p.add_argument("--exiger-revue-documentaire", action="store_true", help="Contrôler aussi la traçabilité de la seconde passe documentaire.")
     args = p.parse_args()
     _, evenements = lire(args.dossier, "events")
     _, liens = lire(args.dossier, "curriculum-links")
     colonnes, propositions = lire(args.dossier, "description-additions")
     canon = {e["event_id"]: e for e in evenements}
     niveaux = niveaux_par_evenement(evenements, liens)
-    cibles = {e["event_id"] for e in evenements if niveaux[e["event_id"]] and e["playable"] == "TRUE" and not e["description_short"].strip()}
+    # Une frise pédagogique a aussi besoin des explications des événements non jouables.
+    cibles = {e["event_id"] for e in evenements if niveaux[e["event_id"]] and not e["description_short"].strip()}
     erreurs, suspects = [], []
     if colonnes != COLONNES:
         erreurs.append("Colonnes différentes du format de proposition demandé.")
@@ -112,6 +114,32 @@ def main():
     repetitions = [t for t, n in Counter(r.get("description_short", "") for r in propositions).items() if n > 1]
     if repetitions:
         erreurs.append("Descriptions intégralement identiques sur plusieurs événements.")
+    if args.exiger_revue_documentaire:
+        _, revue = lire(args.dossier, "description-source-review")
+        par_id = {r["event_id"]: r for r in propositions}
+        if len(revue) != len({r["event_id"] for r in revue}):
+            erreurs.append("Revue documentaire : identifiants dupliqués.")
+        if Counter(r["flag_initial"] for r in revue) != {"OUI": 120, "NOUVELLE": 17}:
+            erreurs.append("Revue documentaire : attendu les 120 réserves initiales et les 17 ajouts.")
+        nouveaux = {eid for eid in cibles if canon[eid]["playable"] == "FALSE"}
+        if {r["event_id"] for r in revue if r["flag_initial"] == "NOUVELLE"} != nouveaux:
+            erreurs.append("Revue documentaire : les ajouts ne couvrent pas les 17 non-jouables.")
+        for r in revue:
+            eid = r["event_id"]
+            proposition = par_id.get(eid)
+            decision = r["decision"]
+            if not proposition or decision not in {"LEVEE", "MAINTENUE", "AJOUTEE"}:
+                erreurs.append(f"{eid} : revue absente, hors cible ou encore inachevée.")
+                continue
+            if (decision == "MAINTENUE") != (proposition["a_verifier"] == "OUI"):
+                erreurs.append(f"{eid} : décision de revue incohérente avec la réserve.")
+            if r["sources_consultees"] != proposition["sources"] or r["reserve_restante"] != proposition["verification_note"]:
+                erreurs.append(f"{eid} : sources ou réserve différentes entre revue et proposition.")
+            if not r["justification_documentaire"].strip() or not r["date_revue"].strip():
+                erreurs.append(f"{eid} : revue sans preuve documentaire ou date de consultation.")
+            if r["flag_initial"] == "OUI" and not r["raison_initiale"].strip():
+                erreurs.append(f"{eid} : raison initiale de la réserve manquante.")
+        print(f"{len(revue)} revues documentaires ; {sum(r['decision'] == 'LEVEE' for r in revue)} réserves levées")
     for eid, causes in suspects:
         print(f"SUSPECT : {eid} : {', '.join(causes)}")
     for erreur in erreurs:

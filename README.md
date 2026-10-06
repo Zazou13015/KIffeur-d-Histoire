@@ -39,6 +39,7 @@ Le tableau de bord Supabase local est sur http://127.0.0.1:54323 (tu peux y cré
 | `npm run db:start` / `npm run db:stop` | Démarre / arrête la base locale |
 | `npm run db:reset` | Recrée la base locale depuis les migrations + `supabase/seed.sql` |
 | `npm run db:new nom_du_changement` | Crée un nouveau fichier de migration vide |
+| `npm run db:test-securite` | Vérifie sur la base locale que le navigateur ne peut lire ni les dates, ni les alias, ni les descriptions |
 
 ## Travailler à deux
 

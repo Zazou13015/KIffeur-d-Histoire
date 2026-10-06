@@ -1,16 +1,13 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
-import { formatHistoricDate, type Precision } from "@/lib/game/dates";
 import { signOut } from "./connexion/actions";
 
+// Les dates ne sont pas lisibles depuis le navigateur (voir docs/architecture.md §4) : on ne montre que les titres.
 type EventRow = {
-  id: number;
+  id: string;
   title: string;
-  year: number;
-  month: number | null;
-  day: number | null;
-  precision: Precision;
+  importance: number;
 };
 
 export default async function Home() {
@@ -30,11 +27,13 @@ export default async function Home() {
   const { data: claims } = await supabase.auth.getClaims();
   const email = claims?.claims.email as string | undefined;
 
-  const { data: events, error } = await supabase
+  const { data: events, error, count } = await supabase
     .schema("histoire")
     .from("events")
-    .select("id, title, year, month, day, precision")
-    .order("year")
+    .select("id, title, importance", { count: "exact" })
+    .order("importance", { ascending: false })
+    .order("id")
+    .limit(20)
     .returns<EventRow[]>();
 
   return (
@@ -52,7 +51,9 @@ export default async function Home() {
       </header>
 
       <section className="flex flex-col gap-3">
-        <h2 className="text-lg font-semibold">Événements en base</h2>
+        <h2 className="text-lg font-semibold">
+          Événements en base{count != null && ` (${count})`}
+        </h2>
         {error && (
           <p className="rounded bg-red-100 px-3 py-2 text-sm text-red-800">
             Impossible de lire la base : {error.message}
@@ -62,7 +63,7 @@ export default async function Home() {
           {events?.map((event) => (
             <li key={event.id} className="flex justify-between gap-4 border-b border-stone-200 pb-2">
               <span>{event.title}</span>
-              <span className="shrink-0 text-stone-500">{formatHistoricDate(event, event.precision)}</span>
+              <span className="shrink-0 text-stone-500">{event.id}</span>
             </li>
           ))}
         </ol>

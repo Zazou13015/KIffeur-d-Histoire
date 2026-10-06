@@ -77,3 +77,33 @@ capacity_game_id=$(head -n1 "$accepted")
 grep -q 'Capacité des parties anonymes atteinte' "$rejected"
 [[ $(psql_q -Atc 'select count(*) from histoire.games where user_id is null;') == $((before_count+1)) ]]
 echo 'OK : budget anonyme respecté entre deux créations concurrentes'
+
+# Deux comptes réclament le même bilan avec la même capacité : un seul gagne.
+psql_q -c "delete from histoire.games where id = '$capacity_game_id';"
+capacity_game_id=''
+psql_q -c "update histoire.solo_anonymous_limits set max_games=$previous_max_games;"
+game_id=$(psql_q -Atc "set role anon; select histoire.start_game(p_token=>repeat('f',64),p_question_count=>1)->>'game_id';")
+question_id=$(psql_q -Atc "set role anon; select histoire.next_question('$game_id',repeat('f',64))->>'question_id';")
+psql_q -c "set role anon; select histoire.submit_answer('$game_id','$question_id',p_year=>2000,p_token=>repeat('f',64)); select histoire.finish_game('$game_id',repeat('f',64));"
+before_result=$(psql_q -Atc "select to_jsonb(g)-'user_id'-'anonymous_token_hash'-'expires_at' from histoire.games g where id='$game_id';")
+before_questions=$(psql_q -Atc "select jsonb_agg(to_jsonb(q) order by position) from histoire.game_questions q where game_id='$game_id';")
+claim() {
+  psql_q -c "begin; set local role authenticated; set local request.jwt.claim.sub='00000000-0000-0000-0000-0000000000$1'; select histoire.claim_anonymous_game('$game_id',repeat('f',64)); select pg_sleep(1); commit;"
+}
+claim 24 >"$logs/claim-first" 2>&1 & first=$!
+claim 25 >"$logs/claim-second" 2>&1 & second=$!
+first_status=0; wait "$first" || first_status=$?
+second_status=0; wait "$second" || second_status=$?
+if [[ $first_status == 0 && $second_status != 0 ]]; then
+  rejected="$logs/claim-second"
+elif [[ $second_status == 0 && $first_status != 0 ]]; then
+  rejected="$logs/claim-first"
+else
+  cat "$logs/claim-first" "$logs/claim-second"
+  echo 'ÉCHEC : deux claims concurrents doivent produire exactement un succès' >&2; exit 1
+fi
+grep -q 'Partie inaccessible' "$rejected"
+[[ $(psql_q -Atc "select count(*) from histoire.games where id='$game_id' and user_id in ('00000000-0000-0000-0000-000000000024','00000000-0000-0000-0000-000000000025') and anonymous_token_hash is null and expires_at is null;") == 1 ]]
+[[ $(psql_q -Atc "select to_jsonb(g)-'user_id'-'anonymous_token_hash'-'expires_at' from histoire.games g where id='$game_id';") == "$before_result" ]]
+[[ $(psql_q -Atc "select jsonb_agg(to_jsonb(q) order by position) from histoire.game_questions q where game_id='$game_id';") == "$before_questions" ]]
+echo 'OK : un seul claim concurrent, résultat et questions conservés'

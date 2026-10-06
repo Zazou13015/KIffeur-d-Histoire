@@ -10,6 +10,8 @@ vi.mock("@/lib/supabase/config", () => ({ isSupabaseConfigured: true }));
 vi.mock("@/lib/supabase/client", () => ({ createClient: () => ({ auth: { signInWithOAuth: mocks.oauth } }) }));
 vi.mock("@/lib/supabase/server", () => ({ createClient: async () => ({ auth: { signInWithPassword: mocks.password } }) }));
 vi.mock("next/navigation", () => ({ redirect: mocks.redirect }));
+vi.mock("@/lib/account", () => ({ accountDestination: async (_client: unknown, next: string) => next }));
+vi.mock("@/lib/pendingProfile", () => ({ completePendingProfile: vi.fn() }));
 
 beforeEach(() => {
   vi.clearAllMocks();

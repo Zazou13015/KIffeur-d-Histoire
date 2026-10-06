@@ -5,6 +5,10 @@
 # Usage : PGHOST=… PGPORT=… PGUSER=postgres PGDATABASE=… scripts/tests-sql.sh
 # Ne jamais lancer contre une base Supabase réelle : le script crée des rôles et des schémas.
 set -euo pipefail
+case "${PGHOST:-localhost}" in localhost|127.0.0.1|/var/run/postgresql) ;; *) echo 'Tests réservés à un Postgres local vide' >&2; exit 1 ;; esac
+if [[ -n ${PGSERVICE:-} || ${PGDATABASE:-postgres} == *[:=/]* ]]; then
+  echo 'Connexion distante ou service interdits pour les fixtures' >&2; exit 1
+fi
 cd "$(dirname "$0")/.."
 
 psql_q() { psql -v ON_ERROR_STOP=1 -q "$@"; }
@@ -27,6 +31,9 @@ create table if not exists auth.users (id uuid primary key);
 create or replace function auth.uid() returns uuid language sql as
   'select nullif(current_setting(''request.jwt.claim.sub'', true), '''')::uuid';
 SQL
+
+# Contrat externe existant de Contrée : fixture hors migrations, jamais distante.
+psql_q -f supabase/fixtures/kffr_profiles.sql
 
 for f in supabase/migrations/*.sql supabase/seed.sql; do
   echo "→ $f"

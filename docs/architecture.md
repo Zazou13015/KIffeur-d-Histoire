@@ -11,6 +11,12 @@
 
 ## 2. Partager les comptes avec KFFR contrée
 
+**Décision #24 (7 octobre 2026)** : même projet et même Auth. Le pseudo global
+vient exclusivement de `public.profiles.username`, déjà présent dans Contrée.
+Histoire peut lire/modifier la propre ligne du joueur sous les RLS existantes,
+sans aucune migration dans `public`. `histoire.players.display_name` est legacy,
+inutilisé pour l’identité et non synchronisé. Voir [Comptes et sauvegarde](comptes.md).
+
 Dans Supabase, les comptes vivent dans la table `auth.users` **d'un projet**. Deux projets Supabase distincts ne partagent rien nativement. Il y a donc trois options.
 
 ### Option A (recommandée) : même projet Supabase, schéma séparé

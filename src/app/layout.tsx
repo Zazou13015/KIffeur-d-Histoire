@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Atkinson_Hyperlegible, Big_Shoulders, JetBrains_Mono, Young_Serif } from "next/font/google";
 import "./globals.css";
+import AccountHeader from "@/components/AccountHeader";
 
 // Polices de la charte : titres, texte courant, dates, étiquettes techniques.
 const titre = Young_Serif({ variable: "--police-titre", weight: "400", subsets: ["latin"] });
@@ -20,7 +21,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="fr"
       className={`${titre.variable} ${texte.variable} ${date.variable} ${mono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col"><AccountHeader />{children}</body>
     </html>
   );
 }

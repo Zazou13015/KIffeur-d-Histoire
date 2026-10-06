@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Contrôle local, sans réseau ni base, des propositions de l'issue #9.
 
-Usage : python3 scripts/verifier-chapitres.py [--dossier content/dataset-v18]
+Usage : python3 scripts/verifier-chapitres.py [--dossier content/dataset-v18] [--exiger-validation]
 Ce script ne valide pas la pertinence pédagogique à la place d'Antonin.
 """
 import argparse
@@ -24,7 +24,9 @@ def liste(texte):
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--dossier", type=Path, default=Path(__file__).resolve().parents[1] / "content/dataset-v18")
-    d = p.parse_args().dossier
+    p.add_argument("--exiger-validation", action="store_true", help="Refuser toute proposition encore sans validation d'Antonin.")
+    args = p.parse_args()
+    d = args.dossier
     themes = {t["theme_id"]: t for t in lire(d, "themes")}
     events = {e["event_id"]: e for e in lire(d, "events")}
     liens = defaultdict(set)
@@ -39,6 +41,12 @@ def main():
     def verifier(condition, message):
         if not condition:
             erreurs.append(message)
+
+    def verifier_validation(ligne, autorises, identifiant):
+        statut = ligne["antonin_validation"]
+        verifier(statut in {"", *autorises}, f"{identifiant} : statut de validation inconnu.")
+        if args.exiger_validation:
+            verifier(bool(statut), f"{identifiant} : validation d'Antonin manquante.")
 
     vides = {cid for cid in themes if not liens[cid]}
     ids = [f["chapter_id"] for f in fixes]
@@ -59,7 +67,13 @@ def main():
             verifier(canon["playable"] == "TRUE", f"{e['event_id']} n'est pas jouable.")
         for champ in ("justification", "curriculum_sources", "consulted_historical_sources", "dataset_source_ids"):
             verifier(bool(e[champ]), f"{e['event_id']} : {champ} manquant.")
-        verifier(e["antonin_validation"] == "", "Une validation humaine a été préremplie.")
+        if e["event_id"] == "EVT-0905":
+            verifier_validation(e, {"VALIDE_SOUS_CONDITION"}, e["event_id"])
+            verifier(e["date_status"] == "CONVENTIONAL", "EVT-0905 : conserver le statut CONVENTIONAL exigé par Antonin.")
+            verifier("17 octobre" in e["review_notes"] and "19 octobre" in e["review_notes"],
+                     "EVT-0905 : conserver la note distinguant le 17 et le 19 octobre 1973.")
+        else:
+            verifier_validation(e, {"VALIDE"}, e["event_id"])
     conserves = set()
     for f in fixes:
         cid = f["chapter_id"]
@@ -72,7 +86,7 @@ def main():
         verifier(f["current_event_count"] == str(len(liens[cid])), f"{cid} : décompte erroné.")
         verifier(f["current_playable_event_count"] == "0", f"{cid} : décompte jouable erroné.")
         verifier(bool(f["justification"] and f["sources"]), f"{cid} : justification ou sources manquantes.")
-        verifier(f["antonin_validation"] == "", f"{cid} : validation humaine préremplie.")
+        verifier_validation(f, {"VALIDE"}, cid)
         proposes = liste(f["proposed_event_ids"])
         verifier(len(proposes) == len(set(proposes)), f"{cid} : événements proposés en double.")
         verifier(proposes == par_chapitre[cid], f"{cid} : liste et dossier événement divergent.")
@@ -102,13 +116,16 @@ def main():
         except ValueError:
             verifier(False, f"{n['proposal_id']} : date invalide.")
         verifier(bool(n["sources"] and n["justification"] and n["date_notes"]), "Nouveau candidat incomplet.")
-        verifier(n["antonin_validation"] == "", "Validation nouvelle préremplie.")
+        statut_attendu = "VALIDE_ET_SOUHAITE" if n["proposal_id"] in {"PROP-INDE", "PROP-DEVISE"} else "VALIDE"
+        verifier_validation(n, {statut_attendu}, n["proposal_id"])
     for erreur in erreurs:
         print(f"ERREUR : {erreur}")
     if erreurs:
         return 1
     print(f"OK : {len(fixes)} décisions, {len(details)} liens proposés / {len({e['event_id'] for e in details})} événements distincts existants et jouables, {len(nouveaux)} nouveaux candidats sans event_id.")
-    print("Métadonnées, dates et précision conservées ; validations humaines vides. Pertinence pédagogique à relire par Antonin.")
+    validations = sum(bool(l["antonin_validation"]) for l in [*fixes, *details, *nouveaux])
+    print(f"Métadonnées, dates et précision conservées ; {validations}/{len(fixes) + len(details) + len(nouveaux)} validations d'Antonin renseignées.")
+    print("EVT-0905 : CONVENTIONAL et note du 17/19 octobre conservés. Aucune proposition appliquée au canonique.")
     return 0
 
 

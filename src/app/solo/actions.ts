@@ -41,6 +41,7 @@ export async function startGame(filters: SoloFilters = {}): Promise<SoloGame> {
     p_chapter_ids: filters.chapterIds ?? null,
     p_difficulty: filters.difficulty ?? "YEAR",
     p_question_count: filters.questionCount ?? 10,
+    p_direction: filters.direction ?? "date",
   });
   if (game.anonymous) {
     (await cookies()).set(cookieName(game.game_id), token, {
@@ -60,11 +61,13 @@ export async function nextQuestion(gameId: string): Promise<SoloQuestion | null>
 }
 
 // null = constater l'expiration (0 point) et voir la correction.
-export async function submitAnswer(gameId: string, questionId: string, answer: SoloDate | null): Promise<SoloCorrection> {
+export async function submitAnswer(gameId: string, questionId: string, answer: SoloDate | string | null): Promise<SoloCorrection> {
   const token = (await cookies()).get(cookieName(gameId))?.value ?? null;
+  const date = typeof answer === "string" ? null : answer;
   return rpc("submit_answer", {
     p_game_id: gameId, p_question_id: questionId, p_token: token,
-    p_year: answer?.year ?? null, p_month: answer?.month ?? null, p_day: answer?.day ?? null,
+    p_year: date?.year ?? null, p_month: date?.month ?? null, p_day: date?.day ?? null,
+    p_answer_text: typeof answer === "string" ? answer : null,
   });
 }
 

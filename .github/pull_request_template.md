@@ -1,0 +1,18 @@
+Closes #
+
+## Avant
+<!-- Ce qu'on voyait ou ce qui se passait avant cette PR, en langage simple. -->
+
+## Après
+<!-- Ce qu'on voit ou ce qui se passe maintenant. -->
+
+## Comment tester
+<!-- Les étapes pour vérifier soi-même : page à ouvrir sur l'aperçu Vercel, action à faire, résultat attendu. -->
+1.
+
+## Vérifications
+- [ ] `npm run lint`
+- [ ] `npm run typecheck`
+- [ ] `npm run build`
+- [ ] Si la base change : migration dans `supabase/migrations/`, testée sur la base de test, rien hors du schéma `histoire`
+- [ ] Critères d'acceptation de l'issue remplis

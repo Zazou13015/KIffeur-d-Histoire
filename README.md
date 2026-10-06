@@ -4,6 +4,8 @@ Jeu web de dates historiques : placer des événements sur une frise, en solo, e
 
 Stack : Next.js (App Router, TypeScript, Tailwind) sur Vercel, Supabase (Postgres, Auth, Realtime, Storage). Architecture détaillée dans [docs/architecture.md](docs/architecture.md).
 
+Feuille de route V1 : [issue de suivi #31](https://github.com/Zazou13015/KIffeur-d-Histoire/issues/31). Pour prendre une étape (humain ou agent IA), suivre la section « Traiter une issue » de [CLAUDE.md](CLAUDE.md).
+
 ## Démarrer en local
 
 Prérequis : [Node.js 22](https://nodejs.org), [Docker Desktop](https://www.docker.com/products/docker-desktop/) (pour la base locale), Git.

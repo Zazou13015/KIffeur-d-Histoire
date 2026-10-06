@@ -54,8 +54,8 @@ export function gapText(answer: HistoricDate, expected: HistoricDate, unit: Prec
   return n < 730 ? `${Math.round(n / 30.44)} mois` : pluriel(Math.round(n / 365.25), "an");
 }
 
-// Points d'une réponse : 1000 si exacte, décroissance exponentielle avec l'écart.
-// Exemple de calcul, formule à calibrer après les premiers tests.
+// Points d'une réponse pour la page d'aperçu seulement : 1000 si exacte, décroissance exponentielle.
+// Le vrai score se calcule en base (histoire.score_answer, formule du PRD), jamais dans le navigateur.
 const ECHELLE_SCORE: Record<Precision, number> = { annee: 60, mois: 4 * 12, jour: 0.2 * 365.25 };
 
 export function score(answer: HistoricDate, expected: HistoricDate, unit: Precision): number {

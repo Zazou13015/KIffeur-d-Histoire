@@ -121,6 +121,14 @@ Normalisation côté serveur : minuscules, suppression des accents (`unaccent`),
 ### Difficulté et score
 L'écart se calcule dans l'unité de la difficulté (années, mois ou jours). Solo : pourcentage de précision dérivé de l'écart. 1v1 : l'écart retire des points de vie. Une seule fonction SQL de scoring, partagée par tous les modes, pour que les règles soient identiques partout.
 
+En place depuis l'étape 2.1 (migration `20261006210000_score.sql`, tests `supabase/tests/score.sql`) :
+- `histoire.scoring_settings` : une ligne de réglages (E₀ par unité, poids précision/rapidité, durée du chrono), lisible par le navigateur, modifiable par une simple mise à jour.
+- `histoire.date_gap(...)` : écart en années (`YEAR` = Facile), mois (`MONTH` = Moyen) ou jours (`DAY` = Difficile), dates av. J.-C. comprises, sans année 0.
+- `histoire.score_points(précision, secondes)` : la formule commune des points ; le mode inversé l'appelle avec 100 ou 0.
+- `histoire.score_answer(...)` : unité utilisée, écart, précision et points d'une réponse datée.
+- Événement connu moins précisément que la difficulté (ex. connu à l'année, posé en Difficile) : l'écart est compté dans l'unité disponible, avec l'E₀ de cette unité. Le tirage (2.2) doit éviter de poser ces questions ; ce n'est qu'un filet de sécurité.
+- Ces fonctions ne sont pas appelables par le navigateur : les RPC de partie (`security definer`) s'en servent.
+
 ### Solo
 Pas de temps réel. Le serveur tire les questions, le client répond, une RPC `submit_answer` corrige et enregistre.
 

@@ -41,3 +41,9 @@ Connexion : `SUPABASE_URL` et `SUPABASE_SERVICE_ROLE_KEY`, lus dans l'environnem
 Le JSON (24 Mo) et le classeur Excel du pack d'origine ne sont pas versionnés : ils reprennent les mêmes données que les CSV.
 
 Points connus (voir `docs/prd.md`, Questions ouvertes) : les 394 événements scolaires sans alias ont maintenant des variantes ajoutées (issue 1.3, relecture d'Antonin en attente), 304 sans description, 8 chapitres sans événement, aucune illustration, 1 000 ajouts encore à relire.
+
+## Propositions de nettoyage des chapitres (issue #9)
+
+Les huit décisions sont préparées dans `dataset-v18/kiffeurs-chapter-fixes-v18.csv`, avec leurs événements détaillés dans `kiffeurs-chapter-event-proposals-v18.csv` et les nouveaux candidats dans `kiffeurs-chapter-new-events-v18.csv`. Lire le [dossier de validation](dataset-v18/kiffeurs-chapter-fixes-v18-README.md) pour les sources officielles, les limites et les arbitrages d'Antonin.
+
+Ces fichiers ne sont pas importés et ne modifient pas le dataset canonique. Les colonnes `antonin_validation` restent vides jusqu'à la relecture humaine. Contrôle local sans base : `python3 scripts/verifier-chapitres.py` (Windows : `py -3 scripts/verifier-chapitres.py`).

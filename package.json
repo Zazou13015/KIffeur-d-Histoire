@@ -13,7 +13,8 @@
     "db:reset": "supabase db reset",
     "db:new": "supabase migration new",
     "db:test-securite": "docker exec -i supabase_db_kiffeurs-histoire psql -U postgres -v ON_ERROR_STOP=1 -q -f - < supabase/tests/reponses_invisibles.sql",
-    "content:import": "tsx --env-file-if-exists=.env.local scripts/import-dataset.ts"
+    "content:import": "tsx --env-file-if-exists=.env.local scripts/import-dataset.ts",
+    "content:illustrations": "tsx --env-file-if-exists=.env.local scripts/upload-illustrations.ts"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",

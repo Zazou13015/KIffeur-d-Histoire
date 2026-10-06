@@ -22,7 +22,6 @@ export type SoloQuestion = {
   question_id: string;
   position: number;
   title: string;
-  description: null;
   image_path: string | null;
   difficulty: SoloDifficulty;
   asked_at: string;

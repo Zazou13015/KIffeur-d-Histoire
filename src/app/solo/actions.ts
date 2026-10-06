@@ -16,9 +16,15 @@ function cookieName(gameId: string) {
 // les sérialiser dans une réponse de Server Action, ni les journaliser avec le jeton.
 async function rpc<T>(name: string, args: Record<string, unknown>): Promise<T> {
   const supabase = await createClient();
+  // Transaction distincte : la purge reste acquise même si l'action suivante
+  // refuse une partie expirée ou une création dépassant le budget.
+  const { error: purgeError } = await supabase.schema("histoire").rpc("purge_expired_anonymous_games");
+  if (purgeError) throw new Error("Impossible d'effectuer cette action de partie");
   const { data, error } = await supabase.schema("histoire").rpc(name, args);
   if (error) {
-    throw new Error(error.code === "42501" ? "Partie inaccessible" : "Impossible d'effectuer cette action de partie");
+    throw new Error(error.code === "42501" ? "Partie inaccessible" : error.code === "53400"
+      ? "Les parties sans compte sont temporairement indisponibles. Réessayez plus tard."
+      : "Impossible d'effectuer cette action de partie");
   }
   return data as T;
 }

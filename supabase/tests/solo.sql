@@ -61,8 +61,8 @@ begin
     q := histoire.next_question(game_id, token);
     -- Ensemble EXACT des clés autorisées avant réponse.
     perform pg_temp.verifier((select array_agg(k order by k) from jsonb_object_keys(q) k) =
-      array['asked_at','deadline','description','difficulty','image_path','position','question_id','server_time','title'], 'liste blanche avant réponse');
-    perform pg_temp.verifier(q->>'description' is null and (q->>'position')::int = i,
+      array['asked_at','deadline','difficulty','image_path','position','question_id','server_time','title'], 'liste blanche avant réponse');
+    perform pg_temp.verifier(not q ? 'description' and (q->>'position')::int = i,
       'description privée absente et ordre séquentiel');
     perform pg_temp.verifier(extract(epoch from ((q->>'deadline')::timestamptz - (q->>'asked_at')::timestamptz)) = 30, 'chrono 30 secondes');
     first_deadline := q->>'deadline';

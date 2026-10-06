@@ -16,6 +16,7 @@
     "db:test-securite": "docker exec -i supabase_db_kiffeurs-histoire psql -U postgres -v ON_ERROR_STOP=1 -q -f - < supabase/tests/reponses_invisibles.sql",
     "db:test-score": "docker exec -i supabase_db_kiffeurs-histoire psql -U postgres -v ON_ERROR_STOP=1 -q -f - < supabase/tests/score.sql",
     "db:test-solo": "docker exec -i supabase_db_kiffeurs-histoire psql -U postgres -v ON_ERROR_STOP=1 -q -f - < supabase/tests/solo.sql",
+    "db:test-solo-retention": "docker exec -i supabase_db_kiffeurs-histoire psql -U postgres -v ON_ERROR_STOP=1 -q -f - < supabase/tests/solo_anonymous_retention.sql",
     "content:import": "tsx --env-file-if-exists=.env.local scripts/import-dataset.ts",
     "content:illustrations": "tsx --env-file-if-exists=.env.local scripts/upload-illustrations.ts"
   },

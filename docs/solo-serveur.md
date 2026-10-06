@@ -1,6 +1,7 @@
 # Partie solo côté serveur (issue #13)
 
-Migration : `20261006214244_solo_server.sql`, après celle du score de #12.
+Migrations : `20261006214244_solo_server.sql` (moteur), après celle du score de #12,
+puis `20261006220620_solo_anonymous_retention.sql` (rétention/budget anonyme).
 Cette livraison est testée uniquement en local et en CI. Aucune migration ni
 écriture Supabase distante n'est exécutée par ce travail.
 
@@ -35,8 +36,63 @@ Les RPC sont appelables avec la clé publique et la session normale : aucun
 client serveur appelant ; l'interface web utilise exclusivement le cookie.
 Une connexion pendant une partie anonyme ne la transfère pas automatiquement
 au compte : le secret reste nécessaire. Les parties connectées restent privées
-après déconnexion. L'expiration/purge des lignes anonymes sera à prévoir avant
-la mise en production : un cookie de session ne supprime pas les lignes SQL.
+après déconnexion. Les parties anonymes expirent 24 heures après leur création,
+indépendamment du cookie de session (voir rétention ci-dessous).
+
+## Rétention et protection du stockage anonyme
+
+Décisions d'Antonin du 7 octobre 2026 : expiration à 24 h, purge automatique lors
+des appels de jeu, titre nettoyé et illustration avant réponse, descriptions
+réservées à la correction. Aucun worker permanent ni cron distant n'est ajouté.
+
+`games.expires_at` vaut exactement `created_at + interval '24 hours'` pour une
+partie anonyme. Le trigger fixe les deux instants côté serveur ; l'appelant ne
+peut pas fournir ou prolonger cette expiration. `lock_solo_game` refuse les
+trois RPC d'accès dès `expires_at <= clock_timestamp()`, même avec le bon secret,
+même si la purge physique n'a pas encore eu lieu, même pour un bilan terminé.
+Une partie connectée garde `expires_at = null` : aucune expiration, suppression
+ou modification de ses données par cette protection.
+
+La RPC `purge_expired_anonymous_games()` supprime uniquement les parties
+anonymes déjà expirées. Elle ne prend aucun paramètre (ni identifiant, ni date
+de coupure) et ne renvoie aucune donnée privée. L'accès `anon`/`authenticated`
+permet le nettoyage sans `service_role` ni secret serveur en base ; il ne donne
+pas la possibilité de supprimer une partie encore valide ou connectée.
+`game_questions` est supprimée par la FK `ON DELETE CASCADE` existante.
+La purge travaille par lots de 1 000 et ignore les parties verrouillées par
+une autre transaction (`SKIP LOCKED`), qui seront traitées au prochain appel.
+
+Chaque Server Action appelle cette purge dans une **transaction distincte**
+avant sa RPC métier : le nettoyage est conservé même si l'appel suivant est
+refusé. Une création anonyme directe via `start_game` déclenche également la
+purge, dans son trigger SQL. Dans ce dernier cas, la transaction entière reste
+atomique : un échec de création annule aussi cette purge, et l'appelant peut
+utiliser la RPC de purge distincte. La migration initialise l'expiration des
+éventuelles parties anonymes existantes et commence leur nettoyage.
+
+**Limite acceptée de la purge opportuniste** : à 24 h l'accès est interdit,
+mais sans trafic les lignes expirées restent physiquement présentes jusqu'au
+prochain appel. Le plafond ci-dessous borne leur volume. Il ne s'agit pas d'une
+suppression garantie à heure fixe pendant l'inactivité du site.
+
+`histoire.solo_anonymous_limits` est une table privée singleton avec deux
+budgets initiaux : **1 000 parties et 10 000 questions anonymes stockées**.
+Le trigger de création verrouille cette ligne avant de purger, compter et
+admettre une nouvelle partie. Il compte aussi les expirées encore verrouillées,
+et toutes les anonymes, terminées ou en cours. Ainsi les créations simultanées
+et les jetons/cookies renouvelés ne contournent pas les budgets. Un refus SQL
+`53400` ne laisse ni partie ni question supplémentaire ; la Server Action
+affiche une indisponibilité temporaire, sans exposer les compteurs privés.
+Seul un administrateur peut changer les budgets, après estimation du stockage
+disponible ; les rôles API n'ont aucun droit sur cette table ou le trigger.
+
+**Limites restantes** : ce plafond protège le volume des lignes de jeu anonymes,
+pas le nombre de requêtes ni la consommation CPU, WAL/logs ou les sauvegardes.
+Un attaquant peut occuper tout le budget et priver temporairement les autres
+visiteurs de création de partie. Un contrôle de débit/CAPTCHA en amont sera à
+envisager si l'usage le nécessite ; un quota par jeton librement renouvelable
+ne suffirait pas. Conformément au périmètre demandé, aucune limitation ni purge
+des parties connectées n'est ajoutée : leurs créations restent sans quota.
 
 Le correcteur inversé historique `check_event_answer(text,text)` devient
 **interne** : il permettait de tester librement des alias qui contiennent parfois
@@ -64,10 +120,10 @@ insuffisante est refusée sans liste de candidats, dates ou décompte disponible
 Les événements non jouables ou connus moins précisément que l'unité demandée
 sont exclus. Les événements de type plage sont datés par leur **début**.
 
-Avant réponse, seules les clés `question_id`, `position`, `title`, `description`,
+Avant réponse, seules les clés `question_id`, `position`, `title`,
 `image_path`, `difficulty`, `asked_at`, `deadline`, `server_time` sont renvoyées.
-`description` est `null` : il n'existe pas de description de question garantie
-sans date dans le modèle actuel. Les chiffres, mois et mentions de siècle sont
+Le champ `description` est absent : les descriptions actuelles restent réservées
+à la correction. Les chiffres, mois et mentions de siècle sont
 masqués dans le titre de question. Les illustrations suivent la convention
 existante `<event_id>.svg` ; les autres chemins sont masqués. Aucun alias,
 identifiant d'événement, tag, date secondaire ou date attendue n'est ajouté.
@@ -109,14 +165,20 @@ bash scripts/tests-sql.sh
 npm run db:test-securite
 npm run db:test-score
 npm run db:test-solo
+npm run db:test-solo-retention
 npm test
 npm run lint
 npm run typecheck
 npm run build
 ```
 
-La CI exécute automatiquement `supabase/tests/solo.sql` et le test de deux
-transactions concurrentes `scripts/tests-solo-concurrence.sh`. Couverture :
+La CI exécute automatiquement `supabase/tests/solo.sql`,
+`supabase/tests/solo_anonymous_retention.sql` et les tests de deux transactions
+concurrentes `scripts/tests-solo-concurrence.sh` (réponse et création au quota).
+Couverture : expiration à 24 h, refus des trois accès expirés, purge des anonymes
+en cours/terminées, cascade, conservation des non-expirées et des comptes,
+interdiction de changer l'expiration/budget, budgets de parties/questions et
+purge automatique à la création, ainsi que
 parties complètes de dix questions anonymes et connectées simulées, 1 000 points,
 filtres, précision disponible, plages, tirage unique, chrono/configuration,
 réponses exactes/imprécises/absentes/tardives, fin/récapitulatif, instant de

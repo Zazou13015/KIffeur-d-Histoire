@@ -139,6 +139,13 @@ aléatoire de session `httpOnly` côté Next.js, dont seule l'empreinte est en b
 Le correcteur inversé sans partie `check_event_answer` devient interne pour
 éviter de sonder les alias datés. Contrat, chrono et tests : [Solo serveur](solo-serveur.md).
 
+Les parties anonymes expirent à 24 h et sont purgées automatiquement lors des
+appels de jeu, avec suppression des questions par cascade. Un budget global SQL
+de 1 000 parties / 10 000 questions anonymes borne le stockage, y compris pour
+des appels directs et concurrents. Les parties connectées ne sont pas concernées.
+La purge est opportuniste : sans trafic, les lignes expirées restent présentes,
+mais sont inaccessibles. Aucun planificateur distant n'est ajouté.
+
 ### Lobby casual (beaucoup de joueurs)
 - **Presence** Realtime sur le canal `lobby:<id>` : liste des joueurs connectés.
 - L'hôte lance la manche → RPC qui crée la manche en base → **Broadcast** « nouvelle question » à tous.

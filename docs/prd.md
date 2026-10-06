@@ -141,7 +141,7 @@ Pour le mode pédagogique, chaque chapitre a besoin en plus de cartes d'explicat
 
 ### Illustrations
 
-Décision proposée (issue 1.6, comparatif dans `docs/illustrations/`) : pas de photos ni d'images libres de droit dans l'interface. Chaque carte porte un dessin simple à l'encre (`#1D2A3A`) sur papier (`#F3F2EC`), avec les accents laiton et oxyde de la charte « Cabinet de curiosités ».
+Décision (validée par Maxou le 6 octobre 2026, issue 1.6, comparatif dans `docs/illustrations/`) : pas de photos ni d'images libres de droit dans l'interface. Chaque carte porte un dessin simple à l'encre (`#1D2A3A`) sur papier (`#F3F2EC`), avec les accents laiton et oxyde de la charte « Cabinet de curiosités ».
 
 - Format : SVG, `viewBox="0 0 160 120"` (4:3), fond papier opaque, tracé de 2 px, 5 couleurs de la charte au maximum, aucun texte dans l'image.
 - Poids maximal : 8 Ko par fichier (les exemples font moins de 1,5 Ko).
@@ -200,7 +200,7 @@ Les packs de thèmes ne dépendent pas de cette feuille de route : ils s'ajouten
 Ce PRD est validé à deux, par Maxou et Antonin. Restent ouverts :
 
 - [ ] Dataset v18 : faire relire par Antonin les variantes de titres proposées (394 événements scolaires) et compléter les descriptions (304), remplir les 8 chapitres sans événement, et décider si les 1 000 ajouts en attente de relecture entrent dans la V1.
-- [x] Illustrations : dessins simplifiés dans la charte graphique (proposé, à confirmer par Maxou et Antonin ; voir « Illustrations »).
+- [x] Illustrations : dessins simplifiés dans la charte graphique (validé par Maxou le 6 octobre 2026 ; voir « Illustrations »).
 - [ ] Calibrer le score après les premiers tests : valeurs de E₀, part de la rapidité (30 %), durée du chrono (30 s).
 - [ ] Longueurs de partie proposées en plus des 10 questions (20, période entière).
 - [ ] Faut-il des meilleurs scores visibles par tous en solo pour le grand public ?

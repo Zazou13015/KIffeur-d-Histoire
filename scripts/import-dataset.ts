@@ -6,6 +6,7 @@
 import { readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { createClient } from "@supabase/supabase-js";
+import { fusionnerDescriptions } from "./import-descriptions";
 
 type Ligne = Record<string, string>;
 
@@ -160,13 +161,22 @@ async function importer() {
   const bilan: Bilan[] = [];
   const csv = (nom: string) => lireCsv(trouverFichier(dossier, nom));
 
-  const evenements = csv("events");
+  let evenements = csv("events");
   const themes = csv("themes");
   const liensProgramme = csv("curriculum-links");
   const packs = csv("ready-collections");
   const packEvenements = csv("ready-collection-events");
   const tags = csv("tags");
   const evenementTags = csv("event-tags");
+  // Fichier facultatif : les brouillons sont testables uniquement en local.
+  const fichierDescriptions = readdirSync(dossier).find((f) => /^kiffeurs-description-additions-v\d+\.csv$/.test(f));
+  const propositionsDescriptions = fichierDescriptions ? lireCsv(path.join(dossier, fichierDescriptions)) : [];
+  const reponsesExistantes = await toutLire(db, "event_answers", "event_id, description", ["event_id"]);
+  const fusion = fusionnerDescriptions(evenements, propositionsDescriptions,
+    new Map(reponsesExistantes.map((r) => [r.event_id, r.description])), process.env.SUPABASE_URL!);
+  evenements = fusion.evenements;
+  console.log("Descriptions :", fusion.bilan,
+    fusion.local ? "Propositions non validées autorisées sur la pile locale." : "Seules les propositions VALIDE sont autorisées à distance.");
   let redirections: Ligne[] = [];
   try {
     redirections = csv("event-redirects");

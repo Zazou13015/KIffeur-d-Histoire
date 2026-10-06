@@ -34,14 +34,29 @@ def requete(sql):
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--exiger-cinq-partout", action="store_true", help="Refuser l'import si un chapitre reste sous cinq événements jouables.")
+    p.add_argument("--avec-descriptions-proposees", action="store_true", help="Comparer les explications à la fusion locale des propositions de l'issue #8.")
+    p.add_argument("--descriptions-existantes", type=Path, help="Capture des explications présentes avant import, pour vérifier leur conservation.")
+    p.add_argument("--capturer-descriptions", type=Path, help="Enregistrer les descriptions préexistantes dans un JSON privé, puis quitter sans import.")
     args = p.parse_args()
     endpoint = subprocess.check_output(["docker", "context", "inspect", "--format", "{{.Endpoints.docker.Host}}"], text=True).strip()
     if not endpoint.startswith(("npipe://", "unix://")):
         raise RuntimeError("Contrôle refusé : le contexte Docker n'est pas un moteur local.")
     if any(os.environ.get(nom) for nom in ("DOCKER_HOST", "DOCKER_CONTEXT")):
         raise RuntimeError("Contrôle refusé : retirer les overrides Docker avant de vérifier le moteur local.")
+    if args.capturer_descriptions:
+        descriptions = requete("select coalesce(json_object_agg(event_id,description),'{}') from histoire.event_answers where description is not null")
+        args.capturer_descriptions.write_text(json.dumps(descriptions, ensure_ascii=False), encoding="utf-8")
+        print(f"Capture locale privée : {len(descriptions)} descriptions préexistantes ; aucun import effectué.")
+        return 0
     themes = {t["theme_id"]: t for t in lire("themes")}
     events = {e["event_id"]: e for e in lire("events")}
+    propositions = {}
+    if args.avec_descriptions_proposees:
+        lignes = lire("description-additions")
+        assert len(lignes) == len({r["event_id"] for r in lignes}) == 304, "Attendu 304 propositions distinctes."
+        assert all(r["antonin_validation"] == "VALIDE" and r["a_verifier"] == "NON" for r in lignes), "Les 304 descriptions doivent être validées par Antonin."
+        propositions = {r["event_id"]: r["description_short"] for r in lignes}
+    avant = json.loads(args.descriptions_existantes.read_text(encoding="utf-8")) if args.descriptions_existantes else {}
     links = {(l["theme_id"], l["event_id"]): l for l in lire("curriculum-links") if l["theme_id"] and l["event_id"]}
     chapitres = requete("select coalesce(json_agg(x), '[]') from (select c.id,c.title,l.name as level from histoire.chapters c join histoire.levels l on l.id=c.level_id) x")
     assert len(chapitres) == len(themes) == 41, "Nombre de chapitres importés incorrect."
@@ -67,7 +82,8 @@ def main():
         assert e["title"] == canon["title_canonical"], f"{e['id']} : titre altéré à l'import."
         for champ in ("event_type", "playable_mode", "source_status", "date_text", "secondary_dates", "calendar_system", "notes"):
             assert e[champ] == (canon[champ] or None), f"{e['id']} : {champ} altéré à l'import."
-        assert e["description"] == (canon["description_short"] or None), f"{e['id']} : description altérée à l'import."
+        description = canon["description_short"] or avant.get(e["id"]) or propositions.get(e["id"])
+        assert e["description"] == (description or None), f"{e['id']} : description altérée à l'import."
         for champ in ("importance", "difficulty"):
             assert e[champ] == int(canon[champ]), f"{e['id']} : {champ} altéré à l'import."
     catal = next(e for e in importes if e["id"] == "EVT-2042")
@@ -96,6 +112,10 @@ def main():
     print("OK : THM-030/037/040 ont 10/8/5 événements jouables ; THM-028 est en Terminale ; condition EVT-0905 importée.")
     print("OK : THM-002/004/039/044 ont 5/5/5/5 jouables ; conditions de Sargon et Çatalhöyük importées.")
     print("OK : EVT-2042 conserve sa plage APPROXIMATE/RANGE, ses trois alias et son appartenance au pack Expert ; les 24 packs concordent avec les CSV.")
+    if args.avec_descriptions_proposees:
+        completees = sum(not events[eid]["description_short"] and not avant.get(eid) for eid in propositions)
+        conservees = sum(not events[eid]["description_short"] and bool(avant.get(eid)) for eid in propositions)
+        print(f"OK descriptions : 304 validées par Antonin ; {completees} propositions importées, {conservees} explications préexistantes conservées, comparaison intégrale des 2 001 réponses privées.")
     print(f"OK : {len(tags_attendus)} tags et {len(paires_tags)} associations événement/tag canoniques importés sans doublon.")
     insuffisants = {cid: nombres_jouables[cid] for cid in themes if nombres_jouables[cid] < 5}
     print("Chapitres préexistants hors des huit cas avec moins de cinq jouables :", insuffisants)

@@ -10,6 +10,7 @@ npm run content:import -- --dossier content/dataset-v18
 
 - Le script (`scripts/import-dataset.ts`) lit les CSV et écrit dans le schéma `histoire` : événements (partie publique et réponses), alias, chapitres, niveaux, liens événement ↔ chapitre, packs et tags.
 - Il est **idempotent** : on peut le relancer autant de fois qu'on veut, il met à jour sans créer de doublon. Pour chaque événement et chaque pack du dataset, il retire aussi les liens qui ont disparu de la nouvelle version (alias, tags, chapitres, contenu d'un pack). Il ne supprime jamais d'événement.
+- Les variantes de titres ajoutées par l'équipe (`kiffeurs-alias-additions-v18.csv`, issue 1.3) sont fusionnées avec les alias d'Antonin ; son fichier d'événements n'est pas modifié. Contrôle avant import : `python3 scripts/verifier-alias.py` (couverture, doublons, collisions avec les autres événements).
 - Les événements `playable=FALSE` sont importés (utiles pour la frise pédagogique) mais marqués non jouables : le jeu ne les pose jamais en question.
 - Les identifiants fusionnés par Antonin (`kiffeurs-event-redirects`) sont remplacés par l'identifiant canonique.
 - À la fin, un tableau résume ce qui a été créé, mis à jour, retiré ou ignoré.
@@ -39,4 +40,4 @@ Connexion : `SUPABASE_URL` et `SUPABASE_SERVICE_ROLE_KEY`, lus dans l'environnem
 
 Le JSON (24 Mo) et le classeur Excel du pack d'origine ne sont pas versionnés : ils reprennent les mêmes données que les CSV.
 
-Points connus (voir `docs/prd.md`, Questions ouvertes) : 394 événements scolaires sans alias, 304 sans description, 8 chapitres sans événement, aucune illustration, 1 000 ajouts encore à relire.
+Points connus (voir `docs/prd.md`, Questions ouvertes) : les 394 événements scolaires sans alias ont maintenant des variantes ajoutées (issue 1.3, relecture d'Antonin en attente), 304 sans description, 8 chapitres sans événement, aucune illustration, 1 000 ajouts encore à relire.

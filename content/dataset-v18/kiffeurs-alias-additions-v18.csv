@@ -1,0 +1,395 @@
+﻿event_id,title_canonical,aliases_added,justification
+EVT-0001,Centenaire de la proclamation de la République,Centenaire de la République;Centenaire de la Ire République;Fêtes du centenaire de la République,nom court ; formulation d'élève
+EVT-0002,14 juillet fête nationale,Fête nationale;Fête nationale du 14 juillet;Loi sur la fête nationale,nom usuel en classe
+EVT-0009,Début de l’industrialisation en Angleterre,Industrialisation de l'Angleterre;Révolution industrielle en Angleterre;Première révolution industrielle,nom usuel du programme
+EVT-0010,Essor industriel en France,Industrialisation de la France;Essor industriel français,variantes courantes
+EVT-0011,Population urbaine majoritaire en France,Les urbains deviennent majoritaires en France;Majorité de population urbaine;Urbanisation de la France,formulation d'élève
+EVT-0015,Rafle du Vel d’Hiv,Rafle du Vélodrome d'Hiver;Vel d'Hiv;Rafle des 16 et 17 juillet 1942,nom usuel et variante d'orthographe
+EVT-0018,Déclaration Schuman,Plan Schuman;Discours de Schuman;Déclaration de Robert Schuman;Déclaration du 9 mai,nom usuel
+EVT-0023,Première date traditionnelle des Jeux olympiques antiques,Premiers Jeux olympiques;Premiers Jeux olympiques antiques;Jeux olympiques de l'Antiquité,nom court
+EVT-0024,Fondation traditionnelle de Rome,Fondation de Rome;Naissance de Rome;Romulus fonde Rome;Fondation légendaire de Rome,nom court usuel
+EVT-0025,Développement de Rome archaïque,Rome archaïque;Rome des origines,nom court
+EVT-0026,Rédaction de la Bible hébraïque,La Bible hébraïque;Écriture de la Bible hébraïque;Composition de la Bible hébraïque;Rédaction de l'Ancien Testament,nom usuel
+EVT-0027,Prise de Jérusalem par les Babyloniens,Prise de Jérusalem par Nabuchodonosor;Destruction de Jérusalem par les Babyloniens;Chute de Jérusalem en 587 av. J.-C.,nom usuel
+EVT-0028,Retour après l’exil à Babylone,Fin de l'exil à Babylone;Retour d'exil à Babylone;Retour des Juifs de Babylone,formulation d'élève
+EVT-0029,Athènes au temps de Périclès,Siècle de Périclès;Athènes de Périclès;Athènes à l'époque de Périclès,nom usuel
+EVT-0030,Périclès,Périclès stratège;Naissance de Périclès,nom court
+EVT-0033,Pax Romana,Paix romaine;Paix d'Auguste;Paix augustéenne,traduction usuelle
+EVT-0035,Révolte juive,Révolte des Juifs contre Rome;Première guerre judéo-romaine;Grande révolte juive,nom usuel
+EVT-0036,Prise de Jérusalem et destruction du Second Temple,Destruction du Temple de Jérusalem;Destruction du Second Temple;Prise de Jérusalem par Titus;Siège de Jérusalem par Titus,nom usuel
+EVT-0037,Concile de Nicée,Premier concile de Nicée;Concile de Nicée de 325;Nicée,nom usuel
+EVT-0039,Édit de Thessalonique,Édit de Théodose;Édit de Théodose Ier;Le christianisme religion d'État;Édit de 380,nom usuel
+EVT-0040,Dynastie Han,Les Han;Empire Han;Dynastie des Han;Chine des Han,nom court
+EVT-0041,Règne de l’empereur Wu/Wudi,Règne de Wudi;Empereur Wudi;Règne de l'empereur Wu;Wudi,variante d'orthographe
+EVT-0043,Début conventionnel de l'ère du calendrier hégirien,Début du calendrier musulman;An 1 de l'hégire;Départ de Mahomet pour Médine,nom usuel
+EVT-0045,Échange de sentences d'excommunication entre les légats romains et le patriarcat de Constantinople,Schisme de 1054;Grand Schisme d'Orient;Schisme d'Orient;Excommunication de 1054,nom usuel
+EVT-0047,Règne de Justinien Ier,Justinien;Règne de Justinien;Empereur Justinien,nom court
+EVT-0048,Traité de Verdun,Partage de Verdun;Traité de partage de Verdun;Partage de l'empire carolingien à Verdun;Serment et traité de Verdun,nom usuel
+EVT-0049,Prise de Jérusalem par les croisés,Prise de Jérusalem en 1099;Jérusalem prise par les croisés;Première croisade prise de Jérusalem;Conquête de Jérusalem par les croisés,formulation d'élève
+EVT-0051,Prise de Bagdad par les Mongols,Chute de Bagdad;Prise de Bagdad en 1258;Destruction de Bagdad par les Mongols;Sac de Bagdad,nom usuel
+EVT-0052,Sacre d'Hugues Capet,Hugues Capet roi;Couronnement d'Hugues Capet;Élection d'Hugues Capet;Début de la dynastie capétienne,nom usuel
+EVT-0053,Forte croissance démographique de l'Europe médiévale,Croissance démographique médiévale;Essor démographique du Moyen Âge;Croissance de la population européenne au Moyen Âge,nom court
+EVT-0054,Bataille de Bouvines,Bouvines;Victoire de Bouvines;Bataille de Bouvines en 1214,nom court
+EVT-0055,Guerre de Cent Ans,Cent Ans de guerre;Guerre franco-anglaise de Cent Ans;Conflit entre la France et l'Angleterre;Les Cent Ans,variante d'écriture
+EVT-0056,Bataille de Castillon,Castillon;Victoire de Castillon;Fin de la guerre de Cent Ans à Castillon,nom court
+EVT-0057,Début du règne de Philippe Auguste,Philippe Auguste roi;Avènement de Philippe Auguste;Règne de Philippe II Auguste;Début du règne de Philippe II,nom usuel
+EVT-0058,Règne de Louis IX,Saint Louis;Règne de Saint Louis;Louis IX,nom usuel
+EVT-0059,Canonisation de Louis IX,Saint Louis canonisé;Canonisation de saint Louis;Louis IX devient saint,nom usuel
+EVT-0060,Premiers États généraux du royaume,États généraux de 1302;États généraux de Philippe le Bel;Premiers États généraux de Philippe IV le Bel,nom usuel
+EVT-0065,Édit de Nantes,Édit de Nantes de 1598;Édit d'Henri IV;Édit de tolérance de Nantes;Édit de Nantes d'Henri IV,nom usuel
+EVT-0066,Gouvernement personnel de Louis XIV,Louis XIV gouverne seul;Prise du pouvoir par Louis XIV;Gouvernement de Louis XIV,formulation d'élève
+EVT-0069,Début de la première circumnavigation,Départ de Magellan;Magellan part faire le tour du monde;Départ de l'expédition Magellan;Départ de Magellan pour le tour du monde,nom usuel
+EVT-0070,Achèvement de la première circumnavigation par Elcano et la Victoria,Retour de la Victoria;Elcano achève le tour du monde,nom usuel
+EVT-0072,Concile de Trente,Concile de Trente de 1545;Début du concile de Trente;Ouverture du concile de Trente,nom court
+EVT-0073,Guerres de Religion en France,Guerres de religion;Guerres de religion françaises,nom usuel
+EVT-0074,Fronde,Fronde parlementaire;Fronde des princes;Révolte de la Fronde,nom usuel
+EVT-0075,Début du gouvernement personnel de Louis XIV,Début du règne personnel de Louis XIV;Louis XIV prend le pouvoir;Gouvernement personnel du Roi-Soleil,nom court
+EVT-0077,Mort de Louis XIV,Décès de Louis XIV;Mort du Roi-Soleil;Mort de Louis XIV en 1715,nom usuel
+EVT-0078,Première abolition de l'esclavage par la Convention nationale,Abolition de l'esclavage de 1794;Abolition de l'esclavage par la Convention;Décret d'abolition de l'esclavage;Décret du 16 pluviôse an II,nom usuel
+EVT-0079,Loi du 30 floréal an X relative à l'esclavage dans les colonies,Loi de 1802 sur l'esclavage;Rétablissement de l'esclavage;Rétablissement de l'esclavage par Bonaparte;Loi du 30 floréal an X,nom usuel
+EVT-0082,arrestation d'Alfred Dreyfus,Arrestation de Dreyfus;Alfred Dreyfus arrêté;Début de l'affaire Dreyfus;Arrestation du capitaine Dreyfus,nom court
+EVT-0084,arrêt de la Cour de cassation réhabilitant Dreyfus,Réhabilitation de Dreyfus;Cour de cassation réhabilite Dreyfus;Arrêt de réhabilitation de Dreyfus;Dreyfus réhabilité,nom usuel
+EVT-0085,réintégration militaire,Réintégration de Dreyfus;Dreyfus réintégré dans l'armée;Réintégration de Dreyfus dans l'armée,nom usuel
+EVT-0086,"Julie-Victoire Daubié obtient le baccalauréat ès lettres, première bachelière française",Première bachelière;Julie-Victoire Daubié bachelière;Julie Daubié;Première femme bachelière en France,nom usuel
+EVT-0087,loi permettant aux femmes diplômées en droit de devenir avocates,Les femmes avocates;Accès des femmes au barreau;Loi de 1900 sur les femmes avocates,formulation d'élève
+EVT-0088,loi sur le libre salaire de la femme mariée,Loi sur le salaire de la femme mariée;Libre salaire de la femme mariée;Loi de 1907 sur le salaire des femmes mariées,nom court
+EVT-0089,Déclaration de guerre de l'Autriche-Hongrie à la Serbie,L'Autriche-Hongrie déclare la guerre à la Serbie;Déclaration de guerre à la Serbie;Ultimatum et guerre contre la Serbie;Guerre de l'Autriche-Hongrie contre la Serbie,formulation d'élève
+EVT-0093,Léon Blum devient président du Conseil,Blum président du Conseil;Léon Blum au pouvoir;Léon Blum chef du gouvernement;Gouvernement Léon Blum,formulation d'élève
+EVT-0094,Accords de Matignon,Accord de Matignon;Accords Matignon;Matignon;Accords de Matignon de 1936,nom court
+EVT-0095,Loi instituant les congés payés,Congés payés;Loi sur les congés payés;Congés payés de 1936;Deux semaines de congés payés,nom usuel
+EVT-0096,Loi sur la semaine de quarante heures,Semaine de 40 heures;Loi des 40 heures;Semaine de quarante heures de 1936;Loi sur les 40 heures,nom usuel
+EVT-0097,Invasion de la Pologne par l'Allemagne,Invasion de la Pologne;Attaque de la Pologne;L'Allemagne envahit la Pologne;Début de la Seconde Guerre mondiale en Pologne,nom court
+EVT-0098,Déclaration de guerre française et britannique à l'Allemagne,La France et le Royaume-Uni déclarent la guerre à l'Allemagne;Entrée en guerre de la France et du Royaume-Uni,formulation d'élève
+EVT-0100,Libération de Paris,Libération de Paris en 1944;Paris libéré;Libération de la capitale;Libération de Paris par Leclerc,nom court
+EVT-0102,Capitulation japonaise signée ; fin conventionnelle mondiale du conflit,Capitulation du Japon;Reddition du Japon;Fin de la guerre du Pacifique,nom usuel
+EVT-0106,Vote des pleins pouvoirs constituants à Pétain,Pleins pouvoirs à Pétain;Vote des pleins pouvoirs à Pétain;Vote du 10 juillet 1940;Pétain reçoit les pleins pouvoirs,nom usuel
+EVT-0107,Actes constitutionnels instituant l'État français,Actes constitutionnels de Vichy;État français de Pétain;Naissance de l'État français;Création du régime de Vichy,nom usuel
+EVT-0109,Adoption du programme du CNR,Programme du CNR;Programme Les Jours heureux;Les Jours heureux,nom usuel
+EVT-0110,Discours de Truman devant le Congrès présentant la doctrine Truman,Doctrine Truman;Discours de Truman de 1947;Politique d'endiguement de Truman,nom usuel
+EVT-0111,Début du blocus de Berlin,Blocus de Berlin;Début du blocus de Berlin-Ouest;Blocus de Berlin-Ouest;Premier blocus de Berlin,nom court
+EVT-0112,Fin du blocus de Berlin,Levée du blocus de Berlin;Fin du blocus soviétique de Berlin,nom court
+EVT-0117,Entrée en vigueur du traité CECA,Entrée en vigueur de la CECA;Communauté européenne du charbon et de l'acier,sigle usuel
+EVT-0119,Entrée en vigueur des traités de Rome,Naissance de la CEE;Création de la Communauté économique européenne,nom usuel
+EVT-0121,Entrée en vigueur du cessez-le-feu prévu par les accords d’Évian,Cessez-le-feu en Algérie;Cessez-le-feu des accords d'Évian;Cessez-le-feu du 19 mars 1962,nom usuel
+EVT-0122,Référendum d'autodétermination en Algérie,Référendum d'autodétermination algérien;Référendum sur l'indépendance de l'Algérie;Référendum du 1er juillet 1962;Vote d'autodétermination en Algérie,nom usuel
+EVT-0128,Ordonnance fondatrice de l'organisation de la Sécurité sociale,Ordonnance sur la Sécurité sociale;Création de la Sécurité sociale;Ordonnance du 4 octobre 1945,nom usuel
+EVT-0129,Loi réformant les régimes matrimoniaux et renforçant l'autonomie professionnelle de la femme mariée,Loi sur les régimes matrimoniaux;Loi de 1965 sur les régimes matrimoniaux;Femme mariée autorisée à travailler sans l'accord du mari;Réforme des régimes matrimoniaux,nom usuel
+EVT-0130,Loi remplaçant la puissance paternelle par l'autorité parentale,Loi sur l'autorité parentale;Autorité parentale;Fin de la puissance paternelle;Loi de 1970 sur l'autorité parentale,nom usuel
+EVT-0131,Loi abaissant la majorité civile à 18 ans,Majorité à 18 ans;Loi sur la majorité à 18 ans;Abaissement de la majorité civile;Majorité civile à 18 ans,nom court
+EVT-0134,"Loi de décentralisation relative aux droits et libertés des communes, départements et régions",Loi Defferre;Lois de décentralisation;Décentralisation de 1982;Loi de décentralisation de 1982,nom usuel
+EVT-0135,Loi instituant le revenu minimum d'insertion,Loi sur le RMI;Création du RMI;RMI;Revenu minimum d'insertion,sigle usuel
+EVT-0139,inauguration/dédicace de Constantinople comme capitale impériale,Fondation de Constantinople;Constantinople capitale de l'empire;Inauguration de Constantinople;Constantin fonde Constantinople,nom usuel
+EVT-0140,prédication de la deuxième croisade à Vézelay,Prédication de Vézelay;Saint Bernard prêche à Vézelay;Appel de Vézelay;Deuxième croisade à Vézelay,nom usuel
+EVT-0141,campagne principale,Croisade de Louis VII;Croisade de Louis VII et Conrad III;Expédition de Louis VII en Terre sainte;Croisade de Conrad III,variantes de contexte
+EVT-0142,puissance maritime et commerciale médiévale,Puissance maritime médiévale;Puissance maritime et commerciale;Essor maritime et commercial médiéval,nom court
+EVT-0144,controverse de Valladolid,Controverse de Valladolid de 1550;Débat de Valladolid;Las Casas contre Sepúlveda;Querelle de Valladolid,nom usuel
+EVT-0145,développement atlantique de plantation et de traite,Plantations et traite atlantique;Développement de la traite et des plantations;Économie de plantation;Système des plantations atlantiques,nom court
+EVT-0146,signature du contrat pour la voûte de la Chapelle Sixtine,Contrat de la Chapelle Sixtine;Contrat de Michel-Ange pour la Sixtine;Commande de la voûte de la Sixtine;Michel-Ange signe le contrat de la Sixtine,formulation d'élève
+EVT-0147,réalisation de la voûte,Peinture de la voûte de la Sixtine;Michel-Ange peint la Sixtine;Réalisation de la Sixtine,nom court
+EVT-0148,inauguration de la voûte achevée,Inauguration de la Sixtine;Inauguration de la Chapelle Sixtine;Dévoilement de la voûte de la Sixtine,nom court
+EVT-0149,vie d’Érasme,Érasme;Naissance d'Érasme;Érasme de Rotterdam,nom court
+EVT-0152,création de la Compagnie française des Indes orientales,Compagnie des Indes orientales;Création de la Compagnie des Indes orientales;Compagnie française des Indes;Fondation de la Compagnie des Indes orientales,nom usuel
+EVT-0153,déclaration royale liée aux compagnies des Indes orientales et occidentales,Déclaration royale de 1664 sur les compagnies des Indes;Colbert et les compagnies des Indes,formulation d'élève
+EVT-0154,installation de la Cour et du siège du gouvernement à Versailles,Installation à Versailles;La Cour s'installe à Versailles;Louis XIV s'installe à Versailles;Versailles siège du gouvernement,nom usuel
+EVT-0158,séjour/exil de Voltaire en Angleterre,Voltaire en Angleterre;Exil de Voltaire en Angleterre;Séjour de Voltaire en Angleterre;Voltaire à Londres,nom court
+EVT-0159,édition anglaise *Letters concerning the English Nation*,Letters concerning the English Nation;Lettres sur la nation anglaise;Lettres anglaises de Voltaire,nom usuel
+EVT-0160,première édition française des *Lettres philosophiques*,Lettres philosophiques;Lettres philosophiques de Voltaire;Publication des Lettres philosophiques;Lettres anglaises,nom usuel
+EVT-0161,première investiture/inauguration présidentielle,Investiture de George Washington;Washington président;Washington prête serment,nom usuel
+EVT-0162,observations télescopiques et publication du *Sidereus Nuncius*,Sidereus Nuncius;Le Messager des étoiles;Galilée observe les astres;Galilée publie le Sidereus Nuncius,nom usuel
+EVT-0163,condamnation par le Saint-Office,Condamnation de Galilée;Procès de Galilée;Galilée condamné par l'Inquisition;Galilée devant le Saint-Office,nom usuel
+EVT-0164,première machine atmosphérique pratique de Newcomen utilisée pour pomper une mine,Machine de Newcomen;Machine à vapeur de Newcomen;Première machine à vapeur;Pompe à feu de Newcomen,nom usuel
+EVT-0165,publication posthume de sa traduction commentée des *Principia* de Newton,Traduction des Principia par Émilie du Châtelet;Principia traduits par Madame du Châtelet;Émilie du Châtelet traduit Newton;Publication des Principia en français,nom usuel
+EVT-0167,révolte normande des Va Nu-pieds,Révolte des Va-nu-pieds;Va-nu-pieds;Révolte des Nu-pieds;Soulèvement des Va-nu-pieds,variantes d'orthographe
+EVT-0168,structures sociales et pauvreté urbaine,Pauvreté urbaine;Société d'Ancien Régime et pauvreté;Structures sociales de l'Ancien Régime;Pauvreté dans les villes,nom court
+EVT-0169,sociabilité des salons,Salons;Salons du siècle des Lumières;Les salons littéraires;Sociabilité des Lumières,nom usuel
+EVT-0170,essor portuaire français lié au commerce colonial et à la traite,Essor des ports français;Ports français et commerce colonial;Bordeaux et Nantes et la traite;Ports atlantiques français,nom court
+EVT-0171,arrestation de Madame Roland,Arrestation de Mme Roland;Madame Roland arrêtée;Arrestation de Manon Roland;Arrestation de Manon Phlipon Roland,variantes d'écriture
+EVT-0172,exécution de Madame Roland,Exécution de Mme Roland;Madame Roland guillotinée;Mort de Madame Roland;Exécution de Manon Roland,variantes d'écriture
+EVT-0177,présentation du rapport d’accusation,Rapport d'accusation;Rapport d'accusation de Louis XVI;Présentation du rapport d'accusation du roi;Accusation de Louis XVI,nom court
+EVT-0181,congrès de Vienne,Congrès de Vienne de 1814;Vienne 1814;Congrès de Vienne et Metternich,nom usuel
+EVT-0182,Acte final du congrès de Vienne,Acte final de Vienne;Acte final du congrès de Vienne de 1815,nom usuel
+EVT-0183,massacre de Chios,Massacres de Chios;Massacre de l'île de Chio;Chio;Massacre de Scio,variantes d'orthographe
+EVT-0186,proclamation de la Deuxième République,Proclamation de la Seconde République;Naissance de la IIe République,nom usuel
+EVT-0189,Constitution de la Deuxième République,Constitution de la IIe République;Constitution de la Seconde République;Constitution de la Deuxième République de 1848,nom usuel
+EVT-0192,Paris haussmannien,Haussmann transforme Paris;Rénovation de Paris par Haussmann;Travaux d'Haussmann;Paris d'Haussmann,nom usuel
+EVT-0194,frères Pereire,Les Pereire;Émile et Isaac Pereire;Banquiers Pereire,nom court
+EVT-0195,Crédit mobilier,Crédit mobilier des Pereire;Banque du Crédit mobilier;Création du Crédit mobilier,nom court
+EVT-0202,élections communales,Élections communales de 1871;Élections de la Commune;Élection du conseil de la Commune;Élections du 26 mars 1871,nom court
+EVT-0203,proclamation de la Commune,Proclamation de la Commune de Paris;La Commune,nom usuel
+EVT-0204,Semaine sanglante,Semaine sanglante de 1871;Répression de la Commune,nom usuel
+EVT-0205,fin de la Commune,Chute de la Commune;Écrasement de la Commune;Défaite de la Commune,nom court
+EVT-0209,débarquements alliés à Gallipoli,Bataille de Gallipoli;Expédition de Gallipoli;Débarquement de Gallipoli,nom usuel
+EVT-0210,bataille de la Somme,Somme;Bataille de la Somme de 1916;Offensive de la Somme;Somme 1916,nom court
+EVT-0211,début de l’opération Michael,Opération Michael;Offensive Michael;Offensive allemande de mars 1918;Offensive de printemps allemande,nom usuel
+EVT-0212,première grande offensive de printemps,Offensive Ludendorff;Première offensive du printemps 1918;Offensive du printemps 1918 en France,nom usuel
+EVT-0224,funérailles nationales de Victor Hugo,Obsèques de Victor Hugo;Funérailles de Victor Hugo;Victor Hugo au Panthéon;Enterrement de Victor Hugo,variantes d'écriture
+EVT-0225,fusillade de Fourmies,Fusillade de Fourmies de 1891;Massacre de Fourmies;Fourmies;Tragédie du 1er mai à Fourmies,nom usuel
+EVT-0230,déclaration alliée sur les crimes contre les Arméniens,Déclaration alliée sur le génocide arménien;Condamnation alliée des massacres d'Arméniens;Crimes contre l'humanité contre les Arméniens,formulation d'élève
+EVT-0232,traité de Saint-Germain,Traité de Saint-Germain-en-Laye;Saint-Germain-en-Laye;Traité avec l'Autriche;Traité de Saint-Germain avec l'Autriche,nom usuel
+EVT-0233,traité de Neuilly,Neuilly;Traité de Neuilly-sur-Seine;Traité avec la Bulgarie;Traité de Neuilly avec la Bulgarie,nom usuel
+EVT-0234,traité de Trianon,Trianon;Traité du Trianon;Traité avec la Hongrie;Traité de Trianon avec la Hongrie,nom usuel
+EVT-0235,traité de Sèvres,Sèvres;Traité de Sèvres de 1920;Traité avec l'Empire ottoman;Traité de Sèvres avec la Turquie,nom usuel
+EVT-0236,choix du cercueil du Soldat inconnu,Choix du Soldat inconnu;Désignation du Soldat inconnu;Choix du cercueil à Verdun;Choix du soldat inconnu de 1920,nom court
+EVT-0237,cérémonie du Soldat inconnu sous l’Arc,Soldat inconnu à l'Arc de triomphe;Cérémonie du Soldat inconnu;Arrivée du Soldat inconnu à l'Arc de triomphe;Soldat inconnu sous l'Arc de triomphe,nom court
+EVT-0238,inhumation définitive du Soldat inconnu,Inhumation du soldat inconnu en 1921;Soldat inconnu enterré définitivement;Mise en terre du Soldat inconnu;Funérailles définitives du Soldat inconnu,nom court
+EVT-0239,arrangement à l’origine du passeport Nansen,Passeport Nansen;Création du passeport Nansen;Passeport Nansen pour les réfugiés;Nansen et les apatrides,nom usuel
+EVT-0240,traité de Lausanne,Lausanne;Traité de Lausanne de 1923;Paix de Lausanne,nom usuel
+EVT-0243,New Deal,New Deal de Roosevelt;Politique du New Deal;Nouvelle Donne,nom usuel
+EVT-0246,demande française d’armistice,Demande d'armistice de Pétain;Pétain demande l'armistice;Demande d'armistice de la France;Armistice demandé à l'Allemagne,nom usuel
+EVT-0248,Entrée en vigueur du cessez-le-feu franco-allemand de juin 1940,Cessez-le-feu de juin 1940;Cessez-le-feu franco-allemand;Entrée en vigueur de l'armistice de 1940;Armistice du 22 juin 1940,nom court
+EVT-0249,reconnaissance de De Gaulle comme chef des Français libres par le Royaume-Uni,De Gaulle chef des Français libres;Reconnaissance de De Gaulle par Churchill;Churchill reconnaît De Gaulle;Reconnaissance de De Gaulle par les Britanniques,nom court
+EVT-0250,début conventionnel de la guerre d’Indochine,Début de la guerre d'Indochine;Guerre d'Indochine;Début de la guerre d'Indochine en 1946;Commencement de la guerre d'Indochine,nom usuel
+EVT-0252,chute du camp de Diên Biên Phu,Chute du camp retranché de Diên Biên Phu;Reddition de Diên Biên Phu;Fin du siège de Diên Biên Phu,variantes d'orthographe
+EVT-0253,accord de cessation des hostilités au Vietnam signé à Genève,Accords de Genève sur le Vietnam;Accord de Genève sur l'Indochine,nom usuel
+EVT-0255,entrée en vigueur de l’accord de cessez-le-feu au Vietnam,Cessez-le-feu au Vietnam;Cessez-le-feu en Indochine;Entrée en vigueur des accords de Genève;Fin des combats en Indochine,nom court
+EVT-0256,jonction historique du tunnel de service,Jonction du tunnel de service;Percée du tunnel sous la Manche;Percée du tunnel de service,nom court
+EVT-0257,jonction du tunnel ferroviaire nord,Jonction du tunnel nord;Jonction du tunnel ferroviaire nord sous la Manche;Percée du tunnel ferroviaire nord;Tunnel nord de la Manche,nom court
+EVT-0258,jonction du tunnel ferroviaire sud,Rencontre des tunneliers du tunnel sud;Fin du creusement du tunnel sud;Achèvement du creusement du tunnel sud;Sud : les tunneliers se rejoignent,nom court
+EVT-0259,inauguration officielle du tunnel,Ouverture du tunnel sous la Manche;Inauguration d'Eurotunnel,nom usuel
+EVT-0260,premier train de marchandises en exploitation commerciale,Premier train de marchandises sous la Manche;Premier train de fret sous la Manche;Début du fret sous la Manche;Premier train de fret dans le tunnel,nom court
+EVT-0261,début du service commercial Eurostar,Lancement d'Eurostar;Début d'Eurostar;Premier Eurostar;Ouverture du service Eurostar,nom usuel
+EVT-0262,"Discours de Benjamin Constant, *De la liberté des Anciens comparée à celle des Modernes*",Liberté des Anciens et des Modernes;De la liberté des Anciens comparée à celle des Modernes;Discours de Constant sur la liberté;Benjamin Constant et la liberté des Modernes,nom usuel
+EVT-0263,Publication du premier ensemble de *De la démocratie en Amérique*,De la démocratie en Amérique;Tocqueville De la démocratie en Amérique;Publication de La démocratie en Amérique;Première partie de La démocratie en Amérique,nom court
+EVT-0264,Publication du second ensemble de *De la démocratie en Amérique*,Tocqueville publie la suite de la Démocratie;Tocqueville seconde Démocratie,nom court
+EVT-0267,Entrée en vigueur de la Constitution démocratique portugaise de 1976,Constitution portugaise de 1976;Constitution du Portugal;Constitution démocratique du Portugal,nom court
+EVT-0268,Référendum constitutionnel espagnol,Référendum espagnol sur la Constitution;Référendum constitutionnel en Espagne;Référendum de 1978 en Espagne;Vote de la Constitution espagnole,nom court
+EVT-0269,Sanction de la Constitution espagnole par le roi,Juan Carlos sanctionne la Constitution;Le roi signe la Constitution espagnole,nom court
+EVT-0270,Publication et entrée en vigueur de la Constitution espagnole,Constitution de 1978 en Espagne;Publication de la Constitution de 1978;Constitution espagnole publiée;Constitution de l'Espagne démocratique,nom court
+EVT-0272,Entrée en vigueur du traité de Maastricht,Entrée en vigueur du traité sur l'Union européenne;Naissance de l'Union européenne,nom usuel
+EVT-0274,Acte général de la conférence de Berlin,Congrès de Berlin sur l'Afrique;Partage de l'Afrique à Berlin,nom usuel
+EVT-0275,Début de la guerre de Corée,Guerre de Corée;Déclenchement de la guerre de Corée;Invasion de la Corée du Sud;Début de la guerre de Corée en 1950,nom usuel
+EVT-0276,Armistice de Corée,Armistice de Panmunjom;Cessez-le-feu en Corée;Armistice coréen,nom usuel
+EVT-0277,Traité germano-polonais confirmant la frontière existante,Traité germano-polonais de 1990;Traité sur la frontière Oder-Neisse;Frontière germano-polonaise;Traité de reconnaissance de la ligne Oder-Neisse,nom court
+EVT-0279,Entrée en vigueur de la Convention de Montego Bay,Convention sur le droit de la mer;Entrée en vigueur du droit de la mer,nom usuel
+EVT-0280,Accord de Schengen,Accords de Schengen;Schengen;Accord de Schengen de 1985;Signature de l'accord de Schengen,nom court
+EVT-0281,Convention d’application de Schengen,Convention de Schengen;Convention d'application de l'accord de Schengen;Convention de 1990 sur Schengen;Application de l'accord de Schengen,nom court
+EVT-0282,Mise en application effective de Schengen pour les premiers États,Schengen entre en application;Ouverture des frontières de Schengen,nom court
+EVT-0283,Fondation de l’Agence Havas,Création de l'agence Havas;Agence Havas;Charles-Louis Havas fonde l'agence;Fondation de Havas,nom court
+EVT-0284,Naissance de l’Agence France-Presse,AFP;Fondation de l'Agence France-Presse,sigle usuel
+EVT-0285,Adoption du statut de l’AFP,Statut de l'AFP;Loi sur le statut de l'AFP;Adoption du statut de l'Agence France-Presse,nom court
+EVT-0288,Lancement d’Apollo 11,Décollage d'Apollo 11;Départ d'Apollo 11;Apollo 11 décolle;Lancement de la mission Apollo 11,nom usuel
+EVT-0289,Alunissage d’Apollo 11,Armstrong marche sur la Lune;Alunissage;Apollo 11 se pose sur la Lune,nom usuel
+EVT-0290,"Premier module de l’ISS, Zarya, mis en orbite",Module Zarya;Zarya;Lancement du premier module de l'ISS;Début de l'assemblage de l'ISS,nom court
+EVT-0291,Début de l’occupation humaine continue de l’ISS,Occupation permanente de l'ISS;Premier équipage de l'ISS;Début de l'occupation de l'ISS;Premiers occupants de la Station spatiale internationale,nom court
+EVT-0293,Adoption de l’accord BBNJ,Accord BBNJ;Adoption du traité sur la haute mer;Traité sur la haute mer;Accord sur la biodiversité en haute mer,nom court
+EVT-0294,Entrée en vigueur de l’accord BBNJ,Accord BBNJ en vigueur;Entrée en vigueur du traité sur la haute mer;Entrée en vigueur de l'accord sur la haute mer,nom court
+EVT-0296,Début du premier mandat de Kofi Annan comme secrétaire général de l’ONU,Kofi Annan secrétaire général;Kofi Annan à l'ONU;Premier mandat de Kofi Annan,nom court
+EVT-0297,Fin du second mandat de Kofi Annan,Fin du deuxième mandat de Kofi Annan;Second mandat de Kofi Annan terminé,nom court
+EVT-0299,Invasion du Koweït par l’Irak,Invasion du Koweït;Irak envahit le Koweït;Saddam Hussein envahit le Koweït;Invasion du Koweït en 1990,nom usuel
+EVT-0300,Début des opérations militaires de la coalition contre l’Irak,Guerre du Golfe;Début de la guerre du Golfe;Offensive de la coalition contre l'Irak,nom usuel
+EVT-0301,Fin de la campagne militaire principale de la coalition,Cessez-le-feu de la guerre du Golfe;Libération du Koweït;Fin des opérations de la coalition,nom usuel
+EVT-0302,Début de l’invasion de l’Irak par la coalition de 2003,Invasion de l'Irak;Invasion de l'Irak de 2003,nom usuel
+EVT-0303,Déclenchement immédiat de la séquence génocidaire au Rwanda après l’attentat contre l’avion présidentiel,Début du génocide des Tutsi;Génocide des Tutsi au Rwanda;Attentat contre l'avion de Habyarimana;Début du génocide rwandais,nom usuel
+EVT-0304,Journée retenue par l’ONU pour commémorer le début du génocide des Tutsis,Journée de commémoration du génocide des Tutsi;Journée de commémoration du génocide rwandais;Journée de l'ONU pour le génocide des Tutsi;Commémoration du génocide des Tutsi,nom court
+EVT-0305,Création du TPIY par la résolution 827 du Conseil de sécurité,Création du TPIY;Tribunal pénal international pour l'ex-Yougoslavie;Résolution 827;Création du tribunal pour l'ex-Yougoslavie,sigle usuel
+EVT-0306,Fermeture du TPIY,Fin du TPIY;Clôture du TPIY,sigle usuel
+EVT-0308,Jugement final du Tribunal militaire international de Nuremberg,Jugement de Nuremberg;Verdict de Nuremberg,nom usuel
+EVT-0309,Destructions de monuments historiques et religieux à Tombouctou visées dans l’affaire Al Mahdi,Destruction des mausolées de Tombouctou;Destructions à Tombouctou;Mausolées de Tombouctou;Affaire Al Mahdi,nom court
+EVT-0310,Jugement Al Mahdi par la CPI,Condamnation d'Al Mahdi;Procès Al Mahdi;Jugement d'Al Mahdi;Al Mahdi condamné par la CPI,nom court
+EVT-0311,Inscription du Bassin minier du Nord-Pas-de-Calais au patrimoine mondial,Bassin minier au patrimoine mondial;Bassin minier du Nord-Pas-de-Calais patrimoine mondial;Inscription du Bassin minier à l'UNESCO;Bassin minier classé à l'UNESCO,nom court
+EVT-0312,Inscription du repas gastronomique des Français sur la Liste représentative du patrimoine culturel immatériel,Repas gastronomique des Français à l'UNESCO;Repas gastronomique des Français;Gastronomie française à l'UNESCO;Repas gastronomique au patrimoine immatériel,nom court
+EVT-0313,Création du parc national de Yellowstone,Parc de Yellowstone;Yellowstone;Création de Yellowstone;Premier parc national américain,nom court
+EVT-0314,Création du National Park Service,Création du service des parcs nationaux américains;National Park Service;NPS;Service des parcs nationaux des États-Unis,nom usuel
+EVT-0316,Conférence de Stockholm sur l’environnement humain,Conférence de Stockholm;Conférence des Nations unies sur l'environnement;Sommet de Stockholm de 1972;Stockholm 1972,nom usuel
+EVT-0317,Sommet de la Terre de Rio,Sommet de Rio;Conférence de Rio;Sommet de la Terre de 1992;Sommet de la Terre à Rio de Janeiro,nom usuel
+EVT-0318,Adoption du protocole de Kyoto,Protocole de Kyoto;Kyoto;Adoption de Kyoto;Signature du protocole de Kyoto,nom court
+EVT-0319,Entrée en vigueur du protocole de Kyoto,Kyoto entre en vigueur;Entrée en application du protocole de Kyoto,nom court
+EVT-0321,Entrée en vigueur de l’accord de Paris,Accord de Paris en vigueur;Accord de Paris sur le climat;Entrée en vigueur de l'accord de Paris sur le climat,nom usuel
+EVT-0323,Communication de Becquerel sur les radiations invisibles des sels d’uranium,Découverte de la radioactivité;Découverte de la radioactivité par Becquerel;Becquerel découvre la radioactivité;Rayons de Becquerel,nom usuel
+EVT-0326,Création de l’ANSSI,Création de l'Agence nationale de la sécurité des systèmes d'information;ANSSI;Agence nationale de la sécurité des systèmes d'information,sigle usuel
+EVT-0327,Moyen Âge,Début du Moyen Âge;Chute de l'Empire romain d'Occident;Fin de l'Empire romain d'Occident,nom usuel
+EVT-0328,Règne de François Ier,François Ier;Règne de François 1er;Avènement de François Ier;Début du règne de François Ier,nom court
+EVT-0329,Séjour de Léonard de Vinci en France,Léonard de Vinci en France;Installation de Léonard de Vinci en France;Léonard de Vinci à Amboise;Départ de Léonard pour la France,nom court
+EVT-0330,Règne d’Henri IV,Henri IV;Règne d'Henri IV de France;Début du règne d'Henri IV;Avènement d'Henri IV,nom court
+EVT-0333,Code noir,Édit sur les esclaves des colonies;Code noir de Louis XIV;Code noir de 1685,nom usuel
+EVT-0334,Ouverture des États généraux,Ouverture des États généraux de 1789;Réunion des États généraux;Début des États généraux,nom usuel
+EVT-0337,Marche des femmes sur Versailles,Marche des femmes;Journées des 5 et 6 octobre 1789;Les femmes marchent sur Versailles;Marche des Parisiennes sur Versailles,nom usuel
+EVT-0338,Premiers outils de pierre connus,Premiers outils en pierre;Les premiers outils;Invention des outils de pierre;Outils de pierre les plus anciens,nom court
+EVT-0339,Début de la préhistoire,La préhistoire;Naissance de la préhistoire;Origine de la préhistoire,nom court
+EVT-0341,Premières écritures mésopotamiennes,Invention de l'écriture;Premières écritures de Mésopotamie;Naissance de l'écriture;Écriture cunéiforme,nom usuel
+EVT-0342,Premiers États,Naissance des États;Apparition des premiers États;Premiers États de l'Antiquité;Formation des premiers États,nom court
+EVT-0346,Essor de la traite atlantique occidentale,Début de l'essor de la traite atlantique;Développement de la traite occidentale;Traite atlantique occidentale,nom court
+EVT-0347,Apogée de la traite atlantique,Apogée de la traite;Apogée de la traite négrière atlantique;Sommet de la traite atlantique,nom court
+EVT-0349,Napoléon Bonaparte au pouvoir,Napoléon au pouvoir;Bonaparte au pouvoir;Bonaparte Premier consul;Arrivée de Napoléon au pouvoir,nom court
+EVT-0351,Deuxième révolution industrielle,Seconde révolution industrielle;Révolution industrielle de la fin du XIXe siècle,variante d'écriture
+EVT-0357,Signature de la Charte des Nations Unies,Charte des Nations unies;Signature de la Charte de l'ONU;Charte de San Francisco,nom usuel
+EVT-0361,Référendum constitutionnel fondant la Ve République,Référendum de 1958;Référendum fondant la Cinquième République,nom court
+EVT-0367,Ordonnance de 1669 sur les Eaux et Forêts,Ordonnance de Colbert sur les Eaux et Forêts;Ordonnance sur les Eaux et Forêts;Ordonnance de 1669;Code forestier de Colbert,nom usuel
+EVT-0368,Construction de la grande pyramide de Gizeh,Pyramide de Khéops;Grande pyramide de Gizeh;Construction de la pyramide de Khéops;Construction de la Grande Pyramide,nom usuel
+EVT-0369,Code de Hammurabi,Code d'Hammurabi;Code de Hammourabi;Hammurabi;Hammourabi,variantes d'orthographe
+EVT-0370,Unification de la Chine par Qin Shi Huang,Qin Shi Huang unifie la Chine;Unification de la Chine;Premier empereur de Chine;Unification de la Chine par Qin,nom usuel
+EVT-0371,Départ de Zhang Qian vers l’Asie centrale,Voyage de Zhang Qian;Zhang Qian part pour l'Asie centrale;Départ de Zhang Qian;Mission de Zhang Qian en Asie centrale,nom court
+EVT-0372,Réformes de Clisthène à Athènes,Réformes de Clisthène;Clisthène et la démocratie athénienne;Clisthène;Naissance de la démocratie athénienne,nom usuel
+EVT-0373,Bataille de Marathon,Marathon;Victoire de Marathon;Bataille de Marathon contre les Perses;Marathon contre les Perses,nom court
+EVT-0374,Bataille de Salamine,Salamine;Victoire de Salamine;Salamine contre les Perses,nom court
+EVT-0375,Création de la ligue de Délos,Ligue de Délos;Fondation de la ligue de Délos;Création de la confédération de Délos;Confédération de Délos,nom usuel
+EVT-0376,Guerre du Péloponnèse,Guerre du Péloponnèse entre Athènes et Sparte;Début de la guerre du Péloponnèse;Péloponnèse;Athènes contre Sparte,nom usuel
+EVT-0377,Mort de Socrate,Socrate condamné à mort;Condamnation de Socrate;Socrate boit la ciguë,nom usuel
+EVT-0378,Alexandre devient roi de Macédoine,Alexandre roi de Macédoine;Avènement d'Alexandre le Grand;Alexandre le Grand devient roi;Début du règne d'Alexandre le Grand,nom court
+EVT-0379,Bataille d’Issos,Issos;Victoire d'Alexandre à Issos;Bataille d'Issos contre Darius;Alexandre bat Darius à Issos,nom court
+EVT-0380,Bataille de Gaugamèles,Gaugamèles;Bataille de Gaugamela;Gaugamela;Alexandre bat Darius à Gaugamèles,variantes d'orthographe
+EVT-0381,Mort d’Alexandre le Grand,Mort d'Alexandre;Décès d'Alexandre le Grand;Alexandre meurt à Babylone;Mort d'Alexandre à Babylone,nom court
+EVT-0382,Fondation traditionnelle de la République romaine,Fondation de la République romaine;Début de la République romaine;Chute des rois de Rome,nom court
+EVT-0383,Première guerre punique,Guerres puniques;Début des guerres puniques;Rome contre Carthage;Première guerre contre Carthage,nom usuel
+EVT-0384,Destruction de Carthage par Rome,Destruction de Carthage;Chute de Carthage;Carthage détruite;Carthage détruite par Rome,nom court
+EVT-0385,Jules César franchit le Rubicon,César franchit le Rubicon;Passage du Rubicon;Franchissement du Rubicon;Le Rubicon,nom usuel
+EVT-0386,Assassinat de Jules César,Mort de Jules César;Assassinat de César;César assassiné;Les ides de mars,nom usuel
+EVT-0387,Bataille d’Actium,Actium;Victoire d'Octave à Actium;Octave bat Antoine à Actium;Bataille d'Actium entre Octave et Antoine,nom court
+EVT-0388,Accord traditionnellement appelé « édit de Milan »,Édit de Milan;Édit de tolérance de Milan;Édit de Constantin;Milan 313,nom usuel
+EVT-0389,Concile d’Éphèse,Éphèse;Concile d'Éphèse de 431;Concile de 431;Concile d'Éphèse et Nestorius,nom court
+EVT-0390,Sac de Rome par Alaric,Sac de Rome de 410;Prise de Rome par Alaric;Alaric prend Rome;Rome pillée par les Wisigoths,nom usuel
+EVT-0391,Concile de Chalcédoine,Chalcédoine;Concile de Chalcédoine de 451;Concile de Chalcédoine et monophysisme,nom court
+EVT-0392,Fin de la dynastie Han,Chute de la dynastie Han;Fin des Han;Fin de l'empire Han;Disparition de la dynastie Han,nom court
+EVT-0393,Bataille de Vouillé,Vouillé;Victoire de Clovis à Vouillé;Clovis bat les Wisigoths à Vouillé;Clovis à Vouillé,nom court
+EVT-0394,Prise de Pavie par Charlemagne et fin du royaume lombard,Prise de Pavie;Charlemagne prend Pavie;Fin du royaume lombard;Charlemagne conquiert le royaume lombard,nom court
+EVT-0396,Traité de Saint-Clair-sur-Epte,Traité de Saint-Clair;Saint-Clair-sur-Epte;Naissance de la Normandie;Rollon et le traité de Saint-Clair,nom usuel
+EVT-0397,Couronnement impérial d’Otton Ier,Couronnement d'Otton Ier;Sacre d'Otton Ier;Otton Ier empereur;Otton le Grand couronné empereur,nom usuel
+EVT-0398,Bataille d’Hastings,Hastings;Bataille d'Hastings de 1066;Guillaume le Conquérant à Hastings;Conquête de l'Angleterre par Guillaume,nom court
+EVT-0399,Appel à la première croisade au concile de Clermont,Concile de Clermont;Appel d'Urbain II;Appel à la croisade à Clermont;Discours d'Urbain II à Clermont,nom usuel
+EVT-0400,Bataille de Manzikert,Manzikert;Défaite byzantine de Manzikert;Victoire des Turcs seldjoukides à Manzikert;Bataille de Malazgirt,nom court
+EVT-0401,Magna Carta,La Grande Charte;Charte des libertés de Jean sans Terre;Magna Carta de 1215,nom usuel
+EVT-0402,Quatrième concile du Latran,Concile du Latran de 1215;IVe concile du Latran;Latran IV;Quatrième concile de Latran,nom usuel
+EVT-0403,Proclamation de Temüjin comme Gengis Khan,Temüjin devient Gengis Khan;Gengis Khan proclamé empereur;Proclamation de Gengis Khan,nom usuel
+EVT-0404,Départ de Marco Polo vers l’Asie,Départ de Marco Polo;Marco Polo part pour la Chine;Départ de Marco Polo pour l'Asie;Voyage de Marco Polo,nom court
+EVT-0405,Retour de Marco Polo à Venise,Retour de Marco Polo;Marco Polo revient à Venise;Marco Polo rentre à Venise;Retour de Marco Polo en Italie,nom court
+EVT-0406,Bataille de Crécy,Crécy;Victoire anglaise de Crécy;Défaite française de Crécy;Bataille de Crécy de 1346,nom court
+EVT-0407,Bataille de Poitiers de 1356,Poitiers;Capture du roi Jean le Bon à Poitiers;Défaite de Poitiers,nom usuel
+EVT-0408,Grande Jacquerie,La Jacquerie;Révolte des Jacques;Révolte paysanne de 1358,nom usuel
+EVT-0409,Début du Grand Schisme d’Occident,Grand Schisme d'Occident de 1378;Début du Grand Schisme;Papes d'Avignon et de Rome,nom usuel
+EVT-0410,Bataille d’Azincourt,Azincourt;Défaite d'Azincourt;Victoire anglaise d'Azincourt;Bataille d'Azincourt de 1415,nom court
+EVT-0411,Levée du siège d’Orléans par Jeanne d’Arc,Délivrance d'Orléans;Jeanne d'Arc délivre Orléans;Siège d'Orléans;Libération d'Orléans,nom usuel
+EVT-0412,Sacre de Charles VII à Reims,Sacre de Charles VII;Charles VII sacré à Reims;Sacre de Reims de 1429,nom court
+EVT-0413,Exécution de Jeanne d’Arc,Jeanne d'Arc brûlée à Rouen;Mort de Jeanne d'Arc;Bûcher de Jeanne d'Arc;Supplice de Jeanne d'Arc,nom usuel
+EVT-0414,Impression de la Bible de Gutenberg,Bible de Gutenberg;Impression de la Bible par Gutenberg;Gutenberg imprime la Bible;Invention de l'imprimerie,nom usuel
+EVT-0415,Mariage d’Isabelle de Castille et Ferdinand d’Aragon,Mariage d'Isabelle et Ferdinand;Mariage des Rois Catholiques;Union de la Castille et de l'Aragon;Isabelle de Castille épouse Ferdinand d'Aragon,nom court
+EVT-0416,Création de l’Inquisition espagnole,Inquisition espagnole;Fondation de l'Inquisition espagnole;Naissance de l'Inquisition espagnole;Création du tribunal de l'Inquisition en Espagne,nom court
+EVT-0417,Prise de Grenade par les Rois Catholiques,Prise de Grenade;Chute de Grenade;Fin de la Reconquista;Reconquête de Grenade,nom usuel
+EVT-0418,Traité de Tordesillas,Tordesillas;Traité de Tordesillas de 1494;Partage du monde entre l'Espagne et le Portugal;Partage de Tordesillas,nom usuel
+EVT-0419,Vasco de Gama atteint Calicut,Vasco de Gama à Calicut;Vasco de Gama atteint les Indes;Route maritime des Indes;Arrivée de Vasco de Gama en Inde,nom court
+EVT-0420,Publication de De revolutionibus de Copernic,De revolutionibus;Copernic publie De revolutionibus;Publication du De revolutionibus;Révolution des orbes célestes de Copernic,nom usuel
+EVT-0421,Paix d’Augsbourg,Paix d'Augsbourg de 1555;Augsbourg;Cujus regio ejus religio;Traité d'Augsbourg,nom usuel
+EVT-0422,Massacre de la Saint-Barthélemy,Saint-Barthélemy;Nuit de la Saint-Barthélemy,nom usuel
+EVT-0423,Union des Couronnes d’Angleterre et d’Écosse,Union des Couronnes;Jacques Ier roi d'Angleterre et d'Écosse;Union de l'Angleterre et de l'Écosse,nom court
+EVT-0424,Fondation de Jamestown,Jamestown;Création de Jamestown;Fondation de la colonie de Jamestown;Première colonie anglaise en Amérique,nom usuel
+EVT-0425,Mayflower Compact,Pacte du Mayflower;Mayflower;Pèlerins du Mayflower,nom usuel
+EVT-0426,Guerre de Trente Ans,Trente Ans de guerre;Début de la guerre de Trente Ans,variante d'écriture
+EVT-0427,Début de la guerre civile anglaise,Guerre civile anglaise;Première révolution anglaise;Révolution anglaise,nom usuel
+EVT-0428,Exécution de Charles Ier d’Angleterre,Mort de Charles Ier;Décapitation de Charles Ier;Exécution du roi Charles Ier;Charles Ier d'Angleterre décapité,nom usuel
+EVT-0429,Glorieuse Révolution,Révolution glorieuse;Guillaume d'Orange chasse Jacques II,nom usuel
+EVT-0430,Fondation de Saint-Pétersbourg,Saint-Pétersbourg;Pierre le Grand fonde Saint-Pétersbourg;Création de Saint-Pétersbourg,nom court
+EVT-0431,Guerre de Sept Ans,Sept Ans de guerre;Guerre de Sept Ans entre la France et l'Angleterre;Conflit mondial de 1756;Début de la guerre de Sept Ans en 1756,variante d'écriture
+EVT-0432,Publication du Contrat social de Rousseau,Le Contrat social;Rousseau publie Du contrat social;Du contrat social,nom usuel
+EVT-0433,Boston Tea Party,Tea Party de Boston;Révolte du thé de Boston;Boston Tea Party de 1773;Jeté de thé à Boston,nom usuel
+EVT-0434,Déclaration d’indépendance des États-Unis,Indépendance américaine;Jefferson et la Déclaration d'indépendance;Déclaration du 4 juillet 1776,nom usuel
+EVT-0435,Capitulation britannique à Saratoga,Saratoga;Victoire américaine de Saratoga;Bataille de Saratoga;Défaite britannique de Saratoga,nom court
+EVT-0436,Capitulation britannique à Yorktown,Yorktown;Victoire de Yorktown;Reddition de Yorktown;Défaite britannique de Yorktown,nom court
+EVT-0437,Traité de Paris mettant fin à la guerre d’indépendance américaine,Fin de la guerre d'indépendance américaine;Reconnaissance de l'indépendance américaine,nom usuel
+EVT-0438,Signature de la Constitution des États-Unis,Constitution américaine;Constitution des États-Unis de 1787;Convention de Philadelphie;Signature de la Constitution américaine,nom usuel
+EVT-0439,Début de l’insurrection des esclaves de Saint-Domingue,Révolte des esclaves de Saint-Domingue;Insurrection de Saint-Domingue;Insurrection d'août 1791,nom usuel
+EVT-0440,Abolition de la monarchie en France,Fin de la monarchie en France;Abolition de la royauté;Chute de la monarchie française;Abolition de la royauté en France,nom court
+EVT-0441,Bataille de Valmy,Valmy;Victoire de Valmy;Canonnade de Valmy;Bataille de Valmy de 1792,nom court
+EVT-0442,Proclamation de la Première République française,Première République;République proclamée en 1792;Première République française,nom court
+EVT-0443,Exécution de Marie-Antoinette,Mort de Marie-Antoinette;Marie-Antoinette guillotinée;Guillotine de Marie-Antoinette;Exécution de la reine Marie-Antoinette,nom usuel
+EVT-0444,Chute de Robespierre,Chute de Robespierre de 1794;9 Thermidor;Neuf Thermidor;Fin de la Terreur,nom usuel
+EVT-0445,Mise en place du Directoire,Directoire;Début du Directoire;Naissance du Directoire;Installation du Directoire,nom court
+EVT-0446,Coup d’État du 18 Brumaire,18 Brumaire;Coup d'État de Bonaparte du 18 Brumaire;Coup d'État de Brumaire;Bonaparte renverse le Directoire,nom usuel
+EVT-0447,Indépendance d’Haïti,Haïti indépendante;Dessalines proclame l'indépendance d'Haïti,nom court
+EVT-0448,Bataille de Waterloo,Waterloo;Défaite de Waterloo;Défaite de Napoléon à Waterloo;Bataille de Waterloo de 1815,nom usuel
+EVT-0449,Début conventionnel de la guerre d’indépendance grecque,Insurrection grecque de 1821;Révolution grecque,nom usuel
+EVT-0450,Reconnaissance internationale du royaume de Grèce,Reconnaissance du royaume de Grèce;Royaume de Grèce reconnu;Indépendance de la Grèce reconnue,nom court
+EVT-0451,Début de la révolution belge,Révolution belge;Révolution belge de 1830;Début de la révolution de 1830 en Belgique;Insurrection belge,nom court
+EVT-0452,Proclamation de l’indépendance belge,Naissance de la Belgique;Naissance du royaume de Belgique,nom usuel
+EVT-0453,Première révolte des canuts,Révolte des canuts de 1831;Canuts;Révolte des canuts à Lyon;Premier soulèvement des canuts,nom court
+EVT-0454,Reform Act britannique de 1832,Reform Act de 1832;Grande loi de réforme de 1832;Réforme électorale britannique de 1832;Reform Act,nom usuel
+EVT-0455,Sanction royale du Slavery Abolition Act 1833,Loi britannique d'abolition de l'esclavage;Slavery Abolition Act de 1833,nom usuel
+EVT-0456,Premier message télégraphique de Morse,Premier télégramme de Morse;Message télégraphique de Morse;Premier message de Morse;What hath God wrought,nom court
+EVT-0457,Grande famine irlandaise,Famine irlandaise;Famine de la pomme de terre en Irlande,nom usuel
+EVT-0458,Journées de Juin 1848,Journées de juin;Insurrection de juin 1848;Juin 1848;Insurrection ouvrière de juin 1848,nom usuel
+EVT-0459,Coup d’État de Louis-Napoléon Bonaparte,Coup d'État de Napoléon III;Coup d'État du 2 décembre 1851;Coup d'État de Louis-Napoléon;Coup d'État du 2 décembre,nom usuel
+EVT-0460,Proclamation du Second Empire,Naissance du Second Empire;Début du Second Empire;Proclamation de Napoléon III;Napoléon III empereur,nom court
+EVT-0461,Guerre de Crimée,Crimée;Guerre de Crimée de 1853;Guerre de Crimée contre la Russie,nom court
+EVT-0462,Traité de Paris mettant fin à la guerre de Crimée,Paix de Paris de 1856;Congrès de Paris de 1856,nom usuel
+EVT-0463,Début de la révolte des Cipayes,Mutinerie des Cipayes;Soulèvement des Cipayes;Début de la révolte des Cipayes en 1857,variante d'écriture
+EVT-0464,Premier message télégraphique transatlantique officiel par câble,Premier câble transatlantique;Télégraphe transatlantique;Premier message transatlantique,nom usuel
+EVT-0465,Proclamation du royaume d’Italie,Royaume d'Italie;Proclamation du royaume d'Italie de 1861;Naissance du royaume d'Italie;Victor-Emmanuel II roi d'Italie,nom court
+EVT-0466,Guerre de Sécession,Guerre civile américaine;Sécession,nom usuel
+EVT-0467,Entrée en vigueur de la Proclamation d’émancipation,Proclamation d'émancipation;Proclamation d'émancipation de Lincoln;Émancipation des esclaves américains;Lincoln proclame l'émancipation,nom court
+EVT-0468,Bataille de Gettysburg,Gettysburg;Bataille de Gettysburg de 1863;Victoire de l'Union à Gettysburg;Gettysburg 1863,nom court
+EVT-0469,Fondation de la Première Internationale,Première Internationale;Création de la Première Internationale;AIT;Association internationale des travailleurs,nom usuel
+EVT-0470,Première Convention de Genève,Convention de Genève;Première Convention de Genève de 1864;Création de la Croix-Rouge;Convention de Genève de 1864,nom usuel
+EVT-0471,Ouverture du canal de Suez,Inauguration du canal de Suez;Ouverture du canal de Suez de 1869;Percement du canal de Suez,nom usuel
+EVT-0472,Guerre franco-prussienne,Guerre franco-allemande;Guerre de 1870 contre la Prusse,nom usuel
+EVT-0473,Défaite française à Sedan,Sedan;Défaite de Sedan;Capitulation de Sedan;Napoléon III capturé à Sedan,nom court
+EVT-0474,Traité de Francfort,Traité de Francfort de 1871;Traité de Francfort sur l'Alsace-Lorraine;Perte de l'Alsace-Lorraine;Francfort,nom usuel
+EVT-0475,Crise de Fachoda,Fachoda;Incident de Fachoda;Affaire de Fachoda;Crise de Fachoda de 1898,nom court
+EVT-0476,Loi Waldeck-Rousseau autorisant les syndicats professionnels,Loi Waldeck-Rousseau;Loi sur les syndicats;Loi de 1884 sur les syndicats;Autorisation des syndicats,nom usuel
+EVT-0477,Inauguration de la tour Eiffel,Tour Eiffel inaugurée;Ouverture de la tour Eiffel,nom court
+EVT-0478,Assassinat de François-Ferdinand à Sarajevo,Attentat de Sarajevo;Assassinat de l'archiduc François-Ferdinand;Assassinat de l'archiduc à Sarajevo;Mort de François-Ferdinand,nom usuel
+EVT-0479,Déclaration de guerre de l’Allemagne à la Russie,L'Allemagne déclare la guerre à la Russie;Déclaration de guerre allemande à la Russie,formulation d'élève
+EVT-0480,Déclaration de guerre de l’Allemagne à la France,Guerre de l'Allemagne contre la France;L'Allemagne en guerre contre la France;Déclaration du 3 août 1914,formulation d'élève
+EVT-0481,Entrée en guerre du Royaume-Uni contre l’Allemagne,Entrée en guerre de la Grande-Bretagne;Entrée en guerre britannique,formulation d'élève
+EVT-0482,Bataille de Verdun,Verdun;Bataille de Verdun de 1916;Verdun 1916;Enfer de Verdun,nom court
+EVT-0483,Entrée en guerre des États-Unis dans la Première Guerre mondiale,Entrée en guerre des États-Unis;Les États-Unis entrent en guerre;Intervention américaine de 1917;Entrée des États-Unis dans la Grande Guerre,nom court
+EVT-0484,Prise du pouvoir par les bolcheviks lors de la révolution d’Octobre,Révolution d'Octobre;Prise du pouvoir par les bolcheviks;Révolution bolchevique,nom usuel
+EVT-0485,Traité de Brest-Litovsk,Brest-Litovsk;Paix de Brest-Litovsk;Traité de Brest-Litovsk entre la Russie et l'Allemagne;Paix séparée de la Russie,nom usuel
+EVT-0486,Ouverture de la conférence de la paix de Paris,Conférence de la paix de Paris;Conférence de la paix de 1919;Conférence de Paris de 1919,nom usuel
+EVT-0487,Entrée en vigueur du pacte de la Société des Nations,Pacte de la Société des Nations;Création de la Société des Nations;Société des Nations,nom usuel
+EVT-0488,Marche sur Rome,Marche sur Rome de 1922;Marche des chemises noires sur Rome;Mussolini marche sur Rome;Marche des fascistes sur Rome,nom usuel
+EVT-0489,Début du mandat de Mussolini comme président du Conseil italien,Mussolini président du Conseil;Mussolini au pouvoir;Mussolini devient chef du gouvernement italien;Arrivée de Mussolini au pouvoir,nom court
+EVT-0490,Putsch de la Brasserie,Putsch de Munich;Putsch de la Brasserie de Munich;Putsch d'Hitler;Putsch manqué de Hitler,nom usuel
+EVT-0491,Accords de Londres mettant en œuvre le plan Dawes,Plan Dawes;Accords de Londres de 1924;Mise en œuvre du plan Dawes;Plan Dawes de 1924,nom usuel
+EVT-0492,Signature des traités de Locarno,Accords de Locarno;Traités de Locarno;Locarno;Pacte de Locarno,nom usuel
+EVT-0493,Pacte Briand-Kellogg,Pacte Kellogg-Briand;Pacte de Paris de 1928;Mise hors la loi de la guerre,variante d'écriture
+EVT-0494,Jeudi noir à Wall Street,Jeudi noir;Krach de Wall Street;Krach boursier de 1929;Jeudi noir de 1929,nom usuel
+EVT-0495,Mardi noir à Wall Street,Mardi noir;Effondrement de la bourse de New York;Mardi noir de 1929,nom usuel
+EVT-0496,Marche du sel de Gandhi,Marche du sel;Gandhi et la marche du sel;Marche de Dandi;Marche du sel de Gandhi en 1930,nom usuel
+EVT-0497,Hitler devient chancelier,Hitler chancelier;Hitler nommé chancelier;Hitler arrive au pouvoir;Nomination d'Hitler comme chancelier,nom court
+EVT-0498,Incendie du Reichstag,Incendie du Reichstag de 1933;Reichstag en flammes;Incendie du Parlement allemand;Reichstag,nom court
+EVT-0499,Vote de la loi des pleins pouvoirs en Allemagne,Loi des pleins pouvoirs;Pleins pouvoirs à Hitler;Loi des pleins pouvoirs de 1933,nom usuel
+EVT-0500,Nuit des Longs Couteaux,Purge de 1934;Épuration de la SA;Purge des SA,nom usuel
+EVT-0501,Lois de Nuremberg,Lois raciales de Nuremberg;Lois antisémites de Nuremberg;Lois de 1935;Lois de Nuremberg de 1935,nom usuel
+EVT-0502,Guerre civile espagnole,Guerre d'Espagne;Guerre civile d'Espagne;Soulèvement de Franco en Espagne,nom usuel
+EVT-0503,Bombardement de Guernica,Guernica;Bombardement de Guernica de 1937;Destruction de Guernica;Bombardement de Guernica par la Légion Condor,nom court
+EVT-0504,Accords de Munich,Accord de Munich;Conférence de Munich;Munich;Accords de Munich de 1938,nom usuel
+EVT-0505,Pacte germano-soviétique,Pacte germano-soviétique de 1939;Pacte Molotov-Ribbentrop;Pacte Hitler-Staline;Pacte de non-agression germano-soviétique,nom usuel
+EVT-0506,Offensive allemande à l’Ouest,Attaque allemande à l'Ouest;Début de la campagne de France,nom court
+EVT-0507,Évacuation de Dunkerque,Dunkerque;Opération Dynamo;Évacuation de Dunkerque en 1940;Embarquement de Dunkerque,nom usuel
+EVT-0508,Entrée des troupes allemandes dans Paris,Les Allemands entrent dans Paris;Entrée des Allemands à Paris;Occupation de Paris;Entrée de la Wehrmacht dans Paris,nom court
+EVT-0509,Bataille d’Angleterre,Bataille d'Angleterre de 1940;Battle of Britain;Bataille aérienne d'Angleterre;Bombardement de l'Angleterre par la Luftwaffe,nom usuel
+EVT-0510,Attaque de Pearl Harbor,Pearl Harbor;Bombardement de Pearl Harbor;Attaque japonaise sur Pearl Harbor;Attaque de Pearl Harbour,nom usuel
+EVT-0511,Conférence de Wannsee,Wannsee;Conférence de Wannsee de 1942;Réunion de Wannsee;Décision de la Solution finale à Wannsee,nom usuel
+EVT-0512,Bataille de Midway,Midway;Victoire américaine de Midway;Bataille de Midway dans le Pacifique;Midway 1942,nom court
+EVT-0513,Bataille de Stalingrad,Stalingrad;Victoire soviétique de Stalingrad;Bataille de Stalingrad de 1942;Siège de Stalingrad,nom court
+EVT-0514,Seconde bataille d’El-Alamein,El-Alamein;Bataille d'El-Alamein;Deuxième bataille d'El-Alamein,nom court
+EVT-0515,Débarquement allié en Sicile,Débarquement en Sicile;Débarquement allié de Sicile;Opération Husky;Invasion de la Sicile,nom usuel
+EVT-0516,Annonce de l’armistice italien,Armistice italien;Armistice de Cassibile;Armistice de l'Italie;Capitulation de l'Italie,nom usuel
+EVT-0517,Conférence de Téhéran,Téhéran;Conférence de Téhéran de 1943;Conférence des Trois Grands à Téhéran;Roosevelt Churchill et Staline à Téhéran,nom court
+EVT-0518,Libération du camp d’Auschwitz-Birkenau,Libération d'Auschwitz;Libération du camp d'Auschwitz;Auschwitz libéré;Libération d'Auschwitz par l'Armée rouge,nom usuel
+EVT-0519,Conférence de Yalta,Yalta;Conférence de Yalta de 1945;Accords de Yalta,nom usuel
+EVT-0520,Bombardement atomique d’Hiroshima,Hiroshima;Bombe atomique sur Hiroshima;Bombardement d'Hiroshima;Explosion de la bombe atomique à Hiroshima,nom usuel
+EVT-0521,Bombardement atomique de Nagasaki,Nagasaki;Bombe atomique sur Nagasaki;Bombardement de Nagasaki,nom usuel
+EVT-0522,Indépendance de l’Inde,Indépendance indienne;Indépendance de l'Inde en 1947;L'Inde devient indépendante;Partition de l'Inde,nom usuel
+EVT-0523,Discours de Harvard lançant le plan Marshall,Plan Marshall;Discours de Marshall à Harvard;Discours de George Marshall;Lancement du plan Marshall,nom usuel
+EVT-0525,Proclamation de la République populaire de Chine,Mao proclame la République populaire de Chine;Naissance de la Chine communiste;Création de la République populaire de Chine,nom usuel
+EVT-0526,Conférence de Bandung,Bandung;Conférence de Bandoung;Conférence de Bandung de 1955;Naissance du tiers-monde à Bandung,nom usuel
+EVT-0527,Création du pacte de Varsovie,Pacte de Varsovie;Création du pacte de Varsovie de 1955;Naissance du pacte de Varsovie;Fondation du pacte de Varsovie,nom court
+EVT-0528,Crise du canal de Suez,Crise de Suez;Canal de Suez en 1956;Nationalisation du canal de Suez;Expédition de Suez,nom usuel
+EVT-0529,Victoire de la révolution cubaine,Révolution cubaine;Castro prend le pouvoir à Cuba;Victoire de Fidel Castro;Fidel Castro à La Havane,nom usuel
+EVT-0530,Début de la guerre d’Algérie,Guerre d'Algérie;Début de la guerre d'Algérie en 1954;Toussaint rouge;Insurrection du 1er novembre 1954,nom usuel
+EVT-0531,Élection de Charles de Gaulle à la présidence de la République,De Gaulle élu président;Élection de De Gaulle à la présidence;De Gaulle président de la République;Charles de Gaulle président en 1958,nom court
+EVT-0532,Débarquement de la baie des Cochons,Baie des Cochons;Échec du débarquement de la baie des Cochons;Débarquement à la baie des Cochons;Tentative de renverser Castro,nom usuel
+EVT-0533,Crise des missiles de Cuba,Crise de Cuba;Crise des missiles de Cuba de 1962;Crise cubaine;Missiles de Cuba,nom usuel
+EVT-0534,Assassinat de John F. Kennedy,Assassinat de Kennedy;Mort de John Kennedy;Kennedy assassiné à Dallas;Assassinat de JFK,nom usuel
+EVT-0535,Incident du golfe du Tonkin,Golfe du Tonkin;Incident du Tonkin;Résolution du golfe du Tonkin;Incident du golfe du Tonkin de 1964,nom court
+EVT-0536,Printemps de Prague,Printemps de Prague de 1968;Printemps tchécoslovaque;Prague 1968;Réformes de Dubček,nom usuel
+EVT-0537,Mai 68 en France,Mai 68;Mai 1968;Événements de Mai 68;Révolte étudiante de mai 1968,nom usuel
+EVT-0538,Ouverture à la signature du Traité sur la non-prolifération des armes nucléaires,Traité de non-prolifération nucléaire;TNP;Traité sur la non-prolifération;Signature du TNP,sigle usuel
+EVT-0539,Démission de Charles de Gaulle,Départ de De Gaulle;Démission du général de Gaulle;De Gaulle quitte le pouvoir;Démission de De Gaulle en 1969,nom court
+EVT-0540,Signature de l’Acte final d’Helsinki,Acte final d'Helsinki;Accords d'Helsinki;Conférence d'Helsinki;Helsinki 1975,nom usuel
+EVT-0541,Troisième plénum du XIe Comité central chinois et lancement des réformes de Deng Xiaoping,Réformes de Deng Xiaoping;Lancement des réformes de Deng Xiaoping;Ouverture de la Chine de Deng Xiaoping;Politique de réforme et d'ouverture,nom court
+EVT-0542,Victoire de la révolution iranienne,Révolution iranienne;Révolution islamique d'Iran;Khomeini prend le pouvoir;Chute du chah d'Iran,nom usuel
+EVT-0543,Début formel de l’invasion soviétique de l’Afghanistan,Invasion soviétique de l'Afghanistan;Intervention soviétique en Afghanistan;Guerre d'Afghanistan de 1979;Les Soviétiques envahissent l'Afghanistan,nom usuel
+EVT-0544,Accords de Gdańsk et naissance de Solidarność,Solidarność;Accords de Gdansk;Naissance de Solidarność;Création du syndicat Solidarité,nom usuel
+EVT-0545,Catastrophe nucléaire de Tchernobyl,Tchernobyl;Catastrophe de Tchernobyl;Accident nucléaire de Tchernobyl;Explosion de Tchernobyl,nom usuel
+EVT-0546,Répression de la place Tian’anmen,Tian'anmen;Place Tian'anmen;Massacre de Tian'anmen;Répression de Tian'anmen,nom usuel
+EVT-0547,Réunification allemande,Réunification de l'Allemagne;Unification allemande;Unité allemande,nom usuel

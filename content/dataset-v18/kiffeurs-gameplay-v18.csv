@@ -1999,3 +1999,4 @@ EVT-2038,97e cérémonie des Oscars,1,4,TRUE,YEAR,YEAR,EXACT,,,1,97e Academy Awa
 EVT-2039,Super Bowl LIX,1,4,TRUE,YEAR,YEAR,EXACT,,,1,59e Super Bowl,Jouable à l’année.
 EVT-2040,112e édition du Tour de France,1,4,TRUE,YEAR,YEAR,EXACT,,,1,Tour de France n°112,Jouable à l’année.
 EVT-2041,138e édition des Championnats de Wimbledon,1,4,TRUE,YEAR,YEAR,EXACT,,,1,Wimbledon n°138,Jouable à l’année.
+EVT-2042,Occupation du village agricole de Çatalhöyük (tertre oriental),3,4,TRUE,RANGE,YEAR_RANGE,APPROXIMATE,6e,COMPLEMENT_SCHOOL_CORPUS,3,Occupation néolithique de Çatalhöyük Est;Village agricole de Çatal Höyük (tertre oriental);Çatalhöyük Est,"Plage archéologique approximative explicitement définie et validée : réponse en RANGE, sans réduire à une année exacte."

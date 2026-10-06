@@ -1,9 +1,9 @@
 ﻿collection_id,title,collection_type,ready_to_play,event_count,playable_event_count,context_event_count,avg_importance,avg_difficulty,earliest_year,latest_year,source_rule
-COL-0001,Programme scolaire 2026-2027,CURRICULUM_CORPUS,FALSE,507,486,21,3.41,3.01,-10000,2026,tag:school-curriculum
+COL-0001,Programme scolaire 2026-2027,CURRICULUM_CORPUS,FALSE,508,487,21,3.41,3.01,-10000,2026,tag:school-curriculum
 COL-0002,Programme 3e,CURRICULUM_LEVEL,FALSE,121,121,0,3.83,2.82,1914,1991,tag:level-3e
 COL-0003,Programme 4e,CURRICULUM_LEVEL,FALSE,55,51,4,3.69,2.78,1670,1907,tag:level-4e
 COL-0004,Programme 5e,CURRICULUM_LEVEL,FALSE,66,65,1,3.62,2.89,507,1715,tag:level-5e
-COL-0005,Programme 6e,CURRICULUM_LEVEL,FALSE,50,41,9,3.32,3.18,-10000,451,tag:level-6e
+COL-0005,Programme 6e,CURRICULUM_LEVEL,FALSE,51,42,9,3.31,3.20,-10000,451,tag:level-6e
 COL-0006,Programme CM1,CURRICULUM_LEVEL,FALSE,14,13,1,4.21,2.14,476,1789,tag:level-cm1
 COL-0007,Programme CM2,CURRICULUM_LEVEL,FALSE,21,20,1,4.05,2.24,1820,1992,tag:level-cm2
 COL-0008,Programme Première HGGSP,CURRICULUM_LEVEL,FALSE,33,32,1,3.52,3.21,-461,1995,tag:level-premiere-hggsp
@@ -14,7 +14,7 @@ COL-0012,Programme Terminale générale,CURRICULUM_LEVEL,FALSE,21,21,0,2.67,3.24
 COL-0013,CM2 — Thème 1 — Le temps de la République,CURRICULUM_THEME,FALSE,8,8,0,3.62,2.38,1880,1945,tag:theme-thm-001
 COL-0014,CM2 — Thème 2 — L’âge industriel en France,CURRICULUM_THEME,FALSE,6,5,1,3.17,3.00,1820,1931,tag:theme-thm-002
 COL-0015,CM2 — Thème 3 — Guerres mondiales et construction européenne,CURRICULUM_THEME,FALSE,10,10,0,4.70,2.00,1914,1992,tag:theme-thm-003
-COL-0016,6e — Thème 1 — La longue histoire de l’humanité et des migrations,CURRICULUM_THEME,FALSE,8,4,4,3.50,3.12,-10000,-1750,tag:theme-thm-004
+COL-0016,6e — Thème 1 — La longue histoire de l’humanité et des migrations,CURRICULUM_THEME,FALSE,9,5,4,3.44,3.22,-10000,-1750,tag:theme-thm-004
 COL-0017,"6e — Thème 2 — Récits fondateurs, croyances et citoyenneté dans la Méditerranée antique",CURRICULUM_THEME,FALSE,19,14,5,3.47,3.32,-776,-323,tag:theme-thm-005
 COL-0018,6e — Thème 3 — L’Empire romain dans le monde antique,CURRICULUM_THEME,FALSE,24,24,0,3.17,3.08,-509,451,tag:theme-thm-006
 COL-0019,"5e — Thème 1 — Chrétientés et islam (VIe-XIIIe siècles), des mondes en contact",CURRICULUM_THEME,FALSE,11,11,0,3.36,3.18,507,1206,tag:theme-thm-007
@@ -70,7 +70,7 @@ COL-0073,Droits et libertés,READY_PACK,TRUE,87,87,0,4.00,2.39,-776,2020,HIGH_TA
 COL-0074,Construction européenne,READY_PACK,TRUE,19,19,0,4.26,2.37,1951,2024,HIGH_TAG
 COL-0075,Décolonisation,READY_PACK,TRUE,31,31,0,4.10,2.16,1945,2002,HIGH_TAG
 COL-0076,Environnement,READY_PACK,TRUE,30,30,0,4.20,2.10,-10000,2019,HIGH_TAG
-COL-0077,Mode expert — 50 dates,READY_PACK,TRUE,50,50,0,3.12,4.08,-1750,2016,TOP_N_EXPERT
+COL-0077,Mode expert — 50 dates,READY_PACK,TRUE,50,50,0,3.12,4.08,-7100,2016,TOP_N_EXPERT
 COL-0078,Antiquité,READY_PACK,TRUE,94,94,0,3.45,3.32,-3200,476,YEAR_RANGE
 COL-0079,Moyen Âge,READY_PACK,TRUE,102,102,0,3.61,3.09,476,1492,YEAR_RANGE
 COL-0080,Époque moderne,READY_PACK,TRUE,151,151,0,3.91,2.30,1492,1789,YEAR_RANGE
@@ -79,7 +79,7 @@ COL-0082,XXe siècle,READY_PACK,TRUE,996,996,0,2.50,3.18,1901,2000,YEAR_RANGE
 COL-0083,Culture générale V1 — 493 événements,GENERAL_CULTURE_CORPUS,FALSE,493,484,9,4.50,1.63,-3100,2024,tag:corpus-general-culture-v1
 COL-0084,Corpus complet V15 — 1 000 événements,MASTER_CORPUS,FALSE,1000,970,30,3.95,2.33,-10000,2026,ALL_EVENTS_V15
 COL-0085,Culture générale V2 — 1 000 nouveaux événements,GENERAL_CULTURE_CORPUS,FALSE,1000,999,1,1.67,3.79,-1457,2025,tag:corpus-general-culture-v2
-COL-0086,Corpus complet V18 — 2 000 événements,MASTER_CORPUS,FALSE,2000,1969,31,2.81,3.06,-10000,2026,ALL_EVENTS_V18
+COL-0086,Corpus complet V18 — 2 001 événements,MASTER_CORPUS,FALSE,2001,1970,31,2.81,3.06,-10000,2026,ALL_EVENTS_V18
 COL-0087,Jeux olympiques d’été,GENERAL_CULTURE_SERIES,FALSE,21,21,0,2.38,3.62,1900,2016,tag:series-summer-olympics
 COL-0088,Jeux olympiques d’hiver,GENERAL_CULTURE_SERIES,FALSE,23,23,0,2.00,4.00,1928,2022,tag:series-winter-olympics
 COL-0089,Coupe du monde de football,GENERAL_CULTURE_SERIES,FALSE,21,21,0,3.00,3.00,1934,2022,tag:series-fifa-world-cup

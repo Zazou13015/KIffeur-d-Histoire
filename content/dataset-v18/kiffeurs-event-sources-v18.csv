@@ -2630,3 +2630,6 @@ ESRC-2628,EVT-2038,SRC-0924,HISTORICAL,DATE_OR_PERIOD,B,V18_SERIES_OR_YEAR_SOURC
 ESRC-2629,EVT-2039,SRC-0934,HISTORICAL,DATE_OR_PERIOD,B,V18_SERIES_OR_YEAR_SOURCE_B,Secondary series/list or annual chronology source; targeted QA pending V19.
 ESRC-2630,EVT-2040,SRC-0923,HISTORICAL,DATE_OR_PERIOD,B,V18_SERIES_OR_YEAR_SOURCE_B,Secondary series/list or annual chronology source; targeted QA pending V19.
 ESRC-2631,EVT-2041,SRC-0920,HISTORICAL,DATE_OR_PERIOD,B,V18_SERIES_OR_YEAR_SOURCE_B,Secondary series/list or annual chronology source; targeted QA pending V19.
+ESRC-2632,EVT-2042,SRC-0941,CURRICULUM,CURRICULUM_LINK,A,ISSUE9_ANTONIN_VALIDATED,Ancrage de site choisi éditorialement ; aucune date obligatoire de Çatalhöyük dans le programme.
+ESRC-2633,EVT-2042,SRC-0942,HISTORICAL,DATE_OR_PERIOD,B,ISSUE9_ANTONIN_VALIDATED,"Référentiel retenu : environ 7100-5950 cal BCE. DOI 10.1073/pnas.1904345116 ; texte : https://pmc.ncbi.nlm.nih.gov/articles/PMC6601267/ . Source académique B selon les types existants, indépendamment de la précision APPROXIMATE."
+ESRC-2634,EVT-2042,SRC-0943,CONTEXT,CONTEXT,A,ISSUE9_ANTONIN_VALIDATED,"Tertre oriental : environ 7400-6200 av. J.-C. ; variante conservée, sans la fusionner avec la plage PNAS retenue."

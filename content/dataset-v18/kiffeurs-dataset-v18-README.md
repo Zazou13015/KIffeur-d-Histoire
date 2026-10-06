@@ -1,6 +1,14 @@
 # Kiffeurs d’Histoire — Dataset v18
 
-## Palier 2 000 atteint
+## Extension validée de l'issue #9 — 2 001 événements
+
+Le corpus courant contient **2 001 événements** après création validée d'EVT-2042, occupation de Çatalhöyük (tertre oriental), dans THM-004 : PERIOD / YEAR_RANGE / APPROXIMATE / RANGE, environ -7100 à -5950 selon Larsen et al., PNAS 2019. La variante UNESCO -7400 à -6200 reste explicitée, sans fusion ni faux mois/jour. Sources, alias, gameplay, métadonnées scolaires, tags sémantiques, couverture, résumés et collections sont synchronisés. Les 2 000 événements antérieurs conservent leurs dates/statuts/jouabilités.
+
+**41 chapitres actifs, 534 liens uniques, 41/41 avec au moins cinq jouables.** Les 45 validations nécessaires sont consignées. La collection maître compte 2 001 membres ; son slug historique `corpus-complet-v18-2000` reste stable. Le pack Expert est recalculé à 50 membres ; les 23 autres packs restent inchangés. Les fichiers d'extraction et de dédoublonnage des lots antérieurs restent des traces historiques, pas des listes à réécrire pour ce nouvel événement.
+
+Import et second import idempotent vérifiés sur Supabase LOCAL propre avec les migrations existantes ; sécurité anon/authenticated vérifiée. PR #38 en brouillon pour la dernière revue, sans merge ni application distante. [Dossier complet de création](kiffeurs-chapter-thm004-candidates-v18-README.md).
+
+## Palier initial de V18 — 2 000 atteint (historique)
 
 V18 ajoute **1 000 événements** aux 1 000 événements homogénéisés de V17, soit **2 000 événements canoniques**.
 

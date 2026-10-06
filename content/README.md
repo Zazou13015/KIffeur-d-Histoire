@@ -25,11 +25,11 @@ Connexion : `SUPABASE_URL` et `SUPABASE_SERVICE_ROLE_KEY`, lus dans l'environnem
 
 ## `dataset-v18/` (reçu le 5 octobre 2026)
 
-2 000 événements : 507 rattachés au programme d'histoire du CM1 à la terminale, 1 493 de culture générale. Lire d'abord `kiffeurs-dataset-v18-README.md`. Les CSV sont en UTF-8 avec BOM, séparateur virgule ; les listes dans une cellule (alias, niveaux) sont séparées par `;`.
+2 001 événements après validation de Çatalhöyük (issue #9) : 508 rattachés au programme d'histoire du CM1 à la terminale, 1 493 de culture générale. Lire d'abord `kiffeurs-dataset-v18-README.md`. Les CSV sont en UTF-8 avec BOM, séparateur virgule ; les listes dans une cellule (alias, niveaux) sont séparées par `;`.
 
 | Fichier | Contenu |
 | --- | --- |
-| `kiffeurs-events-v18.csv` | Les 2 000 événements : titre, dates structurées (`start_year`, `start_month`, `start_day`, années négatives avant J.-C.), précision, importance et difficulté (1 à 5), `playable` et `playable_mode`, alias, description, niveaux scolaires |
+| `kiffeurs-events-v18.csv` | Les 2 001 événements : titre, dates structurées (`start_year`, `start_month`, `start_day`, années négatives avant J.-C.), précision, importance et difficulté (1 à 5), `playable` et `playable_mode`, alias, description, niveaux scolaires |
 | `kiffeurs-themes-v18.csv` | Les 41 chapitres actifs du programme (CM1 à terminale), après les 5 fusions validées de l’issue #9 |
 | `kiffeurs-curriculum-links-v18.csv` | Liens événement ↔ chapitre |
 | `kiffeurs-ready-collections-v18.csv`, `kiffeurs-ready-collection-events-v18.csv` | Les 24 packs prêts à jouer et leurs événements |
@@ -44,12 +44,10 @@ Points connus (voir `docs/prd.md`, Questions ouvertes) : les 394 événements sc
 
 ## Nettoyage des chapitres (issue #9)
 
-Antonin a validé les 8 décisions, les 23 rattachements et les 6 nouveaux candidats le 6 octobre 2026. Les trois fichiers `kiffeurs-chapter-fixes-v18.csv`, `kiffeurs-chapter-event-proposals-v18.csv` et `kiffeurs-chapter-new-events-v18.csv` restent intacts comme trace de validation ; ils ne sont pas lus directement par l'importeur. Lire le [dossier d'application et de validation](dataset-v18/kiffeurs-chapter-fixes-v18-README.md).
+**Toutes les validations humaines nécessaires à l'issue #9 sont faites par Antonin.** Les cinq traces de propositions consignent 45 décisions : huit structures, 23 + 7 rattachements existants, six candidats initiaux différés et le dernier candidat Çatalhöyük validé et intégré. Lire le [dossier d'application et de validation](dataset-v18/kiffeurs-chapter-fixes-v18-README.md).
 
-Les cinq fusions et les 23 + 7 rattachements validés sont appliqués aux CSV canoniques locaux : 41 chapitres titrés/non vides, 533 liens, THM-030/037/040 complétés avec 10/8/5 événements jouables. THM-028 et ses 11 liens erronés sont corrigés vers Terminale générale, sans remplacement global des niveaux des événements. EVT-0905 conserve sa date, CONVENTIONAL et la distinction du 17/19 octobre. Les six nouveaux événements restent des candidats validés pour une étape contenu dédiée, sans création d'EVT arbitraire.
+Le canonique contient **2 001 événements, 41 chapitres titrés/non vides et 534 liens uniques ; 41/41 chapitres ont au moins cinq événements jouables**. THM-028 et ses 11 liens erronés sont corrigés vers Terminale générale ; les cinq IDs fusionnés n'ont plus de référence active. Les 30 rattachements validés restent présents. EVT-0905 conserve CONVENTIONAL et la distinction du 17/19 octobre ; Sargon conserve CONVENTIONAL et ses réserves Louvre/Met.
 
-Contrôle local : `python3 scripts/verifier-chapitres.py --exiger-validation`. Après reset/import Supabase strictement local : `python3 scripts/verifier-import-chapitres-local.py` (Windows : `py -3`). La CI exécute le contrôle CSV. L'import réel et les tests de sécurité passent sur la pile locale ; aucune base distante/KFFR, migration nouvelle ou variable Vercel n'est touchée. La PR #38 reste en brouillon, sans merge.
+[Çatalhöyük, EVT-2042](dataset-v18/kiffeurs-chapter-thm004-candidates-v18-README.md), complète THM-004 à cinq jouables : PERIOD, -7100 à -5950, YEAR_RANGE, APPROXIMATE, RANGE, sans jour/mois. Les variantes chronologiques et les réserves validées restent dans les notes privées. Les sources, alias, tags, collections et tables dérivées sont complets ; le pack Expert conserve 50 membres après recalcul. Les six candidats initiaux restent validés et différés pour une étape contenu distincte.
 
-Les sept compléments sont maintenant validés et appliqués : THM-002/004/039/044 ont 5/4/5/5 jouables. Sargon reste ANCRAGE_COMPLEMENTAIRE, CONVENTIONAL et annoté avec ses variantes chronologiques. [Dossier des compléments](dataset-v18/kiffeurs-chapter-extra-proposals-v18-README.md). Les quatre CSV de validation consignent 44 décisions ; leurs notes restent traçables.
-
-Seul THM-004 reste sous cinq. [Un candidat final pour Çatalhöyük](dataset-v18/kiffeurs-chapter-thm004-candidates-v18-README.md) est soumis dans un CSV distinct, avec validation vide et mode RANGE envisagé : aucun nouvel EVT ni modification de jouabilité. L'objectif général de l'issue #9 reste incomplet jusqu'au choix humain et à une intégration future autorisée. Le contrôle strict `--exiger-cinq-partout` échoue pour ce seul cas.
+Contrôle strict CSV : `python3 scripts/verifier-chapitres.py --exiger-validation --exiger-cinq-partout`, aussi exécuté en CI. Après reset et import Supabase **LOCAL uniquement** : `python3 scripts/verifier-import-chapitres-local.py --exiger-cinq-partout` (Windows : `py -3`). Import complet, second import idempotent et tests anon/authenticated vérifiés ; aucun Supabase distant/KFFR/prod, nouvelle migration ni variable Vercel touché. **PR #38 en brouillon, sans merge, pour la dernière revue d'Antonin.**

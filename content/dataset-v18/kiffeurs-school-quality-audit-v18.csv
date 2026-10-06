@@ -180,3 +180,4 @@ EVT-0545,Catastrophe nucléaire de Tchernobyl,26 avril 1986,EXACT,VALIDATED_NO_C
 EVT-0546,Répression de la place Tian’anmen,4 juin 1989,EXACT,VALIDATED_NO_CHANGE,V13_SOURCE_RETAINED,HIGH_TAGS_AUDITED,FALSE,SUPPORTED_B,,
 EVT-0547,Réunification allemande,3 octobre 1990,EXACT,VALIDATED_NO_CHANGE,V13_SOURCE_RETAINED,HIGH_TAGS_AUDITED,FALSE,SUPPORTED_B,,
 EVT-0548,Entrée en vigueur principale du Slavery Abolition Act 1833,1er août 1834,EXACT,CORRECTED_OR_REFINED,DIRECT_SOURCE_ADDED,HIGH_TAGS_AUDITED,FALSE,CERTIFIED_A,,Legal acts are stored as distinct milestones.
+EVT-2042,Occupation du village agricole de Çatalhöyük (tertre oriental),environ 7100 à 5950 av. J.-C. (années calendaires calibrées),APPROXIMATE,VALIDATED_RANGE_ADDED,DIRECT_SOURCE_ADDED,HIGH_TAGS_AUDITED,FALSE,SUPPORTED_B,,"Création autorisée par Antonin ; plage PNAS retenue, variante UNESCO conservée ; aucune date de fondation/abandon exacte."

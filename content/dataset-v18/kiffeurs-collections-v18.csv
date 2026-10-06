@@ -70,7 +70,7 @@ COL-0073,droits-libertes,Droits et libertés,READY_PACK,"Droits civiques, libert
 COL-0074,construction-europeenne,Construction européenne,READY_PACK,"CECA, traités européens, Schengen et autres jalons associés.",HIGH_TAG,,,TRUE,TRUE,,V12.1,HIGH
 COL-0075,decolonisation,Décolonisation,READY_PACK,Indépendances et conflits de décolonisation.,HIGH_TAG,,,TRUE,TRUE,,V12.1,HIGH
 COL-0076,environnement,Environnement,READY_PACK,"Protection de l’environnement, climat et grands accords.",HIGH_TAG,,,TRUE,TRUE,,V12.1,HIGH
-COL-0077,mode-expert-50,Mode expert — 50 dates,READY_PACK,"Les 50 événements jouables les plus difficiles, départagés par importance et diffusion scolaire.",TOP_N_EXPERT,,,TRUE,TRUE,50,V12.1,CURATED_SCORE
+COL-0077,mode-expert-50,Mode expert — 50 dates,READY_PACK,"Les 50 événements jouables les plus difficiles, départagés par importance et diffusion scolaire.",TOP_N_EXPERT,,,TRUE,TRUE,50,V18.1 / issue #9,CURATED_SCORE
 COL-0078,antiquite,Antiquité,READY_PACK,Événements jouables conventionnellement situés entre les premières écritures et 476.,YEAR_RANGE,,,TRUE,TRUE,,V12.1,DATE_RULE
 COL-0079,moyen-age,Moyen Âge,READY_PACK,Événements jouables conventionnellement situés de 476 à 1492.,YEAR_RANGE,,,TRUE,TRUE,,V12.1,DATE_RULE
 COL-0080,epoque-moderne,Époque moderne,READY_PACK,Événements jouables conventionnellement situés de 1492 à 1789.,YEAR_RANGE,,,TRUE,TRUE,,V12.1,DATE_RULE
@@ -79,7 +79,7 @@ COL-0082,xxe-siecle,XXe siècle,READY_PACK,Événements jouables de 1901 à 2000
 COL-0083,culture-generale-v1-493,Culture générale V1 — 493 événements,GENERAL_CULTURE_CORPUS,Premier lot culture générale ajouté au palier V15.,tag:corpus-general-culture-v1,,,TRUE,FALSE,,V15.1,CURATED_CORPUS
 COL-0084,corpus-complet-v15-1000,Corpus complet V15 — 1 000 événements,MASTER_CORPUS,Corpus scolaire figé V14 + premier lot culture générale V15.,ALL_EVENTS_V15,,,TRUE,FALSE,,V15.1,CURATED_CORPUS
 COL-0085,culture-generale-v2-1000,Culture générale V2 — 1 000 nouveaux événements,GENERAL_CULTURE_CORPUS,Deuxième lot de culture générale ajouté en V18.,tag:corpus-general-culture-v2,,,TRUE,FALSE,,V18.1,CURATED_CORPUS
-COL-0086,corpus-complet-v18-2000,Corpus complet V18 — 2 000 événements,MASTER_CORPUS,Corpus scolaire figé + deux paliers culture générale.,ALL_EVENTS_V18,,,TRUE,FALSE,,V18.1,CURATED_CORPUS
+COL-0086,corpus-complet-v18-2000,Corpus complet V18 — 2 001 événements,MASTER_CORPUS,"Corpus complet courant : corpus scolaire et deux paliers de culture générale, avec Çatalhöyük validé (issue #9).",ALL_EVENTS_V18,,,TRUE,FALSE,,V18.1,CURATED_CORPUS
 COL-0087,series-summer-olympics,Jeux olympiques d’été,GENERAL_CULTURE_SERIES,Événements de la série « Jeux olympiques d’été » retenus dans le corpus V18.,tag:series-summer-olympics,,,TRUE,FALSE,,V18.1,CURATED_CORPUS
 COL-0088,series-winter-olympics,Jeux olympiques d’hiver,GENERAL_CULTURE_SERIES,Événements de la série « Jeux olympiques d’hiver » retenus dans le corpus V18.,tag:series-winter-olympics,,,TRUE,FALSE,,V18.1,CURATED_CORPUS
 COL-0089,series-fifa-world-cup,Coupe du monde de football,GENERAL_CULTURE_SERIES,Événements de la série « Coupe du monde de football » retenus dans le corpus V18.,tag:series-fifa-world-cup,,,TRUE,FALSE,,V18.1,CURATED_CORPUS

@@ -48,7 +48,7 @@ def main():
     assert {c["id"] for c in chapitres} == themes.keys(), "IDs de chapitres importés différents du canonique."
     assert all(c["title"] == themes[c["id"]]["theme_title"] and c["level"] == themes[c["id"]]["level"] for c in chapitres), "Titres/niveaux importés incorrects."
     relations = requete("select coalesce(json_agg(x), '[]') from (select chapter_id,event_id,curriculum_status from histoire.event_chapters) x")
-    assert len(relations) == len(links) == 533, "Nombre de rattachements importés incorrect."
+    assert len(relations) == len(links) == 534, "Nombre de rattachements importés incorrect."
     assert {(r["chapter_id"], r["event_id"]) for r in relations} == links.keys(), "Rattachements importés différents du canonique."
     assert all(r["curriculum_status"] == (links[(r["chapter_id"], r["event_id"])]["curriculum_status"] or None) for r in relations), "Statuts pédagogiques importés incorrects."
     tags_attendus = {t["tag_id"] for t in lire("tags")}
@@ -57,13 +57,29 @@ def main():
     paires_tags = {(r["event_id"], r["tag_id"]) for r in lire("event-tags")}
     tags_evenements = requete("select coalesce(json_agg(x), '[]') from (select event_id,tag_id from histoire.event_tags) x")
     assert len(tags_evenements) == len(paires_tags) and {(r["event_id"], r["tag_id"]) for r in tags_evenements} == paires_tags, "Appartenances aux tags importées incomplètes ou dupliquées."
-    importes = requete("select coalesce(json_agg(x), '[]') from (select e.id,e.playable,e.precision,e.date_status,a.start_year,a.start_month,a.start_day,a.end_year,a.end_month,a.end_day,a.notes from histoire.events e join histoire.event_answers a on a.event_id=e.id) x")
-    assert len(importes) == len(events) == 2000 and {e["id"] for e in importes} == events.keys(), "Événements/réponses importés incomplets."
+    importes = requete("select coalesce(json_agg(x), '[]') from (select e.id,e.title,e.event_type,e.playable,e.playable_mode,e.importance,e.difficulty,e.source_status,e.precision,e.date_status,a.start_year,a.start_month,a.start_day,a.end_year,a.end_month,a.end_day,a.date_text,a.secondary_dates,a.calendar_system,a.description,a.notes from histoire.events e join histoire.event_answers a on a.event_id=e.id) x")
+    assert len(importes) == len(events) == 2001 and {e["id"] for e in importes} == events.keys(), "Événements/réponses importés incomplets."
     for e in importes:
         canon = events[e["id"]]
         assert e["playable"] == (canon["playable"] == "TRUE") and e["precision"] == canon["precision"] and e["date_status"] == canon["date_status"], f"{e['id']} : métadonnées de jeu altérées."
         for champ in ("start_year", "start_month", "start_day", "end_year", "end_month", "end_day"):
             assert e[champ] == (int(canon[champ]) if canon[champ] else None), f"{e['id']} : date importée altérée."
+        assert e["title"] == canon["title_canonical"], f"{e['id']} : titre altéré à l'import."
+        for champ in ("event_type", "playable_mode", "source_status", "date_text", "secondary_dates", "calendar_system", "notes"):
+            assert e[champ] == (canon[champ] or None), f"{e['id']} : {champ} altéré à l'import."
+        assert e["description"] == (canon["description_short"] or None), f"{e['id']} : description altérée à l'import."
+        for champ in ("importance", "difficulty"):
+            assert e[champ] == int(canon[champ]), f"{e['id']} : {champ} altéré à l'import."
+    catal = next(e for e in importes if e["id"] == "EVT-2042")
+    assert (catal["event_type"], catal["start_year"], catal["end_year"], catal["precision"], catal["date_status"], catal["playable_mode"]) == ("PERIOD", -7100, -5950, "YEAR_RANGE", "APPROXIMATE", "RANGE"), "Plage de Çatalhöyük altérée."
+    aliases = requete("select coalesce(json_agg(alias), '[]') from histoire.event_aliases where event_id='EVT-2042'")
+    assert len(aliases) == 3 and set(aliases) == set(events["EVT-2042"]["aliases"].split(";")), "Alias de Çatalhöyük incomplets ou dupliqués."
+    packs_attendus = {r["collection_id"] for r in lire("ready-collections")}
+    packs = requete("select coalesce(json_agg(id), '[]') from histoire.packs")
+    assert len(packs) == len(packs_attendus) == 24 and set(packs) == packs_attendus, "Packs importés incomplets."
+    membres_attendus = {(r["collection_id"], r["event_id"], int(r["position"])) for r in lire("ready-collection-events")}
+    membres = requete("select coalesce(json_agg(x), '[]') from (select pack_id,event_id,position from histoire.pack_events) x")
+    assert len(membres) == len(membres_attendus) and {(r["pack_id"], r["event_id"], r["position"]) for r in membres} == membres_attendus, "Membres/positions des packs altérés."
     embargo = next(e for e in importes if e["id"] == "EVT-0905")
     assert embargo["date_status"] == "CONVENTIONAL" and "17 octobre" in embargo["notes"] and "19 octobre" in embargo["notes"], "Condition EVT-0905 perdue à l'import."
     sargon = next(e for e in importes if e["id"] == "EVT-0553")
@@ -74,11 +90,12 @@ def main():
     nombres = Counter(r["chapter_id"] for r in relations)
     nombres_jouables = Counter(r["chapter_id"] for r in relations if r["event_id"] in jouables)
     assert all(nombres[cid] > 0 for cid in themes), "Chapitre importé vide."
-    for cid, minimum in (("THM-030", 10), ("THM-037", 8), ("THM-040", 5), ("THM-002", 5), ("THM-004", 4), ("THM-039", 5), ("THM-044", 5)):
+    for cid, minimum in (("THM-030", 10), ("THM-037", 8), ("THM-040", 5), ("THM-002", 5), ("THM-004", 5), ("THM-039", 5), ("THM-044", 5)):
         assert nombres_jouables[cid] >= minimum, f"{cid} : événements jouables insuffisants après import."
-    print("OK import local : 41 chapitres titrés/non vides, 533 liens canoniques et 2 000 événements avec dates intactes.")
+    print("OK import local : 41 chapitres titrés/non vides, 534 liens canoniques et 2 001 événements avec dates intactes.")
     print("OK : THM-030/037/040 ont 10/8/5 événements jouables ; THM-028 est en Terminale ; condition EVT-0905 importée.")
-    print("OK : THM-002/004/039/044 ont 5/4/5/5 jouables ; condition de Sargon importée et statut complémentaire conservé.")
+    print("OK : THM-002/004/039/044 ont 5/5/5/5 jouables ; conditions de Sargon et Çatalhöyük importées.")
+    print("OK : EVT-2042 conserve sa plage APPROXIMATE/RANGE, ses trois alias et son appartenance au pack Expert ; les 24 packs concordent avec les CSV.")
     print(f"OK : {len(tags_attendus)} tags et {len(paires_tags)} associations événement/tag canoniques importés sans doublon.")
     insuffisants = {cid: nombres_jouables[cid] for cid in themes if nombres_jouables[cid] < 5}
     print("Chapitres préexistants hors des huit cas avec moins de cinq jouables :", insuffisants)

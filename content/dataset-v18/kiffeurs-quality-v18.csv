@@ -95,3 +95,5 @@ QA16-0093,EVT-0663,INFO,CALENDAR_SYSTEM,Boyne : 1er juillet 1690 julien = 11 jui
 QA16-0094,EVT-0692,INFO,PHOTO_DATE_DISPUTED,Point de vue du Gras : 1826 ou 1827 selon les travaux.
 QA16-0095,EVT-0715,INFO,FALSE_DAY_PRECISION_REMOVED,La date du 21 octobre 1879 n’est plus stockée comme jour exact.
 QA16-0096,EVT-0928,INFO,FALSE_DAY_PRECISION_REMOVED,"Première page Web : « fin 1990 » retenu, sans forcer le 20 décembre."
+QA18-0001,EVT-2042,INFO,APPROXIMATE,"Bornes archéologiques approximatives ; réponse en plage, sans jour/mois."
+QA18-0002,EVT-2042,INFO,ALTERNATE_CHRONOLOGY,PNAS : environ 7100-5950 cal BCE ; UNESCO : environ 7400-6200 av. J.-C. ; aucune plage hybride.

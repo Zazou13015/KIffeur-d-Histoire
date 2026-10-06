@@ -1,15 +1,17 @@
 # Issue #9 — sept compléments validés et appliqués localement
 
+**État final actualisé : Çatalhöyük est ensuite validé et intégré comme EVT-2042. THM-004 atteint cinq jouables, 41/41 chapitres atteignent le minimum et le dataset compte 2 001 événements / 534 liens.** [Dossier final](kiffeurs-chapter-thm004-candidates-v18-README.md). Le bilan ci-dessous documente l'étape historique des sept rattachements (avant cette création), dont les 44 validations et les paires appliquées restent conservées.
+
 **Antonin a validé les sept rattachements supplémentaires dans son message de suivi après relecture avec ChatGPT.** Ils sont maintenant appliqués aux CSV canoniques. `antonin_validation` contient six `VALIDE` et un `VALIDE_SOUS_CONDITION` pour Sargon. Les trois traces initiales et leurs 37 validations restent intactes ; les quatre fichiers consignent désormais 44 validations.
 
-| Chapitre | Jouables avant cette étape | Rattachements appliqués | Jouables après import local |
+| Chapitre | Jouables avant cette étape | Rattachements appliqués | Jouables après cette étape |
 | --- | --- | --- | --- |
 | THM-002 | 2 | EVT-0453 ; EVT-0192 ; EVT-0476 | 5 |
 | THM-004 | 3 | EVT-0553, ANCRAGE_COMPLEMENTAIRE uniquement | 4 |
 | THM-039 | 3 | EVT-0083 ; EVT-0084 | 5 |
 | THM-044 | 4 | EVT-0200 | 5 |
 
-L'objectif global reste incomplet pour **THM-004 uniquement**. Antonin demande de conserver quatre jouables à cette étape et de soumettre le dernier événement séparément. [Le dossier final de Çatalhöyük](kiffeurs-chapter-thm004-candidates-v18-README.md) et son CSV ne sont pas validés ni appliqués. Aucun nouvel EVT n'a été créé.
+À cette étape historique, THM-004 restait à quatre, conformément à la demande d'Antonin. Le dernier événement a ensuite été validé séparément et intégré dans le dossier final lié ci-dessus.
 
 Les identifiants, titres, dates structurées, précisions, statuts et modes de jeu sont copiés du canonique. Avant application, aucun de ces liens n'existait dans le fichier canonique des chapitres ; chaque événement existe et porte `playable=TRUE`. Les sources historiques initiales sont distinguées des sources consultées. Une consultation supplémentaire ne modifie pas automatiquement `source_status`.
 
@@ -21,7 +23,7 @@ Les identifiants, titres, dates structurées, précisions, statuts et modes de j
 - **Première HGGSP : EVT-0083, J'accuse (13 janvier 1898), et EVT-0084, réhabilitation de Dreyfus (12 juillet 1906)**. La [ressource Éduscol, page 9](https://eduscol.education.gouv.fr/sites/default/files/document/ra20lyceeg1histgeogeopolitique-sciencespotheme4-sinformer-regard-critique1293847pdf-83259.pdf) propose l'analyse de corpus de presse en 1894, 1898 et 1906. La [BnF](https://catalogue.bnf.fr/ark:/12148/cb180498819) et la [Cour de cassation](https://www.courdecassation.fr/toutes-les-actualites/2026/07/12/journee-de-commemoration-nationale-de-la-reconnaissance-de) documentent les deux événements. Le jalon porte sur une étude critique des sources, pas une liste de dates isolées.
 - **Terminale HGGSP : EVT-0200, proclamation de Guillaume Ier à Versailles (18 janvier 1871)**. La [ressource Éduscol de novembre 2025, page 13](https://eduscol.education.gouv.fr/sites/default/files/document/ra25lyceegthggspidentifierprotegervaloriserpatrimoine-enjeuxgeopolitiques0pdf-121241.pdf) étudie cet usage politique et symbolique de la galerie des Glaces. Le [Château de Versailles](https://www.chateauversailles.fr/decouvrir/histoire/grandes-dates/proclamation-empire-allemand) confirme la date. L'ancrage sert le jalon sur les usages de Versailles de l'Empire à nos jours.
 
-## Choix restant pour THM-004
+## Réserves de Sargon et choix alors restant pour THM-004 (historique)
 
 **EVT-0553, Sargon d'Akkad (2334 av. J.-C., `CONVENTIONAL`)** est validé seulement comme prolongement complémentaire sur le pouvoir territorial au IIIe millénaire. Il est postérieur aux premières cités-États ; ce rattachement demeure un choix éditorial, pas un repère obligatoire du [thème de 6e](https://eduscol.education.gouv.fr/sites/default/files/document/ra16c3his6eth1lalonguehistoiredelhumaniteetdesmigrations-dm619971pdf-77124.pdf). Le [Louvre](https://collections.louvre.fr/en/ark:/53355/cl010171737) utilise 2334–2279 pour le règne ; le [Met](https://www.metmuseum.org/es/essays/the-akkadian-period-ca-2350-2150-b-c) donne environ 2340–2285. La borne de 2334 ne certifie pas une fondation exactement cette année-là. Aucune correction canonique ni promotion vers `EXACT` n'est proposée ici.
 
@@ -29,7 +31,7 @@ Après ce lien validé, il manque encore **un** événement jouable. EVT-0338, E
 
 Antonin a demandé une dernière proposition solide pour la 6e, sans forcer la jouabilité d'un événement existant. Le candidat Çatalhöyük est soumis séparément avec une plage archéologique approximative et un mode RANGE envisagé. Les six candidats `PROP-*` initiaux pour THM-030/037/040 restent différés.
 
-## Application et vérifications locales
+## Application et vérifications locales de cette étape (historique)
 
 Les sept paires validées sont ajoutées à `curriculum-links` : 533 liens uniques au total (503 initiaux + 23 + 7). Quatre appartenances manquantes sont ajoutées dans `collection-events` et quatre dans `event-tags`. Les associations de J'accuse, de la réhabilitation de Dreyfus et de la proclamation de 1871 étaient déjà présentes via les objets de programme ; elles ne sont pas dupliquées. Les autres appartenances utiles de ces collections restent conservées.
 
@@ -39,6 +41,6 @@ La note d'EVT-0553 est enrichie dans `events` pour que ses réserves soient impo
 
 Reset Supabase strictement local avec les trois migrations existantes, import complet puis second import : 41 chapitres titrés/non vides, 533 liens, 2 000 événements. Le second import crée zéro ligne et retire zéro ligne ; empreintes des données identiques dans les 13 tables histoire, hors timestamps. Dates, statuts, note de Sargon et statuts pédagogiques sont comparés au canonique. Les tests existants anon/authenticated passent.
 
-`py -3 scripts/verifier-chapitres.py --exiger-validation` contrôle les 44 validations et les sept liens supplémentaires. `py -3 scripts/verifier-import-chapitres-local.py` vérifie l'import et la sécurité. Les variantes `--exiger-cinq-partout` échouent uniquement sur THM-004 (4), conformément à l'état demandé avant le choix final. Le candidat final reste hors import.
+`py -3 scripts/verifier-chapitres.py --exiger-validation` contrôle les 44 validations et les sept liens supplémentaires. `py -3 scripts/verifier-import-chapitres-local.py` vérifie l'import et la sécurité. Les variantes `--exiger-cinq-partout` échouent uniquement sur THM-004 (4), conformément à l'état demandé avant le choix final. Ces résultats historiques sont remplacés par le contrôle final strict vert avec EVT-2042, documenté dans le dossier final.
 
 Lint, typecheck, build et diff contrôlés avant push ; avertissement existant de fallback Big Shoulders au build. PR #38 en brouillon, sans merge. Aucun Supabase distant/KFFR/prod, aucune nouvelle migration, aucun changement de variables Vercel.

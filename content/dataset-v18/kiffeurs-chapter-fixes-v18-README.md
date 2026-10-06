@@ -2,7 +2,7 @@
 
 Audit du 6 octobre 2026, sur `origin/main` au commit `c0ddb93`. **Validation humaine faite par Antonin le 6 octobre 2026**, dans son message de suivi après relecture de la PR #38 avec ChatGPT : les 8 décisions de structure, les 23 rattachements existants et les 6 nouveaux candidats sont validés. PROP-INDE et PROP-DEVISE sont aussi explicitement souhaités. EVT-0905 est validé sous condition de conserver `CONVENTIONAL` et la note distinguant le 17 du 19 octobre 1973.
 
-**Les cinq fusions et les 23 + 7 rattachements validés sont maintenant appliqués au dataset canonique local**, conformément à l'autorisation d'Antonin pour cette étape. THM-028 et ses 11 liens erronés sont corrigés. Après reset et import Supabase strictement local : 41 chapitres titrés et non vides, 533 liens, 2 000 événements. Les trois CSV de propositions restent inchangés comme trace de validation ; leurs colonnes `current_*` décrivent l'audit avant application. La PR reste en brouillon, sans merge ; aucun accès à une base distante ni à KFFR, aucune nouvelle migration, aucune variable Vercel modifiée.
+**Les cinq fusions et les 23 + 7 rattachements validés sont maintenant appliqués au dataset canonique local**, conformément à l'autorisation d'Antonin pour cette étape. THM-028 et ses 11 liens erronés sont corrigés. Après reset et import Supabase strictement local : 41 chapitres titrés et non vides, 534 liens, 2 001 événements ; 41/41 chapitres avec au moins cinq jouables. Çatalhöyük est validé et intégré comme EVT-2042. Les trois CSV de propositions restent inchangés comme trace de validation ; leurs colonnes `current_*` décrivent l'audit avant application. La PR reste en brouillon, sans merge ; aucun accès à une base distante ni à KFFR, aucune nouvelle migration, aucune variable Vercel modifiée.
 
 Les 37 cellules initiales `antonin_validation` restent renseignées : `VALIDE` pour les 8 structures, 22 rattachements et 4 nouveaux candidats ; `VALIDE_SOUS_CONDITION` pour le rattachement EVT-0905 ; `VALIDE_ET_SOUHAITE` pour PROP-INDE et PROP-DEVISE. Ces valeurs consignent la décision humaine. L'application locale des fusions/rattachements a été autorisée séparément ; les six candidats restent réservés à une étape contenu dédiée, sans nouveaux `EVT-xxxx`.
 
@@ -83,28 +83,30 @@ La validation d'Antonin est consignée dans les trois fichiers de propositions. 
 
 L'importeur n'a pas été modifié : sur une base déjà peuplée de l'ancien dataset, il ne retire pas automatiquement les cinq anciennes lignes de chapitres/tags. Cette PR prouve le résultat **sur une base locale propre**, conformément à cette étape. La stratégie pour une base distante déjà peuplée doit être décidée séparément ; aucun retrait distant n'est exécuté ou autorisé ici. Aucun nouveau workflow officiel de création complète d'événement n'a été trouvé dans les documents du dépôt ; les six candidats validés attendent une étape contenu dédiée.
 
-## Application et résultat local
+## Application et résultat local final
 
-Fichiers canoniques modifiés : `themes`, `curriculum-links`, `events` (uniquement la note d'EVT-0905), `collections`, `tags`, `collection-tags`, `event-tags`, `collection-events`, `collection-summary`, tous `kiffeurs-*-v18.csv`. Les cinq collections/tags parasites étaient vides et n'avaient aucune autre référence utile à remapper. Les cibles existaient déjà. Vingt appartenances manquantes sont ajoutées aux collections/tags des trois thèmes complétés : trois des 23 associations existaient déjà via les objets curriculaires, elles ne sont pas dupliquées.
+Fichiers canoniques modifiés : `themes`, `curriculum-links`, `events` (notes d'EVT-0905 et Sargon, puis création complète d'EVT-2042), `collections`, `tags`, `collection-tags`, `event-tags`, `collection-events`, `collection-summary`, tous `kiffeurs-*-v18.csv`. Les cinq collections/tags parasites étaient vides et n'avaient aucune autre référence utile à remapper. Les cibles existaient déjà. Vingt appartenances manquantes sont ajoutées aux collections/tags des trois thèmes complétés : trois des 23 associations existaient déjà via les objets curriculaires, elles ne sont pas dupliquées.
 
 Les nouveaux liens reprennent niveau, année, scope et titre du chapitre, date/statut de l'événement et justification/notes/sources validées. `PPO_BO` et `JALON_BO` sont traduits en `PPO_BO`, `CONTEXTE_BO` en `CONNAISSANCE_EXPLICITE`, les ancrages et l'exemple introductif en `COMPLEMENT_SCHOOL_CORPUS`. La justification est conservée dans `notes` ; `official_wording` reste vide lorsqu'aucune citation littérale du BO n'a été fournie. Aucun ancrage éditorial n'est promu en date obligatoire.
 
 | Contrôle après import local | Résultat |
 | --- | --- |
 | Chapitres | 41, tous titrés et non vides |
-| Événements ↔ chapitres | 533 liens uniques, correspondant intégralement au CSV |
-| Événements et dates | 2 000, IDs et dates intégralement vérifiés |
+| Événements ↔ chapitres | 534 liens uniques, correspondant intégralement au CSV |
+| Événements et dates | 2 001, IDs et dates intégralement vérifiés ; 2 000 antérieurs protégés par empreinte |
 | THM-030 / THM-037 / THM-040 | 10 / 8 / 5 événements, tous jouables |
 | THM-028 | Terminale générale, 20 liens dont les 11 corrections ciblées |
 | EVT-0905 | Date et CONVENTIONAL conservés ; note du 17/19 octobre importée |
-| Second import | 0 création, 0 retrait ; mêmes 41 chapitres et 533 liens |
+| Second import | 0 création, 0 retrait ; mêmes 41 chapitres et 534 liens ; empreintes des 13 tables identiques hors timestamps |
 | Sécurité existante | OK pour anon et authenticated : dates/alias/descriptions invisibles |
 
 **Compléments validés et appliqués** : Antonin a aussi validé sept rattachements dans `kiffeurs-chapter-extra-proposals-v18.csv`. Six portent VALIDE ; Sargon porte VALIDE_SOUS_CONDITION. Les réserves Louvre / Met, la borne conventionnelle de 2334 et le caractère non obligatoire figurent dans le lien et la note canonique importée. [Dossier d'application des sept compléments](kiffeurs-chapter-extra-proposals-v18-README.md).
 
-**44 validations consignées** au total (37 initiales + 7 supplémentaires). Le dataset contient 533 liens : 503 initiaux + 23 + 7. THM-002/004/039/044 ont maintenant **5/4/5/5 événements jouables**. Quatre appartenances et quatre tags manquants ont été ajoutés sans dupliquer les trois associations déjà présentes. Les résumés concernés sont recalculés ; seules les notes d'EVT-0553 sont enrichies parmi les événements à cette étape, sans changer date/statut/jouabilité.
+**45 validations consignées** (37 initiales + 7 supplémentaires + Çatalhöyük). Les 30 rattachements précédemment validés sont conservés ; un nouveau lien LNK14-0705 ajoute EVT-2042 à THM-004. Dataset : **2 001 événements, 534 liens, 41 chapitres titrés/non vides, 41/41 ≥5 jouables**. THM-002/004/039/044 : **5/5/5/5**. Toutes les validations humaines nécessaires sont terminées.
 
-**Limite de l'objectif général « cinq événements jouables partout »** : seul THM-004 reste sous cinq (4). Conformément à la demande d'Antonin, [un candidat final sur Çatalhöyük](kiffeurs-chapter-thm004-candidates-v18-README.md) est soumis séparément, non validé et non appliqué. Les six candidats initiaux restent différés ; aucun EVT nouveau créé. Le second import conserve les données des 13 tables histoire à l'identique, hors timestamps ; tests de sécurité anon/authenticated réussis.
+[Création complète de Çatalhöyük](kiffeurs-chapter-thm004-candidates-v18-README.md) : PERIOD, -7100 à -5950, YEAR_RANGE, APPROXIMATE, RANGE, importance 3/difficulté 4, SUPPORTED_B suivant les conventions comparables. Sources Éduscol/PNAS DOI/UNESCO, trois alias, description sans date, 14 tags, quatre collections structurelles, pack Expert recalculé à 50 et dérivés synchronisés. La variante UNESCO 7400–6200 et les réserves sur les bornes approximatives sont conservées dans les notes privées et le lien. Aucun jour/mois inventé ni réponse réduite à -7100. Le candidat porte VALIDE / INTEGRE_CANONIQUE et son EVT dans la trace historique. Les six candidats initiaux restent différés.
+
+Reset/import Supabase LOCAL uniquement : données comparées au canonique, second import zéro création/retrait et empreintes identiques dans les 13 tables `histoire`, tests anon/authenticated verts. Aucun changement de dates/statuts des 2 000 événements précédents. PR #38 reste en brouillon pour la dernière revue, sans merge.
 
 ## Contrôle reproductible
 
@@ -114,12 +116,9 @@ python3 scripts/verifier-chapitres.py --exiger-validation
 python3 scripts/verifier-chapitres.py --exiger-validation --exiger-cinq-partout
 ```
 
-Sous Windows : `py -3 scripts/verifier-chapitres.py --exiger-validation`. Le script lit uniquement les CSV locaux : trace des huit validations, absence des cinq IDs fusionnés dans tous les CSV hors traces, 41 titres non vides, 533 liens uniques, absence d'orphelins, correction des 11 liens, application des 23 + 7 rattachements, cohérence des collections/tags/résumés, dates et statuts de validation intacts. L'option `--exiger-validation` refuse une cellule encore vide ; attendu : **44/44 validations renseignées (37 initiales + 7 supplémentaires)**. Le contrôle protège aussi les conditions de Sargon, les candidats finaux en attente, `CONVENTIONAL` et la note du 17/19 octobre d'EVT-0905 dans le canonique et les propositions. Il ne se connecte à aucun service et contrôle la transcription des validations, sans se substituer à Antonin.
+Sous Windows : `py -3`. Le contrôle strict est maintenant **vert** et requis en CI. Il contrôle les **45/45 validations**, 41 chapitres tous titrés/non vides et ≥5 jouables, 534 liens uniques, anciens IDs absents des fichiers actifs, THM-028 et 11 corrections, les 30 liens validés et Çatalhöyük complet, tags/collections/sources/dérivés et conditions de Sargon/EVT-0905. L'empreinte figée au commit d316374 protège les dates/statuts/jouabilités des 2 000 événements antérieurs. Ce contrôle retranscrit les décisions et ne remplace pas la revue d'Antonin.
 
-L'option `--exiger-cinq-partout` contrôle séparément l'objectif global : **échec attendu (code 1)** uniquement pour THM-004 (4). Après import local, `py -3 scripts/verifier-import-chapitres-local.py --exiger-cinq-partout` échoue sur le même chapitre, après vérification des données et des tests de sécurité. Le succès du contrôle ordinaire et de la CI confirme l'application des décisions validées ; il ne signifie pas que ce seuil global est atteint.
-
-Contrôler aussi le diff : les neuf CSV canoniques listés ci-dessus, les contrôles de contenu, la CI et la documentation portent cette application. Les trois CSV de propositions restent intacts. Les fichiers Supabase et migrations existants, `auth`, `public`, `private` et paramètres Vercel restent inchangés. L'import utilise exclusivement la clé générée pour la pile locale et son API `http://127.0.0.1:54321`, jamais une clé distante. Lint/typecheck/build utilisent les valeurs locales factices de la CI.
-
+Après import : `py -3 scripts/verifier-import-chapitres-local.py --exiger-cinq-partout` compare tous les chapitres/liens, dates, statuts, modes, notes, descriptions, importance/difficulté, tags, trois alias de Çatalhöyük et les 24 packs. Tests de sécurité existants exécutés dans le même contrôle. Lint/typecheck/build et diff vérifiés avant push ; avertissement préexistant Big Shoulders. Les quatre traces initiales restent intactes ; la cinquième consigne l'intégration. Les fichiers Supabase/migrations, auth/public/private et variables Vercel restent inchangés. L'import utilise exclusivement la clé générée localement et l'API `http://127.0.0.1:54321`, sans charger `.env.local`.
 
 ### Reproduire l'import strictement local sous PowerShell
 
@@ -133,7 +132,7 @@ if ($LASTEXITCODE -ne 0 -or $taskLocalStatus.API_URL -ne 'http://127.0.0.1:54321
 $env:SUPABASE_URL = 'http://127.0.0.1:54321'
 $env:SUPABASE_SERVICE_ROLE_KEY = $taskLocalStatus.SECRET_KEY
 node node_modules/tsx/dist/cli.mjs scripts/import-dataset.ts --dossier content/dataset-v18
-py -3 scripts/verifier-import-chapitres-local.py
+py -3 scripts/verifier-import-chapitres-local.py --exiger-cinq-partout
 ```
 
-Le lancement direct de l'import évite de charger `.env.local`. Le vérificateur d'import refuse les contextes Docker distants et les overrides Docker ; il lit uniquement le conteneur local `supabase_db_kiffeurs-histoire`, compare les 41 chapitres, les 533 liens, les conditions de Sargon et les 2 000 dates au canonique, puis exécute le test existant `supabase/tests/reponses_invisibles.sql`. Aucune migration n'est créée ; seules les trois migrations existantes sont appliquées par le reset local.
+Le lancement direct de l'import évite de charger `.env.local`. Le vérificateur d'import refuse les contextes Docker distants et les overrides Docker ; il lit uniquement le conteneur local `supabase_db_kiffeurs-histoire`, compare les 41 chapitres, les 534 liens, les conditions de Sargon/Çatalhöyük et les 2 001 dates au canonique, puis exécute le test existant `supabase/tests/reponses_invisibles.sql`. Aucune migration n'est créée ; seules les trois migrations existantes sont appliquées par le reset local.

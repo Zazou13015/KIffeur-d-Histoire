@@ -12,9 +12,9 @@ COL-0010,Programme Seconde générale et technologique,CURRICULUM_LEVEL,FALSE,60
 COL-0011,Programme Terminale HGGSP,CURRICULUM_LEVEL,FALSE,60,58,2,3.57,2.92,-10000,2026,tag:level-terminale-hggsp
 COL-0012,Programme Terminale générale,CURRICULUM_LEVEL,FALSE,21,21,0,2.67,3.24,1933,1994,tag:level-terminale-generale
 COL-0013,CM2 — Thème 1 — Le temps de la République,CURRICULUM_THEME,FALSE,8,8,0,3.62,2.38,1880,1945,tag:theme-thm-001
-COL-0014,CM2 — Thème 2 — L’âge industriel en France,CURRICULUM_THEME,FALSE,3,2,1,3.00,2.67,1820,1931,tag:theme-thm-002
+COL-0014,CM2 — Thème 2 — L’âge industriel en France,CURRICULUM_THEME,FALSE,6,5,1,3.17,3.00,1820,1931,tag:theme-thm-002
 COL-0015,CM2 — Thème 3 — Guerres mondiales et construction européenne,CURRICULUM_THEME,FALSE,10,10,0,4.70,2.00,1914,1992,tag:theme-thm-003
-COL-0016,6e — Thème 1 — La longue histoire de l’humanité et des migrations,CURRICULUM_THEME,FALSE,7,3,4,3.43,3.14,-10000,-1750,tag:theme-thm-004
+COL-0016,6e — Thème 1 — La longue histoire de l’humanité et des migrations,CURRICULUM_THEME,FALSE,8,4,4,3.50,3.12,-10000,-1750,tag:theme-thm-004
 COL-0017,"6e — Thème 2 — Récits fondateurs, croyances et citoyenneté dans la Méditerranée antique",CURRICULUM_THEME,FALSE,19,14,5,3.47,3.32,-776,-323,tag:theme-thm-005
 COL-0018,6e — Thème 3 — L’Empire romain dans le monde antique,CURRICULUM_THEME,FALSE,24,24,0,3.17,3.08,-509,451,tag:theme-thm-006
 COL-0019,"5e — Thème 1 — Chrétientés et islam (VIe-XIIIe siècles), des mondes en contact",CURRICULUM_THEME,FALSE,11,11,0,3.36,3.18,507,1206,tag:theme-thm-007

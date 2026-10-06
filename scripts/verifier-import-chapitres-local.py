@@ -48,9 +48,15 @@ def main():
     assert {c["id"] for c in chapitres} == themes.keys(), "IDs de chapitres importés différents du canonique."
     assert all(c["title"] == themes[c["id"]]["theme_title"] and c["level"] == themes[c["id"]]["level"] for c in chapitres), "Titres/niveaux importés incorrects."
     relations = requete("select coalesce(json_agg(x), '[]') from (select chapter_id,event_id,curriculum_status from histoire.event_chapters) x")
-    assert len(relations) == len(links) == 526, "Nombre de rattachements importés incorrect."
+    assert len(relations) == len(links) == 533, "Nombre de rattachements importés incorrect."
     assert {(r["chapter_id"], r["event_id"]) for r in relations} == links.keys(), "Rattachements importés différents du canonique."
     assert all(r["curriculum_status"] == (links[(r["chapter_id"], r["event_id"])]["curriculum_status"] or None) for r in relations), "Statuts pédagogiques importés incorrects."
+    tags_attendus = {t["tag_id"] for t in lire("tags")}
+    tags_importes = requete("select coalesce(json_agg(id), '[]') from histoire.tags")
+    assert len(tags_importes) == len(tags_attendus) and set(tags_importes) == tags_attendus, "Tags importés différents du canonique."
+    paires_tags = {(r["event_id"], r["tag_id"]) for r in lire("event-tags")}
+    tags_evenements = requete("select coalesce(json_agg(x), '[]') from (select event_id,tag_id from histoire.event_tags) x")
+    assert len(tags_evenements) == len(paires_tags) and {(r["event_id"], r["tag_id"]) for r in tags_evenements} == paires_tags, "Appartenances aux tags importées incomplètes ou dupliquées."
     importes = requete("select coalesce(json_agg(x), '[]') from (select e.id,e.playable,e.precision,e.date_status,a.start_year,a.start_month,a.start_day,a.end_year,a.end_month,a.end_day,a.notes from histoire.events e join histoire.event_answers a on a.event_id=e.id) x")
     assert len(importes) == len(events) == 2000 and {e["id"] for e in importes} == events.keys(), "Événements/réponses importés incomplets."
     for e in importes:
@@ -60,14 +66,20 @@ def main():
             assert e[champ] == (int(canon[champ]) if canon[champ] else None), f"{e['id']} : date importée altérée."
     embargo = next(e for e in importes if e["id"] == "EVT-0905")
     assert embargo["date_status"] == "CONVENTIONAL" and "17 octobre" in embargo["notes"] and "19 octobre" in embargo["notes"], "Condition EVT-0905 perdue à l'import."
+    sargon = next(e for e in importes if e["id"] == "EVT-0553")
+    assert sargon["start_year"] == -2334 and sargon["date_status"] == "CONVENTIONAL", "Borne/statut EVT-0553 altérés à l'import."
+    assert sargon["notes"] == events["EVT-0553"]["notes"] and all(mot in sargon["notes"] for mot in ("borne chronologique conventionnelle", "Louvre", "Met", "2334-2279", "2340-2285", "jamais une fondation exacte", "ni un repère obligatoire")), "Condition EVT-0553 perdue à l'import."
+    assert links[("THM-004", "EVT-0553")]["subsection"] == "ANCRAGE_COMPLEMENTAIRE" and next(r for r in relations if r["chapter_id"] == "THM-004" and r["event_id"] == "EVT-0553")["curriculum_status"] == "COMPLEMENT_SCHOOL_CORPUS", "Sargon promu en repère obligatoire."
     jouables = {e["id"] for e in importes if e["playable"]}
     nombres = Counter(r["chapter_id"] for r in relations)
     nombres_jouables = Counter(r["chapter_id"] for r in relations if r["event_id"] in jouables)
     assert all(nombres[cid] > 0 for cid in themes), "Chapitre importé vide."
-    for cid, minimum in (("THM-030", 10), ("THM-037", 8), ("THM-040", 5)):
+    for cid, minimum in (("THM-030", 10), ("THM-037", 8), ("THM-040", 5), ("THM-002", 5), ("THM-004", 4), ("THM-039", 5), ("THM-044", 5)):
         assert nombres_jouables[cid] >= minimum, f"{cid} : événements jouables insuffisants après import."
-    print("OK import local : 41 chapitres titrés/non vides, 526 liens canoniques et 2 000 événements avec dates intactes.")
+    print("OK import local : 41 chapitres titrés/non vides, 533 liens canoniques et 2 000 événements avec dates intactes.")
     print("OK : THM-030/037/040 ont 10/8/5 événements jouables ; THM-028 est en Terminale ; condition EVT-0905 importée.")
+    print("OK : THM-002/004/039/044 ont 5/4/5/5 jouables ; condition de Sargon importée et statut complémentaire conservé.")
+    print(f"OK : {len(tags_attendus)} tags et {len(paires_tags)} associations événement/tag canoniques importés sans doublon.")
     insuffisants = {cid: nombres_jouables[cid] for cid in themes if nombres_jouables[cid] < 5}
     print("Chapitres préexistants hors des huit cas avec moins de cinq jouables :", insuffisants)
     test = (RACINE / "supabase/tests/reponses_invisibles.sql").read_text(encoding="utf-8-sig")

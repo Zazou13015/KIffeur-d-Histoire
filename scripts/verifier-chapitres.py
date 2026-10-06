@@ -14,6 +14,13 @@ from pathlib import Path
 
 FUSIONS = {"THM-023": "THM-022", "THM-032": "THM-028", "THM-033": "THM-029", "THM-034": "THM-030", "THM-035": "THM-031"}
 CONSERVES = {"THM-030": 10, "THM-037": 8, "THM-040": 5}
+COMPLEMENTS = {
+    "THM-002": {"EVT-0453", "EVT-0192", "EVT-0476"},
+    "THM-004": {"EVT-0553"},
+    "THM-039": {"EVT-0083", "EVT-0084"},
+    "THM-044": {"EVT-0200"},
+}
+MINIMUMS_COMPLEMENTS = {"THM-002": 5, "THM-004": 4, "THM-039": 5, "THM-044": 5}
 
 
 def lire(dossier, nom):
@@ -43,6 +50,8 @@ def main():
             liens[l["theme_id"]].add(l["event_id"])
     fixes = lire(d, "chapter-fixes")
     details = lire(d, "chapter-event-proposals")
+    supplementaires = lire(d, "chapter-extra-proposals")
+    derniers_candidats = lire(d, "chapter-thm004-candidates")
     nouveaux = lire(d, "chapter-new-events")
     erreurs = []
 
@@ -74,21 +83,25 @@ def main():
                  f"{identifiant} : correction ciblée THM-028 manquante ou événement changé.")
     paires = [(l["theme_id"], l["event_id"]) for l in lignes_programme if l["theme_id"] and l["event_id"]]
     verifier(len(paires) == len(set(paires)), "Doublon de lien événement ↔ chapitre.")
-    verifier(len(paires) == 526, "Attendu : 503 liens initiaux + 23 rattachements = 526 liens canoniques.")
+    verifier(len(paires) == 533, "Attendu : 503 liens initiaux + 23 + 7 rattachements = 533 liens canoniques.")
+    attendus = {(cid, eid) for cid, eids in COMPLEMENTS.items() for eid in eids}
+    verifier(len(supplementaires) == 7 and {(e["chapter_id"], e["event_id"]) for e in supplementaires} == attendus,
+             "La trace supplémentaire doit couvrir exactement les sept rattachements validés.")
     for l in lignes_programme:
         verifier(not l["theme_id"] or l["theme_id"] in themes, f"Lien vers chapitre orphelin : {l['theme_id']}")
         verifier(not l["event_id"] or l["event_id"] in events, f"Lien vers événement orphelin : {l['event_id']}")
         if l["theme_id"] == "THM-028":
             verifier(l["level"] == "Terminale générale", "THM-028 : lien encore au mauvais niveau.")
-    for cid, nombre in CONSERVES.items():
+    for cid, nombre in (CONSERVES | MINIMUMS_COMPLEMENTS).items():
         verifier(len(liens[cid]) >= nombre, f"{cid} : rattachements incomplets.")
         verifier(sum(events.get(eid, {}).get("playable") == "TRUE" for eid in liens[cid]) >= nombre,
                  f"{cid} : minimum d'événements jouables non atteint.")
     nouveaux_ids = [n["proposal_id"] for n in nouveaux]
     verifier(len(set(nouveaux_ids)) == len(nouveaux_ids), "Candidats nouveaux en double.")
     par_chapitre = defaultdict(list)
-    for e in details:
-        par_chapitre[e["chapter_id"]].append(e["event_id"])
+    for e in [*details, *supplementaires]:
+        if e["chapter_id"] in CONSERVES:
+            par_chapitre[e["chapter_id"]].append(e["event_id"])
         canon = events.get(e["event_id"])
         verifier(canon is not None, f"Événement inexistant : {e['event_id']}")
         if canon:
@@ -117,6 +130,14 @@ def main():
                      "EVT-0905 : conserver la note distinguant le 17 et le 19 octobre 1973.")
             verifier("17 octobre" in events.get("EVT-0905", {}).get("notes", "") and "19 octobre" in events.get("EVT-0905", {}).get("notes", ""),
                      "EVT-0905 : distinction 17/19 octobre absente de la note canonique importable.")
+        elif e["event_id"] == "EVT-0553":
+            verifier_validation(e, {"VALIDE_SOUS_CONDITION"}, e["event_id"])
+            verifier(e["pedagogical_relation"] == "ANCRAGE_COMPLEMENTAIRE" and e["date_status"] == "CONVENTIONAL",
+                     "EVT-0553 : ancrage complémentaire et CONVENTIONAL exigés par Antonin.")
+            verifier(events.get("EVT-0553", {}).get("start_year") == "-2334", "EVT-0553 : borne canonique modifiée.")
+            for note in (e["review_notes"], events.get("EVT-0553", {}).get("notes", "")):
+                verifier(all(mot in note for mot in ("borne chronologique conventionnelle", "Louvre", "Met", "2334-2279", "2340-2285", "jamais une fondation exacte", "ni un repère obligatoire")),
+                         "EVT-0553 : condition ou variantes chronologiques perdues.")
         else:
             verifier_validation(e, {"VALIDE"}, e["event_id"])
     conserves = set()
@@ -162,6 +183,24 @@ def main():
         verifier(bool(n["sources"] and n["justification"] and n["date_notes"]), "Nouveau candidat incomplet.")
         statut_attendu = "VALIDE_ET_SOUHAITE" if n["proposal_id"] in {"PROP-INDE", "PROP-DEVISE"} else "VALIDE"
         verifier_validation(n, {statut_attendu}, n["proposal_id"])
+    verifier(1 <= len(derniers_candidats) <= 2, "THM-004 : attendu un ou deux candidats finaux séparés.")
+    verifier(len({n["proposal_id"] for n in derniers_candidats}) == len(derniers_candidats), "THM-004 : candidat final dupliqué.")
+    for n in derniers_candidats:
+        verifier(n["chapter_id"] == "THM-004" and n["proposal_id"].startswith("PROP-") and "event_id" not in n,
+                 "THM-004 : candidat hors chapitre ou nouvel EVT inventé.")
+        verifier(n["title_canonical"] not in {e["title_canonical"] for e in events.values()}, "THM-004 : candidat déjà canonique.")
+        verifier(n["integration_status"] == "PROPOSITION_NON_APPLIQUEE" and not n["antonin_validation"],
+                 "THM-004 : le candidat final doit attendre le choix d'Antonin.")
+        verifier(n["precision"] == "YEAR_RANGE" and n["date_status"] == "APPROXIMATE" and n["playable_mode_envisage"] == "RANGE",
+                 "THM-004 : conserver la proposition de plage approximative et son mode envisagé.")
+        try:
+            verifier(int(n["start_year"]) < int(n["end_year"]) < 0, "THM-004 : plage avant J.-C. incohérente.")
+        except ValueError:
+            verifier(False, "THM-004 : bornes du candidat final invalides.")
+        verifier(all(n[champ] for champ in ("justification", "curriculum_sources", "historical_sources", "date_notes", "dedup_notes")),
+                 "THM-004 : candidat final insuffisamment documenté.")
+        verifier(not any(n[champ] for champ in ("start_month", "start_day", "end_month", "end_day")),
+                 "THM-004 : ne pas inventer de précision au mois/jour.")
     # Recherche dans TOUS les CSV : seuls les trois fichiers de propositions
     # conservent les anciens IDs comme trace de validation.
     traces = {f"kiffeurs-chapter-{nom}-v18.csv" for nom in ("fixes", "event-proposals", "new-events")}
@@ -194,7 +233,7 @@ def main():
     verifier(summaries.keys() == collections.keys(), "Résumés de collections manquants ou orphelins.")
     ce = lire(d, "collection-events")
     et = lire(d, "event-tags")
-    for cid in CONSERVES | {"THM-028": 20}:
+    for cid in CONSERVES | {"THM-028": 20} | MINIMUMS_COMPLEMENTS:
         cs = [c for c in collections.values() if c["theme_id"] == cid and c["collection_type"] == "CURRICULUM_THEME"]
         ts = [t for t in tags.values() if t["slug"] == f"theme-{cid.lower()}"]
         verifier(len(cs) == len(ts) == 1, f"{cid} : collection/tag absent ou dupliqué.")
@@ -202,10 +241,26 @@ def main():
             c, tag = cs[0], ts[0]
             membres = {r["event_id"] for r in ce if r["collection_id"] == c["collection_id"]}
             tagues = {r["event_id"] for r in et if r["tag_id"] == tag["tag_id"]}
-            verifier(membres == tagues == liens[cid], f"{cid} : collection/tag incohérent avec les liens canoniques.")
+            for r in ce:
+                if r["collection_id"] == c["collection_id"]:
+                    verifier(r["playable"] == events[r["event_id"]]["playable"] and r["playable_mode"] == events[r["event_id"]]["playable_mode"],
+                             f"{cid}/{r['event_id']} : jouabilité de collection différente du canonique.")
+            # Certaines collections ont déjà des membres issus des objets de programme ;
+            # les sept ajouts conservent ces appartenances utiles, sans les dupliquer.
+            verifier(membres == tagues and liens[cid] <= membres, f"{cid} : collection/tag incohérent avec les liens canoniques.")
+            if cid not in COMPLEMENTS:
+                verifier(membres == liens[cid], f"{cid} : membres inattendus hors liens canoniques.")
             s = summaries.get(c["collection_id"], {})
             verifier(s.get("event_count") == str(len(membres)) and s.get("playable_event_count") == str(sum(events[e]["playable"] == "TRUE" for e in membres)),
                      f"{cid} : résumé de collection incohérent.")
+            verifier(s.get("context_event_count") == str(sum(events[e]["playable"] != "TRUE" for e in membres)),
+                     f"{cid} : nombre d'événements de contexte incohérent.")
+            for champ, source in (("avg_importance", "importance"), ("avg_difficulty", "difficulty")):
+                verifier(s.get(champ) == f"{sum(int(events[e][source]) for e in membres) / len(membres):.2f}",
+                         f"{cid} : {champ} incohérent.")
+            annees = [int(events[e]["start_year"]) for e in membres if events[e]["start_year"]]
+            verifier(s.get("earliest_year") == str(min(annees)) and s.get("latest_year") == str(max(annees)),
+                     f"{cid} : bornes du résumé incohérentes.")
             verifier(c["level"] == themes[cid]["level"] and c["title"] == tag["name"] == s.get("title"), f"{cid} : libellés scolaires incohérents.")
     insuffisants = [(cid, sum(events.get(e, {}).get("playable") == "TRUE" for e in liens[cid])) for cid in themes
                     if sum(events.get(e, {}).get("playable") == "TRUE" for e in liens[cid]) < 5]
@@ -216,11 +271,13 @@ def main():
         print(f"ERREUR : {erreur}")
     if erreurs:
         return 1
-    print(f"OK : {len(fixes)} décisions, {len(details)} liens proposés / {len({e['event_id'] for e in details})} événements distincts existants et jouables, {len(nouveaux)} nouveaux candidats sans event_id.")
-    validations = sum(bool(l["antonin_validation"]) for l in [*fixes, *details, *nouveaux])
-    print(f"Métadonnées, dates et précision conservées ; {validations}/{len(fixes) + len(details) + len(nouveaux)} validations d'Antonin renseignées.")
+    print(f"OK : {len(fixes)} décisions, {len(details)} + {len(supplementaires)} rattachements appliqués, {len(nouveaux)} candidats initiaux conservés sans event_id.")
+    validations = sum(bool(l["antonin_validation"]) for l in [*fixes, *details, *supplementaires, *nouveaux])
+    print(f"Métadonnées, dates et précision conservées ; {validations}/{len(fixes) + len(details) + len(supplementaires) + len(nouveaux)} validations d'Antonin renseignées.")
     print(f"Canonique : {len(themes)} chapitres titrés et non vides, {len(paires)} liens uniques, cinq fusions appliquées et THM-028/11 liens corrigés.")
     print("THM-030/037/040 : 10/8/5 événements jouables ; EVT-0905 : CONVENTIONAL et note du 17/19 octobre conservés.")
+    print("THM-002/004/039/044 : 5/4/5/5 jouables ; Sargon : ANCRAGE_COMPLEMENTAIRE, CONVENTIONAL et réserves conservés.")
+    print(f"THM-004 : {len(derniers_candidats)} candidat(s) final(aux) séparé(s), sans EVT créé, en attente du choix d'Antonin.")
     print(f"Information hors des huit cas de l'issue #9 : chapitres préexistants avec moins de cinq événements jouables : {insuffisants}")
     return 0
 

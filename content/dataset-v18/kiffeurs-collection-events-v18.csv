@@ -11035,3 +11035,7 @@ CEV14-01668,COL-0049,EVT-1004,8,TRUE,DAY,tag:theme-thm-037,Issue #9 : rattacheme
 CEV14-01669,COL-0052,EVT-0005,3,TRUE,DAY,tag:theme-thm-040,Issue #9 : rattachement validé par Antonin.,,,FALSE
 CEV14-01670,COL-0052,EVT-0522,4,TRUE,DAY,tag:theme-thm-040,Issue #9 : rattachement validé par Antonin.,,,FALSE
 CEV14-01671,COL-0052,EVT-0862,5,TRUE,DAY,tag:theme-thm-040,Issue #9 : rattachement validé par Antonin.,,,FALSE
+CEV14-01672,COL-0014,EVT-0453,4,TRUE,RANGE,tag:theme-thm-002,Issue #9 : rattachement supplémentaire validé par Antonin.,,,FALSE
+CEV14-01673,COL-0014,EVT-0192,5,TRUE,RANGE,tag:theme-thm-002,Issue #9 : rattachement supplémentaire validé par Antonin.,,,FALSE
+CEV14-01674,COL-0014,EVT-0476,6,TRUE,DAY,tag:theme-thm-002,Issue #9 : rattachement supplémentaire validé par Antonin.,,,FALSE
+CEV14-01675,COL-0016,EVT-0553,8,TRUE,YEAR,tag:theme-thm-004,Issue #9 : rattachement supplémentaire validé par Antonin.,,,FALSE

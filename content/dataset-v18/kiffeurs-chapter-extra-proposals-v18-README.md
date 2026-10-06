@@ -1,19 +1,19 @@
-# Issue #9 — compléments supplémentaires en attente de validation
+# Issue #9 — sept compléments validés et appliqués localement
 
-Recherche du 6 octobre 2026, après application des huit décisions validées dans la PR #38. **Ces sept propositions ne sont pas validées par Antonin et ne sont pas appliquées au dataset canonique.** Les sept cellules `antonin_validation` restent vides dans `kiffeurs-chapter-extra-proposals-v18.csv`. Les trois fichiers de propositions initiales et leurs 37 validations sont conservés intacts.
+**Antonin a validé les sept rattachements supplémentaires dans son message de suivi après relecture avec ChatGPT.** Ils sont maintenant appliqués aux CSV canoniques. `antonin_validation` contient six `VALIDE` et un `VALIDE_SOUS_CONDITION` pour Sargon. Les trois traces initiales et leurs 37 validations restent intactes ; les quatre fichiers consignent désormais 44 validations.
 
-L'objectif général de l'issue est cinq événements jouables pour chaque chapitre. Le contrôle strict trouve quatre écarts préexistants, hors des huit cas initiaux. Ce dossier rend la suite examinable : six rattachements permettraient à trois chapitres d'atteindre cinq ; un septième, plus discutable, apporterait seulement un complément à la 6e. **Même l'acceptation des sept ne satisferait pas encore l'objectif global.**
+| Chapitre | Jouables avant cette étape | Rattachements appliqués | Jouables après import local |
+| --- | --- | --- | --- |
+| THM-002 | 2 | EVT-0453 ; EVT-0192 ; EVT-0476 | 5 |
+| THM-004 | 3 | EVT-0553, ANCRAGE_COMPLEMENTAIRE uniquement | 4 |
+| THM-039 | 3 | EVT-0083 ; EVT-0084 | 5 |
+| THM-044 | 4 | EVT-0200 | 5 |
 
-| Chapitre | Niveau / sujet | Jouables actuels | Propositions existantes | Jouables si tous ces liens étaient validés puis appliqués |
-| --- | --- | --- | --- | --- |
-| THM-002 | CM2 — L'âge industriel en France | 2 | EVT-0453 ; EVT-0192 ; EVT-0476 | 5 |
-| THM-004 | 6e — La longue histoire de l'humanité et des migrations | 3 | EVT-0553, choix pédagogique à discuter | 4, encore insuffisant |
-| THM-039 | Première HGGSP — S'informer | 3 | EVT-0083 ; EVT-0084 | 5 |
-| THM-044 | Terminale HGGSP — Patrimoine | 4 | EVT-0200 | 5 |
+L'objectif global reste incomplet pour **THM-004 uniquement**. Antonin demande de conserver quatre jouables à cette étape et de soumettre le dernier événement séparément. [Le dossier final de Çatalhöyük](kiffeurs-chapter-thm004-candidates-v18-README.md) et son CSV ne sont pas validés ni appliqués. Aucun nouvel EVT n'a été créé.
 
-Les identifiants, titres, dates structurées, précisions, statuts et modes de jeu sont copiés du canonique. Aucun lien proposé n'existe déjà pour le chapitre ciblé ; chaque événement existe et porte `playable=TRUE`. Les sources historiques initiales sont distinguées des sources consultées. Une consultation supplémentaire ne modifie pas automatiquement `source_status`.
+Les identifiants, titres, dates structurées, précisions, statuts et modes de jeu sont copiés du canonique. Avant application, aucun de ces liens n'existait dans le fichier canonique des chapitres ; chaque événement existe et porte `playable=TRUE`. Les sources historiques initiales sont distinguées des sources consultées. Une consultation supplémentaire ne modifie pas automatiquement `source_status`.
 
-## Rattachements proposés
+## Rattachements validés
 
 - **CM2 : EVT-0453, première révolte des canuts (21–24 novembre 1831)**. Exemple du travail à l'atelier et du conflit salarial. Les [Archives de Lyon](https://www.archives-lyon.fr/pages/1831-1834-la-revolte-des-canuts) situent le début de l'insurrection ; leur [chronologie](https://www.archives-lyon.fr/arrive-a-lyon?day=&end_year=&month=&op=Rechercher&page=170&search=&start_year=&year=) indique le retour au calme le 24. Complément éditorial à adapter au CM2, pas date obligatoire.
 - **CM2 : EVT-0192, Paris haussmannien (1853–1870 environ)**. La [ressource Éduscol CM2, page 4](https://eduscol.education.gouv.fr/sites/default/files/document/ra16c3higecm2th2ageindustrielfrance619875pdf-77118.pdf) rattache explicitement ces travaux aux transformations urbaines de l'âge industriel. Le [Sénat](https://www.senat.fr/connaitre-le-senat/lhistoire-du-senat/dossiers-dhistoire/le-senat-sous-le-second-empire-et-napoleon-iii/le-baron-haussmann.html) documente les bornes de sa préfecture. Conserver `YEAR_RANGE`, `APPROXIMATE` et `RANGE`.
@@ -23,14 +23,22 @@ Les identifiants, titres, dates structurées, précisions, statuts et modes de j
 
 ## Choix restant pour THM-004
 
-**EVT-0553, Sargon d'Akkad (2334 av. J.-C., `CONVENTIONAL`)** peut être discuté comme prolongement sur le pouvoir territorial au IIIe millénaire. Il est postérieur aux premières cités-États ; ce rattachement est un choix éditorial, pas un repère obligatoire du [thème de 6e](https://eduscol.education.gouv.fr/sites/default/files/document/ra16c3his6eth1lalonguehistoiredelhumaniteetdesmigrations-dm619971pdf-77124.pdf). Le [Louvre](https://collections.louvre.fr/en/ark:/53355/cl010171737) utilise 2334–2279 pour le règne ; le [Met](https://www.metmuseum.org/es/essays/the-akkadian-period-ca-2350-2150-b-c) donne environ 2340–2285. La borne de 2334 ne certifie pas une fondation exactement cette année-là. Aucune correction canonique ni promotion vers `EXACT` n'est proposée ici.
+**EVT-0553, Sargon d'Akkad (2334 av. J.-C., `CONVENTIONAL`)** est validé seulement comme prolongement complémentaire sur le pouvoir territorial au IIIe millénaire. Il est postérieur aux premières cités-États ; ce rattachement demeure un choix éditorial, pas un repère obligatoire du [thème de 6e](https://eduscol.education.gouv.fr/sites/default/files/document/ra16c3his6eth1lalonguehistoiredelhumaniteetdesmigrations-dm619971pdf-77124.pdf). Le [Louvre](https://collections.louvre.fr/en/ark:/53355/cl010171737) utilise 2334–2279 pour le règne ; le [Met](https://www.metmuseum.org/es/essays/the-akkadian-period-ca-2350-2150-b-c) donne environ 2340–2285. La borne de 2334 ne certifie pas une fondation exactement cette année-là. Aucune correction canonique ni promotion vers `EXACT` n'est proposée ici.
 
-Ce lien ne suffirait pas : il manquerait encore **un** événement jouable, ou **deux** si Sargon est écarté. EVT-0338, EVT-0339, EVT-0342, EVT-0368 et EVT-0549 restent non jouables selon leurs métadonnées actuelles. Leurs datations/processus ne sont pas forcés en dates exactes et leur statut n'est pas modifié pour satisfaire le compteur. Les dates modernes de découvertes archéologiques ne sont pas ajoutées comme substituts aux repères de la période étudiée.
+Après ce lien validé, il manque encore **un** événement jouable. EVT-0338, EVT-0339, EVT-0342, EVT-0368 et EVT-0549 restent non jouables selon leurs métadonnées actuelles. Leurs datations/processus ne sont pas forcés en dates exactes et leur statut n'est pas modifié pour satisfaire le compteur. Les dates modernes de découvertes archéologiques ne sont pas ajoutées comme substituts aux repères de la période étudiée.
 
-Antonin doit donc arbitrer une étape contenu sourcée avec datations et modes de jeu adaptés pour la 6e, ou une exception explicite au seuil global pour ce thème. Aucune des deux décisions n'est présumée acquise. Les six candidats `PROP-*` déjà validés pour THM-030/037/040 restent différés et ne comblent pas ce manque.
+Antonin a demandé une dernière proposition solide pour la 6e, sans forcer la jouabilité d'un événement existant. Le candidat Çatalhöyük est soumis séparément avec une plage archéologique approximative et un mode RANGE envisagé. Les six candidats `PROP-*` initiaux pour THM-030/037/040 restent différés.
 
-## Vérification et application ultérieure
+## Application et vérifications locales
 
-Les sept paires proposées sont distinctes, absentes des liens canoniques, et les métadonnées sont identiques aux événements existants. Le contrôle ordinaire reste vert pour l'application des décisions initiales ; `--exiger-cinq-partout` continue à échouer sur les quatre chapitres actuels. L'importeur sélectionne explicitement ses fichiers canoniques : ce CSV de proposition n'est pas importé.
+Les sept paires validées sont ajoutées à `curriculum-links` : 533 liens uniques au total (503 initiaux + 23 + 7). Quatre appartenances manquantes sont ajoutées dans `collection-events` et quatre dans `event-tags`. Les associations de J'accuse, de la réhabilitation de Dreyfus et de la proclamation de 1871 étaient déjà présentes via les objets de programme ; elles ne sont pas dupliquées. Les autres appartenances utiles de ces collections restent conservées.
 
-Après une validation humaine explicite, consigner les réponses dans ce nouveau CSV avant toute application. La suite devra reprendre le contrôle des collections/tags/résumés et l'import Supabase strictement local, puis les tests projet. PR #38 en brouillon ; aucun merge ni accès distant/prod.
+Les résumés de THM-002 et THM-004 sont recalculés ; ceux de THM-039 et THM-044 sont déjà cohérents et restent inchangés. Les nombres de membres des collections peuvent dépasser les liens canoniques de chapitre, car les résolutions d'objets curriculaires contribuent aussi à ces collections. Le décompte scolaire après import est fondé sur `event_chapters`, sans gonfler le résultat avec ces appartenances préexistantes.
+
+La note d'EVT-0553 est enrichie dans `events` pour que ses réserves soient importables : borne chronologique conventionnelle, variantes Louvre / Met, jamais une fondation exacte ni un repère obligatoire. Sa date, CONVENTIONAL, son titre et ses autres métadonnées restent inchangés. Le lien conserve ANCRAGE_COMPLEMENTAIRE, transcrit en COMPLEMENT_SCHOOL_CORPUS. Aucun `official_wording` littéral du BO n'est inventé.
+
+Reset Supabase strictement local avec les trois migrations existantes, import complet puis second import : 41 chapitres titrés/non vides, 533 liens, 2 000 événements. Le second import crée zéro ligne et retire zéro ligne ; empreintes des données identiques dans les 13 tables histoire, hors timestamps. Dates, statuts, note de Sargon et statuts pédagogiques sont comparés au canonique. Les tests existants anon/authenticated passent.
+
+`py -3 scripts/verifier-chapitres.py --exiger-validation` contrôle les 44 validations et les sept liens supplémentaires. `py -3 scripts/verifier-import-chapitres-local.py` vérifie l'import et la sécurité. Les variantes `--exiger-cinq-partout` échouent uniquement sur THM-004 (4), conformément à l'état demandé avant le choix final. Le candidat final reste hors import.
+
+Lint, typecheck, build et diff contrôlés avant push ; avertissement existant de fallback Big Shoulders au build. PR #38 en brouillon, sans merge. Aucun Supabase distant/KFFR/prod, aucune nouvelle migration, aucun changement de variables Vercel.

@@ -2,9 +2,9 @@
 
 Audit du 6 octobre 2026, sur `origin/main` au commit `c0ddb93`. **Validation humaine faite par Antonin le 6 octobre 2026**, dans son message de suivi après relecture de la PR #38 avec ChatGPT : les 8 décisions de structure, les 23 rattachements existants et les 6 nouveaux candidats sont validés. PROP-INDE et PROP-DEVISE sont aussi explicitement souhaités. EVT-0905 est validé sous condition de conserver `CONVENTIONAL` et la note distinguant le 17 du 19 octobre 1973.
 
-**Les cinq fusions et les 23 rattachements validés sont maintenant appliqués au dataset canonique local**, conformément à l'autorisation d'Antonin pour cette étape. THM-028 et ses 11 liens erronés sont corrigés. Après reset et import Supabase strictement local : 41 chapitres titrés et non vides, 526 liens, 2 000 événements. Les trois CSV de propositions restent inchangés comme trace de validation ; leurs colonnes `current_*` décrivent l'audit avant application. La PR reste en brouillon, sans merge ; aucun accès à une base distante ni à KFFR, aucune nouvelle migration, aucune variable Vercel modifiée.
+**Les cinq fusions et les 23 + 7 rattachements validés sont maintenant appliqués au dataset canonique local**, conformément à l'autorisation d'Antonin pour cette étape. THM-028 et ses 11 liens erronés sont corrigés. Après reset et import Supabase strictement local : 41 chapitres titrés et non vides, 533 liens, 2 000 événements. Les trois CSV de propositions restent inchangés comme trace de validation ; leurs colonnes `current_*` décrivent l'audit avant application. La PR reste en brouillon, sans merge ; aucun accès à une base distante ni à KFFR, aucune nouvelle migration, aucune variable Vercel modifiée.
 
-Les 37 cellules `antonin_validation` sont renseignées : `VALIDE` pour les 8 structures, 22 rattachements et 4 nouveaux candidats ; `VALIDE_SOUS_CONDITION` pour le rattachement EVT-0905 ; `VALIDE_ET_SOUHAITE` pour PROP-INDE et PROP-DEVISE. Ces valeurs consignent la décision humaine. L'application locale des fusions/rattachements a été autorisée séparément ; les six candidats restent réservés à une étape contenu dédiée, sans nouveaux `EVT-xxxx`.
+Les 37 cellules initiales `antonin_validation` restent renseignées : `VALIDE` pour les 8 structures, 22 rattachements et 4 nouveaux candidats ; `VALIDE_SOUS_CONDITION` pour le rattachement EVT-0905 ; `VALIDE_ET_SOUHAITE` pour PROP-INDE et PROP-DEVISE. Ces valeurs consignent la décision humaine. L'application locale des fusions/rattachements a été autorisée séparément ; les six candidats restent réservés à une étape contenu dédiée, sans nouveaux `EVT-xxxx`.
 
 ## Audit initial et méthode
 
@@ -92,17 +92,19 @@ Les nouveaux liens reprennent niveau, année, scope et titre du chapitre, date/s
 | Contrôle après import local | Résultat |
 | --- | --- |
 | Chapitres | 41, tous titrés et non vides |
-| Événements ↔ chapitres | 526 liens uniques, correspondant intégralement au CSV |
+| Événements ↔ chapitres | 533 liens uniques, correspondant intégralement au CSV |
 | Événements et dates | 2 000, IDs et dates intégralement vérifiés |
 | THM-030 / THM-037 / THM-040 | 10 / 8 / 5 événements, tous jouables |
 | THM-028 | Terminale générale, 20 liens dont les 11 corrections ciblées |
 | EVT-0905 | Date et CONVENTIONAL conservés ; note du 17/19 octobre importée |
-| Second import | 0 création, 0 retrait ; mêmes 41 chapitres et 526 liens |
+| Second import | 0 création, 0 retrait ; mêmes 41 chapitres et 533 liens |
 | Sécurité existante | OK pour anon et authenticated : dates/alias/descriptions invisibles |
 
-**Limite de l'objectif général « cinq événements jouables partout »** : quatre chapitres préexistants hors des huit cas restent en dessous de cinq : THM-002 (2), THM-004 (3), THM-039 (3), THM-044 (4). Ils ne sont pas vides. Le contrôle les affiche et le résultat global n'est pas présenté comme satisfait. Leur enrichissement exigerait des correspondances supplémentaires à soumettre à Antonin ; seuls les 23 rattachements déjà validés sont appliqués ici.
+**Compléments validés et appliqués** : Antonin a aussi validé sept rattachements dans `kiffeurs-chapter-extra-proposals-v18.csv`. Six portent VALIDE ; Sargon porte VALIDE_SOUS_CONDITION. Les réserves Louvre / Met, la borne conventionnelle de 2334 et le caractère non obligatoire figurent dans le lien et la note canonique importée. [Dossier d'application des sept compléments](kiffeurs-chapter-extra-proposals-v18-README.md).
 
-Sept compléments supplémentaires, **non validés et non appliqués**, sont maintenant examinables dans [le dossier séparé](kiffeurs-chapter-extra-proposals-v18-README.md) et `kiffeurs-chapter-extra-proposals-v18.csv` : trois pour THM-002, deux pour THM-039, un pour THM-044 et un choix à discuter pour THM-004. Même tous acceptés, ils laisseraient THM-004 à quatre jouables ; une étape contenu ou un arbitrage du seuil reste nécessaire. Les sept nouvelles cellules de validation sont vides ; elles ne font pas partie des 37 validations initiales.
+**44 validations consignées** au total (37 initiales + 7 supplémentaires). Le dataset contient 533 liens : 503 initiaux + 23 + 7. THM-002/004/039/044 ont maintenant **5/4/5/5 événements jouables**. Quatre appartenances et quatre tags manquants ont été ajoutés sans dupliquer les trois associations déjà présentes. Les résumés concernés sont recalculés ; seules les notes d'EVT-0553 sont enrichies parmi les événements à cette étape, sans changer date/statut/jouabilité.
+
+**Limite de l'objectif général « cinq événements jouables partout »** : seul THM-004 reste sous cinq (4). Conformément à la demande d'Antonin, [un candidat final sur Çatalhöyük](kiffeurs-chapter-thm004-candidates-v18-README.md) est soumis séparément, non validé et non appliqué. Les six candidats initiaux restent différés ; aucun EVT nouveau créé. Le second import conserve les données des 13 tables histoire à l'identique, hors timestamps ; tests de sécurité anon/authenticated réussis.
 
 ## Contrôle reproductible
 
@@ -112,9 +114,9 @@ python3 scripts/verifier-chapitres.py --exiger-validation
 python3 scripts/verifier-chapitres.py --exiger-validation --exiger-cinq-partout
 ```
 
-Sous Windows : `py -3 scripts/verifier-chapitres.py --exiger-validation`. Le script lit uniquement les CSV locaux : trace des huit validations, absence des cinq IDs fusionnés dans tous les CSV hors traces, 41 titres non vides, 526 liens uniques, absence d'orphelins, correction des 11 liens, application des 23 rattachements, cohérence des collections/tags/résumés, dates et statuts de validation intacts. L'option `--exiger-validation` refuse une cellule encore vide ; attendu : **37/37 validations renseignées**. Le contrôle protège aussi `CONVENTIONAL` et la note du 17/19 octobre d'EVT-0905 dans le canonique et les propositions. Il ne se connecte à aucun service et contrôle la transcription des validations, sans se substituer à Antonin.
+Sous Windows : `py -3 scripts/verifier-chapitres.py --exiger-validation`. Le script lit uniquement les CSV locaux : trace des huit validations, absence des cinq IDs fusionnés dans tous les CSV hors traces, 41 titres non vides, 533 liens uniques, absence d'orphelins, correction des 11 liens, application des 23 + 7 rattachements, cohérence des collections/tags/résumés, dates et statuts de validation intacts. L'option `--exiger-validation` refuse une cellule encore vide ; attendu : **44/44 validations renseignées (37 initiales + 7 supplémentaires)**. Le contrôle protège aussi les conditions de Sargon, les candidats finaux en attente, `CONVENTIONAL` et la note du 17/19 octobre d'EVT-0905 dans le canonique et les propositions. Il ne se connecte à aucun service et contrôle la transcription des validations, sans se substituer à Antonin.
 
-L'option `--exiger-cinq-partout` contrôle séparément l'objectif global : **échec attendu (code 1)** pour THM-002, THM-004, THM-039 et THM-044. Après import local, `py -3 scripts/verifier-import-chapitres-local.py --exiger-cinq-partout` échoue sur les mêmes quatre chapitres, après vérification des données et des tests de sécurité. Le succès du contrôle ordinaire et de la CI confirme l'application des décisions validées ; il ne signifie pas que ce seuil global est atteint.
+L'option `--exiger-cinq-partout` contrôle séparément l'objectif global : **échec attendu (code 1)** uniquement pour THM-004 (4). Après import local, `py -3 scripts/verifier-import-chapitres-local.py --exiger-cinq-partout` échoue sur le même chapitre, après vérification des données et des tests de sécurité. Le succès du contrôle ordinaire et de la CI confirme l'application des décisions validées ; il ne signifie pas que ce seuil global est atteint.
 
 Contrôler aussi le diff : les neuf CSV canoniques listés ci-dessus, les contrôles de contenu, la CI et la documentation portent cette application. Les trois CSV de propositions restent intacts. Les fichiers Supabase et migrations existants, `auth`, `public`, `private` et paramètres Vercel restent inchangés. L'import utilise exclusivement la clé générée pour la pile locale et son API `http://127.0.0.1:54321`, jamais une clé distante. Lint/typecheck/build utilisent les valeurs locales factices de la CI.
 
@@ -134,4 +136,4 @@ node node_modules/tsx/dist/cli.mjs scripts/import-dataset.ts --dossier content/d
 py -3 scripts/verifier-import-chapitres-local.py
 ```
 
-Le lancement direct de l'import évite de charger `.env.local`. Le vérificateur d'import refuse les contextes Docker distants et les overrides Docker ; il lit uniquement le conteneur local `supabase_db_kiffeurs-histoire`, compare les 41 chapitres, les 526 liens et les 2 000 dates au canonique, puis exécute le test existant `supabase/tests/reponses_invisibles.sql`. Aucune migration n'est créée ; seules les trois migrations existantes sont appliquées par le reset local.
+Le lancement direct de l'import évite de charger `.env.local`. Le vérificateur d'import refuse les contextes Docker distants et les overrides Docker ; il lit uniquement le conteneur local `supabase_db_kiffeurs-histoire`, compare les 41 chapitres, les 533 liens, les conditions de Sargon et les 2 000 dates au canonique, puis exécute le test existant `supabase/tests/reponses_invisibles.sql`. Aucune migration n'est créée ; seules les trois migrations existantes sont appliquées par le reset local.

@@ -6,12 +6,15 @@ import { chargerDemoPedagogie } from "@/app/demo/pedagogie/donnees";
 
 afterEach(cleanup);
 
-it("rend les 37 cartes accessibles dans les quatre chapitres, dans l’ordre du CSV", () => {
+it("rend les 325 cartes accessibles dans les 41 chapitres regroupés par niveau", () => {
   const chapitres = chargerDemoPedagogie();
   render(<DemoPedagogie chapitres={chapitres} />);
   const select = screen.getByRole("combobox", { name: "Choisir un chapitre" });
   expect(within(select).getAllByRole("option").map((o) => o.textContent))
-    .toEqual(["THM-005 · 6e", "THM-016 · 3e", "THM-020 · Seconde", "THM-028 · Terminale"]);
+    .toEqual(chapitres.map((c) => `${c.id} · ${c.titre}`));
+  expect(within(select).getAllByRole("option")).toHaveLength(41);
+  expect(Array.from(select.querySelectorAll("optgroup")).map((g) => g.label))
+    .toEqual([...new Set(chapitres.map((c) => c.niveau))]);
   let total = 0;
   for (const chapitre of chapitres) {
     fireEvent.change(select, { target: { value: chapitre.id } });
@@ -26,15 +29,17 @@ it("rend les 37 cartes accessibles dans les quatre chapitres, dans l’ordre du 
       expect(article.textContent).toContain(carte.body);
       expect(article.textContent).toContain(carte.takeaway);
       carte.key_concepts.forEach((notion) => expect(article.textContent).toContain(notion));
-      expect(within(article).getAllByRole("link").map((a) => a.getAttribute("href"))).toEqual(carte.sources);
+      expect(within(article).queryAllByRole("link")).toHaveLength(0);
     });
     expect(document.body.innerHTML).not.toMatch(/EVT-\d+|event_id|EXACT|CONVENTIONAL|APPROXIMATE|DISPUTED|TRADITIONAL|CARD-/);
     total += articles.length;
   }
-  expect(total).toBe(37);
+  expect(total).toBe(325);
 });
 
 it("n’envoie pas les identifiants d’événements ni les métadonnées internes au navigateur", () => {
   const serialized = JSON.stringify(chargerDemoPedagogie());
-  expect(serialized).not.toMatch(/event_id|EVT-\d+|official_wording|date_status|date_precision/);
+  expect(/event_id|EVT-\d+|official_wording|date_status|date_precision|"sources"\s*:|https?:\/\//.test(serialized)).toBe(false);
+  for (const chapitre of chargerDemoPedagogie()) for (const carte of chapitre.cartes)
+    expect(Object.keys(carte).sort()).toEqual(["card_id", "chapter_id", "title", "body", "takeaway", "key_concepts", "start_year", "start_month", "start_day", "end_year", "end_month", "end_day", "date_text", "sort_order"].sort());
 });

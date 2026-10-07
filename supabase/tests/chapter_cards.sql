@@ -18,7 +18,7 @@ begin
   end if;
   if (select array_agg(k order by k) from jsonb_object_keys(resultat) k) is distinct from
     array['body', 'card_id', 'chapter_id', 'date_text', 'end_day', 'end_month', 'end_year',
-      'key_concepts', 'sort_order', 'sources', 'start_day', 'start_month', 'start_year', 'takeaway', 'title'] then
+      'key_concepts', 'sort_order', 'start_day', 'start_month', 'start_year', 'takeaway', 'title'] then
     raise exception 'Projection publique incorrecte à % : %', current_user, resultat;
   end if;
   if exists (select 1 from histoire.get_chapter_cards('EVT-0024')) then
@@ -35,6 +35,10 @@ begin
   begin
     perform c.event_id from histoire.get_chapter_cards('THM-005') c;
     raise exception 'event_id exposé par la RPC à %', current_user;
+  exception when undefined_column then null; end;
+  begin
+    perform c.sources from histoire.get_chapter_cards('THM-005') c;
+    raise exception 'Sources exposées par la RPC à %', current_user;
   exception when undefined_column then null; end;
   begin
     insert into histoire.chapter_cards select * from histoire.chapter_cards where card_id = 'CARD-test-rome';
@@ -60,7 +64,7 @@ begin
     perform * from histoire.event_aliases limit 1;
     raise exception 'Alias historiques exposés à %', current_user;
   exception when insufficient_privilege then null; end;
-  return format('OK : %s lit la RPC sans event_id ; table interne, oracle, écritures, réponses et alias refusés.', current_user);
+  return format('OK : %s lit la RPC sans event_id ni sources ; table interne, oracle, écritures, réponses et alias refusés.', current_user);
 end;
 $$;
 grant execute on function pg_temp.verifier_cartes() to anon, authenticated;
@@ -113,7 +117,7 @@ create function pg_temp.verifier_rls_cartes() returns text language plpgsql as $
       date_text, date_precision, date_status, title, body, takeaway, key_concepts, official_wording, sources, sort_order)
     select 'CARD-test-insertion', c.chapter_id, 'EVT-0024', c.start_year, c.start_month, c.start_day,
       c.date_text, 'DAY', 'TRADITIONAL', c.title, c.body, c.takeaway, c.key_concepts,
-      'Fondation traditionnelle de Rome', c.sources, 998
+      'Fondation traditionnelle de Rome', array['https://example.invalid'], 998
     from histoire.get_chapter_cards('THM-005') c where c.card_id = 'CARD-test-rome';
     raise exception 'RLS autorise INSERT %', current_user;
   exception when insufficient_privilege then null; end;

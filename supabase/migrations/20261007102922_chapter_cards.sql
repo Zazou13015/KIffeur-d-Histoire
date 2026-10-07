@@ -22,7 +22,9 @@ create table histoire.chapter_cards (
   takeaway text not null check (takeaway ~ '^À retenir : .+'),
   key_concepts text[] not null check (cardinality(key_concepts) between 1 and 6
     and array_position(key_concepts, null) is null and array_position(key_concepts, '') is null),
-  official_wording text not null check (btrim(official_wording) <> ''),
+  -- Certains rattachements canoniques complémentaires n'ont pas de libellé.
+  -- Conserver leur cellule vide plutôt qu'inventer un texte officiel.
+  official_wording text not null,
   sources text[] not null check (cardinality(sources) > 0
     and array_position(sources, null) is null and array_position(sources, '') is null),
   sort_order integer not null check (sort_order > 0),
@@ -35,7 +37,13 @@ create table histoire.chapter_cards (
   check (end_year is null or (start_year is not null and
     (end_year, coalesce(end_month, 12), coalesce(end_day, 31)) >=
     (start_year, coalesce(start_month, 1), coalesce(start_day, 1)))),
-  check (event_id is not null or (start_year is not null and end_year is not null)),
+  check (event_id is not null or btrim(official_wording) <> ''),
+  check (event_id is not null or (
+    start_month is null and start_day is null and end_month is null and end_day is null and (
+      (date_precision = 'YEAR_RANGE' and date_status = 'CONVENTIONAL' and start_year is not null and end_year is not null)
+      or (date_precision = 'PERIOD_TEXT' and date_status = 'APPROXIMATE' and start_year is null and end_year is null)
+    )
+  )),
   check (date_precision not in ('YEAR', 'MONTH', 'DAY', 'YEAR_RANGE', 'DAY_RANGE', 'MIXED_RANGE') or start_year is not null),
   check (date_precision <> 'MONTH' or start_month is not null),
   check (date_precision <> 'DAY' or start_day is not null),
@@ -56,12 +64,12 @@ returns table (
   card_id text, chapter_id text, title text, body text, takeaway text,
   key_concepts text[], start_year integer, start_month smallint, start_day smallint,
   end_year integer, end_month smallint, end_day smallint, date_text text,
-  sort_order integer, sources text[]
+  sort_order integer
 )
 language sql stable security definer set search_path = '' as $$
   select c.card_id, c.chapter_id, c.title, c.body, c.takeaway, c.key_concepts,
     c.start_year, c.start_month, c.start_day, c.end_year, c.end_month, c.end_day,
-    c.date_text, c.sort_order, c.sources
+    c.date_text, c.sort_order
   from histoire.chapter_cards c
   where c.chapter_id = p_chapter_id
   order by c.sort_order;

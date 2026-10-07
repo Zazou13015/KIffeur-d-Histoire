@@ -13,7 +13,6 @@ export type CartePedagogique = {
   end_day: number | null;
   date_text: string;
   sort_order: number;
-  sources: string[];
 };
 
 // Liste explicite, comme la RPC SQL : les champs internes ne sont jamais
@@ -24,7 +23,7 @@ export function cartePublique(c: CartePedagogique): CartePedagogique {
     takeaway: c.takeaway, key_concepts: c.key_concepts,
     start_year: c.start_year, start_month: c.start_month, start_day: c.start_day,
     end_year: c.end_year, end_month: c.end_month, end_day: c.end_day,
-    date_text: c.date_text, sort_order: c.sort_order, sources: c.sources,
+    date_text: c.date_text, sort_order: c.sort_order,
   };
 }
 
@@ -33,4 +32,5 @@ export type ChapitrePedagogique = {
   titre: string;
   niveau: string;
   cartes: CartePedagogique[];
+  lacune?: string;
 };

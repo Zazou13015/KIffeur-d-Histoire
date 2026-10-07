@@ -1,6 +1,7 @@
 import path from "node:path";
 import { createClient } from "@supabase/supabase-js";
 import { lireCsv, type LigneCsv } from "./csv";
+import { periodeContexte } from "./periode-cartes";
 
 export const FICHIER_CARTES = "content/pedagogie/cartes-v1.csv";
 const dates = ["start_year", "start_month", "start_day", "end_year", "end_month", "end_day"] as const;
@@ -24,8 +25,8 @@ function liste(valeur: string) {
   return elements;
 }
 
-// Validation complète avant toute écriture. Les dates ne sont jamais recalculées
-// depuis le programme : celui-ci ne sert qu'à cadrer les explications.
+// Validation complète avant toute écriture. Les événements reprennent le canon ;
+// le contexte conserve uniquement les périodes explicites de son rattachement.
 export function validerCartes(lignes: LigneCsv[], evenements: LigneCsv[], themes: LigneCsv[], liens: LigneCsv[]): Carte[] {
   if (!lignes.length) throw new Error("CSV de cartes vide");
   const events = new Map(evenements.map((e) => [e.event_id, e]));
@@ -34,14 +35,16 @@ export function validerCartes(lignes: LigneCsv[], evenements: LigneCsv[], themes
   const parChapitre = new Map<string, Carte[]>();
   const cartes = lignes.map((l): Carte => {
     const erreur = (message: string): never => { throw new Error(`${l.card_id} : ${message}`); };
-    if (!/^CARD-[a-z0-9-]+$/.test(l.card_id) || ids.has(l.card_id)) erreur("identifiant invalide ou dupliqué");
+    if (!new RegExp(`^CARD-${l.chapter_id?.slice(4)}-[a-z0-9]+(?:-[a-z0-9]+)*$`).test(l.card_id) || ids.has(l.card_id)) erreur("identifiant invalide ou dupliqué");
     ids.add(l.card_id);
     if (!chapters.has(l.chapter_id)) erreur("chapitre inconnu");
     const rattachements = liens.filter((r) => r.theme_id === l.chapter_id && r.event_id === l.event_id);
     if (!rattachements.some((r) => r.official_wording === l.official_wording)) erreur("rattachement ou libellé officiel inconnu");
     const mots = l.body.trim().split(/\s+/).length;
     if (!l.title || mots < 60 || mots > 120 || !/^À retenir : .+/.test(l.takeaway)) erreur("titre, texte (60–120 mots) ou takeaway invalide");
-    // Les dates explicites du pilote sont dans les champs dédiés. Interdit les
+    if (/dataset|\bv18\b|base de données|\bchamp\b|statut technique|\b(?:EXACT|CONVENTIONAL|DISPUTED|APPROXIMATE|TRADITIONAL)\b|éduscol|le programme|cette carte|système d.import/i.test(`${l.title} ${l.body} ${l.takeaway} ${l.key_concepts}`))
+      erreur("langage technique ou méta dans le contenu élève");
+    // Les dates explicites sont dans les champs dédiés. Interdit les
     // repères supplémentaires non sourcés dans le texte (chiffres/siècles romains).
     if (/\d|\b[IVXLCDM]+(?:e|er|ème)\s+siècle/i.test(`${l.title} ${l.body} ${l.takeaway} ${l.key_concepts}`)) erreur("date ou nombre dans le texte : utiliser les champs de date sourcés");
     const d = Object.fromEntries(dates.map((champ) => {
@@ -56,11 +59,10 @@ export function validerCartes(lignes: LigneCsv[], evenements: LigneCsv[], themes
       if (l.date_text !== e!.date_text || l.date_precision !== e!.precision || l.date_status !== e!.date_status)
         erreur("date textuelle, précision ou statut différents du v18");
     } else {
-      const periode = /^(\d{4})-(\d{4}) :/.exec(l.official_wording);
-      if (!periode || d.start_year !== Number(periode[1]) || d.end_year !== Number(periode[2]) ||
-        d.start_month !== null || d.start_day !== null || d.end_month !== null || d.end_day !== null ||
-        l.date_text !== l.official_wording || l.date_precision !== "YEAR_RANGE" || l.date_status !== "CONVENTIONAL")
-        erreur("période de contexte différente du libellé officiel v18");
+      const periode = periodeContexte(l.official_wording);
+      for (const champ of dates) if (d[champ] !== periode[champ]) erreur("période de contexte différente du libellé officiel v18");
+      for (const champ of ["date_text", "date_precision", "date_status"] as const)
+        if (l[champ] !== periode[champ]) erreur("période de contexte différente du libellé officiel v18");
     }
     if (!/^[1-9]\d*$/.test(l.sort_order)) erreur("ordre invalide");
     const concepts = liste(l.key_concepts);
@@ -79,10 +81,12 @@ export function validerCartes(lignes: LigneCsv[], evenements: LigneCsv[], themes
     if (groupe.length < 5 || groupe.length > 12 || groupe.some((c, i) => c.sort_order !== i + 1))
       throw new Error(`${id} : 5–12 cartes avec ordre continu requis`);
     const datees = groupe.filter((c) => c.start_year !== null);
-    const cleDate = (c: Carte) => [c.start_year!, c.start_month ?? 1, c.start_day ?? 1];
     for (let i = 1; i < datees.length; i++) {
-      const a = cleDate(datees[i - 1]), b = cleDate(datees[i]);
-      const difference = a[0] - b[0] || a[1] - b[1] || a[2] - b[2];
+      const a = datees[i - 1], b = datees[i];
+      // Une année sans mois/jour ne doit pas devenir fictivement le premier janvier.
+      const difference = a.start_year! - b.start_year! ||
+        (a.start_month !== null && b.start_month !== null ? a.start_month - b.start_month ||
+          (a.start_day !== null && b.start_day !== null ? a.start_day - b.start_day : 0) : 0);
       if (difference > 0) throw new Error(`${id} : ordre chronologique incohérent`);
     }
   }
@@ -90,8 +94,12 @@ export function validerCartes(lignes: LigneCsv[], evenements: LigneCsv[], themes
 }
 
 export function chargerCartes(dossier = "content/dataset-v18", fichier = FICHIER_CARTES) {
-  return validerCartes(lireCsv(fichier), lireCsv(path.join(dossier, "kiffeurs-events-v18.csv")),
-    lireCsv(path.join(dossier, "kiffeurs-themes-v18.csv")), lireCsv(path.join(dossier, "kiffeurs-curriculum-links-v18.csv")));
+  const themes = lireCsv(path.join(dossier, "kiffeurs-themes-v18.csv"));
+  const cartes = validerCartes(lireCsv(fichier), lireCsv(path.join(dossier, "kiffeurs-events-v18.csv")),
+    themes, lireCsv(path.join(dossier, "kiffeurs-curriculum-links-v18.csv")));
+  const couverts = new Set(cartes.map((c) => c.chapter_id));
+  if (themes.some((t) => !couverts.has(t.theme_id))) throw new Error("Chapitre canonique sans cartes pédagogiques");
+  return cartes;
 }
 
 export function connecterCartes(url: string, cle: string) {
@@ -99,7 +107,7 @@ export function connecterCartes(url: string, cle: string) {
 }
 
 export async function importerCartesLocales(cartes: Carte[], url: string, cle: string) {
-  if (!estUrlLocale(url)) throw new Error("Import des cartes pilotes réservé à Supabase LOCAL ; aucune écriture distante autorisée");
+  if (!estUrlLocale(url)) throw new Error("Import des cartes réservé à Supabase LOCAL ; aucune écriture distante autorisée");
   const db = connecterCartes(url, cle);
   const { error } = await db.rpc("replace_chapter_cards", { p_cards: cartes });
   if (error) throw new Error(`Import des cartes : ${error.message}`);

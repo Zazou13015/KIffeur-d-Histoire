@@ -41,6 +41,11 @@ async function verifier() {
   const { count, error: erreurCompte } = await db.from("events").select("id", { count: "exact", head: true });
   assert.ifError(erreurCompte);
   assert.equal(count, 2001);
+  const chapitres = lireCsv("content/dataset-v18/kiffeurs-themes-v18.csv");
+  const { count: nombreChapitres, error: erreurChapitres } = await db.from("chapters").select("id", { count: "exact", head: true });
+  assert.ifError(erreurChapitres);
+  assert.equal(nombreChapitres, 41);
+  assert.equal(new Set(cartes.map((c) => c.chapter_id)).size, 41);
   for (const carte of cartes.filter((c) => c.event_id)) {
     const e = lireCsv("content/dataset-v18/kiffeurs-events-v18.csv").find((e) => e.event_id === carte.event_id)!;
     const { data, error } = await db.from("event_answers").select("start_year,start_month,start_day,end_year,end_month,end_day,date_text").eq("event_id", carte.event_id).single();
@@ -48,13 +53,15 @@ async function verifier() {
     assert.deepEqual(data, Object.fromEntries(Object.keys(data!).map((k) => [k, k === "date_text" ? e[k] : e[k] ? Number(e[k]) : null])));
   }
   for (const navigateur of [publicDb, authenticatedDb]) {
-    for (const chapitre of ["THM-005", "THM-016", "THM-020", "THM-028"]) {
+    for (const chapitre of chapitres.map((c) => c.theme_id)) {
       const { data, error } = await navigateur.rpc("get_chapter_cards", { p_chapter_id: chapitre });
       assert.ifError(error);
       assert.deepEqual(data, cartes.filter((c) => c.chapter_id === chapitre).map(cartePublique), "Projection RPC publique incorrecte");
       assert(!JSON.stringify(data).includes("EVT-"));
+      assert(!JSON.stringify(data).match(/"sources"\s*:|https?:\/\//));
     }
     assert.equal((await navigateur.rpc("get_chapter_cards", { p_chapter_id: "THM-005" }).eq("event_id", "EVT-0024")).error?.code, "42703");
+    assert.equal((await navigateur.rpc("get_chapter_cards", { p_chapter_id: "THM-005" }).select("sources")).error?.code, "42703");
     assert.deepEqual((await navigateur.rpc("get_chapter_cards", { p_chapter_id: "EVT-0024" })).data, []);
     for (const requete of [
       navigateur.from("chapter_cards").select("*"),
@@ -82,7 +89,7 @@ async function verifier() {
   assert.equal((await lire())!.filter((c) => c.chapter_id === "THM-005").length, 7);
   await importerCartesLocales(cartes, status.API_URL, status.SERVICE_ROLE_KEY);
   assert.deepEqual(await lire(), premier);
-  console.log("OK : 2001 événements, 37 cartes, références et dates v18, import idempotent/atomique, périmètre par chapitre, RPC sans event_id, table/oracle/réponses/alias/écritures anon et authenticated refusés.");
+  console.log(`OK : 2001 événements, 41 chapitres, ${cartes.length} cartes, références et dates v18, import idempotent/atomique, périmètre par chapitre, RPC sans event_id ni sources, table/oracle/réponses/alias/écritures anon et authenticated refusés.`);
 }
 
 verifier().catch((e: unknown) => {

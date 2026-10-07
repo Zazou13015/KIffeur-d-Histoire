@@ -18,7 +18,13 @@ export function DemoPedagogie({ chapitres }: { chapitres: ChapitrePedagogique[] 
           onChange={(e) => setSelection(e.target.value)}
           className="cible max-w-full border border-filet bg-papier px-3 py-2 text-encre focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-laiton"
         >
-          {chapitres.map((c) => <option key={c.id} value={c.id}>{c.id} · {c.niveau}</option>)}
+          {[...new Set(chapitres.map((c) => c.niveau))].map((niveau) => (
+            <optgroup key={niveau} label={niveau}>
+              {chapitres.filter((c) => c.niveau === niveau).map((c) => (
+                <option key={c.id} value={c.id}>{c.id} · {c.titre}</option>
+              ))}
+            </optgroup>
+          ))}
         </select>
       </div>
       <section aria-labelledby="titre-chapitre" className="grid gap-6">
@@ -28,10 +34,9 @@ export function DemoPedagogie({ chapitres }: { chapitres: ChapitrePedagogique[] 
             <span className="inventaire" aria-live="polite">{chapitre.cartes.length} cartes</span>
           </div>
           <h2 id="titre-chapitre" className="max-w-3xl text-3xl leading-tight">{chapitre.titre}</h2>
-          {chapitre.id === "THM-028" && (
+          {chapitre.lacune && (
             <p className="m-0 max-w-prose text-sm text-encre-douce">
-              Ce lot couvre surtout la crise, le nazisme et juin 1940. Il ne couvre pas
-              l’ensemble du thème, notamment le stalinisme, la Shoah et toute la guerre mondiale.
+              {chapitre.lacune}
             </p>
           )}
         </header>
@@ -53,14 +58,6 @@ export function DemoPedagogie({ chapitres }: { chapitres: ChapitrePedagogique[] 
                     {carte.key_concepts.map((notion) => <li key={notion}><Badge ton="laiton">{notion}</Badge></li>)}
                   </ul>
                 </div>
-                <footer className="flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-filet pt-3 text-xs text-encre-douce">
-                  <span className="inventaire">Sources</span>
-                  {carte.sources.map((url, i) => (
-                    <a key={url} href={url} target="_blank" rel="noreferrer" className="underline underline-offset-4 hover:text-encre">
-                      {new URL(url).hostname.replace(/^www\./, "")} · {i + 1}
-                    </a>
-                  ))}
-                </footer>
               </article>
             </li>
           ))}

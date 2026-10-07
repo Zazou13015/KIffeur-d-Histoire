@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { lireCsv } from "../scripts/csv";
 import { chargerCartes, estUrlLocale, FICHIER_CARTES, importerCartesLocales, validerCartes } from "../scripts/import-cartes";
+import { periodeContexte } from "../scripts/periode-cartes";
 
 const fichier = (nom: string) => lireCsv(`content/dataset-v18/kiffeurs-${nom}-v18.csv`);
 const events = fichier("events"), themes = fichier("themes"), liens = fichier("curriculum-links");
@@ -20,18 +21,25 @@ const invalides: Record<string, string>[] = [
 describe("lot pédagogique v18", () => {
   it("ne parle pas de dataset, programme ou décisions techniques aux élèves", () => {
     for (const carte of chargerCartes()) {
-      expect(`${carte.body} ${carte.takeaway}`).not.toMatch(/dataset|programme|éduscol|v18/i);
+      expect(`${carte.title} ${carte.body} ${carte.takeaway} ${carte.key_concepts.join(" ")}`)
+        .not.toMatch(/dataset|le programme|cette carte|éduscol|v18|base de données|statut technique|\b(?:EXACT|CONVENTIONAL|DISPUTED)\b/i);
     }
   });
-  it("ne rédige que deux chapitres collège et deux lycée, avec 5–12 cartes complètes", () => {
+  it("couvre les 41 chapitres canoniques avec 5–12 cartes complètes", () => {
     const cartes = chargerCartes();
     expect(events).toHaveLength(2001);
-    expect(cartes).toHaveLength(37);
+    expect(themes).toHaveLength(41);
+    expect(cartes).toHaveLength(325);
     const ids = [...new Set(cartes.map((c) => c.chapter_id))];
-    expect(ids).toEqual(["THM-005", "THM-016", "THM-020", "THM-028"]);
-    expect(ids.map((id) => themes.find((t) => t.theme_id === id)!.level))
-      .toEqual(["6e", "3e", "Seconde générale et technologique", "Terminale générale"]);
-    expect(ids.map((id) => cartes.filter((c) => c.chapter_id === id).length)).toEqual([8, 12, 8, 9]);
+    expect(ids).toEqual(themes.map((t) => t.theme_id).sort());
+    for (const id of ids) {
+      const groupe = cartes.filter((c) => c.chapter_id === id);
+      expect(groupe.length).toBeGreaterThanOrEqual(5);
+      expect(groupe.length).toBeLessThanOrEqual(12);
+      expect(groupe.map((c) => c.sort_order)).toEqual(groupe.map((_, i) => i + 1));
+    }
+    expect(["THM-005", "THM-016", "THM-020", "THM-028"].map((id) => cartes.filter((c) => c.chapter_id === id).length))
+      .toEqual([8, 12, 8, 9]);
     expect(new Set(cartes.map((c) => c.card_id)).size).toBe(cartes.length);
   });
 
@@ -52,7 +60,20 @@ describe("lot pédagogique v18", () => {
       for (const champ of ["start_year", "start_month", "start_day", "end_year", "end_month", "end_day"] as const)
         expect(carte[champ]).toBe(e[champ] ? Number(e[champ]) : null);
       expect(carte.date_text).toBe(e.date_text);
+      expect(carte.date_precision).toBe(e.precision);
+      expect(carte.date_status).toBe(e.date_status);
     }
+  });
+
+  it("conserve les siècles et décennies sans fabriquer de bornes, et rejette les périodes inventées", () => {
+    for (const libelle of ["Radio et télévision au XXe siècle", "années 1870 : industrialisation", "1799-1814/1815", "Grandes étapes de l’alphabétisation des femmes du XVIe siècle à aujourd’hui"])
+      expect(periodeContexte(libelle)).toMatchObject({ start_year: null, end_year: null, date_precision: "PERIOD_TEXT", date_text: libelle });
+    expect(periodeContexte("1751-1772")).toMatchObject({ start_year: 1751, end_year: 1772, date_precision: "YEAR_RANGE" });
+    expect(periodeContexte("1848 : adoption du suffrage universel")).toMatchObject({ start_year: 1848, end_year: 1848 });
+    expect(() => periodeContexte("Cyberspace : réseaux")).toThrow(/période/);
+    expect(() => periodeContexte("1900-1800")).toThrow(/inversée/);
+    expect(() => valider(changer("CARD-039-audiovisuel-medias", { start_year: "1900" }))).toThrow(/période/);
+    expect(() => valider(changer("CARD-037-google-numerique", { official_wording: "repère officiel inventé" }))).toThrow(/libellé/);
   });
 
   it.each(invalides)("refuse un champ incohérent avant écriture : %j", (modifications) => {

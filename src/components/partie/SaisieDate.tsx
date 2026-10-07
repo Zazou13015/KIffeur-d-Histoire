@@ -2,27 +2,17 @@
 
 import { useEffect, useRef } from "react";
 import type { Precision } from "@/lib/game/dates";
+import { CHAMPS_VIDES, chiffres, corrigerCases, ordreChamps, type Champs, type Cle } from "@/lib/game/saisie";
 import s from "./partie.module.css";
-
-export type Champs = { jour: string; mois: string; annee: string };
-type Cle = keyof Champs;
-
-export const CHAMPS_VIDES: Champs = { jour: "", mois: "", annee: "" };
-
-// Ordre de saisie : jour, mois, année, avec seulement les cases utiles à la question.
-export const ordreChamps = (p: Precision): Cle[] =>
-  p === "jour" ? ["jour", "mois", "annee"] : p === "mois" ? ["mois", "annee"] : ["annee"];
-
-const chiffres = (v: string) => v.replace(/\D/g, "");
 
 // Le « - » reste visible devant l'année et veut dire av. J.-C.
 function normaliser(c: Champs): Champs {
   const av = /[-−]/.test(c.annee) && !/\+/.test(c.annee);
-  return {
+  return corrigerCases({
     jour: chiffres(c.jour).slice(0, 2),
     mois: chiffres(c.mois).slice(0, 2),
     annee: (av ? "-" : "") + chiffres(c.annee).slice(0, 4),
-  };
+  });
 }
 
 type Props = {

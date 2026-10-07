@@ -36,7 +36,12 @@ begin
     and a.attnum > 0 and not a.attisdropped
     and has_column_privilege(role_courant, c.oid, a.attnum, 'SELECT')
     and a.attname ~ '(^(start|end)_|^(year|month|day)$|date_text|secondary_dates|alias|^description$)'
-    and not (c.relname in ('packs', 'tags') and a.attname = 'description'); -- descriptions de packs et de tags, sans réponse
+    and not (c.relname in ('packs', 'tags') and a.attname = 'description')
+    -- Exception explicite de l'issue #21 : repères éditoriaux publics de révision.
+    -- Aucune jointure ni ouverture de event_answers/event_aliases.
+    and not (c.relname = 'chapter_cards' and a.attname in
+      ('start_year', 'start_month', 'start_day', 'end_year', 'end_month', 'end_day',
+       'date_text', 'date_precision', 'date_status'));
   if nb > 0 then
     raise exception 'ÉCHEC (%) : % colonne(s) de date, d''alias ou de description lisible(s)', role_courant, nb;
   end if;

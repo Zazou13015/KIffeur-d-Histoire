@@ -23,9 +23,26 @@ jobs:
       - run: python3 scripts/verifier-descriptions.py --exiger-revue-documentaire
       - run: python3 scripts/test-verifier-descriptions.py
       - run: npm test
+      - run: npm run content:relecture-cartes -- --check
       - run: npm run lint
       - run: npm run typecheck
       - run: npm run build
+
+  tests-cartes-local:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      # Les clés éphémères du démarrage restent dans le runner, pas dans les logs.
+      - run: npx supabase start --exclude studio,logflare,vector,supavisor,edge-runtime,imgproxy > /tmp/supabase-local-start.txt
+      - run: npm run db:reset -- --local
+      - run: npm run content:test-cartes-local
+      - if: always()
+        run: npx supabase stop --no-backup
 
   tests-sql:
     runs-on: ubuntu-latest

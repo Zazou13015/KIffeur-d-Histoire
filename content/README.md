@@ -4,6 +4,8 @@ Données historiques fournies par Antonin, à importer dans le schéma `histoire
 
 ## Importer le contenu dans la base
 
+Le [lot pilote pédagogique de l’issue #21](pedagogie/README.md) ajoute 37 cartes pour quatre chapitres. Le même import v18 les charge **uniquement sur la pile locale**, après la migration `chapter_cards`. La [relecture complète](pedagogie/relecture-v1.md) reste en attente de validation d’Antonin ; aucune carte pilote n’est importée à distance.
+
 ```bash
 npm run content:import -- --dossier content/dataset-v18
 ```

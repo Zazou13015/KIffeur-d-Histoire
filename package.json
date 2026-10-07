@@ -19,6 +19,8 @@
     "db:test-solo-retention": "docker exec -i supabase_db_kiffeurs-histoire psql -U postgres -v ON_ERROR_STOP=1 -q -f - < supabase/tests/solo_anonymous_retention.sql",
     "db:test-inverse": "docker exec -i supabase_db_kiffeurs-histoire psql -U postgres -v ON_ERROR_STOP=1 -q -f - < supabase/tests/inverse.sql",
     "content:import": "tsx --env-file-if-exists=.env.local scripts/import-dataset.ts",
+    "content:test-cartes-local": "tsx scripts/test-cartes-local.ts",
+    "content:relecture-cartes": "tsx scripts/generer-relecture-cartes.ts",
     "content:illustrations": "tsx --env-file-if-exists=.env.local scripts/upload-illustrations.ts"
   },
   "dependencies": {

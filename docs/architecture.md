@@ -103,7 +103,7 @@ Règles :
 - Les autres tables ont la RLS active avec une lecture publique.
 - Vérification : `supabase/tests/reponses_invisibles.sql` (voir README).
 - Les périodes (siècle, millénaire) se calculent depuis l'année, pas besoin de les stocker.
-- Plus tard : `chapter_cards` (cartes pédagogiques placées sur la frise d'un chapitre), avec le mode pédagogique.
+- Pilote #21 : `chapter_cards` contient les textes pédagogiques, notions, ordre et repères publics de révision ; FK vers `chapters`, `events` et `event_chapters`. Les dates complètes sont copiées du v18 sans ouvrir `event_answers`. RLS : lecture publique uniquement, import atomique réservé à `service_role` via `replace_chapter_cards` (`security invoker`). Migration préparée et validée localement, **sans application en production**. Format et périmètre : [cartes pédagogiques](../content/pedagogie/README.md). L’interface reste prévue en #22.
 
 **Joueurs et parties**
 - `player_stats` : statistiques solo par joueur et par thème (précision moyenne, meilleur score).

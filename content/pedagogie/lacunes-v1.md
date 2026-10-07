@@ -8,6 +8,16 @@ Les 37 cartes pilotes restent la référence validée. Aucun événement, aucune
 
 THM-027, THM-028, THM-029 et THM-031 ont les déséquilibres les plus importants en histoire générale. Les jalons HGGSP non événementiels permettent quelques synthèses de période, mais ne remplacent pas les repères manquants, particulièrement dans THM-037 à THM-046. Les étapes d’un même processus ne sont séparées que lorsqu’elles éclairent des mécanismes différents : négociation/application à Genève, infrastructure/réseaux/mobilités pour le tunnel, preuve/jugement à Nuremberg.
 
+## Anomalies canoniques à corriger avant #22
+
+### EVT-0210 — bataille de la Somme (THM-027)
+
+- **Anomalie déjà présente dans le v18 :** `date_text` vaut `1er juillet - 18 novembre 1916`, mais `start_year=1916`, `start_month=11`, `start_day=18`, les trois champs `end_*` sont nuls, `precision=DAY` et `date_status=EXACT`. L’événement est donc représenté comme un simple point dans les champs structurés, alors que son libellé décrit une période.
+- **Conséquence pour #22 :** une frise fondée sur ces champs placerait la bataille uniquement au 18 novembre 1916. **EVT-0210 doit être audité et corrigé dans le canon avant toute utilisation de ses champs structurés dans #22.** Vérifier les bornes et la précision avec les sources, puis synchroniser les données dérivées dans une étape dédiée et validée.
+- **Carte concernée :** `CARD-027-somme-guerre-usure` recopie correctement le canon ; ses dates ne sont pas corrigées isolément. Les 325 cartes, le dataset et les migrations restent inchangés dans cet ajout à la PR #59.
+- **Audit reproductible en lecture seule :** `npm run content:audit-plages` cherche les plages explicites dans le texte principal d’une date lorsque la précision est `DAY`, `MONTH` ou `YEAR` et que les trois champs de fin sont vides. Sur les 2 001 événements v18, il signale **1 événement : EVT-0210**. Le rapport est indicatif en CI ; `npm run content:audit-plages -- --strict` renvoie un échec tant qu’un signalement subsiste.
+- **Limites de cet audit :** détection conservatrice, non exhaustive, sans vérification historique ni déduction des bornes. Les dates secondaires après un point-virgule, les siècles, les décennies et les bornes ambiguës sont exclues. Il ne remplace pas l’audit des incohérences de Han (`EVT-0040`) et de Fachoda (`EVT-0475`), documentées plus bas.
+
 ## Primaire et collège
 
 ### THM-002 — Thème 2 — L’âge industriel en France

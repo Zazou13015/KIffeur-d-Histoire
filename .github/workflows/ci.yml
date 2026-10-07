@@ -23,6 +23,7 @@ jobs:
       - run: python3 scripts/verifier-descriptions.py --exiger-revue-documentaire
       - run: python3 scripts/test-verifier-descriptions.py
       - run: npm test
+      - run: npm run content:audit-plages
       - run: npm run content:relecture-cartes -- --check
       - run: npm run lint
       - run: npm run typecheck

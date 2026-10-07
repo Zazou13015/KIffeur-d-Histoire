@@ -2,14 +2,14 @@
 
 import { useEffect, useRef, useState } from "react";
 import type { HistoricDate, Precision } from "@/lib/game/dates";
-import { DEBUT_FRISE, FIN_FRISE, REGLAGES, versT } from "@/lib/game/frise";
+import { REGLAGES, versT } from "@/lib/game/frise";
 import { casesCompletes, casesVides, champsDepuis, CHAMPS_VIDES, reponseDepuis, type Champs } from "@/lib/game/saisie";
 import type { useVue } from "@/components/frise/useVue";
 
 // Relie les trois cases et la frise : ce qu'on tape place le losange et zoome la frise,
 // ce qu'on pointe sur la frise remplit les cases.
 export function useSaisieFrise(precision: Precision, controle: ReturnType<typeof useVue>) {
-  const { vueRef, animer } = controle;
+  const { vueRef, animer, bornes } = controle;
   const [champs, setChamps] = useState<Champs>(CHAMPS_VIDES);
   const [reponse, setReponse] = useState<HistoricDate | null>(null);
   const [enSaisie, setEnSaisie] = useState(false);
@@ -23,9 +23,9 @@ export function useSaisieFrise(precision: Precision, controle: ReturnType<typeof
     setChamps(c);
     clearTimeout(suivi.current);
     if (casesVides(c, precision)) {
-      // Cases vidées : plus de losange, la frise revient sur toute l'histoire.
+      // Cases vidées : plus de losange, la frise revient sur toute l'histoire (ou toute la période jouée).
       setReponse(null);
-      animer(DEBUT_FRISE, FIN_FRISE);
+      animer(bornes.debut, bornes.fin);
       return;
     }
     const d = reponseDepuis(c, precision);
@@ -53,7 +53,7 @@ export function useSaisieFrise(precision: Precision, controle: ReturnType<typeof
     clearTimeout(suivi.current);
     setReponse(null);
     setChamps(CHAMPS_VIDES);
-    animer(DEBUT_FRISE, FIN_FRISE);
+    animer(bornes.debut, bornes.fin);
   }
 
   return { champs, reponse, complete, enSaisie, setEnSaisie, changerChamps, poserSurFrise, reinitialiser };

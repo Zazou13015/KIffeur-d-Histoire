@@ -3,9 +3,9 @@
 import { useEffect, useState } from "react";
 import { lancer } from "@/app/partie/actions";
 import { NIVEAUX } from "@/lib/apprendre/catalogue";
-import { CHAPITRES, DIFFICULTES, ecrireChoix, lireChoix, QUESTIONS } from "@/lib/solo/choix";
+import { CHAPITRES, comptesDe, DIFFICULTES, ecrireChoix, lireChoix, QUESTIONS } from "@/lib/solo/choix";
 import type { SoloDifficulty } from "@/lib/game/solo";
-import { BarreLancer, ChoixDifficulte, ecrireMemoire, Etape, lireMemoire } from "./communs";
+import { BarreLancer, ChoixDifficulte, difficulteJouable, ecrireMemoire, Etape, lireMemoire } from "./communs";
 import styles from "./choix.module.css";
 
 const MEMOIRE = "histoire-choix-scolaire";
@@ -36,8 +36,9 @@ export function ChoixScolaire() {
   const basculer = (id: string) => setCoches((l) => (l.includes(id) ? l.filter((x) => x !== id) : [...l, id]));
 
   const chapitres = niveau ? duNiveau(niveau) : [];
-  const champs = new URLSearchParams({ mode: "scolaire", difficulte, chapitres: coches.join(",") });
-  const choix = lireChoix(champs);
+  const comptes = coches.length ? comptesDe({ mode: "scolaire", chapitres: coches }) : null;
+  const jouable = difficulteJouable(comptes, difficulte);
+  const choix = jouable ? lireChoix(new URLSearchParams({ mode: "scolaire", difficulte: jouable, chapitres: coches.join(",") })) : null;
   const nomNiveau = NIVEAUX.find((n) => n.slug === niveau)?.nom;
 
   return (
@@ -79,7 +80,7 @@ export function ChoixScolaire() {
 
       {niveau && (
         <Etape numero={3} titre="Difficulté">
-          <ChoixDifficulte comptes={null} valeur={difficulte} onChange={setDifficulte} />
+          <ChoixDifficulte comptes={comptes} valeur={jouable} onChange={setDifficulte} />
         </Etape>
       )}
 
@@ -87,8 +88,8 @@ export function ChoixScolaire() {
         pret={choix != null}
         resume={
           choix ? (
-            <><b>{QUESTIONS} questions</b> · {nomNiveau}, {coches.length} chapitre{coches.length > 1 ? "s" : ""} · {DIFFICULTES.find((d) => d.valeur === difficulte)?.titre}</>
-          ) : niveau ? "Coche au moins un chapitre." : "Choisis ton niveau."
+            <><b>{QUESTIONS} questions</b> · {nomNiveau}, {coches.length} chapitre{coches.length > 1 ? "s" : ""} · {DIFFICULTES.find((d) => d.valeur === jouable)?.titre}</>
+          ) : !niveau ? "Choisis ton niveau." : !coches.length ? "Coche au moins un chapitre." : "Pas assez de questions : coche d'autres chapitres."
         }
       />
     </form>

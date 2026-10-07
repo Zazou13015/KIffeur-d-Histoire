@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import type { HistoricDate } from "@/lib/game/dates";
+import type { Vue } from "@/lib/game/frise";
 import { capitaliser, chronoDepuis, correctionDepuis, precisionDepuis, urlIllustration } from "@/lib/game/partie";
 import type { SoloCorrection, SoloDate, SoloDateQuestion, SoloQuestion, SoloResult } from "@/lib/game/solo";
 import { Bilan } from "./Bilan";
@@ -25,9 +26,11 @@ type Props = {
   anonyme: boolean;
   /** Choix d'origine, pour « Rejouer » au bilan. */
   relance?: string;
+  /** Période couverte par le choix : la frise s'y limite. */
+  bornes?: Vue | null;
 };
 
-export function Partie({ gameId, total, question: premiere, actions, connecte, anonyme, relance }: Props) {
+export function Partie({ gameId, total, question: premiere, actions, connecte, anonyme, relance, bornes }: Props) {
   const [question, setQuestion] = useState(premiere);
   const [chrono, setChrono] = useState(() => chronoDepuis(premiere, Date.now()));
   const [resultat, setResultat] = useState<SoloResult | null>(null);
@@ -68,6 +71,7 @@ export function Partie({ gameId, total, question: premiere, actions, connecte, a
         key={question.question_id}
         corriger={corriger}
         chrono={chrono}
+        bornes={bornes}
         suivante={{ libelle: question.position >= total ? "Voir le bilan" : "Question suivante", action: suivante }}
         question={{
           id: question.question_id,

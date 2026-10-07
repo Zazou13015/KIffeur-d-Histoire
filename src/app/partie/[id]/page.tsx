@@ -5,6 +5,7 @@ import { finishGame, nextQuestion, submitAnswer } from "@/app/solo/actions";
 import { Bilan } from "@/components/partie/Bilan";
 import { Partie } from "@/components/partie/Partie";
 import { getAccount } from "@/lib/account";
+import { bornesDe, lireChoix } from "@/lib/solo/choix";
 
 function Indisponible({ titre, texte }: { titre: string; texte: string }) {
   return (
@@ -26,6 +27,9 @@ export default async function PartiePage({ params, searchParams }: PageProps<"/p
   const account = await getAccount();
   // Choix d'origine de la partie, rejoué tel quel par « Rejouer » (relu et validé par l'action).
   const relance = typeof c === "string" ? c : undefined;
+  // La frise se limite à la période du choix (pack, thème, chapitres…), à 10 ans près.
+  const choix = relance ? lireChoix(new URLSearchParams(relance)) : null;
+  const bornes = choix ? bornesDe(choix) : null;
   const requete = new URLSearchParams();
   if (typeof n === "string") requete.set("n", n);
   if (relance) requete.set("c", relance);
@@ -58,6 +62,7 @@ export default async function PartiePage({ params, searchParams }: PageProps<"/p
           connecte={Boolean(account)}
           anonyme={anonyme}
           relance={relance}
+          bornes={bornes}
         />
       </main>
     );

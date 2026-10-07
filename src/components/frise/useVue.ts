@@ -52,5 +52,5 @@ export function useVue(precision: Precision, bornes: Vue = VUE_DE_BASE, initiale
 
   useEffect(() => arreter, [arreter]);
 
-  return { vue, vueRef, placer, animer, zoomer, arreter };
+  return { vue, vueRef, placer, animer, zoomer, arreter, bornes };
 }

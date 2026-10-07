@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { CHAPITRES, comptesDe, difficultePossible, ecrireChoix, filtresDepuis, lireChoix, PACKS, THEMES } from "@/lib/solo/choix";
+import { bornesDe, CHAPITRES, comptesDe, difficultePossible, ecrireChoix, filtresDepuis, lireChoix, PACKS, THEMES } from "@/lib/solo/choix";
 import { NIVEAUX } from "@/lib/apprendre/catalogue";
 
 const lire = (q: string) => lireChoix(new URLSearchParams(q));
@@ -56,5 +56,22 @@ describe("filtresDepuis", () => {
     expect(difficultePossible({ YEAR: 50, MONTH: 9, DAY: 0 }, "MONTH")).toBe(false);
     expect(difficultePossible(null, "DAY")).toBe(true);
     expect(comptesDe({ mode: "scolaire" })).toBeNull();
+  });
+});
+
+describe("bornesDe", () => {
+  it("laisse toute l'histoire en général et cadre les autres choix à 10 ans près", () => {
+    expect(bornesDe({ mode: "general", difficulte: "YEAR" })).toBeNull();
+    const revolution = PACKS.find((p) => p.titre === "Révolution française")!;
+    expect(bornesDe({ mode: "pack", difficulte: "YEAR", pack: revolution.id })).toEqual({ debut: 1770, fin: 1810 });
+    expect(bornesDe({ mode: "periode", difficulte: "YEAR", periode: "libre", de: 1789, a: 1815 })).toEqual({ debut: 1779, fin: 1826 });
+  });
+  it("couvre tous les chapitres cochés", () => {
+    const b = bornesDe({ mode: "scolaire", difficulte: "YEAR", chapitres: ["THM-016", "THM-017"] })!;
+    expect(b.debut).toBeLessThanOrEqual(1904);
+    expect(b.fin).toBeGreaterThanOrEqual(2000);
+  });
+  it("somme les chapitres pour savoir si une partie est possible", () => {
+    expect(comptesDe({ mode: "scolaire", chapitres: ["THM-016"] })!.YEAR).toBeGreaterThanOrEqual(10);
   });
 });

@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
-import { formatHistoricDate, type HistoricDate, type Precision } from "@/lib/game/dates";
-import { REGLAGES, versT } from "@/lib/game/frise";
+import { aLaPrecision, formatHistoricDate, type HistoricDate, type Precision } from "@/lib/game/dates";
+import { REGLAGES, versT, VUE_DE_BASE, type Vue } from "@/lib/game/frise";
 import type { Chrono } from "@/lib/game/partie";
 import { Motif } from "@/components/charte/Motif";
 import { Frise } from "@/components/frise/Frise";
@@ -47,13 +47,17 @@ type Props = {
   chrono?: Chrono;
   /** Bouton après la correction. Sans lui (aperçu), la question se rejoue. */
   suivante?: { libelle: string; action: () => Promise<void> };
+  /** Période jouée (pack, thème, chapitres…) : la frise ne montre qu'elle. Sans elle, toute l'histoire. */
+  bornes?: Vue | null;
 };
 
 const BRAVO: Record<Precision, string> = { annee: "Pile la bonne année !", mois: "Pile le bon mois !", jour: "Pile le bon jour !" };
 
-export function EcranPartie({ question, corriger, chrono, suivante }: Props) {
+export function EcranPartie({ question, corriger, chrono, suivante, bornes }: Props) {
   const { precision } = question;
-  const controle = useVue(precision);
+  const { debut, fin } = bornes ?? VUE_DE_BASE;
+  const cadre = useMemo(() => ({ debut, fin }), [debut, fin]);
+  const controle = useVue(precision, cadre, cadre);
   const { vue, animer } = controle;
   const [correction, setCorrection] = useState<Correction | null>(null);
   const [envoi, setEnvoi] = useState(false);
@@ -70,7 +74,9 @@ export function EcranPartie({ question, corriger, chrono, suivante }: Props) {
     setEnvoi(true);
     setErreur(null);
     try {
-      const c = await corriger(question.id, rep);
+      const brute = await corriger(question.id, rep);
+      // La bonne réponse est donnée à la précision jouée : l'année seule en Facile.
+      const c = { ...brute, bonne: aLaPrecision(brute.bonne, precision) };
       setCorrection(c);
       // La frise montre la bonne date, et la réponse quand il y en a une.
       const b = versT(c.bonne);
@@ -231,7 +237,7 @@ export function EcranPartie({ question, corriger, chrono, suivante }: Props) {
             {carte}
           </>
         }
-        sous={<BandeEpoques vue={vue} animer={animer} />}
+        sous={<BandeEpoques vue={vue} animer={animer} bornes={cadre} />}
         bas={reponseBoite}
       />
     </section>

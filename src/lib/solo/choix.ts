@@ -2,6 +2,7 @@ import catalogue from "./catalogue.json";
 import { PERIODES } from "./periodes";
 import { CHAPITRES } from "@/lib/apprendre/catalogue";
 import type { SoloDifficulty, SoloFilters } from "@/lib/game/solo";
+import { DEBUT_FRISE, FIN_FRISE, type Vue } from "@/lib/game/frise";
 
 // Ce que le joueur choisit avant de lancer une partie (accueil, /solo, /scolaire, « Rejouer »).
 // Le même choix voyage dans un formulaire, dans l'URL de la partie et dans le stockage local du navigateur.
@@ -113,12 +114,49 @@ export function filtresDepuis(choix: Choix): SoloFilters {
  * Nombre d'événements jouables par difficulté pour ce choix, d'après le dataset.
  * `null` quand on ne sait pas d'avance (période libre, chapitres) : le serveur tranchera.
  */
-export function comptesDe(choix: Pick<Choix, "mode" | "periode" | "pack" | "theme">): Comptes | null {
+export function comptesDe(choix: Pick<Choix, "mode" | "periode" | "pack" | "theme" | "chapitres">): Comptes | null {
   if (choix.mode === "general") return catalogue.general;
   if (choix.mode === "periode") return (catalogue.periodes as Record<string, Comptes>)[choix.periode ?? ""] ?? null;
   if (choix.mode === "pack") return PACKS.find((p) => p.id === choix.pack)?.n ?? null;
   if (choix.mode === "theme") return THEMES.find((t) => t.id === choix.theme)?.n ?? null;
+  if (choix.mode === "scolaire" && choix.chapitres?.length) {
+    // Somme des chapitres : un plafond (un événement peut servir deux chapitres), le serveur tranche au-dessus.
+    const n: Comptes = { YEAR: 0, MONTH: 0, DAY: 0 };
+    for (const id of choix.chapitres) {
+      const c = CHAPITRES_JOUABLES[id]?.n;
+      if (c) for (const d of ["YEAR", "MONTH", "DAY"] as const) n[d] += c[d];
+    }
+    return n;
+  }
   return null;
+}
+
+const CHAPITRES_JOUABLES = catalogue.chapitres as Record<string, { n: Comptes; b: number[] }>;
+const versAstro = (annee: number) => (annee < 0 ? annee + 1 : annee);
+
+/**
+ * Étendue de la frise pour ce choix (positions `t`, années astronomiques), à 10 ans près autour des
+ * événements possibles. `null` : toute l'histoire.
+ */
+export function bornesDe(choix: Choix): Vue | null {
+  let b: number[] | undefined;
+  if (choix.mode === "periode" && choix.periode === "libre") {
+    b = [choix.de != null ? versAstro(choix.de) - 10 : DEBUT_FRISE, choix.a != null ? versAstro(choix.a) + 11 : FIN_FRISE];
+  } else if (choix.mode === "periode") b = (catalogue.bornesPeriodes as Record<string, number[]>)[choix.periode ?? ""];
+  else if (choix.mode === "pack") b = PACKS.find((p) => p.id === choix.pack)?.b;
+  else if (choix.mode === "theme") b = THEMES.find((t) => t.id === choix.theme)?.b;
+  else if (choix.mode === "scolaire") {
+    const liste = (choix.chapitres ?? []).flatMap((id) => CHAPITRES_JOUABLES[id]?.b ?? []);
+    if (liste.length) b = [Math.min(...liste), Math.max(...liste)];
+  }
+  if (!b) return null;
+  const debut = Math.max(DEBUT_FRISE, b[0]);
+  const fin = Math.min(FIN_FRISE, b[1]);
+  if (fin - debut < 30) {
+    const milieu = (debut + fin) / 2;
+    return { debut: Math.max(DEBUT_FRISE, milieu - 15), fin: Math.min(FIN_FRISE, milieu + 15) };
+  }
+  return debut <= DEBUT_FRISE && fin >= FIN_FRISE ? null : { debut, fin };
 }
 
 /** Une difficulté est proposée s'il y a de quoi remplir une partie (ou si on ne peut pas le savoir). */

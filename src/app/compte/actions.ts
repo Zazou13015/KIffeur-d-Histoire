@@ -42,10 +42,13 @@ export async function register(_state: AccountState, form: FormData): Promise<Ac
     });
   } catch { return { error: "Inscription indisponible pour le moment. Réessaie." }; }
   if (result.error) return { error: "Impossible de créer le compte. Vérifie les informations ou réessaie." };
-  // Intention provisoire, pas une deuxième source d'identité. Aucun mot de passe.
-  (await cookies()).set("histoire-pending-username", username, {
-    httpOnly: true, secure: process.env.NODE_ENV === "production", sameSite: "lax", path: "/", maxAge: 86400,
-  });
+  // Intention liée au compte créé par Auth. Aucun mot de passe ni token.
+  const userId = result.data.user?.id;
+  if (userId) {
+    (await cookies()).set("histoire-pending-username", JSON.stringify({ userId, username }), {
+      httpOnly: true, secure: process.env.NODE_ENV === "production", sameSite: "lax", path: "/", maxAge: 86400,
+    });
+  }
   if (result.data.session) {
     await completePendingProfile(client);
     redirect(await accountDestination(client, next));
@@ -57,7 +60,7 @@ export async function updateUsername(_state: AccountState, form: FormData): Prom
   const client = await createClient();
   const { error } = await saveProfileUsername(client, field(form, "username"));
   if (error) return { error };
-  (await cookies()).delete("histoire-pending-username");
+  await completePendingProfile(client);
   revalidatePath("/", "layout");
   redirect(safeNextPath(field(form, "next")));
 }

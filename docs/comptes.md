@@ -35,10 +35,13 @@ lu ou maintenu pour l’identité. Aucun trigger sur `auth.users`.
   dans les métadonnées du signup et ne dépend pas du trigger de Contrée pour
   écrire le profil : l’écriture intervient comme utilisateur authentifié.
 - Avec confirmation email, un cookie provisoire `histoire-pending-username`
-  httpOnly, Lax, limité à 24 h, garde le choix jusqu’au callback/login. Ce cookie
-  est une intention avant création du profil, jamais une source d’identité. Le
-  callback respecte d’abord le pseudo déjà enregistré dans Contrée, complète
-  seulement un profil absent, puis supprime le cookie. Sur un autre navigateur,
+  httpOnly, Lax, Secure en production, limité à 24 h, garde uniquement le pseudo
+  et l’UUID renvoyé par Auth dans une valeur JSON. Le callback/login vérifie
+  l’utilisateur avec `getUser()` et exige une correspondance exacte des UUID.
+  Une connexion à un autre compte conserve l’intention sans l’appliquer ; les
+  anciens cookies sans UUID sont supprimés. Le pseudo déjà enregistré dans
+  Contrée reste prioritaire. Le cookie est supprimé après finalisation pour son
+  compte, et conservé si l’écriture échoue. Sur un autre navigateur,
   ou si le pseudo a été pris entre-temps, `/profil` permet de le choisir à nouveau.
 - Google sans pseudo passe par `/profil?next=…` avant le retour prévu. Les
   sauvegardes et nouvelles parties connectées nécessitent le pseudo.

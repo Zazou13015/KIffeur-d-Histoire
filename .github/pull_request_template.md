@@ -14,7 +14,7 @@ Closes #
 - [ ] `npm run lint`
 - [ ] `npm run typecheck`
 - [ ] `npm run build`
-- [ ] Si la base change : migration dans `supabase/migrations/`, testée sur la base de test, rien hors du schéma `histoire`
+- [ ] Si la base change : migration dans `supabase/migrations/`, rien hors du schéma `histoire`, **appliquée sur KFFR avant la fusion**
 - [ ] Critères d'acceptation de l'issue remplis
 
 ## Après la fusion (fait par l'agent)

@@ -34,9 +34,8 @@ Le callback de production `https://k-iffeur-d-histoire.vercel.app/auth/callback`
 et ses paramètres sont couverts par la première règle. Aucun changement de
 configuration n'a été effectué. La Site URL reste celle de Contrée.
 
-Les aperçus et le développement peuvent utiliser le projet de test de Max selon
-leurs variables Vercel : Google doit déjà être activé sur le projet utilisé, et
-l'origine doit déjà être autorisée. Les tests automatisés utilisent des clients
+Les aperçus et le développement utilisent aussi le projet KFFR : Google doit y
+être activé, et l'origine doit déjà être autorisée. Les tests automatisés utilisent des clients
 simulés, sans connexion aux projets Supabase ni modification de base.
 Si le Dashboard du projet utilisé ne couvre pas l'URL effective `redirectTo`,
 arrêter la vérification réelle et demander à Antonin d'ajouter cette URL exacte.

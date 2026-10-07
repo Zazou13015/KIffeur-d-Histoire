@@ -86,8 +86,11 @@
 .erreur { margin: 0; padding: 8px 10px; border: 1px solid var(--color-oxyde); background: var(--color-fond-resultat); color: var(--color-oxyde); font-size: 14px; }
 
 /* ---------- Sous la frise : saisie compacte, bouton Valider dessous, correction à côté ---------- */
-.zoneReponse { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 12px 16px; }
+.zoneReponse { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center; gap: 12px 24px; }
 .colonneSaisie { display: grid; gap: 8px; flex: 0 1 380px; min-width: 260px; cursor: default; }
 .colonneSaisie .saisie { background: transparent; border: 0; padding: 0; }
 .zoneReponse .resultat { flex: 1 1 280px; max-width: 560px; min-width: 0; cursor: default; background: transparent; border: 0; border-left: 3px solid var(--color-laiton); padding: 2px 0 2px 12px; }
 .explication { color: var(--color-encre-douce); line-height: 1.4; overflow-wrap: anywhere; }
+
+.colonneSaisie .aideSaisie { display: none; }
+.colonneSaisie .valider { padding: 10px 16px; }

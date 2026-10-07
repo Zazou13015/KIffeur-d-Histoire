@@ -45,6 +45,8 @@ type Props = {
   correction?: { bonne: HistoricDate; titre: string } | null;
   /** Cartes d'événements posées sur la frise ; les marqueurs proches se regroupent. */
   marqueurs?: MarqueurFrise[];
+  /** Variante opt-in de /apprendre ; le rendu compact des autres écrans est conservé. */
+  presentationMarqueurs?: "compacte" | "illustree";
   onMarqueur?: (id: string) => void;
   /**
    * Écran de jeu : la frise occupe toute la scène, avec une boîte en haut (la question) et une boîte en bas (la réponse)
@@ -60,6 +62,9 @@ type Props = {
 // Place minimale entre deux marqueurs avant qu'ils se regroupent, et couloirs où ils se posent.
 const ECART_MARQUEURS = 132;
 const COULOIRS_MARQUEURS = [10, 62, 114];
+const ECART_MARQUEURS_ILLUSTRES = 144;
+// Le troisième cartel (52 px + filet actif) s'arrête avant les groupes à 172 px.
+const COULOIRS_MARQUEURS_ILLUSTRES = [6, 62, 118];
 
 const PUCE_MAX = 260;
 
@@ -78,6 +83,7 @@ export function Frise({
   enSaisie = false,
   correction = null,
   marqueurs,
+  presentationMarqueurs = "compacte",
   onMarqueur,
   haut,
   sous,
@@ -100,6 +106,7 @@ export function Frise({
   const corrige = correction != null;
   const selection = mode === "selection" && !corrige && onReponse != null;
   const aDesMarqueurs = marqueurs != null && marqueurs.length > 0;
+  const illustree = presentationMarqueurs === "illustree";
 
   // Plage de départ : appliquée une fois, sauf si l'écran pilote lui-même la vue.
   useEffect(() => {
@@ -228,11 +235,19 @@ export function Frise({
   const bonne = correction?.bonne;
   const xBonne = bonne ? X(versT(bonne)) : 0;
   const largeurPuce = correction ? largeurTexte(correction.titre) : 0;
-  const groupes = aDesMarqueurs ? regrouper(tries, vue, largeur, ECART_MARQUEURS, precision) : [];
+  const groupes = aDesMarqueurs ? regrouper(tries, vue, largeur, illustree ? ECART_MARQUEURS_ILLUSTRES : ECART_MARQUEURS, precision) : [];
 
   // Un groupe s'ouvre en zoomant dessus ; une carte seule prévient l'écran qui l'affiche.
   function ouvrirGroupe(debut: number, fin: number) {
     const marge = Math.max((fin - debut) * 0.5, (vue.fin - vue.debut) * 0.08);
+    if (illustree) {
+      // Sur mobile un groupe peut contenir tout le chapitre : chaque clic doit
+      // rapprocher les dates, même si la marge habituelle élargirait la vue.
+      const etendue = Math.min(fin - debut + 2 * marge, span * 0.6);
+      const centre = (debut + fin) / 2;
+      animer(centre - etendue / 2, centre + etendue / 2);
+      return;
+    }
     animer(debut - marge, fin + marge);
   }
 
@@ -335,14 +350,16 @@ export function Frise({
           const x = X(g.t);
           if (g.ids.length > 1) {
             const titres = g.ids.map((id) => parId.get(id)!.titre).join(", ");
+            const actif = illustree && g.ids.some(id => parId.get(id)?.etat === "actif");
             return (
               <button
                 key={g.ids.join("|")}
                 type="button"
                 data-marqueur
-                className={s.groupe}
-                style={{ left: x }}
+                className={`${s.groupe}${actif ? ` ${s.groupeActif}` : ""}`}
+                style={{ left: illustree ? clamp(x, 24, largeur - 24) : x }}
                 aria-label={`${g.ids.length} événements proches : ${titres}. Zoomer pour les séparer.`}
+                aria-pressed={illustree ? actif : undefined}
                 onClick={() => ouvrirGroupe(g.debut, g.fin)}
               >
                 <span className="date">{g.ids.length}</span>
@@ -350,19 +367,27 @@ export function Frise({
             );
           }
           const m = parId.get(g.ids[0])!;
-          const haut = COULOIRS_MARQUEURS[i % COULOIRS_MARQUEURS.length];
+          const couloirs = illustree ? COULOIRS_MARQUEURS_ILLUSTRES : COULOIRS_MARQUEURS;
+          const haut = couloirs[i % couloirs.length];
+          const miniature = illustree && m.illustration;
+          const hauteur = illustree ? (miniature ? 52 : 44) : 52;
+          const demiLargeur = illustree ? (miniature ? 72 : 56) : 66;
           return (
             <div key={m.id}>
-              <div className={s.tigeMarqueur} style={{ left: x, top: haut + 52, height: 210 - haut - 52 }} />
+              <div className={s.tigeMarqueur} style={{ left: x, top: haut + hauteur, height: 210 - haut - hauteur }} />
               <button
                 type="button"
                 data-marqueur
-                className={`${s.marqueur} ${s[`etat_${m.etat ?? "neutre"}`]}`}
-                style={{ left: clamp(x, 66, largeur - 66), top: haut }}
+                className={`${s.marqueur}${illustree ? ` ${s.marqueurPedagogique}` : ""}${miniature ? ` ${s.marqueurIllustre}` : ""} ${s[`etat_${m.etat ?? "neutre"}`]}`}
+                style={{ left: clamp(x, demiLargeur, largeur - demiLargeur), top: haut }}
                 aria-label={`${m.titre}, ${dateCourte(m.date)}`}
+                aria-pressed={illustree ? m.etat === "actif" : undefined}
                 onClick={() => onMarqueur?.(m.id)}
               >
-                {m.motif && <Motif nom={m.motif} viewBox={m.motif === "bastille" ? "0 0 160 120" : "0 0 48 48"} />}
+                {miniature ? (
+                  // eslint-disable-next-line @next/next/no-img-element -- SVG minuscule déjà optimisé, URL applicative de card_id
+                  <img src={m.illustration} alt="" width={48} height={36} loading="lazy" decoding="async" />
+                ) : m.motif && <Motif nom={m.motif} viewBox={m.motif === "bastille" ? "0 0 160 120" : "0 0 48 48"} />}
                 <span>{m.titre}</span>
               </button>
             </div>

@@ -9,6 +9,10 @@ import { chargerDemoPedagogie } from "@/app/demo/pedagogie/donnees";
 import { lireCsv } from "../scripts/csv";
 import { versT } from "@/lib/game/frise";
 import { Frise } from "@/components/frise/Frise";
+import type { CartePedagogique } from "@/lib/pedagogie";
+
+// Ces tests de navigation ne décident pas de la disponibilité serveur des dessins.
+const pourApprendre = (c: CartePedagogique) => ({ ...c, illustrationDediee: false });
 
 // Le comportement de la frise elle-même est vérifié dans frise.test.ts et au
 // navigateur ; ce double teste le contrat et le parcours du nouvel écran.
@@ -52,12 +56,12 @@ it("résout les slugs figés et refuse niveau inconnu, chapitre inconnu et mauva
 });
 
 it("ouvre et parcourt les cartes via la frise, la liste, les boutons et le clavier", () => {
-  const cartes = chargerDemoPedagogie().find((c) => c.id === "THM-027")!.cartes;
+  const cartes = chargerDemoPedagogie().find((c) => c.id === "THM-027")!.cartes.map(pourApprendre);
   render(<DecouvrirChapitre cartes={cartes} />);
   const panneau = () => screen.getByRole("article");
   expect(within(panneau()).getByRole("heading", { level: 2 }).textContent).toBe(cartes[0].title);
   expect((screen.getByRole("button", { name: "← Précédente" }) as HTMLButtonElement).disabled).toBe(true);
-  expect(vi.mocked(Frise).mock.calls.at(-1)![0]).toMatchObject({ mode: "lecture", precision: "jour" });
+  expect(vi.mocked(Frise).mock.calls.at(-1)![0]).toMatchObject({ mode: "lecture", precision: "jour", presentationMarqueurs: "illustree" });
   expect(vi.mocked(Frise).mock.calls.at(-1)![0].onReponse).toBeUndefined();
   fireEvent.click(screen.getByRole("button", { name: "Suivante →" }));
   expect(panneau().textContent).toContain(cartes[1].body);
@@ -81,7 +85,7 @@ it("ouvre et parcourt les cartes via la frise, la liste, les boutons et le clavi
 
 it("respecte les dates av. J.-C., l'année, le jour, DAY_RANGE et YEAR_RANGE sans inventer PERIOD_TEXT", () => {
   const chapitres = chargerDemoPedagogie();
-  const toutes = chapitres.flatMap((c) => c.cartes);
+  const toutes = chapitres.flatMap((c) => c.cartes).map(pourApprendre);
   const somme = toutes.find((c) => c.card_id === "CARD-027-somme-guerre-usure")!;
   expect(debutCarte(somme)).toEqual({ year: 1916, month: 7, day: 1 });
   expect(marqueursCartes([somme], somme.card_id)[0]).toMatchObject({ id: somme.card_id, etat: "actif", date: { year: 1916, month: 7, day: 1 } });

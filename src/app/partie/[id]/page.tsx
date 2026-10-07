@@ -11,7 +11,7 @@ function Indisponible({ titre, texte }: { titre: string; texte: string }) {
     <main className="conteneur grid flex-1 grid-cols-1 content-start gap-3 py-12">
       <h1 className="text-3xl">{titre}</h1>
       <p className="m-0 text-encre-douce">{texte}</p>
-      <Link href="/partie/nouvelle" className="font-bold underline underline-offset-4">
+      <Link href="/" className="font-bold underline underline-offset-4">
         Lancer une nouvelle partie
       </Link>
     </main>
@@ -22,9 +22,14 @@ function Indisponible({ titre, texte }: { titre: string; texte: string }) {
 // Au rechargement, `nextQuestion` rend la question en cours avec son chrono d'origine, ou `null` quand tout est répondu.
 export default async function PartiePage({ params, searchParams }: PageProps<"/partie/[id]">) {
   const { id } = await params;
-  const { n } = await searchParams;
+  const { n, c } = await searchParams;
   const account = await getAccount();
-  const suite = `/partie/${id}${typeof n === "string" ? `?n=${encodeURIComponent(n)}` : ""}`;
+  // Choix d'origine de la partie, rejoué tel quel par « Rejouer » (relu et validé par l'action).
+  const relance = typeof c === "string" ? c : undefined;
+  const requete = new URLSearchParams();
+  if (typeof n === "string") requete.set("n", n);
+  if (relance) requete.set("c", relance);
+  const suite = `/partie/${id}${requete.size ? `?${requete}` : ""}`;
   if (account && !account.username) redirect(`/profil?next=${encodeURIComponent(suite)}`);
   const anonyme = (await cookies()).has(`histoire-solo-${id}`);
 
@@ -52,6 +57,7 @@ export default async function PartiePage({ params, searchParams }: PageProps<"/p
           actions={{ soumettre: submitAnswer, suivante: nextQuestion, terminer: finishGame }}
           connecte={Boolean(account)}
           anonyme={anonyme}
+          relance={relance}
         />
       </main>
     );
@@ -65,7 +71,7 @@ export default async function PartiePage({ params, searchParams }: PageProps<"/p
   }
   return (
     <main className="conteneur grid flex-1 grid-cols-1 content-start gap-6 py-8">
-      <Bilan resultat={resultat} connecte={Boolean(account)} anonyme={anonyme} />
+      <Bilan resultat={resultat} connecte={Boolean(account)} anonyme={anonyme} relance={relance} />
     </main>
   );
 }

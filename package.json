@@ -23,7 +23,8 @@
     "content:test-cartes-local": "tsx scripts/test-cartes-local.ts",
     "content:relecture-cartes": "tsx scripts/generer-relecture-cartes.ts",
     "content:test-demo-pedagogie": "tsx scripts/verifier-demo-pedagogie.ts",
-    "content:illustrations": "tsx --env-file-if-exists=.env.local scripts/upload-illustrations.ts"
+    "content:illustrations": "tsx --env-file-if-exists=.env.local scripts/upload-illustrations.ts",
+    "content:catalogue-solo": "tsx scripts/build-catalogue-solo.ts"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",

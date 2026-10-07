@@ -2,22 +2,28 @@
 
 import { redirect } from "next/navigation";
 import { startGame } from "@/app/solo/actions";
-import type { SoloDifficulty } from "@/lib/game/solo";
+import { ecrireChoix, filtresDepuis, lireChoix } from "@/lib/solo/choix";
 
-const DIFFICULTES: SoloDifficulty[] = ["YEAR", "MONTH", "DAY"];
-
-// Lance une partie solo de 10 questions à la difficulté choisie, puis ouvre l'écran de partie.
-// Le formulaire vient de /partie/nouvelle et du bouton « Rejouer » du bilan.
+// Lance une partie solo depuis /solo, /scolaire ou le bouton « Rejouer » du bilan, puis ouvre l'écran de partie.
+// Le choix est relu et validé ici : le formulaire ne fait jamais foi.
 export async function lancer(formData: FormData) {
-  const demandee = String(formData.get("difficulte"));
-  const difficulty = DIFFICULTES.find((d) => d === demandee) ?? "YEAR";
+  // « Rejouer » renvoie le choix d'origine sous forme compacte (champ `c`).
+  const relance = formData.get("c");
+  const champs = typeof relance === "string" ? new URLSearchParams(relance) : new URLSearchParams();
+  if (typeof relance !== "string") for (const [cle, valeur] of formData) if (typeof valeur === "string") champs.append(cle, valeur);
+  const choix = lireChoix(champs);
+  const origine = choix?.mode === "scolaire" || champs.get("mode") === "scolaire" ? "/scolaire" : "/solo";
+  if (!choix) redirect(`${origine}?erreur=choix`);
+
   let destination: string;
   try {
-    const game = await startGame({ difficulty });
-    destination = `/partie/${game.game_id}?n=${game.question_count}`;
+    const game = await startGame(filtresDepuis(choix));
+    destination = `/partie/${game.game_id}?n=${game.question_count}&c=${encodeURIComponent(ecrireChoix(choix))}`;
   } catch (e) {
-    const profil = e instanceof Error && e.message.includes("pseudo");
-    destination = profil ? "/profil?next=%2Fpartie%2Fnouvelle" : "/partie/nouvelle?erreur=1";
+    const message = e instanceof Error ? e.message : "";
+    destination = message.includes("pseudo")
+      ? `/profil?next=${encodeURIComponent(origine)}`
+      : `${origine}?erreur=${message.includes("Pas assez") ? "peu" : "1"}`;
   }
   // redirect() lève une exception : il reste hors du try.
   redirect(destination);

@@ -1,61 +1,58 @@
-import { createClient } from "@/lib/supabase/server";
+import Link from "next/link";
+import { Motif } from "@/components/charte/Motif";
+import { getAccount } from "@/lib/account";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
+import styles from "@/components/choix/choix.module.css";
 
-// Les dates ne sont pas lisibles depuis le navigateur (voir docs/architecture.md §4) : on ne montre que les titres.
-type EventRow = {
-  id: string;
-  title: string;
-  importance: number;
-};
+// Accueil du jeu : les quatre façons de jouer.
+const ENTREES = [
+  { href: "/solo", titre: "Solo libre", texte: "Toute l'Histoire, une période, un pack ou un thème.", motif: "globe" },
+  { href: "/scolaire", titre: "Solo scolaire", texte: "Le programme de ta classe, chapitre par chapitre.", motif: "plume" },
+  { href: null, titre: "Mode inversé", texte: "On te donne la date, tu retrouves l'événement.", motif: "boussole" },
+  { href: "/apprendre", titre: "Apprendre", texte: "Explore un chapitre avec ses dates, sans chrono.", motif: "parchemin" },
+] as const;
 
-export default async function Home() {
-  if (!isSupabaseConfigured) {
-    return (
-      <main className="mx-auto flex w-full max-w-2xl flex-1 flex-col justify-center gap-4 px-4 py-12">
-        <h1 className="text-3xl font-bold">Kiffeurs d&apos;Histoire</h1>
-        <p className="text-stone-600">
-          Le site est en ligne, mais pas encore relié à sa base de données. Il manque les variables
-          NEXT_PUBLIC_SUPABASE_URL et NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY.
-        </p>
-      </main>
-    );
-  }
-
-  const supabase = await createClient();
-
-  const { data: events, error, count } = await supabase
-    .schema("histoire")
-    .from("events")
-    .select("id, title, importance", { count: "exact" })
-    .order("importance", { ascending: false })
-    .order("id")
-    .limit(20)
-    .returns<EventRow[]>();
-
+export default async function Accueil() {
+  const compte = isSupabaseConfigured ? await getAccount() : null;
   return (
-    <main className="mx-auto flex w-full max-w-2xl flex-1 flex-col gap-8 px-4 py-12">
-      <header className="flex items-center justify-between gap-4">
-        <h1 className="text-3xl font-bold">Kiffeurs d&apos;Histoire</h1>
-      </header>
-
-      <section className="flex flex-col gap-3">
-        <h2 className="text-lg font-semibold">
-          Événements en base{count != null && ` (${count})`}
-        </h2>
-        {error && (
-          <p className="rounded bg-red-100 px-3 py-2 text-sm text-red-800">
-            Impossible de lire la base : {error.message}
-          </p>
+    <main className={styles.ecran}>
+      <div className={styles.colonne}>
+        <header className={styles.titre}>
+          <h1>Kiffeurs d&apos;Histoire</h1>
+          <p>Place les grands événements de l&apos;Histoire sur la frise. Choisis comment jouer.</p>
+        </header>
+        <ul className={styles.entrees}>
+          {ENTREES.map((e) => {
+            const contenu = (
+              <>
+                <Motif nom={e.motif} />
+                <div>
+                  <h2>{e.titre}</h2>
+                  <p>{e.texte}</p>
+                </div>
+              </>
+            );
+            return (
+              <li key={e.titre} className="grid">
+                {e.href ? (
+                  <Link href={e.href} className={styles.entree}>{contenu}</Link>
+                ) : (
+                  <div className={`${styles.entree} ${styles.entreeInactive}`} aria-disabled="true">
+                    <span className={styles.badge}>Bientôt</span>
+                    {contenu}
+                  </div>
+                )}
+              </li>
+            );
+          })}
+        </ul>
+        {!compte && (
+          <div className={styles.compte}>
+            <span>Sans compte, tu peux tout jouer ; ta progression n&apos;est pas gardée.</span>
+            <Link href="/connexion" className="cible inline-flex items-center border border-encre px-4 py-2 font-bold text-encre">Se connecter</Link>
+          </div>
         )}
-        <ol className="flex flex-col gap-2">
-          {events?.map((event) => (
-            <li key={event.id} className="flex justify-between gap-4 border-b border-stone-200 pb-2">
-              <span>{event.title}</span>
-              <span className="shrink-0 text-stone-500">{event.id}</span>
-            </li>
-          ))}
-        </ol>
-      </section>
+      </div>
     </main>
   );
 }

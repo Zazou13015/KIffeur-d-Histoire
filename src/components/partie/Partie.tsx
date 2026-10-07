@@ -23,9 +23,11 @@ type Props = {
   actions: ActionsPartie;
   connecte: boolean;
   anonyme: boolean;
+  /** Choix d'origine, pour « Rejouer » au bilan. */
+  relance?: string;
 };
 
-export function Partie({ gameId, total, question: premiere, actions, connecte, anonyme }: Props) {
+export function Partie({ gameId, total, question: premiere, actions, connecte, anonyme, relance }: Props) {
   const [question, setQuestion] = useState(premiere);
   const [chrono, setChrono] = useState(() => chronoDepuis(premiere, Date.now()));
   const [resultat, setResultat] = useState<SoloResult | null>(null);
@@ -47,7 +49,7 @@ export function Partie({ gameId, total, question: premiere, actions, connecte, a
   if (resultat) {
     return (
       <div className="conteneur grid flex-1 grid-cols-1 content-start py-8">
-        <Bilan resultat={resultat} connecte={connecte} anonyme={anonyme} />
+        <Bilan resultat={resultat} connecte={connecte} anonyme={anonyme} relance={relance} />
       </div>
     );
   }

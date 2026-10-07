@@ -23,6 +23,8 @@ async function rpc<T>(name: string, args: Record<string, unknown>): Promise<T> {
   if (purgeError) throw new Error("Impossible d'effectuer cette action de partie");
   const { data, error } = await supabase.schema("histoire").rpc(name, args);
   if (error) {
+    // Seul message SQL repris tel quel : il ne contient ni date ni décompte.
+    if (error.message === "Pas assez de questions pour ces filtres") throw new Error(error.message);
     throw new Error(error.code === "42501" ? "Partie inaccessible" : error.code === "53400"
       ? "Les parties sans compte sont temporairement indisponibles. Réessayez plus tard."
       : "Impossible d'effectuer cette action de partie");

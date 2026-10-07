@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { SaisieCalendrier } from "@/components/saisie/SaisieCalendrier";
+import { Frise } from "@/components/frise/Frise";
 import { SaisieClavier } from "@/components/saisie/SaisieClavier";
 import { Bouton } from "@/components/ui/Bouton";
 import { formatHistoricDate, type HistoricDate, type Precision } from "@/lib/game/dates";
@@ -12,15 +12,14 @@ const PRECISIONS: { p: Precision; libelle: string }[] = [
   { p: "jour", libelle: "Difficile · jour" },
 ];
 
-type Methode = "clavier" | "calendrier";
-
 export function DemoSaisie() {
   const [precision, setPrecision] = useState<Precision>("jour");
-  const [methode, setMethode] = useState<Methode>("clavier");
   const [reponse, setReponse] = useState<HistoricDate | null>(null);
+  const [origine, setOrigine] = useState("");
 
-  function donner(d: HistoricDate) {
+  function donner(d: HistoricDate, par: string) {
     setReponse(d);
+    setOrigine(par);
   }
 
   return (
@@ -34,6 +33,7 @@ export function DemoSaisie() {
             onClick={() => {
               setPrecision(p);
               setReponse(null);
+              setOrigine("");
             }}
           >
             {libelle}
@@ -41,25 +41,14 @@ export function DemoSaisie() {
         ))}
       </div>
 
-      <div className="flex flex-wrap gap-2" role="group" aria-label="Méthode de saisie">
-        <Bouton variante={methode === "clavier" ? "primaire" : "secondaire"} aria-pressed={methode === "clavier"} onClick={() => setMethode("clavier")}>
-          Au clavier
-        </Bouton>
-        <Bouton variante={methode === "calendrier" ? "primaire" : "secondaire"} aria-pressed={methode === "calendrier"} onClick={() => setMethode("calendrier")}>
-          Au calendrier
-        </Bouton>
-      </div>
+      <SaisieClavier key={`clavier-${precision}`} precision={precision} onAnswer={(d) => donner(d, "le clavier")} />
 
-      {methode === "clavier" ? (
-        <SaisieClavier key={`clavier-${precision}`} precision={precision} onAnswer={donner} />
-      ) : (
-        <SaisieCalendrier key={`calendrier-${precision}`} precision={precision} onAnswer={donner} />
-      )}
+      <Frise key={`frise-${precision}`} precision={precision} mode="selection" reponse={reponse} onReponse={(d) => donner(d, "la frise")} />
 
       <p className="m-0 min-h-6 text-encre-douce" role="status">
         {reponse ? (
           <>
-            Réponse envoyée : <b className="date text-xl text-encre">{formatHistoricDate(reponse, precision)}</b>
+            Réponse donnée par {origine} : <b className="date text-xl text-encre">{formatHistoricDate(reponse, precision)}</b>
           </>
         ) : (
           "Aucune réponse pour l'instant."

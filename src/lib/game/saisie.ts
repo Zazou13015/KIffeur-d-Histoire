@@ -1,5 +1,5 @@
 // Lecture d'une date tapée au clavier : « 1918 », « 11/1918 », « 11 novembre 1918 », « -44 », « 44 av. J.-C. »…
-// Sans DOM, pour être testée. Le résultat est le même objet que celui de la frise et du calendrier.
+// Sans DOM, pour être testée. Le résultat est le même objet que celui de la frise.
 
 import { MOIS, type HistoricDate, type Precision } from "./dates";
 import { DEBUT_FRISE, FIN_FRISE, joursDansMois } from "./frise";

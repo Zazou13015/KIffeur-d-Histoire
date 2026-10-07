@@ -6,8 +6,10 @@
 - Le projet Supabase de production est **partagé avec KFFR contrée** (mêmes comptes joueurs).
   Toutes les tables de ce jeu vivent dans le schéma `histoire` ; ne jamais créer ni modifier quoi que ce soit dans `public` ou `auth`.
 - Toute modification de base passe par un fichier dans `supabase/migrations/` (`npm run db:new <nom>`), jamais par le tableau de bord.
-- Base de test : projet Supabase de Maxou (`baezxgddyoweryeivivs`). Toute migration y est appliquée et vérifiée avant la production.
-- Production (projet KFFR) : jamais de `supabase db push` ni d'`apply_migration` (ils écrivent dans l'historique de migrations de KFFR). Chaque migration s'inscrit elle-même dans `histoire.migrations_appliquees` et s'exécute en SQL, après feu vert écrit de Maxou et Antonin. Procédure : `README.md`.
+- Une seule base : le projet Supabase KFFR (`bskyfdjwcdvzhlugtknb`), pour la production, les aperçus Vercel et le développement (décision de Maxou et Antonin, 7 oct. 2026). Plus de base de test.
+- L'agent applique lui-même les migrations sur KFFR, sans demander de confirmation, tant qu'elles ne touchent qu'au schéma `histoire` (et aux extensions `unaccent`/`pg_trgm` du schéma `extensions`). Tout ce qui sort de ce périmètre est interdit.
+- Jamais de `supabase db push` ni d'`apply_migration` sur KFFR (ils écrivent dans l'historique de migrations de KFFR contrée). Chaque migration s'inscrit elle-même dans `histoire.migrations_appliquees` et s'exécute en SQL, dans une transaction. Procédure : `README.md`.
+- **Appliquer la migration sur KFFR avant de fusionner la PR qui la contient** : Vercel met `main` en ligne dès la fusion, et le site casse si la base n'a pas suivi.
 - Les réponses aux questions (dates, alias) ne doivent jamais être lisibles depuis le navigateur : la correction se fait en SQL (`security definer`).
 - Périmètre produit (ce que fait la V1, ce qui vient après) : `docs/prd.md`. Le lire avant de développer une fonctionnalité ; ne rien construire hors du périmètre V1 sans accord.
 - Architecture détaillée : `docs/architecture.md`.
@@ -30,7 +32,7 @@
 - PR fusionnée : l'issue se ferme toute seule (`Closes #…`), et le robot `.github/workflows/suivi-issue.yml` retire le label `en cours` et le 🚧, puis coche l'étape dans #31 avec le numéro de PR (il ne le fait que si la PR contient `Closes #<numéro>`). L'agent vérifie que c'est bien fait et complète ce que le robot ne fait pas. Sans robot, il fait lui-même, sans attendre qu'on le lui demande, les trois gestes suivants :
   1. retirer le label `en cours` de l'issue et le 🚧 de son titre ;
   2. dans l'issue de suivi #31, cocher l'étape (`- [x] #<numéro> …`), retirer le 🚧 de sa ligne et y ajouter le numéro de la PR fusionnée ;
-  3. mettre à jour la date « Dernière mise à jour » de #31 et, si la migration n'est passée que sur la base de test, garder la note « à savoir » sur le passage en production KFFR.
+  3. mettre à jour la date « Dernière mise à jour » de #31.
   Si l'agent n'est pas là quand la PR est fusionnée (fusion par Maxou ou Antonin), le premier agent qui s'en aperçoit fait ces gestes ; au début de chaque issue, il vérifie donc que #31 reflète bien l'état des issues fermées et corrige l'écart. Avant de modifier #31, relire son contenu actuel (Maxou et Antonin peuvent l'avoir changé) et ne toucher que les lignes concernées.
 - PR fermée sans fusion, ou travail abandonné : retirer le label `en cours`, le 🚧 du titre et l'assignation, et dire en commentaire pourquoi.
 - Une issue qui garde `en cours` sans PR ni activité depuis plusieurs jours est probablement oubliée : demander à Maxou ou Antonin avant de la reprendre.

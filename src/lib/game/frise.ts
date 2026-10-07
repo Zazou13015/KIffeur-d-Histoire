@@ -202,21 +202,21 @@ export function decor(vue: Vue, largeur: number): Motif[] {
     }
     const x = X(yy);
     if (x < -60 || x > largeur + 60) continue;
-    if (discret && (h >> 24) % 3) continue;
+    if (discret && (h >>> 24) % 3) continue;
     const choix = ep.motifs.filter((k) => !(APPARITION[k] > yy));
-    let motif = choix[(h >> 4) % choix.length];
-    if (motif === motifPrec && choix.length > 1) motif = choix[((h >> 4) + 1) % choix.length];
+    let motif = choix[(h >>> 4) % choix.length];
+    if (motif === motifPrec && choix.length > 1) motif = choix[((h >>> 4) + 1) % choix.length];
     motifPrec = motif;
-    let couloir = (h >> 12) % 4;
-    if (couloir === couloirPrec) couloir = (couloir + 1 + ((h >> 20) % 3)) % 4;
+    let couloir = (h >>> 12) % 4;
+    if (couloir === couloirPrec) couloir = (couloir + 1 + ((h >>> 20) % 3)) % 4;
     couloirPrec = couloir;
     out.push({
       cle: `${y}`,
       motif,
       x,
-      haut: COULOIRS[couloir] + ((h >> 14) % 6),
-      taille: (discret ? 28 : 34) + ((h >> 8) % 4) * 5,
-      angle: ((h >> 16) % 15) - 7,
+      haut: COULOIRS[couloir] + ((h >>> 14) % 6),
+      taille: (discret ? 28 : 34) + ((h >>> 8) % 4) * 5,
+      angle: ((h >>> 16) % 15) - 7,
       discret,
     });
   }

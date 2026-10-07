@@ -87,6 +87,12 @@ export function Frise({
   const { vue, vueRef, placer, animer, zoomer, arreter } = controle ?? interne;
   const ref = useRef<HTMLDivElement>(null);
   const [largeur, setLargeur] = useState(800);
+  // Écran de jeu : hauteur de la scène et des boîtes posées en haut et en bas, pour placer l'axe.
+  const [hauteur, setHauteur] = useState(0);
+  const [hautHaut, setHautHaut] = useState(0);
+  const [hautBas, setHautBas] = useState(0);
+  const refHaut = useRef<HTMLDivElement>(null);
+  const refBas = useRef<HTMLDivElement>(null);
   const [fantome, setFantome] = useState<{ x: number; date: HistoricDate } | null>(null);
   const glisse = useRef<{ x: number; vue: Vue; bouge: boolean; losange: boolean } | null>(null);
   const pointeurs = useRef(new Map<number, number>());
@@ -110,8 +116,15 @@ export function Frise({
 
   useEffect(() => {
     const el = ref.current!;
-    const ro = new ResizeObserver(() => setLargeur(el.clientWidth));
+    const ro = new ResizeObserver(() => {
+      setLargeur(el.clientWidth);
+      setHauteur(el.clientHeight);
+      setHautHaut(refHaut.current?.offsetHeight ?? 0);
+      setHautBas(refBas.current?.offsetHeight ?? 0);
+    });
     ro.observe(el);
+    if (refHaut.current) ro.observe(refHaut.current);
+    if (refBas.current) ro.observe(refBas.current);
     return () => ro.disconnect();
   }, []);
 
@@ -221,6 +234,17 @@ export function Frise({
   }
 
   const scene = haut != null || bas != null || sous != null;
+  // La frise remplit l'écran : l'axe descend au-dessus des boîtes du bas, le ciel du décor occupe tout l'espace au-dessus.
+  const ciel = hautHaut + 16;
+  const axeY = scene ? Math.max(ciel + 200, hauteur - hautBas - 140) : 210;
+  const decalage = axeY - 210;
+  const echelleDecor = scene ? clamp((axeY - ciel) / 220, 1, 1.7) : 1;
+  const placerMotif = (haut: number, taille: number) => {
+    if (!scene) return { top: haut, taille };
+    const t2 = taille * echelleDecor;
+    // Couloirs d'origine 14…125 étalés de haut en bas du ciel.
+    return { top: ciel - decalage + ((haut - 14) / 111) * Math.max(0, axeY - 60 - ciel - t2), taille: t2 };
+  };
   const outils = (
     <div className={s.outils}>
       <span className={s.echelle}>{legendePas(pas)}</span>
@@ -235,6 +259,7 @@ export function Frise({
       <div
         ref={ref}
         className={`${selection ? s.frise : `${s.frise} ${s.lecture}`}${scene ? ` ${s.scene}` : ""}`}
+        style={scene ? { minHeight: hautHaut + hautBas + 380 } : undefined}
         aria-label={
           selection
             ? "Frise chronologique : molette pour zoomer, glisser pour se déplacer, cliquer pour placer sa réponse"
@@ -248,12 +273,12 @@ export function Frise({
         onKeyDown={surTouche}
       >
         {scene && (
-          <div className={s.zoneScene}>
+          <div ref={refHaut} className={s.zoneScene}>
             {haut != null && <div data-superposition className={s.superposition}>{haut}</div>}
             <div data-superposition className={s.outilsScene}>{outils}</div>
           </div>
         )}
-        <div className={scene ? s.bandeScene : s.bande}>
+        <div className={scene ? s.bandeScene : s.bande} style={scene ? { top: decalage } : undefined}>
         {EPOQUES.map((ep) => {
           const l = X(ep.debut);
           const r = X(ep.fin);
@@ -290,15 +315,18 @@ export function Frise({
         <div className={s.axe} />
         {rappel && <div className={`${s.rappel} date`}>{rappel}</div>}
 
-        {!aDesMarqueurs && decor(vue, largeur).map((m) => (
-          <div
-            key={m.cle}
-            className={m.discret ? `${s.motif} ${s.discret}` : s.motif}
-            style={{ left: m.x, top: m.haut, width: m.taille, height: m.taille, transform: `translateX(-50%) rotate(${m.angle}deg)` }}
-          >
-            <Motif nom={m.motif} />
-          </div>
-        ))}
+        {!aDesMarqueurs && decor(vue, largeur).map((m) => {
+          const { top, taille } = placerMotif(m.haut, m.taille);
+          return (
+            <div
+              key={m.cle}
+              className={m.discret ? `${s.motif} ${s.discret}` : s.motif}
+              style={{ left: m.x, top, width: taille, height: taille, transform: `translateX(-50%) rotate(${m.angle}deg)` }}
+            >
+              <Motif nom={m.motif} />
+            </div>
+          );
+        })}
 
         {groupes.map((g, i) => {
           const x = X(g.t);
@@ -376,14 +404,14 @@ export function Frise({
           </>
         )}
 
-        {!selection && !corrige && (
+        {!scene && !selection && !corrige && (
           <div className={s.aide}>Molette ou pincement : zoom · Glisser : se déplacer</div>
         )}
         {selection && (
           <>
-            <div className={s.aide}>Cliquez ou tapez la date · Molette : zoom · Glisser : se déplacer</div>
+            {!scene && <div className={s.aide}>Cliquez ou tapez la date · Molette : zoom · Glisser : se déplacer</div>}
             {fantome && (
-              <div className={s.fantome} style={{ left: fantome.x }}>
+              <div className={s.fantome} style={scene ? { left: fantome.x, top: ciel - decalage, height: 222 - ciel + decalage } : { left: fantome.x }}>
                 <i />
                 <span className="date">{dateCourte(fantome.date)}</span>
               </div>
@@ -391,8 +419,12 @@ export function Frise({
           </>
         )}
         </div>
-        {sous != null && <div data-superposition className={s.zoneSous}>{sous}</div>}
-        {bas != null && <div className={s.zoneBas}>{bas}</div>}
+        {scene && (
+          <div ref={refBas} className={s.zoneBasScene}>
+            {sous != null && <div data-superposition className={s.zoneSous}>{sous}</div>}
+            {bas != null && <div className={s.zoneBas}>{bas}</div>}
+          </div>
+        )}
       </div>
     </>
   );

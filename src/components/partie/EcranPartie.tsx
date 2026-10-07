@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { formatHistoricDate, type HistoricDate, type Precision } from "@/lib/game/dates";
 import { REGLAGES, versT } from "@/lib/game/frise";
 import type { Chrono } from "@/lib/game/partie";
@@ -210,7 +211,14 @@ export function EcranPartie({ question, corriger, chrono, suivante }: Props) {
         onReponse={poserSurFrise}
         enSaisie={enSaisie}
         correction={correction && { bonne: correction.bonne, titre: question.titre }}
-        haut={carte}
+        haut={
+          <>
+            <Link href="/" className={s.quitter}>
+              ← Quitter
+            </Link>
+            {carte}
+          </>
+        }
         sous={<BandeEpoques vue={vue} animer={animer} />}
         bas={reponseBoite}
       />

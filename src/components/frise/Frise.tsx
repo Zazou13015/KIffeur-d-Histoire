@@ -318,7 +318,7 @@ export function Frise({
         <div className={s.axe} />
         {rappel && <div className={`${s.rappel} date`}>{rappel}</div>}
 
-        {!aDesMarqueurs && decor(vue, largeur).map((m) => {
+        {!aDesMarqueurs && decor(vue, largeur, scene ? 90 : 34).map((m) => {
           const { top, taille } = placerMotif(m.haut, m.taille);
           return (
             <div

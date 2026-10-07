@@ -183,10 +183,11 @@ const COULOIRS = [14, 50, 86, 120];
 
 export type Motif = { cle: string; motif: string; x: number; haut: number; taille: number; angle: number; discret: boolean };
 
-export function decor(vue: Vue, largeur: number): Motif[] {
+/** `ecart` : place minimale (px) entre deux motifs ; l'écran de jeu en met moins pour laisser respirer la frise. */
+export function decor(vue: Vue, largeur: number, ecart = 34): Motif[] {
   const span = vue.fin - vue.debut;
   const X = (t: number) => ((t - vue.debut) / span) * largeur;
-  const pas = PAS_DECOR.find((p) => (largeur / span) * p >= 34) ?? 1000;
+  const pas = PAS_DECOR.find((p) => (largeur / span) * p >= ecart) ?? 1000;
   // Sous trois ans visibles, le décor se fait discret pour laisser lire les mois et les jours.
   const discret = span < 3;
   const out: Motif[] = [];

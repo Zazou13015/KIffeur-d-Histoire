@@ -1,0 +1,55 @@
+/* Frise chronologique zoomable : axe, graduations, décor, marqueurs, réponse et correction. */
+
+.outils { display: flex; align-items: center; justify-content: flex-end; gap: 6px; }
+.outils button { width: 44px; height: 44px; border: 1px solid var(--color-encre); background: var(--color-blanc-cartel); color: var(--color-encre); font-size: 20px; line-height: 1; display: grid; place-items: center; }
+.echelle { font-size: 12px; color: var(--color-encre-douce); font-family: var(--font-mono); min-width: 0; }
+/* ---------- Frise ---------- */
+.frise { position: relative; height: 340px; overflow: hidden; background: var(--color-blanc-cartel); border: 1px solid var(--color-filet); touch-action: none; cursor: crosshair; user-select: none; }
+.bandeau { position: absolute; top: 180px; height: 30px; overflow: hidden; }
+.bandeau span { position: absolute; top: 7px; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-encre); white-space: nowrap; opacity: 0.75; }
+.grille { position: absolute; top: 0; width: 1px; height: 210px; background: var(--color-encre); opacity: 0.06; }
+.axe { position: absolute; left: 0; right: 0; top: 210px; height: 2px; background: var(--color-encre); }
+.trait { position: absolute; top: 212px; width: 1px; height: 9px; background: var(--color-encre); }
+.majeur { height: 14px; width: 2px; background: var(--color-oxyde); }
+.etiquette { position: absolute; top: 224px; transform: translateX(-50%); font-size: 16px; color: var(--color-encre); white-space: nowrap; }
+.etiquette b { color: var(--color-oxyde); }
+.etiquette small { font-family: var(--font-texte); font-size: 10px; font-weight: 400; color: var(--color-encre-douce); }
+.rappel { position: absolute; left: 12px; top: 8px; font-size: 18px; color: var(--color-encre-douce); background: rgb(251 251 248 / 0.85); padding: 0 6px; pointer-events: none; z-index: 2; }
+.motif { position: absolute; color: var(--color-encre); opacity: 0.85; pointer-events: none; }
+.motif svg { width: 100%; height: 100%; display: block; overflow: visible; }
+.discret { opacity: 0.45; }
+
+.tige { position: absolute; top: 52px; height: 128px; width: 1px; background: var(--color-encre); opacity: 0.35; }
+.puce { position: absolute; top: 12px; transform: translateX(-50%); background: var(--color-fond-resultat); border: 1px solid var(--color-laiton); box-shadow: 0 0 0 2px var(--color-laiton); padding: 4px 9px 5px; white-space: nowrap; font-size: 13px; line-height: 1.25; }
+.puce span { display: block; font-size: 14px; color: var(--color-oxyde); line-height: 1.1; }
+.ecart { position: absolute; top: 246px; height: 2px; background: var(--color-oxyde); }
+
+.losange, .bonne { position: absolute; top: 201px; width: 20px; height: 20px; transform: translateX(-50%) rotate(45deg); border: 2px solid var(--color-encre); }
+.losange { background: var(--color-oxyde); cursor: ew-resize; z-index: 3; }
+.bonne { background: var(--color-laiton); z-index: 2; }
+.reponseEtiquette, .bonneEtiquette { position: absolute; transform: translateX(-50%); padding: 2px 10px 3px; white-space: nowrap; font-size: 13px; }
+.reponseEtiquette { top: 254px; background: var(--color-oxyde); color: var(--color-blanc-cartel); z-index: 3; }
+.bonneEtiquette { top: 292px; background: var(--color-laiton); color: var(--color-encre); }
+.reponseEtiquette b, .bonneEtiquette b { font-family: var(--font-date); font-weight: 700; font-size: 18px; margin-left: 4px; }
+.enSaisie { box-shadow: 0 0 0 3px rgb(176 138 62 / 0.55); }
+
+.fantome { position: absolute; top: 0; height: 222px; pointer-events: none; z-index: 2; }
+.fantome i { position: absolute; left: 0; top: 0; bottom: 0; border-left: 1px dashed var(--color-oxyde); }
+.fantome span { position: absolute; left: 6px; top: 6px; background: var(--color-blanc-cartel); border: 1px solid var(--color-oxyde); color: var(--color-oxyde); padding: 0 6px; font-size: 16px; white-space: nowrap; }
+.aide { position: absolute; right: 10px; bottom: 8px; font-size: 12px; color: var(--color-encre-douce); background: rgb(251 251 248 / 0.85); padding: 2px 6px; }
+
+
+/* Mode lecture : pas de réponse à poser, curseur de déplacement. */
+.lecture { cursor: grab; }
+
+/* ---------- Marqueurs (cartes d'événements) ---------- */
+.marqueur { position: absolute; transform: translateX(-50%); width: 108px; height: 44px; display: grid; grid-template-columns: 28px minmax(0, 1fr); align-items: center; gap: 4px; padding: 3px 5px; background: var(--color-blanc-cartel); border: 1px solid var(--color-encre); color: var(--color-encre); text-align: left; cursor: pointer; z-index: 2; }
+.marqueur svg { width: 28px; height: 28px; display: block; color: var(--color-encre); }
+.marqueur span { font-size: 11px; overflow-wrap: anywhere; hyphens: auto; line-height: 1.15; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; }
+.marqueur:hover { box-shadow: var(--shadow-focus); }
+.tigeMarqueur { position: absolute; width: 1px; background: var(--color-encre); opacity: 0.45; }
+.etat_actif { border-color: var(--color-laiton); box-shadow: 0 0 0 2px var(--color-laiton); }
+.etat_juste { border-color: var(--color-sauge); background: var(--color-vert-de-gris); }
+.etat_faux { border-color: var(--color-oxyde); }
+.groupe { position: absolute; top: 172px; transform: translateX(-50%); min-width: 44px; height: 44px; display: grid; place-items: center; padding: 0 8px; background: var(--color-encre); color: var(--color-papier); border: 2px solid var(--color-laiton); border-radius: 9999px; font-size: 20px; line-height: 1; cursor: zoom-in; z-index: 2; }
+.groupe:hover { background: var(--color-encre-douce); }

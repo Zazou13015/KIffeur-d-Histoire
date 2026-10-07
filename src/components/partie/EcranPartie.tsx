@@ -4,10 +4,10 @@ import { useRef, useState, useTransition } from "react";
 import { formatHistoricDate, type HistoricDate, type Precision } from "@/lib/game/dates";
 import { clamp, DEBUT_FRISE, FIN_FRISE, joursDansMois, REGLAGES, versT } from "@/lib/game/frise";
 import { Motif } from "@/components/charte/Motif";
+import { Frise } from "@/components/frise/Frise";
+import { useVue } from "@/components/frise/useVue";
 import { BandeEpoques } from "./BandeEpoques";
-import { Frise } from "./Frise";
 import { CHAMPS_VIDES, ordreChamps, SaisieDate, type Champs } from "./SaisieDate";
-import { useVue } from "./useVue";
 import s from "./partie.module.css";
 
 // Ce que le navigateur sait d'une question : jamais la date attendue.
@@ -53,7 +53,8 @@ const BRAVO: Record<Precision, string> = { annee: "Pile la bonne année !", mois
 
 export function EcranPartie({ question, corriger }: Props) {
   const { precision } = question;
-  const { vue, vueRef, placer, animer, zoomer, arreter } = useVue(precision);
+  const controle = useVue(precision);
+  const { vue, vueRef, animer } = controle;
   const [champs, setChamps] = useState<Champs>(CHAMPS_VIDES);
   const [reponse, setReponse] = useState<HistoricDate | null>(null);
   const [enSaisie, setEnSaisie] = useState(false);
@@ -152,11 +153,7 @@ export function EcranPartie({ question, corriger }: Props) {
       <div className={s.plateau}>
         <Frise
           precision={precision}
-          vue={vue}
-          vueRef={vueRef}
-          placer={placer}
-          zoomer={zoomer}
-          arreter={arreter}
+          controle={controle}
           reponse={reponse}
           onReponse={poserSurFrise}
           enSaisie={enSaisie}

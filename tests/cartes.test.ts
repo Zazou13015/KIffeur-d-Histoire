@@ -18,6 +18,11 @@ const invalides: Record<string, string>[] = [
 ];
 
 describe("lot pédagogique v18", () => {
+  it("ne parle pas de dataset, programme ou décisions techniques aux élèves", () => {
+    for (const carte of chargerCartes()) {
+      expect(`${carte.body} ${carte.takeaway}`).not.toMatch(/dataset|programme|éduscol|v18/i);
+    }
+  });
   it("ne rédige que deux chapitres collège et deux lycée, avec 5–12 cartes complètes", () => {
     const cartes = chargerCartes();
     expect(events).toHaveLength(2001);

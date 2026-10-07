@@ -46,10 +46,28 @@ create table histoire.chapter_cards (
 create index chapter_cards_event_idx on histoire.chapter_cards(event_id);
 alter table histoire.chapter_cards enable row level security;
 revoke all on histoire.chapter_cards from public, anon, authenticated;
-grant select on histoire.chapter_cards to anon, authenticated;
 grant all on histoire.chapter_cards to service_role;
-create policy "cartes pédagogiques lisibles par tous" on histoire.chapter_cards
-  for select to anon, authenticated using (true);
+
+-- Table interne : aucune policy ni lecture directe anon/authenticated.
+-- La projection publique ne permet pas la jointure event_id -> bonne date.
+-- Aucune entrée par événement, aucun accès aux réponses ou alias du jeu.
+create function histoire.get_chapter_cards(p_chapter_id text)
+returns table (
+  card_id text, chapter_id text, title text, body text, takeaway text,
+  key_concepts text[], start_year integer, start_month smallint, start_day smallint,
+  end_year integer, end_month smallint, end_day smallint, date_text text,
+  sort_order integer, sources text[]
+)
+language sql stable security definer set search_path = '' as $$
+  select c.card_id, c.chapter_id, c.title, c.body, c.takeaway, c.key_concepts,
+    c.start_year, c.start_month, c.start_day, c.end_year, c.end_month, c.end_day,
+    c.date_text, c.sort_order, c.sources
+  from histoire.chapter_cards c
+  where c.chapter_id = p_chapter_id
+  order by c.sort_order;
+$$;
+revoke all on function histoire.get_chapter_cards(text) from public, anon, authenticated;
+grant execute on function histoire.get_chapter_cards(text) to anon, authenticated, service_role;
 
 -- Une transaction pour les suppressions + insertions : pas de contenu partiel,
 -- et les permutations de sort_order restent possibles lors des relectures.

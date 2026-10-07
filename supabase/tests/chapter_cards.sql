@@ -9,10 +9,33 @@ values ('CARD-test-rome', 'THM-005', 'EVT-0024', -753, 4, 21,
   'À retenir : une date traditionnelle.', array['tradition'], 'Fondation traditionnelle de Rome', array['https://example.invalid'], 999);
 
 create function pg_temp.verifier_cartes() returns text language plpgsql as $$
+declare resultat jsonb;
 begin
-  if not exists (select 1 from histoire.chapter_cards where card_id = 'CARD-test-rome') then
+  select to_jsonb(c) into resultat from histoire.get_chapter_cards('THM-005') c
+    where c.card_id = 'CARD-test-rome';
+  if resultat is null or resultat->>'date_text' <> '21 avril 753 av. J.-C.' then
     raise exception 'Lecture pédagogique refusée à %', current_user;
   end if;
+  if (select array_agg(k order by k) from jsonb_object_keys(resultat) k) is distinct from
+    array['body', 'card_id', 'chapter_id', 'date_text', 'end_day', 'end_month', 'end_year',
+      'key_concepts', 'sort_order', 'sources', 'start_day', 'start_month', 'start_year', 'takeaway', 'title'] then
+    raise exception 'Projection publique incorrecte à % : %', current_user, resultat;
+  end if;
+  if exists (select 1 from histoire.get_chapter_cards('EVT-0024')) then
+    raise exception 'RPC sondable par event_id';
+  end if;
+  begin
+    perform event_id, date_text from histoire.chapter_cards where event_id = 'EVT-0024';
+    raise exception 'Oracle event_id -> date accessible à %', current_user;
+  exception when insufficient_privilege then null; end;
+  begin
+    perform * from histoire.chapter_cards;
+    raise exception 'Table interne lisible à %', current_user;
+  exception when insufficient_privilege then null; end;
+  begin
+    perform c.event_id from histoire.get_chapter_cards('THM-005') c;
+    raise exception 'event_id exposé par la RPC à %', current_user;
+  exception when undefined_column then null; end;
   begin
     insert into histoire.chapter_cards select * from histoire.chapter_cards where card_id = 'CARD-test-rome';
     raise exception 'Écriture pédagogique autorisée à %', current_user;
@@ -33,7 +56,11 @@ begin
     perform * from histoire.event_answers limit 1;
     raise exception 'Réponses historiques exposées à %', current_user;
   exception when insufficient_privilege then null; end;
-  return format('OK : %s lit les cartes sans accès en écriture, ni aux réponses privées.', current_user);
+  begin
+    perform * from histoire.event_aliases limit 1;
+    raise exception 'Alias historiques exposés à %', current_user;
+  exception when insufficient_privilege then null; end;
+  return format('OK : %s lit la RPC sans event_id ; table interne, oracle, écritures, réponses et alias refusés.', current_user);
 end;
 $$;
 grant execute on function pg_temp.verifier_cartes() to anon, authenticated;
@@ -71,29 +98,31 @@ begin
 end;
 $$;
 
--- Même avec des grants accidentels, la RLS n'a aucune policy d'écriture.
-grant insert, update, delete on histoire.chapter_cards to anon, authenticated;
+-- Même avec des grants accidentels, aucune ligne interne n'est visible/modifiable.
+grant select, insert, update, delete on histoire.chapter_cards to anon, authenticated;
+create function pg_temp.verifier_rls_cartes() returns text language plpgsql as $$ begin
+  if exists (select event_id from histoire.chapter_cards) then
+    raise exception 'RLS autorise SELECT %', current_user;
+  end if;
+  update histoire.chapter_cards set title = 'Interdit' where card_id = 'CARD-test-rome';
+  if found then raise exception 'RLS autorise UPDATE %', current_user; end if;
+  delete from histoire.chapter_cards where card_id = 'CARD-test-rome';
+  if found then raise exception 'RLS autorise DELETE %', current_user; end if;
+  begin
+    insert into histoire.chapter_cards(card_id, chapter_id, event_id, start_year, start_month, start_day,
+      date_text, date_precision, date_status, title, body, takeaway, key_concepts, official_wording, sources, sort_order)
+    select 'CARD-test-insertion', c.chapter_id, 'EVT-0024', c.start_year, c.start_month, c.start_day,
+      c.date_text, 'DAY', 'TRADITIONAL', c.title, c.body, c.takeaway, c.key_concepts,
+      'Fondation traditionnelle de Rome', c.sources, 998
+    from histoire.get_chapter_cards('THM-005') c where c.card_id = 'CARD-test-rome';
+    raise exception 'RLS autorise INSERT %', current_user;
+  exception when insufficient_privilege then null; end;
+  return format('OK : RLS %s bloque la table même avec des grants accidentels.', current_user);
+end $$;
+grant execute on function pg_temp.verifier_rls_cartes() to anon, authenticated;
 set local role anon;
-do $$ begin
-  update histoire.chapter_cards set title = 'Interdit' where card_id = 'CARD-test-rome';
-  if found then raise exception 'RLS autorise UPDATE anon'; end if;
-  delete from histoire.chapter_cards where card_id = 'CARD-test-rome';
-  if found then raise exception 'RLS autorise DELETE anon'; end if;
-  begin
-    insert into histoire.chapter_cards select * from histoire.chapter_cards where card_id = 'CARD-test-rome';
-    raise exception 'RLS autorise INSERT anon';
-  exception when insufficient_privilege then null; end;
-end $$;
+select pg_temp.verifier_rls_cartes();
 set local role authenticated;
-do $$ begin
-  update histoire.chapter_cards set title = 'Interdit' where card_id = 'CARD-test-rome';
-  if found then raise exception 'RLS autorise UPDATE authenticated'; end if;
-  delete from histoire.chapter_cards where card_id = 'CARD-test-rome';
-  if found then raise exception 'RLS autorise DELETE authenticated'; end if;
-  begin
-    insert into histoire.chapter_cards select * from histoire.chapter_cards where card_id = 'CARD-test-rome';
-    raise exception 'RLS autorise INSERT authenticated';
-  exception when insufficient_privilege then null; end;
-end $$;
+select pg_temp.verifier_rls_cartes();
 reset role;
 rollback;

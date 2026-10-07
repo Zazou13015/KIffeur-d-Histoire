@@ -2,9 +2,11 @@
 // Prérequis : npm run db:start puis npm run db:reset.
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
+import { createHmac } from "node:crypto";
 import { createClient } from "@supabase/supabase-js";
 import { chargerCartes, estUrlLocale, importerCartesLocales } from "./import-cartes";
 import { lireCsv } from "./csv";
+import { cartePublique } from "../src/lib/pedagogie";
 
 async function verifier() {
   const status = JSON.parse(execFileSync(process.execPath, ["node_modules/supabase/dist/supabase.js", "status", "--output", "json"], { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] }));
@@ -13,6 +15,18 @@ async function verifier() {
   const importer = () => execFileSync(process.execPath, ["node_modules/tsx/dist/cli.mjs", "scripts/import-dataset.ts", "--dossier", "content/dataset-v18"], { env, stdio: ["ignore", "pipe", "pipe"] });
   const db = createClient(status.API_URL, status.SERVICE_ROLE_KEY, { db: { schema: "histoire" }, auth: { persistSession: false } });
   const publicDb = createClient(status.API_URL, status.ANON_KEY, { db: { schema: "histoire" }, auth: { persistSession: false } });
+  // JWT éphémère de la pile locale, en mémoire : aucun compte créé ni secret affiché.
+  assert(status.JWT_SECRET, "Secret JWT de test local absent");
+  const encoder = (objet: object) => Buffer.from(JSON.stringify(objet)).toString("base64url");
+  const jwt = `${encoder({ alg: "HS256", typ: "JWT" })}.${encoder({
+    role: "authenticated", aud: "authenticated", sub: "00000000-0000-0000-0000-000000000021",
+    exp: Math.floor(Date.now() / 1000) + 600,
+  })}`;
+  const token = `${jwt}.${createHmac("sha256", status.JWT_SECRET).update(jwt).digest("base64url")}`;
+  const authenticatedDb = createClient(status.API_URL, status.ANON_KEY, {
+    db: { schema: "histoire" }, auth: { persistSession: false },
+    global: { headers: { Authorization: `Bearer ${token}` } },
+  });
   const cartes = chargerCartes();
   const lire = async () => {
     const { data, error } = await db.from("chapter_cards").select("*").order("card_id");
@@ -33,15 +47,26 @@ async function verifier() {
     assert.ifError(error);
     assert.deepEqual(data, Object.fromEntries(Object.keys(data!).map((k) => [k, k === "date_text" ? e[k] : e[k] ? Number(e[k]) : null])));
   }
-  const { data: publiques, error: erreurLecture } = await publicDb.from("chapter_cards").select("*").order("card_id");
-  assert.ifError(erreurLecture);
-  assert.deepEqual(publiques, premier, "Lecture anon incomplète");
-  for (const requete of [
-    publicDb.from("chapter_cards").insert(cartes[0]),
-    publicDb.from("chapter_cards").update({ title: "interdit" }).eq("card_id", cartes[0].card_id),
-    publicDb.from("chapter_cards").delete().eq("card_id", cartes[0].card_id),
-    publicDb.rpc("replace_chapter_cards", { p_cards: cartes }),
-  ]) assert.equal((await requete).error?.code, "42501");
+  for (const navigateur of [publicDb, authenticatedDb]) {
+    for (const chapitre of ["THM-005", "THM-016", "THM-020", "THM-028"]) {
+      const { data, error } = await navigateur.rpc("get_chapter_cards", { p_chapter_id: chapitre });
+      assert.ifError(error);
+      assert.deepEqual(data, cartes.filter((c) => c.chapter_id === chapitre).map(cartePublique), "Projection RPC publique incorrecte");
+      assert(!JSON.stringify(data).includes("EVT-"));
+    }
+    assert.equal((await navigateur.rpc("get_chapter_cards", { p_chapter_id: "THM-005" }).eq("event_id", "EVT-0024")).error?.code, "42703");
+    assert.deepEqual((await navigateur.rpc("get_chapter_cards", { p_chapter_id: "EVT-0024" })).data, []);
+    for (const requete of [
+      navigateur.from("chapter_cards").select("*"),
+      navigateur.from("chapter_cards").select("event_id,date_text").eq("event_id", "EVT-0024"),
+      navigateur.from("event_answers").select("*"),
+      navigateur.from("event_aliases").select("*"),
+      navigateur.from("chapter_cards").insert(cartes[0]),
+      navigateur.from("chapter_cards").update({ title: "interdit" }).eq("card_id", cartes[0].card_id),
+      navigateur.from("chapter_cards").delete().eq("card_id", cartes[0].card_id),
+      navigateur.rpc("replace_chapter_cards", { p_cards: cartes }),
+    ]) assert.equal((await requete).error?.code, "42501");
+  }
 
   // Échec en fin de transaction : les anciennes cartes doivent rester intactes.
   const invalides = [...cartes.slice(0, -1), { ...cartes.at(-1)!, event_id: "EVT-INCONNU" }];
@@ -57,7 +82,7 @@ async function verifier() {
   assert.equal((await lire())!.filter((c) => c.chapter_id === "THM-005").length, 7);
   await importerCartesLocales(cartes, status.API_URL, status.SERVICE_ROLE_KEY);
   assert.deepEqual(await lire(), premier);
-  console.log("OK : 2001 événements, 37 cartes, références et dates v18, import idempotent/atomique, périmètre par chapitre, lecture publique et écritures anon refusées.");
+  console.log("OK : 2001 événements, 37 cartes, références et dates v18, import idempotent/atomique, périmètre par chapitre, RPC sans event_id, table/oracle/réponses/alias/écritures anon et authenticated refusés.");
 }
 
 verifier().catch((e: unknown) => {

@@ -8,9 +8,9 @@ Lot pilote de l’issue #21, en attente de validation éditoriale d’Antonin. L
 
 #### 1. Homère : des récits partagés par les Grecs
 
-L’Iliade et l’Odyssée sont des poèmes attribués à Homère. Ils racontent la guerre de Troie et les aventures d’Ulysse, en faisant intervenir héros et dieux. Ces récits circulent dans le monde grec et constituent une culture commune à des cités pourtant indépendantes. L’historien les étudie pour comprendre les croyances et les valeurs des Grecs. Il ne les lit pas comme un compte rendu exact des événements racontés. Leur composition est datée approximativement et reste discutée.
+L’Iliade et l’Odyssée sont des poèmes attribués à Homère. Ils racontent la guerre de Troie et les aventures d’Ulysse, avec des héros et des dieux. Ces récits sont connus dans le monde grec. Ils donnent une culture commune à des cités pourtant indépendantes. Ils nous renseignent sur les croyances et les valeurs des Grecs, mais ne prouvent pas que les aventures racontées ont vraiment eu lieu. On ne sait pas exactement quand ces poèmes ont été composés.
 
-**À retenir : les récits d’Homère unissent culturellement les Grecs, mais ne sont pas des preuves directes des aventures racontées.**
+**À retenir : les récits d’Homère donnent aux Grecs une culture commune, sans prouver que les aventures racontées ont eu lieu.**
 
 **Notions clés :** mythe · héros · polythéisme · culture commune
 
@@ -22,9 +22,9 @@ L’Iliade et l’Odyssée sont des poèmes attribués à Homère. Ils racontent
 
 #### 2. Olympie : un sanctuaire commun aux Grecs
 
-Les Jeux olympiques antiques réunissent des participants venus de différentes cités grecques dans le sanctuaire d’Olympie. Les compétitions sportives font partie d’une fête religieuse consacrée à Zeus : pratiquer le sport et honorer les dieux sont ici liés. Les Grecs partagent ainsi des lieux de culte et des traditions malgré leurs rivalités politiques. Le repère associé est une date traditionnelle des premiers Jeux connus ; il ne prouve pas que toute compétition à Olympie commence exactement à ce moment.
+Les Jeux olympiques antiques réunissent des participants venus de différentes cités grecques à Olympie. Ce sanctuaire est un lieu consacré aux dieux. Les compétitions sportives font partie d’une fête religieuse en l’honneur de Zeus. Les Grecs partagent ainsi des lieux de culte et des traditions, même lorsque leurs cités sont rivales. La date des premiers Jeux connus nous vient de la tradition. Des compétitions ont pu avoir lieu à Olympie avant cette date.
 
-**À retenir : Olympie montre l’unité religieuse et culturelle du monde grec, au-delà des rivalités entre cités.**
+**À retenir : les Jeux d’Olympie rassemblent les Grecs autour du sport et du culte de Zeus, malgré les rivalités entre cités.**
 
 **Notions clés :** sanctuaire · Zeus · cité · tradition
 
@@ -36,9 +36,9 @@ Les Jeux olympiques antiques réunissent des participants venus de différentes 
 
 #### 3. Rome : distinguer légende et histoire
 
-Selon la légende, Romulus fonde Rome après avoir été recueilli avec son frère Rémus par une louve. Ce récit explique les origines de la cité et donne aux Romains des ancêtres prestigieux. La date associée appartient à cette tradition : ce n’est pas une fondation démontrée au jour près par les fouilles. Les archéologues étudient plutôt les traces d’habitat et l’évolution des villages. Comparer récit et vestiges permet de distinguer ce qu’une société raconte d’elle-même et ce que l’on peut établir.
+Selon la légende, Romulus fonde Rome après avoir été recueilli avec son frère Rémus par une louve. Ce récit explique les origines de la cité et donne aux Romains des ancêtres prestigieux. La date de fondation appartient à cette tradition : les fouilles ne prouvent pas que Rome est née ce jour-là. Les archéologues étudient les restes des maisons et l’évolution des villages. Ces traces montrent que la ville s’est formée progressivement, tandis que la légende raconte une fondation par un héros.
 
-**À retenir : la fondation de Rome possède une date traditionnelle, à distinguer des preuves archéologiques.**
+**À retenir : la légende raconte la fondation de Rome ; les fouilles montrent comment la ville s’est formée.**
 
 **Notions clés :** récit fondateur · légende · archéologie · source
 
@@ -50,9 +50,9 @@ Selon la légende, Romulus fonde Rome après avoir été recueilli avec son frè
 
 #### 4. La Bible hébraïque : une écriture progressive
 
-La Bible hébraïque rassemble des textes religieux de genres différents : récits, lois, prières et enseignements. Sa rédaction et sa mise en forme s’étendent sur une longue période ; elle n’est pas écrite en une seule fois par un auteur unique. Ces textes transmettent la mémoire et les croyances des communautés juives, notamment la foi en un Dieu unique. En histoire, on étudie leurs contextes de rédaction et on confronte les récits aux autres sources, sans confondre croyance religieuse et preuve historique.
+La Bible hébraïque rassemble des textes religieux : récits, lois, prières et enseignements. Elle a été écrite et organisée peu à peu, sur une longue période. Elle n’est donc pas l’œuvre d’un seul auteur. Ces textes transmettent la mémoire et les croyances des communautés juives, notamment la foi en un Dieu unique, appelée monothéisme. Pour connaître le passé, les historiens comparent ces récits à d’autres textes et aux découvertes archéologiques. Ils distinguent ainsi les croyances religieuses des faits que les sources permettent de vérifier.
 
-**À retenir : la Bible hébraïque est un ensemble de textes élaboré progressivement et central dans le monothéisme juif.**
+**À retenir : la Bible hébraïque rassemble des textes écrits progressivement et transmet la croyance juive en un Dieu unique.**
 
 **Notions clés :** monothéisme · Bible hébraïque · texte religieux · source
 
@@ -64,7 +64,7 @@ La Bible hébraïque rassemble des textes religieux de genres différents : réc
 
 #### 5. Jérusalem conquise et l’exil à Babylone
 
-Les Babyloniens prennent Jérusalem, détruisent son temple et déportent une partie de la population du royaume de Juda. L’exil bouleverse la vie politique et religieuse des communautés concernées. La mémoire de cette épreuve occupe une place importante dans les textes bibliques. Le dataset conserve deux années possibles pour la prise de la ville : ce désaccord chronologique ne doit pas disparaître derrière un repère scolaire simplifié. Pour comprendre l’événement, il faut relier conquête militaire, déplacement forcé et mémoire collective.
+Les Babyloniens prennent Jérusalem, détruisent son temple et déportent une partie des habitants du royaume de Juda. Ces personnes sont emmenées de force loin de chez elles : c’est l’exil à Babylone. Cette épreuve bouleverse leur vie et occupe une place importante dans les textes bibliques. Les historiens retiennent deux années possibles pour la prise de la ville, selon les chronologies. Malgré la destruction du temple et l’éloignement, les communautés juives conservent leurs croyances et la mémoire de Jérusalem.
 
 **À retenir : la prise de Jérusalem provoque un exil et marque durablement la mémoire des communautés juives.**
 
@@ -78,9 +78,9 @@ Les Babyloniens prennent Jérusalem, détruisent son temple et déportent une pa
 
 #### 6. Revenir après l’exil
 
-Après la conquête de Babylone par les Perses, le pouvoir perse permet à des exilés de retourner en Juda. Ce retour ouvre la possibilité de reconstruire la vie religieuse autour de Jérusalem. Tous les exilés ne reviennent pas : des communautés restent établies ailleurs. Il faut donc distinguer le repère du retour, retenu par le programme, et un processus de reconstruction plus long. Cette histoire aide à comprendre comment des communautés préservent leurs croyances et leurs liens malgré la dispersion.
+Après la conquête de Babylone par les Perses, le pouvoir perse permet à des exilés de retourner en Juda. Ils peuvent retrouver Jérusalem et reconstruire leur vie religieuse. Mais la permission de revenir ne signifie pas que tout est reconstruit immédiatement : cela prend du temps. Tous les exilés ne reviennent pas non plus. Des communautés restent installées ailleurs. Malgré cette dispersion, elles gardent leurs croyances et leurs liens avec Jérusalem. Le retour et la vie loin de Juda font donc partie de la même histoire.
 
-**À retenir : le retour autorisé par les Perses permet une reconstruction, sans mettre fin à la dispersion des communautés.**
+**À retenir : les Perses permettent le retour en Juda, mais des communautés juives continuent à vivre ailleurs.**
 
 **Notions clés :** Empire perse · retour d’exil · Jérusalem · dispersion
 
@@ -92,7 +92,7 @@ Après la conquête de Babylone par les Perses, le pouvoir perse permet à des e
 
 #### 7. Clisthène : réorganiser la cité d’Athènes
 
-Clisthène réorganise le corps des citoyens d’Athènes. Les nouvelles divisions mêlent des habitants de différents territoires de la cité et affaiblissent le poids des grandes familles dans la vie politique. Ces réformes contribuent à la construction de la démocratie athénienne. Elles ne donnent pourtant pas des droits politiques à tous les habitants. La citoyenneté demeure réservée à une partie de la population. Comprendre cette étape permet de voir qu’un régime politique se transforme par des décisions et des conflits.
+Clisthène change l’organisation des citoyens d’Athènes. Il les répartit dans de nouveaux groupes qui réunissent des habitants de différents territoires de la cité. Cela réduit le pouvoir des grandes familles et permet à davantage de citoyens de participer aux décisions. Ces réformes contribuent à la naissance de la démocratie athénienne. Pourtant, tous les habitants ne deviennent pas citoyens. Les femmes, les étrangers et les esclaves restent exclus des décisions politiques. La démocratie se construit donc avec une participation encore limitée.
 
 **À retenir : les réformes de Clisthène contribuent à la démocratie, dont la citoyenneté reste limitée.**
 
@@ -102,11 +102,11 @@ Clisthène réorganise le corps des citoyens d’Athènes. Les nouvelles divisio
 
 **Rattachement v18 :** Repère complémentaire utile au chapitre ; non présenté comme repère officiel obligatoire du BO.
 
-**Vérification de l’explication :** [source 1](https://www.metmuseum.org/de/essays/theseus-hero-of-athens)
+**Vérification de l’explication :** [source 1](https://resources.metmuseum.org/resources/metpublications/pdf/Greek_Art_From_Prehistoric_to_Classical.pdf)
 
 #### 8. Athènes au temps de Périclès : une démocratie limitée
 
-À Athènes, les citoyens se réunissent à l’Assemblée pour débattre et voter des décisions concernant la cité. Périclès joue un rôle important dans cette démocratie et dans le rayonnement d’Athènes. Mais les femmes, les étrangers installés dans la cité et les esclaves sont exclus de la participation politique. La démocratie athénienne est donc directe, puisque les citoyens décident eux-mêmes, mais limitée. L’étude du régime demande de regarder à la fois son fonctionnement et les habitants qu’il laisse à l’écart.
+À Athènes, les citoyens se réunissent à l’Assemblée pour débattre et voter les décisions concernant la cité. Périclès joue un rôle important dans cette démocratie et dans la puissance d’Athènes. La démocratie est directe : les citoyens prennent eux-mêmes les décisions, au lieu de choisir des représentants pour le faire. Mais les femmes, les étrangers installés dans la cité et les esclaves ne peuvent pas participer. La majorité des habitants reste donc à l’écart de la vie politique.
 
 **À retenir : à Athènes, les citoyens décident directement, mais la majorité des habitants ne participe pas à la vie politique.**
 
@@ -116,7 +116,7 @@ Clisthène réorganise le corps des citoyens d’Athènes. Les nouvelles divisio
 
 **Rattachement v18 :** Athènes au temps de Périclès
 
-**Vérification de l’explication :** [source 1](https://www.metmuseum.org/de/essays/theseus-hero-of-athens)
+**Vérification de l’explication :** [source 1](https://www.metmuseum.org/essays/the-art-of-classical-greece-ca-480-323-b-c)
 
 ### 3e — Thème 1 — L'Europe, un théâtre majeur des guerres totales (1914-1945)
 
@@ -138,7 +138,7 @@ L’Autriche-Hongrie déclare la guerre à la Serbie après l’assassinat de l�
 
 #### 2. Le génocide des Arméniens : des civils visés
 
-Dans l’Empire ottoman en guerre, les autorités organisent les déportations et les massacres des Arméniens. Les victimes sont visées en tant que groupe : il s’agit d’un génocide, c’est-à-dire d’une entreprise de destruction d’une population. Les arrestations à Constantinople servent de repère commémoratif pour son début. Elles ne signifient pas que tous les crimes se produisent ce jour-là. Cet événement montre que la violence de guerre atteint aussi les civils, soumis à la persécution, aux déplacements forcés et à la mort.
+Dans l’Empire ottoman en guerre, les autorités organisent les déportations et les massacres des Arméniens. Les victimes sont visées parce qu’elles sont arméniennes : il s’agit d’un génocide, une politique visant à détruire, totalement ou partiellement, un groupe humain ciblé en tant que groupe. Les arrestations à Constantinople servent de repère commémoratif pour son début. Elles ne signifient pas que tous les crimes se produisent ce jour-là. Cet événement montre que la violence de guerre atteint aussi les civils, soumis à la persécution, aux déplacements forcés et à la mort.
 
 **À retenir : le génocide des Arméniens est une politique de destruction d’un groupe, et non un simple effet des combats.**
 
@@ -148,7 +148,7 @@ Dans l’Empire ottoman en guerre, les autorités organisent les déportations e
 
 **Rattachement v18 :** Début conventionnel du génocide des Arméniens commémoré par les arrestations à Constantinople
 
-**Vérification de l’explication :** [source 1](https://en.wikipedia.org/wiki/Armenian_genocide)
+**Vérification de l’explication :** [source 1](https://en.wikipedia.org/wiki/Armenian_genocide) · [source 2](https://encyclopedia.ushmm.org/content/fr/article/what-is-genocide)
 
 #### 3. Verdun : combattre dans une guerre totale
 
@@ -166,7 +166,7 @@ Dans l’Empire ottoman en guerre, les autorités organisent les déportations e
 
 #### 4. Les bolcheviks prennent le pouvoir en Russie
 
-En Russie, la guerre aggrave les pénuries et la crise politique. Après la chute du tsar, un gouvernement provisoire continue le conflit. Les bolcheviks, dirigés par Lénine, prennent ensuite le pouvoir en promettant notamment la paix et la terre. Ils cherchent à construire une société communiste, mais imposent progressivement leur domination politique. Le nom de révolution d’Octobre vient du calendrier alors utilisé en Russie ; le repère du dataset suit le calendrier grégorien. Cette révolution bouleverse durablement l’Europe.
+En Russie, la guerre aggrave les pénuries et la crise politique. Après la chute du tsar, un gouvernement provisoire continue le conflit. Les bolcheviks, dirigés par Lénine, prennent ensuite le pouvoir en promettant notamment la paix et la terre. Ils cherchent à construire une société communiste, mais imposent progressivement leur domination politique. Le nom de révolution d’Octobre vient du calendrier alors utilisé en Russie ; dans le calendrier grégorien, cet événement se situe en novembre. Cette révolution bouleverse durablement l’Europe.
 
 **À retenir : la prise du pouvoir bolchevique transforme la Russie et ouvre une nouvelle expérience politique communiste.**
 
@@ -352,7 +352,7 @@ La réalisation de la voûte de la chapelle Sixtine montre l’importance des ar
 
 #### 5. Luther : une contestation qui ouvre la Réforme
 
-Luther critique les indulgences, associées à la remise des peines liées aux péchés, et appelle à un débat religieux. Ses thèses circulent et sa contestation remet progressivement en cause l’autorité du pape. Elle participe à la naissance de courants protestants et à la division du christianisme occidental. Le repère du dataset est conventionnel : la scène d’un affichage sur une porte appartient à une tradition discutée. Pour réviser, l’essentiel est de comprendre comment une controverse religieuse devient une rupture institutionnelle et politique.
+Luther critique les indulgences, associées à la remise des peines liées aux péchés, et appelle à un débat religieux. Ses thèses circulent et sa contestation remet progressivement en cause l’autorité du pape. Elle participe à la naissance de courants protestants et à la division du christianisme occidental. La date retenue pour l’affichage des thèses est conventionnelle : la scène d’un affichage sur une porte appartient à une tradition discutée. Pour réviser, l’essentiel est de comprendre comment une controverse religieuse devient une rupture institutionnelle et politique.
 
 **À retenir : la contestation de Luther ouvre la Réforme, tandis que le récit de l’affichage des thèses reste discuté.**
 
@@ -394,7 +394,7 @@ La controverse de Valladolid oppose notamment Las Casas et Sepúlveda sur la lé
 
 #### 8. Plantations et traite : un processus de longue durée
 
-L’expansion atlantique s’accompagne du développement des plantations, notamment sucrières, et de la traite d’Africains réduits en esclavage. Les captifs sont transportés vers les Amériques et soumis au travail forcé. Les profits des échanges reposent ainsi sur une violence organisée contre des populations. Ce système se développe progressivement et varie selon les territoires : il ne possède pas une date de naissance unique. Le dataset le décrit donc comme un processus pluriséculaire. Cette carte relie les nouvelles circulations mondiales à leurs conséquences sociales et humaines.
+L’expansion atlantique s’accompagne du développement des plantations, notamment sucrières, et de la traite d’Africains réduits en esclavage. Les captifs sont transportés vers les Amériques et soumis au travail forcé. Les profits des échanges reposent ainsi sur une violence organisée contre des populations. Ce système se développe progressivement et varie selon les territoires : il ne possède pas une date de naissance unique. Il s’étend sur plusieurs siècles. Cette carte relie les nouvelles circulations mondiales à leurs conséquences sociales et humaines.
 
 **À retenir : l’économie de plantation et la traite atlantique reposent sur l’esclavage et se construisent dans la durée.**
 

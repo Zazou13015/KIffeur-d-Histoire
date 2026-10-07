@@ -4,7 +4,9 @@
  * Charte graphique « Cabinet de curiosités ».
  * Référence : https://claude.ai/artifact/SGJG157QiCPsPsM3vRKTUQ
  * Les noms reprennent ceux de la charte : bg-encre, text-oxyde, font-date, etc.
- * Univers unique, pas de thème sombre.
+ * Thème clair par défaut. Le thème sombre est une variante « salle des cartels de nuit » :
+ * on le demande en posant data-theme="dark" sur un élément (voir /charte) ; il redéfinit
+ * les mêmes variables, donc les mêmes classes (bg-papier, text-encre…) suivent.
  */
 @theme {
   --color-encre: #1d2a3a;
@@ -37,6 +39,31 @@
 
 :root {
   color-scheme: light;
+}
+
+/* Thème sombre : mêmes noms de couleurs, valeurs inversées (texte clair sur fond encre). */
+[data-theme="dark"] {
+  color-scheme: dark;
+  --color-encre: #ece9dd;
+  --color-encre-douce: #b9c1ca;
+  --color-vert-de-gris: #111922;
+  --color-papier: #1a2431;
+  --color-blanc-cartel: #223042;
+  --color-laiton: #d3ac57;
+  --color-laiton-clair: #5b4c28;
+  --color-oxyde: #f0948d;
+  --color-sauge: #a3b29f;
+  --color-filet: #3b4b5e;
+  --color-fond-resultat: #2e2b23;
+  --color-epoque-prehistoire: #2b3329;
+  --color-epoque-antiquite: #38321f;
+  --color-epoque-moyen-age: #2a342c;
+  --color-epoque-temps-modernes: #3a2926;
+  --color-epoque-contemporaine: #27313e;
+  --shadow-cartel: 0 1px 0 #3b4b5e, 0 8px 24px -12px rgb(0 0 0 / 0.6);
+  --shadow-focus: 0 0 0 3px rgb(211 172 87 / 0.45);
+  background: var(--color-vert-de-gris);
+  color: var(--color-encre);
 }
 
 body {
@@ -77,4 +104,30 @@ button {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--color-oxyde);
+}
+
+/* Largeur commune : 16 px de marge sur mobile, largeur max sur grand écran */
+@utility conteneur {
+  width: 100%;
+  max-width: 72rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+/* Cible tactile confortable (44 px) */
+@utility cible {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Les animations de transition sont coupées pour qui le demande */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

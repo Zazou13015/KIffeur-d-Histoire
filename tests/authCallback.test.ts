@@ -1,6 +1,8 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { completeAuthCallback } from "@/lib/authCallback";
+vi.mock("@/lib/account", () => ({ accountDestination: async (_client: unknown, next: string) => next }));
+vi.mock("@/lib/pendingProfile", () => ({ completePendingProfile: vi.fn() }));
 import { GET } from "@/app/auth/callback/route";
 
 const mocks = vi.hoisted(() => ({ exchange: vi.fn(), configured: true }));
@@ -32,6 +34,10 @@ describe("callback PKCE", () => {
 });
 
 describe("route /auth/callback", () => {
+  it("termine la navigation OAuth avant le retour à la partie pour retrouver le cookie Strict", async () => {
+    const response = await GET(new Request("https://histoire.example/auth/callback?code=test-code&next=%2Fpartie%2F00000000-0000-0000-0000-000000000024"));
+    expect(response.headers.get("location")).toBe("https://histoire.example/auth/retour?next=%2Fpartie%2F00000000-0000-0000-0000-000000000024");
+  });
   it("reste sur Histoire, conserve next et interdit la mise en cache", async () => {
     const response = await GET(new Request("https://histoire.example/auth/callback?code=test-code&next=%2Fapercu%3Fmode%3Dsolo%23partie", {
       headers: { "x-forwarded-host": "evil.example" },

@@ -1,20 +1,52 @@
 import { afterEach, beforeEach, expect, it, vi } from "vitest";
-import { finishGame, nextQuestion, startGame, submitAnswer } from "@/app/solo/actions";
+import { claimGame, finishGame, nextQuestion, startGame, submitAnswer } from "@/app/solo/actions";
 
 const gameId = "00000000-0000-0000-0000-000000000013";
-const mocks = vi.hoisted(() => ({ values: new Map<string, string>(), set: vi.fn(), rpc: vi.fn(), schema: vi.fn() }));
+const mocks = vi.hoisted(() => ({ values: new Map<string, string>(), set: vi.fn(), remove: vi.fn(), rpc: vi.fn(), schema: vi.fn(), account: vi.fn() }));
 const gameCalls = () => mocks.rpc.mock.calls.filter(([name]) => name !== "purge_expired_anonymous_games");
 vi.mock("next/headers", () => ({ cookies: async () => ({
   get: (name: string) => mocks.values.has(name) ? { value: mocks.values.get(name) } : undefined,
   set: mocks.set,
+  delete: mocks.remove,
 }) }));
+vi.mock("@/lib/account", () => ({ getAccount: mocks.account }));
 vi.mock("@/lib/supabase/server", () => ({ createClient: async () => ({ schema: mocks.schema }) }));
 
 beforeEach(() => {
   mocks.values.clear();
+  mocks.account.mockReset().mockResolvedValue({ user: { id: "verified" }, username: "KFFR" });
+  mocks.remove.mockReset().mockImplementation(name => mocks.values.delete(name));
   mocks.rpc.mockReset();
   mocks.schema.mockReset().mockReturnValue({ rpc: mocks.rpc });
   mocks.set.mockReset().mockImplementation((name: string, value: string) => mocks.values.set(name, value));
+});
+
+it("claim utilise uniquement le cookie serveur puis supprime ce seul cookie", async () => {
+  mocks.values.set(`histoire-solo-${gameId}`, "test-secret");
+  mocks.values.set("other-cookie", "other");
+  mocks.rpc.mockResolvedValue({ data: null, error: null });
+  expect(await claimGame(gameId)).toEqual({ saved: true });
+  expect(mocks.rpc).toHaveBeenLastCalledWith("claim_anonymous_game", { p_game_id: gameId, p_token: "test-secret" });
+  expect(mocks.remove).toHaveBeenCalledExactlyOnceWith(`histoire-solo-${gameId}`);
+  expect(mocks.values.get("other-cookie")).toBe("other");
+});
+it("sans session/pseudo/cookie le claim ne contacte jamais la RPC", async () => {
+  mocks.account.mockResolvedValueOnce(null).mockResolvedValueOnce({ username: null });
+  expect((await claimGame(gameId)).saved).toBe(false);
+  expect((await claimGame(gameId)).saved).toBe(false);
+  expect((await claimGame(gameId)).saved).toBe(false);
+  expect(mocks.rpc).not.toHaveBeenCalled();
+});
+it("un compte sans pseudo doit compléter son profil avant une nouvelle partie connectée", async () => {
+  mocks.account.mockResolvedValue({ user: { id: "verified" }, username: null });
+  await expect(startGame()).rejects.toThrow("Choisis ton pseudo KFFR");
+  expect(mocks.rpc).not.toHaveBeenCalled();
+});
+it("un claim refusé garde le cookie et masque les détails SQL", async () => {
+  mocks.values.set(`histoire-solo-${gameId}`, "test-secret");
+  mocks.rpc.mockResolvedValueOnce({ error: null }).mockResolvedValueOnce({ error: { code: "42501", message: "private hash" } });
+  expect(JSON.stringify(await claimGame(gameId))).not.toMatch(/private hash|test-secret/);
+  expect(mocks.remove).not.toHaveBeenCalled();
 });
 afterEach(() => vi.unstubAllEnvs());
 

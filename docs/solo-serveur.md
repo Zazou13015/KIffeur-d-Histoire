@@ -38,8 +38,11 @@ transitions, y compris les appels simultanés.
 Les RPC sont appelables avec la clé publique et la session normale : aucun
 `service_role` requis. En usage direct par script, le secret est fourni par le
 client serveur appelant ; l'interface web utilise exclusivement le cookie.
-Une connexion pendant une partie anonyme ne la transfère pas automatiquement
-au compte : le secret reste nécessaire. Les parties connectées restent privées
+Une connexion pendant une partie anonyme ne la transfère pas au compte tant
+qu’elle est en cours : le secret reste nécessaire. Après la fin, #24 permet un
+rattachement atomique à `auth.uid()` avec le secret serveur, puis supprime
+hash, expiration et cookie. Parcours : [Comptes et sauvegarde](comptes.md).
+Les parties connectées restent privées
 après déconnexion. Les parties anonymes expirent 24 heures après leur création,
 indépendamment du cookie de session (voir rétention ci-dessous).
 

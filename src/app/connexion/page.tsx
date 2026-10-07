@@ -3,6 +3,7 @@ import { isSupabaseConfigured } from "@/lib/supabase/config";
 import { signIn } from "./actions";
 import { safeNextPath } from "@/lib/authRedirect";
 import GoogleSignInButton from "./GoogleSignInButton";
+import Link from "next/link";
 
 export default async function ConnexionPage({ searchParams }: PageProps<"/connexion">) {
   if (!isSupabaseConfigured) redirect("/");
@@ -27,6 +28,7 @@ export default async function ConnexionPage({ searchParams }: PageProps<"/connex
         <span aria-hidden="true" className="h-px flex-1 bg-stone-300" />
       </div>
       <form action={signIn} className="flex flex-col gap-3">
+        <input type="hidden" name="next" value={nextPath} />
         <input name="email" type="email" required placeholder="Email" autoComplete="email"
           className="rounded border border-stone-300 px-3 py-2" />
         <input name="password" type="password" required placeholder="Mot de passe"
@@ -35,6 +37,8 @@ export default async function ConnexionPage({ searchParams }: PageProps<"/connex
           Se connecter
         </button>
       </form>
+      <Link href={`/inscription?next=${encodeURIComponent(nextPath)}`}>Créer un compte KFFR</Link>
+      <Link href="/mot-de-passe-oublie">Mot de passe oublié</Link>
     </main>
   );
 }

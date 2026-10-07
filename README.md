@@ -6,6 +6,10 @@ Stack : Next.js (App Router, TypeScript, Tailwind) sur Vercel, Supabase (Postgre
 
 Feuille de route V1 : [issue de suivi #31](https://github.com/Zazou13015/KIffeur-d-Histoire/issues/31). Pour prendre une étape (humain ou agent IA), suivre la section « Traiter une issue » de [CLAUDE.md](CLAUDE.md).
 
+Comptes partagés, pseudo global, inscription/reset et sauvegarde des parties :
+[docs/comptes.md](docs/comptes.md). La migration #24 et ses fixtures sont testées
+uniquement en local/CI ; aucune base distante n’est modifiée par cette livraison.
+
 ## Démarrer en local
 
 Prérequis : [Node.js 22](https://nodejs.org), [Docker Desktop](https://www.docker.com/products/docker-desktop/) (pour la base locale), Git.

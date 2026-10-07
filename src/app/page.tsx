@@ -1,7 +1,5 @@
-import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
-import { signOut } from "./connexion/actions";
 
 // Les dates ne sont pas lisibles depuis le navigateur (voir docs/architecture.md §4) : on ne montre que les titres.
 type EventRow = {
@@ -24,8 +22,6 @@ export default async function Home() {
   }
 
   const supabase = await createClient();
-  const { data: claims } = await supabase.auth.getClaims();
-  const email = claims?.claims.email as string | undefined;
 
   const { data: events, error, count } = await supabase
     .schema("histoire")
@@ -40,14 +36,6 @@ export default async function Home() {
     <main className="mx-auto flex w-full max-w-2xl flex-1 flex-col gap-8 px-4 py-12">
       <header className="flex items-center justify-between gap-4">
         <h1 className="text-3xl font-bold">Kiffeurs d&apos;Histoire</h1>
-        {email ? (
-          <form action={signOut} className="flex items-center gap-3 text-sm">
-            <span className="text-stone-600">{email}</span>
-            <button type="submit" className="underline">Déconnexion</button>
-          </form>
-        ) : (
-          <Link href="/connexion" className="text-sm underline">Connexion</Link>
-        )}
       </header>
 
       <section className="flex flex-col gap-3">

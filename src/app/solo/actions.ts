@@ -4,6 +4,7 @@ import { randomBytes } from "node:crypto";
 import { cookies } from "next/headers";
 import { createClient } from "@/lib/supabase/server";
 import type { SoloCorrection, SoloDate, SoloFilters, SoloGame, SoloQuestion, SoloResult } from "@/lib/game/solo";
+import { getAccount } from "@/lib/account";
 
 function cookieName(gameId: string) {
   if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(gameId)) {
@@ -30,6 +31,8 @@ async function rpc<T>(name: string, args: Record<string, unknown>): Promise<T> {
 }
 
 export async function startGame(filters: SoloFilters = {}): Promise<SoloGame> {
+  const account = await getAccount();
+  if (account && !account.username) throw new Error("Choisis ton pseudo KFFR dans le profil avant de lancer une partie connectée.");
   const token = randomBytes(32).toString("hex");
   const game = await rpc<SoloGame>("start_game", {
     p_token: token,
@@ -75,4 +78,18 @@ export async function finishGame(gameId: string): Promise<SoloResult> {
   const token = (await cookies()).get(cookieName(gameId))?.value ?? null;
   // Garder le cookie de session permet de relire le résultat après un rechargement.
   return rpc("finish_game", { p_game_id: gameId, p_token: token });
+}
+
+export async function claimGame(gameId: string): Promise<{ saved: boolean; error?: string }> {
+  const name = cookieName(gameId);
+  const account = await getAccount();
+  if (!account?.username) return { saved: false, error: "Connecte-toi et choisis ton pseudo KFFR pour sauvegarder." };
+  const store = await cookies();
+  const token = store.get(name)?.value;
+  if (!token) return { saved: false, error: "Cette partie ne peut pas être sauvegardée depuis ce navigateur." };
+  try {
+    await rpc("claim_anonymous_game", { p_game_id: gameId, p_token: token });
+  } catch { return { saved: false, error: "Partie inaccessible, déjà sauvegardée, en cours ou expirée." }; }
+  store.delete(name);
+  return { saved: true };
 }

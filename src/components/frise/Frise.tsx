@@ -271,7 +271,7 @@ export function Frise({
             <div key={g.t}>
               <div className={s.grille} style={{ left: x }} />
               <div className={g.majeure ? `${s.trait} ${s.majeur}` : s.trait} style={{ left: x }} />
-              {x > 18 && x < largeur - 18 && (g.texte || g.annee != null) && (
+              {x > 50 && x < largeur - 50 && (g.texte || g.annee != null) && (
                 <div className={`${s.etiquette} date`} style={{ left: x }}>
                   {g.majeure ? (
                     <b>

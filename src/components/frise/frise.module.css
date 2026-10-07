@@ -59,14 +59,13 @@
 .bande { position: absolute; inset: 0; }
 .scene { border: 0; flex: 1; display: flex; flex-direction: column; height: calc(100svh - 65px); min-height: 640px; }
 /* L'espace libre d'un grand écran se met au-dessus de l'axe : la bande, les époques et la réponse restent groupées en bas. */
-.bandeScene { position: relative; height: 340px; flex: none; margin-block: auto; }
+.bandeScene { position: relative; height: 330px; flex: none; margin-top: 4px; }
 /* Les repères verticaux traversent toute la page : la frise est le fond, rien n'est encadré à part. */
 .bandeScene .grille { top: -1600px; height: 3600px; }
-.zoneScene { padding: 12px 16px 0; position: relative; z-index: 5; flex: none; display: flex; align-items: center; gap: 16px; }
-.zoneScene > :first-child { flex: 1; min-width: 0; }
+.zoneScene { padding: 12px 72px 0; position: relative; z-index: 5; flex: none; }
 .zoneSous { padding: 0 16px; position: relative; z-index: 5; flex: none; cursor: default; }
 .zoneBas { padding: 6px 16px 14px; position: relative; z-index: 5; flex: none; }
 .superposition { background: transparent; border: 0; cursor: default; user-select: text; }
-.outilsScene { flex: none; cursor: default; }
+.outilsScene { position: absolute; right: 16px; top: 12px; cursor: default; }
 .outilsScene > div { flex-direction: column-reverse; }
 .outilsScene .echelle { display: none; }

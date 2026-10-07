@@ -4,7 +4,9 @@
 .jeu { display: flex; flex-direction: column; flex: 1; min-width: 0; }
 
 /* ---------- Carte de question (boîte du haut, à l'horizontale) ---------- */
-.carteH { display: grid; grid-template-columns: 150px minmax(0, 1fr) auto; gap: 16px; align-items: center; padding: 4px 0; }
+.carteH { display: flex; align-items: center; justify-content: center; gap: 20px; padding: 4px 0; max-width: 820px; margin-inline: auto; }
+.carteH .illustration { width: 150px; flex: none; }
+.carteH .carteTexte { min-width: 0; text-align: left; }
 .illustration { background: #e9e6da; border: 1px solid #d6d2c4; padding: 8px; color: var(--color-encre); align-self: stretch; display: grid; place-items: center; min-height: 96px; }
 .illustration svg, .illustration img { width: 100%; height: auto; display: block; }
 .illustration .pictogramme { width: 64px; opacity: 0.7; }
@@ -64,13 +66,15 @@
 .tout.active { background: var(--color-encre); color: var(--color-papier); }
 
 @media (max-width: 860px) {
-  .carteH { grid-template-columns: 110px minmax(0, 1fr) auto; gap: 12px; }
+  .carteH { gap: 12px; }
+  .carteH .illustration { width: 110px; }
   .carteTexte h2 { font-size: 22px; }
 }
 
 @media (max-width: 600px) {
-  .carteH { grid-template-columns: 84px minmax(0, 1fr); }
-  .carteH > [role="timer"] { grid-column: 1 / -1; justify-self: end; }
+  .carteH { flex-wrap: wrap; }
+  .carteH .illustration { width: 84px; }
+  .carteH > [role="timer"] { margin-inline-start: auto; }
   .carteTexte h2 { font-size: 20px; }
   .epoques { grid-template-columns: 1fr; }
   .tout { padding: 8px 12px; max-width: none; }

@@ -1,5 +1,6 @@
 import { afterEach, expect, it, vi } from "vitest";
 import { readFileSync } from "node:fs";
+import { lireCsv } from "../scripts/csv";
 import { chargerCartesChapitre } from "@/lib/apprendre/cartes-serveur";
 import { illustrationCarte } from "@/lib/apprendre/illustration-serveur";
 import { GET } from "@/app/api/pedagogie/illustration/[cardId]/route";
@@ -55,7 +56,29 @@ it("sert les 325 illustrations ou motifs sans identifiant d'événement, URL ups
     expect(await response.text()).not.toMatch(/EVT-\d|event_id|supabase|<script|<foreignObject|href\s*=|<!DOCTYPE/);
   }
   expect(illustrationCarte("CARD-024-bastille-mobilisation")).toBe(readFileSync("content/illustrations/EVT-0173.svg", "utf8").replace(/<!--[\s\S]*?-->/g, ""));
-  expect(illustrationCarte("CARD-027-somme-guerre-usure")).toContain('translate(56 36)');
+  expect(illustrationCarte("CARD-016-verdun")).toContain('translate(56 36)');
+});
+
+it("remplace les motifs du lot pilote par les 20 SVG, pour toutes les cartes du même événement", async () => {
+  const pilote = lireCsv("content/illustrations/pilote-pedagogie.csv");
+  const cartes = lireCsv("content/pedagogie/cartes-v1.csv");
+  expect(pilote).toHaveLength(20);
+  expect(new Set(pilote.map((c) => c.card_id)).size).toBe(20);
+  expect(new Set(pilote.map((c) => c.event_id)).size).toBe(20);
+  for (const choix of pilote) {
+    expect(cartes.find((c) => c.card_id === choix.card_id)).toMatchObject({ event_id: choix.event_id, title: choix.title });
+    expect(choix.illustration_existante).toBe("non");
+    expect(choix.nouveau_fichier_svg).toBe(`${choix.event_id}.svg`);
+    const svg = readFileSync(`content/illustrations/${choix.nouveau_fichier_svg}`, "utf8");
+    expect(svg).not.toMatch(/<text|<image|<filter|<linearGradient|<radialGradient|translate\(56 36\)/);
+    for (const carte of cartes.filter((c) => c.event_id === choix.event_id)) {
+      const response = await GET(new Request(`http://localhost/api/pedagogie/illustration/${carte.card_id}`), {
+        params: Promise.resolve({ cardId: carte.card_id }),
+      });
+      expect(response.status).toBe(200);
+      expect(await response.text()).toBe(svg);
+    }
+  }
 });
 
 it("refuse identifiants inconnus, entrées EVT et chemins arbitraires", async () => {

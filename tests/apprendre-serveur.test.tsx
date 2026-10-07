@@ -45,6 +45,8 @@ it("génère les 41 routes et traite les erreurs et les RPC vides sans donner un
 
 it("sert les 325 illustrations ou motifs sans identifiant d'événement, URL upstream ou redirection", async () => {
   const cartes = chargerDemoPedagogie().flatMap((c) => c.cartes);
+  const canonique = lireCsv("content/pedagogie/cartes-v1.csv");
+  let dediees = 0, motifs = 0;
   for (const carte of cartes) {
     const url = `http://localhost/api/pedagogie/illustration/${carte.card_id}`;
     const response = await GET(new Request(url), { params: Promise.resolve({ cardId: carte.card_id }) });
@@ -53,10 +55,18 @@ it("sert les 325 illustrations ou motifs sans identifiant d'événement, URL ups
     expect(response.headers.get("cache-control")).toContain("s-maxage=");
     expect(response.headers.get("location")).toBeNull();
     expect(JSON.stringify([...response.headers])).not.toMatch(/EVT-\d|event_id|supabase|sources/);
-    expect(await response.text()).not.toMatch(/EVT-\d|event_id|supabase|<script|<foreignObject|href\s*=|<!DOCTYPE/);
+    const svg = await response.text();
+    expect(svg).not.toMatch(/EVT-\d|event_id|supabase|<script|<foreignObject|href\s*=|<!DOCTYPE/);
+    const evenement = canonique.find(c => c.card_id === carte.card_id)!.event_id;
+    if (evenement) {
+      expect(svg).toBe(readFileSync(`content/illustrations/${evenement}.svg`, "utf8").replace(/<!--[\s\S]*?-->/g, ""));
+      expect(svg).not.toContain('translate(56 36)');
+      dediees++;
+    } else { expect(svg).toContain('translate(56 36)'); motifs++; }
   }
+  expect({ dediees, motifs }).toEqual({ dediees: 303, motifs: 22 });
   expect(illustrationCarte("CARD-024-bastille-mobilisation")).toBe(readFileSync("content/illustrations/EVT-0173.svg", "utf8").replace(/<!--[\s\S]*?-->/g, ""));
-  expect(illustrationCarte("CARD-016-verdun")).toContain('translate(56 36)');
+  expect(illustrationCarte("CARD-016-nazisme")).toContain('translate(56 36)');
 });
 
 it("remplace les motifs du lot pilote par les 20 SVG, pour toutes les cartes du même événement", async () => {

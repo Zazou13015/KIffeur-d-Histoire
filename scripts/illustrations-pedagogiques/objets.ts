@@ -1,0 +1,136 @@
+// Formes d'atelier, réservées à la génération des SVG (jamais importées côté client).
+// Coordonnées locales 80 × 90 ; références prises exclusivement dans les 120 SVG validés.
+export type Objet = { svg: string; reference: string };
+const encre = "#1d2a3a", papier = "#f3f2ec", laiton = "#b08a3e", oxyde = "#8a2f2b", sauge = "#7e8c7a";
+export const objets: Record<string, Objet> = {};
+function ajouter(nom: string, reference: string, svg: string) { objets[nom] = { reference: `EVT-${reference}.svg`, svg }; }
+const p = (d: string, fill?: string, extra = "") => `<path d="${d}"${fill ? ` fill="${fill}"` : ""}${extra ? ` ${extra}` : ""}/>`;
+const r = (x: number, y: number, w: number, h: number, fill: string, rx = 0) => `<rect x="${x}" y="${y}" width="${w}" height="${h}"${rx ? ` rx="${rx}"` : ""} fill="${fill}"/>`;
+const c = (x: number, y: number, radius: number, fill: string) => `<circle cx="${x}" cy="${y}" r="${radius}" fill="${fill}"/>`;
+const e = (x: number, y: number, rx: number, ry: number, fill: string) => `<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}" fill="${fill}"/>`;
+
+ajouter("livre", "0180", r(12, 4, 56, 76, oxyde, 3) + p("M22 4v76M68 80v6H18q-6 0-6-6", papier) + p("M28 16h32M28 70h32", undefined, `stroke="${laiton}" stroke-width="1.5"`));
+ajouter("ouvert", "0632", p("M8 78V16l32 6l32-6v62l-32 6z", papier) + p("M40 22v62M16 34l16 3M16 46l16 3M16 58l16 3M48 37l16-3M48 49l16-3M48 61l16-3", undefined, 'stroke-width="1.5"'));
+ajouter("parchemin", "0065", p("M14 10h48q12 0 12 8v4H62V72h12q0 8-12 8H14q-8 0-8-8h8V22H6v-4q0-8 8-8z", papier) + p("M14 10v12M62 72v8M24 28h28M24 40h28M24 52h20", undefined, 'stroke-width="1.5"') + c(54, 68, 8, oxyde));
+ajouter("journal", "0632", r(8, 10, 62, 72, papier) + p("M16 22h46M16 30h46M38 40v32M16 42h14M16 52h14M16 62h14M46 42h16M46 52h16M46 62h16", undefined, 'stroke-width="1.5"') + p("M70 24h6v58H16q-8 0-8-8", papier));
+ajouter("plume", "0065", p("M12 82l48-62", undefined, `stroke="${laiton}" stroke-width="3"`) + p("M38 48q0-24 34-42q-2 30-22 42z", papier) + p("M50 48l12-26", undefined, 'stroke-width="1.5"'));
+ajouter("couronne", "0044", p("M8 58V30l18 12l14-24l14 24l18-12v28z", laiton) + r(6, 58, 68, 10, oxyde) + c(40, 14, 3, papier) + p("M40 10V2M36 6h8") + [18, 32, 48, 62].map(x => c(x, 63, 2, papier)).join(""));
+ajouter("couronne-brisee", "0044", p("M8 62V34l18 12l10-22l-4 24l8 12l-8 18H8zM44 76l8-14l-6-14l10 2l16-16v28l-6 14z", laiton) + p("M32 34l8 12l-8 12l8 10", undefined, `stroke="${oxyde}" stroke-width="3"`));
+ajouter("bonnet", "0348", p("M12 68q0-34 20-44q30-18 40 12q-14-8-18 8q4 10 4 24z", oxyde) + r(8, 68, 64, 10, oxyde) + c(28, 56, 8, papier) + c(28, 56, 4, encre) + p("M16 73h46", undefined, `stroke="${laiton}"`));
+ajouter("balance", "0058", p("M40 12v66M12 24h56M24 78h32", undefined, `stroke="${laiton}" stroke-width="3"`) + p("M12 24L2 52h22zM68 24L58 52h22z", papier) + c(40, 20, 3, oxyde));
+ajouter("croix", "0703", p("M32 16h16v22h22v16H48v22H32V54H10V38h22z", oxyde));
+ajouter("coeur", "0624", p("M40 76C6 58 4 30 18 24q14-10 22 6q8-16 22-6C76 30 74 58 40 76z", oxyde) + p("M30 28q-2 12 12 18", undefined, `stroke="${papier}"`));
+ajouter("chaine", "0684", r(2, 36, 24, 14, papier, 6) + r(20, 32, 20, 22, papier, 7) + r(34, 36, 24, 14, papier, 6) + r(54, 32, 24, 22, papier, 7));
+ajouter("chaine-rompue", "0684", r(2, 36, 24, 14, papier, 6) + r(54, 36, 24, 14, papier, 6) + p("M28 32l8 11l-8 11M52 32l-8 11l8 11", undefined, `stroke="${oxyde}" stroke-width="3"`) + p("M38 20v-8M38 68v8", undefined, `stroke="${laiton}"`));
+ajouter("monnaie", "0632", [76, 66, 56, 46].map(y => e(32, y, 22, 5, laiton)).join("") + [76, 66].map(y => e(54, y, 16, 5, laiton)).join(""));
+ajouter("urne", "0006", r(10, 42, 62, 40, laiton) + p("M6 42h70M28 50h28", undefined, 'stroke-width="3"') + p("M30 32l-4-26l24-4l4 26z", papier));
+ajouter("famille", "0016", c(22, 20, 8, papier) + c(58, 20, 8, papier) + p("M10 72V40q0-12 12-12t12 12v32z", sauge) + p("M46 72V40q0-12 12-12t12 12v32z", oxyde) + c(40, 48, 6, papier) + r(32, 56, 16, 22, laiton, 3) + p("M35 78v6M45 78v6"));
+ajouter("femme", "0006", p("M14 84V52q0-14 16-14h16q16 0 16 14v32z", oxyde) + c(38, 24, 14, papier) + p("M24 24q0-20 14-20q18 0 18 24l-6-2l-2-14q-10 10-24 12z", encre) + c(34, 26, 1.5, encre) + c(43, 26, 1.5, encre));
+ajouter("citoyens", "0016", [18, 40, 62].map((x, i) => c(x, 24, 7, papier) + r(x - 9, 32, 18, 36, i === 1 ? laiton : sauge, 4) + p(`M${x - 4} 68v16M${x + 4} 68v16`)).join(""));
+ajouter("table", "0016", [18, 62].map(x => c(x, 22, 7, papier) + r(x - 10, 30, 20, 22, sauge, 4)).join("") + e(40, 54, 38, 13, laiton) + p("M16 64v20M64 64v20") + r(28, 48, 24, 12, papier) + p("M32 54h16", undefined, 'stroke-width="1.5"'));
+ajouter("assemblee", "0118", p("M4 72q36-40 72 0M12 78q28-28 56 0M20 84q20-16 40 0") + [12, 30, 50, 68].map(x => c(x, 36, 5, laiton)).join("") + r(34, 52, 12, 16, papier));
+ajouter("valise", "0634", r(8, 26, 64, 52, laiton, 4) + p("M28 26V16q12-10 24 0v10M20 26v52M60 26v52", undefined, 'stroke-width="1.5"') + r(22, 48, 8, 5, papier) + r(50, 48, 8, 5, papier));
+ajouter("bougie", "0702", r(30, 42, 20, 40, papier) + p("M24 82h32", undefined, 'stroke-width="3"') + p("M40 38q-16-12 0-34q0 16 8 22q4 8-8 12z", oxyde));
+ajouter("barreaux", "0114", p("M6 84V14q34-18 68 0v70z", papier) + p("M6 20h68M6 72h68M18 16v56M32 12v60M48 12v60M62 16v56", undefined, 'stroke-width="1.5"') + c(42, 58, 3, laiton));
+ajouter("porte-ouverte", "0064", p("M12 84V32a28 28 0 0 1 56 0v52z", papier) + p("M40 4v80M12 40h28M12 62h28", undefined, 'stroke-width="1.5"') + p("M40 20l30 12v52L40 72z", laiton) + c(60, 56, 2, encre));
+ajouter("mur", "0537", [74, 60, 46].map((y, i) => [0, 1, 2].map(j => r(4 + j * 24 + (i % 2 ? 8 : 0), y, 18, 12, sauge, 2)).join("")).join("") + p("M4 88h74"));
+ajouter("mur-brise", "0537", r(4, 46, 28, 38, sauge) + r(48, 36, 28, 48, sauge) + p("M4 60h28M18 46v14M48 52h28M62 36v16M32 46l10 12l-8 10l10 14", undefined, 'stroke-width="1.5"') + p("M36 82l8-8l12 10z", laiton));
+ajouter("ecole", "0438", r(8, 44, 64, 40, oxyde) + p("M4 44L40 24l36 20z", papier) + r(16, 54, 10, 14, papier) + r(54, 54, 10, 14, papier) + r(34, 64, 12, 20, encre) + c(40, 44, 6, papier) + p("M40 41v3h3", undefined, 'stroke-width="1.5"'));
+ajouter("maison", "0705", r(14, 38, 52, 46, papier) + p("M8 38L40 10l32 28z", oxyde) + r(34, 58, 14, 26, encre) + r(22, 46, 10, 10, sauge));
+ajouter("eglise", "0521", p("M12 84V34l28-22l28 22v50z", papier) + p("M12 34h56M40 12V2M34 7h12") + p("M30 84V62a10 10 0 0 1 20 0v22z", encre) + p("M22 44a6 6 0 0 1 12 0v6H22zM46 44a6 6 0 0 1 12 0v6H46z", papier));
+ajouter("temple", "0118", p("M4 28L40 8l36 20z", papier) + r(8, 28, 64, 8, laiton) + [14, 34, 54].map(x => r(x, 36, 10, 42, papier)).join("") + r(4, 78, 72, 8, papier));
+ajouter("colonne", "0118", r(28, 18, 24, 60, papier) + r(20, 10, 40, 8, laiton) + r(18, 78, 44, 8, papier) + p("M34 24v48M46 24v48", undefined, 'stroke-width="1.5"'));
+ajouter("donjon", "0173", p("M12 84V30h12V18h12v12h12V18h12v12h12v54z", papier) + p("M30 84V62a10 10 0 0 1 20 0v22z", encre) + p("M24 40v10M56 40v10", undefined, 'stroke-width="3"'));
+ajouter("coupole", "0497", p("M12 84V48h56v36z", papier) + p("M8 48L40 30l32 18z", papier) + p("M24 30a16 16 0 0 1 32 0z", sauge) + p("M40 14V4M28 52v24M52 52v24", undefined, 'stroke-width="1.5"') + r(34, 62, 12, 22, encre));
+ajouter("pagode", "0620", p("M20 84V62h40v22M26 60V38h28v22M32 36V16h16v20", papier) + p("M10 62l12-12h36l12 12l-12-4H22zM16 38l12-10h24l12 10l-12-3H28zM24 16L40 4l16 12l-10-3H34z", sauge) + r(34, 68, 12, 16, encre));
+ajouter("ziggurat", "0613", r(6, 64, 68, 20, laiton) + r(16, 46, 48, 18, laiton) + r(26, 28, 28, 18, laiton) + r(30, 16, 20, 12, papier) + p("M32 84V64h16v20", papier));
+ajouter("stele", "0637", p("M16 84V28q0-22 24-22t24 22v56z", sauge) + c(30, 24, 4, laiton) + c(50, 20, 4, papier) + p("M26 30l8 12M50 26v14h8M24 54h32M24 66h32M24 76h20", undefined, `stroke="${papier}" stroke-width="1.5"`));
+ajouter("tablette", "0637", r(10, 20, 60, 58, laiton, 6) + p("M20 34h38M20 46h26M20 58h38M20 68h20", undefined, 'stroke-width="1.5"') + p("M58 14l16-12M58 14l6 6", undefined, 'stroke-width="3"'));
+ajouter("lyre", "0014", p("M18 16q-12 50 22 64q34-14 22-64", laiton) + p("M18 16q8-10 12 0M62 16q-8-10-12 0M20 30h40M28 30v34M40 30v42M52 30v34", undefined, 'stroke-width="1.5"'));
+ajouter("rouleau", "0298", r(14, 16, 52, 60, papier) + r(10, 8, 60, 8, encre) + r(10, 76, 60, 8, encre) + p("M26 34h28M26 46h28M26 58h18", undefined, 'stroke-width="1.5"'));
+ajouter("menorah", "0521", p("M40 12v64M28 14v12q0 8 12 8q12 0 12-8V14M20 18v16q0 12 20 12q20 0 20-12V18M8 24v22q0 16 32 16q32 0 32-16V24M26 76h28", undefined, `stroke="${laiton}" stroke-width="3"`));
+ajouter("louve", "0636", p("M12 48q0-18 16-18h24l8-16l16 6l-6 14H58v26H16z", sauge) + p("M16 60v20M26 60v20M48 60v20M56 60v20M12 40l-10-10", undefined, 'stroke-width="3"') + c(67, 23, 1.5, encre) + c(30, 65, 4, papier) + c(44, 65, 4, papier));
+ajouter("usine", "0018", p("M8 84V48l20-10v10l20-10v10h24v36z", sauge) + r(54, 12, 10, 36, papier) + p("M52 12h14M58 8q-8-10 2-16", undefined, 'stroke-width="2"') + r(16, 56, 10, 10, papier) + r(34, 56, 10, 10, papier) + r(52, 64, 12, 20, encre));
+ajouter("ville", "0520", r(8, 18, 28, 66, papier) + r(44, 32, 28, 52, sauge) + p("M4 18L22 8l18 10M40 32l18-10l18 10", oxyde) + [28, 46, 64].map(y => r(16, y, 12, 8, papier)).join("") + [44, 60].map(y => r(52, y, 12, 8, papier)).join(""));
+ajouter("boulevard", "0520", p("M4 84L34 26h12l30 58", papier) + p("M34 26L26 84M46 26l8 58", undefined, 'stroke-width="1.5"') + r(4, 30, 18, 38, sauge) + r(58, 30, 18, 38, sauge) + p("M4 30l9-8l9 8M58 30l9-8l9 8", oxyde) + p("M10 42h6M10 52h6M64 42h6M64 52h6", undefined, 'stroke-width="1.5"'));
+ajouter("roue", "0018", c(40, 48, 30, laiton) + c(40, 48, 4, encre) + p("M10 48h60M40 18v60M19 27l42 42M19 69l42-42", undefined, 'stroke-width="1.5"'));
+ajouter("machine", "0018", c(24, 60, 20, laiton) + p("M4 60h40M24 40v40M10 46l28 28M10 74l28-28", undefined, 'stroke-width="1.5"') + r(50, 44, 26, 34, sauge) + p("M44 60h6M62 44V18M56 18h12", undefined, 'stroke-width="3"') + p("M62 12q-8-10 2-16", undefined, `stroke="${sauge}"`));
+ajouter("newcomen", "0018", r(8, 54, 28, 26, laiton, 4) + r(52, 34, 18, 46, papier) + p("M60 34V14M12 14h58M26 14v40M42 14V2M38 2h8", undefined, 'stroke-width="3"') + p("M4 84h72M16 68h12", undefined, 'stroke-width="1.5"'));
+ajouter("presse", "0414", r(12, 16, 8, 68, laiton) + r(60, 16, 8, 68, laiton) + r(6, 10, 68, 10, laiton) + p("M40 20v38", undefined, 'stroke-width="3"') + r(30, 54, 20, 8, encre) + r(20, 66, 40, 14, papier) + p("M26 73h28", undefined, 'stroke-width="1.5"'));
+ajouter("canon", "0466", p("M8 54l52-26l10 14l-52 24z", encre) + c(30, 70, 14, laiton) + p("M16 70h28M30 56v28M20 60l20 20M20 80l20-20", undefined, 'stroke-width="1.5"') + p("M42 62l22 22h12", undefined, 'stroke-width="3"'));
+ajouter("barbeles", "0012", p("M10 84V34M40 84V30M70 84V34", undefined, 'stroke-width="3"') + p("M6 42q16-8 32 0t36 0M6 60q16-8 32 0t36 0M18 38l8 8M26 38l-8 8M46 56l8 8M54 56l-8 8", undefined, 'stroke-width="1.5"'));
+ajouter("casque", "0012", p("M8 58a32 32 0 0 1 64 0z", sauge) + p("M4 58h72", undefined, 'stroke-width="3"') + p("M22 64q18 30 36 0", undefined, 'stroke-width="1.5"'));
+ajouter("char", "0097", r(10, 50, 60, 18, sauge, 5) + p("M24 50V34h28l6 16", sauge) + p("M52 40h24", undefined, 'stroke-width="4"') + r(4, 68, 72, 14, encre, 7) + [16, 32, 48, 64].map(x => c(x, 75, 3, papier)).join(""));
+ajouter("avion", "0013", p("M8 44q0-10 14-10h34q12 0 20 10q-8 8-20 8H22q-14 0-14-8z", sauge) + p("M30 34l14-26h12l-6 26M30 52l14 26h12l-6-26M8 44L2 26h10l8 10", sauge) + p("M76 32v24", undefined, 'stroke-width="2.5"'));
+ajouter("hache", "0064", p("M16 80l44-64", undefined, `stroke="${laiton}" stroke-width="5"`) + p("M48 12l26 14l-12 18l-24-16z", encre));
+ajouter("guillotine", "0414", r(16, 8, 8, 76, laiton) + r(56, 8, 8, 76, laiton) + r(10, 4, 60, 8, laiton) + p("M24 22h32L24 40z", encre) + r(24, 64, 32, 8, oxyde) + p("M8 84h64"));
+ajouter("navire", "0063", p("M4 68h72L60 84H18z", laiton) + p("M26 68V14M50 68V8M26 18h24M26 44h24") + p("M28 20h20v20H28zM28 46h20v18H28zM52 12l18 24H52z", papier));
+ajouter("vapeur", "0707", p("M4 68h72L62 82H16z", encre) + r(16, 44, 28, 24, papier) + r(20, 20, 10, 24, papier) + p("M18 20h14M50 68V34M50 36l20 16H50z", papier) + p("M24 14q-8-10 2-16", undefined, `stroke="${sauge}"`));
+ajouter("ble", "0340", p("M26 84V16M54 84V10", undefined, `stroke="${laiton}" stroke-width="3"`) + [26, 54].map(x => p(`M${x} 52q-18-4-14-18q16 2 14 18zM${x} 34q18-4 14-18q-16 2-14 18z`, laiton)).join(""));
+ajouter("canne", "0340", p("M26 84V28M54 84V18", undefined, `stroke="${laiton}" stroke-width="4"`) + p("M26 28Q6 6 2 32M26 28q8-26 22-20M54 18q-8-18-22-12M54 18q18-18 24 4", undefined, `stroke="${sauge}" stroke-width="3"`) + p("M22 44h8M22 62h8M50 34h8M50 52h8M50 70h8", undefined, 'stroke-width="1.5"'));
+ajouter("fourche", "0053", p("M40 84V34M22 10v24h36V10M40 4v30", undefined, `stroke="${laiton}" stroke-width="3"`));
+ajouter("globe", "0357", c(40, 44, 32, papier) + p("M8 44h64M40 12v64M16 24q24 14 48 0M16 64q24-14 48 0", undefined, 'stroke-width="1.5"') + `<ellipse cx="40" cy="44" rx="14" ry="32" stroke-width="1.5"/>`);
+ajouter("soleil", "0420", c(40, 44, 22, laiton) + p("M40 12V2M40 76v10M8 44H0M72 44h8M16 20l-6-6M64 68l6 6M16 68l-6 6M64 20l6-6", undefined, `stroke="${laiton}"`));
+ajouter("lunette", "0622", p("M14 84L36 42l22 42M36 42v42") + `<g transform="rotate(-28 40 36)">${r(10, 26, 62, 14, laiton, 2)}${r(64, 23, 12, 20, papier, 2)}${p("M28 26v14M46 26v14", undefined, 'stroke-width="1.5"')}</g>`);
+ajouter("boussole", "0625", c(40, 46, 32, papier) + p("M40 20l-12 36h24z", laiton) + p("M40 72l12-16H28z", oxyde) + p("M40 10V2M4 46h8M68 46h8", undefined, 'stroke-width="1.5"'));
+ajouter("village-neolithique", "0613", r(4, 50, 30, 34, laiton) + r(34, 32, 36, 52, papier) + p("M0 50h38M30 32h44M60 34v50M54 44h12M54 56h12M54 68h12", undefined, 'stroke-width="1.5"') + r(38, 28, 14, 4, encre));
+ajouter("laurier", "0357", p("M12 16q-20 40 28 62q48-22 28-62", undefined, `stroke="${sauge}"`) + [[14, 26], [12, 42], [22, 58], [66, 26], [68, 42], [58, 58]].map(([x, y]) => e(x, y, 6, 3, sauge)).join(""));
+ajouter("train", "0691", r(4, 40, 38, 26, encre, 5) + r(10, 18, 10, 22, encre) + r(26, 30, 14, 10, laiton) + c(14, 76, 10, laiton) + c(36, 76, 10, laiton) + p("M4 76h42M14 66v20M36 66v20", undefined, 'stroke-width="1.5"') + p("M42 60h10") + r(52, 46, 26, 20, papier) + c(58, 76, 7, papier) + c(74, 76, 7, papier));
+ajouter("train-moderne", "0091", p("M6 70V38q0-20 28-20h24q12 0 16 20v32z", papier) + p("M12 38q2-14 24-14h16l8 14z", encre) + p("M8 56h64", undefined, `stroke="${oxyde}" stroke-width="3"`) + [20, 60].map(x => c(x, 76, 6, encre)).join("") + p("M4 84h72", undefined, `stroke="${sauge}"`));
+ajouter("tunnel", "0256", p("M4 84V44a36 36 0 0 1 72 0v40z", sauge) + p("M14 84V44a26 26 0 0 1 52 0v40z", papier) + p("M20 84l12-32M60 84L48 52M26 66h28M22 76h36", undefined, 'stroke-width="1.5"'));
+ajouter("rails", "0691", p("M10 84L30 12M70 84L50 12", undefined, `stroke="${sauge}" stroke-width="3"`) + p("M26 24h28M22 40h36M18 56h44M14 72h52", undefined, 'stroke-width="2"'));
+ajouter("colis", "0634", r(8, 28, 64, 52, laiton) + p("M8 28l14-16h44l6 16M40 28v52M28 28v52", undefined, 'stroke-width="1.5"') + r(48, 42, 16, 12, papier));
+ajouter("ciseaux", "0624", c(18, 62, 10, papier) + c(56, 62, 10, papier) + p("M24 54l38-42M50 54L14 12", undefined, 'stroke-width="3"') + c(38, 40, 3, laiton));
+ajouter("petrole", "0018", p("M10 84L28 42l22 42M28 42V20M8 20h62M54 20l14-10v22z", sauge) + p("M28 48h20M18 68h20", undefined, 'stroke-width="1.5"') + r(56, 52, 20, 30, laiton, 3) + p("M56 62h20M56 72h20", undefined, 'stroke-width="1.5"'));
+ajouter("telephone", "0014", r(10, 42, 60, 38, laiton, 6) + p("M14 40q26-32 52 0l-10 4q-16-18-32 0z", encre) + c(40, 62, 10, papier) + c(40, 62, 4, encre));
+ajouter("radio", "0014", r(8, 24, 64, 50, laiton, 4) + c(52, 50, 14, papier) + r(16, 34, 20, 8, papier) + p("M16 52h18M16 62h18M14 18l46-14", undefined, 'stroke-width="1.5"'));
+ajouter("reseau", "0696", c(40, 40, 10, laiton) + [[12, 18], [68, 18], [12, 72], [68, 72]].map(([x, y]) => p(`M40 40L${x} ${y}`, undefined, 'stroke-width="1.5"') + c(x, y, 7, sauge)).join(""));
+ajouter("ordinateur", "0693", r(4, 12, 72, 48, papier, 3) + r(12, 20, 56, 32, encre) + p("M40 60v16M22 80h36", undefined, 'stroke-width="3"') + p("M18 34h14l8 10l12-16h12", undefined, `stroke="${laiton}" stroke-width="1.5"`));
+ajouter("bouclier", "0685", p("M10 14h60v24q0 32-30 46q-30-14-30-46z", sauge) + c(40, 40, 8, laiton) + p("M36 47l-4 18h16l-4-18z", encre));
+ajouter("arbres", "0091", p("M4 68l16-44l16 44zM34 60L54 6l20 54z", sauge) + p("M20 68v16M54 60v24", undefined, 'stroke-width="3"'));
+ajouter("geyser", "0320", p("M40 84V42M34 84V50M46 84V50", undefined, `stroke="${sauge}" stroke-width="3"`) + p("M40 42q-20-22-30 0M40 36q0-34 12-30M44 42q20-24 30-2", undefined, `stroke="${sauge}"`) + p("M18 84q22-12 44 0", laiton));
+ajouter("feuille", "0320", p("M12 72Q2 20 70 10Q78 68 12 72z", sauge) + p("M12 72L58 24M28 56l-8-22M42 42l20 8", undefined, 'stroke-width="1.5"'));
+ajouter("poisson", "0700", p("M14 46q26-32 52 0q-26 28-52 0L2 32v28z", sauge) + c(56, 44, 2, encre) + p("M20 74q20-6 40 0M20 20q20-6 40 0", undefined, 'stroke-width="1.5"'));
+ajouter("thermometre", "0624", p("M34 60V14a6 6 0 0 1 12 0v46a14 14 0 1 1-12 0z", papier) + p("M40 66V30", undefined, `stroke="${oxyde}" stroke-width="4"`) + c(40, 72, 8, oxyde) + p("M50 20h8M50 34h6M50 48h8", undefined, 'stroke-width="1.5"'));
+ajouter("plaque-photo", "0324", r(8, 18, 64, 56, encre) + p("M28 30h12v12h14v10H40v12H28V52H16V42h12z", papier) + p("M4 80h72", undefined, `stroke="${sauge}"`));
+ajouter("minerai", "0338", p("M12 72L6 40l18-18l34 8l16 28l-20 22z", sauge) + p("M24 22l6 30l28-22M30 52l24 28M30 52L6 40", undefined, 'stroke-width="1.5"') + c(50, 48, 4, laiton));
+ajouter("creuset", "0324", p("M12 32h56l-8 40H20z", papier) + e(40, 32, 28, 8, sauge) + p("M22 76v8M58 76v8M18 84h44M48 28l20-18", undefined, 'stroke-width="2"'));
+ajouter("cloche", "0685", p("M18 58V34a22 22 0 0 1 44 0v24z", laiton) + p("M12 58h56M40 12V4", undefined, 'stroke-width="3"') + c(40, 66, 5, encre));
+ajouter("epee", "0688", p("M16 82l46-64", undefined, 'stroke-width="4"') + p("M58 18l12-12l-2 18z", papier) + p("M8 62l26 18", undefined, `stroke="${laiton}" stroke-width="3"`));
+ajouter("micro", "0014", r(28, 8, 24, 40, laiton, 12) + p("M20 32v8q0 20 20 20t20-20v-8M40 60v22M22 84h36", undefined, 'stroke-width="2"') + p("M32 22h16M32 32h16", undefined, 'stroke-width="1.5"'));
+ajouter("repas", "0700", e(40, 54, 32, 18, papier) + e(40, 54, 22, 12, papier) + p("M8 14v24M2 14v12h12V14M8 38v46M72 14v70M64 14v28h8", undefined, 'stroke-width="2"') + p("M28 52q12-18 26 0z", laiton));
+ajouter("minaret", "0521", r(26, 34, 24, 50, papier) + p("M22 34l16-20l16 20z", sauge) + p("M38 14V4M32 46h12M32 58h12M32 70h12", undefined, 'stroke-width="1.5"'));
+ajouter("parlement", "0118", p("M4 42L40 20l36 22z", papier) + r(8, 42, 64, 42, papier) + [14, 32, 50, 64].map(x => p(`M${x} 48v30`, undefined, 'stroke-width="3"')).join("") + p("M2 84h76"));
+ajouter("palais", "0520", r(4, 38, 72, 46, papier) + p("M4 38L40 20l36 18M40 20V4", papier) + [14, 30, 46, 62].map(x => r(x, 48, 6, 10, papier)).join("") + r(34, 66, 12, 18, encre));
+ajouter("sceau", "0065", c(40, 40, 28, oxyde) + p("M26 66l-6 18l18-8l14 8l4-20", sauge) + p("M28 42l8 8l18-20", undefined, `stroke="${laiton}" stroke-width="3"`));
+
+// Scènes particulières : mêmes primitives, objets identifiables sans texte.
+ajouter("tour", "0520", p("M6 84L28 12h24l22 72H60L40 42L20 84z", laiton) + p("M24 32h32M16 60h48M12 76h56M34 12V4h12v8M28 32l28 28M52 32L24 60M22 60l34 16M58 60L24 76", undefined, 'stroke-width="1.5"'));
+ajouter("mausolee", "0705", r(12, 44, 56, 40, laiton) + p("M10 44q8-8 14-8q8-24 16-24q10 0 16 24q8 0 14 8z", laiton) + p("M30 84V62a10 10 0 0 1 20 0v22z", encre) + p("M18 52h8M54 52h8", undefined, 'stroke-width="1.5"'));
+ajouter("chevalement", "0018", p("M8 84L22 14h36l14 70M22 14V6h36v8M18 32h44M14 52h52M10 72h60M22 14l44 58M58 14L14 72", undefined, 'stroke-width="2"') + c(40, 22, 9, laiton) + p("M40 13v18M31 22h18", undefined, 'stroke-width="1.5"'));
+ajouter("missile", "0688", p("M30 66V28q0-12 10-24q10 12 10 24v38z", papier) + p("M30 58L18 76h12M50 58l12 18H50", sauge) + r(30, 66, 20, 10, encre) + p("M30 28h20", undefined, `stroke="${oxyde}" stroke-width="3"`));
+ajouter("barricade", "0173", r(4, 66, 28, 18, laiton) + r(44, 54, 30, 30, sauge) + p("M10 56L64 32l6 12l-54 24z", papier) + p("M22 54l4 10M44 44l4 10", undefined, 'stroke-width="1.5"') + c(36, 74, 10, laiton));
+ajouter("pommes-terre", "0340", [20, 40, 60].map((x, i) => e(x, 62 + (i % 2) * 12, 14, 9, laiton) + c(x - 3, 60 + (i % 2) * 12, 1, encre) + c(x + 5, 64 + (i % 2) * 12, 1, encre)).join("") + p("M40 50V12M40 24q-20-22-28-4q8 14 28 4M40 36q20-22 28-4q-8 14-28 4", undefined, `stroke="${sauge}"`));
+ajouter("baluchon", "0634", p("M10 68q-4-22 22-36l-6-12l14 4l14-4l-6 12q26 14 22 36q-30 24-60 0z", laiton) + p("M32 32h16M40 34q-12 12-10 24", undefined, 'stroke-width="1.5"'));
+ajouter("kepi", "0012", p("M12 52V24h48v28z", oxyde) + e(36, 24, 24, 6, oxyde) + p("M12 48h48l16 10H12z", encre));
+ajouter("transport", "0013", p("M6 42h66l4 6l-6 4H10zM30 42L42 8h8l-4 34M30 52l12 28h8l-4-28M10 42L2 22h8l10 20", sauge) + p("M54 40v14M66 40v14", undefined, 'stroke-width="3"'));
+ajouter("reacteur", "0013", p("M6 44l20-8l18-24h10l-4 24h20l6 8l-6 8H50l4 24H44L26 52l-20-8z", sauge) + p("M12 44h12", undefined, `stroke="${laiton}" stroke-width="3"`));
+ajouter("pinceau", "0065", p("M12 82L56 32", undefined, `stroke="${laiton}" stroke-width="5"`) + p("M50 32l12-22q14 0 12 12L60 40z", encre) + p("M50 32l10 8", undefined, `stroke="${papier}" stroke-width="2"`));
+ajouter("portique", "0497", r(12, 24, 12, 60, papier) + r(56, 24, 12, 60, papier) + r(8, 16, 64, 8, laiton) + p("M24 24h32M30 16v-8h20v8M8 84h64", undefined, 'stroke-width="1.5"'));
+ajouter("bicorne", "0044", p("M4 62q20-14 24-38h24q4 24 24 38z", encre) + p("M22 62h36", undefined, `stroke="${laiton}" stroke-width="2"`) + c(40, 46, 5, oxyde) + c(40, 46, 2, papier));
+ajouter("artillerie", "0210", p("M4 40l60-12l4 10L8 52z", encre) + p("M32 48l30 30h14M28 48L8 82", undefined, 'stroke-width="3"') + c(32, 64, 16, laiton) + p("M16 64h32M32 48v32M21 53l22 22M21 75l22-22", undefined, 'stroke-width="1.5"'));
+ajouter("cuirasse", "0707", p("M2 62h76L66 80H12z", sauge) + r(18, 44, 44, 18, papier) + r(28, 16, 10, 28, encre) + r(46, 22, 8, 22, encre) + p("M6 58h12M62 58h12M26 44V30h14M33 16V6", undefined, 'stroke-width="1.5"'));
+ajouter("casque-adrian", "0012", p("M8 58a32 32 0 0 1 64 0z", sauge) + p("M4 58h72M24 28q16-8 32 0", undefined, 'stroke-width="3"') + p("M22 64q18 30 36 0", undefined, 'stroke-width="1.5"'));
+ajouter("documents", "0632", r(18, 10, 54, 64, papier) + r(8, 22, 54, 64, papier) + p("M18 36h34M18 48h34M18 60h22M18 72h34", undefined, 'stroke-width="1.5"'));
+ajouter("recifs", "0700", p("M4 76l8-20l12 12l12-26l14 22l14-12l12 24z", sauge) + p("M26 42V24q-6-2-8-10M26 30q8-2 10-12M48 52V16q-8-2-10-10M48 26q8-2 14-12M48 38q-10-2-14-10", undefined, `stroke="${sauge}" stroke-width="3"`) + p("M4 84q18-6 36 0t36 0", undefined, 'stroke-width="1.5"'));
+ajouter("cavalier", "0623", p("M6 62q0-18 12-18h30l12-20l12 8l-6 18H56v20H8z", sauge) + p("M12 70v14M24 70v14M46 70v14M54 70v14M6 48L2 36", undefined, 'stroke-width="2"') + c(64, 34, 1.5, encre) + c(34, 16, 6, papier) + r(26, 24, 16, 20, laiton, 3) + p("M34 44l10 16M42 30l16 10M22 12l6-8h12l4 8z", papier));
+
+
+// Ajout des attributs de trait avant une réduction : la largeur finale reste celle du stock.
+export function placer(nom: string, x: number, y: number, scale = 1): string {
+  const objet = objets[nom];
+  if (!objet) throw new Error(`Objet d'atelier inconnu : ${nom}`);
+  const svg = objet.svg.replace(/stroke-width="([\d.]+)"/g, (_, w: string) => `stroke-width="${Number(w) / scale}"`);
+  return `<g transform="translate(${x} ${y}) scale(${scale})" stroke-width="${2 / scale}">${svg}</g>`;
+}
+

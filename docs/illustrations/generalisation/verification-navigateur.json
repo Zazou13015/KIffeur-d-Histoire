@@ -1,0 +1,538 @@
+{
+  "origine": "http://localhost:3174",
+  "cartes": 24,
+  "largeurs": [
+    1280,
+    375
+  ],
+  "resultats": [
+    {
+      "card": "CARD-004-catalhoyuk",
+      "images": [
+        {
+          "loaded": true,
+          "src": "/api/pedagogie/illustration/CARD-004-catalhoyuk"
+        }
+      ],
+      "overflow": false,
+      "width": 1280
+    },
+    {
+      "card": "CARD-005-homere",
+      "images": [
+        {
+          "loaded": true,
+          "src": "/api/pedagogie/illustration/CARD-005-homere"
+        }
+      ],
+      "overflow": false,
+      "width": 1280
+    },
+    {
+      "card": "CARD-005-athenes",
+      "images": [
+        {
+          "loaded": true,
+          "src": "/api/pedagogie/illustration/CARD-005-athenes"
+        }
+      ],
+      "overflow": false,
+      "width": 1280
+    },
+    {
+      "card": "CARD-006-han",
+      "images": [
+        {
+          "loaded": true,
+          "src": "/api/pedagogie/illustration/CARD-006-han"
+        }
+      ],
+      "overflow": false,
+      "width": 1280
+    },
+    {
+      "card": "CARD-008-justinien",
+      "images": [
+        {
+          "loaded": true,
+          "src": "/api/pedagogie/illustration/CARD-008-justinien"
+        }
+      ],
+      "overflow": false,
+      "width": 1280
+    },
+    {
+      "card": "CARD-009-bouvines-royaume",
+      "images": [
+        {
+          "loaded": true,
+          "src": "/api/pedagogie/illustration/CARD-009-bouvines-royaume"
+        }
+      ],
+      "overflow": false,
+      "width": 1280
+    },
+    {
+      "card": "CARD-020-plantations",
+      "images": [
+        {
+          "loaded": true,
+          "src": "/api/pedagogie/illustration/CARD-020-plantations"
+        }
+      ],
+      "overflow": false,
+      "width": 1280
+    },
+    {
+      "card": "CARD-022-galilee-observation",
+      "images": [
+        {
+          "loaded": true,
+          "src": "/api/pedagogie/illustration/CARD-022-galilee-observation"
+        }
+      ],
+      "overflow": false,
+      "width": 1280
+    },
+    {
+      "card": "CARD-024-execution-roi",
+      "images": [
+        {
+          "loaded": true,
+          "src": "/api/pedagogie/illustration/CARD-024-execution-roi"
+        }
+      ],
+      "overflow": false,
+      "width": 1280
+    },
+    {
+      "card": "CARD-002-paris-transforme",
+      "images": [
+        {
+          "loaded": true,
+          "src": "/api/pedagogie/illustration/CARD-002-paris-transforme"
+        }
+      ],
+      "overflow": false,
+      "width": 1280
+    },
+    {
+      "card": "CARD-027-michael-limites-offensive",
+      "images": [
+        {
+          "loaded": true,
+          "src": "/api/pedagogie/illustration/CARD-027-michael-limites-offensive"
+        }
+      ],
+      "overflow": false,
+      "width": 1280
+    },
+    {
+      "card": "CARD-016-verdun",
+      "images": [
+        {
+          "loaded": true,
+          "src": "/api/pedagogie/illustration/CARD-016-verdun"
+        }
+      ],
+      "overflow": false,
+      "width": 1280
+    },
+    {
+      "card": "CARD-017-berlin-blocus",
+      "images": [
+        {
+          "loaded": true,
+          "src": "/api/pedagogie/illustration/CARD-017-berlin-blocus"
+        }
+      ],
+      "overflow": false,
+      "width": 1280
+    },
+    {
+      "card": "CARD-029-dien-bien-phu-puissance",
+      "images": [
+        {
+          "loaded": true,
+          "src": "/api/pedagogie/illustration/CARD-029-dien-bien-phu-puissance"
+        }
+      ],
+      "overflow": false,
+      "width": 1280
+    },
+    {
+      "card": "CARD-031-manche-symbole",
+      "images": [
+        {
+          "loaded": true,
+          "src": "/api/pedagogie/illustration/CARD-031-manche-symbole"
+        }
+      ],
+      "overflow": false,
+      "width": 1280
+    },
+    {
+      "card": "CARD-036-espagne-compromis",
+      "images": [
+        {
+          "loaded": true,
+          "src": "/api/pedagogie/illustration/CARD-036-espagne-compromis"
+        }
+      ],
+      "overflow": false,
+      "width": 1280
+    },
+    {
+      "card": "CARD-041-bbnj-application",
+      "images": [
+        {
+          "loaded": true,
+          "src": "/api/pedagogie/illustration/CARD-041-bbnj-application"
+        }
+      ],
+      "overflow": false,
+      "width": 1280
+    },
+    {
+      "card": "CARD-046-becquerel-enquete",
+      "images": [
+        {
+          "loaded": true,
+          "src": "/api/pedagogie/illustration/CARD-046-becquerel-enquete"
+        }
+      ],
+      "overflow": false,
+      "width": 1280
+    },
+    {
+      "card": "CARD-046-anssi-cyberdefense",
+      "images": [
+        {
+          "loaded": true,
+          "src": "/api/pedagogie/illustration/CARD-046-anssi-cyberdefense"
+        }
+      ],
+      "overflow": false,
+      "width": 1280
+    },
+    {
+      "card": "CARD-043-rwanda-genocide",
+      "images": [
+        {
+          "loaded": true,
+          "src": "/api/pedagogie/illustration/CARD-043-rwanda-genocide"
+        }
+      ],
+      "overflow": false,
+      "width": 1280
+    },
+    {
+      "card": "CARD-016-cnr",
+      "images": [
+        {
+          "loaded": true,
+          "src": "/api/pedagogie/illustration/CARD-016-cnr"
+        }
+      ],
+      "overflow": false,
+      "width": 1280
+    },
+    {
+      "card": "CARD-016-nazisme",
+      "images": [
+        {
+          "loaded": true,
+          "src": "/api/pedagogie/illustration/CARD-016-nazisme"
+        }
+      ],
+      "overflow": false,
+      "width": 1280
+    },
+    {
+      "card": "CARD-014-famine-migrations",
+      "images": [
+        {
+          "loaded": true,
+          "src": "/api/pedagogie/illustration/CARD-014-famine-migrations"
+        }
+      ],
+      "overflow": false,
+      "width": 1280
+    },
+    {
+      "card": "CARD-015-daubie-education",
+      "images": [
+        {
+          "loaded": true,
+          "src": "/api/pedagogie/illustration/CARD-015-daubie-education"
+        }
+      ],
+      "overflow": false,
+      "width": 1280
+    },
+    {
+      "card": "CARD-004-catalhoyuk",
+      "images": [
+        {
+          "loaded": true,
+          "src": "/api/pedagogie/illustration/CARD-004-catalhoyuk"
+        }
+      ],
+      "overflow": false,
+      "width": 375
+    },
+    {
+      "card": "CARD-005-homere",
+      "images": [
+        {
+          "loaded": true,
+          "src": "/api/pedagogie/illustration/CARD-005-homere"
+        }
+      ],
+      "overflow": false,
+      "width": 375
+    },
+    {
+      "card": "CARD-005-athenes",
+      "images": [
+        {
+          "loaded": true,
+          "src": "/api/pedagogie/illustration/CARD-005-athenes"
+        }
+      ],
+      "overflow": false,
+      "width": 375
+    },
+    {
+      "card": "CARD-006-han",
+      "images": [
+        {
+          "loaded": true,
+          "src": "/api/pedagogie/illustration/CARD-006-han"
+        }
+      ],
+      "overflow": false,
+      "width": 375
+    },
+    {
+      "card": "CARD-008-justinien",
+      "images": [
+        {
+          "loaded": true,
+          "src": "/api/pedagogie/illustration/CARD-008-justinien"
+        }
+      ],
+      "overflow": false,
+      "width": 375
+    },
+    {
+      "card": "CARD-009-bouvines-royaume",
+      "images": [
+        {
+          "loaded": true,
+          "src": "/api/pedagogie/illustration/CARD-009-bouvines-royaume"
+        }
+      ],
+      "overflow": false,
+      "width": 375
+    },
+    {
+      "card": "CARD-020-plantations",
+      "images": [
+        {
+          "loaded": true,
+          "src": "/api/pedagogie/illustration/CARD-020-plantations"
+        }
+      ],
+      "overflow": false,
+      "width": 375
+    },
+    {
+      "card": "CARD-022-galilee-observation",
+      "images": [
+        {
+          "loaded": true,
+          "src": "/api/pedagogie/illustration/CARD-022-galilee-observation"
+        }
+      ],
+      "overflow": false,
+      "width": 375
+    },
+    {
+      "card": "CARD-024-execution-roi",
+      "images": [
+        {
+          "loaded": true,
+          "src": "/api/pedagogie/illustration/CARD-024-execution-roi"
+        }
+      ],
+      "overflow": false,
+      "width": 375
+    },
+    {
+      "card": "CARD-002-paris-transforme",
+      "images": [
+        {
+          "loaded": true,
+          "src": "/api/pedagogie/illustration/CARD-002-paris-transforme"
+        }
+      ],
+      "overflow": false,
+      "width": 375
+    },
+    {
+      "card": "CARD-027-michael-limites-offensive",
+      "images": [
+        {
+          "loaded": true,
+          "src": "/api/pedagogie/illustration/CARD-027-michael-limites-offensive"
+        }
+      ],
+      "overflow": false,
+      "width": 375
+    },
+    {
+      "card": "CARD-016-verdun",
+      "images": [
+        {
+          "loaded": true,
+          "src": "/api/pedagogie/illustration/CARD-016-verdun"
+        }
+      ],
+      "overflow": false,
+      "width": 375
+    },
+    {
+      "card": "CARD-017-berlin-blocus",
+      "images": [
+        {
+          "loaded": true,
+          "src": "/api/pedagogie/illustration/CARD-017-berlin-blocus"
+        }
+      ],
+      "overflow": false,
+      "width": 375
+    },
+    {
+      "card": "CARD-029-dien-bien-phu-puissance",
+      "images": [
+        {
+          "loaded": true,
+          "src": "/api/pedagogie/illustration/CARD-029-dien-bien-phu-puissance"
+        }
+      ],
+      "overflow": false,
+      "width": 375
+    },
+    {
+      "card": "CARD-031-manche-symbole",
+      "images": [
+        {
+          "loaded": true,
+          "src": "/api/pedagogie/illustration/CARD-031-manche-symbole"
+        }
+      ],
+      "overflow": false,
+      "width": 375
+    },
+    {
+      "card": "CARD-036-espagne-compromis",
+      "images": [
+        {
+          "loaded": true,
+          "src": "/api/pedagogie/illustration/CARD-036-espagne-compromis"
+        }
+      ],
+      "overflow": false,
+      "width": 375
+    },
+    {
+      "card": "CARD-041-bbnj-application",
+      "images": [
+        {
+          "loaded": true,
+          "src": "/api/pedagogie/illustration/CARD-041-bbnj-application"
+        }
+      ],
+      "overflow": false,
+      "width": 375
+    },
+    {
+      "card": "CARD-046-becquerel-enquete",
+      "images": [
+        {
+          "loaded": true,
+          "src": "/api/pedagogie/illustration/CARD-046-becquerel-enquete"
+        }
+      ],
+      "overflow": false,
+      "width": 375
+    },
+    {
+      "card": "CARD-046-anssi-cyberdefense",
+      "images": [
+        {
+          "loaded": true,
+          "src": "/api/pedagogie/illustration/CARD-046-anssi-cyberdefense"
+        }
+      ],
+      "overflow": false,
+      "width": 375
+    },
+    {
+      "card": "CARD-043-rwanda-genocide",
+      "images": [
+        {
+          "loaded": true,
+          "src": "/api/pedagogie/illustration/CARD-043-rwanda-genocide"
+        }
+      ],
+      "overflow": false,
+      "width": 375
+    },
+    {
+      "card": "CARD-016-cnr",
+      "images": [
+        {
+          "loaded": true,
+          "src": "/api/pedagogie/illustration/CARD-016-cnr"
+        }
+      ],
+      "overflow": false,
+      "width": 375
+    },
+    {
+      "card": "CARD-016-nazisme",
+      "images": [
+        {
+          "loaded": true,
+          "src": "/api/pedagogie/illustration/CARD-016-nazisme"
+        }
+      ],
+      "overflow": false,
+      "width": 375
+    },
+    {
+      "card": "CARD-014-famine-migrations",
+      "images": [
+        {
+          "loaded": true,
+          "src": "/api/pedagogie/illustration/CARD-014-famine-migrations"
+        }
+      ],
+      "overflow": false,
+      "width": 375
+    },
+    {
+      "card": "CARD-015-daubie-education",
+      "images": [
+        {
+          "loaded": true,
+          "src": "/api/pedagogie/illustration/CARD-015-daubie-education"
+        }
+      ],
+      "overflow": false,
+      "width": 375
+    }
+  ]
+}

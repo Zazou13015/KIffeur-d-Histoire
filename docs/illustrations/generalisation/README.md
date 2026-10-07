@@ -16,6 +16,7 @@ Les **211 événements manquants** ont chacun un SVG dédié. Ils remplacent les
 
 - [Inventaire des 211 nouveaux SVG](../../../content/illustrations/generalisation-inventaire.csv) : fichier, nombre de cartes, objets représentés, références graphiques validées, intention et vigilance historique.
 - [Correspondances des 227 cartes](../../../content/illustrations/generalisation-cartes.csv) : `card_id`, `event_id`, titre exact, illustration existante avant = non, nouveau fichier SVG.
+- [Correspondances complètes des 325 cartes](../../../content/illustrations/generalisation-couverture-cartes.csv) : chapitre, événement, titre, fichier et statut (référence intacte / nouvelle illustration / fallback).
 - [Couverture par chapitre](couverture.md), avec les chiffres avant/après.
 - [32 événements mutualisés](mutualisations.csv), anciens et nouveaux : chaque carte liée au même événement reçoit exactement le même fichier. **16 nouveaux SVG** servent deux cartes chacun ; les 195 autres servent une carte chacun : 16 × 2 + 195 = 227.
 - [22 fallbacks restants](fallbacks.csv), tous sans événement dans le CSV canonique. Plusieurs titres évoquent une notion également abordée ailleurs, mais aucune jointure n'est inventée : changer leur rattachement est un travail éditorial distinct. Aucun événement lié à une carte ne reste sans dessin.

@@ -52,8 +52,17 @@ it("livre des SVG XML lisibles, sobres, distincts et conformes à l'enveloppe du
 it("documente exactement les 227 cartes remplacées, les 22 fallbacks sans événement et les mutualisations", () => {
   const cartes = lireCsv("content/pedagogie/cartes-v1.csv");
   const nouvelles = lireCsv("content/illustrations/generalisation-cartes.csv");
+  const couverture = lireCsv("content/illustrations/generalisation-couverture-cartes.csv");
   const fallbacks = lireCsv("docs/illustrations/generalisation/fallbacks.csv");
   expect(nouvelles).toHaveLength(227); expect(fallbacks).toHaveLength(22);
+  expect(couverture).toHaveLength(325);
+  expect(couverture.map(c => c.card_id).sort()).toEqual(cartes.map(c => c.card_id).sort());
+  expect(couverture.filter(c => c.fichier_svg)).toHaveLength(303);
+  for (const ligne of couverture) {
+    expect(cartes.find(c => c.card_id === ligne.card_id)).toMatchObject({ chapter_id: ligne.chapter_id, event_id: ligne.event_id, title: ligne.title });
+    expect(ligne.fichier_svg).toBe(ligne.event_id ? `${ligne.event_id}.svg` : "");
+    expect(ligne.illustration_existante).toBe(Object.keys(reference.svg).includes(ligne.fichier_svg) ? "oui" : "non");
+  }
   const nouveaux = new Set(lireCsv("content/illustrations/generalisation-inventaire.csv").map(i => i.event_id));
   expect(nouvelles.map(c => c.card_id).sort()).toEqual(cartes.filter(c => nouveaux.has(c.event_id)).map(c => c.card_id).sort());
   for (const ligne of nouvelles) {

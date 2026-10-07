@@ -70,6 +70,10 @@ for (const scene of scenes) {
 }
 writeFileSync(`${dossier}/generalisation-inventaire.csv`, inventaire.join("\n") + "\n");
 writeFileSync(`${dossier}/generalisation-cartes.csv`, correspondances.join("\n") + "\n");
+writeFileSync(`${dossier}/generalisation-couverture-cartes.csv`, [csv(["card_id", "chapter_id", "event_id", "title", "illustration_existante", "fichier_svg", "statut"]), ...cartes.map(c => csv([
+  c.card_id, c.chapter_id, c.event_id, c.title, fichiersProteges.has(`${c.event_id}.svg`) ? "oui" : "non", c.event_id ? `${c.event_id}.svg` : "",
+  !c.event_id ? "motif sans événement canonique" : fichiersProteges.has(`${c.event_id}.svg`) ? "illustration validée intacte" : "nouvelle illustration",
+]))].join("\n") + "\n");
 mkdirSync("docs/illustrations/generalisation", { recursive: true });
 const fallback = cartes.filter(c => !c.event_id);
 writeFileSync("docs/illustrations/generalisation/fallbacks.csv", [csv(["card_id", "chapter_id", "title", "raison"]), ...fallback.map(c => csv([c.card_id, c.chapter_id, c.title, "Carte de notion sans event_id dans le catalogue canonique ; aucune correspondance inventée ni modification de contenu."]))].join("\n") + "\n");

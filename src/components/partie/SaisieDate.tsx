@@ -2,17 +2,17 @@
 
 import { useEffect, useRef } from "react";
 import type { Precision } from "@/lib/game/dates";
-import { CHAMPS_VIDES, chiffres, ordreChamps, type Champs, type Cle } from "@/lib/game/saisie";
+import { CHAMPS_VIDES, chiffres, corrigerCases, ordreChamps, type Champs, type Cle } from "@/lib/game/saisie";
 import s from "./partie.module.css";
 
 // Le « - » reste visible devant l'année et veut dire av. J.-C.
 function normaliser(c: Champs): Champs {
   const av = /[-−]/.test(c.annee) && !/\+/.test(c.annee);
-  return {
+  return corrigerCases({
     jour: chiffres(c.jour).slice(0, 2),
     mois: chiffres(c.mois).slice(0, 2),
     annee: (av ? "-" : "") + chiffres(c.annee).slice(0, 4),
-  };
+  });
 }
 
 type Props = {

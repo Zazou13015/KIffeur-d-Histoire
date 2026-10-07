@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { casesCompletes, casesVides, champsDepuis, CHAMPS_VIDES, ordreChamps, reponseDepuis } from "@/lib/game/saisie";
+import { casesCompletes, corrigerCases, casesVides, champsDepuis, CHAMPS_VIDES, ordreChamps, reponseDepuis } from "@/lib/game/saisie";
 
 describe("saisie par trois cases", () => {
   it("n'affiche que les cases utiles à la précision", () => {
@@ -48,5 +48,19 @@ describe("saisie par trois cases", () => {
     expect(casesCompletes({ jour: "14", mois: "", annee: "1789" }, "jour")).toBe(false);
     expect(casesCompletes({ jour: "14", mois: "07", annee: "1789" }, "jour")).toBe(true);
     expect(casesCompletes({ jour: "", mois: "", annee: "1789" }, "annee")).toBe(true);
+  });
+
+  it("corrige dans les cases un mois ou un jour impossible", () => {
+    expect(corrigerCases({ jour: "", mois: "13", annee: "" })).toEqual({ jour: "", mois: "12", annee: "" });
+    expect(corrigerCases({ jour: "32", mois: "", annee: "" })).toEqual({ jour: "31", mois: "", annee: "" });
+    expect(corrigerCases({ jour: "31", mois: "04", annee: "" })).toEqual({ jour: "30", mois: "04", annee: "" });
+    expect(corrigerCases({ jour: "31", mois: "02", annee: "1900" })).toEqual({ jour: "28", mois: "02", annee: "1900" });
+    expect(corrigerCases({ jour: "30", mois: "02", annee: "" }).jour).toBe("29");
+    expect(corrigerCases({ jour: "29", mois: "02", annee: "1900" }).jour).toBe("28");
+  });
+
+  it("laisse intactes les saisies encore possibles", () => {
+    expect(corrigerCases({ jour: "3", mois: "1", annee: "" })).toEqual({ jour: "3", mois: "1", annee: "" });
+    expect(corrigerCases({ jour: "29", mois: "02", annee: "2000" }).jour).toBe("29");
   });
 });

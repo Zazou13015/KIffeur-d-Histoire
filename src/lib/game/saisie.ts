@@ -40,3 +40,18 @@ export const casesCompletes = (c: Champs, p: Precision) => ordreChamps(p).every(
 
 // Vrai quand rien n'est saisi (le « - » seul compte comme une saisie).
 export const casesVides = (c: Champs, p: Precision) => ordreChamps(p).every((k) => !chiffres(c[k])) && !c.annee.startsWith("-");
+
+// Ramène dans les cases un mois ou un jour impossible : 13 devient 12, 32 devient 31, 31/02 devient 28 ou 29.
+// L'année manquante compte comme bissextile, pour ne pas refuser un 29 février avant d'avoir tapé l'année.
+export function corrigerCases(c: Champs): Champs {
+  const deux = (n: number) => String(n).padStart(2, "0");
+  let { jour, mois } = c;
+  if (mois.length === 2 && +mois > 12) mois = "12";
+  if (jour.length === 2) {
+    const a = parseInt(chiffres(c.annee), 10);
+    const annee = a ? (c.annee.startsWith("-") ? -a : a) : 2000;
+    const max = +mois >= 1 && +mois <= 12 ? joursDansMois(annee, +mois) : 31;
+    if (+jour > max) jour = deux(max);
+  }
+  return { ...c, jour, mois };
+}

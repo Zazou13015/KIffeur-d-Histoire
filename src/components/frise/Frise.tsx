@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type RefObject } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { HistoricDate, Precision } from "@/lib/game/dates";
 import {
   choisirPas,
@@ -19,29 +19,58 @@ import {
   versT,
   type Vue,
 } from "@/lib/game/frise";
+import { regrouper, type MarqueurFrise } from "@/lib/game/marqueurs";
 import { Motif } from "@/components/charte/Motif";
-import s from "./partie.module.css";
+import { useVue } from "./useVue";
+import s from "./frise.module.css";
 
 type Props = {
   precision: Precision;
-  vue: Vue;
-  vueRef: RefObject<Vue>;
-  placer: (debut: number, fin: number) => void;
-  zoomer: (facteur: number) => void;
-  arreter: () => void;
-  reponse: HistoricDate | null;
-  onReponse: (d: HistoricDate) => void;
-  enSaisie: boolean;
+  /**
+   * « selection » : un clic ou un tap pose une réponse (onReponse).
+   * « lecture » : la frise se parcourt mais ne répond pas (mode pédagogique).
+   */
+  mode?: "selection" | "lecture";
+  /** Plage visible au départ (toute l'histoire par défaut). */
+  plageInitiale?: { debut: HistoricDate; fin: HistoricDate };
+  /**
+   * Pilotage de la vue depuis l'extérieur (écran de partie : bande des époques, saisie au clavier).
+   * Sans lui, la frise gère elle-même son zoom.
+   */
+  controle?: ReturnType<typeof useVue>;
+  reponse?: HistoricDate | null;
+  onReponse?: (d: HistoricDate) => void;
+  enSaisie?: boolean;
   // Renseignée seulement après la correction (la bonne date ne vient jamais avant).
-  correction: { bonne: HistoricDate; titre: string } | null;
+  correction?: { bonne: HistoricDate; titre: string } | null;
+  /** Cartes d'événements posées sur la frise ; les marqueurs proches se regroupent. */
+  marqueurs?: MarqueurFrise[];
+  onMarqueur?: (id: string) => void;
 };
+
+// Place minimale entre deux marqueurs avant qu'ils se regroupent, et couloirs où ils se posent.
+const ECART_MARQUEURS = 112;
+const COULOIRS_MARQUEURS = [10, 62, 114];
 
 // Largeur de texte pour garder l'étiquette de la bonne réponse dans le cadre.
 function largeurTexte(texte: string): number {
   return texte.length * 7 + 22;
 }
 
-export function Frise({ precision, vue, vueRef, placer, zoomer, arreter, reponse, onReponse, enSaisie, correction }: Props) {
+export function Frise({
+  precision,
+  mode = "selection",
+  plageInitiale,
+  controle,
+  reponse = null,
+  onReponse,
+  enSaisie = false,
+  correction = null,
+  marqueurs,
+  onMarqueur,
+}: Props) {
+  const interne = useVue(precision);
+  const { vue, vueRef, placer, animer, zoomer, arreter } = controle ?? interne;
   const ref = useRef<HTMLDivElement>(null);
   const [largeur, setLargeur] = useState(800);
   const [fantome, setFantome] = useState<{ x: number; date: HistoricDate } | null>(null);
@@ -49,6 +78,21 @@ export function Frise({ precision, vue, vueRef, placer, zoomer, arreter, reponse
   const pointeurs = useRef(new Map<number, number>());
   const pincement = useRef<{ ecart: number; vue: Vue; milieu: number } | null>(null);
   const corrige = correction != null;
+  const selection = mode === "selection" && !corrige && onReponse != null;
+  const aDesMarqueurs = marqueurs != null && marqueurs.length > 0;
+
+  // Plage de départ : appliquée une fois, sauf si l'écran pilote lui-même la vue.
+  useEffect(() => {
+    if (controle || !plageInitiale) return;
+    placer(versT(plageInitiale.debut), versT(plageInitiale.fin));
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- au montage seulement
+  }, []);
+
+  const parId = useMemo(() => new Map((marqueurs ?? []).map((m) => [m.id, m])), [marqueurs]);
+  const tries = useMemo(
+    () => (marqueurs ?? []).map((m) => ({ id: m.id, t: versT(m.date) })).sort((a, b) => a.t - b.t),
+    [marqueurs],
+  );
 
   useEffect(() => {
     const el = ref.current!;
@@ -81,6 +125,8 @@ export function Frise({ precision, vue, vueRef, placer, zoomer, arreter, reponse
   }, [arreter, placer, vueRef]);
 
   function surAppui(e: React.PointerEvent<HTMLDivElement>) {
+    // Un marqueur est un bouton : on laisse le clic lui revenir.
+    if ((e.target as HTMLElement).closest("[data-marqueur]")) return;
     arreter();
     e.currentTarget.setPointerCapture(e.pointerId);
     pointeurs.current.set(e.pointerId, e.clientX);
@@ -90,11 +136,11 @@ export function Frise({ precision, vue, vueRef, placer, zoomer, arreter, reponse
       return;
     }
     const surLosange = (e.target as HTMLElement).dataset.losange === "oui";
-    glisse.current = { x: e.clientX, vue: vueRef.current, bouge: false, losange: surLosange && !corrige };
+    glisse.current = { x: e.clientX, vue: vueRef.current, bouge: false, losange: surLosange && selection };
   }
 
   function surDeplacement(e: React.PointerEvent<HTMLDivElement>) {
-    if (!corrige && e.pointerType === "mouse") {
+    if (selection && e.pointerType === "mouse") {
       const r = ref.current!.getBoundingClientRect();
       setFantome({ x: e.clientX - r.left, date: dateA(e.clientX) });
     }
@@ -114,7 +160,7 @@ export function Frise({ precision, vue, vueRef, placer, zoomer, arreter, reponse
       g.bouge = true;
       setFantome(null);
     }
-    if (g.losange) return onReponse(dateA(e.clientX));
+    if (g.losange) return onReponse?.(dateA(e.clientX));
     const parPixel = (g.vue.fin - g.vue.debut) / ref.current!.clientWidth;
     placer(g.vue.debut - dx * parPixel, g.vue.fin - dx * parPixel);
   }
@@ -124,7 +170,7 @@ export function Frise({ precision, vue, vueRef, placer, zoomer, arreter, reponse
     pointeurs.current.delete(e.pointerId);
     const g = glisse.current;
     // Un clic sans glisser pose la réponse.
-    if (g && !pincement.current && !g.bouge && !corrige && e.type === "pointerup") onReponse(dateA(e.clientX));
+    if (g && !pincement.current && !g.bouge && selection && e.type === "pointerup") onReponse?.(dateA(e.clientX));
     if (pointeurs.current.size === 0) {
       glisse.current = null;
       pincement.current = null;
@@ -133,11 +179,11 @@ export function Frise({ precision, vue, vueRef, placer, zoomer, arreter, reponse
 
   // Flèches : un pas de la précision demandée, Maj = 10 pas.
   function surTouche(e: React.KeyboardEvent<HTMLDivElement>) {
-    if (corrige || !reponse) return;
+    if (!selection || !reponse) return;
     const sens = e.key === "ArrowLeft" ? -1 : e.key === "ArrowRight" ? 1 : 0;
     if (!sens) return;
     e.preventDefault();
-    onReponse(decaler(reponse, sens * (e.shiftKey ? 10 : 1), precision));
+    onReponse?.(decaler(reponse, sens * (e.shiftKey ? 10 : 1), precision));
   }
 
   const span = vue.fin - vue.debut;
@@ -148,6 +194,13 @@ export function Frise({ precision, vue, vueRef, placer, zoomer, arreter, reponse
   const bonne = correction?.bonne;
   const xBonne = bonne ? X(versT(bonne)) : 0;
   const largeurPuce = correction ? largeurTexte(correction.titre) : 0;
+  const groupes = aDesMarqueurs ? regrouper(tries, vue, largeur, ECART_MARQUEURS, precision) : [];
+
+  // Un groupe s'ouvre en zoomant dessus ; une carte seule prévient l'écran qui l'affiche.
+  function ouvrirGroupe(debut: number, fin: number) {
+    const marge = Math.max((fin - debut) * 0.5, (vue.fin - vue.debut) * 0.08);
+    animer(debut - marge, fin + marge);
+  }
 
   return (
     <>
@@ -158,8 +211,12 @@ export function Frise({ precision, vue, vueRef, placer, zoomer, arreter, reponse
       </div>
       <div
         ref={ref}
-        className={s.frise}
-        aria-label="Frise chronologique : molette pour zoomer, glisser pour se déplacer, cliquer pour placer sa réponse"
+        className={selection ? s.frise : `${s.frise} ${s.lecture}`}
+        aria-label={
+          selection
+            ? "Frise chronologique : molette pour zoomer, glisser pour se déplacer, cliquer pour placer sa réponse"
+            : "Frise chronologique : molette pour zoomer, glisser pour se déplacer"
+        }
         onPointerDown={surAppui}
         onPointerMove={surDeplacement}
         onPointerUp={surRelache}
@@ -203,7 +260,7 @@ export function Frise({ precision, vue, vueRef, placer, zoomer, arreter, reponse
         <div className={s.axe} />
         {rappel && <div className={`${s.rappel} date`}>{rappel}</div>}
 
-        {decor(vue, largeur).map((m) => (
+        {!aDesMarqueurs && decor(vue, largeur).map((m) => (
           <div
             key={m.cle}
             className={m.discret ? `${s.motif} ${s.discret}` : s.motif}
@@ -212,6 +269,44 @@ export function Frise({ precision, vue, vueRef, placer, zoomer, arreter, reponse
             <Motif nom={m.motif} />
           </div>
         ))}
+
+        {groupes.map((g, i) => {
+          const x = X(g.t);
+          if (g.ids.length > 1) {
+            const titres = g.ids.map((id) => parId.get(id)!.titre).join(", ");
+            return (
+              <button
+                key={g.ids.join("|")}
+                type="button"
+                data-marqueur
+                className={s.groupe}
+                style={{ left: x }}
+                aria-label={`${g.ids.length} événements proches : ${titres}. Zoomer pour les séparer.`}
+                onClick={() => ouvrirGroupe(g.debut, g.fin)}
+              >
+                <span className="date">{g.ids.length}</span>
+              </button>
+            );
+          }
+          const m = parId.get(g.ids[0])!;
+          const haut = COULOIRS_MARQUEURS[i % COULOIRS_MARQUEURS.length];
+          return (
+            <div key={m.id}>
+              <div className={s.tigeMarqueur} style={{ left: x, top: haut + 44, height: 210 - haut - 44 }} />
+              <button
+                type="button"
+                data-marqueur
+                className={`${s.marqueur} ${s[`etat_${m.etat ?? "neutre"}`]}`}
+                style={{ left: clamp(x, 56, largeur - 56), top: haut }}
+                aria-label={`${m.titre}, ${dateCourte(m.date)}`}
+                onClick={() => onMarqueur?.(m.id)}
+              >
+                {m.motif && <Motif nom={m.motif} viewBox={m.motif === "bastille" ? "0 0 160 120" : "0 0 48 48"} />}
+                <span>{m.titre}</span>
+              </button>
+            </div>
+          );
+        })}
 
         {correction && bonne && (
           <>
@@ -251,7 +346,10 @@ export function Frise({ precision, vue, vueRef, placer, zoomer, arreter, reponse
           </>
         )}
 
-        {!corrige && (
+        {!selection && !corrige && (
+          <div className={s.aide}>Molette ou pincement : zoom · Glisser : se déplacer</div>
+        )}
+        {selection && (
           <>
             <div className={s.aide}>Cliquez ou tapez la date · Molette : zoom · Glisser : se déplacer</div>
             {fantome && (

@@ -275,3 +275,23 @@ réponses exactes/imprécises/absentes/tardives, fin/récapitulatif, instant de
 validation, accès étrangers, absence de colonnes privées et de correction sans
 partie. `tests/soloActions.test.ts` vérifie les cookies, les paramètres RPC,
 l'absence de fuite de secret/erreur et le fonctionnement avec session connectée.
+
+## Écran de partie (issue #18)
+
+`/partie/nouvelle` lance une partie solo de 10 questions (action `lancer`, `src/app/partie/actions.ts`) puis redirige vers
+`/partie/<id>?n=10`. `n` ne sert qu'à l'affichage (« 4 sur 10 ») : le serveur décide de la fin, aucun RPC ne renvoie la longueur
+d'une partie en cours.
+
+`/partie/[id]` appelle `nextQuestion` : la question en cours avec son chrono d'origine (reprise après rechargement), ou `null`
+quand tout est répondu, auquel cas la page appelle `finishGame` et affiche le bilan. Après une correction, « Question suivante »
+rappelle `nextQuestion` : le chrono de la question suivante ne démarre qu'à ce moment-là.
+
+Le chrono du navigateur n'est qu'un affichage, recalé sur `server_time`. À zéro, l'écran appelle `submitAnswer(..., null)` et le
+serveur constate l'expiration (0 point). Si cet appel échoue (réseau), un bouton « Réessayer » le renvoie. Avant la réponse, la
+page ne contient que le titre et l'illustration : ni date ni description. Le mode inversé n'a pas encore d'écran (issue #20).
+
+Disposition : la frise occupe toute la scène de jeu ; la carte de la question (horizontale) est posée en haut, la saisie et la
+correction en bas, sur le fond de la frise. Un clic hors des boîtes place la réponse. Les titres et descriptions du dataset sont
+affichés avec une majuscule ; un événement sans dessin affiche un pictogramme neutre.
+
+`/demo/partie` rejoue le même parcours avec un faux moteur dans le navigateur.

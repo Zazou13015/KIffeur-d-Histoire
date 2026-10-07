@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import type { HistoricDate, Precision } from "@/lib/game/dates";
 import {
   choisirPas,
@@ -46,15 +46,26 @@ type Props = {
   /** Cartes d'événements posées sur la frise ; les marqueurs proches se regroupent. */
   marqueurs?: MarqueurFrise[];
   onMarqueur?: (id: string) => void;
+  /**
+   * Écran de jeu : la frise occupe toute la scène, avec une boîte en haut (la question) et une boîte en bas (la réponse)
+   * posées sur son fond. Les clics hors des boîtes continuent de placer la réponse.
+   */
+  haut?: ReactNode;
+  /** Sous l'axe, directement sous la frise (bande des époques). */
+  sous?: ReactNode;
+  /** En bas de la scène. Chaque boîte se déclare elle-même avec `data-superposition`. */
+  bas?: ReactNode;
 };
 
 // Place minimale entre deux marqueurs avant qu'ils se regroupent, et couloirs où ils se posent.
-const ECART_MARQUEURS = 112;
+const ECART_MARQUEURS = 132;
 const COULOIRS_MARQUEURS = [10, 62, 114];
+
+const PUCE_MAX = 260;
 
 // Largeur de texte pour garder l'étiquette de la bonne réponse dans le cadre.
 function largeurTexte(texte: string): number {
-  return texte.length * 7 + 22;
+  return Math.min(PUCE_MAX, texte.length * 7 + 22);
 }
 
 export function Frise({
@@ -68,11 +79,20 @@ export function Frise({
   correction = null,
   marqueurs,
   onMarqueur,
+  haut,
+  sous,
+  bas,
 }: Props) {
   const interne = useVue(precision);
   const { vue, vueRef, placer, animer, zoomer, arreter } = controle ?? interne;
   const ref = useRef<HTMLDivElement>(null);
   const [largeur, setLargeur] = useState(800);
+  // Écran de jeu : hauteur de la scène et des boîtes posées en haut et en bas, pour placer l'axe.
+  const [hauteur, setHauteur] = useState(0);
+  const [hautHaut, setHautHaut] = useState(0);
+  const [hautBas, setHautBas] = useState(0);
+  const refHaut = useRef<HTMLDivElement>(null);
+  const refBas = useRef<HTMLDivElement>(null);
   const [fantome, setFantome] = useState<{ x: number; date: HistoricDate } | null>(null);
   const glisse = useRef<{ x: number; vue: Vue; bouge: boolean; losange: boolean } | null>(null);
   const pointeurs = useRef(new Map<number, number>());
@@ -94,10 +114,20 @@ export function Frise({
     [marqueurs],
   );
 
-  useEffect(() => {
+  // Mesure avant le premier affichage : l'axe ne saute pas au chargement.
+  useLayoutEffect(() => {
     const el = ref.current!;
-    const ro = new ResizeObserver(() => setLargeur(el.clientWidth));
+    const mesurer = () => {
+      setLargeur(el.clientWidth);
+      setHauteur(el.clientHeight);
+      setHautHaut(refHaut.current?.offsetHeight ?? 0);
+      setHautBas(refBas.current?.offsetHeight ?? 0);
+    };
+    mesurer();
+    const ro = new ResizeObserver(mesurer);
     ro.observe(el);
+    if (refHaut.current) ro.observe(refHaut.current);
+    if (refBas.current) ro.observe(refBas.current);
     return () => ro.disconnect();
   }, []);
 
@@ -126,7 +156,7 @@ export function Frise({
 
   function surAppui(e: React.PointerEvent<HTMLDivElement>) {
     // Un marqueur est un bouton : on laisse le clic lui revenir.
-    if ((e.target as HTMLElement).closest("[data-marqueur]")) return;
+    if ((e.target as HTMLElement).closest("[data-marqueur], [data-superposition]")) return;
     arreter();
     e.currentTarget.setPointerCapture(e.pointerId);
     pointeurs.current.set(e.pointerId, e.clientX);
@@ -140,6 +170,8 @@ export function Frise({
   }
 
   function surDeplacement(e: React.PointerEvent<HTMLDivElement>) {
+    // Sur une boîte de la scène (question, réponse) : ni repère fantôme ni glissement.
+    if ((e.target as HTMLElement).closest("[data-superposition]")) return setFantome(null);
     if (selection && e.pointerType === "mouse") {
       const r = ref.current!.getBoundingClientRect();
       setFantome({ x: e.clientX - r.left, date: dateA(e.clientX) });
@@ -180,6 +212,8 @@ export function Frise({
   // Flèches : un pas de la précision demandée, Maj = 10 pas.
   function surTouche(e: React.KeyboardEvent<HTMLDivElement>) {
     if (!selection || !reponse) return;
+    // Dans les cases de la saisie, les flèches déplacent le curseur de texte, pas la réponse.
+    if ((e.target as HTMLElement).closest("input, textarea")) return;
     const sens = e.key === "ArrowLeft" ? -1 : e.key === "ArrowRight" ? 1 : 0;
     if (!sens) return;
     e.preventDefault();
@@ -202,16 +236,33 @@ export function Frise({
     animer(debut - marge, fin + marge);
   }
 
+  const scene = haut != null || bas != null || sous != null;
+  // La frise remplit l'écran : l'axe descend au-dessus des boîtes du bas, le ciel du décor occupe tout l'espace au-dessus.
+  const ciel = hautHaut + 16;
+  const axeY = scene ? Math.max(ciel + 200, hauteur - hautBas - 140) : 210;
+  const decalage = axeY - 210;
+  const echelleDecor = scene ? clamp((axeY - ciel) / 220, 1, 1.7) : 1;
+  const placerMotif = (haut: number, taille: number) => {
+    if (!scene) return { top: haut, taille };
+    const t2 = taille * echelleDecor;
+    // Couloirs d'origine 14…125 étalés de haut en bas du ciel.
+    return { top: ciel - decalage + ((haut - 14) / 111) * Math.max(0, axeY - 60 - ciel - t2), taille: t2 };
+  };
+  const outils = (
+    <div className={s.outils}>
+      <span className={s.echelle}>{legendePas(pas)}</span>
+      <button type="button" onClick={() => zoomer(2)} aria-label="Dézoomer">−</button>
+      <button type="button" onClick={() => zoomer(0.5)} aria-label="Zoomer">+</button>
+    </div>
+  );
+
   return (
     <>
-      <div className={s.outils}>
-        <span className={s.echelle}>{legendePas(pas)}</span>
-        <button type="button" onClick={() => zoomer(2)} aria-label="Dézoomer">−</button>
-        <button type="button" onClick={() => zoomer(0.5)} aria-label="Zoomer">+</button>
-      </div>
+      {!scene && outils}
       <div
         ref={ref}
-        className={selection ? s.frise : `${s.frise} ${s.lecture}`}
+        className={`${selection ? s.frise : `${s.frise} ${s.lecture}`}${scene ? ` ${s.scene}` : ""}`}
+        style={scene ? { minHeight: hautHaut + hautBas + 380 } : undefined}
         aria-label={
           selection
             ? "Frise chronologique : molette pour zoomer, glisser pour se déplacer, cliquer pour placer sa réponse"
@@ -224,6 +275,13 @@ export function Frise({
         onPointerLeave={() => setFantome(null)}
         onKeyDown={surTouche}
       >
+        {scene && (
+          <div ref={refHaut} className={s.zoneScene}>
+            {haut != null && <div data-superposition className={s.superposition}>{haut}</div>}
+            <div data-superposition className={s.outilsScene}>{outils}</div>
+          </div>
+        )}
+        <div className={scene ? s.bandeScene : s.bande} style={scene ? { top: decalage } : undefined}>
         {EPOQUES.map((ep) => {
           const l = X(ep.debut);
           const r = X(ep.fin);
@@ -241,7 +299,7 @@ export function Frise({
             <div key={g.t}>
               <div className={s.grille} style={{ left: x }} />
               <div className={g.majeure ? `${s.trait} ${s.majeur}` : s.trait} style={{ left: x }} />
-              {x > 18 && x < largeur - 18 && (g.texte || g.annee != null) && (
+              {x > 50 && x < largeur - 50 && (g.texte || g.annee != null) && (
                 <div className={`${s.etiquette} date`} style={{ left: x }}>
                   {g.majeure ? (
                     <b>
@@ -260,15 +318,18 @@ export function Frise({
         <div className={s.axe} />
         {rappel && <div className={`${s.rappel} date`}>{rappel}</div>}
 
-        {!aDesMarqueurs && decor(vue, largeur).map((m) => (
-          <div
-            key={m.cle}
-            className={m.discret ? `${s.motif} ${s.discret}` : s.motif}
-            style={{ left: m.x, top: m.haut, width: m.taille, height: m.taille, transform: `translateX(-50%) rotate(${m.angle}deg)` }}
-          >
-            <Motif nom={m.motif} />
-          </div>
-        ))}
+        {!aDesMarqueurs && decor(vue, largeur, scene ? 90 : 34).map((m) => {
+          const { top, taille } = placerMotif(m.haut, m.taille);
+          return (
+            <div
+              key={m.cle}
+              className={m.discret ? `${s.motif} ${s.discret}` : s.motif}
+              style={{ left: m.x, top, width: taille, height: taille, transform: `translateX(-50%) rotate(${m.angle}deg)` }}
+            >
+              <Motif nom={m.motif} />
+            </div>
+          );
+        })}
 
         {groupes.map((g, i) => {
           const x = X(g.t);
@@ -292,12 +353,12 @@ export function Frise({
           const haut = COULOIRS_MARQUEURS[i % COULOIRS_MARQUEURS.length];
           return (
             <div key={m.id}>
-              <div className={s.tigeMarqueur} style={{ left: x, top: haut + 44, height: 210 - haut - 44 }} />
+              <div className={s.tigeMarqueur} style={{ left: x, top: haut + 52, height: 210 - haut - 52 }} />
               <button
                 type="button"
                 data-marqueur
                 className={`${s.marqueur} ${s[`etat_${m.etat ?? "neutre"}`]}`}
-                style={{ left: clamp(x, 56, largeur - 56), top: haut }}
+                style={{ left: clamp(x, 66, largeur - 66), top: haut }}
                 aria-label={`${m.titre}, ${dateCourte(m.date)}`}
                 onClick={() => onMarqueur?.(m.id)}
               >
@@ -346,19 +407,26 @@ export function Frise({
           </>
         )}
 
-        {!selection && !corrige && (
+        {!scene && !selection && !corrige && (
           <div className={s.aide}>Molette ou pincement : zoom · Glisser : se déplacer</div>
         )}
         {selection && (
           <>
-            <div className={s.aide}>Cliquez ou tapez la date · Molette : zoom · Glisser : se déplacer</div>
+            {!scene && <div className={s.aide}>Cliquez ou tapez la date · Molette : zoom · Glisser : se déplacer</div>}
             {fantome && (
-              <div className={s.fantome} style={{ left: fantome.x }}>
+              <div className={s.fantome} style={scene ? { left: fantome.x, top: ciel - decalage, height: 222 - ciel + decalage } : { left: fantome.x }}>
                 <i />
                 <span className="date">{dateCourte(fantome.date)}</span>
               </div>
             )}
           </>
+        )}
+        </div>
+        {scene && (
+          <div ref={refBas} className={s.zoneBasScene}>
+            {sous != null && <div data-superposition className={s.zoneSous}>{sous}</div>}
+            {bas != null && <div className={s.zoneBas}>{bas}</div>}
+          </div>
         )}
       </div>
     </>

@@ -1,33 +1,71 @@
 import Link from "next/link";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { finishGame } from "@/app/solo/actions";
+import { finishGame, nextQuestion, submitAnswer } from "@/app/solo/actions";
+import { Bilan } from "@/components/partie/Bilan";
+import { Partie } from "@/components/partie/Partie";
 import { getAccount } from "@/lib/account";
-import SaveGame from "./SaveGame";
 
-// Bilan fonctionnel pour #24. L'interface de jeu définitive relève de #18/#20.
-export default async function ResultPage({ params }: PageProps<"/partie/[id]">) {
+function Indisponible({ titre, texte }: { titre: string; texte: string }) {
+  return (
+    <main className="conteneur grid flex-1 grid-cols-1 content-start gap-3 py-12">
+      <h1 className="text-3xl">{titre}</h1>
+      <p className="m-0 text-encre-douce">{texte}</p>
+      <Link href="/partie/nouvelle" className="font-bold underline underline-offset-4">
+        Lancer une nouvelle partie
+      </Link>
+    </main>
+  );
+}
+
+// Joue une partie solo : la question en cours, sa correction, puis le bilan.
+// Au rechargement, `nextQuestion` rend la question en cours avec son chrono d'origine, ou `null` quand tout est répondu.
+export default async function PartiePage({ params, searchParams }: PageProps<"/partie/[id]">) {
   const { id } = await params;
+  const { n } = await searchParams;
   const account = await getAccount();
-  const next = `/partie/${id}`;
-  if (account && !account.username) redirect(`/profil?next=${encodeURIComponent(next)}`);
-  const anonymous = (await cookies()).has(`histoire-solo-${id}`);
-  let result;
-  try { result = await finishGame(id); }
-  catch {
-    return <main className="mx-auto w-full max-w-xl px-4 py-12">
-      <h1 className="text-2xl">Bilan indisponible</h1>
-      <p>Cette partie est en cours, inaccessible ou expirée.</p>
-      <Link href="/">Revenir à l’accueil</Link>
-    </main>;
+  const suite = `/partie/${id}${typeof n === "string" ? `?n=${encodeURIComponent(n)}` : ""}`;
+  if (account && !account.username) redirect(`/profil?next=${encodeURIComponent(suite)}`);
+  const anonyme = (await cookies()).has(`histoire-solo-${id}`);
+
+  // Le nombre de questions ne sert qu'à l'affichage (« 4 sur 10 ») : le serveur décide de la fin.
+  const total = Math.min(100, Math.max(1, Number.parseInt(typeof n === "string" ? n : "", 10) || 10));
+
+  let question;
+  try {
+    question = await nextQuestion(id);
+  } catch {
+    return <Indisponible titre="Partie indisponible" texte="Cette partie est inaccessible ou expirée." />;
   }
-  return <main className="mx-auto flex w-full max-w-xl flex-col gap-5 px-4 py-12">
-    <h1 className="text-2xl">Partie terminée</h1>
-    <p>{result.total_points} points · {result.average_accuracy}% de précision · {result.direction === "inverse" ? "Mode inverse" : "Mode date"}</p>
-    {!account ? <Link href={`/connexion?next=${encodeURIComponent(next)}`}>Se connecter pour sauvegarder</Link>
-      : anonymous ? <SaveGame gameId={id} /> : <p role="status">Partie sauvegardée dans ton compte KFFR.</p>}
-    <ol>{result.questions.map(question => <li key={question.question_id}>
-      {question.position}. {"title" in question ? question.title : "Question"} — {question.points} points
-    </li>)}</ol>
-  </main>;
+
+  if (question && "date" in question) {
+    return <Indisponible titre="Mode inversé" texte="Ce mode n'a pas encore d'écran de jeu." />;
+  }
+
+  if (question) {
+    return (
+      <main className="flex flex-1 flex-col">
+        <Partie
+          gameId={id}
+          total={total}
+          question={question}
+          actions={{ soumettre: submitAnswer, suivante: nextQuestion, terminer: finishGame }}
+          connecte={Boolean(account)}
+          anonyme={anonyme}
+        />
+      </main>
+    );
+  }
+
+  let resultat;
+  try {
+    resultat = await finishGame(id);
+  } catch {
+    return <Indisponible titre="Bilan indisponible" texte="Cette partie est inaccessible ou expirée." />;
+  }
+  return (
+    <main className="conteneur grid flex-1 grid-cols-1 content-start gap-6 py-8">
+      <Bilan resultat={resultat} connecte={Boolean(account)} anonyme={anonyme} />
+    </main>
+  );
 }

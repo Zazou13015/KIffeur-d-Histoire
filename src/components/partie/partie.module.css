@@ -1,29 +1,23 @@
 /* Écran de partie, d'après la charte « Cabinet de curiosités » (maquette n° 4).
    Carte de question à gauche, frise zoomable à droite, bande des époques sous la frise. */
 
-.jeu {
-  background: var(--color-papier);
-  border: 1px solid var(--color-filet);
-  display: grid;
-  grid-template-columns: 330px minmax(0, 1fr);
-}
+/* Écran de jeu en plein écran, comme une appli : l'en-tête du site s'efface, la frise prend toute la place. */
+.jeu { position: fixed; inset: 0; z-index: 50; display: flex; flex-direction: column; overflow-y: auto; background: var(--color-blanc-cartel); }
+.quitter { position: absolute; left: 16px; top: 14px; font-size: 13px; color: var(--color-encre-douce); text-decoration: underline; text-underline-offset: 3px; }
 
-/* ---------- Carte de question ---------- */
-.carte {
-  border-right: 1px solid var(--color-filet);
-  padding: 20px;
-  display: grid;
-  gap: 12px;
-  align-content: start;
-  background: var(--color-blanc-cartel);
-}
-.illustration { background: #e9e6da; border: 1px solid #d6d2c4; padding: 18px 26px; color: var(--color-encre); }
-.illustration svg { width: 100%; height: auto; display: block; }
+/* ---------- Carte de question (boîte du haut, à l'horizontale) ---------- */
+.carteH { display: flex; align-items: center; justify-content: center; gap: 20px; padding: 4px 0; max-width: 820px; margin-inline: auto; }
+.carteH .illustration { width: 150px; flex: none; }
+.carteH .carteTexte { min-width: 0; text-align: left; }
+.illustration { background: #e9e6da; border: 1px solid #d6d2c4; padding: 8px; color: var(--color-encre); align-self: stretch; display: grid; place-items: center; min-height: 96px; }
+.illustration svg, .illustration img { width: 100%; height: auto; display: block; }
+.illustration .pictogramme { width: 64px; opacity: 0.7; }
+.carteTexte { display: grid; gap: 4px; min-width: 0; }
 .inventaire { font-family: var(--font-mono); font-size: 11px; color: var(--color-oxyde); letter-spacing: 0.06em; text-transform: uppercase; }
-.carte h2 { font-size: 26px; line-height: 1.1; }
-.carte p { margin: 0; font-size: 15px; color: var(--color-encre-douce); }
-.meta { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; border-top: 1px solid #d6d2c4; padding-top: 10px; font-size: 13px; color: var(--color-encre-douce); }
-.meta b { font-weight: 700; color: var(--color-encre); }
+.carteTexte h2 { font-size: 28px; line-height: 1.1; overflow-wrap: anywhere; }
+.titreMoyen .carteTexte h2 { font-size: 24px; }
+.titreLong .carteTexte h2 { font-size: 20px; line-height: 1.2; }
+.consigne { margin: 0; font-size: 14px; font-weight: 700; color: var(--color-encre); }
 
 /* ---------- Saisie jour / mois / année ---------- */
 .saisie { display: grid; gap: 4px; padding: 12px 14px; background: var(--color-papier); border: 1px solid var(--color-filet); }
@@ -59,9 +53,6 @@
 .resultat { display: grid; gap: 6px; padding: 12px 14px; border: 1px solid var(--color-laiton); background: var(--color-fond-resultat); font-size: 14px; }
 .points { font-size: 38px; line-height: 1; color: var(--color-oxyde); }
 
-/* ---------- Plateau ---------- */
-.plateau { min-width: 0; padding: 16px 20px 18px; display: grid; gap: 12px; align-content: start; }
-
 /* ---------- Bande des époques ---------- */
 .epoques { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; }
 .piste { position: relative; display: grid; grid-template-columns: var(--colonnes); border: 1px solid var(--color-encre); min-width: 0; }
@@ -77,14 +68,16 @@
 .tout.active { background: var(--color-encre); color: var(--color-papier); }
 
 @media (max-width: 860px) {
-  .jeu { grid-template-columns: 1fr; }
-  .carte { border-right: 0; border-bottom: 1px solid var(--color-filet); grid-template-columns: 110px minmax(0, 1fr); }
-  .illustration { grid-row: span 3; padding: 10px; align-self: start; }
-  .carte > :not(.illustration) { grid-column: 2; }
-  .carte > .meta, .carte > .saisie, .carte > .valider, .carte > .resultat { grid-column: 1 / -1; }
+  .carteH { gap: 12px; }
+  .carteH .illustration { width: 110px; }
+  .carteTexte h2 { font-size: 22px; }
 }
 
 @media (max-width: 600px) {
+  .carteH { flex-wrap: wrap; }
+  .carteH .illustration { width: 84px; }
+  .carteH > [role="timer"] { margin-inline-start: auto; }
+  .carteTexte h2 { font-size: 20px; }
   .epoques { grid-template-columns: 1fr; }
   .tout { padding: 8px 12px; max-width: none; }
   .piste button { padding-inline: 2px; }
@@ -93,3 +86,38 @@
   .piste button b { font-size: 10.5px; }
   .piste button small { display: none; }
 }
+
+/* ---------- Partie en cours ---------- */
+.entete { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 8px; }
+.erreur { margin: 0; padding: 8px 10px; border: 1px solid var(--color-oxyde); background: var(--color-fond-resultat); color: var(--color-oxyde); font-size: 14px; }
+
+/* ---------- Sous la frise : carte à gauche, saisie au milieu, Valider (puis la correction) à droite ---------- */
+.rangee { display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, 400px) minmax(0, 1fr); gap: 16px; align-items: stretch; }
+.boite { background: rgb(251 251 248 / 0.94); border: 1px solid var(--color-encre); padding: 12px 14px; cursor: default; }
+.carteBas { display: flex; gap: 12px; align-items: center; min-width: 0; }
+.carteBas .illustration { width: 96px; min-height: 0; flex: none; align-self: center; padding: 4px; }
+.carteBas strong { font-family: var(--font-titre); font-weight: 400; font-size: 18px; line-height: 1.2; overflow-wrap: anywhere; }
+.colonneSaisie { display: grid; gap: 8px; align-content: center; }
+.colonneSaisie .saisie { background: transparent; border: 0; padding: 0; }
+.colonneSaisie .aideSaisie { display: none; }
+.colonneAction { display: grid; align-content: center; min-width: 0; cursor: default; }
+.colonneAction > .valider { min-height: 64px; font-size: 18px; }
+.resultat { border-color: var(--color-laiton); background: rgb(250 244 230 / 0.96); }
+.resultat .valider { margin-top: 6px; }
+.explication { color: var(--color-encre-douce); line-height: 1.4; overflow-wrap: anywhere; }
+
+@media (max-width: 860px) {
+  .rangee { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .carteBas { display: none; }
+}
+@media (max-width: 600px) {
+  .rangee { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+}
+
+/* Correction compacte : les points à gauche, l'écart et l'explication à droite, le bouton dessous. */
+.resultat { grid-template-columns: auto minmax(0, 1fr); column-gap: 14px; row-gap: 2px; align-content: center; padding: 10px 14px; }
+.resultat > :first-child { grid-column: 1 / -1; }
+.resultat .points { grid-column: 1; grid-row: 2 / span 2; align-self: center; }
+.resultat > :nth-child(3), .resultat .explication { grid-column: 2; }
+.resultat .explication { font-size: 13px; line-height: 1.35; }
+.resultat .valider { grid-column: 1 / -1; }

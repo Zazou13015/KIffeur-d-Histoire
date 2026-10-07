@@ -103,7 +103,7 @@ Règles :
 - Les autres tables ont la RLS active avec une lecture publique.
 - Vérification : `supabase/tests/reponses_invisibles.sql` (voir README).
 - Les périodes (siècle, millénaire) se calculent depuis l'année, pas besoin de les stocker.
-- Plus tard : `chapter_cards` (cartes pédagogiques placées sur la frise d'un chapitre), avec le mode pédagogique.
+- Pilote #21 : `chapter_cards` est une table interne privée avec FK vers `chapters`, `events` et `event_chapters`. RLS active sans policy publique, aucun droit direct `anon`/`authenticated`. `get_chapter_cards(p_chapter_id)` (`security definer`, `search_path` vide) expose une projection pédagogique ordonnée sans `event_id`, empêchant la jointure API événement → bonne date ; aucun droit supplémentaire sur `event_answers`/`event_aliases`. Import atomique réservé à `service_role` via `replace_chapter_cards` (`security invoker`). Migration préparée et validée localement, **sans application en production**. `/demo/pedagogie` utilise les fichiers du dépôt au build, sans connexion Supabase, pour relire les 37 cartes. Format et périmètre : [cartes pédagogiques](../content/pedagogie/README.md). Le mode pédagogique reste prévu en #22.
 
 **Joueurs et parties**
 - `player_stats` : statistiques solo par joueur et par thème (précision moyenne, meilleur score).

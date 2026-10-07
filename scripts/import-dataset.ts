@@ -3,9 +3,11 @@
 // Connexion : SUPABASE_URL et SUPABASE_SERVICE_ROLE_KEY, lus dans l'environnement ou dans .env.local.
 // Idempotent : relancer l'import met à jour les lignes existantes sans créer de doublon.
 
-import { readdirSync, readFileSync } from "node:fs";
+import { readdirSync } from "node:fs";
 import path from "node:path";
 import { createClient } from "@supabase/supabase-js";
+import { lireCsv } from "./csv";
+import { estUrlLocale, FICHIER_CARTES, importerCartesLocales, validerCartes } from "./import-cartes";
 import { fusionnerDescriptions } from "./import-descriptions";
 
 type Ligne = Record<string, string>;
@@ -13,46 +15,6 @@ type Ligne = Record<string, string>;
 // ---------------------------------------------------------------------------
 // Lecture des CSV (UTF-8 avec BOM, guillemets doubles, retours à la ligne possibles dans une cellule)
 // ---------------------------------------------------------------------------
-
-function lireCsv(fichier: string): Ligne[] {
-  const texte = readFileSync(fichier, "utf8").replace(/^﻿/, "");
-  const lignes: string[][] = [];
-  let ligne: string[] = [];
-  let cellule = "";
-  let entreGuillemets = false;
-  for (let i = 0; i < texte.length; i++) {
-    const c = texte[i];
-    if (entreGuillemets) {
-      if (c === '"' && texte[i + 1] === '"') {
-        cellule += '"';
-        i++;
-      } else if (c === '"') {
-        entreGuillemets = false;
-      } else {
-        cellule += c;
-      }
-    } else if (c === '"') {
-      entreGuillemets = true;
-    } else if (c === ",") {
-      ligne.push(cellule);
-      cellule = "";
-    } else if (c === "\n" || c === "\r") {
-      if (c === "\r" && texte[i + 1] === "\n") i++;
-      ligne.push(cellule);
-      lignes.push(ligne);
-      ligne = [];
-      cellule = "";
-    } else {
-      cellule += c;
-    }
-  }
-  if (cellule !== "" || ligne.length > 0) {
-    ligne.push(cellule);
-    lignes.push(ligne);
-  }
-  const [entetes, ...donnees] = lignes.filter((l) => l.some((v) => v !== ""));
-  return donnees.map((l) => Object.fromEntries(entetes.map((h, i) => [h, (l[i] ?? "").trim()])));
-}
 
 function trouverFichier(dossier: string, nom: string): string {
   // kiffeurs-events-v18.csv, kiffeurs-events-v19.csv… : on accepte n'importe quelle version.
@@ -168,6 +130,10 @@ async function importer() {
   const packEvenements = csv("ready-collection-events");
   const tags = csv("tags");
   const evenementTags = csv("event-tags");
+  // Pilote en attente de relecture : jamais envoyé à une base distante.
+  // Tout valider avant le premier upsert du dataset.
+  const cartes = estUrlLocale(process.env.SUPABASE_URL!) && path.basename(path.resolve(dossier)) === "dataset-v18"
+    ? validerCartes(lireCsv(FICHIER_CARTES), evenements, themes, liensProgramme) : null;
   // Fichier facultatif : les brouillons sont testables uniquement en local.
   const fichierDescriptions = readdirSync(dossier).find((f) => /^kiffeurs-description-additions-v\d+\.csv$/.test(f));
   const propositionsDescriptions = fichierDescriptions ? lireCsv(path.join(dossier, fichierDescriptions)) : [];
@@ -410,6 +376,9 @@ async function importer() {
     )),
     ignores: tagIgnores,
   });
+
+  if (cartes) await importerCartesLocales(cartes, process.env.SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!);
+  else console.log("Cartes pilotes ignorées : import automatique uniquement pour le v18 en LOCAL.");
 
   // Résumé.
   console.log(`\nImport de ${dossier} terminé.\n`);

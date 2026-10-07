@@ -4,6 +4,8 @@ Données historiques fournies par Antonin, à importer dans le schéma `histoire
 
 ## Importer le contenu dans la base
 
+La [généralisation pédagogique de l’issue #21](pedagogie/README.md) contient 325 cartes pour les 41 chapitres, dont les 37 cartes pilotes validées. Le même import v18 les charge **uniquement sur la pile locale**, après la migration `chapter_cards`. La [relecture complète](pedagogie/relecture-v1.md) et le [rapport des lacunes](pedagogie/lacunes-v1.md) attendent la validation finale d’Antonin. Les sources restent internes et aucune carte n’est importée à distance.
+
 ```bash
 npm run content:import -- --dossier content/dataset-v18
 ```

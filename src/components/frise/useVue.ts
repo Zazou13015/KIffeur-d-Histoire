@@ -5,18 +5,18 @@ import type { Precision } from "@/lib/game/dates";
 import { borner, VUE_DE_BASE, type Vue } from "@/lib/game/frise";
 
 // Plage visible de la frise, avec zoom animé (sauf si l'utilisateur réduit les animations).
-export function useVue(precision: Precision) {
-  const [vue, setVueBrute] = useState<Vue>(VUE_DE_BASE);
+export function useVue(precision: Precision, bornes: Vue = VUE_DE_BASE, initiale: Vue = VUE_DE_BASE) {
+  const [vue, setVueBrute] = useState<Vue>(() => borner(initiale.debut, initiale.fin, precision, bornes));
   const vueRef = useRef(vue);
   const anim = useRef<number | null>(null);
 
   const placer = useCallback(
     (debut: number, fin: number) => {
-      const v = borner(debut, fin, precision);
+      const v = borner(debut, fin, precision, bornes);
       vueRef.current = v;
       setVueBrute(v);
     },
-    [precision],
+    [precision, bornes],
   );
 
   const arreter = useCallback(() => {

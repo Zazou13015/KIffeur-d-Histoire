@@ -2,20 +2,20 @@
 
 La généralisation contient **325 cartes dans 41/41 chapitres**, avec 5 à 12 cartes par chapitre. Cela garantit la présence d’une séquence, **pas une couverture exhaustive de chaque thème**. Tous les rattachements, y compris ceux sans événement et les libellés canoniques vides, ont été examinés avant la sélection. Les événements redondants ne deviennent pas automatiquement des cartes.
 
-Les 37 cartes pilotes restent la référence validée. La généralisation #21 n’a ajouté ni corrigé d’événement, de date ou de rattachement canonique. La correction dédiée de la Somme décrite ci-dessous synchronise maintenant sa plage dans les fichiers, avec migration production encore en attente de GO. Les autres propositions concernent une étape future du corpus, avec vérification documentaire et validation humaine. Les périodes de contexte reprennent seulement un libellé temporel explicite ; les siècles, décennies et bornes ambiguës restent sans années numériques inventées.
+Les 37 cartes pilotes restent la référence validée. La généralisation #21 n’a ajouté ni corrigé d’événement, de date ou de rattachement canonique. La correction dédiée de la Somme décrite ci-dessous est appliquée dans les fichiers et en production après GO humain et merge de #63. Les autres propositions concernent une étape future du corpus, avec vérification documentaire et validation humaine. Les périodes de contexte reprennent seulement un libellé temporel explicite ; les siècles, décennies et bornes ambiguës restent sans années numériques inventées.
 
 ## Limites principales
 
 THM-027, THM-028, THM-029 et THM-031 ont les déséquilibres les plus importants en histoire générale. Les jalons HGGSP non événementiels permettent quelques synthèses de période, mais ne remplacent pas les repères manquants, particulièrement dans THM-037 à THM-046. Les étapes d’un même processus ne sont séparées que lorsqu’elles éclairent des mécanismes différents : négociation/application à Genève, infrastructure/réseaux/mobilités pour le tunnel, preuve/jugement à Nuremberg.
 
-## Anomalies canoniques à corriger avant #22
+## Suivi des anomalies canoniques avant #22
 
-### EVT-0210 — bataille de la Somme (THM-027) — correction préparée
+### EVT-0210 — bataille de la Somme (THM-027) — correction appliquée (#63)
 
-- **État historique du v18, encore présent en production avant GO :** `date_text` vaut `1er juillet - 18 novembre 1916`, mais le début structuré est le 18 novembre 1916, les trois champs `end_*` sont nuls, `precision=DAY` et `date_status=EXACT`. Une frise réduirait ainsi la bataille à son dernier jour.
+- **État historique du v18, corrigé depuis #63 :** `date_text` vaut `1er juillet - 18 novembre 1916`, mais le début structuré est le 18 novembre 1916, les trois champs `end_*` sont nuls, `precision=DAY` et `date_status=EXACT`. Une frise réduirait ainsi la bataille à son dernier jour.
 - **Correction dédiée dans les fichiers :** `event_type=EVENT`, début au **1er juillet 1916**, fin au **18 novembre 1916**, `precision=DAY_RANGE`, `date_status=EXACT`, `playable_mode=RANGE`. Le texte de date reste inchangé. Convention identique à Verdun (`EVT-0482`) ; [audit et dépendances](../dataset-v18/kiffeurs-somme-day-range-README.md).
 - **Carte concernée :** `CARD-027-somme-guerre-usure` garde son événement, son ordre et toute sa prose. Seuls ses champs structurés et sa précision suivent la plage corrigée. Le total reste **325 cartes / 41 chapitres**.
-- **Condition avant #22 :** la migration dédiée `20261007143355_corrige_somme_day_range.sql` est préparée et testée localement. **Ne pas exploiter cette correction en production avant `GO CORRECTION SOMME PROD`, application de la migration revue et merge de sa PR.** Aucune écriture production pendant la préparation.
+- **Condition avant #22 satisfaite :** après `GO CORRECTION SOMME PROD`, la migration dédiée `20261007143355_corrige_somme_day_range.sql` a été appliquée en transaction le 7 octobre 2026, puis #63 fusionnée. Somme et carte vérifiées en plage ; 2 001 événements / 325 cartes / 41 chapitres, Histoire à 10 et KFFR inchangé 35 / max 20261001172833. Aucun autre contenu ni droit modifié.
 - **Audit reproductible en lecture seule :** `npm run content:audit-plages -- --strict` cherche les plages explicites réduites à un point. Il signale désormais **0 anomalie sur les 2 001 événements**, pour ses règles actuelles. L’algorithme générique est inchangé ; un test réintroduit l’ancien point de la Somme et vérifie qu’il est détecté. La CI utilise le mode strict.
 - **Limites de cet audit :** détection conservatrice, non exhaustive, sans vérification historique ni déduction des bornes. Les dates secondaires après un point-virgule, les siècles, les décennies et les bornes ambiguës sont exclues. Il ne remplace pas l’audit des incohérences de Han (`EVT-0040`) et de Fachoda (`EVT-0475`), documentées plus bas.
 
@@ -249,4 +249,4 @@ THM-027, THM-028, THM-029 et THM-031 ont les déséquilibres les plus importants
 - L’absence de section pour un chapitre signifie qu’aucune lacune structurante supplémentaire n’a été identifiée dans cette sélection, pas une certification d’exhaustivité encyclopédique. Les titres ci-dessus doivent être rapprochés des libellés exacts du catalogue et de la relecture.
 - Le PRD et certains documents historiques mentionnent encore 2 000 événements/46 chapitres ; les contrôles de cette issue utilisent le canon courant : 2 001 événements/41 chapitres. Le seed local est remis en cohérence par l’import v18, sans intervention en production.
 
-**#21 est fusionnée et ses 325 cartes sont en production.** La correction dédiée de la Somme reste en PR, sans merge ni écriture production jusqu’au message `GO CORRECTION SOMME PROD`. #22 n’est pas démarré.
+**#21 est fusionnée et ses 325 cartes sont en production.** La correction dédiée de la Somme est appliquée après GO humain et merge de #63. #22 est en cours ; les autres lacunes documentaires restent conservées.

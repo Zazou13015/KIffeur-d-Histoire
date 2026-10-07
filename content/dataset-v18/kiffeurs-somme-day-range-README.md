@@ -1,8 +1,13 @@
 # Correction dédiée — EVT-0210, bataille de la Somme
 
 Préparation depuis `main` après merge de #59, séparée de #22 et de #18.
-**Aucune écriture production effectuée.** La migration et le merge attendent
-le message exact `GO CORRECTION SOMME PROD`.
+Après `GO CORRECTION SOMME PROD`, la migration revue a été appliquée le
+7 octobre 2026 via SQL brut dans sa transaction ; PR #63 fusionnée en
+`c5cf9b5d19ce30986262a23aff73e1b6803c27c2`, CI main et Vercel verts.
+Production vérifiée : Somme et carte en plage, 2 001 événements / 325 cartes /
+41 chapitres, Histoire à 10 (version unique), historique KFFR inchangé à
+35 / max 20261001172833. Empreintes des lignes non concernées, alias et
+historique KFFR identiques avant/après ; textes et statuts conservés.
 
 ## Canon et convention vérifiés
 
@@ -43,7 +48,7 @@ reconstruit seulement ses anciens champs autorisés sur une copie pour comparer
 ces empreintes. Toute autre date, tout statut, toute jouabilité et toute prose
 restent contrôlés, sans remplacer les hashes ni masquer une correction partielle.
 
-## Migration préparée
+## Migration revue et appliquée
 
 `supabase/migrations/20261007143355_corrige_somme_day_range.sql` contient une
 transaction explicite et contrôle intégralement les préconditions avant les
@@ -73,7 +78,6 @@ Le baseline KFFR reste **35 / 20261001172833** ; aucun SQL ne modifie
 - Ce test rejoue aussi le corps exact de la migration dans des transactions annulées : comparaison de tous les champs de cinq tables, registre unique, refus de la réapplication, d’une réponse ou carte inattendue et d’un lot incomplet, rollback intégral.
 - `npm test`, lint, typecheck, build et contrôle de la démo complètent la validation.
 
-Après GO seulement : revalider le HEAD de la PR et la production, appliquer le
-fichier exact en transaction via SQL brut, contrôler les données et le registre
-Histoire à 10 (nouvelle version une fois), vérifier le baseline KFFR inchangé,
-puis fusionner. #22 commencera uniquement après cette validation et ce merge.
+Le HEAD et le SHA-256 ont été revérifiés avant application. Aucun `db push`,
+`apply_migration` ou `migration repair`. La migration appliquée ne doit pas être
+rejouée. #22 a démarré après les contrôles et le merge de #63.

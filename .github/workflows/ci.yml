@@ -27,8 +27,9 @@ jobs:
       - run: npm run content:relecture-cartes -- --check
       - run: npm run lint
       - run: npm run typecheck
-      - run: npm run build
+      - run: npx tsx scripts/build-apprendre-local.ts
       - run: npm run content:test-demo-pedagogie
+      - run: npx tsx scripts/verifier-apprendre.ts
 
   tests-cartes-local:
     runs-on: ubuntu-latest

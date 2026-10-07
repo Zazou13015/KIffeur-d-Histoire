@@ -40,7 +40,7 @@ describe("écran de partie : passerelle avec le serveur", () => {
     expect(urlIllustration("EVT-0012.svg", base)).toBe("https://exemple.supabase.co/storage/v1/object/public/histoire-illustrations/EVT-0012.svg");
     expect(urlIllustration("../secret.svg", base)).toBeNull();
     expect(urlIllustration(null, base)).toBeNull();
-    expect(urlIllustration("EVT-0012.svg", undefined)).toBeNull();
+    expect(urlIllustration("EVT-0012.svg", "")).toBeNull();
   });
 
   it("recale le chrono sur l'horloge du serveur", () => {

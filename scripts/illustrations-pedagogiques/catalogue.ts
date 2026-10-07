@@ -218,7 +218,3 @@ export const scenes: Scene[] = choix.trim().split("\n").map(ligne => {
   const [id, formes, intention, vigilance] = ligne.split("|");
   return { event: `EVT-${id}`, objets: formes.split(","), intention, vigilance };
 });
-
-
-
-

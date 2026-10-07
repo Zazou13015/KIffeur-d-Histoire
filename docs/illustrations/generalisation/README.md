@@ -26,6 +26,8 @@ Le branchement est automatique par le mécanisme existant, réservé au serveur 
 
 Référence absolue : les 120 SVG du commit `c23173d54858e7e12c61ccde04553471bd3ff94f`, dont le pilote #65 validé par Antonin. L'[audit du pilote](../pilote-pedagogie.md) reste applicable. L'empreinte de chaque référence est conservée dans [reference-validee.json](../../../content/illustrations/reference-validee.json) et vérifiée automatiquement.
 
+La règle `.gitattributes` impose LF aux SVG de ce dossier : un checkout Windows ne transforme ainsi pas leurs octets en CRLF et ne produit pas de fausses alertes d'intégrité. Aucun SVG de référence n'est modifié par cette règle.
+
 - **Cadrage** : 160 × 120, fond papier opaque, sujet entier, composition en vis-à-vis déjà présente dans le stock ; sol sauge vers 108, espace vide conservé.
 - **Formes et détail** : cercles, rectangles, ellipses et chemins courts ; personnages à tête ronde, corps géométrique et membres au trait, pas de portrait. Façades, livres et machines réduits à leurs pièces utiles. Un objet principal et un accessoire ; un troisième objet seulement quand nécessaire pour distinguer un propos.
 - **Trait** : encre `#1d2a3a`, principal 2 px, extrémités/jonctions arrondies ; divisions secondaires 1–1,5 px. Les réductions compensent la largeur du trait.

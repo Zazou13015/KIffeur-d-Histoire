@@ -133,4 +133,3 @@ export function placer(nom: string, x: number, y: number, scale = 1): string {
   const svg = objet.svg.replace(/stroke-width="([\d.]+)"/g, (_, w: string) => `stroke-width="${Number(w) / scale}"`);
   return `<g transform="translate(${x} ${y}) scale(${scale})" stroke-width="${2 / scale}">${svg}</g>`;
 }
-

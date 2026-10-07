@@ -1,1 +1,2 @@
 *.sh text eol=lf
+content/illustrations/*.svg text eol=lf

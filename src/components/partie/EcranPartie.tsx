@@ -131,41 +131,44 @@ export function EcranPartie({ question, corriger, chrono, suivante }: Props) {
   const expirePerdue = erreur != null && restant <= 0 && !correction;
   const description = correction?.description ?? question.description;
 
-  return (
-    <section className={s.jeu} aria-label="Écran de partie">
-      <aside className={s.carte}>
-        {(question.inventaire || chrono) && (
-          <div className={s.entete}>
-            <span className={s.inventaire}>{question.inventaire}</span>
-            {chrono && !correction && <ChronoCirculaire restant={restant} total={chrono.totalMs / 1000} taille={64} />}
-          </div>
+  // Boîte du haut : la carte de la question, à l'horizontale.
+  const carte = (
+    <div className={s.carteH}>
+      <div className={s.illustration}>
+        {question.illustrationUrl ? (
+          // Dessin SVG léger (8 Ko) : pas d'optimisation d'image nécessaire.
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={question.illustrationUrl} alt="" width={160} height={120} />
+        ) : question.illustration ? (
+          <Motif nom={question.illustration} viewBox="0 0 160 120" />
+        ) : (
+          // Tous les événements n'ont pas encore leur dessin : un pictogramme neutre garde la carte à l'équilibre.
+          <Motif nom="parchemin" viewBox="0 0 48 48" className={s.pictogramme} />
         )}
-        {(question.illustrationUrl || question.illustration) && (
-          <div className={s.illustration}>
-            {question.illustrationUrl ? (
-              // Dessin SVG léger (8 Ko) : pas d'optimisation d'image nécessaire.
-              // eslint-disable-next-line @next/next/no-img-element
-              <img src={question.illustrationUrl} alt="" width={160} height={120} />
-            ) : (
-              <Motif nom={question.illustration!} viewBox="0 0 160 120" />
-            )}
-          </div>
-        )}
+      </div>
+      <div className={s.carteTexte}>
+        <span className={s.inventaire}>
+          {question.inventaire ? `${question.inventaire} · ` : ""}Question {question.numero} sur {question.total}
+        </span>
         <h2>{question.titre}</h2>
-        {description && <p>{description}</p>}
-        <div className={s.meta}>
-          <span>
-            Question {question.numero} sur {question.total} · <b>{REGLAGES[precision].consigne}</b>
-          </span>
-        </div>
-        <SaisieDate
-          precision={precision}
-          champs={champs}
-          onChange={changerChamps}
-          onFocusChange={setEnSaisie}
-          onValider={valider}
-          verrouille={correction != null || envoi}
-        />
+        <p className={s.consigne}>{REGLAGES[precision].consigne}</p>
+      </div>
+      {chrono && !correction && <ChronoCirculaire restant={restant} total={chrono.totalMs / 1000} taille={72} />}
+    </div>
+  );
+
+  // Boîte du bas : la saisie sous la frise, puis la correction.
+  const reponseBoite = (
+    <div className={s.boiteReponse}>
+      <SaisieDate
+        precision={precision}
+        champs={champs}
+        onChange={changerChamps}
+        onFocusChange={setEnSaisie}
+        onValider={valider}
+        verrouille={correction != null || envoi}
+      />
+      <div className={s.actions}>
         {erreur && (
           <p role="alert" className={s.erreur}>
             {erreur}
@@ -180,32 +183,37 @@ export function EcranPartie({ question, corriger, chrono, suivante }: Props) {
             {correction ? (suivante?.libelle ?? "Rejouer cette question") : "Valider ma réponse"}
           </button>
         )}
-        {correction && (
-          <div className={s.resultat} role="status">
-            <span className={s.inventaire}>Réponse : {formatHistoricDate(correction.bonne, precision)}</span>
-            <span className={`${s.points} date`}>{correction.points} pts</span>
-            <span>
-              {correction.expiree
-                ? "Temps écoulé : cette question vaut 0 point."
-                : correction.ecart
-                  ? `Écart de ${correction.ecart}.`
-                  : BRAVO[precision]}
-            </span>
-          </div>
-        )}
-      </aside>
-
-      <div className={s.plateau}>
-        <Frise
-          precision={precision}
-          controle={controle}
-          reponse={reponse}
-          onReponse={poserSurFrise}
-          enSaisie={enSaisie}
-          correction={correction && { bonne: correction.bonne, titre: question.titre }}
-        />
-        <BandeEpoques vue={vue} animer={animer} />
       </div>
+      {correction && (
+        <div className={s.resultat} role="status">
+          <span className={s.inventaire}>Réponse : {formatHistoricDate(correction.bonne, precision)}</span>
+          <span className={`${s.points} date`}>{correction.points} pts</span>
+          <span>
+            {correction.expiree
+              ? "Temps écoulé : cette question vaut 0 point."
+              : correction.ecart
+                ? `Écart de ${correction.ecart}.`
+                : BRAVO[precision]}
+          </span>
+          {description && <span className={s.explication}>{description}</span>}
+        </div>
+      )}
+    </div>
+  );
+
+  return (
+    <section className={s.jeu} aria-label="Écran de partie">
+      <Frise
+        precision={precision}
+        controle={controle}
+        reponse={reponse}
+        onReponse={poserSurFrise}
+        enSaisie={enSaisie}
+        correction={correction && { bonne: correction.bonne, titre: question.titre }}
+        haut={carte}
+        bas={reponseBoite}
+      />
+      <BandeEpoques vue={vue} animer={animer} />
     </section>
   );
 }

@@ -1,29 +1,17 @@
 /* Écran de partie, d'après la charte « Cabinet de curiosités » (maquette n° 4).
    Carte de question à gauche, frise zoomable à droite, bande des époques sous la frise. */
 
-.jeu {
-  background: var(--color-papier);
-  border: 1px solid var(--color-filet);
-  display: grid;
-  grid-template-columns: 330px minmax(0, 1fr);
-}
+.jeu { display: grid; gap: 12px; min-width: 0; }
 
-/* ---------- Carte de question ---------- */
-.carte {
-  border-right: 1px solid var(--color-filet);
-  padding: 20px;
-  display: grid;
-  gap: 12px;
-  align-content: start;
-  background: var(--color-blanc-cartel);
-}
-.illustration { background: #e9e6da; border: 1px solid #d6d2c4; padding: 18px 26px; color: var(--color-encre); }
-.illustration svg { width: 100%; height: auto; display: block; }
+/* ---------- Carte de question (boîte du haut, à l'horizontale) ---------- */
+.carteH { display: grid; grid-template-columns: 150px minmax(0, 1fr) auto; gap: 16px; align-items: center; padding: 12px 16px; }
+.illustration { background: #e9e6da; border: 1px solid #d6d2c4; padding: 8px; color: var(--color-encre); align-self: stretch; display: grid; place-items: center; min-height: 96px; }
+.illustration svg, .illustration img { width: 100%; height: auto; display: block; }
+.illustration .pictogramme { width: 64px; opacity: 0.7; }
+.carteTexte { display: grid; gap: 4px; min-width: 0; }
 .inventaire { font-family: var(--font-mono); font-size: 11px; color: var(--color-oxyde); letter-spacing: 0.06em; text-transform: uppercase; }
-.carte h2 { font-size: 26px; line-height: 1.1; }
-.carte p { margin: 0; font-size: 15px; color: var(--color-encre-douce); }
-.meta { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; border-top: 1px solid #d6d2c4; padding-top: 10px; font-size: 13px; color: var(--color-encre-douce); }
-.meta b { font-weight: 700; color: var(--color-encre); }
+.carteTexte h2 { font-size: 28px; line-height: 1.1; overflow-wrap: anywhere; }
+.consigne { margin: 0; font-size: 14px; font-weight: 700; color: var(--color-encre); }
 
 /* ---------- Saisie jour / mois / année ---------- */
 .saisie { display: grid; gap: 4px; padding: 12px 14px; background: var(--color-papier); border: 1px solid var(--color-filet); }
@@ -59,9 +47,6 @@
 .resultat { display: grid; gap: 6px; padding: 12px 14px; border: 1px solid var(--color-laiton); background: var(--color-fond-resultat); font-size: 14px; }
 .points { font-size: 38px; line-height: 1; color: var(--color-oxyde); }
 
-/* ---------- Plateau ---------- */
-.plateau { min-width: 0; padding: 16px 20px 18px; display: grid; gap: 12px; align-content: start; }
-
 /* ---------- Bande des époques ---------- */
 .epoques { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; }
 .piste { position: relative; display: grid; grid-template-columns: var(--colonnes); border: 1px solid var(--color-encre); min-width: 0; }
@@ -77,14 +62,14 @@
 .tout.active { background: var(--color-encre); color: var(--color-papier); }
 
 @media (max-width: 860px) {
-  .jeu { grid-template-columns: 1fr; }
-  .carte { border-right: 0; border-bottom: 1px solid var(--color-filet); grid-template-columns: 110px minmax(0, 1fr); }
-  .illustration { grid-row: span 3; padding: 10px; align-self: start; }
-  .carte > :not(.illustration) { grid-column: 2; }
-  .carte > .meta, .carte > .saisie, .carte > .valider, .carte > .resultat { grid-column: 1 / -1; }
+  .carteH { grid-template-columns: 110px minmax(0, 1fr) auto; gap: 12px; }
+  .carteTexte h2 { font-size: 22px; }
 }
 
 @media (max-width: 600px) {
+  .carteH { grid-template-columns: 84px minmax(0, 1fr); }
+  .carteH > [role="timer"] { grid-column: 1 / -1; justify-self: end; }
+  .carteTexte h2 { font-size: 20px; }
   .epoques { grid-template-columns: 1fr; }
   .tout { padding: 8px 12px; max-width: none; }
   .piste button { padding-inline: 2px; }
@@ -97,3 +82,10 @@
 /* ---------- Partie en cours ---------- */
 .entete { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 8px; }
 .erreur { margin: 0; padding: 8px 10px; border: 1px solid var(--color-oxyde); background: var(--color-fond-resultat); color: var(--color-oxyde); font-size: 14px; }
+
+/* ---------- Boîte du bas : saisie, bouton, correction ---------- */
+.boiteReponse { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 12px 16px; padding: 12px 16px; }
+.boiteReponse .saisie { flex: 0 1 380px; min-width: 260px; }
+.actions { display: grid; gap: 8px; align-content: start; flex: 0 0 auto; min-width: 190px; }
+.resultat { flex: 1 1 260px; min-width: 0; }
+.explication { color: var(--color-encre-douce); line-height: 1.4; overflow-wrap: anywhere; }

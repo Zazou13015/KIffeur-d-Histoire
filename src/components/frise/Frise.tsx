@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import type { HistoricDate, Precision } from "@/lib/game/dates";
 import {
   choisirPas,
@@ -46,15 +46,23 @@ type Props = {
   /** Cartes d'événements posées sur la frise ; les marqueurs proches se regroupent. */
   marqueurs?: MarqueurFrise[];
   onMarqueur?: (id: string) => void;
+  /**
+   * Écran de jeu : la frise occupe toute la scène, avec une boîte en haut (la question) et une boîte en bas (la réponse)
+   * posées sur son fond. Les clics hors des boîtes continuent de placer la réponse.
+   */
+  haut?: ReactNode;
+  bas?: ReactNode;
 };
 
 // Place minimale entre deux marqueurs avant qu'ils se regroupent, et couloirs où ils se posent.
 const ECART_MARQUEURS = 112;
 const COULOIRS_MARQUEURS = [10, 62, 114];
 
+const PUCE_MAX = 260;
+
 // Largeur de texte pour garder l'étiquette de la bonne réponse dans le cadre.
 function largeurTexte(texte: string): number {
-  return texte.length * 7 + 22;
+  return Math.min(PUCE_MAX, texte.length * 7 + 22);
 }
 
 export function Frise({
@@ -68,6 +76,8 @@ export function Frise({
   correction = null,
   marqueurs,
   onMarqueur,
+  haut,
+  bas,
 }: Props) {
   const interne = useVue(precision);
   const { vue, vueRef, placer, animer, zoomer, arreter } = controle ?? interne;
@@ -126,7 +136,7 @@ export function Frise({
 
   function surAppui(e: React.PointerEvent<HTMLDivElement>) {
     // Un marqueur est un bouton : on laisse le clic lui revenir.
-    if ((e.target as HTMLElement).closest("[data-marqueur]")) return;
+    if ((e.target as HTMLElement).closest("[data-marqueur], [data-superposition]")) return;
     arreter();
     e.currentTarget.setPointerCapture(e.pointerId);
     pointeurs.current.set(e.pointerId, e.clientX);
@@ -140,6 +150,8 @@ export function Frise({
   }
 
   function surDeplacement(e: React.PointerEvent<HTMLDivElement>) {
+    // Sur une boîte de la scène (question, réponse) : ni repère fantôme ni glissement.
+    if ((e.target as HTMLElement).closest("[data-superposition]")) return setFantome(null);
     if (selection && e.pointerType === "mouse") {
       const r = ref.current!.getBoundingClientRect();
       setFantome({ x: e.clientX - r.left, date: dateA(e.clientX) });
@@ -180,6 +192,8 @@ export function Frise({
   // Flèches : un pas de la précision demandée, Maj = 10 pas.
   function surTouche(e: React.KeyboardEvent<HTMLDivElement>) {
     if (!selection || !reponse) return;
+    // Dans les cases de la saisie, les flèches déplacent le curseur de texte, pas la réponse.
+    if ((e.target as HTMLElement).closest("input, textarea")) return;
     const sens = e.key === "ArrowLeft" ? -1 : e.key === "ArrowRight" ? 1 : 0;
     if (!sens) return;
     e.preventDefault();
@@ -202,16 +216,21 @@ export function Frise({
     animer(debut - marge, fin + marge);
   }
 
+  const scene = haut != null || bas != null;
+  const outils = (
+    <div className={s.outils}>
+      <span className={s.echelle}>{legendePas(pas)}</span>
+      <button type="button" onClick={() => zoomer(2)} aria-label="Dézoomer">−</button>
+      <button type="button" onClick={() => zoomer(0.5)} aria-label="Zoomer">+</button>
+    </div>
+  );
+
   return (
     <>
-      <div className={s.outils}>
-        <span className={s.echelle}>{legendePas(pas)}</span>
-        <button type="button" onClick={() => zoomer(2)} aria-label="Dézoomer">−</button>
-        <button type="button" onClick={() => zoomer(0.5)} aria-label="Zoomer">+</button>
-      </div>
+      {!scene && outils}
       <div
         ref={ref}
-        className={selection ? s.frise : `${s.frise} ${s.lecture}`}
+        className={`${selection ? s.frise : `${s.frise} ${s.lecture}`}${scene ? ` ${s.scene}` : ""}`}
         aria-label={
           selection
             ? "Frise chronologique : molette pour zoomer, glisser pour se déplacer, cliquer pour placer sa réponse"
@@ -224,6 +243,13 @@ export function Frise({
         onPointerLeave={() => setFantome(null)}
         onKeyDown={surTouche}
       >
+        {scene && (
+          <div className={s.zoneScene}>
+            {haut != null && <div data-superposition className={s.superposition}>{haut}</div>}
+            <div data-superposition className={s.outilsScene}>{outils}</div>
+          </div>
+        )}
+        <div className={scene ? s.bandeScene : s.bande}>
         {EPOQUES.map((ep) => {
           const l = X(ep.debut);
           const r = X(ep.fin);
@@ -360,6 +386,8 @@ export function Frise({
             )}
           </>
         )}
+        </div>
+        {scene && <div className={s.zoneScene}>{bas != null && <div data-superposition className={s.superposition}>{bas}</div>}</div>}
       </div>
     </>
   );

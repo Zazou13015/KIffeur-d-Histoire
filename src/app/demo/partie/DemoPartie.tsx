@@ -8,8 +8,8 @@ import type { SoloCorrection, SoloDateQuestion, SoloResult } from "@/lib/game/so
 const DUREE_MS = 15_000;
 const SUJETS = [
   { titre: "Prise de la Bastille", date: { year: 1789, month: 7, day: 14 }, description: "Le peuple de Paris s'empare de la forteresse royale." },
-  { titre: "Armistice de Rethondes", date: { year: 1918, month: 11, day: 11 }, description: "Les combats cessent sur le front occidental." },
-  { titre: "Sacre de Charlemagne", date: { year: 800, month: 12, day: 25 }, description: "Le roi des Francs est couronné empereur à Rome." },
+  { titre: "Armistice de Rethondes mettant fin aux combats de la Première Guerre mondiale sur le front occidental", date: { year: 1918, month: 11, day: 11 }, description: "les combats cessent sur le front occidental, après quatre années d'une guerre qui a mobilisé des millions de soldats et bouleversé les sociétés européennes. Le texte est volontairement long pour vérifier qu'il tient en entier dans la boîte de réponse." },
+  { titre: "sacre de Charlemagne", date: { year: 800, month: 12, day: 25 }, description: "Le roi des Francs est couronné empereur à Rome." },
 ];
 
 function question(i: number): SoloDateQuestion {

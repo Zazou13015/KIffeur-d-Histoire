@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { chronoDepuis, correctionDepuis, dateDepuis, precisionDepuis, urlIllustration } from "@/lib/game/partie";
+import { capitaliser, chronoDepuis, correctionDepuis, dateDepuis, precisionDepuis, urlIllustration } from "@/lib/game/partie";
 import type { SoloCorrection } from "@/lib/game/solo";
 
 const base = {
@@ -12,6 +12,13 @@ const base = {
 };
 
 describe("écran de partie : passerelle avec le serveur", () => {
+  it("met une majuscule en tête des titres", () => {
+    expect(capitaliser("basculement atlantique")).toBe("Basculement atlantique");
+    expect(capitaliser("édit de Nantes")).toBe("Édit de Nantes");
+    expect(capitaliser("Rome")).toBe("Rome");
+    expect(capitaliser("")).toBe("");
+  });
+
   it("convertit la difficulté du serveur en précision de l'écran", () => {
     expect(precisionDepuis("YEAR")).toBe("annee");
     expect(precisionDepuis("MONTH")).toBe("mois");

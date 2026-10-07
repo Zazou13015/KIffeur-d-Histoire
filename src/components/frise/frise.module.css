@@ -19,8 +19,8 @@
 .motif svg { width: 100%; height: 100%; display: block; overflow: visible; }
 .discret { opacity: 0.45; }
 
-.tige { position: absolute; top: 52px; height: 128px; width: 1px; background: var(--color-encre); opacity: 0.35; }
-.puce { position: absolute; top: 12px; transform: translateX(-50%); background: var(--color-fond-resultat); border: 1px solid var(--color-laiton); box-shadow: 0 0 0 2px var(--color-laiton); padding: 4px 9px 5px; white-space: nowrap; font-size: 13px; line-height: 1.25; }
+.tige { position: absolute; top: 68px; height: 112px; width: 1px; background: var(--color-encre); opacity: 0.35; }
+.puce { position: absolute; z-index: 3; top: 12px; transform: translateX(-50%); background: var(--color-fond-resultat); border: 1px solid var(--color-laiton); box-shadow: 0 0 0 2px var(--color-laiton); padding: 4px 9px 5px; width: max-content; max-width: 260px; text-align: center; overflow-wrap: anywhere; font-size: 13px; line-height: 1.25; }
 .puce span { display: block; font-size: 14px; color: var(--color-oxyde); line-height: 1.1; }
 .ecart { position: absolute; top: 246px; height: 2px; background: var(--color-oxyde); }
 
@@ -53,3 +53,12 @@
 .etat_faux { border-color: var(--color-oxyde); }
 .groupe { position: absolute; top: 172px; transform: translateX(-50%); min-width: 44px; height: 44px; display: grid; place-items: center; padding: 0 8px; background: var(--color-encre); color: var(--color-papier); border: 2px solid var(--color-laiton); border-radius: 9999px; font-size: 20px; line-height: 1; cursor: zoom-in; z-index: 2; }
 .groupe:hover { background: var(--color-encre-douce); }
+
+
+/* ---------- Scène de jeu : la frise occupe tout l'écran, avec une boîte en haut et une boîte en bas ---------- */
+.bande { position: absolute; inset: 0; }
+.scene { height: auto; display: grid; grid-template-rows: auto 340px auto; align-content: start; }
+.bandeScene { position: relative; height: 340px; overflow: hidden; }
+.zoneScene { padding: 14px 16px; position: relative; z-index: 5; }
+.superposition { background: rgb(251 251 248 / 0.96); border: 1px solid var(--color-encre); box-shadow: 0 2px 0 rgb(29 42 58 / 0.08); cursor: default; user-select: text; }
+.outilsScene { margin-top: 8px; cursor: default; }

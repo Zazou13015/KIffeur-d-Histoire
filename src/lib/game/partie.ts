@@ -4,6 +4,9 @@
 import { phraseEcart, type HistoricDate, type Precision } from "./dates";
 import type { SoloCorrection, SoloDate, SoloDateQuestion, SoloDifficulty } from "./solo";
 
+// Certains titres et descriptions du dataset commencent par une minuscule : l'écran les écrit avec une majuscule.
+export const capitaliser = (texte: string) => (texte ? texte.charAt(0).toLocaleUpperCase("fr") + texte.slice(1) : texte);
+
 const PRECISION: Record<SoloDifficulty, Precision> = { YEAR: "annee", MONTH: "mois", DAY: "jour" };
 export const precisionDepuis = (d: SoloDifficulty): Precision => PRECISION[d];
 
@@ -23,7 +26,7 @@ export function correctionDepuis(c: SoloCorrection): CorrectionAffichee {
     bonne: dateDepuis(c.correct_date),
     points: c.points,
     ecart: c.expired || c.gap == null ? null : phraseEcart(c.gap, PRECISION[c.unit]),
-    description: c.description,
+    description: c.description ? capitaliser(c.description) : c.description,
     expiree: c.expired,
   };
 }

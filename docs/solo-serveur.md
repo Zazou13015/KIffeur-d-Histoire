@@ -290,4 +290,8 @@ Le chrono du navigateur n'est qu'un affichage, recalé sur `server_time`. À zé
 serveur constate l'expiration (0 point). Si cet appel échoue (réseau), un bouton « Réessayer » le renvoie. Avant la réponse, la
 page ne contient que le titre et l'illustration : ni date ni description. Le mode inversé n'a pas encore d'écran (issue #20).
 
+Disposition : la frise occupe toute la scène de jeu ; la carte de la question (horizontale) est posée en haut, la saisie et la
+correction en bas, sur le fond de la frise. Un clic hors des boîtes place la réponse. Les titres et descriptions du dataset sont
+affichés avec une majuscule ; un événement sans dessin affiche un pictogramme neutre.
+
 `/demo/partie` rejoue le même parcours avec un faux moteur dans le navigateur.

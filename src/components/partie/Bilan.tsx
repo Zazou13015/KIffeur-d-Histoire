@@ -3,7 +3,7 @@ import { lancer } from "@/app/partie/actions";
 import SaveGame from "@/app/partie/[id]/SaveGame";
 import { Bouton } from "@/components/ui/Bouton";
 import { formatHistoricDate } from "@/lib/game/dates";
-import { dateDepuis, precisionDepuis } from "@/lib/game/partie";
+import { capitaliser, dateDepuis, precisionDepuis } from "@/lib/game/partie";
 import type { SoloResult } from "@/lib/game/solo";
 
 type Props = {
@@ -53,7 +53,7 @@ export function Bilan({ resultat, connecte, anonyme }: Props) {
           <li key={q.question_id} className="grid grid-cols-[2rem_minmax(0,1fr)_auto] items-baseline gap-x-3 border border-filet bg-blanc-cartel px-4 py-3">
             <span className="date text-xl text-encre-douce">{q.position}</span>
             <span className="grid gap-0.5">
-              <span className="font-bold">{q.title}</span>
+              <span className="font-bold">{capitaliser(q.title)}</span>
               <span className="date text-lg text-oxyde">{formatHistoricDate(dateDepuis(q.correct_date), precisionDepuis(q.unit))}</span>
               {q.expired && <span className="text-sm text-encre-douce">Temps écoulé</span>}
             </span>

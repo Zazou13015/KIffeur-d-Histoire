@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { Frise } from "@/components/frise/Frise";
 import { SaisieCalendrier } from "@/components/saisie/SaisieCalendrier";
 import { SaisieClavier } from "@/components/saisie/SaisieClavier";
 import { Bouton } from "@/components/ui/Bouton";
@@ -19,11 +18,9 @@ export function DemoSaisie() {
   const [precision, setPrecision] = useState<Precision>("jour");
   const [methode, setMethode] = useState<Methode>("clavier");
   const [reponse, setReponse] = useState<HistoricDate | null>(null);
-  const [origine, setOrigine] = useState<string>("");
 
-  function donner(d: HistoricDate, par: string) {
+  function donner(d: HistoricDate) {
     setReponse(d);
-    setOrigine(par);
   }
 
   return (
@@ -37,7 +34,6 @@ export function DemoSaisie() {
             onClick={() => {
               setPrecision(p);
               setReponse(null);
-              setOrigine("");
             }}
           >
             {libelle}
@@ -55,17 +51,15 @@ export function DemoSaisie() {
       </div>
 
       {methode === "clavier" ? (
-        <SaisieClavier key={`clavier-${precision}`} precision={precision} onAnswer={(d) => donner(d, "le clavier")} />
+        <SaisieClavier key={`clavier-${precision}`} precision={precision} onAnswer={donner} />
       ) : (
-        <SaisieCalendrier key={`calendrier-${precision}`} precision={precision} onAnswer={(d) => donner(d, "le calendrier")} />
+        <SaisieCalendrier key={`calendrier-${precision}`} precision={precision} onAnswer={donner} />
       )}
-
-      <Frise key={`frise-${precision}`} precision={precision} mode="selection" reponse={reponse} onReponse={(d) => donner(d, "la frise")} />
 
       <p className="m-0 min-h-6 text-encre-douce" role="status">
         {reponse ? (
           <>
-            Réponse donnée par {origine} : <b className="date text-xl text-encre">{formatHistoricDate(reponse, precision)}</b>
+            Réponse envoyée : <b className="date text-xl text-encre">{formatHistoricDate(reponse, precision)}</b>
           </>
         ) : (
           "Aucune réponse pour l'instant."

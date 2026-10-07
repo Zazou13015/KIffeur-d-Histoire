@@ -101,11 +101,11 @@ export function lireDate(texte: string, precision: Precision): LectureDate {
 
   const date: HistoricDate = { year };
   if (precision !== "annee") {
-    if (mois === null) return echec("Précisez aussi le mois : « 11/1918 » ou « novembre 1918 ».");
+    if (mois === null) return echec("Précisez aussi le mois : par exemple « novembre 1918 ».");
     date.month = mois;
   }
   if (precision === "jour") {
-    if (jour === null) return echec("Précisez aussi le jour : « 11/11/1918 » ou « 11 novembre 1918 ».");
+    if (jour === null) return echec("Précisez aussi le jour : par exemple « 11 novembre 1918 ».");
     date.day = jour;
   }
   return { ok: true, date };

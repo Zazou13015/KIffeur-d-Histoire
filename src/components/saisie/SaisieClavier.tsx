@@ -14,8 +14,8 @@ type Props = {
 
 const EXEMPLES: Record<Precision, string> = {
   annee: "1789 ou 44 av. J.-C.",
-  mois: "07/1789 ou juillet 1789",
-  jour: "14/07/1789 ou 14 juillet 1789",
+  mois: "juillet 1789",
+  jour: "14 juillet 1789",
 };
 
 const CONSIGNES: Record<Precision, string> = {

@@ -8,10 +8,10 @@ export default function PageDemoSaisie() {
     <main className="conteneur grid flex-1 grid-cols-1 content-start gap-6 py-8">
       <header className="grid gap-2">
         <span className="inventaire">Démonstration · issue 3.3</span>
-        <h1 className="text-4xl leading-tight">Répondre : clavier, calendrier ou frise</h1>
+        <h1 className="text-4xl leading-tight">Répondre au clavier ou au calendrier</h1>
         <p className="m-0 max-w-prose text-encre-douce">
-          Les trois façons de répondre donnent le même résultat. Tapez une date, choisissez-la au calendrier ou cliquez sur la
-          frise : la réponse s&apos;affiche en bas, et la frise la montre quelle que soit la méthode.
+          Deux façons de répondre, qui donnent le même résultat : tapez la date, ou choisissez-la au calendrier. La réponse
+          envoyée s&apos;affiche en bas.
         </p>
       </header>
       <DemoSaisie />

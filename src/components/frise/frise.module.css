@@ -57,11 +57,13 @@
 
 /* ---------- Scène de jeu : la frise occupe toute la page, les boîtes sont posées dessus ---------- */
 .bande { position: absolute; inset: 0; }
-.scene { height: auto; border: 0; flex: 1; display: flex; flex-direction: column; min-height: 640px; }
+.scene { height: auto; border: 0; flex: 1; display: flex; flex-direction: column; min-height: max(680px, calc(100svh - 72px)); }
 /* L'espace libre d'un grand écran se met au-dessus de l'axe : la bande, les époques et la réponse restent groupées en bas. */
-.bandeScene { position: relative; height: 340px; overflow: hidden; flex: none; margin-top: auto; }
+.bandeScene { position: relative; height: 340px; flex: none; margin-top: auto; }
+/* Les repères verticaux traversent toute la page : la frise est le fond, rien n'est encadré à part. */
+.bandeScene .grille { top: -1600px; height: 3600px; }
 .zoneScene { padding: 14px 16px 0; position: relative; z-index: 5; flex: none; }
 .zoneSous { padding: 0 16px; position: relative; z-index: 5; flex: none; cursor: default; }
 .zoneBas { padding: 14px 16px 18px; position: relative; z-index: 5; flex: none; }
-.superposition { background: rgb(251 251 248 / 0.96); border: 1px solid var(--color-encre); box-shadow: 0 2px 0 rgb(29 42 58 / 0.08); cursor: default; user-select: text; }
+.superposition { background: transparent; border: 0; cursor: default; user-select: text; }
 .outilsScene { margin-top: 8px; cursor: default; }

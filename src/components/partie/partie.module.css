@@ -4,7 +4,7 @@
 .jeu { display: flex; flex-direction: column; flex: 1; min-width: 0; }
 
 /* ---------- Carte de question (boîte du haut, à l'horizontale) ---------- */
-.carteH { display: grid; grid-template-columns: 150px minmax(0, 1fr) auto; gap: 16px; align-items: center; padding: 12px 16px; }
+.carteH { display: grid; grid-template-columns: 150px minmax(0, 1fr) auto; gap: 16px; align-items: center; padding: 4px 0; }
 .illustration { background: #e9e6da; border: 1px solid #d6d2c4; padding: 8px; color: var(--color-encre); align-self: stretch; display: grid; place-items: center; min-height: 96px; }
 .illustration svg, .illustration img { width: 100%; height: auto; display: block; }
 .illustration .pictogramme { width: 64px; opacity: 0.7; }
@@ -88,6 +88,6 @@
 /* ---------- Sous la frise : saisie compacte, bouton Valider dessous, correction à côté ---------- */
 .zoneReponse { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 12px 16px; }
 .colonneSaisie { display: grid; gap: 8px; flex: 0 1 380px; min-width: 260px; cursor: default; }
-.colonneSaisie .saisie { box-shadow: 0 2px 0 rgb(29 42 58 / 0.08); }
-.zoneReponse .resultat { flex: 1 1 280px; max-width: 560px; min-width: 0; cursor: default; }
+.colonneSaisie .saisie { background: transparent; border: 0; padding: 0; }
+.zoneReponse .resultat { flex: 1 1 280px; max-width: 560px; min-width: 0; cursor: default; background: transparent; border: 0; border-left: 3px solid var(--color-laiton); padding: 2px 0 2px 12px; }
 .explication { color: var(--color-encre-douce); line-height: 1.4; overflow-wrap: anywhere; }

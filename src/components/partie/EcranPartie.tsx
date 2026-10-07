@@ -132,36 +132,37 @@ export function EcranPartie({ question, corriger, chrono, suivante }: Props) {
   const expirePerdue = erreur != null && restant <= 0 && !correction;
   const description = correction?.description ?? question.description;
 
-  // Boîte du haut : la carte de la question, à l'horizontale.
-  const carte = (
-    <div className={`${s.carteH}${question.titre.length > 70 ? ` ${s.titreLong}` : question.titre.length > 40 ? ` ${s.titreMoyen}` : ""}`}>
-      <div className={s.illustration}>
-        {question.illustrationUrl ? (
-          // Dessin SVG léger (8 Ko) : pas d'optimisation d'image nécessaire.
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={question.illustrationUrl} alt="" width={160} height={120} />
-        ) : question.illustration ? (
-          <Motif nom={question.illustration} viewBox="0 0 160 120" />
-        ) : (
-          // Tous les événements n'ont pas encore leur dessin : un pictogramme neutre garde la carte à l'équilibre.
-          <Motif nom="parchemin" viewBox="0 0 48 48" className={s.pictogramme} />
-        )}
-      </div>
-      <div className={s.carteTexte}>
-        <span className={s.inventaire}>
-          {question.inventaire ? `${question.inventaire} · ` : ""}Question {question.numero} sur {question.total}
-        </span>
-        <h2>{question.titre}</h2>
-        <p className={s.consigne}>{REGLAGES[precision].consigne}</p>
-      </div>
-      {chrono && !correction && <ChronoCirculaire restant={restant} total={chrono.totalMs / 1000} taille={72} />}
-    </div>
+  // Sous la frise, de gauche à droite : la carte de la question, la saisie, puis Valider qui devient la correction.
+  const illustration = question.illustrationUrl ? (
+    // Dessin SVG léger (8 Ko) : pas d'optimisation d'image nécessaire.
+    // eslint-disable-next-line @next/next/no-img-element
+    <img src={question.illustrationUrl} alt="" width={160} height={120} />
+  ) : question.illustration ? (
+    <Motif nom={question.illustration} viewBox="0 0 160 120" />
+  ) : (
+    <Motif nom="parchemin" viewBox="0 0 48 48" className={s.pictogramme} />
   );
-
-  // Sous la frise : la boîte de saisie compacte, le bouton Valider dessous, puis la correction à côté.
+  const boutonValider = expirePerdue ? (
+    <button type="button" className={s.valider} onClick={() => void envoyer(null)}>
+      Réessayer
+    </button>
+  ) : (
+    <button type="button" className={s.valider} onClick={valider} disabled={envoi || passage || (!correction && !complete)}>
+      {correction ? (suivante?.libelle ?? "Rejouer cette question") : "Valider ma réponse"}
+    </button>
+  );
   const reponseBoite = (
-    <div className={s.zoneReponse}>
-      <div data-superposition className={s.colonneSaisie}>
+    <div className={s.rangee}>
+      <div data-superposition className={`${s.boite} ${s.carteBas}`}>
+        <div className={s.illustration}>{illustration}</div>
+        <div className={s.carteTexte}>
+          <span className={s.inventaire}>
+            Question {question.numero} sur {question.total}
+          </span>
+          <strong>{question.titre}</strong>
+        </div>
+      </div>
+      <div data-superposition className={`${s.boite} ${s.colonneSaisie}`}>
         <SaisieDate
           precision={precision}
           champs={champs}
@@ -175,30 +176,41 @@ export function EcranPartie({ question, corriger, chrono, suivante }: Props) {
             {erreur}
           </p>
         )}
-        {expirePerdue ? (
-          <button type="button" className={s.valider} onClick={() => void envoyer(null)}>
-            Réessayer
-          </button>
+      </div>
+      <div data-superposition className={s.colonneAction}>
+        {correction ? (
+          <div className={`${s.boite} ${s.resultat}`} role="status">
+            <span className={s.inventaire}>Réponse : {formatHistoricDate(correction.bonne, precision)}</span>
+            <span className={`${s.points} date`}>{correction.points} pts</span>
+            <span>
+              {correction.expiree
+                ? "Temps écoulé : cette question vaut 0 point."
+                : correction.ecart
+                  ? `Écart de ${correction.ecart}.`
+                  : BRAVO[precision]}
+            </span>
+            {description && <span className={s.explication}>{description}</span>}
+            {boutonValider}
+          </div>
         ) : (
-          <button type="button" className={s.valider} onClick={valider} disabled={envoi || passage || (!correction && !complete)}>
-            {correction ? (suivante?.libelle ?? "Rejouer cette question") : "Valider ma réponse"}
-          </button>
+          boutonValider
         )}
       </div>
-      {correction && (
-        <div data-superposition className={s.resultat} role="status">
-          <span className={s.inventaire}>Réponse : {formatHistoricDate(correction.bonne, precision)}</span>
-          <span className={`${s.points} date`}>{correction.points} pts</span>
-          <span>
-            {correction.expiree
-              ? "Temps écoulé : cette question vaut 0 point."
-              : correction.ecart
-                ? `Écart de ${correction.ecart}.`
-                : BRAVO[precision]}
-          </span>
-          {description && <span className={s.explication}>{description}</span>}
-        </div>
-      )}
+    </div>
+  );
+
+  // Boîte du haut : la carte de la question, à l'horizontale.
+  const carte = (
+    <div className={`${s.carteH}${question.titre.length > 70 ? ` ${s.titreLong}` : question.titre.length > 40 ? ` ${s.titreMoyen}` : ""}`}>
+      <div className={s.illustration}>{illustration}</div>
+      <div className={s.carteTexte}>
+        <span className={s.inventaire}>
+          {question.inventaire ? `${question.inventaire} · ` : ""}Question {question.numero} sur {question.total}
+        </span>
+        <h2>{question.titre}</h2>
+        <p className={s.consigne}>{REGLAGES[precision].consigne}</p>
+      </div>
+      {chrono && !correction && <ChronoCirculaire restant={restant} total={chrono.totalMs / 1000} taille={72} />}
     </div>
   );
 

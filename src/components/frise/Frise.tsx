@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import type { HistoricDate, Precision } from "@/lib/game/dates";
 import {
   choisirPas,
@@ -114,14 +114,17 @@ export function Frise({
     [marqueurs],
   );
 
-  useEffect(() => {
+  // Mesure avant le premier affichage : l'axe ne saute pas au chargement.
+  useLayoutEffect(() => {
     const el = ref.current!;
-    const ro = new ResizeObserver(() => {
+    const mesurer = () => {
       setLargeur(el.clientWidth);
       setHauteur(el.clientHeight);
       setHautHaut(refHaut.current?.offsetHeight ?? 0);
       setHautBas(refBas.current?.offsetHeight ?? 0);
-    });
+    };
+    mesurer();
+    const ro = new ResizeObserver(mesurer);
     ro.observe(el);
     if (refHaut.current) ro.observe(refHaut.current);
     if (refBas.current) ro.observe(refBas.current);

@@ -60,7 +60,7 @@
 .scene { border: 0; flex: 1; height: auto; position: relative; }
 .bandeScene { position: absolute; left: 0; right: 0; height: 340px; }
 /* Les repères verticaux traversent toute la scène. */
-.bandeScene .grille { top: -2000px; height: 2210px; }
+.bandeScene .grille { top: -2000px; height: 4000px; }
 .zoneScene { position: absolute; top: 0; left: 0; right: 0; padding: 12px 72px 0; z-index: 5; pointer-events: none; }
 .zoneBasScene { position: absolute; bottom: 0; left: 0; right: 0; z-index: 5; pointer-events: none; }
 .zoneScene > *, .zoneBasScene > * > *, .zoneBasScene > .zoneSous { pointer-events: auto; }

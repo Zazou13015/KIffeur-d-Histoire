@@ -20,8 +20,7 @@ Connexion : `SUPABASE_URL` et `SUPABASE_SERVICE_ROLE_KEY`, lus dans l'environnem
 | Base | `SUPABASE_URL` | `SUPABASE_SERVICE_ROLE_KEY` |
 | --- | --- | --- |
 | Locale (`npm run db:start`) | `http://127.0.0.1:54321` | « Secret key » affichée par `npx supabase start` |
-| Test (Maxou) | `https://baezxgddyoweryeivivs.supabase.co` | Tableau de bord du projet de test, *Settings → API Keys → Secret keys* |
-| Production (KFFR) | URL du projet KFFR | Même endroit sur le projet KFFR ; import lancé par Maxou ou Antonin, après accord des deux |
+| KFFR (la seule base distante) | `https://bskyfdjwcdvzhlugtknb.supabase.co` | Tableau de bord du projet KFFR, *Settings → API Keys → Secret keys* ; import lancé par Maxou ou Antonin |
 
 ## `dataset-v18/` (reçu le 5 octobre 2026)
 

@@ -191,7 +191,7 @@ EVT-0206,Bataille de Tannenberg,3,3,TRUE,RANGE,DAY_RANGE,EXACT,Première génér
 EVT-0207,Première bataille de la Marne,4,3,TRUE,RANGE,DAY_RANGE,EXACT,Première générale,PPO_BO,2,première Marne;Bataille de la Marne,Jouable comme plage/période.
 EVT-0208,campagne des Dardanelles / Gallipoli,3,3,TRUE,RANGE,DAY_RANGE,EXACT,Première générale,PPO_BO,2,campagne des Dardanelles;Gallipoli,Jouable comme plage/période.
 EVT-0209,débarquements alliés à Gallipoli,3,3,TRUE,DAY,DAY,EXACT,Première générale,PPO_BO,0,,Jouable au jour.
-EVT-0210,bataille de la Somme,4,3,TRUE,DAY,DAY,EXACT,Première générale,PPO_BO,0,,Jouable au jour.
+EVT-0210,bataille de la Somme,4,3,TRUE,RANGE,DAY_RANGE,EXACT,Première générale,PPO_BO,0,,Jouable comme plage/période.
 EVT-0211,début de l’opération Michael,3,3,TRUE,DAY,DAY,EXACT,Première générale,PPO_BO,0,,Jouable au jour.
 EVT-0212,première grande offensive de printemps,3,3,TRUE,RANGE,DAY_RANGE,EXACT,Première générale,PPO_BO,0,,Jouable comme plage/période.
 EVT-0224,funérailles nationales de Victor Hugo,2,3,TRUE,DAY,DAY,EXACT,Première générale,,0,,Jouable au jour.

@@ -35,23 +35,19 @@ export function gapInUnit(answer: HistoricDate, expected: HistoricDate, unit: Pr
   return Math.round(days / 365.25);
 }
 
-// Phrase d'écart dans l'unité de la question, convertie quand l'écart devient grand
+// Phrase d'écart pour un nombre d'unités de la difficulté, converti quand l'écart devient grand
 // (« 3 jours », « 5 mois », « 12 ans »). null si la réponse est exacte.
-export function gapText(answer: HistoricDate, expected: HistoricDate, unit: Precision): string | null {
-  const pluriel = (n: number, mot: string) => `${n} ${mot}${n > 1 ? "s" : ""}`;
-  if (unit === "annee") {
-    const n = gapInUnit(answer, expected, "annee");
-    return n === 0 ? null : pluriel(n, "an");
-  }
-  if (unit === "mois") {
-    const n = gapInUnit(answer, expected, "mois");
-    if (n === 0) return null;
-    return n < 24 ? `${n} mois` : pluriel(Math.round(n / 12), "an");
-  }
-  const n = gapInUnit(answer, expected, "jour");
+export function phraseEcart(n: number, unit: Precision): string | null {
+  const pluriel = (k: number, mot: string) => `${k} ${mot}${k > 1 ? "s" : ""}`;
   if (n === 0) return null;
+  if (unit === "annee") return pluriel(n, "an");
+  if (unit === "mois") return n < 24 ? `${n} mois` : pluriel(Math.round(n / 12), "an");
   if (n < 62) return pluriel(n, "jour");
   return n < 730 ? `${Math.round(n / 30.44)} mois` : pluriel(Math.round(n / 365.25), "an");
+}
+
+export function gapText(answer: HistoricDate, expected: HistoricDate, unit: Precision): string | null {
+  return phraseEcart(gapInUnit(answer, expected, unit), unit);
 }
 
 // Points d'une réponse pour la page d'aperçu seulement : 1000 si exacte, décroissance exponentielle.

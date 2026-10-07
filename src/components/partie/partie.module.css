@@ -93,3 +93,7 @@
   .piste button b { font-size: 10.5px; }
   .piste button small { display: none; }
 }
+
+/* ---------- Partie en cours ---------- */
+.entete { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 8px; }
+.erreur { margin: 0; padding: 8px 10px; border: 1px solid var(--color-oxyde); background: var(--color-fond-resultat); color: var(--color-oxyde); font-size: 14px; }

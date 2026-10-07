@@ -12,6 +12,7 @@ import re
 import sys
 from collections import Counter, defaultdict
 from pathlib import Path
+from correction_somme import canon_pour_empreinte
 
 NIVEAUX = ["CM1", "CM2", "6e", "5e", "4e", "3e", "Seconde générale et technologique",
            "Première générale", "Première HGGSP", "Terminale générale", "Terminale HGGSP"]
@@ -64,7 +65,14 @@ def main():
     # Une frise pédagogique a aussi besoin des explications des événements non jouables.
     cibles = {e["event_id"] for e in evenements if niveaux[e["event_id"]] and not e["description_short"].strip()}
     erreurs, suspects = [], []
-    empreinte = hashlib.sha256(json.dumps(sorted(evenements, key=lambda r: r["event_id"]),
+    # Exception explicite et strictement contrôlée ; le hash complet historique
+    # reste identique et protège aussi la prose et les métadonnées de la Somme.
+    try:
+        normalises = canon_pour_empreinte(evenements)
+    except ValueError as erreur:
+        erreurs.append(str(erreur))
+        normalises = evenements
+    empreinte = hashlib.sha256(json.dumps(sorted(normalises, key=lambda r: r["event_id"]),
                                          ensure_ascii=False, sort_keys=True).encode("utf-8")).hexdigest()
     if empreinte != EMPREINTE_CANONIQUE:
         erreurs.append("Dataset canonique modifié : jouabilité, dates, métadonnées et descriptions préexistantes doivent être conservées.")

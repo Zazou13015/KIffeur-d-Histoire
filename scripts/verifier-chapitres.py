@@ -13,6 +13,7 @@ import sys
 from collections import defaultdict
 from datetime import date
 from pathlib import Path
+from correction_somme import canon_pour_empreinte
 
 FUSIONS = {"THM-023": "THM-022", "THM-032": "THM-028", "THM-033": "THM-029", "THM-034": "THM-030", "THM-035": "THM-031"}
 CONSERVES = {"THM-030": 10, "THM-037": 8, "THM-040": 5}
@@ -76,7 +77,12 @@ def main():
     ids = [f["chapter_id"] for f in fixes]
     verifier(len(lignes_themes) == len(themes), "Identifiant de chapitre dupliqué.")
     verifier(len(lignes_events) == len(events) == 2001, "Événements dupliqués ou nombre différent des 2 001 canoniques.")
-    precedents = sorted([{k: e[k] for k in CHAMPS_DATES} for e in lignes_events if e["event_id"] != CATALHOYUK], key=lambda e: e["event_id"])
+    try:
+        normalises = canon_pour_empreinte(lignes_events)
+    except ValueError as erreur:
+        verifier(False, str(erreur))
+        normalises = lignes_events
+    precedents = sorted([{k: e[k] for k in CHAMPS_DATES} for e in normalises if e["event_id"] != CATALHOYUK], key=lambda e: e["event_id"])
     empreinte = hashlib.sha256(json.dumps(precedents, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
     verifier(len(precedents) == 2000 and empreinte == EMPREINTE_DATES, "Dates/statuts/jouabilités des 2 000 événements antérieurs altérés.")
     verifier(len(fixes) == 8 and len(set(ids)) == 8 and set(ids) == set(FUSIONS) | set(CONSERVES),
@@ -359,7 +365,7 @@ def main():
     print(f"Canonique : {len(themes)} chapitres titrés et non vides, {len(paires)} liens uniques, cinq fusions appliquées et THM-028/11 liens corrigés.")
     print("THM-030/037/040 : 10/8/5 événements jouables ; EVT-0905 : CONVENTIONAL et note du 17/19 octobre conservés.")
     print("THM-002/004/039/044 : 5/5/5/5 jouables ; Sargon : ANCRAGE_COMPLEMENTAIRE, CONVENTIONAL et réserves conservés.")
-    print("THM-004 : Çatalhöyük intégré comme EVT-2042, PERIOD / YEAR_RANGE / APPROXIMATE / RANGE ; 2 001 événements, dates antérieures intactes.")
+    print("THM-004 : Çatalhöyük intégré comme EVT-2042 ; 2 001 événements. Somme : plage corrigée ; toutes les autres dates/statuts/jouabilités antérieures intactes.")
     print(f"Information hors des huit cas de l'issue #9 : chapitres préexistants avec moins de cinq événements jouables : {insuffisants}")
     return 0
 

@@ -7,6 +7,7 @@ import { createClient } from "@supabase/supabase-js";
 import { chargerCartes, estUrlLocale, importerCartesLocales } from "./import-cartes";
 import { lireCsv } from "./csv";
 import { cartePublique } from "../src/lib/pedagogie";
+import { testerMigrationSommeLocale } from "./test-migration-somme-local";
 
 async function verifier() {
   const status = JSON.parse(execFileSync(process.execPath, ["node_modules/supabase/dist/supabase.js", "status", "--output", "json"], { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] }));
@@ -89,6 +90,7 @@ async function verifier() {
   assert.equal((await lire())!.filter((c) => c.chapter_id === "THM-005").length, 7);
   await importerCartesLocales(cartes, status.API_URL, status.SERVICE_ROLE_KEY);
   assert.deepEqual(await lire(), premier);
+  testerMigrationSommeLocale();
   console.log(`OK : 2001 événements, 41 chapitres, ${cartes.length} cartes, références et dates v18, import idempotent/atomique, périmètre par chapitre, RPC sans event_id ni sources, table/oracle/réponses/alias/écritures anon et authenticated refusés.`);
 }
 

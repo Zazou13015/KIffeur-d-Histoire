@@ -5082,7 +5082,7 @@ L’offensive de la Somme mobilise une puissance de feu considérable pour tente
 
 **Identifiants :** CARD-027-somme-guerre-usure · THM-027 · EVT-0210.
 
-**Datation interne :** DAY, EXACT ; début 1916 / 11 / 18 ; fin ∅ / ∅ / ∅.
+**Datation interne :** DAY_RANGE, EXACT ; début 1916 / 7 / 1 ; fin 1916 / 11 / 18.
 
 **Rattachement v18 :** Somme
 

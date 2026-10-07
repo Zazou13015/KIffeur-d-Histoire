@@ -34,14 +34,15 @@ describe("audit des plages textuelles du canon", () => {
     ])).toEqual([]);
   });
 
-  it("retrouve l’anomalie de la Somme dans le canon réel sans altérer les lignes", () => {
+  it("ne détecte plus d’anomalie après correction, mais retrouve la régression de la Somme", () => {
     const evenements = lireCsv("content/dataset-v18/kiffeurs-events-v18.csv");
     const avant = JSON.stringify(evenements);
     const anomalies = auditerPlagesCanoniques(evenements);
-    expect(anomalies.find((e) => e.event_id === "EVT-0210")).toMatchObject({
-      date_text: "1er juillet - 18 novembre 1916", start_year: "1916", start_month: "11", start_day: "18",
-      end_year: "", end_month: "", end_day: "", precision: "DAY", date_status: "EXACT",
-    });
+    expect(anomalies).toEqual([]);
+    const regression = evenements.map((e) => e.event_id === "EVT-0210" ? {
+      ...e, start_month: "11", start_day: "18", end_year: "", end_month: "", end_day: "", precision: "DAY",
+    } : e);
+    expect(auditerPlagesCanoniques(regression).map((e) => e.event_id)).toEqual(["EVT-0210"]);
     expect(JSON.stringify(evenements)).toBe(avant);
   });
 });

@@ -3,7 +3,8 @@ import { updateSession } from "@/lib/supabase/proxy";
 
 export async function proxy(request: NextRequest) {
   // Démo de relecture autonome : pas de lecture/rafraîchissement de session.
-  if (request.nextUrl.pathname === "/demo/pedagogie") return NextResponse.next();
+  const chemin = request.nextUrl.pathname;
+  if (chemin === "/demo/pedagogie" || chemin === "/apprendre" || chemin.startsWith("/apprendre/") || chemin.startsWith("/api/pedagogie/illustration/")) return NextResponse.next();
   return updateSession(request);
 }
 

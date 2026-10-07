@@ -1,0 +1,66 @@
+import { afterEach, expect, it, vi } from "vitest";
+import { readFileSync } from "node:fs";
+import { chargerCartesChapitre } from "@/lib/apprendre/cartes-serveur";
+import { illustrationCarte } from "@/lib/apprendre/illustration-serveur";
+import { GET } from "@/app/api/pedagogie/illustration/[cardId]/route";
+import { CHAPITRES } from "@/lib/apprendre/catalogue";
+import { chargerDemoPedagogie } from "@/app/demo/pedagogie/donnees";
+import { generateStaticParams, default as ChapitrePage } from "@/app/apprendre/[niveau]/[chapitre]/page";
+
+vi.mock("server-only", () => ({}));
+vi.mock("next/navigation", () => ({ notFound: () => { throw new Error("404"); } }));
+afterEach(() => { vi.unstubAllGlobals(); vi.unstubAllEnvs(); });
+
+it("charge seulement le chapitre demandé via la RPC anonyme mise en cache et filtre les champs", async () => {
+  const carte = chargerDemoPedagogie()[0].cartes[0];
+  vi.stubEnv("NEXT_PUBLIC_SUPABASE_URL", "https://supabase-fictif.example");
+  vi.stubEnv("NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY", "cle-publique-fictive");
+  const fetcher = vi.fn().mockResolvedValue(Response.json([{ ...carte, event_id: "EVT-9999", sources: ["interne"], image_path: "EVT-9999.svg", date_status: "EXACT" }]));
+  vi.stubGlobal("fetch", fetcher);
+  expect(await chargerCartesChapitre(carte.chapter_id)).toEqual([carte]);
+  expect(fetcher).toHaveBeenCalledExactlyOnceWith(`https://supabase-fictif.example/rest/v1/rpc/get_chapter_cards?p_chapter_id=${carte.chapter_id}`, expect.objectContaining({
+    headers: { apikey: "cle-publique-fictive", "Accept-Profile": "histoire" }, next: { revalidate: 3600, tags: ["cartes-pedagogiques", `chapitre-${carte.chapter_id}`] },
+  }));
+});
+
+it("ne transmet pas les erreurs Supabase et refuse une réponse d'un autre chapitre", async () => {
+  vi.stubEnv("NEXT_PUBLIC_SUPABASE_URL", "https://supabase-fictif.example");
+  vi.stubEnv("NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY", "publique");
+  vi.stubGlobal("fetch", vi.fn().mockResolvedValue(new Response("Erreur SQL interne EVT-9999", { status: 500 })));
+  await expect(chargerCartesChapitre("THM-027")).rejects.toThrow("Contenu pédagogique momentanément indisponible.");
+  vi.stubGlobal("fetch", vi.fn().mockResolvedValue(Response.json(chargerDemoPedagogie()[0].cartes)));
+  await expect(chargerCartesChapitre("THM-027")).rejects.toThrow("Contenu pédagogique momentanément indisponible.");
+});
+
+it("génère les 41 routes et traite les erreurs et les RPC vides sans donner une fausse carte", async () => {
+  expect(generateStaticParams()).toEqual(CHAPITRES.map((c) => ({ niveau: c.niveauSlug, chapitre: c.slug })));
+  await expect(ChapitrePage({ params: Promise.resolve({ niveau: "inconnu", chapitre: "inconnu" }), searchParams: Promise.resolve({}) })).rejects.toThrow("404");
+  vi.stubEnv("NEXT_PUBLIC_SUPABASE_URL", "https://supabase-fictif.example");
+  vi.stubEnv("NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY", "publique");
+  vi.stubGlobal("fetch", vi.fn().mockResolvedValue(Response.json([])));
+  const c = CHAPITRES[0];
+  await expect(ChapitrePage({ params: Promise.resolve({ niveau: c.niveauSlug, chapitre: c.slug }), searchParams: Promise.resolve({}) })).rejects.toThrow("404");
+});
+
+it("sert les 325 illustrations ou motifs sans identifiant d'événement, URL upstream ou redirection", async () => {
+  const cartes = chargerDemoPedagogie().flatMap((c) => c.cartes);
+  for (const carte of cartes) {
+    const url = `http://localhost/api/pedagogie/illustration/${carte.card_id}`;
+    const response = await GET(new Request(url), { params: Promise.resolve({ cardId: carte.card_id }) });
+    expect(response.status).toBe(200);
+    expect(response.headers.get("content-type")).toContain("image/svg+xml");
+    expect(response.headers.get("cache-control")).toContain("s-maxage=");
+    expect(response.headers.get("location")).toBeNull();
+    expect(JSON.stringify([...response.headers])).not.toMatch(/EVT-\d|event_id|supabase|sources/);
+    expect(await response.text()).not.toMatch(/EVT-\d|event_id|supabase|<script|<foreignObject|href\s*=|<!DOCTYPE/);
+  }
+  expect(illustrationCarte("CARD-024-bastille-mobilisation")).toBe(readFileSync("content/illustrations/EVT-0173.svg", "utf8").replace(/<!--[\s\S]*?-->/g, ""));
+  expect(illustrationCarte("CARD-027-somme-guerre-usure")).toContain('translate(56 36)');
+});
+
+it("refuse identifiants inconnus, entrées EVT et chemins arbitraires", async () => {
+  for (const cardId of ["inconnu", "EVT-0210", "../../.env.local", "CARD-027-somme-guerre-usure/../../EVT-0210.svg"]) {
+    const response = await GET(new Request("http://localhost/api/pedagogie/illustration/inconnu"), { params: Promise.resolve({ cardId }) });
+    expect(response.status).toBe(404); expect(await response.text()).toBe(""); expect(response.headers.get("location")).toBeNull();
+  }
+});

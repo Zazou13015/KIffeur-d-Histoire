@@ -21,3 +21,10 @@ it("conserve le rafraîchissement de session sur les autres pages", async () => 
   expect(await proxy(request)).toBe(response);
   expect(updateSession).toHaveBeenCalledExactlyOnceWith(request);
 });
+
+it("sert les routes pédagogiques publiques sans cookie ni appel de session Supabase", async () => {
+  for (const chemin of ["/apprendre", "/apprendre/3e/chapitre", "/api/pedagogie/illustration/CARD-027-somme-guerre-usure"]) {
+    expect((await proxy(new NextRequest(`http://localhost${chemin}`, { headers: { Cookie: "sb-test-auth-token=fictif" } }))).headers.get("x-middleware-next")).toBe("1");
+  }
+  expect(updateSession).not.toHaveBeenCalled();
+});

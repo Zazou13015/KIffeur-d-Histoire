@@ -227,18 +227,18 @@ export function decor(vue: Vue, largeur: number): Motif[] {
 
 export const clamp = (v: number, a: number, b: number) => Math.max(a, Math.min(b, v));
 
-export function borner(debut: number, fin: number, precision: Precision): Vue {
-  const span = clamp(fin - debut, REGLAGES[precision].ecartMin, FIN_FRISE - DEBUT_FRISE);
+export function borner(debut: number, fin: number, precision: Precision, bornes: Vue = { debut: DEBUT_FRISE, fin: FIN_FRISE }): Vue {
+  const span = clamp(fin - debut, REGLAGES[precision].ecartMin, bornes.fin - bornes.debut);
   const c = (debut + fin) / 2;
   let d = c - span / 2;
   let f = c + span / 2;
-  if (d < DEBUT_FRISE) {
-    f += DEBUT_FRISE - d;
-    d = DEBUT_FRISE;
+  if (d < bornes.debut) {
+    f += bornes.debut - d;
+    d = bornes.debut;
   }
-  if (f > FIN_FRISE) {
-    d -= f - FIN_FRISE;
-    f = FIN_FRISE;
+  if (f > bornes.fin) {
+    d -= f - bornes.fin;
+    f = bornes.fin;
   }
   return { debut: d, fin: f };
 }

@@ -27,7 +27,7 @@
 
 ## Libérer l'issue
 
-- PR fusionnée : l'issue se ferme toute seule (`Closes #…`). L'agent fait alors lui-même, sans attendre qu'on le lui demande, les trois gestes suivants :
+- PR fusionnée : l'issue se ferme toute seule (`Closes #…`), et le robot `.github/workflows/suivi-issue.yml` retire le label `en cours` et le 🚧, puis coche l'étape dans #31 avec le numéro de PR (il ne le fait que si la PR contient `Closes #<numéro>`). L'agent vérifie que c'est bien fait et complète ce que le robot ne fait pas. Sans robot, il fait lui-même, sans attendre qu'on le lui demande, les trois gestes suivants :
   1. retirer le label `en cours` de l'issue et le 🚧 de son titre ;
   2. dans l'issue de suivi #31, cocher l'étape (`- [x] #<numéro> …`), retirer le 🚧 de sa ligne et y ajouter le numéro de la PR fusionnée ;
   3. mettre à jour la date « Dernière mise à jour » de #31 et, si la migration n'est passée que sur la base de test, garder la note « à savoir » sur le passage en production KFFR.

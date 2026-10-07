@@ -16,3 +16,7 @@ Closes #
 - [ ] `npm run build`
 - [ ] Si la base change : migration dans `supabase/migrations/`, testée sur la base de test, rien hors du schéma `histoire`
 - [ ] Critères d'acceptation de l'issue remplis
+
+## Après la fusion (fait par l'agent)
+- [ ] Label `en cours` et 🚧 retirés de l'issue
+- [ ] Étape cochée dans l'issue de suivi #31, avec le numéro de cette PR

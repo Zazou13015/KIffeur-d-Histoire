@@ -44,12 +44,18 @@ export function Partie({ gameId, total, question: premiere, actions, connecte, a
     setResultat(await actions.terminer(gameId));
   }
 
-  if (resultat) return <Bilan resultat={resultat} connecte={connecte} anonyme={anonyme} />;
+  if (resultat) {
+    return (
+      <div className="conteneur grid flex-1 grid-cols-1 content-start py-8">
+        <Bilan resultat={resultat} connecte={connecte} anonyme={anonyme} />
+      </div>
+    );
+  }
 
   return (
-    <div className="grid gap-4">
+    <div className="flex flex-1 flex-col">
       {!connecte && (
-        <p className="m-0 flex flex-wrap items-center gap-x-3 gap-y-1 border border-filet bg-blanc-cartel px-4 py-2 text-sm text-encre-douce">
+        <p className="m-0 flex flex-wrap items-center gap-x-3 gap-y-1 border-b border-filet bg-blanc-cartel px-4 py-2 text-sm text-encre-douce">
           <span>Tu joues sans compte : la partie ne sera pas sauvegardée.</span>
           <Link href={`/connexion?next=${encodeURIComponent(`/partie/${gameId}`)}`} className="font-bold text-encre underline underline-offset-4">
             Se connecter

@@ -6,8 +6,8 @@ export const metadata: Metadata = { title: "Démonstration de la partie · Kiffe
 
 export default function PageDemoPartie() {
   return (
-    <main className="mx-auto w-full max-w-[1180px] flex-1 px-4 py-7">
-      <header className="mb-4 grid gap-2">
+    <main className="flex flex-1 flex-col">
+      <header className="conteneur grid gap-2 py-5">
         <span className="inventaire">Démonstration · issue 3.4</span>
         <h1 className="text-4xl leading-tight">Une partie de trois questions</h1>
         <p className="m-0 max-w-prose text-encre-douce">

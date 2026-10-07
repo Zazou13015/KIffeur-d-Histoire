@@ -44,7 +44,7 @@ export default async function PartiePage({ params, searchParams }: PageProps<"/p
 
   if (question) {
     return (
-      <main className="mx-auto w-full max-w-[1180px] flex-1 px-4 py-7">
+      <main className="flex flex-1 flex-col">
         <Partie
           gameId={id}
           total={total}

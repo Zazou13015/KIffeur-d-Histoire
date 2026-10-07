@@ -51,11 +51,14 @@ type Props = {
    * posées sur son fond. Les clics hors des boîtes continuent de placer la réponse.
    */
   haut?: ReactNode;
+  /** Sous l'axe, directement sous la frise (bande des époques). */
+  sous?: ReactNode;
+  /** En bas de la scène. Chaque boîte se déclare elle-même avec `data-superposition`. */
   bas?: ReactNode;
 };
 
 // Place minimale entre deux marqueurs avant qu'ils se regroupent, et couloirs où ils se posent.
-const ECART_MARQUEURS = 112;
+const ECART_MARQUEURS = 132;
 const COULOIRS_MARQUEURS = [10, 62, 114];
 
 const PUCE_MAX = 260;
@@ -77,6 +80,7 @@ export function Frise({
   marqueurs,
   onMarqueur,
   haut,
+  sous,
   bas,
 }: Props) {
   const interne = useVue(precision);
@@ -216,7 +220,7 @@ export function Frise({
     animer(debut - marge, fin + marge);
   }
 
-  const scene = haut != null || bas != null;
+  const scene = haut != null || bas != null || sous != null;
   const outils = (
     <div className={s.outils}>
       <span className={s.echelle}>{legendePas(pas)}</span>
@@ -318,12 +322,12 @@ export function Frise({
           const haut = COULOIRS_MARQUEURS[i % COULOIRS_MARQUEURS.length];
           return (
             <div key={m.id}>
-              <div className={s.tigeMarqueur} style={{ left: x, top: haut + 44, height: 210 - haut - 44 }} />
+              <div className={s.tigeMarqueur} style={{ left: x, top: haut + 52, height: 210 - haut - 52 }} />
               <button
                 type="button"
                 data-marqueur
                 className={`${s.marqueur} ${s[`etat_${m.etat ?? "neutre"}`]}`}
-                style={{ left: clamp(x, 56, largeur - 56), top: haut }}
+                style={{ left: clamp(x, 66, largeur - 66), top: haut }}
                 aria-label={`${m.titre}, ${dateCourte(m.date)}`}
                 onClick={() => onMarqueur?.(m.id)}
               >
@@ -387,7 +391,8 @@ export function Frise({
           </>
         )}
         </div>
-        {scene && <div className={s.zoneScene}>{bas != null && <div data-superposition className={s.superposition}>{bas}</div>}</div>}
+        {sous != null && <div data-superposition className={s.zoneSous}>{sous}</div>}
+        {bas != null && <div className={s.zoneBas}>{bas}</div>}
       </div>
     </>
   );

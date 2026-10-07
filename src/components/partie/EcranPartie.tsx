@@ -133,7 +133,7 @@ export function EcranPartie({ question, corriger, chrono, suivante }: Props) {
 
   // Boîte du haut : la carte de la question, à l'horizontale.
   const carte = (
-    <div className={s.carteH}>
+    <div className={`${s.carteH}${question.titre.length > 70 ? ` ${s.titreLong}` : question.titre.length > 40 ? ` ${s.titreMoyen}` : ""}`}>
       <div className={s.illustration}>
         {question.illustrationUrl ? (
           // Dessin SVG léger (8 Ko) : pas d'optimisation d'image nécessaire.
@@ -157,18 +157,18 @@ export function EcranPartie({ question, corriger, chrono, suivante }: Props) {
     </div>
   );
 
-  // Boîte du bas : la saisie sous la frise, puis la correction.
+  // Sous la frise : la boîte de saisie compacte, le bouton Valider dessous, puis la correction à côté.
   const reponseBoite = (
-    <div className={s.boiteReponse}>
-      <SaisieDate
-        precision={precision}
-        champs={champs}
-        onChange={changerChamps}
-        onFocusChange={setEnSaisie}
-        onValider={valider}
-        verrouille={correction != null || envoi}
-      />
-      <div className={s.actions}>
+    <div className={s.zoneReponse}>
+      <div data-superposition className={s.colonneSaisie}>
+        <SaisieDate
+          precision={precision}
+          champs={champs}
+          onChange={changerChamps}
+          onFocusChange={setEnSaisie}
+          onValider={valider}
+          verrouille={correction != null || envoi}
+        />
         {erreur && (
           <p role="alert" className={s.erreur}>
             {erreur}
@@ -185,7 +185,7 @@ export function EcranPartie({ question, corriger, chrono, suivante }: Props) {
         )}
       </div>
       {correction && (
-        <div className={s.resultat} role="status">
+        <div data-superposition className={s.resultat} role="status">
           <span className={s.inventaire}>Réponse : {formatHistoricDate(correction.bonne, precision)}</span>
           <span className={`${s.points} date`}>{correction.points} pts</span>
           <span>
@@ -211,9 +211,9 @@ export function EcranPartie({ question, corriger, chrono, suivante }: Props) {
         enSaisie={enSaisie}
         correction={correction && { bonne: correction.bonne, titre: question.titre }}
         haut={carte}
+        sous={<BandeEpoques vue={vue} animer={animer} />}
         bas={reponseBoite}
       />
-      <BandeEpoques vue={vue} animer={animer} />
     </section>
   );
 }

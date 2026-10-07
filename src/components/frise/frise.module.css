@@ -43,9 +43,9 @@
 .lecture { cursor: grab; }
 
 /* ---------- Marqueurs (cartes d'événements) ---------- */
-.marqueur { position: absolute; transform: translateX(-50%); width: 108px; height: 44px; display: grid; grid-template-columns: 28px minmax(0, 1fr); align-items: center; gap: 4px; padding: 3px 5px; background: var(--color-blanc-cartel); border: 1px solid var(--color-encre); color: var(--color-encre); text-align: left; cursor: pointer; z-index: 2; }
+.marqueur { position: absolute; transform: translateX(-50%); width: 128px; height: 52px; display: grid; grid-template-columns: 28px minmax(0, 1fr); align-items: center; gap: 4px; padding: 3px 5px; background: var(--color-blanc-cartel); border: 1px solid var(--color-encre); color: var(--color-encre); text-align: left; cursor: pointer; z-index: 2; }
 .marqueur svg { width: 28px; height: 28px; display: block; color: var(--color-encre); }
-.marqueur span { font-size: 11px; overflow-wrap: anywhere; hyphens: auto; line-height: 1.15; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; }
+.marqueur span { font-size: 11px; overflow-wrap: anywhere; hyphens: auto; line-height: 1.15; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; }
 .marqueur:hover { box-shadow: var(--shadow-focus); }
 .tigeMarqueur { position: absolute; width: 1px; background: var(--color-encre); opacity: 0.45; }
 .etat_actif { border-color: var(--color-laiton); box-shadow: 0 0 0 2px var(--color-laiton); }
@@ -55,10 +55,13 @@
 .groupe:hover { background: var(--color-encre-douce); }
 
 
-/* ---------- Scène de jeu : la frise occupe tout l'écran, avec une boîte en haut et une boîte en bas ---------- */
+/* ---------- Scène de jeu : la frise occupe toute la page, les boîtes sont posées dessus ---------- */
 .bande { position: absolute; inset: 0; }
-.scene { height: auto; display: grid; grid-template-rows: auto 340px auto; align-content: start; }
-.bandeScene { position: relative; height: 340px; overflow: hidden; }
-.zoneScene { padding: 14px 16px; position: relative; z-index: 5; }
+.scene { height: auto; border: 0; flex: 1; display: flex; flex-direction: column; min-height: 640px; }
+/* L'espace libre d'un grand écran se met au-dessus de l'axe : la bande, les époques et la réponse restent groupées en bas. */
+.bandeScene { position: relative; height: 340px; overflow: hidden; flex: none; margin-top: auto; }
+.zoneScene { padding: 14px 16px 0; position: relative; z-index: 5; flex: none; }
+.zoneSous { padding: 0 16px; position: relative; z-index: 5; flex: none; cursor: default; }
+.zoneBas { padding: 14px 16px 18px; position: relative; z-index: 5; flex: none; }
 .superposition { background: rgb(251 251 248 / 0.96); border: 1px solid var(--color-encre); box-shadow: 0 2px 0 rgb(29 42 58 / 0.08); cursor: default; user-select: text; }
 .outilsScene { margin-top: 8px; cursor: default; }

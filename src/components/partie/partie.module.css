@@ -1,7 +1,7 @@
 /* Écran de partie, d'après la charte « Cabinet de curiosités » (maquette n° 4).
    Carte de question à gauche, frise zoomable à droite, bande des époques sous la frise. */
 
-.jeu { display: grid; gap: 12px; min-width: 0; }
+.jeu { display: flex; flex-direction: column; flex: 1; min-width: 0; }
 
 /* ---------- Carte de question (boîte du haut, à l'horizontale) ---------- */
 .carteH { display: grid; grid-template-columns: 150px minmax(0, 1fr) auto; gap: 16px; align-items: center; padding: 12px 16px; }
@@ -11,6 +11,8 @@
 .carteTexte { display: grid; gap: 4px; min-width: 0; }
 .inventaire { font-family: var(--font-mono); font-size: 11px; color: var(--color-oxyde); letter-spacing: 0.06em; text-transform: uppercase; }
 .carteTexte h2 { font-size: 28px; line-height: 1.1; overflow-wrap: anywhere; }
+.titreMoyen .carteTexte h2 { font-size: 24px; }
+.titreLong .carteTexte h2 { font-size: 20px; line-height: 1.2; }
 .consigne { margin: 0; font-size: 14px; font-weight: 700; color: var(--color-encre); }
 
 /* ---------- Saisie jour / mois / année ---------- */
@@ -83,9 +85,9 @@
 .entete { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 8px; }
 .erreur { margin: 0; padding: 8px 10px; border: 1px solid var(--color-oxyde); background: var(--color-fond-resultat); color: var(--color-oxyde); font-size: 14px; }
 
-/* ---------- Boîte du bas : saisie, bouton, correction ---------- */
-.boiteReponse { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 12px 16px; padding: 12px 16px; }
-.boiteReponse .saisie { flex: 0 1 380px; min-width: 260px; }
-.actions { display: grid; gap: 8px; align-content: start; flex: 0 0 auto; min-width: 190px; }
-.resultat { flex: 1 1 260px; min-width: 0; }
+/* ---------- Sous la frise : saisie compacte, bouton Valider dessous, correction à côté ---------- */
+.zoneReponse { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 12px 16px; }
+.colonneSaisie { display: grid; gap: 8px; flex: 0 1 380px; min-width: 260px; cursor: default; }
+.colonneSaisie .saisie { box-shadow: 0 2px 0 rgb(29 42 58 / 0.08); }
+.zoneReponse .resultat { flex: 1 1 280px; max-width: 560px; min-width: 0; cursor: default; }
 .explication { color: var(--color-encre-douce); line-height: 1.4; overflow-wrap: anywhere; }

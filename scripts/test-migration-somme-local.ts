@@ -16,6 +16,9 @@ const EMPREINTE = `select md5(jsonb_build_object(
   'aliases', (select jsonb_agg(to_jsonb(a) order by event_id, alias) from histoire.event_aliases a)
 )::text);`;
 const AVANT = `
+  -- Reconstituer le registre à la date de cette migration, même si de nouvelles
+  -- migrations existent. Ces suppressions restent dans la transaction annulée.
+  delete from histoire.migrations_appliquees where version > '20261007143355';
   delete from histoire.migrations_appliquees where version='20261007143355';
   update histoire.events set event_type='POINT', precision='DAY', playable_mode='DAY' where id='EVT-0210';
   update histoire.event_answers set start_month=11, start_day=18, end_year=null, end_month=null, end_day=null where event_id='EVT-0210';
@@ -44,6 +47,7 @@ export function testerMigrationSommeLocale() {
   // les nombres : la migration doit reproduire exactement l'import corrigé.
   assert.equal(apres, empreinte, "Mutation hors correction ou copie incohérente");
   assert.equal(sql(EMPREINTE), empreinte);
+  assert.equal(sql("select jsonb_agg(to_jsonb(m) order by version) from histoire.migrations_appliquees m;"), registre);
 
   const erreurs = [
     { preparation: "", raison: /migration déjà enregistrée/ },

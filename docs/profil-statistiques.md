@@ -113,3 +113,8 @@ de progression parallèle ni modification de #23 dans cette PR. #25 reste ouvert
 La CI exécute aussi ce contrôle navigateur. Cette relecture valide le rendu et
 le contrat HTTP ; les autorisations et les calculs réels sont validés séparément
 sur Postgres par les tests SQL. La session réelle sur KFFR attend le GO migration.
+
+Le test local de la migration Somme reconstitue désormais le registre à sa date,
+en retirant les versions ultérieures uniquement dans sa transaction annulée.
+Il vérifie ensuite que le registre complet est restauré : une nouvelle migration
+ne doit pas empêcher de rejouer la simulation de cette correction historique.

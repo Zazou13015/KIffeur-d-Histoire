@@ -12,13 +12,16 @@ type Props = {
   connecte: boolean;
   /** La partie a été jouée sans compte et peut encore être rattachée au compte connecté. */
   anonyme: boolean;
+  /** Choix d'origine de la partie (forme compacte) : « Rejouer » relance la même sélection. */
+  relance?: string;
 };
 
 // Fin de partie : précision moyenne, points (100 par question) et la bonne date de chaque question.
-export function Bilan({ resultat, connecte, anonyme }: Props) {
+export function Bilan({ resultat, connecte, anonyme, relance }: Props) {
   const { game_id: id, question_count: n, total_points: points, average_accuracy: precision, questions } = resultat;
   const suite = `/partie/${id}`;
-  const difficulte = questions[0]?.unit ?? "YEAR";
+  // Sans choix d'origine (lien ancien), on rejoue une partie générale à la même difficulté.
+  const choix = relance ?? `mode=general&difficulte=${questions[0]?.unit ?? "YEAR"}`;
 
   return (
     <section className="grid gap-5" aria-label="Fin de la partie">
@@ -64,7 +67,7 @@ export function Bilan({ resultat, connecte, anonyme }: Props) {
 
       <div className="flex flex-wrap gap-3">
         <form action={lancer}>
-          <input type="hidden" name="difficulte" value={difficulte} />
+          <input type="hidden" name="c" value={choix} />
           <Bouton type="submit">Rejouer</Bouton>
         </form>
         <Bouton variante="secondaire" href="/">

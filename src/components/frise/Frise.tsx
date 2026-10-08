@@ -10,9 +10,7 @@ import {
   decaler,
   decor,
   depuisT,
-  DEBUT_FRISE,
   EPOQUES,
-  FIN_FRISE,
   graduations,
   legendePas,
   texteAnnee,
@@ -96,7 +94,7 @@ export function Frise({
   bas,
 }: Props) {
   const interne = useVue(precision);
-  const { vue, vueRef, placer, animer, zoomer, arreter } = controle ?? interne;
+  const { vue, vueRef, placer, animer, zoomer, arreter, bornes } = controle ?? interne;
   const ref = useRef<HTMLDivElement>(null);
   const [largeur, setLargeur] = useState(800);
   // Écran de jeu : hauteur de la scène et des boîtes posées en haut et en bas, pour placer l'axe.
@@ -149,7 +147,7 @@ export function Frise({
     const v = vueRef.current;
     return v.debut + ((clientX - r.left) / r.width) * (v.fin - v.debut);
   };
-  const dateA = (clientX: number) => depuisT(clamp(tA(clientX), DEBUT_FRISE, FIN_FRISE - 0.001), precision);
+  const dateA = (clientX: number) => depuisT(clamp(tA(clientX), bornes.debut, bornes.fin - 0.001), precision);
 
   // Molette : écouteur non passif pour pouvoir bloquer le défilement de la page.
   useEffect(() => {
@@ -444,8 +442,8 @@ export function Frise({
               aria-label="Votre réponse"
               aria-valuetext={dateCourte(reponse)}
               aria-valuenow={versT(reponse)}
-              aria-valuemin={DEBUT_FRISE}
-              aria-valuemax={FIN_FRISE}
+              aria-valuemin={bornes.debut}
+              aria-valuemax={bornes.fin}
             />
             <div
               className={enSaisie ? `${s.reponseEtiquette} ${s.enSaisie}` : s.reponseEtiquette}

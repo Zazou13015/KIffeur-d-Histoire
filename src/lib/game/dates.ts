@@ -21,6 +21,13 @@ export function formatHistoricDate(date: HistoricDate, precision: Precision): st
   return `${date.day === 1 ? "1er" : date.day} ${mois} ${annee}`;
 }
 
+// Date ramenée à la précision jouée : en Facile on ne parle que de l'année, en Moyen du mois.
+export function aLaPrecision(date: HistoricDate, precision: Precision): HistoricDate {
+  if (precision === "annee" || date.month == null) return { year: date.year };
+  if (precision === "mois" || date.day == null) return { year: date.year, month: date.month };
+  return date;
+}
+
 // Écart entre la réponse et la bonne date, dans l'unité de la difficulté choisie.
 // Approximation volontaire (mois de 30,44 jours) : suffisant pour un score, pas pour un calendrier.
 export function gapInUnit(answer: HistoricDate, expected: HistoricDate, unit: Precision): number {

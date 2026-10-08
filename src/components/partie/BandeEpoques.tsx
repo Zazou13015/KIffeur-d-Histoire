@@ -1,12 +1,21 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
-import { clamp, DEBUT_FRISE, EPOQUES, FIN_FRISE, texteAnnee, type Vue } from "@/lib/game/frise";
+import { clamp, DEBUT_FRISE, EPOQUES, texteAnnee, VUE_DE_BASE, type Epoque, type Vue } from "@/lib/game/frise";
 import s from "./partie.module.css";
 
+// Époques visibles quand la partie ne couvre qu'une période : coupées aux bornes de la frise.
+function epoquesDans(bornes: Vue): Epoque[] {
+  return EPOQUES.filter((e) => e.fin > bornes.debut && e.debut < bornes.fin).map((e) => ({
+    ...e,
+    debut: Math.max(e.debut, bornes.debut),
+    fin: Math.min(e.fin, bornes.fin),
+  }));
+}
+
 // Largeurs différenciées mais tassées : pas à l'échelle, sinon la Préhistoire disparaît.
-// Sur téléphone, cinq parts égales.
-function disposition(etroit: boolean) {
+// Sur téléphone, parts égales.
+function disposition(EPOQUES: Epoque[], etroit: boolean) {
   const poids = EPOQUES.map((e) => (etroit ? 1 : 28 + Math.sqrt(e.fin - e.debut)));
   const total = poids.reduce((a, b) => a + b, 0);
   const cumul = poids.map((_, i) => poids.slice(0, i).reduce((a, b) => a + b, 0) / total);
@@ -33,10 +42,12 @@ function useEtroit() {
   );
 }
 
-export function BandeEpoques({ vue, animer }: { vue: Vue; animer: (debut: number, fin: number) => void }) {
-  const { poids, position } = disposition(useEtroit());
+export function BandeEpoques({ vue, animer, bornes = VUE_DE_BASE }: { vue: Vue; animer: (debut: number, fin: number) => void; bornes?: Vue }) {
+  const epoques = epoquesDans(bornes);
+  const { poids, position } = disposition(epoques, useEtroit());
   const c = (vue.debut + vue.fin) / 2;
-  const tout = vue.fin - vue.debut > (FIN_FRISE - DEBUT_FRISE) * 0.9;
+  const tout = vue.fin - vue.debut > (bornes.fin - bornes.debut) * 0.9;
+  const periode = bornes.debut > VUE_DE_BASE.debut || bornes.fin < VUE_DE_BASE.fin;
   const l = position(vue.debut);
   const r = position(vue.fin);
 
@@ -48,7 +59,7 @@ export function BandeEpoques({ vue, animer }: { vue: Vue; animer: (debut: number
         aria-label="Aller à une époque"
         style={{ "--colonnes": poids.map((p) => `minmax(0, ${p.toFixed(2)}fr)`).join(" ") } as React.CSSProperties}
       >
-        {EPOQUES.map((e) => {
+        {epoques.map((e) => {
           const active = !tout && c >= e.debut && c < e.fin;
           return (
             <button
@@ -67,14 +78,14 @@ export function BandeEpoques({ vue, animer }: { vue: Vue; animer: (debut: number
                 <span className={s.long}>{e.nom === "Époque contemporaine" ? "Contemporaine" : e.nom}</span>
                 <span className={s.court}>{e.court}</span>
               </b>
-              <small className="date">{e.debut <= DEBUT_FRISE ? "les origines" : `dès ${texteAnnee(e.debut)}`}</small>
+              <small className="date">{e.debut <= DEBUT_FRISE ? "les origines" : `dès ${texteAnnee(Math.round(e.debut) || 1)}`}</small>
             </button>
           );
         })}
         <div className={s.fenetre} style={{ left: `${l}%`, width: `${Math.max(0.4, r - l)}%` }} />
       </div>
-      <button type="button" className={tout ? `${s.tout} ${s.active}` : s.tout} onClick={() => animer(DEBUT_FRISE, FIN_FRISE)}>
-        Toute l&apos;histoire
+      <button type="button" className={tout ? `${s.tout} ${s.active}` : s.tout} onClick={() => animer(bornes.debut, bornes.fin)}>
+        {periode ? "Toute la période" : "Toute l\u2019histoire"}
       </button>
     </div>
   );

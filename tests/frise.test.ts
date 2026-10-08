@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import type { HistoricDate, Precision } from "@/lib/game/dates";
+import { aLaPrecision, type HistoricDate, type Precision } from "@/lib/game/dates";
 import { borner, DEBUT_FRISE, depuisT, FIN_FRISE, versT } from "@/lib/game/frise";
 import { regrouper } from "@/lib/game/marqueurs";
 
@@ -93,5 +93,14 @@ describe("regroupement des marqueurs", () => {
     const debut = performance.now();
     for (let i = 0; i < 1000; i++) regrouper(beaucoup, { debut: -3500, fin: 2030 }, 1000, 92, "annee");
     expect(performance.now() - debut).toBeLessThan(500);
+  });
+});
+
+describe("bonne réponse à la précision jouée", () => {
+  it("ne garde que l'année en Facile et le mois en Moyen", () => {
+    const bastille = { year: 1789, month: 7, day: 14 };
+    expect(aLaPrecision(bastille, "annee")).toEqual({ year: 1789 });
+    expect(aLaPrecision(bastille, "mois")).toEqual({ year: 1789, month: 7 });
+    expect(aLaPrecision(bastille, "jour")).toEqual(bastille);
   });
 });

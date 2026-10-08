@@ -3,6 +3,7 @@ import type { HistoricDate } from "@/lib/game/dates";
 import { borner, DEBUT_FRISE, FIN_FRISE, versT, type Vue } from "@/lib/game/frise";
 import type { MarqueurFrise } from "@/lib/game/marqueurs";
 import { motifChapitre } from "./catalogue";
+import type { CarteApprendre } from "./cartes";
 
 // Le début ancre également les plages ; le libellé complet reste affiché.
 export function debutCarte(c: CartePedagogique): HistoricDate | null {
@@ -24,9 +25,11 @@ export function cadrageChapitre(cartes: CartePedagogique[]): { plage: Vue; borne
   const bornes = { debut: Math.min(DEBUT_FRISE, debut - marge), fin: Math.max(FIN_FRISE, fin + marge) };
   return { plage: borner(debut - marge, fin + marge, "jour", bornes), bornes };
 }
-export function marqueursCartes(cartes: CartePedagogique[], actif: string | null): MarqueurFrise[] {
+export function marqueursCartes(cartes: CarteApprendre[], actif: string | null): MarqueurFrise[] {
   return cartes.flatMap((c) => {
     const date = debutCarte(c);
-    return date ? [{ id: c.card_id, titre: c.title, date, motif: motifChapitre(c.chapter_id), etat: c.card_id === actif ? "actif" as const : "neutre" as const }] : [];
+    return date ? [{ id: c.card_id, titre: c.title, date, motif: motifChapitre(c.chapter_id),
+      ...(c.illustrationDediee ? { illustration: `/api/pedagogie/illustration/${encodeURIComponent(c.card_id)}` } : {}),
+      etat: c.card_id === actif ? "actif" as const : "neutre" as const }] : [];
   });
 }

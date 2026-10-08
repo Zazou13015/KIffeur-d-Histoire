@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import type { CartePedagogique } from "@/lib/pedagogie";
+import type { CarteApprendre } from "@/lib/apprendre/cartes";
 import { cadrageChapitre, debutCarte, marqueursCartes } from "@/lib/apprendre/frise";
 import { Frise } from "@/components/frise/Frise";
 import { useVue } from "@/components/frise/useVue";
@@ -9,7 +9,7 @@ import { versT } from "@/lib/game/frise";
 import { Badge } from "@/components/ui/Badge";
 import { Bouton } from "@/components/ui/Bouton";
 
-export function DecouvrirChapitre({ cartes }: { cartes: CartePedagogique[] }) {
+export function DecouvrirChapitre({ cartes }: { cartes: CarteApprendre[] }) {
   const [selection, setSelection] = useState<string | null>(cartes[0]?.card_id ?? null);
   const cadre = useMemo(() => cadrageChapitre(cartes), [cartes]);
   const controle = useVue("jour", cadre.bornes, cadre.plage);
@@ -55,7 +55,7 @@ export function DecouvrirChapitre({ cartes }: { cartes: CartePedagogique[] }) {
         <Bouton variante="secondaire" onClick={() => animer(cadre.plage.debut, cadre.plage.fin)}>Voir tout le chapitre</Bouton>
       </div>
       <Frise precision="jour" mode="lecture" plageInitiale={{ debut: { year: Math.floor(cadre.plage.debut) || -1 }, fin: { year: Math.ceil(cadre.plage.fin) || 1 } }}
-        controle={controle} marqueurs={marqueurs} onMarqueur={ouvrir} />
+        controle={controle} marqueurs={marqueurs} onMarqueur={ouvrir} presentationMarqueurs="illustree" />
       <p className="m-0 text-sm text-encre-douce">Les périodes sont placées à leur début. Les cartes sans date précise se parcourent dans la liste.</p>
     </section>
     <div className="grid min-w-0 items-start gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">

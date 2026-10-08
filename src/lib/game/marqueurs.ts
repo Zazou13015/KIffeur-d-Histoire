@@ -13,6 +13,8 @@ export type MarqueurFrise = {
   date: HistoricDate;
   /** Motif de public/motifs.svg (« bastille », « caravelle »…). */
   motif?: string;
+  /** URL applicative d'une miniature entière (facultative, jamais un chemin de contenu). */
+  illustration?: string;
   etat?: EtatMarqueur;
 };
 

@@ -1,27 +1,71 @@
 import { afterEach, expect, it, vi } from "vitest";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { lireCsv } from "../scripts/csv";
 import { chargerCartesChapitre } from "@/lib/apprendre/cartes-serveur";
-import { illustrationCarte } from "@/lib/apprendre/illustration-serveur";
+import { illustrationCarte, illustrationDediee } from "@/lib/apprendre/illustration-serveur";
 import { GET } from "@/app/api/pedagogie/illustration/[cardId]/route";
 import { CHAPITRES } from "@/lib/apprendre/catalogue";
 import { chargerDemoPedagogie } from "@/app/demo/pedagogie/donnees";
 import { generateStaticParams, default as ChapitrePage } from "@/app/apprendre/[niveau]/[chapitre]/page";
 
 vi.mock("server-only", () => ({}));
+vi.mock("node:fs", async (importOriginal) => {
+  const original = await importOriginal<typeof import("node:fs")>();
+  return { ...original, readFileSync: vi.fn(original.readFileSync), existsSync: vi.fn(original.existsSync) };
+});
 vi.mock("next/navigation", () => ({ notFound: () => { throw new Error("404"); } }));
-afterEach(() => { vi.unstubAllGlobals(); vi.unstubAllEnvs(); });
+afterEach(() => { vi.unstubAllGlobals(); vi.unstubAllEnvs(); vi.restoreAllMocks(); });
 
 it("charge seulement le chapitre demandé via la RPC anonyme mise en cache et filtre les champs", async () => {
   const carte = chargerDemoPedagogie()[0].cartes[0];
   vi.stubEnv("NEXT_PUBLIC_SUPABASE_URL", "https://supabase-fictif.example");
   vi.stubEnv("NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY", "cle-publique-fictive");
-  const fetcher = vi.fn().mockResolvedValue(Response.json([{ ...carte, event_id: "EVT-9999", sources: ["interne"], image_path: "EVT-9999.svg", date_status: "EXACT" }]));
+  const fetcher = vi.fn().mockResolvedValue(Response.json([{ ...carte, illustrationDediee: false, event_id: "EVT-9999", sources: ["interne"], image_path: "EVT-9999.svg", date_status: "EXACT" }]));
   vi.stubGlobal("fetch", fetcher);
-  expect(await chargerCartesChapitre(carte.chapter_id)).toEqual([carte]);
+  expect(await chargerCartesChapitre(carte.chapter_id)).toEqual([{ ...carte, illustrationDediee: true }]);
   expect(fetcher).toHaveBeenCalledExactlyOnceWith(`https://supabase-fictif.example/rest/v1/rpc/get_chapter_cards?p_chapter_id=${carte.chapter_id}`, expect.objectContaining({
     headers: { apikey: "cle-publique-fictive", "Accept-Profile": "histoire" }, next: { revalidate: 3600, tags: ["cartes-pedagogiques", `chapitre-${carte.chapter_id}`] },
   }));
+});
+
+it("calcule les 303 disponibilités dédiées côté serveur sans accepter un booléen upstream ni transmettre un lien interne", async () => {
+  vi.stubEnv("NEXT_PUBLIC_SUPABASE_URL", "https://supabase-fictif.example");
+  vi.stubEnv("NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY", "publique");
+  let dediees = 0, motifs = 0;
+  const canonique = lireCsv("content/pedagogie/cartes-v1.csv");
+  for (const chapitre of chargerDemoPedagogie()) {
+    vi.stubGlobal("fetch", vi.fn().mockResolvedValue(Response.json(chapitre.cartes.map(c => ({ ...c, illustrationDediee: true, event_id: "EVT-9999", sources: ["interne"], image_path: "content/illustrations/EVT-9999.svg" })))));
+    const cartes = await chargerCartesChapitre(chapitre.id);
+    for (const c of cartes) {
+      const attendue = Boolean(canonique.find(l => l.card_id === c.card_id)!.event_id);
+      expect(c.illustrationDediee).toBe(attendue);
+      expect(illustrationDediee(c.card_id)).toBe(attendue);
+      if (c.illustrationDediee) dediees++; else motifs++;
+    }
+    expect(JSON.stringify(cartes)).not.toMatch(/EVT-\d|event_id|content\/illustrations|"sources"\s*:|"image_path"\s*:/);
+  }
+  expect({ dediees, motifs }).toEqual({ dediees: 303, motifs: 22 });
+  expect(illustrationDediee("CARD-016-nazisme")).toBe(false);
+  expect(illustrationDediee("EVT-0210")).toBe(false);
+  expect(illustrationDediee("../../.env.local")).toBe(false);
+});
+
+it("partage la décision SVG/fallback pour un asset manquant, actif ou trop lourd", () => {
+  const lecture = vi.mocked(readFileSync), original = lecture.getMockImplementation()!;
+  // Charger le catalogue avant de doubler la lecture du seul SVG, sans modifier un asset.
+  expect(illustrationDediee("CARD-016-verdun")).toBe(true);
+  for (const contenu of ["<svg><script/></svg>", "<svg>EVT-9999</svg>", "x".repeat(8193)]) {
+    lecture.mockImplementation(((fichier, ...args: unknown[]) =>
+      String(fichier).endsWith("EVT-0482.svg") ? contenu : Reflect.apply(original, undefined, [fichier, ...args])) as typeof readFileSync);
+    expect(illustrationDediee("CARD-016-verdun")).toBe(false);
+    expect(illustrationCarte("CARD-016-verdun")).toContain('translate(56 36)');
+    lecture.mockImplementation(original);
+  }
+  const absence = vi.mocked(existsSync), originalExiste = absence.getMockImplementation()!;
+  absence.mockReturnValue(false);
+  expect(illustrationDediee("CARD-016-verdun")).toBe(false);
+  expect(illustrationCarte("CARD-016-verdun")).toContain('translate(56 36)');
+  absence.mockImplementation(originalExiste);
 });
 
 it("ne transmet pas les erreurs Supabase et refuse une réponse d'un autre chapitre", async () => {

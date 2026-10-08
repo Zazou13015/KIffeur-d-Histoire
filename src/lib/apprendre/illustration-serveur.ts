@@ -11,10 +11,7 @@ function correspondances() {
   return cartes;
 }
 
-export function illustrationCarte(cardId: string): string | null {
-  // Lookup exact avant tout accès fichier : ni chemin libre, ni entrée EVT.
-  const carte = correspondances().get(cardId);
-  if (!carte) return null;
+function dessinDedie(carte: { event: string }): string | null {
   if (/^EVT-\d{4}$/.test(carte.event)) {
     const fichier = path.join(process.cwd(), "content/illustrations", `${carte.event}.svg`);
     if (existsSync(fichier)) {
@@ -23,6 +20,21 @@ export function illustrationCarte(cardId: string): string | null {
       if (Buffer.byteLength(svg) <= 8192 && !/EVT-\d|event_id|<script|<foreignObject|\bon\w+\s*=|\bhref\s*=|<!DOCTYPE/i.test(svg)) return svg;
     }
   }
+  return null;
+}
+
+export function illustrationDediee(cardId: string): boolean {
+  const carte = correspondances().get(cardId);
+  // Même lookup et même validation que la réponse SVG : un motif ne compte jamais.
+  return carte != null && dessinDedie(carte) != null;
+}
+
+export function illustrationCarte(cardId: string): string | null {
+  // Lookup exact avant tout accès fichier : ni chemin libre, ni entrée EVT.
+  const carte = correspondances().get(cardId);
+  if (!carte) return null;
+  const svg = dessinDedie(carte);
+  if (svg) return svg;
   const motifs = readFileSync(path.join(process.cwd(), "public/motifs.svg"), "utf8");
   const nom = motifChapitre(carte.chapitre);
   const dessin = new RegExp(`<symbol id="m-${nom}"[^>]*>([\\s\\S]*?)</symbol>`).exec(motifs)?.[1];

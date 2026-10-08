@@ -46,6 +46,10 @@
 .marqueur { position: absolute; transform: translateX(-50%); width: 128px; height: 52px; display: grid; grid-template-columns: 28px minmax(0, 1fr); align-items: center; gap: 4px; padding: 3px 5px; background: var(--color-blanc-cartel); border: 1px solid var(--color-encre); color: var(--color-encre); text-align: left; cursor: pointer; z-index: 2; }
 .marqueur svg { width: 28px; height: 28px; display: block; color: var(--color-encre); }
 .marqueur span { font-size: 11px; overflow-wrap: anywhere; hyphens: auto; line-height: 1.15; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; }
+.marqueurPedagogique { width: 108px; height: 44px; }
+.marqueurPedagogique span { -webkit-line-clamp: 3; }
+.marqueurIllustre { width: 140px; height: 52px; grid-template-columns: 48px minmax(0, 1fr); gap: 6px; padding: 4px 5px; }
+.marqueurIllustre img { display: block; width: 48px; height: 36px; object-fit: contain; background: var(--color-papier); border: 1px solid var(--color-filet); }
 .marqueur:hover { box-shadow: var(--shadow-focus); }
 .tigeMarqueur { position: absolute; width: 1px; background: var(--color-encre); opacity: 0.45; }
 .etat_actif { border-color: var(--color-laiton); box-shadow: 0 0 0 2px var(--color-laiton); }
@@ -53,6 +57,7 @@
 .etat_faux { border-color: var(--color-oxyde); }
 .groupe { position: absolute; top: 172px; transform: translateX(-50%); min-width: 44px; height: 44px; display: grid; place-items: center; padding: 0 8px; background: var(--color-encre); color: var(--color-papier); border: 2px solid var(--color-laiton); border-radius: 9999px; font-size: 20px; line-height: 1; cursor: zoom-in; z-index: 2; }
 .groupe:hover { background: var(--color-encre-douce); }
+.groupeActif, .groupeActif:hover { background: var(--color-laiton); color: var(--color-encre); box-shadow: 0 0 0 2px var(--color-laiton); }
 
 
 /* ---------- Scène de jeu : la frise remplit l'écran, la question et la réponse flottent dessus ---------- */

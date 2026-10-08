@@ -10,6 +10,7 @@ const prive = /event_id|EVT-\d+|official_wording|date_status|date_precision|["\\
 assert.doesNotMatch(accueil, prive);
 assert(!accueil.includes('card_id'), "L’accueil ne charge aucune carte");
 let total = 0;
+let dediees = 0, motifs = 0;
 for (const chapitre of CHAPITRES) {
   const chemin = cheminChapitre(chapitre);
   assert(accueil.includes(chemin), `Lien absent : ${chemin}`);
@@ -21,10 +22,25 @@ for (const chapitre of CHAPITRES) {
   const ids = new Set((html + rsc).match(/CARD-[a-z0-9-]+/g));
   assert.deepEqual([...ids].sort(), attendues.map((c) => c.card_id).sort(), `Seulement les cartes du chapitre ${chapitre.id}`);
   for (const c of attendues) for (const source of c.sources) assert(!html.includes(source) && !rsc.includes(source), `Source divulguée : ${c.card_id}`);
+  // Lire la projection réellement transmise, sans se fier à un manifeste de couverture.
+  const donnees = [...rsc.matchAll(/"card_id":"(CARD-[a-z0-9-]+)"/g)];
+  assert.equal(donnees.length, attendues.length, `Projection du chapitre ${chapitre.id}`);
+  for (let i = 0; i < donnees.length; i++) {
+    const tranche = rsc.slice(donnees[i].index, donnees[i + 1]?.index ?? rsc.length);
+    const flag = /"illustrationDediee":(true|false)/.exec(tranche)?.[1];
+    const carte = attendues.find(c => c.card_id === donnees[i][1])!;
+    assert.equal(flag, carte.event_id ? "true" : "false", `Disponibilité publique de ${carte.card_id}`);
+    if (flag === "true") dediees++; else motifs++;
+  }
   total += attendues.length;
 }
 assert.equal(CHAPITRES.length, 41);
 assert.equal(total, 325);
+assert.deepEqual({ dediees, motifs }, { dediees: 303, motifs: 22 });
+const trace = JSON.parse(readFileSync(`${racine}/apprendre/[niveau]/[chapitre]/page.js.nft.json`, "utf8")) as { files: string[] };
+const svgTraces = new Set(trace.files.filter(n => /content\/illustrations\/EVT-\d{4}\.svg$/.test(n)).map(n => n.split("/").at(-1)));
+assert.equal(svgTraces.size, 331, "Assets disponibles pour recalculer le booléen lors de l'ISR");
+assert(trace.files.some(n => n.endsWith("content/pedagogie/cartes-v1.csv")));
 const routes = JSON.parse(readFileSync(".next/prerender-manifest.json", "utf8")).routes;
 assert(routes["/apprendre"]);
 for (const c of CHAPITRES) assert.equal(routes[cheminChapitre(c)].initialRevalidateSeconds, 3600);

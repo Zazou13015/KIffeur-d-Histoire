@@ -67,9 +67,11 @@ export function EcranInverse({ question, corriger, chrono, suivante, bornes }: P
   // Début du tour : la frise s'ouvre sur toute la période, puis zoome doucement vers la date donnée
   // (environ 40 ans de large, pour garder le contexte de l'époque).
   const { placer, vueRef, arreter } = controle;
+  // Nombres (et non objets) en dépendances : l'animation ne repart pas si la page recrée la question.
+  const t = versT(date);
+  const cible = Math.max(2, Math.min(40, (cadre.fin - cadre.debut) / 4));
   useEffect(() => {
-    const t = versT(date);
-    const cible = 40;
+    // Sur une période courte (pack, chapitre), la frise est déjà resserrée : on zoome au quart de sa largeur.
     let image = 0;
     const attente = setTimeout(() => {
       const depart = vueRef.current;
@@ -92,7 +94,7 @@ export function EcranInverse({ question, corriger, chrono, suivante, bornes }: P
       cancelAnimationFrame(image);
       arreter();
     };
-  }, [date, placer, vueRef, arreter]);
+  }, [t, cible, placer, vueRef, arreter]);
 
   const envoyerRef = useRef(envoyer);
   useEffect(() => {

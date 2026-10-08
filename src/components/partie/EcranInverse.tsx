@@ -69,8 +69,8 @@ export function EcranInverse({ question, corriger, chrono, suivante, bornes }: P
 
   // Début du tour : la frise part de toute la période et zoome vers la date donnée.
   useEffect(() => {
-    const paliers = REGLAGES[precision].suivi;
-    const cible = paliers[paliers.length - 1];
+    // Vue d'ensemble d'environ 40 ans autour de la date, pour garder le contexte de l'époque.
+    const cible = 40;
     const t = versT(date);
     const id = setTimeout(() => animer(t - cible / 2, t + cible / 2), 500);
     return () => clearTimeout(id);

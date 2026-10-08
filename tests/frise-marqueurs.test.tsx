@@ -1,10 +1,10 @@
 // @vitest-environment jsdom
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
-import { afterEach, beforeEach, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { Frise } from "@/components/frise/Frise";
 import { marqueursCartes, cadrageChapitre } from "@/lib/apprendre/frise";
 import { chargerDemoPedagogie } from "@/app/demo/pedagogie/donnees";
-import type { MarqueurFrise } from "@/lib/game/marqueurs";
+import { empiler, type MarqueurFrise } from "@/lib/game/marqueurs";
 import { useVue } from "@/components/frise/useVue";
 import type { Vue } from "@/lib/game/frise";
 import { lireCsv } from "../scripts/csv";
@@ -25,7 +25,8 @@ beforeEach(() => {
 afterEach(() => { cleanup(); vi.unstubAllGlobals(); vi.restoreAllMocks(); });
 
 function controle(vue: Vue): ReturnType<typeof useVue> {
-  return { vue, vueRef: { current: vue }, placer: vi.fn(), animer: vi.fn(), zoomer: vi.fn(), arreter: vi.fn() };
+  // `bornes` : la frise de partie s'y limite (PR #69) ; ici toute la plage visible.
+  return { vue, vueRef: { current: vue }, placer: vi.fn(), animer: vi.fn(), zoomer: vi.fn(), arreter: vi.fn(), bornes: vue } as ReturnType<typeof useVue>;
 }
 const marqueurs: MarqueurFrise[] = [
   { id: "CARD-016-verdun", titre: "Verdun", date: { year: 1916 }, motif: "casque", illustration: "/api/pedagogie/illustration/CARD-016-verdun", etat: "actif" },
@@ -162,4 +163,17 @@ it.each([1120, 375])("préserve les dates, les groupes des 41 chapitres et les c
   }
   // Les 22 cartes sans date ne sont pas déplacées artificiellement sur la frise.
   expect({ datees, miniatures, motifs }).toEqual({ datees: 303, miniatures: 290, motifs: 13 });
+});
+
+describe("empiler : toutes les cartes visibles sans groupe", () => {
+  it("monte d'un couloir quand la place est prise et ne chevauche jamais tant qu'il reste des couloirs", () => {
+    const r = empiler([{ x: 100, demi: 60 }, { x: 110, demi: 60 }, { x: 400, demi: 60 }], 800, 3);
+    expect(r.map((c) => c.couloir)).toEqual([0, 1, 0]);
+  });
+  it("décale une carte quand tous les couloirs sont pris, y compris contre le bord droit", () => {
+    const r = empiler([{ x: 780, demi: 60 }, { x: 790, demi: 60 }, { x: 795, demi: 60 }], 800, 2);
+    const meme = r.filter((c) => c.couloir === r[2].couloir);
+    expect(Math.abs(meme[0].centre - meme[1].centre)).toBeGreaterThanOrEqual(120);
+    for (const c of r) expect(c.centre).toBeLessThanOrEqual(740);
+  });
 });

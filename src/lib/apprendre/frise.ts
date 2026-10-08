@@ -22,8 +22,10 @@ export function cadrageChapitre(cartes: CartePedagogique[]): { plage: Vue; borne
   if (!positions.length) return { plage: { debut: DEBUT_FRISE, fin: FIN_FRISE }, bornes: { debut: DEBUT_FRISE, fin: FIN_FRISE } };
   const debut = Math.min(...positions), fin = Math.max(...positions);
   const marge = Math.max((fin - debut) * 0.12, 0.1);
-  const bornes = { debut: Math.min(DEBUT_FRISE, debut - marge), fin: Math.max(FIN_FRISE, fin + marge) };
-  return { plage: borner(debut - marge, fin + marge, "jour", bornes), bornes };
+  // La frise reste sur la période du chapitre : on zoome dedans, jamais au-delà.
+  const large = { debut: Math.min(DEBUT_FRISE, debut - marge), fin: Math.max(FIN_FRISE, fin + marge) };
+  const plage = borner(debut - marge, fin + marge, "jour", large);
+  return { plage, bornes: plage };
 }
 export function marqueursCartes(cartes: CarteApprendre[], actif: string | null): MarqueurFrise[] {
   return cartes.flatMap((c) => {

@@ -79,3 +79,55 @@ export function regrouper(
   }
   return groupes;
 }
+
+/**
+ * Range des cartes sans jamais les regrouper : chacune prend le premier couloir libre, du plus proche
+ * de l'axe au plus haut. Quand tous les couloirs sont pris, la carte se décale vers la droite dans le
+ * couloir qui demande le plus petit décalage (sa tige reste sous elle tant que c'est possible).
+ * `positions` : centre (px) et demi-largeur de chaque carte, triées de gauche à droite.
+ * Renvoie le couloir (0 = juste au-dessus de l'axe) et le centre où poser chaque carte.
+ */
+export function empiler(
+  positions: { x: number; demi: number }[],
+  largeur: number,
+  couloirs: number,
+  ecart = 6,
+): { couloir: number; centre: number }[] {
+  // Cartes serrées contre le bord droit : le même rangement mené de droite à gauche peut mieux tomber.
+  const direct = ranger(positions, largeur, couloirs, ecart);
+  if (chevauchements(direct, positions) === 0) return direct;
+  const miroir = ranger([...positions].reverse().map((p) => ({ x: largeur - p.x, demi: p.demi })), largeur, couloirs, ecart)
+    .reverse()
+    .map((r) => ({ couloir: r.couloir, centre: largeur - r.centre }));
+  return chevauchements(miroir, positions) < chevauchements(direct, positions) ? miroir : direct;
+}
+
+function chevauchements(rangs: { couloir: number; centre: number }[], positions: { demi: number }[]): number {
+  let n = 0;
+  for (let i = 0; i < rangs.length; i++)
+    for (let j = i + 1; j < rangs.length; j++)
+      if (rangs[i].couloir === rangs[j].couloir && Math.abs(rangs[i].centre - rangs[j].centre) < positions[i].demi + positions[j].demi) n++;
+  return n;
+}
+
+function ranger(
+  positions: { x: number; demi: number }[],
+  largeur: number,
+  couloirs: number,
+  ecart: number,
+): { couloir: number; centre: number }[] {
+  const fins: number[] = [];
+  const max = Math.max(1, couloirs);
+  return positions.map(({ x, demi }) => {
+    const gauche = Math.max(demi, Math.min(largeur - demi, x)) - demi;
+    let k = fins.findIndex((f) => f + ecart <= gauche);
+    if (k === -1 && fins.length < max) k = fins.push(-Infinity) - 1;
+    let decalage = 0;
+    if (k === -1) {
+      k = fins.indexOf(Math.min(...fins));
+      decalage = Math.max(0, Math.min(fins[k] + ecart - gauche, largeur - 2 * demi - gauche));
+    }
+    fins[k] = gauche + decalage + 2 * demi;
+    return { couloir: k, centre: gauche + decalage + demi };
+  });
+}

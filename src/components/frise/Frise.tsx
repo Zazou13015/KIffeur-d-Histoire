@@ -19,7 +19,7 @@ import {
   versT,
   type Vue,
 } from "@/lib/game/frise";
-import { regrouper, type MarqueurFrise } from "@/lib/game/marqueurs";
+import { empiler, regrouper, type MarqueurFrise } from "@/lib/game/marqueurs";
 import { Motif } from "@/components/charte/Motif";
 import { useVue } from "./useVue";
 import s from "./frise.module.css";
@@ -47,6 +47,10 @@ type Props = {
   marqueurs?: MarqueurFrise[];
   /** Variante opt-in de /apprendre ; le rendu compact des autres écrans est conservé. */
   presentationMarqueurs?: "compacte" | "illustree";
+  /** Toutes les cartes restent visibles : pas de groupes, elles s'empilent en couloirs au-dessus de l'axe. */
+  toutVoir?: boolean;
+  /** La frise remplit son conteneur (comme l'écran de jeu), sans boîte posée dessus. */
+  remplir?: boolean;
   onMarqueur?: (id: string) => void;
   /**
    * Écran de jeu : la frise occupe toute la scène, avec une boîte en haut (la question) et une boîte en bas (la réponse)
@@ -84,6 +88,8 @@ export function Frise({
   correction = null,
   marqueurs,
   presentationMarqueurs = "compacte",
+  toutVoir = false,
+  remplir = false,
   onMarqueur,
   haut,
   sous,
@@ -235,7 +241,9 @@ export function Frise({
   const bonne = correction?.bonne;
   const xBonne = bonne ? X(versT(bonne)) : 0;
   const largeurPuce = correction ? largeurTexte(correction.titre) : 0;
-  const groupes = aDesMarqueurs ? regrouper(tries, vue, largeur, illustree ? ECART_MARQUEURS_ILLUSTRES : ECART_MARQUEURS, precision) : [];
+  const groupes = !aDesMarqueurs ? [] : toutVoir
+    ? tries.filter((m) => m.t >= vue.debut && m.t <= vue.fin).map((m) => ({ t: m.t, debut: m.t, fin: m.t, ids: [m.id] }))
+     : regrouper(tries, vue, largeur, illustree ? ECART_MARQUEURS_ILLUSTRES : ECART_MARQUEURS, precision);
 
   // Un groupe s'ouvre en zoomant dessus ; une carte seule prévient l'écran qui l'affiche.
   function ouvrirGroupe(debut: number, fin: number) {
@@ -251,10 +259,11 @@ export function Frise({
     animer(debut - marge, fin + marge);
   }
 
-  const scene = haut != null || bas != null || sous != null;
+  const scene = remplir || haut != null || bas != null || sous != null;
   // La frise remplit l'écran : l'axe descend au-dessus des boîtes du bas, le ciel du décor occupe tout l'espace au-dessus.
   const ciel = hautHaut + 16;
-  const axeY = scene ? Math.max(ciel + 200, hauteur - hautBas - 140) : 210;
+  // Sans boîte en bas (`remplir`), l'axe descend jusqu'aux graduations.
+  const axeY = !scene ? 210 : remplir && bas == null && sous == null ? Math.max(ciel + 150, hauteur - 54) : Math.max(ciel + 200, hauteur - hautBas - 140);
   const decalage = axeY - 210;
   const echelleDecor = scene ? clamp((axeY - ciel) / 220, 1, 1.7) : 1;
   const placerMotif = (haut: number, taille: number) => {
@@ -263,6 +272,21 @@ export function Frise({
     // Couloirs d'origine 14…125 étalés de haut en bas du ciel.
     return { top: ciel - decalage + ((haut - 14) / 111) * Math.max(0, axeY - 60 - ciel - t2), taille: t2 };
   };
+  // Cartes toujours visibles : couloirs empilés au-dessus du bandeau des époques (172 px dans la bande).
+  const tailleCarte = (m: MarqueurFrise) => {
+    const miniature = illustree && m.illustration;
+    return { hauteur: illustree ? (miniature ? 52 : 44) : 52, demi: illustree ? (miniature ? 72 : 56) : 66 };
+  };
+  const PAS_COULOIR = 56;
+  const ECART_BANDEAU = 6;
+  // Couloir 0 posé sur le bandeau (38 px au-dessus de l'axe), les suivants empilés jusqu'au haut de la frise.
+  const couloirsEmpiles = toutVoir
+    ? empiler(
+        groupes.map((g) => ({ x: X(g.t), demi: tailleCarte(parId.get(g.ids[0])!).demi })),
+        largeur,
+        1 + Math.floor(((scene ? axeY - ciel : 210) - 38 - ECART_BANDEAU - 52) / PAS_COULOIR),
+      )
+    : [];
   const outils = (
     <div className={s.outils}>
       <span className={s.echelle}>{legendePas(pas)}</span>
@@ -277,7 +301,7 @@ export function Frise({
       <div
         ref={ref}
         className={`${selection ? s.frise : `${s.frise} ${s.lecture}`}${scene ? ` ${s.scene}` : ""}`}
-        style={scene ? { minHeight: hautHaut + hautBas + 380 } : undefined}
+        style={scene ? { minHeight: remplir && bas == null && sous == null ? hautHaut + 240 : hautHaut + hautBas + 380 } : undefined}
         aria-label={
           selection
             ? "Frise chronologique : molette pour zoomer, glisser pour se déplacer, cliquer pour placer sa réponse"
@@ -293,7 +317,8 @@ export function Frise({
         {scene && (
           <div ref={refHaut} className={s.zoneScene}>
             {haut != null && <div data-superposition className={s.superposition}>{haut}</div>}
-            <div data-superposition className={s.outilsScene}>{outils}</div>
+            <div data-superposition className={toutVoir && remplir ? `${s.outilsScene} ${s.outilsBas}` : s.outilsScene}
+              style={toutVoir && remplir ? { top: axeY + 10 } : undefined}>{outils}</div>
           </div>
         )}
         <div className={scene ? s.bandeScene : s.bande} style={scene ? { top: decalage } : undefined}>
@@ -368,10 +393,9 @@ export function Frise({
           }
           const m = parId.get(g.ids[0])!;
           const couloirs = illustree ? COULOIRS_MARQUEURS_ILLUSTRES : COULOIRS_MARQUEURS;
-          const haut = couloirs[i % couloirs.length];
           const miniature = illustree && m.illustration;
-          const hauteur = illustree ? (miniature ? 52 : 44) : 52;
-          const demiLargeur = illustree ? (miniature ? 72 : 56) : 66;
+          const { hauteur, demi: demiLargeur } = tailleCarte(m);
+          const haut = toutVoir ? 172 - ECART_BANDEAU - hauteur - couloirsEmpiles[i].couloir * PAS_COULOIR : couloirs[i % couloirs.length];
           return (
             <div key={m.id}>
               <div className={s.tigeMarqueur} style={{ left: x, top: haut + hauteur, height: 210 - haut - hauteur }} />
@@ -379,7 +403,7 @@ export function Frise({
                 type="button"
                 data-marqueur
                 className={`${s.marqueur}${illustree ? ` ${s.marqueurPedagogique}` : ""}${miniature ? ` ${s.marqueurIllustre}` : ""} ${s[`etat_${m.etat ?? "neutre"}`]}`}
-                style={{ left: clamp(x, demiLargeur, largeur - demiLargeur), top: haut }}
+                style={{ left: toutVoir ? couloirsEmpiles[i].centre : clamp(x, demiLargeur, largeur - demiLargeur), top: haut }}
                 aria-label={`${m.titre}, ${dateCourte(m.date)}`}
                 aria-pressed={illustree ? m.etat === "actif" : undefined}
                 onClick={() => onMarqueur?.(m.id)}

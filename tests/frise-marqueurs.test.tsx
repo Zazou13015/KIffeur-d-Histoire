@@ -25,7 +25,8 @@ beforeEach(() => {
 afterEach(() => { cleanup(); vi.unstubAllGlobals(); vi.restoreAllMocks(); });
 
 function controle(vue: Vue): ReturnType<typeof useVue> {
-  return { vue, vueRef: { current: vue }, placer: vi.fn(), animer: vi.fn(), zoomer: vi.fn(), arreter: vi.fn() };
+  // `bornes` : la frise de partie s'y limite (PR #69) ; ici toute la plage visible.
+  return { vue, vueRef: { current: vue }, placer: vi.fn(), animer: vi.fn(), zoomer: vi.fn(), arreter: vi.fn(), bornes: vue } as ReturnType<typeof useVue>;
 }
 const marqueurs: MarqueurFrise[] = [
   { id: "CARD-016-verdun", titre: "Verdun", date: { year: 1916 }, motif: "casque", illustration: "/api/pedagogie/illustration/CARD-016-verdun", etat: "actif" },

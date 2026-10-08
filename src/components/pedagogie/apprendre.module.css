@@ -16,7 +16,7 @@
 .liste button[aria-pressed="true"] { border-color: var(--color-laiton); box-shadow: inset 0 0 0 1px var(--color-laiton); background: var(--color-fond-resultat); }
 .liste button span:first-child { flex-shrink: 0; min-width: 18px; color: var(--color-oxyde); font-size: 18px; line-height: 1; }
 
-.droite { display: grid; grid-template-rows: minmax(320px, 60fr) minmax(180px, 40fr); min-height: 0; min-width: 0; }
+.droite { display: grid; grid-template-rows: minmax(260px, 44fr) minmax(220px, 56fr); min-height: 0; min-width: 0; }
 .frise { position: relative; display: flex; flex-direction: column; min-height: 0; min-width: 0; border-bottom: 1px solid var(--color-filet); }
 .note { position: absolute; left: 12px; bottom: 6px; margin: 0; font-size: 11px; color: var(--color-encre-douce); pointer-events: none; z-index: 6; }
 

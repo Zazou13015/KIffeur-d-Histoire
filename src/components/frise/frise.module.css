@@ -75,3 +75,7 @@
 .outilsScene { position: absolute; right: 16px; top: 12px; cursor: default; }
 .outilsScene > div { flex-direction: column-reverse; }
 .outilsScene .echelle { display: none; }
+/* Toutes les cartes au-dessus de l'axe : les boutons de zoom passent en bas à droite, sous l'axe. */
+.outilsBas { right: 8px; background: var(--color-blanc-cartel); }
+.outilsBas > div { flex-direction: row; }
+.outilsBas button { width: 36px; height: 36px; font-size: 18px; }

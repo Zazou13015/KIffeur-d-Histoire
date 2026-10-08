@@ -263,7 +263,7 @@ export function Frise({
   // La frise remplit l'écran : l'axe descend au-dessus des boîtes du bas, le ciel du décor occupe tout l'espace au-dessus.
   const ciel = hautHaut + 16;
   // Sans boîte en bas (`remplir`), l'axe descend jusqu'aux graduations.
-  const axeY = !scene ? 210 : remplir && bas == null && sous == null ? Math.max(ciel + 150, hauteur - 64) : Math.max(ciel + 200, hauteur - hautBas - 140);
+  const axeY = !scene ? 210 : remplir && bas == null && sous == null ? Math.max(ciel + 150, hauteur - 54) : Math.max(ciel + 200, hauteur - hautBas - 140);
   const decalage = axeY - 210;
   const echelleDecor = scene ? clamp((axeY - ciel) / 220, 1, 1.7) : 1;
   const placerMotif = (haut: number, taille: number) => {
@@ -277,7 +277,7 @@ export function Frise({
     const miniature = illustree && m.illustration;
     return { hauteur: illustree ? (miniature ? 52 : 44) : 52, demi: illustree ? (miniature ? 72 : 56) : 66 };
   };
-  const PAS_COULOIR = 58;
+  const PAS_COULOIR = 56;
   const ECART_BANDEAU = 6;
   // Couloir 0 posé sur le bandeau (38 px au-dessus de l'axe), les suivants empilés jusqu'au haut de la frise.
   const couloirsEmpiles = toutVoir
@@ -317,7 +317,8 @@ export function Frise({
         {scene && (
           <div ref={refHaut} className={s.zoneScene}>
             {haut != null && <div data-superposition className={s.superposition}>{haut}</div>}
-            <div data-superposition className={s.outilsScene}>{outils}</div>
+            <div data-superposition className={toutVoir && remplir ? `${s.outilsScene} ${s.outilsBas}` : s.outilsScene}
+              style={toutVoir && remplir ? { top: axeY + 10 } : undefined}>{outils}</div>
           </div>
         )}
         <div className={scene ? s.bandeScene : s.bande} style={scene ? { top: decalage } : undefined}>

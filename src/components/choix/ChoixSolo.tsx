@@ -8,6 +8,7 @@ import { BarreLancer, ChoixDifficulte, difficulteJouable, ecrireMemoire, Etape, 
 import styles from "./choix.module.css";
 
 const MEMOIRE = "histoire-choix-solo";
+const MEMOIRE_INVERSE = "histoire-choix-inverse";
 type ModeSolo = "general" | "periode" | "pack" | "theme";
 type Etat = { mode: ModeSolo; periode: string; de: string; a: string; pack: string; theme: string; difficulte: SoloDifficulty };
 
@@ -20,8 +21,9 @@ const ONGLETS: { mode: ModeSolo; titre: string }[] = [
 
 const DEPART: Etat = { mode: "general", periode: PERIODES[0].id, de: "", a: "", pack: PACKS[0].id, theme: THEMES[0].id, difficulte: "YEAR" };
 
-function versChamps(e: Etat) {
+function versChamps(e: Etat, inverse: boolean) {
   const p = new URLSearchParams({ mode: e.mode, difficulte: e.difficulte });
+  if (inverse) p.set("sens", "inverse");
   if (e.mode === "periode") {
     p.set("periode", e.periode);
     if (e.periode === "libre") {
@@ -59,26 +61,28 @@ function libelle(c: Choix) {
   return "toute l'Histoire";
 }
 
-export function ChoixSolo() {
+export function ChoixSolo({ inverse = false }: { inverse?: boolean }) {
+  const memoire = inverse ? MEMOIRE_INVERSE : MEMOIRE;
   const [etat, setEtat] = useState<Etat>(DEPART);
   const maj = (partiel: Partial<Etat>) => setEtat((e) => ({ ...e, ...partiel }));
 
   // Le dernier choix n'est connu que dans le navigateur : on le reprend après le premier affichage.
   useEffect(() => {
-    const memoire = lireMemoire(MEMOIRE);
-    const choix = memoire && lireChoix(memoire);
+    const memorise = lireMemoire(memoire);
+    const choix = memorise && lireChoix(memorise);
     const repris = choix && depuisMemoire(choix);
     // eslint-disable-next-line react-hooks/set-state-in-effect -- reprise unique du stockage local
     if (repris) setEtat(repris);
-  }, []);
+  }, [memoire]);
 
   const comptes = comptesDe({ mode: etat.mode, periode: etat.periode, pack: etat.pack, theme: etat.theme });
-  const difficulte = difficulteJouable(comptes, etat.difficulte);
-  const choix = difficulte ? lireChoix(versChamps({ ...etat, difficulte })) : null;
+  // Inversé : toujours la date exacte, sans choix de difficulté.
+  const difficulte = inverse ? (difficulteJouable(comptes, "DAY") === "DAY" ? "DAY" : null) : difficulteJouable(comptes, etat.difficulte);
+  const choix = difficulte ? lireChoix(versChamps({ ...etat, difficulte }, inverse)) : null;
   const libreInvalide = etat.mode === "periode" && etat.periode === "libre" && !choix && (etat.de !== "" || etat.a !== "");
 
   return (
-    <form action={lancer} onSubmit={() => choix && ecrireMemoire(MEMOIRE, ecrireChoix(choix))} className="grid gap-[22px]">
+    <form action={lancer} onSubmit={() => choix && ecrireMemoire(memoire, ecrireChoix(choix))} className="grid gap-[22px]">
       {choix && <input type="hidden" name="c" value={ecrireChoix(choix)} />}
 
       <Etape numero={1} titre="Ce que tu veux réviser">
@@ -156,14 +160,16 @@ export function ChoixSolo() {
         )}
       </Etape>
 
-      <Etape numero={2} titre="Difficulté">
-        <ChoixDifficulte comptes={comptes} valeur={difficulte} onChange={(d) => maj({ difficulte: d })} />
-      </Etape>
+      {!inverse && (
+        <Etape numero={2} titre="Difficulté">
+          <ChoixDifficulte comptes={comptes} valeur={difficulte} onChange={(d) => maj({ difficulte: d })} />
+        </Etape>
+      )}
 
       <BarreLancer
         pret={choix != null}
         resume={
-          choix ? <><b>{QUESTIONS} questions</b> · {libelle(choix)} · {DIFFICULTES.find((d) => d.valeur === choix.difficulte)?.titre}</>
+          choix ? <><b>{QUESTIONS} questions</b> · {libelle(choix)} {inverse ? " · date exacte" : <> · {DIFFICULTES.find((d) => d.valeur === choix.difficulte)?.titre}</>}</>
             : difficulte ? "Termine ton choix pour jouer." : "Pas assez de questions pour ce choix : choisis-en un autre."
         }
       />

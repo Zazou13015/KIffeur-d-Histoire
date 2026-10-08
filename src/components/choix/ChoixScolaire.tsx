@@ -9,9 +9,11 @@ import { BarreLancer, ChoixDifficulte, difficulteJouable, ecrireMemoire, Etape, 
 import styles from "./choix.module.css";
 
 const MEMOIRE = "histoire-choix-scolaire";
+const MEMOIRE_INVERSE = "histoire-choix-inverse-scolaire";
 const duNiveau = (niveau: string) => CHAPITRES.filter((c) => c.niveauSlug === niveau);
 
-export function ChoixScolaire() {
+export function ChoixScolaire({ inverse = false }: { inverse?: boolean }) {
+  const memoire = inverse ? MEMOIRE_INVERSE : MEMOIRE;
   const [niveau, setNiveau] = useState<string | null>(null);
   const [coches, setCoches] = useState<string[]>([]);
   // Difficulté proposée par défaut : l'année seule, comme dans les manuels.
@@ -19,15 +21,15 @@ export function ChoixScolaire() {
 
   // Reprend le dernier choix du joueur, connu seulement du navigateur.
   useEffect(() => {
-    const memoire = lireMemoire(MEMOIRE);
-    const choix = memoire && lireChoix(memoire);
+    const memorise = lireMemoire(memoire);
+    const choix = memorise && lireChoix(memorise);
     if (!choix?.chapitres) return;
     const premier = CHAPITRES.find((c) => c.id === choix.chapitres![0])!;
     // eslint-disable-next-line react-hooks/set-state-in-effect -- reprise unique du stockage local
     setNiveau(premier.niveauSlug);
     setCoches(choix.chapitres.filter((id) => CHAPITRES.find((c) => c.id === id)?.niveauSlug === premier.niveauSlug));
     setDifficulte(choix.difficulte);
-  }, []);
+  }, [memoire]);
 
   const choisirNiveau = (slug: string) => {
     setNiveau(slug);
@@ -37,12 +39,13 @@ export function ChoixScolaire() {
 
   const chapitres = niveau ? duNiveau(niveau) : [];
   const comptes = coches.length ? comptesDe({ mode: "scolaire", chapitres: coches }) : null;
-  const jouable = difficulteJouable(comptes, difficulte);
-  const choix = jouable ? lireChoix(new URLSearchParams({ mode: "scolaire", difficulte: jouable, chapitres: coches.join(",") })) : null;
+  // Inversé : toujours la date exacte, sans choix de difficulté.
+  const jouable = inverse ? (difficulteJouable(comptes, "DAY") === "DAY" ? "DAY" : null) : difficulteJouable(comptes, difficulte);
+  const choix = jouable ? lireChoix(new URLSearchParams({ mode: "scolaire", difficulte: jouable, chapitres: coches.join(","), ...(inverse ? { sens: "inverse" } : {}) })) : null;
   const nomNiveau = NIVEAUX.find((n) => n.slug === niveau)?.nom;
 
   return (
-    <form action={lancer} onSubmit={() => choix && ecrireMemoire(MEMOIRE, ecrireChoix(choix))} className="grid gap-[22px]">
+    <form action={lancer} onSubmit={() => choix && ecrireMemoire(memoire, ecrireChoix(choix))} className="grid gap-[22px]">
       {choix && <input type="hidden" name="c" value={ecrireChoix(choix)} />}
 
       <Etape numero={1} titre="Ton niveau">
@@ -78,7 +81,7 @@ export function ChoixScolaire() {
         </Etape>
       )}
 
-      {niveau && (
+      {niveau && !inverse && (
         <Etape numero={3} titre="Difficulté">
           <ChoixDifficulte comptes={comptes} valeur={jouable} onChange={setDifficulte} />
         </Etape>
@@ -88,7 +91,7 @@ export function ChoixScolaire() {
         pret={choix != null}
         resume={
           choix ? (
-            <><b>{QUESTIONS} questions</b> · {nomNiveau}, {coches.length} chapitre{coches.length > 1 ? "s" : ""} · {DIFFICULTES.find((d) => d.valeur === jouable)?.titre}</>
+            <><b>{QUESTIONS} questions</b> · {nomNiveau}, {coches.length} chapitre{coches.length > 1 ? "s" : ""} {inverse ? " · date exacte" : <> · {DIFFICULTES.find((d) => d.valeur === jouable)?.titre}</>}</>
           ) : !niveau ? "Choisis ton niveau." : !coches.length ? "Coche au moins un chapitre." : "Pas assez de questions : coche d'autres chapitres."
         }
       />

@@ -2,7 +2,7 @@
 // Sans DOM, pour être testée. Aucun calcul de score ni de correction ici : le serveur fait foi.
 
 import { phraseEcart, type HistoricDate, type Precision } from "./dates";
-import type { SoloCorrection, SoloDate, SoloDateQuestion, SoloDifficulty } from "./solo";
+import type { SoloCorrection, SoloDate, SoloDateQuestion, SoloDifficulty, SoloInverseQuestion, SoloQuestion } from "./solo";
 
 // Certains titres et descriptions du dataset commencent par une minuscule : l'écran les écrit avec une majuscule.
 export const capitaliser = (texte: string) => (texte ? texte.charAt(0).toLocaleUpperCase("fr") + texte.slice(1) : texte);
@@ -45,3 +45,27 @@ export function chronoDepuis(q: Pick<SoloDateQuestion, "asked_at" | "deadline" |
   const decalage = maintenantMs - Date.parse(q.server_time);
   return { finMs: Date.parse(q.deadline) + decalage, totalMs: Date.parse(q.deadline) - Date.parse(q.asked_at) };
 }
+
+// Mode inversé : ce que l'écran montre après la réponse écrite.
+export type CorrectionInverseAffichee = {
+  correcte: boolean;
+  bonne: HistoricDate;
+  titre: string;
+  points: number;
+  description: string | null;
+  expiree: boolean;
+};
+
+export function correctionInverseDepuis(c: SoloCorrection): CorrectionInverseAffichee {
+  if (c.direction !== "inverse") throw new Error("Correction inattendue pour une question inversée");
+  return {
+    correcte: c.correct,
+    bonne: dateDepuis(c.correct_date),
+    titre: capitaliser(c.title),
+    points: c.points,
+    description: c.description ? capitaliser(c.description) : c.description,
+    expiree: c.expired,
+  };
+}
+
+export const estInverse = (q: SoloQuestion): q is SoloInverseQuestion => "date" in q;

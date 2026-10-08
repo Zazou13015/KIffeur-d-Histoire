@@ -58,6 +58,12 @@ export function Bilan({ resultat, connecte, anonyme, relance }: Props) {
             <span className="grid gap-0.5">
               <span className="font-bold">{capitaliser(q.title)}</span>
               <span className="date text-lg text-oxyde">{formatHistoricDate(dateDepuis(q.correct_date), precisionDepuis(q.unit))}</span>
+              {"correct" in q && !q.expired && (
+                <span className="text-sm text-encre-douce">
+                  {q.correct ? "✓ Bonne réponse" : "✗ Pas tout à fait"}
+                  {q.answer ? ` · ta réponse : « ${q.answer} »` : ""}
+                </span>
+              )}
               {q.expired && <span className="text-sm text-encre-douce">Temps écoulé</span>}
             </span>
             <span className="date text-xl">{q.points} pts</span>

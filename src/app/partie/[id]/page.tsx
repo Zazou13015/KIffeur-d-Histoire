@@ -4,7 +4,9 @@ import { redirect } from "next/navigation";
 import { finishGame, nextQuestion, submitAnswer } from "@/app/solo/actions";
 import { Bilan } from "@/components/partie/Bilan";
 import { Partie } from "@/components/partie/Partie";
+import { PartieInverse } from "@/components/partie/PartieInverse";
 import { getAccount } from "@/lib/account";
+import { estInverse } from "@/lib/game/partie";
 import { bornesDe, lireChoix } from "@/lib/solo/choix";
 
 function Indisponible({ titre, texte }: { titre: string; texte: string }) {
@@ -47,8 +49,21 @@ export default async function PartiePage({ params, searchParams }: PageProps<"/p
     return <Indisponible titre="Partie indisponible" texte="Cette partie est inaccessible ou expirée." />;
   }
 
-  if (question && "date" in question) {
-    return <Indisponible titre="Mode inversé" texte="Ce mode n'a pas encore d'écran de jeu." />;
+  if (question && estInverse(question)) {
+    return (
+      <main className="flex flex-1 flex-col">
+        <PartieInverse
+          gameId={id}
+          total={total}
+          question={question}
+          actions={{ soumettre: submitAnswer, suivante: nextQuestion, terminer: finishGame }}
+          connecte={Boolean(account)}
+          anonyme={anonyme}
+          relance={relance}
+          bornes={bornes}
+        />
+      </main>
+    );
   }
 
   if (question) {

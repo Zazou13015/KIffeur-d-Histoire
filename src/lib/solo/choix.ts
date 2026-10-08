@@ -8,6 +8,8 @@ import { DEBUT_FRISE, FIN_FRISE, type Vue } from "@/lib/game/frise";
 // Le même choix voyage dans un formulaire, dans l'URL de la partie et dans le stockage local du navigateur.
 export type Mode = "general" | "periode" | "pack" | "theme" | "scolaire";
 export type Choix = {
+  /** `inverse` : le jeu donne la date, le joueur écrit l'événement. Absent = jeu de dates classique. */
+  sens?: "inverse";
   mode: Mode;
   difficulte: SoloDifficulty;
   periode?: string;
@@ -48,6 +50,11 @@ export function lireChoix(champs: URLSearchParams): Choix | null {
   const difficulte = champs.get("difficulte");
   if (!MODES.includes(mode) || !estDifficulte(difficulte)) return null;
   const choix: Choix = { mode, difficulte };
+  // Inversé : seule la date exacte donne une question sans ambiguïté (plusieurs événements partagent une année).
+  if (champs.get("sens") === "inverse") {
+    choix.sens = "inverse";
+    choix.difficulte = "DAY";
+  }
   if (mode === "periode") {
     const periode = champs.get("periode");
     if (periode && periode !== "libre") {
@@ -85,6 +92,7 @@ export function lireChoix(champs: URLSearchParams): Choix | null {
 /** Forme compacte du choix, pour l'URL de la partie (bouton « Rejouer ») et le stockage local. */
 export function ecrireChoix(choix: Choix): string {
   const p = new URLSearchParams({ mode: choix.mode, difficulte: choix.difficulte });
+  if (choix.sens) p.set("sens", choix.sens);
   if (choix.periode) p.set("periode", choix.periode);
   if (choix.de != null) p.set("de", String(choix.de));
   if (choix.a != null) p.set("a", String(choix.a));
@@ -97,6 +105,7 @@ export function ecrireChoix(choix: Choix): string {
 /** Filtres passés à la RPC `start_game`. */
 export function filtresDepuis(choix: Choix): SoloFilters {
   const f: SoloFilters = { difficulty: choix.difficulte, questionCount: QUESTIONS };
+  if (choix.sens === "inverse") f.direction = "inverse";
   if (choix.mode === "periode") {
     const p = PERIODES.find((x) => x.id === choix.periode);
     const de = p ? p.de : choix.de;

@@ -12,8 +12,11 @@ export async function lancer(formData: FormData) {
   const champs = typeof relance === "string" ? new URLSearchParams(relance) : new URLSearchParams();
   if (typeof relance !== "string") for (const [cle, valeur] of formData) if (typeof valeur === "string") champs.append(cle, valeur);
   const choix = lireChoix(champs);
-  const origine = choix?.mode === "scolaire" || champs.get("mode") === "scolaire" ? "/scolaire" : "/solo";
-  if (!choix) redirect(`${origine}?erreur=choix`);
+  const scolaire = choix?.mode === "scolaire" || champs.get("mode") === "scolaire";
+  // Le mode inversé a son propre écran de choix, avec les mêmes filtres que le solo.
+  const origine = champs.get("sens") === "inverse" ? (scolaire ? "/inverse?type=scolaire" : "/inverse") : scolaire ? "/scolaire" : "/solo";
+  const erreur = (code: string) => `${origine}${origine.includes("?") ? "&" : "?"}erreur=${code}`;
+  if (!choix) redirect(erreur("choix"));
 
   let destination: string;
   try {
@@ -23,7 +26,7 @@ export async function lancer(formData: FormData) {
     const message = e instanceof Error ? e.message : "";
     destination = message.includes("pseudo")
       ? `/profil?next=${encodeURIComponent(origine)}`
-      : `${origine}?erreur=${message.includes("Pas assez") ? "peu" : "1"}`;
+      : erreur(message.includes("Pas assez") ? "peu" : "1");
   }
   // redirect() lève une exception : il reste hors du try.
   redirect(destination);

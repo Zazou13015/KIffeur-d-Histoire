@@ -41,6 +41,8 @@ type Props = {
   enSaisie?: boolean;
   // Renseignée seulement après la correction (la bonne date ne vient jamais avant).
   correction?: { bonne: HistoricDate; titre: string } | null;
+  /** Mode inversé : la date donnée par le jeu, marquée sur la frise avant la correction. */
+  dateDonnee?: HistoricDate | null;
   /** Cartes d'événements posées sur la frise ; les marqueurs proches se regroupent. */
   marqueurs?: MarqueurFrise[];
   /** Variante opt-in de /apprendre ; le rendu compact des autres écrans est conservé. */
@@ -84,6 +86,7 @@ export function Frise({
   onReponse,
   enSaisie = false,
   correction = null,
+  dateDonnee = null,
   marqueurs,
   presentationMarqueurs = "compacte",
   toutVoir = false,
@@ -238,6 +241,7 @@ export function Frise({
   const xReponse = reponse ? X(versT(reponse)) : 0;
   const bonne = correction?.bonne;
   const xBonne = bonne ? X(versT(bonne)) : 0;
+  const xDonnee = dateDonnee ? X(versT(dateDonnee)) : 0;
   const largeurPuce = correction ? largeurTexte(correction.titre) : 0;
   const groupes = !aDesMarqueurs ? [] : toutVoir
     ? tries.filter((m) => m.t >= vue.debut && m.t <= vue.fin).map((m) => ({ t: m.t, debut: m.t, fin: m.t, ids: [m.id] }))
@@ -427,6 +431,16 @@ export function Frise({
             <div className={s.bonne} style={{ left: xBonne }} />
             <div className={s.bonneEtiquette} style={{ left: clamp(xBonne, 110, largeur - 110) }}>
               Bonne réponse <b>{dateCourte(bonne)}</b>
+            </div>
+          </>
+        )}
+
+        {dateDonnee && !correction && (
+          <>
+            <div className={s.tige} style={{ left: xDonnee }} />
+            <div className={s.bonne} style={{ left: xDonnee }} />
+            <div className={s.bonneEtiquette} style={{ left: clamp(xDonnee, 110, largeur - 110) }}>
+              Date donnée <b>{dateCourte(dateDonnee)}</b>
             </div>
           </>
         )}

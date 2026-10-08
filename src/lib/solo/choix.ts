@@ -3,6 +3,7 @@ import { PERIODES } from "./periodes";
 import { CHAPITRES } from "@/lib/apprendre/catalogue";
 import type { SoloDifficulty, SoloFilters } from "@/lib/game/solo";
 import { DEBUT_FRISE, FIN_FRISE, type Vue } from "@/lib/game/frise";
+import { QUESTIONS_MIN_TEST } from "@/lib/progression/types";
 
 // Ce que le joueur choisit avant de lancer une partie (accueil, /solo, /scolaire, « Rejouer »).
 // Le même choix voyage dans un formulaire, dans l'URL de la partie et dans le stockage local du navigateur.
@@ -19,6 +20,8 @@ export type Choix = {
   pack?: string;
   theme?: string;
   chapitres?: string[];
+  /** Test d'un seul chapitre lancé depuis « Découvrir » : sa précision alimente la progression pédagogique. */
+  test?: true;
 };
 export type Comptes = Record<SoloDifficulty, number>;
 
@@ -85,6 +88,12 @@ export function lireChoix(champs: URLSearchParams): Choix | null {
     const chapitres = CHAPITRES.filter((c) => ids.has(c.id)).map((c) => c.id);
     if (chapitres.length === 0) return null;
     choix.chapitres = chapitres;
+    // Test de chapitre : un seul chapitre, jeu de dates, assez de questions jouables pour que la précision veuille dire quelque chose.
+    if (champs.get("test") === "chapitre" && chapitres.length === 1 && !choix.sens) {
+      const jouables = comptesDe(choix)?.[difficulte];
+      if (jouables != null && jouables < QUESTIONS_MIN_TEST) return null;
+      choix.test = true;
+    }
   }
   return choix;
 }
@@ -99,6 +108,7 @@ export function ecrireChoix(choix: Choix): string {
   if (choix.pack) p.set("pack", choix.pack);
   if (choix.theme) p.set("theme", choix.theme);
   if (choix.chapitres?.length) p.set("chapitres", choix.chapitres.join(","));
+  if (choix.test) p.set("test", "chapitre");
   return p.toString();
 }
 
@@ -116,6 +126,8 @@ export function filtresDepuis(choix: Choix): SoloFilters {
   if (choix.mode === "pack") f.packId = choix.pack;
   if (choix.mode === "theme") f.tagId = choix.theme;
   if (choix.mode === "scolaire") f.chapterIds = choix.chapitres;
+  // Un chapitre peut compter moins de 10 événements jouables : le test s'adapte (5 questions au minimum).
+  if (choix.test) f.questionCount = Math.min(QUESTIONS, comptesDe(choix)?.[choix.difficulte] ?? QUESTIONS);
   return f;
 }
 

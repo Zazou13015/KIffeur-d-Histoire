@@ -9,10 +9,11 @@ import { versT } from "@/lib/game/frise";
 import Link from "next/link";
 import { Badge, BadgeNiveau } from "@/components/ui/Badge";
 import { Bouton } from "@/components/ui/Bouton";
+import { TesterChapitre } from "./TesterChapitre";
 import s from "./apprendre.module.css";
 
 // Un seul écran sur ordinateur : la liste à gauche, la frise du chapitre en haut, la carte ouverte dessous.
-export function DecouvrirChapitre({ cartes, chapitre }: { cartes: CarteApprendre[]; chapitre?: { titre: string; niveau: string } }) {
+export function DecouvrirChapitre({ cartes, chapitre }: { cartes: CarteApprendre[]; chapitre?: { id: string; titre: string; niveau: string } }) {
   const [selection, setSelection] = useState<string | null>(cartes[0]?.card_id ?? null);
   const cadre = useMemo(() => cadrageChapitre(cartes), [cartes]);
   const controle = useVue("jour", cadre.bornes, cadre.plage);
@@ -57,10 +58,7 @@ export function DecouvrirChapitre({ cartes, chapitre }: { cartes: CarteApprendre
       {chapitre && <BadgeNiveau niveau={chapitre.niveau} />}
       {chapitre && <h1>{chapitre.titre}</h1>}
       <span className="text-sm text-encre-douce">{cartes.length} cartes</span>
-      <div className={s.tester}>
-        <Bouton disabled aria-describedby="test-a-venir">Me tester sur ce chapitre</Bouton>
-        <small id="test-a-venir">Le test de ce chapitre sera disponible prochainement.</small>
-      </div>
+      {chapitre && <TesterChapitre chapitre={chapitre.id} />}
     </header>
     <div className={s.corps}>
       <nav aria-label="Cartes du chapitre" className={s.liste}>

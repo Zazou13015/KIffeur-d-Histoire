@@ -6,6 +6,7 @@
 .retour { font-size: 14px; color: var(--color-encre-douce); text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
 .tester { display: grid; justify-items: end; }
 .tester small { font-size: 11px; color: var(--color-encre-douce); }
+.testeur { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; }
 
 .corps { display: grid; grid-template-columns: minmax(240px, 300px) minmax(0, 1fr); min-height: 0; }
 .liste { min-height: 0; overflow-y: auto; border-right: 1px solid var(--color-filet); background: var(--color-papier); padding: 12px; }

@@ -10,6 +10,7 @@ import { Historique } from "@/components/profil/Historique";
 import { Statistiques } from "@/components/profil/Statistiques";
 import styles from "@/components/profil/Profil.module.css";
 import { chargerHistorique, chargerStatistiques } from "@/lib/profil/serveur";
+import { lireProgressionJoueur } from "@/lib/progression/serveur";
 import { cursorValide } from "@/lib/profil/types";
 import { ReessayerCarnet } from "@/components/profil/ReessayerCarnet";
 
@@ -29,7 +30,11 @@ async function Carnet({
 }) {
   const result = await (
     statistiques
-      ? chargerStatistiques().then((data) => ({ kind: "stats" as const, data }))
+      ? Promise.all([
+          chargerStatistiques(),
+          // La progression pédagogique ne bloque pas le carnet : indisponible, elle le dit seule.
+          lireProgressionJoueur().catch(() => null),
+        ]).then(([data, progression]) => ({ kind: "stats" as const, data, progression }))
       : chargerHistorique(cursor).then((data) => ({
           kind: "history" as const,
           data,
@@ -49,7 +54,7 @@ async function Carnet({
     );
   }
   return result.kind === "stats" ? (
-    <Statistiques data={result.data} />
+    <Statistiques data={result.data} progression={result.progression} />
   ) : (
     <Historique data={result.data} cursor={cursor} next={next} />
   );

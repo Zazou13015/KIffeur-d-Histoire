@@ -14,6 +14,10 @@ import type { CartePedagogique } from "@/lib/pedagogie";
 // Ces tests de navigation ne décident pas de la disponibilité serveur des dessins.
 const pourApprendre = (c: CartePedagogique) => ({ ...c, illustrationDediee: false });
 
+// La progression et le lancement du test relèvent de progression.test.tsx : ici, aucun appel serveur.
+vi.mock("@/app/apprendre/actions", () => ({ lireProgression: vi.fn(() => new Promise(() => {})), marquerChapitreDecouvert: vi.fn(), enregistrerTestChapitre: vi.fn() }));
+vi.mock("@/app/partie/actions", () => ({ lancer: vi.fn() }));
+
 // Le comportement de la frise elle-même est vérifié dans frise.test.ts et au
 // navigateur ; ce double teste le contrat et le parcours du nouvel écran.
 vi.mock("@/components/frise/Frise", () => ({ Frise: vi.fn(({ marqueurs, onMarqueur }) => <div aria-label="Frise en lecture">
@@ -57,7 +61,7 @@ it("résout les slugs figés et refuse niveau inconnu, chapitre inconnu et mauva
 
 it("ouvre et parcourt les cartes via la frise, la liste, les boutons et le clavier", () => {
   const cartes = chargerDemoPedagogie().find((c) => c.id === "THM-027")!.cartes.map(pourApprendre);
-  render(<DecouvrirChapitre cartes={cartes} />);
+  render(<DecouvrirChapitre cartes={cartes} chapitre={{ id: "THM-027", titre: "Chapitre", niveau: "3e" }} />);
   const panneau = () => screen.getByRole("article");
   expect(within(panneau()).getByRole("heading", { level: 2 }).textContent).toBe(cartes[0].title);
   expect((screen.getByRole("button", { name: "← Précédente" }) as HTMLButtonElement).disabled).toBe(true);
@@ -79,7 +83,10 @@ it("ouvre et parcourt les cartes via la frise, la liste, les boutons et le clavi
   expect(screen.queryByRole("article")).toBeNull();
   fireEvent.click(within(liste).getAllByRole("button").at(-1)!);
   expect((screen.getByRole("button", { name: "Suivante →" }) as HTMLButtonElement).disabled).toBe(true);
-  expect((screen.getByRole("button", { name: "Me tester sur ce chapitre" }) as HTMLButtonElement).disabled).toBe(true);
+  // Le test est lancé par le formulaire de lancement existant, filtré sur ce seul chapitre.
+  const tester = screen.getByRole("button", { name: "Me tester sur ce chapitre" }) as HTMLButtonElement;
+  expect(tester.disabled).toBe(false);
+  expect(tester.form?.querySelector<HTMLInputElement>('input[name="c"]')?.value).toBe("mode=scolaire&difficulte=YEAR&chapitres=THM-027&test=chapitre");
   expect(document.body.innerHTML).not.toMatch(/EVT-\d|event_id|date_precision|date_status|official_wording|EXACT/);
 });
 

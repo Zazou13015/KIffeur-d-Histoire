@@ -59,6 +59,20 @@ const api = createServer((req, res) => {
         : { games: [], next_cursor: null };
     return res.end(JSON.stringify(value));
   }
+  // Progression pédagogique (#23) : lecture REST de la table privée, avec les lignes du seul joueur simulé.
+  if (url.pathname === "/rest/v1/learning_progress") {
+    if (state === "error") {
+      res.statusCode = 503;
+      return res.end('{"message":"SQL privé de B"}');
+    }
+    return res.end(
+      JSON.stringify(
+        state === "full"
+          ? [{ chapter_id: "THM-027", discovered_at: "2026-10-08T10:00:00Z", best_accuracy: 80, best_difficulty: "YEAR", tests_count: 1 }]
+          : [],
+      ),
+    );
+  }
   res.statusCode = 404;
   res.end("null");
 });
@@ -172,9 +186,11 @@ async function main() {
     await page
       .getByRole("heading", { name: "Ton carnet de résultats" })
       .waitFor();
+    await page.getByText(/1 chapitre découvert sur 41/).waitFor();
     state = "empty";
     await page.reload();
     await page.getByText("Une première partie, puis des repères.").waitFor();
+    await page.getByText("Un premier chapitre, puis des repères.").waitFor();
     await page.screenshot({
       path: `${output}/statistiques-vide-375.png`,
       fullPage: true,

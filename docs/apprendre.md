@@ -28,7 +28,8 @@ L'accueil ne transmet aucune carte.
 Les routes pédagogiques publiques passent le proxy sans rafraîchissement de
 session. Comme la démo existante, leur en-tête est anonyme dans le cache : aucun
 pseudo ni donnée de compte dans le HTML partagé. Le lien Connexion reste
-disponible. Aucun suivi de progression.
+disponible. Depuis #23, la progression arrive après coup par Server Actions
+(voir [progression.md](progression.md)) : le HTML reste identique pour tous.
 
 ## Frise et lecture
 
@@ -77,8 +78,8 @@ gauche/droite, Escape pour fermer et rendre le focus à la liste. Un marqueur
 hors vue recentre la frise en conservant le zoom. Les animations respectent
 `prefers-reduced-motion`. Un panneau ouvert hors écran est amené dans la vue,
 notamment à 375 px. Boutons de 44 px et charte existante, sans geste réservé au
-survol. « Me tester sur ce chapitre » reste désactivé avec une explication :
-son branchement et la progression relèvent de #23.
+survol. « Me tester sur ce chapitre » lance une partie scolaire sur ce chapitre
+depuis #23 ([progression.md](progression.md)).
 
 ## Audit des solutions d'illustration
 

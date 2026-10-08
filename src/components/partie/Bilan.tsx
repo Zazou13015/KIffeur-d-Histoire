@@ -5,6 +5,9 @@ import { Bouton } from "@/components/ui/Bouton";
 import { formatHistoricDate } from "@/lib/game/dates";
 import { capitaliser, dateDepuis, precisionDepuis } from "@/lib/game/partie";
 import type { SoloResult } from "@/lib/game/solo";
+import { cheminChapitre } from "@/lib/apprendre/catalogue";
+import { CHAPITRES, lireChoix } from "@/lib/solo/choix";
+import { EnregistrerTest } from "@/components/pedagogie/EnregistrerTest";
 
 type Props = {
   resultat: SoloResult;
@@ -22,11 +25,14 @@ export function Bilan({ resultat, connecte, anonyme, relance }: Props) {
   const suite = `/partie/${id}`;
   // Sans choix d'origine (lien ancien), on rejoue une partie générale à la même difficulté.
   const choix = relance ?? `mode=general&difficulte=${questions[0]?.unit ?? "YEAR"}`;
+  // Test d'un chapitre lancé depuis « Découvrir » : le serveur relit le chapitre dans la partie elle-même.
+  const origine = relance ? lireChoix(new URLSearchParams(relance)) : null;
+  const chapitreTeste = origine?.test ? CHAPITRES.find((c) => c.id === origine.chapitres?.[0]) : undefined;
 
   return (
     <section className="grid gap-5" aria-label="Fin de la partie">
       <header className="grid gap-1">
-        <span className="inventaire">Partie terminée</span>
+        <span className="inventaire">{chapitreTeste ? `Test du chapitre · ${chapitreTeste.titre}` : "Partie terminée"}</span>
         <h1 className="text-4xl leading-tight">
           <span className="date text-5xl text-oxyde">{points}</span> points
           <span className="text-2xl text-encre-douce"> sur {n * 100}</span>
@@ -35,6 +41,11 @@ export function Bilan({ resultat, connecte, anonyme, relance }: Props) {
           Précision moyenne : <b className="text-encre">{precision} %</b>
         </p>
       </header>
+
+      {chapitreTeste && origine && (
+        <EnregistrerTest chapitre={chapitreTeste.id} partie={id} precision={precision} difficulte={origine.difficulte}
+          connecte={connecte} anonyme={anonyme} />
+      )}
 
       {!connecte ? (
         <p className="m-0 flex flex-wrap items-center gap-x-3 gap-y-1 border border-laiton bg-laiton-clair px-4 py-3">
@@ -76,6 +87,11 @@ export function Bilan({ resultat, connecte, anonyme, relance }: Props) {
           <input type="hidden" name="c" value={choix} />
           <Bouton type="submit">Rejouer</Bouton>
         </form>
+        {chapitreTeste && (
+          <Bouton variante="secondaire" href={cheminChapitre(chapitreTeste)}>
+            Revoir le chapitre
+          </Bouton>
+        )}
         <Bouton variante="secondaire" href="/">
           Changer de mode
         </Bouton>

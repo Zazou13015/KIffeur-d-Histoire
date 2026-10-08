@@ -10,6 +10,10 @@ Comptes partagés, pseudo global, inscription/reset et sauvegarde des parties :
 [docs/comptes.md](docs/comptes.md). La migration #24 et ses fixtures sont testées
 uniquement en local/CI ; aucune base distante n’est modifiée par cette livraison.
 
+Profil, historique privé, statistiques et raccordement pédagogique après #23 :
+[docs/profil-statistiques.md](docs/profil-statistiques.md). La migration #25 est
+préparée et testée en local/CI ; son application sur KFFR attend le GO explicite.
+
 ## Démarrer en local
 
 Prérequis : [Node.js 22](https://nodejs.org), [Docker Desktop](https://www.docker.com/products/docker-desktop/) (pour la base locale), Git.

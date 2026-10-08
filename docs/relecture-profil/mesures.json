@@ -1,0 +1,37 @@
+{
+  "measurements": [
+    {
+      "tab": "historique",
+      "width": 1440,
+      "viewport": 1440,
+      "document": 1440
+    },
+    {
+      "tab": "statistiques",
+      "width": 1440,
+      "viewport": 1440,
+      "document": 1440
+    },
+    {
+      "tab": "historique",
+      "width": 375,
+      "viewport": 375,
+      "document": 375
+    },
+    {
+      "tab": "statistiques",
+      "width": 375,
+      "viewport": 375,
+      "document": 375
+    }
+  ],
+  "errors": [],
+  "checks": [
+    "navigation onglets",
+    "vide",
+    "erreur sans fuite",
+    "réessayer",
+    "compte",
+    "redirection anonyme"
+  ]
+}

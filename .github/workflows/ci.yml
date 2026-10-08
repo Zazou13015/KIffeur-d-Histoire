@@ -30,6 +30,8 @@ jobs:
       - run: npx tsx scripts/build-apprendre-local.ts
       - run: npm run content:test-demo-pedagogie
       - run: npx tsx scripts/verifier-apprendre.ts
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:profil-browser
 
   tests-cartes-local:
     runs-on: ubuntu-latest

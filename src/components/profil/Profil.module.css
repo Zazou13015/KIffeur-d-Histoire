@@ -1,0 +1,198 @@
+.page {
+  width: 100%;
+  max-width: 68rem;
+  margin-inline: auto;
+  padding: 2rem 1rem 3rem;
+}
+.header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-block: 1rem 2rem;
+}
+.title {
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+.paper {
+  background: var(--color-papier);
+  border: 1px solid var(--color-filet);
+  box-shadow: var(--shadow-cartel);
+  padding: clamp(1rem, 3vw, 2rem);
+}
+.tabs {
+  display: flex;
+  border-bottom: 1px solid var(--color-filet);
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.tab {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0.5rem 0;
+  border-bottom: 3px solid transparent;
+  color: var(--color-encre-douce);
+}
+.tab[aria-current="page"] {
+  border-color: var(--color-oxyde);
+  color: var(--color-encre);
+  font-weight: 700;
+}
+.stack {
+  display: grid;
+  gap: 1.75rem;
+  min-width: 0;
+}
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+.metric {
+  border-top: 2px solid var(--color-laiton);
+  padding-top: 0.75rem;
+}
+.value {
+  font-family: var(--font-date);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.3;
+}
+.muted {
+  color: var(--color-encre-douce);
+  font-size: 0.875rem;
+}
+.heading {
+  font-size: 1.35rem;
+  margin-bottom: 0.75rem;
+}
+.games {
+  display: grid;
+  gap: 1rem;
+}
+.game {
+  border: 1px solid var(--color-filet);
+  background: var(--color-blanc-cartel);
+  padding: 1rem;
+  min-width: 0;
+}
+.gameTop {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  align-items: center;
+}
+.gameMetrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  margin-top: 0.75rem;
+}
+.context {
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  color: var(--color-encre-douce);
+  overflow-wrap: anywhere;
+}
+.link {
+  color: var(--color-oxyde);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+.empty {
+  padding-block: 2rem;
+  max-width: 32rem;
+}
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+.modeGrid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+}
+.bar {
+  height: 5px;
+  background: var(--color-vert-de-gris);
+  margin-top: 0.75rem;
+}
+.bar > span {
+  display: block;
+  height: 100%;
+  background: var(--color-laiton);
+}
+.chart {
+  display: block;
+  width: 100%;
+  height: auto;
+  color: var(--color-oxyde);
+}
+.table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.875rem;
+  table-layout: fixed;
+}
+.table th,
+.table td {
+  text-align: left;
+  padding: 0.65rem 0.25rem;
+  border-bottom: 1px solid var(--color-filet);
+  overflow-wrap: anywhere;
+  vertical-align: top;
+}
+.table th:first-child {
+  width: 40%;
+}
+.table th {
+  font-weight: 700;
+}
+.account {
+  margin-top: 1.5rem;
+}
+.account summary {
+  cursor: pointer;
+  min-height: 44px;
+  padding-block: 0.6rem;
+  font-weight: 700;
+}
+.accountBody {
+  display: grid;
+  gap: 1rem;
+  max-width: 28rem;
+  padding-block: 0.75rem;
+  overflow-wrap: anywhere;
+}
+@media (min-width: 700px) {
+  .metrics {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+@media (max-width: 450px) {
+  .table {
+    font-size: 0.8125rem;
+  }
+  .table th:first-child {
+    width: 34%;
+  }
+  .table th[scope="col"] {
+    white-space: nowrap;
+  }
+  .table td {
+    white-space: nowrap;
+  }
+  .chart text {
+    font-size: 20px;
+  }
+}

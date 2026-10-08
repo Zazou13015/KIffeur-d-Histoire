@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { capitaliser, chronoDepuis, correctionDepuis, dateDepuis, precisionDepuis, urlIllustration } from "@/lib/game/partie";
+import { capitaliser, chronoDepuis, correctionDepuis, correctionInverseDepuis, dateDepuis, precisionDepuis, urlIllustration } from "@/lib/game/partie";
 import type { SoloCorrection } from "@/lib/game/solo";
 
 const base = {
@@ -57,5 +57,16 @@ describe("écran de partie : passerelle avec le serveur", () => {
     const c = chronoDepuis(q, maintenant);
     expect(c.totalMs).toBe(30_000);
     expect(c.finMs - maintenant).toBe(28_000);
+  });
+});
+
+describe("mode inversé : correction affichée", () => {
+  const base = { question_id: "q", correct_date: { year: 1947 }, gap: null, unit: "YEAR", accuracy: 100, points: 120, expired: false, description: "début de la guerre froide" } as const;
+  it("rend le titre attendu, la bonne date et le verdict", () => {
+    const c = correctionInverseDepuis({ ...base, direction: "inverse", title: "la guerre froide", correct: true });
+    expect(c).toMatchObject({ correcte: true, titre: "La guerre froide", points: 120, bonne: { year: 1947 }, description: "Début de la guerre froide" });
+  });
+  it("refuse une correction de jeu de dates", () => {
+    expect(() => correctionInverseDepuis({ ...base })).toThrow();
   });
 });

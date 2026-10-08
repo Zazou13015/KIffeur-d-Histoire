@@ -8,7 +8,7 @@ import styles from "@/components/choix/choix.module.css";
 const ENTREES = [
   { href: "/solo", titre: "Solo libre", texte: "Toute l'Histoire, une période, un pack ou un thème.", motif: "globe" },
   { href: "/scolaire", titre: "Solo scolaire", texte: "Le programme de ta classe, chapitre par chapitre.", motif: "plume" },
-  { href: null, titre: "Mode inversé", texte: "On te donne la date, tu retrouves l'événement.", motif: "boussole" },
+  { href: "/inverse", titre: "Mode inversé", texte: "On te donne la date, tu retrouves l'événement.", motif: "boussole" },
   { href: "/apprendre", titre: "Apprendre", texte: "Explore un chapitre avec ses dates, sans chrono.", motif: "parchemin" },
 ] as const;
 
@@ -34,14 +34,7 @@ export default async function Accueil() {
             );
             return (
               <li key={e.titre} className="grid">
-                {e.href ? (
-                  <Link href={e.href} className={styles.entree}>{contenu}</Link>
-                ) : (
-                  <div className={`${styles.entree} ${styles.entreeInactive}`} aria-disabled="true">
-                    <span className={styles.badge}>Bientôt</span>
-                    {contenu}
-                  </div>
-                )}
+                <Link href={e.href} className={styles.entree}>{contenu}</Link>
               </li>
             );
           })}

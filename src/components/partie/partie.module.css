@@ -121,3 +121,19 @@
 .resultat > :nth-child(3), .resultat .explication { grid-column: 2; }
 .resultat .explication { font-size: 13px; line-height: 1.35; }
 .resultat .valider { grid-column: 1 / -1; }
+
+/* ---------- Mode inversé : la date en grand, un champ texte, Valider ---------- */
+.carteTexte .dateGrande { font-size: 56px; line-height: 1; color: var(--color-oxyde); overflow-wrap: anywhere; }
+.rangeeInverse { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 16px; align-items: stretch; max-width: 1100px; margin-inline: auto; }
+.champTexte { width: 100%; min-width: 0; font-size: 22px; padding: 10px 12px; color: var(--color-encre); background: var(--color-blanc-cartel); border: 1px solid var(--color-filet); border-bottom: 2px solid var(--color-encre); }
+.champTexte:focus { outline: none; border-color: var(--color-encre); box-shadow: var(--shadow-focus); }
+.champTexte:disabled { opacity: 0.7; }
+.champTexte::placeholder { color: #9aa098; }
+.colonneSaisie .aideSaisie { display: block; }
+@media (max-width: 860px) { .carteTexte .dateGrande { font-size: 44px; } }
+@media (max-width: 600px) {
+  .rangeeInverse { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .carteTexte .dateGrande { font-size: 36px; }
+}
+.tapee { color: var(--color-encre-douce); font-size: 13px; overflow-wrap: anywhere; }
+.rangeeInverse:has(> :only-child) { grid-template-columns: minmax(0, 1fr); }

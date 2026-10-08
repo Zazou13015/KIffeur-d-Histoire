@@ -75,3 +75,21 @@ describe("bornesDe", () => {
     expect(comptesDe({ mode: "scolaire", chapitres: ["THM-016"] })!.YEAR).toBeGreaterThanOrEqual(10);
   });
 });
+
+describe("mode inversé", () => {
+  it("garde le sens dans le choix et le transmet au moteur", () => {
+    const choix = lire("mode=general&difficulte=MONTH&sens=inverse")!;
+    expect(choix.sens).toBe("inverse");
+    expect(lire(ecrireChoix(choix))).toEqual(choix);
+    expect(filtresDepuis(choix).direction).toBe("inverse");
+  });
+  it("reste en jeu de dates sans sens, et ignore un sens inconnu", () => {
+    expect(lire("mode=general&difficulte=YEAR")!.sens).toBeUndefined();
+    expect(lire("mode=general&difficulte=YEAR&sens=autre")!.sens).toBeUndefined();
+    expect(filtresDepuis(lire("mode=general&difficulte=YEAR")!).direction).toBeUndefined();
+  });
+  it("accepte aussi les chapitres du scolaire", () => {
+    const choix = lire(`mode=scolaire&difficulte=YEAR&chapitres=${CHAPITRES[0].id}&sens=inverse`)!;
+    expect(filtresDepuis(choix)).toMatchObject({ direction: "inverse", chapterIds: [CHAPITRES[0].id] });
+  });
+});

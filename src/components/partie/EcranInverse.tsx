@@ -72,7 +72,6 @@ export function EcranInverse({ question, corriger, chrono, suivante, bornes }: P
     const cible = 40;
     let image = 0;
     const attente = setTimeout(() => {
-      if (matchMedia("(prefers-reduced-motion: reduce)").matches) return placer(t - cible / 2, t + cible / 2);
       const depart = vueRef.current;
       const s0 = depart.fin - depart.debut;
       const c0 = (depart.debut + depart.fin) / 2;

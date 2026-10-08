@@ -12,7 +12,8 @@ uniquement en local/CI ; aucune base distante n’est modifiée par cette livrai
 
 Profil, historique privé, statistiques et raccordement pédagogique après #23 :
 [docs/profil-statistiques.md](docs/profil-statistiques.md). La migration #25 est
-préparée et testée en local/CI ; son application sur KFFR attend le GO explicite.
+appliquée sur KFFR le 8 octobre 2026 après GO explicite, puis vérifiée sur l’aperçu
+avec une session réelle et une partie filtrée complète. La PR reste à relire.
 
 ## Démarrer en local
 

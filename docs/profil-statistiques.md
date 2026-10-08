@@ -57,7 +57,7 @@ sont chargés. Les erreurs SQL sont remplacées par un message public ; un bouto
 rafraîchit la route. Aucune statistique persistée ou calculée depuis un historique
 exhaustif envoyé au navigateur.
 
-## Migration : production non appliquée
+## Migration : appliquée en production le 8 octobre 2026
 
 `supabase/migrations/20261008141312_profil_statistiques.sql` :
 
@@ -71,16 +71,46 @@ exhaustif envoyé au navigateur.
 
 Cette migration est nécessaire : les tables privées n’offrent aucune lecture
 directe et les RPC de jeu ne fournissent ni historique ni agrégat. Les contextes
-de lancement ne sont pas enregistrés aujourd’hui. Utiliser une clé privilégiée
+de lancement n’étaient pas enregistrés. Utiliser une clé privilégiée
 ou copier toutes les parties côté client pour éviter le DDL compromettrait ce
 contrat. Aucun autre schéma, trigger Auth ni policy existante ne change.
 
-**Ne pas appliquer sur KFFR sans GO explicite d’Antonin.** Après revue et GO,
-suivre la procédure SQL transactionnelle de README (jamais `db push` ni
-`apply_migration`), vérifier le registre puis tester `/profil` sous session.
-L’aperçu Vercel utilise aussi KFFR : avant application, il affiche proprement
-« carnet momentanément indisponible ». Ne pas fusionner avant l’application et
-la vérification réelle. Les fixtures/tests SQL ci-dessous ne vont jamais sur KFFR.
+**Appliquée après GO explicite d’Antonin le 8 octobre 2026 à 16 h 54 (Paris).**
+La CLI `supabase db query --linked --project-ref bskyfdjwcdvzhlugtknb --file …`
+a exécuté le fichier exact dans `BEGIN / COMMIT`, avec délais de verrou et
+d’exécution bornés, contrôle du corps de `start_game` avant application et
+contrôles des objets/permissions avant COMMIT. Notification de rechargement du
+cache PostgREST dans la même transaction. Aucun `db push` global,
+`apply_migration` ni écriture dans l’historique de migrations de Contrée.
+
+SHA-256 du fichier appliqué :
+`241577a6b697394d7a10aa66708b3614ba8e45854c1330dcf81d2ba086321b4c`.
+
+Vérifications réelles après COMMIT :
+
+- version `20261008141312` présente dans `histoire.migrations_appliquees` ;
+- colonne `games.context` JSONB, RPC `player_history(uuid)` et `player_stats()` ;
+- EXECUTE accordé à `authenticated`, refusé à `anon`, et refus explicite des
+  deux RPC sous rôle authenticated sans identité ;
+- RLS/droits de `games` et `game_questions`, signature et droits de
+  `start_game` inchangés ; lecture directe des tables refusée au joueur ;
+- `/profil` sur l’aperçu sous session réelle : états vides corrects, puis
+  historique et statistiques renseignés après une partie réelle de dix questions
+  sur le pack « 50 dates incontournables » ;
+- contexte sélectionné effectivement stocké, questions toutes répondues,
+  précision/points du bilan conformes aux agrégats des questions et aux RPC ;
+- chrono, expiration d’une question, corrections, transitions et sauvegarde
+  contrôlés dans ce parcours complet ; aucun rattachement fabriqué ;
+- visiteur sans session redirigé, aucune statistique privée dans sa réponse.
+
+Un curseur extérieur est refusé en production. Aucun autre joueur n’y possédait
+de partie terminée lors du contrôle : le cas A/B réel reste couvert par la suite
+SQL locale/CI, sans créer de faux compte ou de fausses parties en production.
+La partie jouée pour le contrôle est un vrai résultat conservé dans le compte,
+sans suppression ni modification manuelle de score.
+
+Les fixtures/tests SQL complets ci-dessous ne vont jamais sur KFFR. #77 n’est
+pas fusionnée : l’application SQL n’autorise pas la fusion de la PR.
 
 ## Après #23
 
@@ -112,7 +142,8 @@ de progression parallèle ni modification de #23 dans cette PR. #25 reste ouvert
 
 La CI exécute aussi ce contrôle navigateur. Cette relecture valide le rendu et
 le contrat HTTP ; les autorisations et les calculs réels sont validés séparément
-sur Postgres par les tests SQL. La session réelle sur KFFR attend le GO migration.
+sur Postgres par les tests SQL. Le parcours réel sur KFFR a également été validé
+après l’application autorisée, comme décrit ci-dessus.
 
 Le test local de la migration Somme reconstitue désormais le registre à sa date,
 en retirant les versions ultérieures uniquement dans sa transaction annulée.

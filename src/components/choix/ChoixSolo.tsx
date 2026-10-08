@@ -76,7 +76,8 @@ export function ChoixSolo({ inverse = false }: { inverse?: boolean }) {
   }, [memoire]);
 
   const comptes = comptesDe({ mode: etat.mode, periode: etat.periode, pack: etat.pack, theme: etat.theme });
-  const difficulte = difficulteJouable(comptes, etat.difficulte);
+  // Inversé : toujours la date exacte, sans choix de difficulté.
+  const difficulte = inverse ? (difficulteJouable(comptes, "DAY") === "DAY" ? "DAY" : null) : difficulteJouable(comptes, etat.difficulte);
   const choix = difficulte ? lireChoix(versChamps({ ...etat, difficulte }, inverse)) : null;
   const libreInvalide = etat.mode === "periode" && etat.periode === "libre" && !choix && (etat.de !== "" || etat.a !== "");
 
@@ -159,14 +160,16 @@ export function ChoixSolo({ inverse = false }: { inverse?: boolean }) {
         )}
       </Etape>
 
-      <Etape numero={2} titre="Difficulté">
-        <ChoixDifficulte comptes={comptes} valeur={difficulte} onChange={(d) => maj({ difficulte: d })} />
-      </Etape>
+      {!inverse && (
+        <Etape numero={2} titre="Difficulté">
+          <ChoixDifficulte comptes={comptes} valeur={difficulte} onChange={(d) => maj({ difficulte: d })} />
+        </Etape>
+      )}
 
       <BarreLancer
         pret={choix != null}
         resume={
-          choix ? <><b>{QUESTIONS} questions</b> · {libelle(choix)} · {DIFFICULTES.find((d) => d.valeur === choix.difficulte)?.titre}</>
+          choix ? <><b>{QUESTIONS} questions</b> · {libelle(choix)} {inverse ? " · date exacte" : <> · {DIFFICULTES.find((d) => d.valeur === choix.difficulte)?.titre}</>}</>
             : difficulte ? "Termine ton choix pour jouer." : "Pas assez de questions pour ce choix : choisis-en un autre."
         }
       />

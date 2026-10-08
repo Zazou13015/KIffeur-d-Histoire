@@ -50,7 +50,11 @@ export function lireChoix(champs: URLSearchParams): Choix | null {
   const difficulte = champs.get("difficulte");
   if (!MODES.includes(mode) || !estDifficulte(difficulte)) return null;
   const choix: Choix = { mode, difficulte };
-  if (champs.get("sens") === "inverse") choix.sens = "inverse";
+  // Inversé : seule la date exacte donne une question sans ambiguïté (plusieurs événements partagent une année).
+  if (champs.get("sens") === "inverse") {
+    choix.sens = "inverse";
+    choix.difficulte = "DAY";
+  }
   if (mode === "periode") {
     const periode = champs.get("periode");
     if (periode && periode !== "libre") {

@@ -78,10 +78,15 @@ describe("bornesDe", () => {
 
 describe("mode inversé", () => {
   it("garde le sens dans le choix et le transmet au moteur", () => {
-    const choix = lire("mode=general&difficulte=MONTH&sens=inverse")!;
+    const choix = lire("mode=general&difficulte=DAY&sens=inverse")!;
     expect(choix.sens).toBe("inverse");
     expect(lire(ecrireChoix(choix))).toEqual(choix);
     expect(filtresDepuis(choix).direction).toBe("inverse");
+  });
+  it("impose la date exacte, même si un ancien choix demande Facile ou Moyen", () => {
+    expect(lire("mode=general&difficulte=YEAR&sens=inverse")!.difficulte).toBe("DAY");
+    expect(lire("mode=general&difficulte=MONTH&sens=inverse")!.difficulte).toBe("DAY");
+    expect(lire("mode=general&difficulte=YEAR")!.difficulte).toBe("YEAR");
   });
   it("reste en jeu de dates sans sens, et ignore un sens inconnu", () => {
     expect(lire("mode=general&difficulte=YEAR")!.sens).toBeUndefined();

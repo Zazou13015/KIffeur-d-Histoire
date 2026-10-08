@@ -39,7 +39,8 @@ export function ChoixScolaire({ inverse = false }: { inverse?: boolean }) {
 
   const chapitres = niveau ? duNiveau(niveau) : [];
   const comptes = coches.length ? comptesDe({ mode: "scolaire", chapitres: coches }) : null;
-  const jouable = difficulteJouable(comptes, difficulte);
+  // Inversé : toujours la date exacte, sans choix de difficulté.
+  const jouable = inverse ? (difficulteJouable(comptes, "DAY") === "DAY" ? "DAY" : null) : difficulteJouable(comptes, difficulte);
   const choix = jouable ? lireChoix(new URLSearchParams({ mode: "scolaire", difficulte: jouable, chapitres: coches.join(","), ...(inverse ? { sens: "inverse" } : {}) })) : null;
   const nomNiveau = NIVEAUX.find((n) => n.slug === niveau)?.nom;
 
@@ -80,7 +81,7 @@ export function ChoixScolaire({ inverse = false }: { inverse?: boolean }) {
         </Etape>
       )}
 
-      {niveau && (
+      {niveau && !inverse && (
         <Etape numero={3} titre="Difficulté">
           <ChoixDifficulte comptes={comptes} valeur={jouable} onChange={setDifficulte} />
         </Etape>
@@ -90,7 +91,7 @@ export function ChoixScolaire({ inverse = false }: { inverse?: boolean }) {
         pret={choix != null}
         resume={
           choix ? (
-            <><b>{QUESTIONS} questions</b> · {nomNiveau}, {coches.length} chapitre{coches.length > 1 ? "s" : ""} · {DIFFICULTES.find((d) => d.valeur === jouable)?.titre}</>
+            <><b>{QUESTIONS} questions</b> · {nomNiveau}, {coches.length} chapitre{coches.length > 1 ? "s" : ""} {inverse ? " · date exacte" : <> · {DIFFICULTES.find((d) => d.valeur === jouable)?.titre}</>}</>
           ) : !niveau ? "Choisis ton niveau." : !coches.length ? "Coche au moins un chapitre." : "Pas assez de questions : coche d'autres chapitres."
         }
       />

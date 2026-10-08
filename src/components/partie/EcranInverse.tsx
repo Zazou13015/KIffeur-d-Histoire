@@ -67,6 +67,15 @@ export function EcranInverse({ question, corriger, chrono, suivante, bornes }: P
     }
   }
 
+  // Début du tour : la frise part de toute la période et zoome vers la date donnée.
+  useEffect(() => {
+    const paliers = REGLAGES[precision].suivi;
+    const cible = paliers[paliers.length - 1];
+    const t = versT(date);
+    const id = setTimeout(() => animer(t - cible / 2, t + cible / 2), 500);
+    return () => clearTimeout(id);
+  }, [date, precision, animer]);
+
   const envoyerRef = useRef(envoyer);
   useEffect(() => {
     envoyerRef.current = envoyer;

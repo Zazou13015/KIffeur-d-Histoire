@@ -191,4 +191,3 @@ revoke all on function histoire.player_history(uuid), histoire.player_stats() fr
 grant execute on function histoire.player_history(uuid), histoire.player_stats() to authenticated;
 -- start_game garde exactement la signature et les permissions existantes.
 insert into histoire.migrations_appliquees(version, nom) values ('20261008141312', 'profil_statistiques');
-

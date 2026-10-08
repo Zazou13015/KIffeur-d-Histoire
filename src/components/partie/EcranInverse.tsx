@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { aLaPrecision, formatHistoricDate, type HistoricDate, type Precision } from "@/lib/game/dates";
-import { REGLAGES, versT, VUE_DE_BASE, type Vue } from "@/lib/game/frise";
+import { versT, VUE_DE_BASE, type Vue } from "@/lib/game/frise";
 import type { Chrono, CorrectionInverseAffichee } from "@/lib/game/partie";
 import { Motif } from "@/components/charte/Motif";
 import { Frise } from "@/components/frise/Frise";
@@ -56,9 +56,6 @@ export function EcranInverse({ question, corriger, chrono, suivante, bornes }: P
     try {
       const c = await corriger(question.id, rep);
       setCorrection(c);
-      // La frise se recentre sur la date.
-      const t = versT(date);
-      animer(t - REGLAGES[precision].marge, t + REGLAGES[precision].marge);
     } catch {
       setErreur("La connexion a été perdue : ta réponse n'est pas partie. Réessaie.");
     } finally {
@@ -67,14 +64,36 @@ export function EcranInverse({ question, corriger, chrono, suivante, bornes }: P
     }
   }
 
-  // Début du tour : la frise part de toute la période et zoome vers la date donnée.
+  // Début du tour : la frise s'ouvre sur toute la période, puis zoome doucement vers la date donnée
+  // (environ 40 ans de large, pour garder le contexte de l'époque).
+  const { placer, vueRef, arreter } = controle;
   useEffect(() => {
-    // Vue d'ensemble d'environ 40 ans autour de la date, pour garder le contexte de l'époque.
-    const cible = 40;
     const t = versT(date);
-    const id = setTimeout(() => animer(t - cible / 2, t + cible / 2), 500);
-    return () => clearTimeout(id);
-  }, [date, precision, animer]);
+    const cible = 40;
+    let image = 0;
+    const attente = setTimeout(() => {
+      if (matchMedia("(prefers-reduced-motion: reduce)").matches) return placer(t - cible / 2, t + cible / 2);
+      const depart = vueRef.current;
+      const s0 = depart.fin - depart.debut;
+      const c0 = (depart.debut + depart.fin) / 2;
+      const t0 = performance.now();
+      const etape = (maintenant: number) => {
+        const k = Math.min(1, (maintenant - t0) / 2200);
+        const q = k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
+        // L'étendue varie en proportion (de milliers d'années à 40 ans) : le zoom reste régulier à l'œil.
+        const span = Math.exp(Math.log(s0) + (Math.log(cible) - Math.log(s0)) * q);
+        const centre = c0 + (t - c0) * q;
+        placer(centre - span / 2, centre + span / 2);
+        if (k < 1) image = requestAnimationFrame(etape);
+      };
+      image = requestAnimationFrame(etape);
+    }, 1000);
+    return () => {
+      clearTimeout(attente);
+      cancelAnimationFrame(image);
+      arreter();
+    };
+  }, [date, placer, vueRef, arreter]);
 
   const envoyerRef = useRef(envoyer);
   useEffect(() => {

@@ -5,6 +5,7 @@ import type { HistoricDate, Precision } from "@/lib/game/dates";
 import { REGLAGES, versT } from "@/lib/game/frise";
 import { casesCompletes, casesVides, champsDepuis, CHAMPS_VIDES, reponseDepuis, type Champs } from "@/lib/game/saisie";
 import type { useVue } from "@/components/frise/useVue";
+import type { MethodeSaisie } from "@/lib/game/solo";
 
 // Relie les trois cases et la frise : ce qu'on tape place le losange et zoome la frise,
 // ce qu'on pointe sur la frise remplit les cases.
@@ -13,6 +14,8 @@ export function useSaisieFrise(precision: Precision, controle: ReturnType<typeof
   const [champs, setChamps] = useState<Champs>(CHAMPS_VIDES);
   const [reponse, setReponse] = useState<HistoricDate | null>(null);
   const [enSaisie, setEnSaisie] = useState(false);
+  // Dernière façon dont la réponse a été donnée, pour les indicateurs (#26).
+  const [methode, setMethode] = useState<MethodeSaisie | null>(null);
   const suivi = useRef<ReturnType<typeof setTimeout>>(undefined);
 
   useEffect(() => () => clearTimeout(suivi.current), []);
@@ -21,6 +24,7 @@ export function useSaisieFrise(precision: Precision, controle: ReturnType<typeof
 
   function changerChamps(c: Champs) {
     setChamps(c);
+    setMethode("clavier");
     clearTimeout(suivi.current);
     if (casesVides(c, precision)) {
       // Cases vidées : plus de losange, la frise revient sur toute l'histoire (ou toute la période jouée).
@@ -47,14 +51,16 @@ export function useSaisieFrise(precision: Precision, controle: ReturnType<typeof
     clearTimeout(suivi.current);
     setReponse(d);
     setChamps(champsDepuis(d));
+    setMethode("frise");
   }
 
   function reinitialiser() {
     clearTimeout(suivi.current);
     setReponse(null);
     setChamps(CHAMPS_VIDES);
+    setMethode(null);
     animer(bornes.debut, bornes.fin);
   }
 
-  return { champs, reponse, complete, enSaisie, setEnSaisie, changerChamps, poserSurFrise, reinitialiser };
+  return { champs, reponse, methode, complete, enSaisie, setEnSaisie, changerChamps, poserSurFrise, reinitialiser };
 }

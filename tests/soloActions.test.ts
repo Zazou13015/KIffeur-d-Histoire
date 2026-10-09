@@ -3,7 +3,9 @@ import { claimGame, finishGame, nextQuestion, startGame, submitAnswer } from "@/
 
 const gameId = "00000000-0000-0000-0000-000000000013";
 const mocks = vi.hoisted(() => ({ values: new Map<string, string>(), set: vi.fn(), remove: vi.fn(), rpc: vi.fn(), schema: vi.fn(), account: vi.fn() }));
-const gameCalls = () => mocks.rpc.mock.calls.filter(([name]) => name !== "purge_expired_anonymous_games");
+// Les appels de mesure (#26, kpi_*) sont vérifiés à part.
+const gameCalls = () => mocks.rpc.mock.calls.filter(([name]) => name !== "purge_expired_anonymous_games" && !String(name).startsWith("kpi_"));
+const soloCookies = () => mocks.set.mock.calls.filter(([name]) => String(name).startsWith("histoire-solo-"));
 vi.mock("next/headers", () => ({ cookies: async () => ({
   get: (name: string) => mocks.values.has(name) ? { value: mocks.values.get(name) } : undefined,
   set: mocks.set,
@@ -84,7 +86,7 @@ it("transmet les filtres sans calcul métier et utilise les cookies pour les RPC
   expect(mocks.rpc).toHaveBeenLastCalledWith("submit_answer", { p_game_id: gameId, p_question_id: "question", p_token: token, p_year: null, p_month: null, p_day: null, p_answer_text: null });
   await finishGame(gameId);
   expect(mocks.rpc).toHaveBeenLastCalledWith("finish_game", { p_game_id: gameId, p_token: token });
-  expect(mocks.rpc.mock.calls.map(([name]) => name)).toEqual([
+  expect(mocks.rpc.mock.calls.map(([name]) => name).filter((name) => !name.startsWith("kpi_"))).toEqual([
     "purge_expired_anonymous_games", "start_game", "purge_expired_anonymous_games", "next_question",
     "purge_expired_anonymous_games", "submit_answer", "purge_expired_anonymous_games", "submit_answer",
     "purge_expired_anonymous_games", "finish_game",
@@ -94,7 +96,7 @@ it("transmet les filtres sans calcul métier et utilise les cookies pour les RPC
 it("une partie connectée utilise la session Supabase sans cookie anonyme", async () => {
   mocks.rpc.mockResolvedValue({ data: { game_id: gameId, anonymous: false }, error: null });
   await startGame();
-  expect(mocks.set).not.toHaveBeenCalled();
+  expect(soloCookies()).toEqual([]);
   await nextQuestion(gameId);
   expect(mocks.rpc).toHaveBeenLastCalledWith("next_question", { p_game_id: gameId, p_token: null });
 });
@@ -155,9 +157,43 @@ it("un test de chapitre passe par la fonction dédiée, sans filtre libre, et ga
   expect(nom).toBe("start_chapter_test");
   expect(args).toMatchObject({ p_chapter_id: "THM-006", p_difficulty: "MONTH", p_question_count: 8 });
   expect(Object.keys(args)).toEqual(["p_token", "p_chapter_id", "p_difficulty", "p_question_count"]);
-  expect(mocks.set).toHaveBeenCalledOnce();
+  expect(soloCookies()).toHaveLength(1);
   // Sans le marqueur, ou avec plusieurs chapitres, c'est le tirage habituel.
   await startGame({ chapterIds: ["THM-006"] });
   await startGame({ chapterTest: true, chapterIds: ["THM-006", "THM-001"] });
   expect(gameCalls().slice(1).map(([n]) => n)).toEqual(["start_game", "start_game"]);
+});
+
+it("indicateurs : un visiteur anonyme durable par navigateur, rattaché à chaque partie", async () => {
+  mocks.rpc.mockResolvedValue({ data: { game_id: gameId, anonymous: true }, error: null });
+  await startGame();
+  const visiteur = mocks.values.get("histoire-visiteur");
+  expect(visiteur).toMatch(/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[0-9a-f]{4}-[0-9a-f]{12}$/);
+  expect(mocks.set).toHaveBeenCalledWith("histoire-visiteur", visiteur, expect.objectContaining({ httpOnly: true, maxAge: 60 * 60 * 24 * 395 }));
+  const token = mocks.values.get(`histoire-solo-${gameId}`);
+  expect(mocks.rpc).toHaveBeenCalledWith("kpi_noter_visiteur", { p_game_id: gameId, p_visitor: visiteur, p_token: token });
+  mocks.set.mockClear();
+  await startGame();
+  expect(mocks.set.mock.calls.some(([name]) => name === "histoire-visiteur")).toBe(false);
+  expect(mocks.rpc).toHaveBeenLastCalledWith("kpi_noter_visiteur", expect.objectContaining({ p_visitor: visiteur }));
+});
+
+it("indicateurs : la méthode de saisie est notée après une réponse datée, jamais après une expiration", async () => {
+  mocks.values.set(`histoire-solo-${gameId}`, "secret");
+  mocks.rpc.mockResolvedValue({ data: { question_id: "question", expired: false }, error: null });
+  await submitAnswer(gameId, "question", { year: 1789 }, "frise");
+  expect(mocks.rpc).toHaveBeenLastCalledWith("kpi_noter_saisie", { p_game_id: gameId, p_question_id: "question", p_method: "frise", p_token: "secret" });
+  mocks.rpc.mockClear();
+  await submitAnswer(gameId, "question", null, "clavier");
+  await submitAnswer(gameId, "question", "Texte inversé", "clavier");
+  await submitAnswer(gameId, "question", { year: 1789 });
+  expect(mocks.rpc.mock.calls.some(([name]) => name === "kpi_noter_saisie")).toBe(false);
+});
+
+it("indicateurs : une mesure en échec n'empêche ni de lancer ni de répondre", async () => {
+  mocks.rpc.mockImplementation(async (name: string) => name.startsWith("kpi_")
+    ? Promise.reject(new Error("réseau"))
+    : { data: { game_id: gameId, anonymous: false, question_id: "question", expired: false }, error: null });
+  await expect(startGame()).resolves.toMatchObject({ game_id: gameId });
+  await expect(submitAnswer(gameId, "question", { year: 1789 }, "clavier")).resolves.toMatchObject({ question_id: "question" });
 });

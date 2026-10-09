@@ -5,13 +5,13 @@ import { useState } from "react";
 import type { HistoricDate } from "@/lib/game/dates";
 import type { Vue } from "@/lib/game/frise";
 import { capitaliser, chronoDepuis, correctionDepuis, precisionDepuis, urlIllustration } from "@/lib/game/partie";
-import type { SoloCorrection, SoloDate, SoloDateQuestion, SoloQuestion, SoloResult } from "@/lib/game/solo";
+import type { MethodeSaisie, SoloCorrection, SoloDate, SoloDateQuestion, SoloQuestion, SoloResult } from "@/lib/game/solo";
 import { Bilan } from "./Bilan";
 import { EcranPartie, type Correction } from "./EcranPartie";
 
 // Les trois appels au moteur serveur (src/app/solo/actions.ts), passés par la page.
 export type ActionsPartie = {
-  soumettre: (gameId: string, questionId: string, reponse: SoloDate | null) => Promise<SoloCorrection>;
+  soumettre: (gameId: string, questionId: string, reponse: SoloDate | null, methode?: MethodeSaisie | null) => Promise<SoloCorrection>;
   suivante: (gameId: string) => Promise<SoloQuestion | null>;
   terminer: (gameId: string) => Promise<SoloResult>;
 };
@@ -35,8 +35,8 @@ export function Partie({ gameId, total, question: premiere, actions, connecte, a
   const [chrono, setChrono] = useState(() => chronoDepuis(premiere, Date.now()));
   const [resultat, setResultat] = useState<SoloResult | null>(null);
 
-  async function corriger(questionId: string, reponse: HistoricDate | null): Promise<Correction> {
-    return correctionDepuis(await actions.soumettre(gameId, questionId, reponse));
+  async function corriger(questionId: string, reponse: HistoricDate | null, methode?: MethodeSaisie | null): Promise<Correction> {
+    return correctionDepuis(await actions.soumettre(gameId, questionId, reponse, methode));
   }
 
   async function suivante() {

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { aLaPrecision, formatHistoricDate, type HistoricDate, type Precision } from "@/lib/game/dates";
 import { REGLAGES, versT, VUE_DE_BASE, type Vue } from "@/lib/game/frise";
 import type { Chrono } from "@/lib/game/partie";
+import type { MethodeSaisie } from "@/lib/game/solo";
 import { Motif } from "@/components/charte/Motif";
 import { Frise } from "@/components/frise/Frise";
 import { useVue } from "@/components/frise/useVue";
@@ -42,7 +43,7 @@ export type Correction = {
 type Props = {
   question: QuestionPublique;
   /** `null` : le temps est écoulé, on demande la correction sans réponse. */
-  corriger: (questionId: string, reponse: HistoricDate | null) => Promise<Correction>;
+  corriger: (questionId: string, reponse: HistoricDate | null, methode?: MethodeSaisie | null) => Promise<Correction>;
   /** Chrono affiché (le serveur fait foi). Sans lui, pas de chrono. */
   chrono?: Chrono;
   /** Bouton après la correction. Sans lui (aperçu), la question se rejoue. */
@@ -64,7 +65,7 @@ export function EcranPartie({ question, corriger, chrono, suivante, bornes }: Pr
   const [passage, setPassage] = useState(false);
   const [erreur, setErreur] = useState<string | null>(null);
   const [restant, setRestant] = useState(chrono ? chrono.totalMs / 1000 : 0);
-  const { champs, reponse, complete, setEnSaisie, enSaisie, changerChamps, poserSurFrise, reinitialiser } = useSaisieFrise(precision, controle);
+  const { champs, reponse, methode, complete, setEnSaisie, enSaisie, changerChamps, poserSurFrise, reinitialiser } = useSaisieFrise(precision, controle);
   const enCours = useRef(false);
   const expireTente = useRef(false);
 
@@ -74,7 +75,7 @@ export function EcranPartie({ question, corriger, chrono, suivante, bornes }: Pr
     setEnvoi(true);
     setErreur(null);
     try {
-      const brute = await corriger(question.id, rep);
+      const brute = await corriger(question.id, rep, rep ? methode : null);
       // La bonne réponse est donnée à la précision jouée : l'année seule en Facile.
       const c = { ...brute, bonne: aLaPrecision(brute.bonne, precision) };
       setCorrection(c);

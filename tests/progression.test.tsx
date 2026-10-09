@@ -23,7 +23,7 @@ it("pose les pastilles « Découvert » et « Meilleur test » depuis le compte,
   mocks.lire.mockResolvedValue({ connecte: true, chapitres: { [premier.id]: { decouvert: true, precision: 85.5, difficulte: "MONTH", tests: 2 } } });
   render(<ChoisirChapitre chapitres={CHAPITRES} />);
   await screen.findByText("Découvert");
-  expect(screen.getByText(/Meilleur test : 85,5 %/).textContent).toContain("Moyen");
+  expect(screen.getByText(/Meilleur test : 85,5 %/).textContent).toContain("Mois");
   expect(screen.getAllByText("Découvert")).toHaveLength(1);
   expect(screen.queryByRole("note")).toBeNull();
 });
@@ -94,10 +94,10 @@ it("lance un test d'un seul chapitre, avec autant de questions que le chapitre e
   // THM-016 : 11 cartes jouables, le test est plafonné à 10 questions.
   expect(screen.getByText("10 questions sur les cartes de ce chapitre")).toBeTruthy();
   unmount();
-  // THM-006 : 8 cartes jouables à l'année, trop peu au mois et au jour : seul Facile est proposé.
+  // THM-006 : 8 cartes jouables à l'année, trop peu au mois et au jour : seule la précision Année est proposée.
   render(<TesterChapitre chapitre="THM-006" />);
   expect(screen.getByText("8 questions sur les cartes de ce chapitre")).toBeTruthy();
-  const options = within(screen.getByRole("combobox", { name: "Difficulté du test" })).getAllByRole("option") as HTMLOptionElement[];
+  const options = within(screen.getByRole("combobox", { name: "Précision du test" })).getAllByRole("option") as HTMLOptionElement[];
   expect(options.map((o) => [o.value, o.disabled])).toEqual([["YEAR", false], ["MONTH", true], ["DAY", true]]);
 });
 
@@ -138,7 +138,7 @@ it("résume le parcours du profil par niveau, avec états vide et erreur honnêt
   const chapitre = CHAPITRES.find((c) => c.id === "THM-027")!;
   const ligne = screen.getByRole("link", { name: chapitre.titre }).closest("li")!;
   expect(within(ligne).getByText("Découvert")).toBeTruthy();
-  expect(within(ligne).getByText(/Meilleur test : 80 % · Facile/)).toBeTruthy();
+  expect(within(ligne).getByText(/Meilleur test : 80 % · Année/)).toBeTruthy();
   unmount();
   render(<ProgressionPedagogique progression={null} />);
   expect(screen.getByRole("alert").textContent).toMatch(/momentanément indisponible/);

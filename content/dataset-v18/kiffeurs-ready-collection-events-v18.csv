@@ -1,154 +1,154 @@
 ﻿collection_id,collection_slug,collection_title,position,event_id,title_canonical,date_text,importance,difficulty,playable_mode,selection_score,membership_confidence,corpus
-COL-0059,50-incontournables,50 dates incontournables,1,EVT-0173,prise de la Bastille,14 juillet 1789,5,1,DAY,532,CURATED_SCORE,SCHOOL
-COL-0059,50-incontournables,50 dates incontournables,2,EVT-0063,Débarquement de l'expédition de Colomb à Guanahaní,12 octobre 1492,5,1,DAY,525,CURATED_SCORE,SCHOOL
-COL-0059,50-incontournables,50 dates incontournables,3,EVT-0012,Première Guerre mondiale,28 juillet 1914 – 11 novembre 1918,5,1,RANGE,524,CURATED_SCORE,SCHOOL
-COL-0059,50-incontournables,50 dates incontournables,4,EVT-0065,Édit de Nantes,13 avril 1598,5,1,DAY,523,CURATED_SCORE,SCHOOL
-COL-0059,50-incontournables,50 dates incontournables,5,EVT-0175,Adoption de la Déclaration des droits de l’homme et du citoyen,26 août 1789,5,1,DAY,523,CURATED_SCORE,SCHOOL
-COL-0059,50-incontournables,50 dates incontournables,6,EVT-0348,Révolution française,5 mai 1789 - 9 novembre 1799,5,1,RANGE,515,CURATED_SCORE,SCHOOL
-COL-0059,50-incontournables,50 dates incontournables,7,EVT-0013,Seconde Guerre mondiale,1er septembre 1939 – 2 septembre 1945,5,1,RANGE,515,CURATED_SCORE,SCHOOL
-COL-0059,50-incontournables,50 dates incontournables,8,EVT-0014,Appel du 18 juin du général de Gaulle,18 juin 1940,5,2,DAY,512,CURATED_SCORE,SCHOOL
-COL-0059,50-incontournables,50 dates incontournables,9,EVT-0118,Signature des traités de Rome,25 mars 1957,5,2,DAY,508,CURATED_SCORE,SCHOOL
-COL-0059,50-incontournables,50 dates incontournables,10,EVT-0271,Signature du traité de Maastricht,7 février 1992,5,2,DAY,508,CURATED_SCORE,SCHOOL
-COL-0059,50-incontournables,50 dates incontournables,11,EVT-0062,Prise de Constantinople par les Ottomans,29 mai 1453,5,2,DAY,507,CURATED_SCORE,SCHOOL
-COL-0059,50-incontournables,50 dates incontournables,12,EVT-0018,Déclaration Schuman,9 mai 1950,5,2,DAY,506,CURATED_SCORE,SCHOOL
-COL-0059,50-incontournables,50 dates incontournables,13,EVT-0044,Couronnement impérial de Charlemagne à Rome,25 décembre 800,5,2,DAY,505,CURATED_SCORE,SCHOOL
-COL-0059,50-incontournables,50 dates incontournables,14,EVT-0064,Diffusion conventionnelle des 95 thèses de Martin Luther,31 octobre 1517,5,2,DAY,505,CURATED_SCORE,SCHOOL
-COL-0059,50-incontournables,50 dates incontournables,15,EVT-0076,Édit de Fontainebleau / révocation de l’édit de Nantes,18 octobre 1685,5,2,DAY,503,CURATED_SCORE,SCHOOL
-COL-0059,50-incontournables,50 dates incontournables,16,EVT-0448,Bataille de Waterloo,18 juin 1815,5,1,DAY,503,CURATED_SCORE,SCHOOL
-COL-0059,50-incontournables,50 dates incontournables,17,EVT-0091,Armistice de Rethondes,11 novembre 1918,5,1,DAY,503,CURATED_SCORE,SCHOOL
-COL-0059,50-incontournables,50 dates incontournables,18,EVT-0497,Hitler devient chancelier,30 janvier 1933,5,1,DAY,503,CURATED_SCORE,SCHOOL
-COL-0059,50-incontournables,50 dates incontournables,19,EVT-0510,Attaque de Pearl Harbor,7 décembre 1941,5,1,DAY,503,CURATED_SCORE,SCHOOL
-COL-0059,50-incontournables,50 dates incontournables,20,EVT-0017,Débarquement allié en Normandie,6 juin 1944,5,2,DAY,503,CURATED_SCORE,SCHOOL
-COL-0059,50-incontournables,50 dates incontournables,21,EVT-0520,Bombardement atomique d’Hiroshima,6 août 1945,5,1,DAY,503,CURATED_SCORE,SCHOOL
-COL-0059,50-incontournables,50 dates incontournables,22,EVT-0521,Bombardement atomique de Nagasaki,9 août 1945,5,1,DAY,503,CURATED_SCORE,SCHOOL
-COL-0059,50-incontournables,50 dates incontournables,23,EVT-0537,Mai 68 en France,2 mai-23 juin 1968,5,1,RANGE,503,CURATED_SCORE,SCHOOL
-COL-0059,50-incontournables,50 dates incontournables,24,EVT-0547,Réunification allemande,3 octobre 1990,5,1,DAY,503,CURATED_SCORE,SCHOOL
-COL-0059,50-incontournables,50 dates incontournables,25,EVT-0115,Disparition de l'URSS,26 décembre 1991 — dissolution formelle de l’URSS,5,2,DAY,503,CURATED_SCORE,SCHOOL
-COL-0059,50-incontournables,50 dates incontournables,26,EVT-0320,Adoption de l’accord de Paris,12 décembre 2015,5,2,DAY,501,CURATED_SCORE,SCHOOL
-COL-0059,50-incontournables,50 dates incontournables,27,EVT-0180,Promulgation du Code civil,21 mars 1804,5,2,DAY,499,CURATED_SCORE,SCHOOL
-COL-0059,50-incontournables,50 dates incontournables,28,EVT-0298,Proclamation de l’État d’Israël,14 mai 1948,5,2,DAY,499,CURATED_SCORE,SCHOOL
-COL-0059,50-incontournables,50 dates incontournables,29,EVT-0286,Lancement de Spoutnik 1,4 octobre 1957,5,2,DAY,499,CURATED_SCORE,SCHOOL
-COL-0059,50-incontournables,50 dates incontournables,30,EVT-0287,"Premier vol spatial humain, Youri Gagarine / Vostok 1",12 avril 1961,5,2,DAY,499,CURATED_SCORE,SCHOOL
-COL-0059,50-incontournables,50 dates incontournables,31,EVT-0288,Lancement d’Apollo 11,16 juillet 1969,5,2,DAY,499,CURATED_SCORE,SCHOOL
-COL-0059,50-incontournables,50 dates incontournables,32,EVT-0289,Alunissage d’Apollo 11,20 juillet 1969,5,2,DAY,499,CURATED_SCORE,SCHOOL
-COL-0059,50-incontournables,50 dates incontournables,33,EVT-0114,Ouverture du mur de Berlin,9 novembre 1989,5,2,DAY,499,CURATED_SCORE,SCHOOL
-COL-0059,50-incontournables,50 dates incontournables,34,EVT-0097,Invasion de la Pologne par l'Allemagne,1er septembre 1939,5,2,DAY,497,CURATED_SCORE,SCHOOL
-COL-0059,50-incontournables,50 dates incontournables,35,EVT-0357,Signature de la Charte des Nations Unies,26 juin 1945,5,2,DAY,497,CURATED_SCORE,SCHOOL
-COL-0059,50-incontournables,50 dates incontournables,36,EVT-0879,Signature du National Aeronautics and Space Act créant la NASA,29 juillet 1958,5,1,DAY,497,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0059,50-incontournables,50 dates incontournables,37,EVT-0388,Accord traditionnellement appelé « édit de Milan »,février 313 — accord de Milan ; 13 juin 313 — circulaire de Licinius affichée à Nicomédie,5,2,MONTH,494,CURATED_SCORE,SCHOOL
-COL-0059,50-incontournables,50 dates incontournables,38,EVT-0401,Magna Carta,15 juin 1215,5,2,DAY,494,CURATED_SCORE,SCHOOL
-COL-0059,50-incontournables,50 dates incontournables,39,EVT-0414,Impression de la Bible de Gutenberg,vers 1455,5,2,YEAR,494,CURATED_SCORE,SCHOOL
-COL-0059,50-incontournables,50 dates incontournables,40,EVT-0418,Traité de Tordesillas,7 juin 1494,5,2,DAY,494,CURATED_SCORE,SCHOOL
-COL-0059,50-incontournables,50 dates incontournables,41,EVT-0419,Vasco de Gama atteint Calicut,20 mai 1498,5,2,DAY,494,CURATED_SCORE,SCHOOL
-COL-0059,50-incontournables,50 dates incontournables,42,EVT-0613,Hernán Cortés entre à Tenochtitlan,8 novembre 1519,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0059,50-incontournables,50 dates incontournables,43,EVT-0614,Chute de Tenochtitlan face aux forces de Cortés,13 août 1521,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0059,50-incontournables,50 dates incontournables,44,EVT-0615,Acte de suprématie établissant Henri VIII à la tête de l’Église d’Angleterre,3 novembre 1534,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0059,50-incontournables,50 dates incontournables,45,EVT-0616,Élisabeth Ire devient reine d’Angleterre,17 novembre 1558,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0059,50-incontournables,50 dates incontournables,46,EVT-0617,Massacre de Wassy et début des guerres de Religion en France,1 mars 1562,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0059,50-incontournables,50 dates incontournables,47,EVT-0618,Bataille navale de Lépante,7 octobre 1571,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0059,50-incontournables,50 dates incontournables,48,EVT-0619,Défaite décisive de l’Armada espagnole au large de Gravelines,8 août 1588,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0059,50-incontournables,50 dates incontournables,49,EVT-0620,Tokugawa Ieyasu devient shogun,24 mars 1603,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0059,50-incontournables,50 dates incontournables,50,EVT-0621,Fondation de Québec par Samuel de Champlain,3 juillet 1608,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,1,EVT-0173,prise de la Bastille,14 juillet 1789,5,1,DAY,532,CURATED_SCORE,SCHOOL
-COL-0060,100-incontournables,100 dates incontournables,2,EVT-0063,Débarquement de l'expédition de Colomb à Guanahaní,12 octobre 1492,5,1,DAY,525,CURATED_SCORE,SCHOOL
-COL-0060,100-incontournables,100 dates incontournables,3,EVT-0012,Première Guerre mondiale,28 juillet 1914 – 11 novembre 1918,5,1,RANGE,524,CURATED_SCORE,SCHOOL
-COL-0060,100-incontournables,100 dates incontournables,4,EVT-0065,Édit de Nantes,13 avril 1598,5,1,DAY,523,CURATED_SCORE,SCHOOL
-COL-0060,100-incontournables,100 dates incontournables,5,EVT-0175,Adoption de la Déclaration des droits de l’homme et du citoyen,26 août 1789,5,1,DAY,523,CURATED_SCORE,SCHOOL
-COL-0060,100-incontournables,100 dates incontournables,6,EVT-0348,Révolution française,5 mai 1789 - 9 novembre 1799,5,1,RANGE,515,CURATED_SCORE,SCHOOL
-COL-0060,100-incontournables,100 dates incontournables,7,EVT-0013,Seconde Guerre mondiale,1er septembre 1939 – 2 septembre 1945,5,1,RANGE,515,CURATED_SCORE,SCHOOL
-COL-0060,100-incontournables,100 dates incontournables,8,EVT-0014,Appel du 18 juin du général de Gaulle,18 juin 1940,5,2,DAY,512,CURATED_SCORE,SCHOOL
-COL-0060,100-incontournables,100 dates incontournables,9,EVT-0118,Signature des traités de Rome,25 mars 1957,5,2,DAY,508,CURATED_SCORE,SCHOOL
-COL-0060,100-incontournables,100 dates incontournables,10,EVT-0271,Signature du traité de Maastricht,7 février 1992,5,2,DAY,508,CURATED_SCORE,SCHOOL
-COL-0060,100-incontournables,100 dates incontournables,11,EVT-0062,Prise de Constantinople par les Ottomans,29 mai 1453,5,2,DAY,507,CURATED_SCORE,SCHOOL
-COL-0060,100-incontournables,100 dates incontournables,12,EVT-0018,Déclaration Schuman,9 mai 1950,5,2,DAY,506,CURATED_SCORE,SCHOOL
-COL-0060,100-incontournables,100 dates incontournables,13,EVT-0044,Couronnement impérial de Charlemagne à Rome,25 décembre 800,5,2,DAY,505,CURATED_SCORE,SCHOOL
-COL-0060,100-incontournables,100 dates incontournables,14,EVT-0064,Diffusion conventionnelle des 95 thèses de Martin Luther,31 octobre 1517,5,2,DAY,505,CURATED_SCORE,SCHOOL
-COL-0060,100-incontournables,100 dates incontournables,15,EVT-0076,Édit de Fontainebleau / révocation de l’édit de Nantes,18 octobre 1685,5,2,DAY,503,CURATED_SCORE,SCHOOL
-COL-0060,100-incontournables,100 dates incontournables,16,EVT-0448,Bataille de Waterloo,18 juin 1815,5,1,DAY,503,CURATED_SCORE,SCHOOL
-COL-0060,100-incontournables,100 dates incontournables,17,EVT-0091,Armistice de Rethondes,11 novembre 1918,5,1,DAY,503,CURATED_SCORE,SCHOOL
-COL-0060,100-incontournables,100 dates incontournables,18,EVT-0497,Hitler devient chancelier,30 janvier 1933,5,1,DAY,503,CURATED_SCORE,SCHOOL
-COL-0060,100-incontournables,100 dates incontournables,19,EVT-0510,Attaque de Pearl Harbor,7 décembre 1941,5,1,DAY,503,CURATED_SCORE,SCHOOL
-COL-0060,100-incontournables,100 dates incontournables,20,EVT-0017,Débarquement allié en Normandie,6 juin 1944,5,2,DAY,503,CURATED_SCORE,SCHOOL
-COL-0060,100-incontournables,100 dates incontournables,21,EVT-0520,Bombardement atomique d’Hiroshima,6 août 1945,5,1,DAY,503,CURATED_SCORE,SCHOOL
-COL-0060,100-incontournables,100 dates incontournables,22,EVT-0521,Bombardement atomique de Nagasaki,9 août 1945,5,1,DAY,503,CURATED_SCORE,SCHOOL
-COL-0060,100-incontournables,100 dates incontournables,23,EVT-0537,Mai 68 en France,2 mai-23 juin 1968,5,1,RANGE,503,CURATED_SCORE,SCHOOL
-COL-0060,100-incontournables,100 dates incontournables,24,EVT-0547,Réunification allemande,3 octobre 1990,5,1,DAY,503,CURATED_SCORE,SCHOOL
-COL-0060,100-incontournables,100 dates incontournables,25,EVT-0115,Disparition de l'URSS,26 décembre 1991 — dissolution formelle de l’URSS,5,2,DAY,503,CURATED_SCORE,SCHOOL
-COL-0060,100-incontournables,100 dates incontournables,26,EVT-0320,Adoption de l’accord de Paris,12 décembre 2015,5,2,DAY,501,CURATED_SCORE,SCHOOL
-COL-0060,100-incontournables,100 dates incontournables,27,EVT-0180,Promulgation du Code civil,21 mars 1804,5,2,DAY,499,CURATED_SCORE,SCHOOL
-COL-0060,100-incontournables,100 dates incontournables,28,EVT-0298,Proclamation de l’État d’Israël,14 mai 1948,5,2,DAY,499,CURATED_SCORE,SCHOOL
-COL-0060,100-incontournables,100 dates incontournables,29,EVT-0286,Lancement de Spoutnik 1,4 octobre 1957,5,2,DAY,499,CURATED_SCORE,SCHOOL
-COL-0060,100-incontournables,100 dates incontournables,30,EVT-0287,"Premier vol spatial humain, Youri Gagarine / Vostok 1",12 avril 1961,5,2,DAY,499,CURATED_SCORE,SCHOOL
-COL-0060,100-incontournables,100 dates incontournables,31,EVT-0288,Lancement d’Apollo 11,16 juillet 1969,5,2,DAY,499,CURATED_SCORE,SCHOOL
-COL-0060,100-incontournables,100 dates incontournables,32,EVT-0289,Alunissage d’Apollo 11,20 juillet 1969,5,2,DAY,499,CURATED_SCORE,SCHOOL
-COL-0060,100-incontournables,100 dates incontournables,33,EVT-0114,Ouverture du mur de Berlin,9 novembre 1989,5,2,DAY,499,CURATED_SCORE,SCHOOL
-COL-0060,100-incontournables,100 dates incontournables,34,EVT-0097,Invasion de la Pologne par l'Allemagne,1er septembre 1939,5,2,DAY,497,CURATED_SCORE,SCHOOL
-COL-0060,100-incontournables,100 dates incontournables,35,EVT-0357,Signature de la Charte des Nations Unies,26 juin 1945,5,2,DAY,497,CURATED_SCORE,SCHOOL
-COL-0060,100-incontournables,100 dates incontournables,36,EVT-0879,Signature du National Aeronautics and Space Act créant la NASA,29 juillet 1958,5,1,DAY,497,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,37,EVT-0388,Accord traditionnellement appelé « édit de Milan »,février 313 — accord de Milan ; 13 juin 313 — circulaire de Licinius affichée à Nicomédie,5,2,MONTH,494,CURATED_SCORE,SCHOOL
-COL-0060,100-incontournables,100 dates incontournables,38,EVT-0401,Magna Carta,15 juin 1215,5,2,DAY,494,CURATED_SCORE,SCHOOL
-COL-0060,100-incontournables,100 dates incontournables,39,EVT-0414,Impression de la Bible de Gutenberg,vers 1455,5,2,YEAR,494,CURATED_SCORE,SCHOOL
-COL-0060,100-incontournables,100 dates incontournables,40,EVT-0418,Traité de Tordesillas,7 juin 1494,5,2,DAY,494,CURATED_SCORE,SCHOOL
-COL-0060,100-incontournables,100 dates incontournables,41,EVT-0419,Vasco de Gama atteint Calicut,20 mai 1498,5,2,DAY,494,CURATED_SCORE,SCHOOL
-COL-0060,100-incontournables,100 dates incontournables,42,EVT-0613,Hernán Cortés entre à Tenochtitlan,8 novembre 1519,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,43,EVT-0614,Chute de Tenochtitlan face aux forces de Cortés,13 août 1521,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,44,EVT-0615,Acte de suprématie établissant Henri VIII à la tête de l’Église d’Angleterre,3 novembre 1534,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,45,EVT-0616,Élisabeth Ire devient reine d’Angleterre,17 novembre 1558,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,46,EVT-0617,Massacre de Wassy et début des guerres de Religion en France,1 mars 1562,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,47,EVT-0618,Bataille navale de Lépante,7 octobre 1571,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,48,EVT-0619,Défaite décisive de l’Armada espagnole au large de Gravelines,8 août 1588,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,49,EVT-0620,Tokugawa Ieyasu devient shogun,24 mars 1603,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,50,EVT-0621,Fondation de Québec par Samuel de Champlain,3 juillet 1608,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,51,EVT-0622,Galilée observe les principaux satellites de Jupiter,7 janvier 1610,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,52,EVT-0623,Défenestration de Prague et début de la guerre de Trente Ans,23 mai 1618,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,53,EVT-0624,Publication du traité de William Harvey sur la circulation du sang,1628,5,1,YEAR,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,54,EVT-0625,Publication du Discours de la méthode de Descartes,8 juin 1637,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,55,EVT-0626,Début du grand incendie de Londres,2 septembre 1666,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,56,EVT-0429,Glorieuse Révolution,1688-1689,5,2,RANGE,494,CURATED_SCORE,SCHOOL
-COL-0060,100-incontournables,100 dates incontournables,57,EVT-0627,Entrée en vigueur des Actes d’Union créant le royaume de Grande-Bretagne,1 mai 1707,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,58,EVT-0628,Séisme de Lisbonne,1 novembre 1755,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,59,EVT-0629,Traité de Paris mettant fin à la guerre de Sept Ans,10 février 1763,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,60,EVT-0630,Brevet de James Watt pour une machine à vapeur améliorée,5 janvier 1769,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,61,EVT-0631,Batailles de Lexington et Concord,19 avril 1775,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,62,EVT-0632,Publication de La Richesse des nations d’Adam Smith,1776,5,1,YEAR,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,63,EVT-0434,Déclaration d’indépendance des États-Unis,4 juillet 1776,5,2,DAY,494,CURATED_SCORE,SCHOOL
-COL-0060,100-incontournables,100 dates incontournables,64,EVT-0633,Premier vol habité libre en montgolfière,21 novembre 1783,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,65,EVT-0438,Signature de la Constitution des États-Unis,17 septembre 1787,5,2,DAY,494,CURATED_SCORE,SCHOOL
-COL-0060,100-incontournables,100 dates incontournables,66,EVT-0634,Investiture de George Washington comme premier président des États-Unis,30 avril 1789,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,67,EVT-0635,Ratification du Bill of Rights des États-Unis,15 décembre 1791,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,68,EVT-0636,Première vaccination contre la variole par Edward Jenner,14 mai 1796,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,69,EVT-0637,Découverte de la pierre de Rosette,15 juillet 1799,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,70,EVT-0446,Coup d’État du 18 Brumaire,9 novembre 1799,5,2,DAY,494,CURATED_SCORE,SCHOOL
-COL-0060,100-incontournables,100 dates incontournables,71,EVT-0681,Signature de la vente de la Louisiane aux États-Unis,30 avril 1803,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,72,EVT-0682,Proclamation de Napoléon Bonaparte comme empereur des Français,18 mai 1804,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,73,EVT-0683,Bataille de Trafalgar,21 octobre 1805,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,74,EVT-0684,Abolition britannique de la traite négrière,25 mars 1807,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,75,EVT-0685,Grito de Dolores et début de la guerre d’indépendance du Mexique,16 septembre 1810,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,76,EVT-0686,Début de l’invasion de la Russie par Napoléon,24 juin 1812,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,77,EVT-0687,Début de la bataille de Leipzig,16 octobre 1813,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,78,EVT-0688,Déclaration d’indépendance du Brésil,7 septembre 1822,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,79,EVT-0689,Champollion annonce le déchiffrement des hiéroglyphes égyptiens,27 septembre 1822,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,80,EVT-0690,Proclamation de la doctrine Monroe,2 décembre 1823,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,81,EVT-0691,Ouverture du chemin de fer Stockton-Darlington,27 septembre 1825,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,82,EVT-0693,Annonce publique du procédé photographique de Daguerre,7 janvier 1839,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,83,EVT-0694,Début de la première guerre de l’Opium,4 septembre 1839,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,84,EVT-0695,Traité de Nankin mettant fin à la première guerre de l’Opium,29 août 1842,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,85,EVT-0696,Observation de Neptune confirmant sa découverte,23 septembre 1846,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,86,EVT-0697,Publication du Manifeste du Parti communiste,21 février 1848,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,87,EVT-0698,Ouverture de la convention de Seneca Falls,19 juillet 1848,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,88,EVT-0699,Arrivée de l’escadre du commodore Perry dans la baie d’Edo,8 juillet 1853,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,89,EVT-0700,Publication de L’Origine des espèces de Charles Darwin,24 novembre 1859,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,90,EVT-0701,Entrée en vigueur de l’abolition du servage dans l’Empire russe,3 mars 1861 (19 février selon le calendrier julien alors en usage en Russie),5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,91,EVT-0466,Guerre de Sécession,12 avril 1861-9 avril 1865,5,2,RANGE,494,CURATED_SCORE,SCHOOL
-COL-0060,100-incontournables,100 dates incontournables,92,EVT-0702,Début de la publication des Misérables de Victor Hugo,30 mars 1862 à Bruxelles ; 3 avril 1862 à Paris,5,1,MONTH,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,93,EVT-0467,Entrée en vigueur de la Proclamation d’émancipation,1er janvier 1863,5,2,DAY,494,CURATED_SCORE,SCHOOL
-COL-0060,100-incontournables,100 dates incontournables,94,EVT-0703,Fondation du Comité international de la Croix-Rouge,17 février 1863,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,95,EVT-0705,Capitulation de Robert E. Lee à Appomattox,9 avril 1865,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,96,EVT-0706,Assassinat d’Abraham Lincoln,14 avril 1865,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,97,EVT-0704,Publication des travaux de Gregor Mendel sur l’hérédité,1866,5,1,YEAR,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,98,EVT-0707,Achèvement du câble télégraphique transatlantique durable,27 juillet 1866,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,99,EVT-0708,Confédération canadienne,1 juillet 1867,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
-COL-0060,100-incontournables,100 dates incontournables,100,EVT-0709,Restauration de Meiji au Japon,3 janvier 1868,5,1,DAY,494,CURATED_SCORE,GENERAL_CULTURE_V1
+COL-0059,50-incontournables,50 dates incontournables,1,EVT-0386,Assassinat de Jules César,15 mars 44 av. J.-C.,3,3,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0059,50-incontournables,50 dates incontournables,2,EVT-0044,Couronnement impérial de Charlemagne à Rome,25 décembre 800,5,2,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0059,50-incontournables,50 dates incontournables,3,EVT-0398,Bataille d’Hastings,14 octobre 1066,4,3,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0059,50-incontournables,50 dates incontournables,4,EVT-0413,Exécution de Jeanne d’Arc,30 mai 1431,3,3,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0059,50-incontournables,50 dates incontournables,5,EVT-0062,Prise de Constantinople par les Ottomans,29 mai 1453,5,2,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0059,50-incontournables,50 dates incontournables,6,EVT-0063,Débarquement de l'expédition de Colomb à Guanahaní,12 octobre 1492,5,1,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0059,50-incontournables,50 dates incontournables,7,EVT-0065,Édit de Nantes,13 avril 1598,5,1,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0059,50-incontournables,50 dates incontournables,8,EVT-0434,Déclaration d’indépendance des États-Unis,4 juillet 1776,5,2,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0059,50-incontournables,50 dates incontournables,9,EVT-0173,prise de la Bastille,14 juillet 1789,5,1,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0059,50-incontournables,50 dates incontournables,10,EVT-0175,Adoption de la Déclaration des droits de l’homme et du citoyen,26 août 1789,5,1,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0059,50-incontournables,50 dates incontournables,11,EVT-0179,exécution de Louis XVI,21 janvier 1793,4,3,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0059,50-incontournables,50 dates incontournables,12,EVT-0180,Promulgation du Code civil,21 mars 1804,5,2,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0059,50-incontournables,50 dates incontournables,13,EVT-0682,Proclamation de Napoléon Bonaparte comme empereur des Français,18 mai 1804,5,1,DAY,,CURATED_NIVEAU,GENERAL_CULTURE
+COL-0059,50-incontournables,50 dates incontournables,14,EVT-0448,Bataille de Waterloo,18 juin 1815,5,1,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0059,50-incontournables,50 dates incontournables,15,EVT-0719,Inauguration de la statue de la Liberté,28 octobre 1886,5,1,DAY,,CURATED_NIVEAU,GENERAL_CULTURE
+COL-0059,50-incontournables,50 dates incontournables,16,EVT-0477,Inauguration de la tour Eiffel,31 mars 1889,3,3,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0059,50-incontournables,50 dates incontournables,17,EVT-0723,Première projection publique payante des frères Lumière,28 décembre 1895,5,1,DAY,,CURATED_NIVEAU,GENERAL_CULTURE
+COL-0059,50-incontournables,50 dates incontournables,18,EVT-0724,Ouverture des premiers Jeux olympiques modernes à Athènes,6 avril 1896,5,1,DAY,,CURATED_NIVEAU,GENERAL_CULTURE
+COL-0059,50-incontournables,50 dates incontournables,19,EVT-0777,Premier vol motorisé contrôlé des frères Wright,17 décembre 1903,5,1,DAY,,CURATED_NIVEAU,GENERAL_CULTURE
+COL-0059,50-incontournables,50 dates incontournables,20,EVT-0005,loi de séparation des Églises et de l’État,9 décembre 1905,4,2,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0059,50-incontournables,50 dates incontournables,21,EVT-0787,Naufrage du Titanic,15 avril 1912,5,1,DAY,,CURATED_NIVEAU,GENERAL_CULTURE
+COL-0059,50-incontournables,50 dates incontournables,22,EVT-0478,Assassinat de François-Ferdinand à Sarajevo,28 juin 1914,5,2,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0059,50-incontournables,50 dates incontournables,23,EVT-0484,Prise du pouvoir par les bolcheviks lors de la révolution d’Octobre,7 novembre 1917,5,2,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0059,50-incontournables,50 dates incontournables,24,EVT-0091,Armistice de Rethondes,11 novembre 1918,5,1,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0059,50-incontournables,50 dates incontournables,25,EVT-0494,Jeudi noir à Wall Street,24 octobre 1929,3,3,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0059,50-incontournables,50 dates incontournables,26,EVT-0497,Hitler devient chancelier,30 janvier 1933,5,1,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0059,50-incontournables,50 dates incontournables,27,EVT-0097,Invasion de la Pologne par l'Allemagne,1er septembre 1939,5,2,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0059,50-incontournables,50 dates incontournables,28,EVT-0014,Appel du 18 juin du général de Gaulle,18 juin 1940,5,2,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0059,50-incontournables,50 dates incontournables,29,EVT-0510,Attaque de Pearl Harbor,7 décembre 1941,5,1,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0059,50-incontournables,50 dates incontournables,30,EVT-0017,Débarquement allié en Normandie,6 juin 1944,5,2,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0059,50-incontournables,50 dates incontournables,31,EVT-0100,Libération de Paris,25 août 1944,4,3,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0059,50-incontournables,50 dates incontournables,32,EVT-0101,Fin de la guerre en Europe / capitulation allemande effective,8 mai 1945,4,3,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0059,50-incontournables,50 dates incontournables,33,EVT-0520,Bombardement atomique d’Hiroshima,6 août 1945,5,1,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0059,50-incontournables,50 dates incontournables,34,EVT-0113,Construction / fermeture de la frontière par le mur de Berlin,13 août 1961,5,2,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0059,50-incontournables,50 dates incontournables,35,EVT-0534,Assassinat de John F. Kennedy,22 novembre 1963,3,3,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0059,50-incontournables,50 dates incontournables,36,EVT-0893,Premiers pas humains sur la Lune lors d’Apollo 11,20 juillet 1969,5,1,DAY,,CURATED_NIVEAU,GENERAL_CULTURE
+COL-0059,50-incontournables,50 dates incontournables,37,EVT-0132,Loi Veil sur l'IVG,17 janvier 1975,4,3,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0059,50-incontournables,50 dates incontournables,38,EVT-0133,Abolition de la peine de mort,9 octobre 1981,4,3,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0059,50-incontournables,50 dates incontournables,39,EVT-0545,Catastrophe nucléaire de Tchernobyl,26 avril 1986,4,3,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0059,50-incontournables,50 dates incontournables,40,EVT-0114,Ouverture du mur de Berlin,9 novembre 1989,5,2,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0059,50-incontournables,50 dates incontournables,41,EVT-0115,Disparition de l'URSS,26 décembre 1991 — dissolution formelle de l’URSS,5,2,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0059,50-incontournables,50 dates incontournables,42,EVT-0941,Victoire de la France à la Coupe du monde de football,12 juillet 1998,5,1,DAY,,CURATED_NIVEAU,GENERAL_CULTURE
+COL-0059,50-incontournables,50 dates incontournables,43,EVT-0980,Attentats du 11 septembre aux États-Unis,11 septembre 2001,5,1,DAY,,CURATED_NIVEAU,GENERAL_CULTURE
+COL-0059,50-incontournables,50 dates incontournables,44,EVT-0982,Mise en circulation des billets et pièces en euro,1 janvier 2002,5,1,DAY,,CURATED_NIVEAU,GENERAL_CULTURE
+COL-0059,50-incontournables,50 dates incontournables,45,EVT-0990,Présentation du premier iPhone par Steve Jobs,9 janvier 2007,5,1,DAY,,CURATED_NIVEAU,GENERAL_CULTURE
+COL-0059,50-incontournables,50 dates incontournables,46,EVT-1008,Attentats de Paris du 13 novembre,13 novembre 2015,5,1,DAY,,CURATED_NIVEAU,GENERAL_CULTURE
+COL-0059,50-incontournables,50 dates incontournables,47,EVT-1012,Victoire de la France à la Coupe du monde de football,15 juillet 2018,5,1,DAY,,CURATED_NIVEAU,GENERAL_CULTURE
+COL-0059,50-incontournables,50 dates incontournables,48,EVT-1014,Incendie de la cathédrale Notre-Dame de Paris,15 avril 2019,5,1,DAY,,CURATED_NIVEAU,GENERAL_CULTURE
+COL-0059,50-incontournables,50 dates incontournables,49,EVT-1017,L’OMS qualifie la Covid-19 de pandémie,11 mars 2020,5,1,DAY,,CURATED_NIVEAU,GENERAL_CULTURE
+COL-0059,50-incontournables,50 dates incontournables,50,EVT-1023,Début de l’invasion à grande échelle de l’Ukraine par la Russie,24 février 2022,5,1,DAY,,CURATED_NIVEAU,GENERAL_CULTURE
+COL-0060,100-incontournables,100 dates incontournables,1,EVT-0024,Fondation traditionnelle de Rome,21 avril 753 av. J.-C.,4,3,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,2,EVT-0386,Assassinat de Jules César,15 mars 44 av. J.-C.,3,3,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,3,EVT-0044,Couronnement impérial de Charlemagne à Rome,25 décembre 800,5,2,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,4,EVT-0398,Bataille d’Hastings,14 octobre 1066,4,3,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,5,EVT-0401,Magna Carta,15 juin 1215,5,2,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,6,EVT-0411,Levée du siège d’Orléans par Jeanne d’Arc,8 mai 1429,3,3,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,7,EVT-0413,Exécution de Jeanne d’Arc,30 mai 1431,3,3,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,8,EVT-0062,Prise de Constantinople par les Ottomans,29 mai 1453,5,2,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,9,EVT-0414,Impression de la Bible de Gutenberg,vers 1455,5,2,YEAR,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,10,EVT-0063,Débarquement de l'expédition de Colomb à Guanahaní,12 octobre 1492,5,1,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,11,EVT-0064,Diffusion conventionnelle des 95 thèses de Martin Luther,31 octobre 1517,5,2,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,12,EVT-0422,Massacre de la Saint-Barthélemy,24 août 1572,4,3,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,13,EVT-0065,Édit de Nantes,13 avril 1598,5,1,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,14,EVT-0076,Édit de Fontainebleau / révocation de l’édit de Nantes,18 octobre 1685,5,2,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,15,EVT-0077,Mort de Louis XIV,1er septembre 1715,4,3,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,16,EVT-0433,Boston Tea Party,16 décembre 1773,4,3,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,17,EVT-0434,Déclaration d’indépendance des États-Unis,4 juillet 1776,5,2,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,18,EVT-0173,prise de la Bastille,14 juillet 1789,5,1,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,19,EVT-0175,Adoption de la Déclaration des droits de l’homme et du citoyen,26 août 1789,5,1,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,20,EVT-0179,exécution de Louis XVI,21 janvier 1793,4,3,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,21,EVT-0446,Coup d’État du 18 Brumaire,9 novembre 1799,5,2,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,22,EVT-0180,Promulgation du Code civil,21 mars 1804,5,2,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,23,EVT-0682,Proclamation de Napoléon Bonaparte comme empereur des Français,18 mai 1804,5,1,DAY,,CURATED_NIVEAU,GENERAL_CULTURE
+COL-0060,100-incontournables,100 dates incontournables,24,EVT-0686,Début de l’invasion de la Russie par Napoléon,24 juin 1812,5,1,DAY,,CURATED_NIVEAU,GENERAL_CULTURE
+COL-0060,100-incontournables,100 dates incontournables,25,EVT-0448,Bataille de Waterloo,18 juin 1815,5,1,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,26,EVT-0188,abolition de l’esclavage dans les colonies françaises,27 avril 1848,4,2,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,27,EVT-0706,Assassinat d’Abraham Lincoln,14 avril 1865,5,1,DAY,,CURATED_NIVEAU,GENERAL_CULTURE
+COL-0060,100-incontournables,100 dates incontournables,28,EVT-0471,Ouverture du canal de Suez,17 novembre 1869,4,3,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,29,EVT-0473,Défaite française à Sedan,2 septembre 1870,4,3,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,30,EVT-0201,Début de la Commune de Paris / insurrection du 18 mars 1871,18 mars 1871,4,3,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,31,EVT-0713,Brevet du téléphone accordé à Alexander Graham Bell,7 mars 1876,5,1,DAY,,CURATED_NIVEAU,GENERAL_CULTURE
+COL-0060,100-incontournables,100 dates incontournables,32,EVT-0717,Première vaccination humaine contre la rage par Pasteur,6 juillet 1885,5,1,DAY,,CURATED_NIVEAU,GENERAL_CULTURE
+COL-0060,100-incontournables,100 dates incontournables,33,EVT-0719,Inauguration de la statue de la Liberté,28 octobre 1886,5,1,DAY,,CURATED_NIVEAU,GENERAL_CULTURE
+COL-0060,100-incontournables,100 dates incontournables,34,EVT-0477,Inauguration de la tour Eiffel,31 mars 1889,3,3,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,35,EVT-0723,Première projection publique payante des frères Lumière,28 décembre 1895,5,1,DAY,,CURATED_NIVEAU,GENERAL_CULTURE
+COL-0060,100-incontournables,100 dates incontournables,36,EVT-0724,Ouverture des premiers Jeux olympiques modernes à Athènes,6 avril 1896,5,1,DAY,,CURATED_NIVEAU,GENERAL_CULTURE
+COL-0060,100-incontournables,100 dates incontournables,37,EVT-0083,publication de « J'accuse…! » d'Émile Zola,13 janvier 1898,4,2,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,38,EVT-0777,Premier vol motorisé contrôlé des frères Wright,17 décembre 1903,5,1,DAY,,CURATED_NIVEAU,GENERAL_CULTURE
+COL-0060,100-incontournables,100 dates incontournables,39,EVT-0005,loi de séparation des Églises et de l’État,9 décembre 1905,4,2,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,40,EVT-0787,Naufrage du Titanic,15 avril 1912,5,1,DAY,,CURATED_NIVEAU,GENERAL_CULTURE
+COL-0060,100-incontournables,100 dates incontournables,41,EVT-0478,Assassinat de François-Ferdinand à Sarajevo,28 juin 1914,5,2,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,42,EVT-0484,Prise du pouvoir par les bolcheviks lors de la révolution d’Octobre,7 novembre 1917,5,2,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,43,EVT-0091,Armistice de Rethondes,11 novembre 1918,5,1,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,44,EVT-0092,Signature du traité de Versailles,28 juin 1919,4,3,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,45,EVT-0804,Découverte de la pénicilline par Alexander Fleming,28 septembre 1928,5,1,DAY,,CURATED_NIVEAU,GENERAL_CULTURE
+COL-0060,100-incontournables,100 dates incontournables,46,EVT-0494,Jeudi noir à Wall Street,24 octobre 1929,3,3,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,47,EVT-0497,Hitler devient chancelier,30 janvier 1933,5,1,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,48,EVT-0504,Accords de Munich,30 septembre 1938,4,3,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,49,EVT-0505,Pacte germano-soviétique,23 août 1939,4,3,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,50,EVT-0097,Invasion de la Pologne par l'Allemagne,1er septembre 1939,5,2,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,51,EVT-0014,Appel du 18 juin du général de Gaulle,18 juin 1940,5,2,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,52,EVT-0099,Attaque allemande contre l'URSS (opération Barbarossa),22 juin 1941,4,3,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,53,EVT-0510,Attaque de Pearl Harbor,7 décembre 1941,5,1,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,54,EVT-0017,Débarquement allié en Normandie,6 juin 1944,5,2,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,55,EVT-0100,Libération de Paris,25 août 1944,4,3,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,56,EVT-0518,Libération du camp d’Auschwitz-Birkenau,27 janvier 1945,5,2,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,57,EVT-0101,Fin de la guerre en Europe / capitulation allemande effective,8 mai 1945,4,3,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,58,EVT-0357,Signature de la Charte des Nations Unies,26 juin 1945,5,2,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,59,EVT-0520,Bombardement atomique d’Hiroshima,6 août 1945,5,1,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,60,EVT-0521,Bombardement atomique de Nagasaki,9 août 1945,5,1,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,61,EVT-0522,Indépendance de l’Inde,15 août 1947,5,2,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,62,EVT-0298,Proclamation de l’État d’Israël,14 mai 1948,5,2,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,63,EVT-0865,Adoption de la Déclaration universelle des droits de l’homme,10 décembre 1948,5,1,DAY,,CURATED_NIVEAU,GENERAL_CULTURE
+COL-0060,100-incontournables,100 dates incontournables,64,EVT-0524,Signature du traité de l’Atlantique Nord,4 avril 1949,5,2,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,65,EVT-0525,Proclamation de la République populaire de Chine,1er octobre 1949,5,2,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,66,EVT-0530,Début de la guerre d’Algérie,1er novembre 1954,5,2,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,67,EVT-0118,Signature des traités de Rome,25 mars 1957,5,2,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,68,EVT-0286,Lancement de Spoutnik 1,4 octobre 1957,5,2,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,69,EVT-0362,Promulgation de la Constitution de la Ve République,4 octobre 1958,4,3,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,70,EVT-0287,"Premier vol spatial humain, Youri Gagarine / Vostok 1",12 avril 1961,5,2,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,71,EVT-0113,Construction / fermeture de la frontière par le mur de Berlin,13 août 1961,5,2,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,72,EVT-0120,Signature des accords d'Évian,18 mars 1962,4,2,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,73,EVT-0534,Assassinat de John F. Kennedy,22 novembre 1963,3,3,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,74,EVT-0539,Démission de Charles de Gaulle,28 avril 1969,3,3,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,75,EVT-0893,Premiers pas humains sur la Lune lors d’Apollo 11,20 juillet 1969,5,1,DAY,,CURATED_NIVEAU,GENERAL_CULTURE
+COL-0060,100-incontournables,100 dates incontournables,76,EVT-0132,Loi Veil sur l'IVG,17 janvier 1975,4,3,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,77,EVT-0911,Sortie américaine du premier Star Wars,25 mai 1977,5,1,DAY,,CURATED_NIVEAU,GENERAL_CULTURE
+COL-0060,100-incontournables,100 dates incontournables,78,EVT-0364,Élection de François Mitterrand à la présidence de la République,10 mai 1981,4,3,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,79,EVT-0133,Abolition de la peine de mort,9 octobre 1981,4,3,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,80,EVT-0545,Catastrophe nucléaire de Tchernobyl,26 avril 1986,4,3,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,81,EVT-0546,Répression de la place Tian’anmen,4 juin 1989,4,3,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,82,EVT-0114,Ouverture du mur de Berlin,9 novembre 1989,5,2,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,83,EVT-0547,Réunification allemande,3 octobre 1990,5,1,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,84,EVT-0115,Disparition de l'URSS,26 décembre 1991 — dissolution formelle de l’URSS,5,2,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,85,EVT-0271,Signature du traité de Maastricht,7 février 1992,5,2,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,86,EVT-0933,Nelson Mandela devient président de l’Afrique du Sud,10 mai 1994,5,1,DAY,,CURATED_NIVEAU,GENERAL_CULTURE
+COL-0060,100-incontournables,100 dates incontournables,87,EVT-1735,"Mort de Diana, princesse de Galles",31 août 1997,4,3,DAY,,CURATED_NIVEAU,GENERAL_CULTURE
+COL-0060,100-incontournables,100 dates incontournables,88,EVT-0941,Victoire de la France à la Coupe du monde de football,12 juillet 1998,5,1,DAY,,CURATED_NIVEAU,GENERAL_CULTURE
+COL-0060,100-incontournables,100 dates incontournables,89,EVT-0980,Attentats du 11 septembre aux États-Unis,11 septembre 2001,5,1,DAY,,CURATED_NIVEAU,GENERAL_CULTURE
+COL-0060,100-incontournables,100 dates incontournables,90,EVT-0982,Mise en circulation des billets et pièces en euro,1 janvier 2002,5,1,DAY,,CURATED_NIVEAU,GENERAL_CULTURE
+COL-0060,100-incontournables,100 dates incontournables,91,EVT-0990,Présentation du premier iPhone par Steve Jobs,9 janvier 2007,5,1,DAY,,CURATED_NIVEAU,GENERAL_CULTURE
+COL-0060,100-incontournables,100 dates incontournables,92,EVT-0994,Élection de Barack Obama à la présidence des États-Unis,4 novembre 2008,5,1,DAY,,CURATED_NIVEAU,GENERAL_CULTURE
+COL-0060,100-incontournables,100 dates incontournables,93,EVT-1008,Attentats de Paris du 13 novembre,13 novembre 2015,5,1,DAY,,CURATED_NIVEAU,GENERAL_CULTURE
+COL-0060,100-incontournables,100 dates incontournables,94,EVT-0320,Adoption de l’accord de Paris,12 décembre 2015,5,2,DAY,,CURATED_NIVEAU,SCHOOL
+COL-0060,100-incontournables,100 dates incontournables,95,EVT-1012,Victoire de la France à la Coupe du monde de football,15 juillet 2018,5,1,DAY,,CURATED_NIVEAU,GENERAL_CULTURE
+COL-0060,100-incontournables,100 dates incontournables,96,EVT-1014,Incendie de la cathédrale Notre-Dame de Paris,15 avril 2019,5,1,DAY,,CURATED_NIVEAU,GENERAL_CULTURE
+COL-0060,100-incontournables,100 dates incontournables,97,EVT-1017,L’OMS qualifie la Covid-19 de pandémie,11 mars 2020,5,1,DAY,,CURATED_NIVEAU,GENERAL_CULTURE
+COL-0060,100-incontournables,100 dates incontournables,98,EVT-1023,Début de l’invasion à grande échelle de l’Ukraine par la Russie,24 février 2022,5,1,DAY,,CURATED_NIVEAU,GENERAL_CULTURE
+COL-0060,100-incontournables,100 dates incontournables,99,EVT-2008,Mort de la reine Élisabeth II,8 septembre 2022,4,3,DAY,,CURATED_NIVEAU,GENERAL_CULTURE
+COL-0060,100-incontournables,100 dates incontournables,100,EVT-2030,Ouverture des Jeux olympiques de Paris 2024,26 juillet 2024,4,3,DAY,,CURATED_NIVEAU,GENERAL_CULTURE
 COL-0061,france,France,1,EVT-0567,Bataille des Champs Catalauniques,20 juin 451,4,3,DAY,,HIGH,GENERAL_CULTURE_V1
 COL-0061,france,France,2,EVT-1072,Bataille de Poitiers entre Francs et Omeyyades,732,4,3,YEAR,,HIGH,GENERAL_CULTURE_V2
 COL-0061,france,France,3,EVT-1073,Pépin le Bref devient roi des Francs,751,4,3,YEAR,,HIGH,GENERAL_CULTURE_V2

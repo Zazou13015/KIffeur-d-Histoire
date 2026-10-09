@@ -83,6 +83,7 @@ export async function startGame(filters: SoloFilters = {}): Promise<SoloGame> {
       p_difficulty: filters.difficulty ?? "YEAR",
       p_question_count: filters.questionCount ?? 10,
       p_direction: filters.direction ?? "date",
+      ...(filters.niveau ? { p_niveau: filters.niveau } : {}),
     });
   if (game.anonymous) {
     (await cookies()).set(cookieName(game.game_id), token, {

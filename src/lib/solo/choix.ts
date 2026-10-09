@@ -1,7 +1,7 @@
 import catalogue from "./catalogue.json";
 import { PERIODES } from "./periodes";
 import { CHAPITRES } from "@/lib/apprendre/catalogue";
-import type { SoloDifficulty, SoloFilters } from "@/lib/game/solo";
+import type { SoloDifficulty, SoloFilters, SoloNiveau } from "@/lib/game/solo";
 import { DEBUT_FRISE, FIN_FRISE, type Vue } from "@/lib/game/frise";
 import { QUESTIONS_MIN_TEST } from "@/lib/progression/types";
 
@@ -12,7 +12,10 @@ export type Choix = {
   /** `inverse` : le jeu donne la date, le joueur écrit l'événement. Absent = jeu de dates classique. */
   sens?: "inverse";
   mode: Mode;
+  /** Précision demandée : l'année, le mois et l'année, ou le jour exact. */
   difficulte: SoloDifficulty;
+  /** Niveau des événements tirés (absent en mode scolaire, qui suit le programme). */
+  niveau?: SoloNiveau;
   periode?: string;
   /** Période libre, en années astronomiques (négatives avant J.-C.). */
   de?: number;
@@ -27,16 +30,24 @@ export type Comptes = Record<SoloDifficulty, number>;
 
 export const QUESTIONS = 10;
 export const DIFFICULTES: { valeur: SoloDifficulty; titre: string; aide: string }[] = [
-  { valeur: "YEAR", titre: "Facile", aide: "l'année" },
-  { valeur: "MONTH", titre: "Moyen", aide: "le mois et l'année" },
-  { valeur: "DAY", titre: "Difficile", aide: "le jour exact" },
+  { valeur: "YEAR", titre: "Année", aide: "l'année" },
+  { valeur: "MONTH", titre: "Mois", aide: "le mois et l'année" },
+  { valeur: "DAY", titre: "Jour", aide: "le jour exact" },
 ];
+export const NIVEAUX: { valeur: SoloNiveau; titre: string; aide: string }[] = [
+  { valeur: 1, titre: "Débutant", aide: "Les grandes dates que tout le monde connaît" },
+  { valeur: 2, titre: "Intermédiaire", aide: "Plus de culture générale" },
+  { valeur: 3, titre: "Expert", aide: "Toute la base, même les dates pointues" },
+];
+/** Niveau d'une ancienne URL ou d'un ancien choix mémorisé, qui n'en avaient pas. */
+export const NIVEAU_PAR_DEFAUT: SoloNiveau = 1;
 
 export const PACKS = catalogue.packs;
 export const THEMES = catalogue.themes;
 export { PERIODES, CHAPITRES };
 
 const MODES: Mode[] = ["general", "periode", "pack", "theme", "scolaire"];
+const estNiveau = (v: number): v is SoloNiveau => v === 1 || v === 2 || v === 3;
 const estDifficulte = (v: unknown): v is SoloDifficulty => v === "YEAR" || v === "MONTH" || v === "DAY";
 const annee = (v: string | null) => {
   if (v == null || v.trim() === "") return undefined;
@@ -53,6 +64,12 @@ export function lireChoix(champs: URLSearchParams): Choix | null {
   const difficulte = champs.get("difficulte");
   if (!MODES.includes(mode) || !estDifficulte(difficulte)) return null;
   const choix: Choix = { mode, difficulte };
+  if (mode !== "scolaire") {
+    const niveau = champs.get("niveau");
+    if (niveau == null) choix.niveau = NIVEAU_PAR_DEFAUT;
+    else if (estNiveau(Number(niveau))) choix.niveau = Number(niveau) as SoloNiveau;
+    else return null;
+  }
   // Inversé : seule la date exacte donne une question sans ambiguïté (plusieurs événements partagent une année).
   if (champs.get("sens") === "inverse") {
     choix.sens = "inverse";
@@ -102,6 +119,7 @@ export function lireChoix(champs: URLSearchParams): Choix | null {
 export function ecrireChoix(choix: Choix): string {
   const p = new URLSearchParams({ mode: choix.mode, difficulte: choix.difficulte });
   if (choix.sens) p.set("sens", choix.sens);
+  if (choix.niveau) p.set("niveau", String(choix.niveau));
   if (choix.periode) p.set("periode", choix.periode);
   if (choix.de != null) p.set("de", String(choix.de));
   if (choix.a != null) p.set("a", String(choix.a));
@@ -116,6 +134,7 @@ export function ecrireChoix(choix: Choix): string {
 export function filtresDepuis(choix: Choix): SoloFilters {
   const f: SoloFilters = { difficulty: choix.difficulte, questionCount: QUESTIONS };
   if (choix.sens === "inverse") f.direction = "inverse";
+  if (choix.niveau) f.niveau = choix.niveau;
   if (choix.mode === "periode") {
     const p = PERIODES.find((x) => x.id === choix.periode);
     const de = p ? p.de : choix.de;
@@ -138,13 +157,15 @@ export function filtresDepuis(choix: Choix): SoloFilters {
  * Nombre d'événements jouables par difficulté pour ce choix, d'après le dataset.
  * `null` quand on ne sait pas d'avance (période libre, chapitres) : le serveur tranchera.
  */
-export function comptesDe(choix: Pick<Choix, "mode" | "periode" | "pack" | "theme" | "chapitres" | "test">): Comptes | null {
+export function comptesDe(choix: Pick<Choix, "mode" | "periode" | "pack" | "theme" | "chapitres" | "test" | "niveau">): Comptes | null {
   // Test de chapitre : seulement les événements des cartes apprises.
   if (choix.test && choix.chapitres?.length === 1) return CHAPITRES_JOUABLES[choix.chapitres[0]]?.t ?? null;
-  if (choix.mode === "general") return catalogue.general;
-  if (choix.mode === "periode") return (catalogue.periodes as Record<string, Comptes>)[choix.periode ?? ""] ?? null;
-  if (choix.mode === "pack") return PACKS.find((p) => p.id === choix.pack)?.n ?? null;
-  if (choix.mode === "theme") return THEMES.find((t) => t.id === choix.theme)?.n ?? null;
+  // Décomptes cumulés par niveau : [Débutant, Intermédiaire, Expert].
+  const i = (choix.niveau ?? NIVEAU_PAR_DEFAUT) - 1;
+  if (choix.mode === "general") return catalogue.general[i];
+  if (choix.mode === "periode") return (catalogue.periodes as Record<string, Comptes[]>)[choix.periode ?? ""]?.[i] ?? null;
+  if (choix.mode === "pack") return PACKS.find((p) => p.id === choix.pack)?.n[i] ?? null;
+  if (choix.mode === "theme") return THEMES.find((t) => t.id === choix.theme)?.n[i] ?? null;
   if (choix.mode === "scolaire" && choix.chapitres?.length) {
     // Somme des chapitres : un plafond (un événement peut servir deux chapitres), le serveur tranche au-dessus.
     const n: Comptes = { YEAR: 0, MONTH: 0, DAY: 0 };
@@ -184,6 +205,12 @@ export function bornesDe(choix: Choix): Vue | null {
     return { debut: Math.max(DEBUT_FRISE, milieu - 15), fin: Math.min(FIN_FRISE, milieu + 15) };
   }
   return debut <= DEBUT_FRISE && fin >= FIN_FRISE ? null : { debut, fin };
+}
+
+/** Un niveau est proposé s'il remplit une partie dans au moins une précision. */
+export function niveauPossible(choix: Pick<Choix, "mode" | "periode" | "pack" | "theme">, niveau: SoloNiveau, precisions: SoloDifficulty[] = ["YEAR", "MONTH", "DAY"]): boolean {
+  const comptes = comptesDe({ ...choix, niveau });
+  return precisions.some((d) => difficultePossible(comptes, d));
 }
 
 /** Une difficulté est proposée s'il y a de quoi remplir une partie (ou si on ne peut pas le savoir). */

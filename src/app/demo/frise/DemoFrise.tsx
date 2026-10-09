@@ -22,9 +22,9 @@ const EVENEMENTS: MarqueurFrise[] = [
 ];
 
 const PRECISIONS: { p: Precision; libelle: string }[] = [
-  { p: "annee", libelle: "Facile · année" },
-  { p: "mois", libelle: "Moyen · mois" },
-  { p: "jour", libelle: "Difficile · jour" },
+  { p: "annee", libelle: "Année" },
+  { p: "mois", libelle: "Mois" },
+  { p: "jour", libelle: "Jour" },
 ];
 
 // 200 marqueurs pour éprouver la fluidité et le regroupement.

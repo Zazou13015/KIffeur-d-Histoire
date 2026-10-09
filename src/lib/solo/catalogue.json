@@ -1,35 +1,71 @@
 {
- "general": {
-  "YEAR": 1970,
-  "MONTH": 905,
-  "DAY": 887
- },
+ "general": [
+  {
+   "YEAR": 238,
+   "MONTH": 200,
+   "DAY": 194
+  },
+  {
+   "YEAR": 729,
+   "MONTH": 599,
+   "DAY": 585
+  },
+  {
+   "YEAR": 1970,
+   "MONTH": 905,
+   "DAY": 887
+  }
+ ],
  "packs": [
   {
    "id": "COL-0059",
    "titre": "50 dates incontournables",
-   "description": "Sélection courte des événements scolaires les plus importants et accessibles.",
-   "n": {
-    "YEAR": 50,
-    "MONTH": 49,
-    "DAY": 48
-   },
+   "description": "Les 50 dates que tout le monde connaît, de l’Antiquité à nos jours.",
+   "n": [
+    {
+     "YEAR": 50,
+     "MONTH": 50,
+     "DAY": 50
+    },
+    {
+     "YEAR": 50,
+     "MONTH": 50,
+     "DAY": 50
+    },
+    {
+     "YEAR": 50,
+     "MONTH": 50,
+     "DAY": 50
+    }
+   ],
    "b": [
-    300,
+    -60,
     2030
    ]
   },
   {
    "id": "COL-0060",
    "titre": "100 dates incontournables",
-   "description": "Socle généraliste de 100 événements majeurs, incluant intégralement le pack de 50.",
-   "n": {
-    "YEAR": 100,
-    "MONTH": 95,
-    "DAY": 94
-   },
+   "description": "Les 100 dates de culture générale à connaître, dont les 50 incontournables.",
+   "n": [
+    {
+     "YEAR": 100,
+     "MONTH": 99,
+     "DAY": 99
+    },
+    {
+     "YEAR": 100,
+     "MONTH": 99,
+     "DAY": 99
+    },
+    {
+     "YEAR": 100,
+     "MONTH": 99,
+     "DAY": 99
+    }
+   ],
    "b": [
-    300,
+    -770,
     2030
    ]
   },
@@ -37,11 +73,23 @@
    "id": "COL-0061",
    "titre": "France",
    "description": "Événements directement rattachés à la France.",
-   "n": {
-    "YEAR": 382,
-    "MONTH": 189,
-    "DAY": 184
-   },
+   "n": [
+    {
+     "YEAR": 96,
+     "MONTH": 83,
+     "DAY": 80
+    },
+    {
+     "YEAR": 197,
+     "MONTH": 157,
+     "DAY": 153
+    },
+    {
+     "YEAR": 382,
+     "MONTH": 189,
+     "DAY": 184
+    }
+   ],
    "b": [
     440,
     2030
@@ -51,11 +99,23 @@
    "id": "COL-0062",
    "titre": "Europe",
    "description": "Événements directement rattachés à l’espace européen.",
-   "n": {
-    "YEAR": 987,
-    "MONTH": 483,
-    "DAY": 472
-   },
+   "n": [
+    {
+     "YEAR": 161,
+     "MONTH": 130,
+     "DAY": 128
+    },
+    {
+     "YEAR": 435,
+     "MONTH": 351,
+     "DAY": 343
+    },
+    {
+     "YEAR": 987,
+     "MONTH": 483,
+     "DAY": 472
+    }
+   ],
    "b": [
     -790,
     2030
@@ -65,11 +125,23 @@
    "id": "COL-0063",
    "titre": "Première Guerre mondiale",
    "description": "Événements du contexte Première Guerre mondiale.",
-   "n": {
-    "YEAR": 32,
-    "MONTH": 32,
-    "DAY": 32
-   },
+   "n": [
+    {
+     "YEAR": 9,
+     "MONTH": 9,
+     "DAY": 9
+    },
+    {
+     "YEAR": 25,
+     "MONTH": 25,
+     "DAY": 25
+    },
+    {
+     "YEAR": 32,
+     "MONTH": 32,
+     "DAY": 32
+    }
+   ],
    "b": [
     1900,
     1940
@@ -79,11 +151,23 @@
    "id": "COL-0064",
    "titre": "Seconde Guerre mondiale",
    "description": "Événements du contexte Seconde Guerre mondiale.",
-   "n": {
-    "YEAR": 40,
-    "MONTH": 39,
-    "DAY": 39
-   },
+   "n": [
+    {
+     "YEAR": 20,
+     "MONTH": 19,
+     "DAY": 19
+    },
+    {
+     "YEAR": 37,
+     "MONTH": 36,
+     "DAY": 36
+    },
+    {
+     "YEAR": 40,
+     "MONTH": 39,
+     "DAY": 39
+    }
+   ],
    "b": [
     1920,
     1960
@@ -93,11 +177,23 @@
    "id": "COL-0065",
    "titre": "Guerre froide",
    "description": "Événements du contexte Guerre froide.",
-   "n": {
-    "YEAR": 55,
-    "MONTH": 55,
-    "DAY": 55
-   },
+   "n": [
+    {
+     "YEAR": 24,
+     "MONTH": 24,
+     "DAY": 24
+    },
+    {
+     "YEAR": 49,
+     "MONTH": 49,
+     "DAY": 49
+    },
+    {
+     "YEAR": 55,
+     "MONTH": 55,
+     "DAY": 55
+    }
+   ],
    "b": [
     1930,
     2020
@@ -107,11 +203,23 @@
    "id": "COL-0066",
    "titre": "Révolution française",
    "description": "Événements directement associés à la Révolution française.",
-   "n": {
-    "YEAR": 19,
-    "MONTH": 19,
-    "DAY": 19
-   },
+   "n": [
+    {
+     "YEAR": 13,
+     "MONTH": 13,
+     "DAY": 13
+    },
+    {
+     "YEAR": 15,
+     "MONTH": 15,
+     "DAY": 15
+    },
+    {
+     "YEAR": 19,
+     "MONTH": 19,
+     "DAY": 19
+    }
+   ],
    "b": [
     1770,
     1810
@@ -121,11 +229,23 @@
    "id": "COL-0067",
    "titre": "Époque napoléonienne",
    "description": "Consulat, Empire et principaux jalons napoléoniens.",
-   "n": {
-    "YEAR": 4,
-    "MONTH": 4,
-    "DAY": 4
-   },
+   "n": [
+    {
+     "YEAR": 3,
+     "MONTH": 3,
+     "DAY": 3
+    },
+    {
+     "YEAR": 4,
+     "MONTH": 4,
+     "DAY": 4
+    },
+    {
+     "YEAR": 4,
+     "MONTH": 4,
+     "DAY": 4
+    }
+   ],
    "b": [
     1790,
     1830
@@ -135,11 +255,23 @@
    "id": "COL-0068",
    "titre": "Révolutions et insurrections",
    "description": "Révolutions, soulèvements et ruptures politiques.",
-   "n": {
-    "YEAR": 98,
-    "MONTH": 77,
-    "DAY": 75
-   },
+   "n": [
+    {
+     "YEAR": 26,
+     "MONTH": 22,
+     "DAY": 22
+    },
+    {
+     "YEAR": 63,
+     "MONTH": 50,
+     "DAY": 49
+    },
+    {
+     "YEAR": 98,
+     "MONTH": 77,
+     "DAY": 75
+    }
+   ],
    "b": [
     -3500,
     2030
@@ -149,11 +281,23 @@
    "id": "COL-0069",
    "titre": "Guerres et batailles",
    "description": "Guerres, conflits, batailles et opérations militaires.",
-   "n": {
-    "YEAR": 259,
-    "MONTH": 201,
-    "DAY": 197
-   },
+   "n": [
+    {
+     "YEAR": 65,
+     "MONTH": 57,
+     "DAY": 56
+    },
+    {
+     "YEAR": 164,
+     "MONTH": 140,
+     "DAY": 137
+    },
+    {
+     "YEAR": 259,
+     "MONTH": 201,
+     "DAY": 197
+    }
+   ],
    "b": [
     -1470,
     2030
@@ -163,11 +307,23 @@
    "id": "COL-0070",
    "titre": "Espace",
    "description": "Exploration spatiale, satellites, vols habités et stations orbitales.",
-   "n": {
-    "YEAR": 24,
-    "MONTH": 24,
-    "DAY": 24
-   },
+   "n": [
+    {
+     "YEAR": 5,
+     "MONTH": 5,
+     "DAY": 5
+    },
+    {
+     "YEAR": 16,
+     "MONTH": 16,
+     "DAY": 16
+    },
+    {
+     "YEAR": 24,
+     "MONTH": 24,
+     "DAY": 24
+    }
+   ],
    "b": [
     1600,
     2030
@@ -177,11 +333,23 @@
    "id": "COL-0071",
    "titre": "Sciences",
    "description": "Découvertes, savants et événements scientifiques.",
-   "n": {
-    "YEAR": 71,
-    "MONTH": 56,
-    "DAY": 52
-   },
+   "n": [
+    {
+     "YEAR": 5,
+     "MONTH": 5,
+     "DAY": 3
+    },
+    {
+     "YEAR": 42,
+     "MONTH": 35,
+     "DAY": 31
+    },
+    {
+     "YEAR": 71,
+     "MONTH": 56,
+     "DAY": 52
+    }
+   ],
    "b": [
     1530,
     2030
@@ -191,11 +359,23 @@
    "id": "COL-0072",
    "titre": "Religions",
    "description": "Événements religieux directement identifiés.",
-   "n": {
-    "YEAR": 90,
-    "MONTH": 58,
-    "DAY": 55
-   },
+   "n": [
+    {
+     "YEAR": 18,
+     "MONTH": 10,
+     "DAY": 8
+    },
+    {
+     "YEAR": 57,
+     "MONTH": 38,
+     "DAY": 35
+    },
+    {
+     "YEAR": 90,
+     "MONTH": 58,
+     "DAY": 55
+    }
+   ],
    "b": [
     -1370,
     2030
@@ -205,11 +385,23 @@
    "id": "COL-0073",
    "titre": "Droits et libertés",
    "description": "Droits civiques, libertés publiques, suffrage et égalité juridique.",
-   "n": {
-    "YEAR": 87,
-    "MONTH": 74,
-    "DAY": 74
-   },
+   "n": [
+    {
+     "YEAR": 24,
+     "MONTH": 21,
+     "DAY": 21
+    },
+    {
+     "YEAR": 56,
+     "MONTH": 51,
+     "DAY": 51
+    },
+    {
+     "YEAR": 87,
+     "MONTH": 74,
+     "DAY": 74
+    }
+   ],
    "b": [
     -790,
     2030
@@ -219,11 +411,23 @@
    "id": "COL-0074",
    "titre": "Construction européenne",
    "description": "CECA, traités européens, Schengen et autres jalons associés.",
-   "n": {
-    "YEAR": 19,
-    "MONTH": 19,
-    "DAY": 19
-   },
+   "n": [
+    {
+     "YEAR": 5,
+     "MONTH": 5,
+     "DAY": 5
+    },
+    {
+     "YEAR": 13,
+     "MONTH": 13,
+     "DAY": 13
+    },
+    {
+     "YEAR": 19,
+     "MONTH": 19,
+     "DAY": 19
+    }
+   ],
    "b": [
     1940,
     2030
@@ -233,11 +437,23 @@
    "id": "COL-0075",
    "titre": "Décolonisation",
    "description": "Indépendances et conflits de décolonisation.",
-   "n": {
-    "YEAR": 31,
-    "MONTH": 31,
-    "DAY": 31
-   },
+   "n": [
+    {
+     "YEAR": 8,
+     "MONTH": 8,
+     "DAY": 8
+    },
+    {
+     "YEAR": 16,
+     "MONTH": 16,
+     "DAY": 16
+    },
+    {
+     "YEAR": 31,
+     "MONTH": 31,
+     "DAY": 31
+    }
+   ],
    "b": [
     1930,
     2020
@@ -247,11 +463,23 @@
    "id": "COL-0076",
    "titre": "Environnement",
    "description": "Protection de l’environnement, climat et grands accords.",
-   "n": {
-    "YEAR": 30,
-    "MONTH": 27,
-    "DAY": 26
-   },
+   "n": [
+    {
+     "YEAR": 5,
+     "MONTH": 4,
+     "DAY": 4
+    },
+    {
+     "YEAR": 23,
+     "MONTH": 21,
+     "DAY": 21
+    },
+    {
+     "YEAR": 30,
+     "MONTH": 27,
+     "DAY": 26
+    }
+   ],
    "b": [
     -3500,
     2030
@@ -261,11 +489,23 @@
    "id": "COL-0077",
    "titre": "Mode expert — 50 dates",
    "description": "Les 50 événements jouables les plus difficiles, départagés par importance et diffusion scolaire.",
-   "n": {
-    "YEAR": 50,
-    "MONTH": 29,
-    "DAY": 29
-   },
+   "n": [
+    {
+     "YEAR": 1,
+     "MONTH": 0,
+     "DAY": 0
+    },
+    {
+     "YEAR": 32,
+     "MONTH": 15,
+     "DAY": 15
+    },
+    {
+     "YEAR": 50,
+     "MONTH": 29,
+     "DAY": 29
+    }
+   ],
    "b": [
     -3500,
     2030
@@ -275,11 +515,23 @@
    "id": "COL-0078",
    "titre": "Antiquité",
    "description": "Événements jouables conventionnellement situés entre les premières écritures et 476.",
-   "n": {
-    "YEAR": 94,
-    "MONTH": 23,
-    "DAY": 20
-   },
+   "n": [
+    {
+     "YEAR": 21,
+     "MONTH": 8,
+     "DAY": 7
+    },
+    {
+     "YEAR": 52,
+     "MONTH": 17,
+     "DAY": 14
+    },
+    {
+     "YEAR": 94,
+     "MONTH": 23,
+     "DAY": 20
+    }
+   ],
    "b": [
     -3210,
     490
@@ -289,11 +541,23 @@
    "id": "COL-0079",
    "titre": "Moyen Âge",
    "description": "Événements jouables conventionnellement situés de 476 à 1492.",
-   "n": {
-    "YEAR": 102,
-    "MONTH": 60,
-    "DAY": 55
-   },
+   "n": [
+    {
+     "YEAR": 26,
+     "MONTH": 16,
+     "DAY": 15
+    },
+    {
+     "YEAR": 62,
+     "MONTH": 38,
+     "DAY": 35
+    },
+    {
+     "YEAR": 102,
+     "MONTH": 60,
+     "DAY": 55
+    }
+   ],
    "b": [
     460,
     1510
@@ -303,11 +567,23 @@
    "id": "COL-0080",
    "titre": "Époque moderne",
    "description": "Événements jouables conventionnellement situés de 1492 à 1789.",
-   "n": {
-    "YEAR": 151,
-    "MONTH": 97,
-    "DAY": 92
-   },
+   "n": [
+    {
+     "YEAR": 35,
+     "MONTH": 27,
+     "DAY": 26
+    },
+    {
+     "YEAR": 93,
+     "MONTH": 67,
+     "DAY": 63
+    },
+    {
+     "YEAR": 151,
+     "MONTH": 97,
+     "DAY": 92
+    }
+   ],
    "b": [
     1480,
     1800
@@ -317,11 +593,23 @@
    "id": "COL-0081",
    "titre": "XIXe siècle",
    "description": "Événements jouables de 1801 à 1900.",
-   "n": {
-    "YEAR": 265,
-    "MONTH": 175,
-    "DAY": 172
-   },
+   "n": [
+    {
+     "YEAR": 35,
+     "MONTH": 33,
+     "DAY": 31
+    },
+    {
+     "YEAR": 128,
+     "MONTH": 107,
+     "DAY": 104
+    },
+    {
+     "YEAR": 265,
+     "MONTH": 175,
+     "DAY": 172
+    }
+   ],
    "b": [
     1790,
     1920
@@ -331,11 +619,23 @@
    "id": "COL-0082",
    "titre": "XXe siècle",
    "description": "Événements jouables de 1901 à 2000.",
-   "n": {
-    "YEAR": 996,
-    "MONTH": 441,
-    "DAY": 439
-   },
+   "n": [
+    {
+     "YEAR": 102,
+     "MONTH": 98,
+     "DAY": 97
+    },
+    {
+     "YEAR": 319,
+     "MONTH": 308,
+     "DAY": 307
+    },
+    {
+     "YEAR": 996,
+     "MONTH": 441,
+     "DAY": 439
+    }
+   ],
    "b": [
     1890,
     2020
@@ -346,11 +646,23 @@
   {
    "id": "TAG-0132",
    "nom": "Arts et culture",
-   "n": {
-    "YEAR": 494,
-    "MONTH": 61,
-    "DAY": 61
-   },
+   "n": [
+    {
+     "YEAR": 35,
+     "MONTH": 24,
+     "DAY": 24
+    },
+    {
+     "YEAR": 79,
+     "MONTH": 52,
+     "DAY": 52
+    },
+    {
+     "YEAR": 494,
+     "MONTH": 61,
+     "DAY": 61
+    }
+   ],
    "b": [
     -1340,
     2030
@@ -359,11 +671,23 @@
   {
    "id": "TAG-0112",
    "nom": "Batailles et opérations",
-   "n": {
-    "YEAR": 84,
-    "MONTH": 63,
-    "DAY": 60
-   },
+   "n": [
+    {
+     "YEAR": 23,
+     "MONTH": 18,
+     "DAY": 18
+    },
+    {
+     "YEAR": 55,
+     "MONTH": 45,
+     "DAY": 43
+    },
+    {
+     "YEAR": 84,
+     "MONTH": 63,
+     "DAY": 60
+    }
+   ],
    "b": [
     -1470,
     1980
@@ -372,11 +696,23 @@
   {
    "id": "TAG-0116",
    "nom": "Colonisation et impérialisme",
-   "n": {
-    "YEAR": 93,
-    "MONTH": 76,
-    "DAY": 75
-   },
+   "n": [
+    {
+     "YEAR": 22,
+     "MONTH": 20,
+     "DAY": 20
+    },
+    {
+     "YEAR": 65,
+     "MONTH": 54,
+     "DAY": 53
+    },
+    {
+     "YEAR": 93,
+     "MONTH": 76,
+     "DAY": 75
+    }
+   ],
    "b": [
     -830,
     1970
@@ -385,11 +721,23 @@
   {
    "id": "TAG-0108",
    "nom": "Construction de l’État",
-   "n": {
-    "YEAR": 269,
-    "MONTH": 202,
-    "DAY": 198
-   },
+   "n": [
+    {
+     "YEAR": 72,
+     "MONTH": 53,
+     "DAY": 52
+    },
+    {
+     "YEAR": 169,
+     "MONTH": 128,
+     "DAY": 125
+    },
+    {
+     "YEAR": 269,
+     "MONTH": 202,
+     "DAY": 198
+    }
+   ],
    "b": [
     -2350,
     2030
@@ -398,11 +746,23 @@
   {
    "id": "TAG-0136",
    "nom": "Construction européenne",
-   "n": {
-    "YEAR": 26,
-    "MONTH": 26,
-    "DAY": 26
-   },
+   "n": [
+    {
+     "YEAR": 12,
+     "MONTH": 12,
+     "DAY": 12
+    },
+    {
+     "YEAR": 20,
+     "MONTH": 20,
+     "DAY": 20
+    },
+    {
+     "YEAR": 26,
+     "MONTH": 26,
+     "DAY": 26
+    }
+   ],
    "b": [
     1900,
     2030
@@ -411,11 +771,23 @@
   {
    "id": "TAG-0117",
    "nom": "Décolonisation",
-   "n": {
-    "YEAR": 65,
-    "MONTH": 65,
-    "DAY": 65
-   },
+   "n": [
+    {
+     "YEAR": 28,
+     "MONTH": 28,
+     "DAY": 28
+    },
+    {
+     "YEAR": 48,
+     "MONTH": 48,
+     "DAY": 48
+    },
+    {
+     "YEAR": 65,
+     "MONTH": 65,
+     "DAY": 65
+    }
+   ],
    "b": [
     1930,
     2020
@@ -424,11 +796,23 @@
   {
    "id": "TAG-0107",
    "nom": "Démocratie",
-   "n": {
-    "YEAR": 195,
-    "MONTH": 101,
-    "DAY": 99
-   },
+   "n": [
+    {
+     "YEAR": 49,
+     "MONTH": 40,
+     "DAY": 39
+    },
+    {
+     "YEAR": 113,
+     "MONTH": 88,
+     "DAY": 86
+    },
+    {
+     "YEAR": 195,
+     "MONTH": 101,
+     "DAY": 99
+    }
+   ],
    "b": [
     -790,
     2030
@@ -437,11 +821,23 @@
   {
    "id": "TAG-0114",
    "nom": "Diplomatie",
-   "n": {
-    "YEAR": 189,
-    "MONTH": 176,
-    "DAY": 172
-   },
+   "n": [
+    {
+     "YEAR": 55,
+     "MONTH": 52,
+     "DAY": 50
+    },
+    {
+     "YEAR": 124,
+     "MONTH": 117,
+     "DAY": 113
+    },
+    {
+     "YEAR": 189,
+     "MONTH": 176,
+     "DAY": 172
+    }
+   ],
    "b": [
     -1290,
     2030
@@ -450,11 +846,23 @@
   {
    "id": "TAG-0109",
    "nom": "Droit et législation",
-   "n": {
-    "YEAR": 108,
-    "MONTH": 89,
-    "DAY": 86
-   },
+   "n": [
+    {
+     "YEAR": 20,
+     "MONTH": 19,
+     "DAY": 18
+    },
+    {
+     "YEAR": 64,
+     "MONTH": 57,
+     "DAY": 55
+    },
+    {
+     "YEAR": 108,
+     "MONTH": 89,
+     "DAY": 86
+    }
+   ],
    "b": [
     -1760,
     2030
@@ -463,11 +871,23 @@
   {
    "id": "TAG-0110",
    "nom": "Droits et libertés",
-   "n": {
-    "YEAR": 106,
-    "MONTH": 93,
-    "DAY": 93
-   },
+   "n": [
+    {
+     "YEAR": 36,
+     "MONTH": 33,
+     "DAY": 33
+    },
+    {
+     "YEAR": 74,
+     "MONTH": 69,
+     "DAY": 69
+    },
+    {
+     "YEAR": 106,
+     "MONTH": 93,
+     "DAY": 93
+    }
+   ],
    "b": [
     -790,
     2030
@@ -476,11 +896,23 @@
   {
    "id": "TAG-0121",
    "nom": "Économie",
-   "n": {
-    "YEAR": 105,
-    "MONTH": 85,
-    "DAY": 81
-   },
+   "n": [
+    {
+     "YEAR": 24,
+     "MONTH": 20,
+     "DAY": 19
+    },
+    {
+     "YEAR": 65,
+     "MONTH": 54,
+     "DAY": 51
+    },
+    {
+     "YEAR": 105,
+     "MONTH": 85,
+     "DAY": 81
+    }
+   ],
    "b": [
     -3500,
     2030
@@ -489,11 +921,23 @@
   {
    "id": "TAG-0115",
    "nom": "Empires",
-   "n": {
-    "YEAR": 106,
-    "MONTH": 62,
-    "DAY": 60
-   },
+   "n": [
+    {
+     "YEAR": 27,
+     "MONTH": 23,
+     "DAY": 22
+    },
+    {
+     "YEAR": 61,
+     "MONTH": 40,
+     "DAY": 38
+    },
+    {
+     "YEAR": 106,
+     "MONTH": 62,
+     "DAY": 60
+    }
+   ],
    "b": [
     -2350,
     2010
@@ -502,11 +946,23 @@
   {
    "id": "TAG-0134",
    "nom": "Environnement",
-   "n": {
-    "YEAR": 30,
-    "MONTH": 27,
-    "DAY": 26
-   },
+   "n": [
+    {
+     "YEAR": 5,
+     "MONTH": 4,
+     "DAY": 4
+    },
+    {
+     "YEAR": 23,
+     "MONTH": 21,
+     "DAY": 21
+    },
+    {
+     "YEAR": 30,
+     "MONTH": 27,
+     "DAY": 26
+    }
+   ],
    "b": [
     -3500,
     2030
@@ -515,11 +971,23 @@
   {
    "id": "TAG-0118",
    "nom": "Esclavage et traites",
-   "n": {
-    "YEAR": 32,
-    "MONTH": 21,
-    "DAY": 20
-   },
+   "n": [
+    {
+     "YEAR": 15,
+     "MONTH": 13,
+     "DAY": 12
+    },
+    {
+     "YEAR": 26,
+     "MONTH": 17,
+     "DAY": 16
+    },
+    {
+     "YEAR": 32,
+     "MONTH": 21,
+     "DAY": 20
+    }
+   ],
    "b": [
     -90,
     1900
@@ -528,11 +996,23 @@
   {
    "id": "TAG-0130",
    "nom": "Espace",
-   "n": {
-    "YEAR": 24,
-    "MONTH": 24,
-    "DAY": 24
-   },
+   "n": [
+    {
+     "YEAR": 5,
+     "MONTH": 5,
+     "DAY": 5
+    },
+    {
+     "YEAR": 16,
+     "MONTH": 16,
+     "DAY": 16
+    },
+    {
+     "YEAR": 24,
+     "MONTH": 24,
+     "DAY": 24
+    }
+   ],
    "b": [
     1600,
     2030
@@ -541,11 +1021,23 @@
   {
    "id": "TAG-0131",
    "nom": "Explorations",
-   "n": {
-    "YEAR": 49,
-    "MONTH": 34,
-    "DAY": 34
-   },
+   "n": [
+    {
+     "YEAR": 22,
+     "MONTH": 18,
+     "DAY": 18
+    },
+    {
+     "YEAR": 42,
+     "MONTH": 31,
+     "DAY": 31
+    },
+    {
+     "YEAR": 49,
+     "MONTH": 34,
+     "DAY": 34
+    }
+   ],
    "b": [
     -150,
     1970
@@ -554,11 +1046,23 @@
   {
    "id": "TAG-0125",
    "nom": "Femmes et genre",
-   "n": {
-    "YEAR": 18,
-    "MONTH": 18,
-    "DAY": 18
-   },
+   "n": [
+    {
+     "YEAR": 6,
+     "MONTH": 6,
+     "DAY": 6
+    },
+    {
+     "YEAR": 14,
+     "MONTH": 14,
+     "DAY": 14
+    },
+    {
+     "YEAR": 18,
+     "MONTH": 18,
+     "DAY": 18
+    }
+   ],
    "b": [
     1770,
     2030
@@ -567,11 +1071,23 @@
   {
    "id": "TAG-0143",
    "nom": "Frontières et territoires",
-   "n": {
-    "YEAR": 29,
-    "MONTH": 26,
-    "DAY": 26
-   },
+   "n": [
+    {
+     "YEAR": 9,
+     "MONTH": 9,
+     "DAY": 9
+    },
+    {
+     "YEAR": 20,
+     "MONTH": 20,
+     "DAY": 20
+    },
+    {
+     "YEAR": 29,
+     "MONTH": 26,
+     "DAY": 26
+    }
+   ],
    "b": [
     110,
     2030
@@ -580,11 +1096,23 @@
   {
    "id": "TAG-0137",
    "nom": "Génocides et violences de masse",
-   "n": {
-    "YEAR": 29,
-    "MONTH": 29,
-    "DAY": 28
-   },
+   "n": [
+    {
+     "YEAR": 11,
+     "MONTH": 11,
+     "DAY": 11
+    },
+    {
+     "YEAR": 22,
+     "MONTH": 22,
+     "DAY": 21
+    },
+    {
+     "YEAR": 29,
+     "MONTH": 29,
+     "DAY": 28
+    }
+   ],
    "b": [
     1810,
     2030
@@ -593,11 +1121,23 @@
   {
    "id": "TAG-0142",
    "nom": "Géopolitique",
-   "n": {
-    "YEAR": 151,
-    "MONTH": 137,
-    "DAY": 136
-   },
+   "n": [
+    {
+     "YEAR": 49,
+     "MONTH": 47,
+     "DAY": 47
+    },
+    {
+     "YEAR": 111,
+     "MONTH": 101,
+     "DAY": 101
+    },
+    {
+     "YEAR": 151,
+     "MONTH": 137,
+     "DAY": 136
+    }
+   ],
    "b": [
     -3500,
     2030
@@ -606,11 +1146,23 @@
   {
    "id": "TAG-0111",
    "nom": "Guerres et conflits",
-   "n": {
-    "YEAR": 295,
-    "MONTH": 234,
-    "DAY": 230
-   },
+   "n": [
+    {
+     "YEAR": 82,
+     "MONTH": 71,
+     "DAY": 70
+    },
+    {
+     "YEAR": 199,
+     "MONTH": 172,
+     "DAY": 169
+    },
+    {
+     "YEAR": 295,
+     "MONTH": 234,
+     "DAY": 230
+    }
+   ],
    "b": [
     -1470,
     2030
@@ -619,11 +1171,23 @@
   {
    "id": "TAG-0123",
    "nom": "Histoire sociale",
-   "n": {
-    "YEAR": 137,
-    "MONTH": 101,
-    "DAY": 98
-   },
+   "n": [
+    {
+     "YEAR": 42,
+     "MONTH": 32,
+     "DAY": 32
+    },
+    {
+     "YEAR": 105,
+     "MONTH": 83,
+     "DAY": 81
+    },
+    {
+     "YEAR": 137,
+     "MONTH": 101,
+     "DAY": 98
+    }
+   ],
    "b": [
     -3500,
     2030
@@ -632,11 +1196,23 @@
   {
    "id": "TAG-0122",
    "nom": "Industrialisation",
-   "n": {
-    "YEAR": 48,
-    "MONTH": 32,
-    "DAY": 31
-   },
+   "n": [
+    {
+     "YEAR": 8,
+     "MONTH": 5,
+     "DAY": 5
+    },
+    {
+     "YEAR": 35,
+     "MONTH": 25,
+     "DAY": 24
+    },
+    {
+     "YEAR": 48,
+     "MONTH": 32,
+     "DAY": 31
+    }
+   ],
    "b": [
     -3500,
     2000
@@ -645,11 +1221,23 @@
   {
    "id": "TAG-0128",
    "nom": "Médecine et santé",
-   "n": {
-    "YEAR": 28,
-    "MONTH": 20,
-    "DAY": 19
-   },
+   "n": [
+    {
+     "YEAR": 5,
+     "MONTH": 3,
+     "DAY": 3
+    },
+    {
+     "YEAR": 16,
+     "MONTH": 12,
+     "DAY": 11
+    },
+    {
+     "YEAR": 28,
+     "MONTH": 20,
+     "DAY": 19
+    }
+   ],
    "b": [
     150,
     2030
@@ -658,11 +1246,23 @@
   {
    "id": "TAG-0133",
    "nom": "Médias et information",
-   "n": {
-    "YEAR": 460,
-    "MONTH": 20,
-    "DAY": 20
-   },
+   "n": [
+    {
+     "YEAR": 3,
+     "MONTH": 3,
+     "DAY": 3
+    },
+    {
+     "YEAR": 11,
+     "MONTH": 10,
+     "DAY": 10
+    },
+    {
+     "YEAR": 460,
+     "MONTH": 20,
+     "DAY": 20
+    }
+   ],
    "b": [
     1820,
     2030
@@ -671,11 +1271,23 @@
   {
    "id": "TAG-0138",
    "nom": "Mémoire et patrimoine",
-   "n": {
-    "YEAR": 32,
-    "MONTH": 29,
-    "DAY": 29
-   },
+   "n": [
+    {
+     "YEAR": 12,
+     "MONTH": 11,
+     "DAY": 11
+    },
+    {
+     "YEAR": 25,
+     "MONTH": 22,
+     "DAY": 22
+    },
+    {
+     "YEAR": 32,
+     "MONTH": 29,
+     "DAY": 29
+    }
+   ],
    "b": [
     1670,
     2030
@@ -684,11 +1296,23 @@
   {
    "id": "TAG-0139",
    "nom": "Migrations",
-   "n": {
-    "YEAR": 15,
-    "MONTH": 5,
-    "DAY": 5
-   },
+   "n": [
+    {
+     "YEAR": 3,
+     "MONTH": 0,
+     "DAY": 0
+    },
+    {
+     "YEAR": 9,
+     "MONTH": 2,
+     "DAY": 2
+    },
+    {
+     "YEAR": 15,
+     "MONTH": 5,
+     "DAY": 5
+    }
+   ],
    "b": [
     -3500,
     1970
@@ -697,11 +1321,23 @@
   {
    "id": "TAG-0146",
    "nom": "Nationalismes",
-   "n": {
-    "YEAR": 31,
-    "MONTH": 26,
-    "DAY": 26
-   },
+   "n": [
+    {
+     "YEAR": 8,
+     "MONTH": 7,
+     "DAY": 7
+    },
+    {
+     "YEAR": 24,
+     "MONTH": 22,
+     "DAY": 22
+    },
+    {
+     "YEAR": 31,
+     "MONTH": 26,
+     "DAY": 26
+    }
+   ],
    "b": [
     1810,
     2010
@@ -710,11 +1346,23 @@
   {
    "id": "TAG-0135",
    "nom": "Organisations internationales",
-   "n": {
-    "YEAR": 85,
-    "MONTH": 85,
-    "DAY": 85
-   },
+   "n": [
+    {
+     "YEAR": 29,
+     "MONTH": 29,
+     "DAY": 29
+    },
+    {
+     "YEAR": 56,
+     "MONTH": 56,
+     "DAY": 56
+    },
+    {
+     "YEAR": 85,
+     "MONTH": 85,
+     "DAY": 85
+    }
+   ],
    "b": [
     1850,
     2030
@@ -723,11 +1371,23 @@
   {
    "id": "TAG-0106",
    "nom": "Politique",
-   "n": {
-    "YEAR": 385,
-    "MONTH": 249,
-    "DAY": 245
-   },
+   "n": [
+    {
+     "YEAR": 100,
+     "MONTH": 82,
+     "DAY": 81
+    },
+    {
+     "YEAR": 245,
+     "MONTH": 197,
+     "DAY": 194
+    },
+    {
+     "YEAR": 385,
+     "MONTH": 249,
+     "DAY": 245
+    }
+   ],
    "b": [
     -1370,
     2030
@@ -736,11 +1396,23 @@
   {
    "id": "TAG-0119",
    "nom": "Religions",
-   "n": {
-    "YEAR": 166,
-    "MONTH": 93,
-    "DAY": 90
-   },
+   "n": [
+    {
+     "YEAR": 57,
+     "MONTH": 35,
+     "DAY": 33
+    },
+    {
+     "YEAR": 125,
+     "MONTH": 71,
+     "DAY": 68
+    },
+    {
+     "YEAR": 166,
+     "MONTH": 93,
+     "DAY": 90
+    }
+   ],
    "b": [
     -1370,
     2030
@@ -749,11 +1421,23 @@
   {
    "id": "TAG-0120",
    "nom": "Religions et États",
-   "n": {
-    "YEAR": 10,
-    "MONTH": 10,
-    "DAY": 10
-   },
+   "n": [
+    {
+     "YEAR": 4,
+     "MONTH": 4,
+     "DAY": 4
+    },
+    {
+     "YEAR": 7,
+     "MONTH": 7,
+     "DAY": 7
+    },
+    {
+     "YEAR": 10,
+     "MONTH": 10,
+     "DAY": 10
+    }
+   ],
    "b": [
     790,
     1980
@@ -762,11 +1446,23 @@
   {
    "id": "TAG-0113",
    "nom": "Révolutions et insurrections",
-   "n": {
-    "YEAR": 127,
-    "MONTH": 101,
-    "DAY": 99
-   },
+   "n": [
+    {
+     "YEAR": 39,
+     "MONTH": 33,
+     "DAY": 33
+    },
+    {
+     "YEAR": 87,
+     "MONTH": 72,
+     "DAY": 71
+    },
+    {
+     "YEAR": 127,
+     "MONTH": 101,
+     "DAY": 99
+    }
+   ],
    "b": [
     -3500,
     2030
@@ -775,11 +1471,23 @@
   {
    "id": "TAG-0144",
    "nom": "Savoirs et connaissance",
-   "n": {
-    "YEAR": 50,
-    "MONTH": 34,
-    "DAY": 32
-   },
+   "n": [
+    {
+     "YEAR": 7,
+     "MONTH": 5,
+     "DAY": 3
+    },
+    {
+     "YEAR": 33,
+     "MONTH": 25,
+     "DAY": 23
+    },
+    {
+     "YEAR": 50,
+     "MONTH": 34,
+     "DAY": 32
+    }
+   ],
    "b": [
     -3210,
     2030
@@ -788,11 +1496,23 @@
   {
    "id": "TAG-0127",
    "nom": "Sciences",
-   "n": {
-    "YEAR": 97,
-    "MONTH": 75,
-    "DAY": 71
-   },
+   "n": [
+    {
+     "YEAR": 17,
+     "MONTH": 15,
+     "DAY": 13
+    },
+    {
+     "YEAR": 61,
+     "MONTH": 51,
+     "DAY": 47
+    },
+    {
+     "YEAR": 97,
+     "MONTH": 75,
+     "DAY": 71
+    }
+   ],
    "b": [
     1440,
     2030
@@ -801,11 +1521,23 @@
   {
    "id": "TAG-0145",
    "nom": "Sport",
-   "n": {
-    "YEAR": 397,
-    "MONTH": 29,
-    "DAY": 29
-   },
+   "n": [
+    {
+     "YEAR": 5,
+     "MONTH": 4,
+     "DAY": 4
+    },
+    {
+     "YEAR": 28,
+     "MONTH": 23,
+     "DAY": 23
+    },
+    {
+     "YEAR": 397,
+     "MONTH": 29,
+     "DAY": 29
+    }
+   ],
    "b": [
     -790,
     2030
@@ -814,11 +1546,23 @@
   {
    "id": "TAG-0129",
    "nom": "Techniques et technologies",
-   "n": {
-    "YEAR": 152,
-    "MONTH": 86,
-    "DAY": 84
-   },
+   "n": [
+    {
+     "YEAR": 12,
+     "MONTH": 12,
+     "DAY": 10
+    },
+    {
+     "YEAR": 52,
+     "MONTH": 50,
+     "DAY": 48
+    },
+    {
+     "YEAR": 152,
+     "MONTH": 86,
+     "DAY": 84
+    }
+   ],
    "b": [
     110,
     2030
@@ -827,11 +1571,23 @@
   {
    "id": "TAG-0209",
    "nom": "Terrorisme",
-   "n": {
-    "YEAR": 10,
-    "MONTH": 10,
-    "DAY": 10
-   },
+   "n": [
+    {
+     "YEAR": 2,
+     "MONTH": 2,
+     "DAY": 2
+    },
+    {
+     "YEAR": 5,
+     "MONTH": 5,
+     "DAY": 5
+    },
+    {
+     "YEAR": 10,
+     "MONTH": 10,
+     "DAY": 10
+    }
+   ],
    "b": [
     1960,
     2030
@@ -840,11 +1596,23 @@
   {
    "id": "TAG-0147",
    "nom": "Totalitarismes",
-   "n": {
-    "YEAR": 26,
-    "MONTH": 25,
-    "DAY": 24
-   },
+   "n": [
+    {
+     "YEAR": 10,
+     "MONTH": 9,
+     "DAY": 8
+    },
+    {
+     "YEAR": 24,
+     "MONTH": 23,
+     "DAY": 22
+    },
+    {
+     "YEAR": 26,
+     "MONTH": 25,
+     "DAY": 24
+    }
+   ],
    "b": [
     1910,
     1960
@@ -853,11 +1621,23 @@
   {
    "id": "TAG-0208",
    "nom": "Transports",
-   "n": {
-    "YEAR": 10,
-    "MONTH": 9,
-    "DAY": 9
-   },
+   "n": [
+    {
+     "YEAR": 2,
+     "MONTH": 2,
+     "DAY": 2
+    },
+    {
+     "YEAR": 6,
+     "MONTH": 6,
+     "DAY": 6
+    },
+    {
+     "YEAR": 10,
+     "MONTH": 9,
+     "DAY": 9
+    }
+   ],
    "b": [
     1820,
     2010
@@ -866,11 +1646,23 @@
   {
    "id": "TAG-0124",
    "nom": "Travail et mouvement social",
-   "n": {
-    "YEAR": 18,
-    "MONTH": 17,
-    "DAY": 17
-   },
+   "n": [
+    {
+     "YEAR": 5,
+     "MONTH": 4,
+     "DAY": 4
+    },
+    {
+     "YEAR": 12,
+     "MONTH": 11,
+     "DAY": 11
+    },
+    {
+     "YEAR": 18,
+     "MONTH": 17,
+     "DAY": 17
+    }
+   ],
    "b": [
     1820,
     2020
@@ -879,11 +1671,23 @@
   {
    "id": "TAG-0140",
    "nom": "Urbanisation",
-   "n": {
-    "YEAR": 11,
-    "MONTH": 6,
-    "DAY": 6
-   },
+   "n": [
+    {
+     "YEAR": 1,
+     "MONTH": 0,
+     "DAY": 0
+    },
+    {
+     "YEAR": 6,
+     "MONTH": 4,
+     "DAY": 4
+    },
+    {
+     "YEAR": 11,
+     "MONTH": 6,
+     "DAY": 6
+    }
+   ],
    "b": [
     50,
     1950
@@ -891,36 +1695,108 @@
   }
  ],
  "periodes": {
-  "antiquite": {
-   "YEAR": 96,
-   "MONTH": 23,
-   "DAY": 20
-  },
-  "moyen-age": {
-   "YEAR": 102,
-   "MONTH": 60,
-   "DAY": 55
-  },
-  "epoque-moderne": {
-   "YEAR": 151,
-   "MONTH": 97,
-   "DAY": 92
-  },
-  "xixe": {
-   "YEAR": 369,
-   "MONTH": 247,
-   "DAY": 244
-  },
-  "guerres-mondiales": {
-   "YEAR": 235,
-   "MONTH": 165,
-   "DAY": 164
-  },
-  "depuis-1945": {
-   "YEAR": 1056,
-   "MONTH": 348,
-   "DAY": 347
-  }
+  "antiquite": [
+   {
+    "YEAR": 22,
+    "MONTH": 8,
+    "DAY": 7
+   },
+   {
+    "YEAR": 53,
+    "MONTH": 17,
+    "DAY": 14
+   },
+   {
+    "YEAR": 96,
+    "MONTH": 23,
+    "DAY": 20
+   }
+  ],
+  "moyen-age": [
+   {
+    "YEAR": 26,
+    "MONTH": 16,
+    "DAY": 15
+   },
+   {
+    "YEAR": 62,
+    "MONTH": 38,
+    "DAY": 35
+   },
+   {
+    "YEAR": 102,
+    "MONTH": 60,
+    "DAY": 55
+   }
+  ],
+  "epoque-moderne": [
+   {
+    "YEAR": 35,
+    "MONTH": 27,
+    "DAY": 26
+   },
+   {
+    "YEAR": 93,
+    "MONTH": 67,
+    "DAY": 63
+   },
+   {
+    "YEAR": 151,
+    "MONTH": 97,
+    "DAY": 92
+   }
+  ],
+  "xixe": [
+   {
+    "YEAR": 55,
+    "MONTH": 53,
+    "DAY": 51
+   },
+   {
+    "YEAR": 180,
+    "MONTH": 154,
+    "DAY": 151
+   },
+   {
+    "YEAR": 369,
+    "MONTH": 247,
+    "DAY": 244
+   }
+  ],
+  "guerres-mondiales": [
+   {
+    "YEAR": 47,
+    "MONTH": 43,
+    "DAY": 42
+   },
+   {
+    "YEAR": 138,
+    "MONTH": 133,
+    "DAY": 132
+   },
+   {
+    "YEAR": 235,
+    "MONTH": 165,
+    "DAY": 164
+   }
+  ],
+  "depuis-1945": [
+   {
+    "YEAR": 76,
+    "MONTH": 75,
+    "DAY": 75
+   },
+   {
+    "YEAR": 238,
+    "MONTH": 224,
+    "DAY": 224
+   },
+   {
+    "YEAR": 1056,
+    "MONTH": 348,
+    "DAY": 347
+   }
+  ]
  },
  "bornesPeriodes": {
   "antiquite": [

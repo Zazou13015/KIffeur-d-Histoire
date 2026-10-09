@@ -17,7 +17,7 @@ describe("position <-> date sur la frise", () => {
     expect(depuisT(0.6, "annee")).toEqual({ year: 1 });
   });
 
-  it("arrondit à l'année en difficulté facile", () => {
+  it("arrondit à l'année en précision Année", () => {
     expect(depuisT(1789.49, "annee")).toEqual({ year: 1789 });
     expect(depuisT(1789.51, "annee")).toEqual({ year: 1790 });
   });
@@ -28,7 +28,7 @@ describe("position <-> date sur la frise", () => {
     expect(depuisT(1789 + 11.9 / 12, "mois")).toEqual({ year: 1789, month: 12 });
   });
 
-  it("donne le jour exact en difficulté difficile, y compris le 29 février", () => {
+  it("donne le jour exact en précision Jour, y compris le 29 février", () => {
     const d: HistoricDate = { year: 1789, month: 7, day: 14 };
     expect(depuisT(versT(d), "jour")).toEqual(d);
     const bissextile: HistoricDate = { year: 1796, month: 2, day: 29 };
@@ -97,7 +97,7 @@ describe("regroupement des marqueurs", () => {
 });
 
 describe("bonne réponse à la précision jouée", () => {
-  it("ne garde que l'année en Facile et le mois en Moyen", () => {
+  it("ne garde que l'année en précision Année et le mois en précision Mois", () => {
     const bastille = { year: 1789, month: 7, day: 14 };
     expect(aLaPrecision(bastille, "annee")).toEqual({ year: 1789 });
     expect(aLaPrecision(bastille, "mois")).toEqual({ year: 1789, month: 7 });

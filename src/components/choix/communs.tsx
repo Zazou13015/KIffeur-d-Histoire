@@ -1,8 +1,8 @@
 "use client";
 
 import { useFormStatus } from "react-dom";
-import { DIFFICULTES, difficultePossible, type Comptes } from "@/lib/solo/choix";
-import type { SoloDifficulty } from "@/lib/game/solo";
+import { DIFFICULTES, difficultePossible, NIVEAUX, niveauPossible, type Choix, type Comptes } from "@/lib/solo/choix";
+import type { SoloDifficulty, SoloNiveau } from "@/lib/game/solo";
 import styles from "./choix.module.css";
 
 /** Lit le dernier choix mémorisé dans le navigateur (stockage local indisponible ou vide : rien). */
@@ -29,9 +29,33 @@ export function difficulteJouable(comptes: Comptes | null, voulue: SoloDifficult
   return DIFFICULTES.find((d) => difficultePossible(comptes, d.valeur))?.valeur ?? null;
 }
 
+type Contenu = Pick<Choix, "mode" | "periode" | "pack" | "theme">;
+
+/** Niveau demandé s'il remplit une partie, sinon le plus proche au-dessus (plus d'événements), sinon en dessous. */
+export function niveauJouable(contenu: Contenu, voulu: SoloNiveau, precisions: SoloDifficulty[]): SoloNiveau | null {
+  const ordre = [voulu, ...NIVEAUX.map((n) => n.valeur).filter((n) => n > voulu), ...NIVEAUX.map((n) => n.valeur).filter((n) => n < voulu).reverse()];
+  return ordre.find((n) => niveauPossible(contenu, n, precisions)) ?? null;
+}
+
+export function ChoixNiveau({ contenu, precisions, valeur, onChange }: { contenu: Contenu; precisions: SoloDifficulty[]; valeur: SoloNiveau | null; onChange: (n: SoloNiveau) => void }) {
+  return (
+    <div className={styles.difficultes} role="group" aria-label="Niveau">
+      {NIVEAUX.map((n) => {
+        const possible = niveauPossible(contenu, n.valeur, precisions);
+        return (
+          <button key={n.valeur} type="button" className={styles.difficulte} aria-pressed={valeur === n.valeur} disabled={!possible} onClick={() => onChange(n.valeur)}>
+            <b>{n.titre}</b>
+            <small>{possible ? n.aide : "Pas assez de questions ici"}</small>
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
 export function ChoixDifficulte({ comptes, valeur, onChange }: { comptes: Comptes | null; valeur: SoloDifficulty | null; onChange: (d: SoloDifficulty) => void }) {
   return (
-    <div className={styles.difficultes} role="group" aria-label="Difficulté">
+    <div className={styles.difficultes} role="group" aria-label="Précision">
       {DIFFICULTES.map((d) => {
         const possible = difficultePossible(comptes, d.valeur);
         return (

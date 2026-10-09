@@ -1,5 +1,6 @@
 // Construit src/lib/solo/catalogue.json depuis le dataset v18 : les packs prêts à jouer, les thèmes
-// et, pour chaque choix, le nombre d'événements jouables par difficulté (pour griser ce qui ne remplit pas 10 questions).
+// et, pour chaque choix, le nombre d'événements jouables par niveau et par précision (pour griser ce qui ne remplit pas 10 questions).
+// Les niveaux viennent de content/niveaux-evenements.csv : n[0] Débutant, n[1] Intermédiaire (niveaux 1 et 2), n[2] Expert (tout).
 // Aucune date d'événement n'y figure : des identifiants, des libellés, des décomptes et, pour cadrer
 // la frise, l'étendue de chaque choix arrondie à la dizaine d'années avec 10 ans de marge.
 // Usage : npm run content:catalogue-solo
@@ -17,6 +18,9 @@ const evenements = csv("events").filter(
   (e) => e.playable === "TRUE" && ["YEAR", "MONTH", "DAY", "RANGE"].includes(e.playable_mode) && e.start_year !== "",
 );
 const parId = new Map(evenements.map((e) => [e.event_id, e]));
+const niveaux = new Map(lireCsv(join(import.meta.dirname, "..", "content", "niveaux-evenements.csv")).map((r) => [r.event_id, Number(r.niveau)]));
+// Même règle que la base : un événement sans niveau est rangé en Expert.
+const niveauDe = (e: LigneCsv) => niveaux.get(e.event_id) ?? 3;
 function compter(liste: LigneCsv[]): Comptes {
   return {
     YEAR: liste.length,
@@ -25,7 +29,8 @@ function compter(liste: LigneCsv[]): Comptes {
   };
 }
 const deIds = (ids: Iterable<string>) => [...new Set(ids)].flatMap((id) => { const e = parId.get(id); return e ? [e] : []; });
-const deListe = (ids: Iterable<string>) => compter(deIds(ids));
+const parNiveau = (liste: LigneCsv[]) => [1, 2, 3].map((n) => compter(liste.filter((e) => niveauDe(e) <= n)));
+const deListe = (ids: Iterable<string>) => parNiveau(deIds(ids));
 
 // Étendue de la frise pour un choix, en années astronomiques (positions `t` de la frise, 1 av. J.-C. = 0).
 const DEBUT_FRISE = -3500, FIN_FRISE = 2030, LARGEUR_MIN = 30;
@@ -53,12 +58,12 @@ for (const r of csv("event-tags")) tagsEvenements.set(r.tag_id, [...(tagsEveneme
 const themes = csv("tags")
   .filter((t) => t.tag_type === "SEMANTIC_TOPIC" && t.active === "TRUE")
   .map((t) => ({ id: t.tag_id, nom: t.name, n: deListe(tagsEvenements.get(t.tag_id) ?? []), b: bornes(deIds(tagsEvenements.get(t.tag_id) ?? [])) }))
-  .filter((t) => t.n.YEAR >= 10)
+  .filter((t) => t.n[2].YEAR >= 10)
   .sort((a, b) => a.nom.localeCompare(b.nom, "fr"));
 
 const dansPeriode = (p: (typeof PERIODES)[number]) =>
   evenements.filter((e) => (p.de == null || Number(e.start_year) >= p.de) && (p.a == null || Number(e.start_year) <= p.a));
-const periodes = Object.fromEntries(PERIODES.map((p) => [p.id, compter(dansPeriode(p))]));
+const periodes = Object.fromEntries(PERIODES.map((p) => [p.id, parNiveau(dansPeriode(p))]));
 const bornesPeriodes = Object.fromEntries(PERIODES.map((p) => [p.id, bornes(dansPeriode(p))]));
 
 // Chapitres : mêmes liens que l'import (curriculum-links, doublons redirigés vers l'identifiant canonique).
@@ -77,9 +82,10 @@ for (const c of lireCsv(join(import.meta.dirname, "..", "content", "pedagogie", 
 }
 const chapitres = Object.fromEntries([...contenuChapitres].sort().map(([id, ids]) => {
   const test = cartesChapitres.get(id) ?? [];
-  return [id, { n: deListe(ids), b: bornes(deIds(ids)), t: deListe(test), tb: bornes(deIds(test)) }];
+  // Le mode scolaire n'a pas de niveau : tous les événements du chapitre comptent.
+  return [id, { n: compter(deIds(ids)), b: bornes(deIds(ids)), t: compter(deIds(test)), tb: bornes(deIds(test)) }];
 }));
 
-const catalogue = { general: compter(evenements), packs, themes, periodes, bornesPeriodes, chapitres };
+const catalogue = { general: parNiveau(evenements), packs, themes, periodes, bornesPeriodes, chapitres };
 writeFileSync(join(import.meta.dirname, "..", "src", "lib", "solo", "catalogue.json"), `${JSON.stringify(catalogue, null, 1)}\n`);
 console.log(`${packs.length} packs, ${themes.length} thèmes, ${evenements.length} événements jouables.`);

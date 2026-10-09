@@ -3,7 +3,7 @@
 import { useId, useState } from "react";
 import { lancer } from "@/app/partie/actions";
 import { Bouton } from "@/components/ui/Bouton";
-import { LIBELLE_DIFFICULTE, QUESTIONS_MIN_TEST } from "@/lib/progression/types";
+import { QUESTIONS_MIN_TEST } from "@/lib/progression/types";
 import type { SoloDifficulty } from "@/lib/game/solo";
 import { comptesDe, DIFFICULTES, ecrireChoix, QUESTIONS, type Choix } from "@/lib/solo/choix";
 import s from "./apprendre.module.css";
@@ -28,11 +28,11 @@ export function TesterChapitre({ chapitre }: { chapitre: string }) {
   return <form action={lancer} className={s.tester}>
     <input type="hidden" name="c" value={ecrireChoix(choix)} />
     <div className={s.testeur}>
-      <label htmlFor={idSelect} className="sr-only">Difficulté du test</label>
+      <label htmlFor={idSelect} className="sr-only">Précision du test</label>
       <select id={idSelect} value={choix.difficulte} onChange={(e) => setDifficulte(e.target.value as SoloDifficulty)}
         className="cible border border-filet bg-papier px-2 py-2 text-sm text-encre">
         {DIFFICULTES.map((d) => <option key={d.valeur} value={d.valeur} disabled={!possible(d.valeur)}>
-          {LIBELLE_DIFFICULTE[d.valeur]} · {d.aide}
+          Trouver {d.aide}
         </option>)}
       </select>
       <Bouton type="submit">Me tester sur ce chapitre</Bouton>

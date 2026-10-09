@@ -79,7 +79,7 @@ export function EcranPartie({ question, corriger, chrono, suivante, bornes }: Pr
     setErreur(null);
     try {
       const brute = await corriger(question.id, rep, rep ? methode : null);
-      // La bonne réponse est donnée à la précision jouée : l'année seule en Facile.
+      // La bonne réponse est donnée à la précision jouée : l'année seule en précision Année.
       const c = { ...brute, bonne: aLaPrecision(brute.bonne, precision) };
       setCorrection(c);
       // La frise montre la bonne date, et la réponse quand il y en a une.

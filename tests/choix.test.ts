@@ -10,7 +10,7 @@ describe("catalogue du choix", () => {
     expect(new Set(PACKS.map((p) => p.id)).size).toBe(24);
   });
   it("ne garde que des thèmes jouables et tous les niveaux ont des chapitres", () => {
-    for (const t of THEMES) expect(t.n.YEAR).toBeGreaterThanOrEqual(10);
+    for (const t of THEMES) expect(t.n[2].YEAR).toBeGreaterThanOrEqual(10);
     for (const n of NIVEAUX) expect(CHAPITRES.some((c) => c.niveauSlug === n.slug)).toBe(true);
   });
 });
@@ -28,15 +28,15 @@ describe("lireChoix", () => {
     expect(lire("mode=periode&difficulte=YEAR&periode=libre&de=0&a=10")).toBeNull();
     expect(lire("mode=periode&difficulte=YEAR&periode=libre&de=1900&a=1800")).toBeNull();
     expect(lire("mode=periode&difficulte=YEAR&periode=libre&de=&a=")).toBeNull();
-    expect(lire("mode=periode&difficulte=YEAR&periode=libre&de=-500&a=")).toEqual({ mode: "periode", difficulte: "YEAR", periode: "libre", de: -500 });
+    expect(lire("mode=periode&difficulte=YEAR&periode=libre&de=-500&a=")).toEqual({ mode: "periode", difficulte: "YEAR", niveau: 1, periode: "libre", de: -500 });
   });
   it("relit ce qu'il écrit", () => {
     const choix = [
-      { mode: "general", difficulte: "DAY" },
-      { mode: "pack", difficulte: "YEAR", pack: PACKS[3].id },
-      { mode: "theme", difficulte: "MONTH", theme: THEMES[0].id },
-      { mode: "periode", difficulte: "YEAR", periode: "xixe" },
-      { mode: "periode", difficulte: "YEAR", periode: "libre", de: 1789, a: 1815 },
+      { mode: "general", difficulte: "DAY", niveau: 1 },
+      { mode: "pack", difficulte: "YEAR", niveau: 3, pack: PACKS[3].id },
+      { mode: "theme", difficulte: "MONTH", niveau: 2, theme: THEMES[0].id },
+      { mode: "periode", difficulte: "YEAR", niveau: 2, periode: "xixe" },
+      { mode: "periode", difficulte: "YEAR", niveau: 1, periode: "libre", de: 1789, a: 1815 },
       { mode: "scolaire", difficulte: "YEAR", chapitres: [CHAPITRES[0].id, CHAPITRES[1].id] },
     ] as const;
     for (const c of choix) expect(lireChoix(new URLSearchParams(ecrireChoix(c as never)))).toEqual(c);
@@ -46,6 +46,7 @@ describe("lireChoix", () => {
 describe("filtresDepuis", () => {
   it("traduit chaque mode en filtres de start_game", () => {
     expect(filtresDepuis({ mode: "general", difficulte: "YEAR" })).toEqual({ difficulty: "YEAR", questionCount: 10 });
+    expect(filtresDepuis({ mode: "general", difficulte: "YEAR", niveau: 2 })).toEqual({ difficulty: "YEAR", questionCount: 10, niveau: 2 });
     expect(filtresDepuis({ mode: "periode", difficulte: "MONTH", periode: "antiquite" })).toEqual({ difficulty: "MONTH", questionCount: 10, yearMax: 476 });
     expect(filtresDepuis({ mode: "periode", difficulte: "YEAR", periode: "libre", de: 1789, a: 1815 })).toMatchObject({ yearMin: 1789, yearMax: 1815 });
     expect(filtresDepuis({ mode: "pack", difficulte: "YEAR", pack: "COL-0059" })).toMatchObject({ packId: "COL-0059" });
@@ -56,6 +57,21 @@ describe("filtresDepuis", () => {
     expect(difficultePossible({ YEAR: 50, MONTH: 9, DAY: 0 }, "MONTH")).toBe(false);
     expect(difficultePossible(null, "DAY")).toBe(true);
     expect(comptesDe({ mode: "scolaire" })).toBeNull();
+  });
+  it("compte les événements par niveau, de façon cumulée", () => {
+    const [debutant, intermediaire, expert] = ([1, 2, 3] as const).map((niveau) => comptesDe({ mode: "general", niveau })!.YEAR);
+    expect(debutant).toBeGreaterThanOrEqual(200);
+    expect(debutant).toBeLessThan(intermediaire);
+    expect(intermediaire).toBeLessThan(expert);
+    expect(comptesDe({ mode: "pack", pack: "COL-0059", niveau: 1 })).toEqual({ YEAR: 50, MONTH: 50, DAY: 50 });
+  });
+});
+
+describe("niveau dans l'URL", () => {
+  it("prend Débutant quand une ancienne URL n'a pas de niveau, refuse un niveau inventé", () => {
+    expect(lire("mode=general&difficulte=YEAR")).toEqual({ mode: "general", difficulte: "YEAR", niveau: 1 });
+    expect(lire("mode=general&difficulte=YEAR&niveau=4")).toBeNull();
+    expect(lire("mode=scolaire&difficulte=YEAR&chapitres=" + CHAPITRES[0].id)?.niveau).toBeUndefined();
   });
 });
 
@@ -83,7 +99,7 @@ describe("mode inversé", () => {
     expect(lire(ecrireChoix(choix))).toEqual(choix);
     expect(filtresDepuis(choix).direction).toBe("inverse");
   });
-  it("impose la date exacte, même si un ancien choix demande Facile ou Moyen", () => {
+  it("impose la date exacte, même si un ancien choix demande l’année ou le mois", () => {
     expect(lire("mode=general&difficulte=YEAR&sens=inverse")!.difficulte).toBe("DAY");
     expect(lire("mode=general&difficulte=MONTH&sens=inverse")!.difficulte).toBe("DAY");
     expect(lire("mode=general&difficulte=YEAR")!.difficulte).toBe("YEAR");

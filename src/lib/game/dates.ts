@@ -21,7 +21,7 @@ export function formatHistoricDate(date: HistoricDate, precision: Precision): st
   return `${date.day === 1 ? "1er" : date.day} ${mois} ${annee}`;
 }
 
-// Date ramenée à la précision jouée : en Facile on ne parle que de l'année, en Moyen du mois.
+// Date ramenée à la précision jouée : en précision Année on ne parle que de l'année, en Mois du mois.
 export function aLaPrecision(date: HistoricDate, precision: Precision): HistoricDate {
   if (precision === "annee" || date.month == null) return { year: date.year };
   if (precision === "mois" || date.day == null) return { year: date.year, month: date.month };

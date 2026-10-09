@@ -24,6 +24,8 @@ function trouverFichier(dossier: string, nom: string): string {
   return path.join(dossier, fichier);
 }
 
+const FICHIER_NIVEAUX = "content/niveaux-evenements.csv";
+
 const texteOuNull = (v: string | undefined) => (v ? v : null);
 const entierOuNull = (v: string | undefined) => (v ? Number.parseInt(v, 10) : null);
 const liste = (v: string | undefined) =>
@@ -130,6 +132,8 @@ async function importer() {
   const packEvenements = csv("ready-collection-events");
   const tags = csv("tags");
   const evenementTags = csv("event-tags");
+  // Niveau (1 Débutant, 2 Intermédiaire, 3 Expert) et titre affiché pendant la question, tenus à part du dataset.
+  const reglagesEv = new Map(lireCsv(FICHIER_NIVEAUX).map((r) => [r.event_id, r]));
   // Pilote en attente de relecture : jamais envoyé à une base distante.
   // Tout valider avant le premier upsert du dataset.
   const cartes = estUrlLocale(process.env.SUPABASE_URL!) && path.basename(path.resolve(dossier)) === "dataset-v18"
@@ -197,6 +201,8 @@ async function importer() {
       importance: entierOuNull(e.importance),
       difficulty: entierOuNull(e.difficulty),
       source_status: texteOuNull(e.source_status),
+      niveau: entierOuNull(reglagesEv.get(e.event_id)?.niveau) ?? 3,
+      titre_question: texteOuNull(reglagesEv.get(e.event_id)?.titre_question),
       updated_at: new Date().toISOString(),
     })),
     "id",

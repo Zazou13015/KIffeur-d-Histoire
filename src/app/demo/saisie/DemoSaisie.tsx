@@ -9,9 +9,9 @@ import { Bouton } from "@/components/ui/Bouton";
 import { formatHistoricDate, type Precision } from "@/lib/game/dates";
 
 const PRECISIONS: { p: Precision; libelle: string }[] = [
-  { p: "annee", libelle: "Facile · année" },
-  { p: "mois", libelle: "Moyen · mois" },
-  { p: "jour", libelle: "Difficile · jour" },
+  { p: "annee", libelle: "Année" },
+  { p: "mois", libelle: "Mois" },
+  { p: "jour", libelle: "Jour" },
 ];
 
 export function DemoSaisie() {

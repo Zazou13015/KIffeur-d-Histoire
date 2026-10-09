@@ -14,7 +14,7 @@ export type Progression = {
   chapitres: Record<string, ProgressionChapitre>;
 };
 
-export const LIBELLE_DIFFICULTE: Record<SoloDifficulty, string> = { YEAR: "Facile", MONTH: "Moyen", DAY: "Difficile" };
+export const LIBELLE_DIFFICULTE: Record<SoloDifficulty, string> = { YEAR: "Année", MONTH: "Mois", DAY: "Jour" };
 
 /** Un test de chapitre compte au moins 5 questions : en dessous, la précision ne dit rien. */
 export const QUESTIONS_MIN_TEST = 5;

@@ -1,6 +1,6 @@
 ﻿collection_id,slug,title,collection_type,description,source_rule,level,theme_id,active,ready_to_play,target_size,selection_rule_version,membership_confidence
-COL-0059,50-incontournables,50 dates incontournables,READY_PACK,Sélection courte des événements scolaires les plus importants et accessibles.,TOP_N_SCORE,,,TRUE,TRUE,50,V12.1,CURATED_SCORE
-COL-0060,100-incontournables,100 dates incontournables,READY_PACK,"Socle généraliste de 100 événements majeurs, incluant intégralement le pack de 50.",TOP_N_SCORE,,,TRUE,TRUE,100,V12.1,CURATED_SCORE
+COL-0059,50-incontournables,50 dates incontournables,READY_PACK,"Les 50 dates que tout le monde connaît, de l’Antiquité à nos jours.",TOP_N_SCORE,,,TRUE,TRUE,50,V12.1,CURATED_SCORE
+COL-0060,100-incontournables,100 dates incontournables,READY_PACK,"Les 100 dates de culture générale à connaître, dont les 50 incontournables.",TOP_N_SCORE,,,TRUE,TRUE,100,V12.1,CURATED_SCORE
 COL-0061,france,France,READY_PACK,Événements directement rattachés à la France.,HIGH_TAG,,,TRUE,TRUE,,V12.1,HIGH
 COL-0062,europe,Europe,READY_PACK,Événements directement rattachés à l’espace européen.,HIGH_TAG,,,TRUE,TRUE,,V12.1,HIGH
 COL-0063,premiere-guerre-mondiale,Première Guerre mondiale,READY_PACK,Événements du contexte Première Guerre mondiale.,HIGH_CONTEXT,,,TRUE,TRUE,,V12.1,HIGH

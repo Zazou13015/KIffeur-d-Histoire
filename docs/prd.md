@@ -50,7 +50,7 @@ La V1 contient quatre modes solo et aucun multijoueur. Elle est gratuite, sans p
 On peut jouer dès la page d'accueil, sans compte. Le compte sert à garder sa progression.
 
 1. **Accueil** : quatre entrées claires, Solo libre, Solo scolaire, Mode inversé, Apprendre (pédagogique), et un bouton Se connecter.
-2. **Choix** : en solo libre, thème ou période et difficulté ; en scolaire et en pédagogique, le niveau (classe) puis le chapitre.
+2. **Choix** : en solo libre, thème ou période, niveau et précision ; en scolaire et en pédagogique, le niveau (classe) puis le chapitre.
 3. **Partie** : 10 questions par défaut (d'autres longueurs, comme 20 ou une période entière, seront proposées après les premiers tests), avec un chrono de 30 secondes chacune, chacune répondue sur la frise, au clavier ou au calendrier, suivie de la correction (bonne date, écart, courte explication).
 4. **Fin de partie** : score en pourcentage de précision et récapitulatif des questions.
 5. **Sans compte** : un message propose de se connecter pour sauvegarder ; rien n'est conservé après la fermeture.
@@ -62,7 +62,8 @@ Le joueur reçoit un événement illustré et doit le dater ; plus il est proche
 
 - **Frise** : graphiquement simple et sympathique, avec de petits dessins des événements, zoomable façon Google Maps du millénaire jusqu'au jour.
 - **Trois façons de répondre**, équivalentes : taper la date au clavier, choisir dans un calendrier, cliquer sur la frise.
-- **Difficulté** : Facile = l'année, Moyen = le mois, Difficile = le jour. L'écart se mesure dans cette unité.
+- **Précision demandée** : Année, Mois ou Jour. L'écart se mesure dans cette unité.
+- **Niveau** (solo libre et mode inversé, 9 oct. 2026) : chaque événement est classé Débutant (dates connues de tous, programme scolaire), Intermédiaire ou Expert (dates de niche). Une partie Débutant ne tire que des événements Débutant, Intermédiaire tire Débutant et Intermédiaire, Expert tire tout. Classement dans `content/niveaux-evenements.csv`. Le mode scolaire suit le programme, sans niveau.
 - **Score** : précision en pourcentage et points tenant compte du chrono (voir Score et chrono).
 - **Correction** : après chaque réponse, la bonne date s'affiche sur la frise à côté de celle du joueur, avec une phrase d'explication.
 - **Dates av. J.-C.** : gérées partout (affichage « 44 av. J.-C. », pas d'année 0).
@@ -83,13 +84,13 @@ P = 100 \times \max\left(0,\ 1 - \frac{\text{écart}}{E_0}\right)
 \text{points} = P \times \left(0{,}7 + 0{,}3 \times \frac{t_{\text{restant}}}{30}\right)
 ```
 
-| Difficulté | Unité | E₀ (écart qui vaut 0 %) |
+| Précision | Unité | E₀ (écart qui vaut 0 %) |
 | --- | --- | --- |
-| Facile | année | 50 ans |
-| Moyen | mois | 36 mois |
-| Difficile | jour | 90 jours |
+| Année | année | 50 ans |
+| Mois | mois | 36 mois |
+| Jour | jour | 90 jours |
 
-Exemple : armistice de 1918 en Facile, le joueur répond 1914 en 10 secondes. Écart de 4 ans, donc 92 % de précision ; il reste 20 s, donc multiplicateur 0,9 et 83 points.
+Exemple : armistice de 1918 en précision Année, le joueur répond 1914 en 10 secondes. Écart de 4 ans, donc 92 % de précision ; il reste 20 s, donc multiplicateur 0,9 et 83 points.
 
 En fin de partie : précision moyenne en pourcentage et total des points (1 000 au maximum pour 10 questions). Le mode inversé compte 100 % pour une bonne réponse, 0 % sinon, avec le même bonus de rapidité.
 
@@ -100,7 +101,7 @@ Les quatre modes partagent le contenu et la frise, et les modes de datation part
 ### Solo libre
 
 - Pour le grand public : on joue contre soi-même, sans cadre scolaire.
-- Filtres : général (tout mélangé), par période (siècle, décennie, millénaire, guerre mondiale) ou par thème, plus la difficulté.
+- Filtres : général (tout mélangé), par période (siècle, décennie, millénaire, guerre mondiale) ou par thème, plus le niveau et la précision.
 - Au lancement, le contenu disponible est celui de la base issue des programmes, rangé par thèmes et périodes ; chaque nouveau pack de thèmes y apparaît dès son ajout.
 
 ### Solo scolaire

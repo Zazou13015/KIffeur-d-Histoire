@@ -24,9 +24,9 @@ export function Badge({ ton = "neutre", children }: { ton?: Ton; children: React
 export type Difficulte = "facile" | "moyen" | "difficile";
 
 const DIFFICULTES: Record<Difficulte, { libelle: string; ton: Ton }> = {
-  facile: { libelle: "Facile", ton: "sauge" },
-  moyen: { libelle: "Moyen", ton: "laiton" },
-  difficile: { libelle: "Difficile", ton: "oxyde" },
+  facile: { libelle: "Année", ton: "sauge" },
+  moyen: { libelle: "Mois", ton: "laiton" },
+  difficile: { libelle: "Jour", ton: "oxyde" },
 };
 
 export function BadgeDifficulte({ niveau }: { niveau: Difficulte }) {

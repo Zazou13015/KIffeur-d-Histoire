@@ -1,6 +1,8 @@
 // Contrat des RPC solo. Le calcul et les transitions restent entièrement en SQL.
 export type SoloDifficulty = "YEAR" | "MONTH" | "DAY";
 export type SoloDirection = "date" | "inverse";
+/** Niveau de la partie : 1 Débutant, 2 Intermédiaire (niveaux 1 et 2), 3 Expert (tous les événements). */
+export type SoloNiveau = 1 | 2 | 3;
 export type SoloFilters = {
   direction?: SoloDirection;
   packId?: string;
@@ -10,6 +12,8 @@ export type SoloFilters = {
   levelId?: string;
   chapterIds?: string[];
   difficulty?: SoloDifficulty;
+  /** Absent : aucun filtre de niveau (mode scolaire). */
+  niveau?: SoloNiveau;
   questionCount?: number;
   /** Test d'un chapitre : le serveur ne tire que parmi les événements de ses cartes pédagogiques. */
   chapterTest?: boolean;

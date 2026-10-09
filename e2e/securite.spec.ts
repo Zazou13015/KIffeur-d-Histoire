@@ -5,6 +5,12 @@ import { attendreQuestion, idPartie, questionsEnBase, repondreAuClavier, type Qu
 // Sécurité (#27) : tant que la question n'est pas corrigée, aucune réponse reçue par le navigateur
 // (pages, Server Actions, navigations) ne contient la date attendue, ni, en mode inversé, le titre ou un alias.
 
+// Une Server Action encore en vol à la fin d'un test (ex. « Voir le bilan ») ne doit pas faire
+// échouer le test : on retire l'interception en ignorant les requêtes inachevées.
+test.afterEach(async ({ page }) => {
+  await page.unrouteAll({ behavior: "ignoreErrors" });
+});
+
 /** Intercepte les réponses du site ; `fenetre()` rend les corps reçus depuis le dernier `ouvrir()`. */
 async function ecouterReseau(page: Page) {
   let enCours: Promise<string>[] = [];

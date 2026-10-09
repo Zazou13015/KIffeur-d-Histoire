@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import AccountForm from "@/components/AccountForm";
+import LiensLegaux from "@/components/LiensLegaux";
 import GoogleSignInButton from "@/app/connexion/GoogleSignInButton";
 import { safeNextPath } from "@/lib/authRedirect";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
@@ -15,5 +16,6 @@ export default async function InscriptionPage({ searchParams }: PageProps<"/insc
     <AccountForm kind="register" next={destination} />
     <GoogleSignInButton next={destination} />
     <Link href={`/connexion?next=${encodeURIComponent(destination)}`}>J’ai déjà un compte</Link>
+    <LiensLegaux />
   </main>;
 }

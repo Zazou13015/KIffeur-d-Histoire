@@ -10,7 +10,9 @@ Comptes partagés, pseudo global, inscription/reset et sauvegarde des parties :
 [docs/comptes.md](docs/comptes.md). La migration #24 et ses fixtures sont testées
 uniquement en local/CI ; aucune base distante n’est modifiée par cette livraison.
 
-Profil, historique privé, statistiques et raccordement pédagogique après #23 :
+Se tester sur un chapitre et suivre sa progression (#23) : [docs/progression.md](docs/progression.md).
+
+Profil, historique privé et statistiques :
 [docs/profil-statistiques.md](docs/profil-statistiques.md). La migration #25 est
 appliquée sur KFFR le 8 octobre 2026 après GO explicite, puis vérifiée sur l’aperçu
 avec une session réelle et une partie filtrée complète. La PR reste à relire.

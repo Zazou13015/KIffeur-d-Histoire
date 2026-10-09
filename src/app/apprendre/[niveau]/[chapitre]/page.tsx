@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { CHAPITRES, trouverChapitre } from "@/lib/apprendre/catalogue";
 import { chargerCartesChapitre } from "@/lib/apprendre/cartes-serveur";
+import { SuiviDecouverte } from "@/components/pedagogie/SuiviDecouverte";
 import { DecouvrirChapitre } from "@/components/pedagogie/DecouvrirChapitre";
 
 export const dynamic = "force-static";
@@ -21,6 +22,7 @@ export default async function ChapitrePage({ params }: PageProps<"/apprendre/[ni
   const cartes = await chargerCartesChapitre(c.id);
   if (!cartes.length) notFound();
   return <main className="flex flex-1 flex-col">
-    <DecouvrirChapitre cartes={cartes} chapitre={{ titre: c.titre, niveau: c.niveau }} />
+    <DecouvrirChapitre cartes={cartes} chapitre={{ id: c.id, titre: c.titre, niveau: c.niveau }} />
+    <SuiviDecouverte chapitre={c.id} />
   </main>;
 }

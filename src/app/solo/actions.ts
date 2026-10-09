@@ -36,18 +36,26 @@ export async function startGame(filters: SoloFilters = {}): Promise<SoloGame> {
   const account = await getAccount();
   if (account && !account.username) throw new Error("Choisis ton pseudo KFFR dans le profil avant de lancer une partie connectée.");
   const token = randomBytes(32).toString("hex");
-  const game = await rpc<SoloGame>("start_game", {
-    p_token: token,
-    p_pack_id: filters.packId ?? null,
-    p_tag_id: filters.tagId ?? null,
-    p_year_min: filters.yearMin ?? null,
-    p_year_max: filters.yearMax ?? null,
-    p_level_id: filters.levelId ?? null,
-    p_chapter_ids: filters.chapterIds ?? null,
-    p_difficulty: filters.difficulty ?? "YEAR",
-    p_question_count: filters.questionCount ?? 10,
-    p_direction: filters.direction ?? "date",
-  });
+  // Test de chapitre : fonction dédiée, qui ne tire que parmi les événements des cartes du chapitre.
+  const game = filters.chapterTest && filters.chapterIds?.length === 1
+    ? await rpc<SoloGame>("start_chapter_test", {
+      p_token: token,
+      p_chapter_id: filters.chapterIds[0],
+      p_difficulty: filters.difficulty ?? "YEAR",
+      p_question_count: filters.questionCount ?? 10,
+    })
+    : await rpc<SoloGame>("start_game", {
+      p_token: token,
+      p_pack_id: filters.packId ?? null,
+      p_tag_id: filters.tagId ?? null,
+      p_year_min: filters.yearMin ?? null,
+      p_year_max: filters.yearMax ?? null,
+      p_level_id: filters.levelId ?? null,
+      p_chapter_ids: filters.chapterIds ?? null,
+      p_difficulty: filters.difficulty ?? "YEAR",
+      p_question_count: filters.questionCount ?? 10,
+      p_direction: filters.direction ?? "date",
+    });
   if (game.anonymous) {
     (await cookies()).set(cookieName(game.game_id), token, {
       httpOnly: true,

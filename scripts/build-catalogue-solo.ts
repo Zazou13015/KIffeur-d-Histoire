@@ -69,7 +69,16 @@ for (const l of csv("curriculum-links")) {
   const id = redirection.get(l.event_id) ?? l.event_id;
   contenuChapitres.set(l.theme_id, [...(contenuChapitres.get(l.theme_id) ?? []), id]);
 }
-const chapitres = Object.fromEntries([...contenuChapitres].sort().map(([id, ids]) => [id, { n: deListe(ids), b: bornes(deIds(ids)) }]));
+// Test d'un chapitre (#23) : seulement les événements de ses cartes pédagogiques, ce que le joueur vient d'apprendre.
+const cartesChapitres = new Map<string, string[]>();
+for (const c of lireCsv(join(import.meta.dirname, "..", "content", "pedagogie", "cartes-v1.csv"))) {
+  if (!c.event_id) continue;
+  cartesChapitres.set(c.chapter_id, [...(cartesChapitres.get(c.chapter_id) ?? []), redirection.get(c.event_id) ?? c.event_id]);
+}
+const chapitres = Object.fromEntries([...contenuChapitres].sort().map(([id, ids]) => {
+  const test = cartesChapitres.get(id) ?? [];
+  return [id, { n: deListe(ids), b: bornes(deIds(ids)), t: deListe(test), tb: bornes(deIds(test)) }];
+}));
 
 const catalogue = { general: compter(evenements), packs, themes, periodes, bornesPeriodes, chapitres };
 writeFileSync(join(import.meta.dirname, "..", "src", "lib", "solo", "catalogue.json"), `${JSON.stringify(catalogue, null, 1)}\n`);

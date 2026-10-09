@@ -7,7 +7,7 @@ import { GraphiquePrecision } from "@/components/profil/GraphiquePrecision";
 import { historique, statistiques, statistiquesVides } from "./fixtures/profil";
 afterEach(cleanup);
 it("affiche les valeurs connues, les répartitions et les contextes sans faux progrès pédagogique", () => {
-  render(<Statistiques data={statistiques} />);
+  render(<Statistiques data={statistiques} progression={{ connecte: true, chapitres: {} }} />);
   expect(screen.getByText("720")).toBeTruthy();
   expect(screen.getAllByText("900").length).toBeGreaterThan(0);
   expect(screen.getAllByText("80 %")).toHaveLength(2);
@@ -15,8 +15,9 @@ it("affiche les valeurs connues, les répartitions et les contextes sans faux pr
   expect(screen.getByText("Révolutions")).toBeTruthy();
   expect(screen.getByText("La Révolution française")).toBeTruthy();
   expect(screen.getByText(/1 partie ancienne/)).toBeTruthy();
-  expect(screen.getByText(/disponible prochainement/)).toBeTruthy();
-  expect(screen.queryByText(/chapitres découverts :/)).toBeNull();
+  // Sans progression enregistrée : un état vide, aucun chapitre ni score inventé.
+  expect(screen.getByText(/Un premier chapitre, puis des repères/)).toBeTruthy();
+  expect(screen.queryByText(/sur 41/)).toBeNull();
 });
 it("propose de jouer sans afficher de moyenne ou record fabriqué pour un joueur sans partie", () => {
   render(<Statistiques data={statistiquesVides} />);

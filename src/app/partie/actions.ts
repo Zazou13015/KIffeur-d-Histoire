@@ -2,7 +2,8 @@
 
 import { redirect } from "next/navigation";
 import { startGame } from "@/app/solo/actions";
-import { ecrireChoix, filtresDepuis, lireChoix } from "@/lib/solo/choix";
+import { cheminChapitre } from "@/lib/apprendre/catalogue";
+import { CHAPITRES, ecrireChoix, filtresDepuis, lireChoix } from "@/lib/solo/choix";
 
 // Lance une partie solo depuis /solo, /scolaire ou le bouton « Rejouer » du bilan, puis ouvre l'écran de partie.
 // Le choix est relu et validé ici : le formulaire ne fait jamais foi.
@@ -15,6 +16,9 @@ export async function lancer(formData: FormData) {
   const scolaire = choix?.mode === "scolaire" || champs.get("mode") === "scolaire";
   // Le mode inversé a son propre écran de choix, avec les mêmes filtres que le solo.
   const origine = champs.get("sens") === "inverse" ? (scolaire ? "/inverse?type=scolaire" : "/inverse") : scolaire ? "/scolaire" : "/solo";
+  // Un test de chapitre repart du chapitre quand le pseudo manque ; les erreurs s'affichent sur /scolaire (la page du chapitre est statique).
+  const chapitreTeste = choix?.test ? CHAPITRES.find((c) => c.id === choix.chapitres?.[0]) : undefined;
+  const retourPseudo = chapitreTeste ? cheminChapitre(chapitreTeste) : origine;
   const erreur = (code: string) => `${origine}${origine.includes("?") ? "&" : "?"}erreur=${code}`;
   if (!choix) redirect(erreur("choix"));
 
@@ -25,7 +29,7 @@ export async function lancer(formData: FormData) {
   } catch (e) {
     const message = e instanceof Error ? e.message : "";
     destination = message.includes("pseudo")
-      ? `/profil?next=${encodeURIComponent(origine)}`
+      ? `/profil?next=${encodeURIComponent(retourPseudo)}`
       : erreur(message.includes("Pas assez") ? "peu" : "1");
   }
   // redirect() lève une exception : il reste hors du try.

@@ -6,10 +6,11 @@ import {
   type Statistiques as DonneesStatistiques,
 } from "@/lib/profil/types";
 import { GraphiquePrecision } from "./GraphiquePrecision";
+import type { Progression } from "@/lib/progression/types";
 import { ProgressionPedagogique } from "./ProgressionPedagogique";
 import styles from "./Profil.module.css";
 
-export function Statistiques({ data }: { data: DonneesStatistiques }) {
+export function Statistiques({ data, progression = null }: { data: DonneesStatistiques; progression?: Progression | null }) {
   return (
     <div className={styles.stack}>
       <section aria-labelledby="statistiques-titre">
@@ -174,7 +175,7 @@ export function Statistiques({ data }: { data: DonneesStatistiques }) {
           )}
         </section>
       )}
-      <ProgressionPedagogique />
+      <ProgressionPedagogique progression={progression} />
     </div>
   );
 }

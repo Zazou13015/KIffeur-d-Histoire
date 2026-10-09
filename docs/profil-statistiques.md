@@ -112,14 +112,11 @@ sans suppression ni modification manuelle de score.
 Les fixtures/tests SQL complets ci-dessous ne vont jamais sur KFFR. #77 n’est
 pas fusionnée : l’application SQL n’autorise pas la fusion de la PR.
 
-## Après #23
+## Progression pédagogique (#23)
 
-`ProgressionPedagogique.tsx` est un bloc isolé, sans données factices. Il reste à
-brancher le contrat réel de #23 : chapitres découverts, meilleur test par
-chapitre et niveau. Lire ces données sous l’identité Auth et ajouter les tests
-de sécurité et les états vide/erreur correspondants. Ne pas déduire des visites
-ou un test pédagogique à partir des parties scolaires historiques. Aucun modèle
-de progression parallèle ni modification de #23 dans cette PR. #25 reste ouverte.
+`ProgressionPedagogique` affiche les chapitres découverts et le meilleur test par chapitre, lus sous
+l'identité Auth dans `histoire.learning_progress` (RLS). Voir [progression.md](progression.md). Une
+lecture impossible n'invente aucun zéro : un message dédié s'affiche et le reste du carnet reste lisible.
 
 ## Validation reproductible
 

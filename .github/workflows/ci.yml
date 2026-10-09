@@ -49,6 +49,32 @@ jobs:
       - if: always()
         run: npx supabase stop --no-backup
 
+  # Parcours V1 joués dans un vrai navigateur (#27), sur une pile Supabase locale jetable.
+  tests-bout-en-bout:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      # Les clés éphémères du démarrage restent dans le runner, pas dans les logs.
+      - run: npx supabase start --exclude studio,logflare,vector,supavisor,edge-runtime,imgproxy,realtime,storage-api,postgres-meta,mailpit > /tmp/supabase-local-start.txt
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+      - if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rapport-bout-en-bout
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 7
+      - if: always()
+        run: npx supabase stop --no-backup
+
   tests-sql:
     runs-on: ubuntu-latest
     services:

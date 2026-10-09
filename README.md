@@ -56,6 +56,7 @@ Le tableau de bord Supabase local est sur http://127.0.0.1:54323 (tu peux y cré
 | `npm run db:test-solo-retention` | Vérifie l'expiration à 24 h, la purge/cascade et le budget anonyme sans modifier les parties connectées |
 | `npm run db:test-inverse` | Vérifie le mode inversé, les dates distinctes, la tolérance, le score et la sécurité des questions |
 | `scripts/tests-sql.sh` | Sans Docker, sur un Postgres vide : applique migrations + seed et lance tous les tests SQL (c'est ce que fait la CI) |
+| `npm run test:e2e` | Après `npm run db:start` : importe le dataset et les cartes dans la base locale, crée un compte fictif, compile le site et joue les parcours V1 dans Chromium, en 1280 px et 375 px (solo libre, solo scolaire, mode inversé, apprendre puis se tester, connexion puis statistiques), plus le test « aucune réponse visible dans le réseau avant la correction ». Tests dans `e2e/`, lancés à chaque PR par la CI |
 
 ## Travailler à deux
 

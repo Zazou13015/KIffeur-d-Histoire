@@ -1,9 +1,9 @@
 "use server";
 
-import { randomBytes } from "node:crypto";
+import { randomBytes, randomUUID } from "node:crypto";
 import { cookies } from "next/headers";
 import { createClient } from "@/lib/supabase/server";
-import type { SoloCorrection, SoloDate, SoloFilters, SoloGame, SoloQuestion, SoloResult } from "@/lib/game/solo";
+import type { MethodeSaisie, SoloCorrection, SoloDate, SoloFilters, SoloGame, SoloQuestion, SoloResult } from "@/lib/game/solo";
 import { getAccount } from "@/lib/account";
 
 function cookieName(gameId: string) {
@@ -30,6 +30,34 @@ async function rpc<T>(name: string, args: Record<string, unknown>): Promise<T> {
       : "Impossible d'effectuer cette action de partie");
   }
   return data as T;
+}
+
+// Indicateurs (#26) : un identifiant tiré au hasard par navigateur, sans donnée personnelle,
+// pour compter sessions, retours et passages au compte. Durée de vie : 13 mois au plus.
+const VISITEUR = "histoire-visiteur";
+const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+async function visiteur(): Promise<string> {
+  const store = await cookies();
+  const actuel = store.get(VISITEUR)?.value;
+  if (actuel && UUID.test(actuel)) return actuel;
+  const nouveau = randomUUID();
+  store.set(VISITEUR, nouveau, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    path: "/",
+    maxAge: 60 * 60 * 24 * 395,
+  });
+  return nouveau;
+}
+
+// La mesure ne doit jamais empêcher de jouer : ses erreurs sont ignorées.
+async function mesurer(name: string, args: Record<string, unknown>) {
+  try {
+    const supabase = await createClient();
+    await supabase.schema("histoire").rpc(name, args);
+  } catch {}
 }
 
 export async function startGame(filters: SoloFilters = {}): Promise<SoloGame> {
@@ -65,6 +93,7 @@ export async function startGame(filters: SoloFilters = {}): Promise<SoloGame> {
       // Cookie de session, sans expiration persistante.
     });
   }
+  await mesurer("kpi_noter_visiteur", { p_game_id: game.game_id, p_visitor: await visiteur(), p_token: token });
   return game;
 }
 
@@ -74,14 +103,21 @@ export async function nextQuestion(gameId: string): Promise<SoloQuestion | null>
 }
 
 // null = constater l'expiration (0 point) et voir la correction.
-export async function submitAnswer(gameId: string, questionId: string, answer: SoloDate | string | null): Promise<SoloCorrection> {
+// `methode` : frise ou clavier, notée après la correction pour les indicateurs (#26).
+export async function submitAnswer(
+  gameId: string, questionId: string, answer: SoloDate | string | null, methode?: MethodeSaisie | null,
+): Promise<SoloCorrection> {
   const token = (await cookies()).get(cookieName(gameId))?.value ?? null;
   const date = typeof answer === "string" ? null : answer;
-  return rpc("submit_answer", {
+  const correction = await rpc<SoloCorrection>("submit_answer", {
     p_game_id: gameId, p_question_id: questionId, p_token: token,
     p_year: date?.year ?? null, p_month: date?.month ?? null, p_day: date?.day ?? null,
     p_answer_text: typeof answer === "string" ? answer : null,
   });
+  if (date && methode && !correction.expired) {
+    await mesurer("kpi_noter_saisie", { p_game_id: gameId, p_question_id: questionId, p_method: methode, p_token: token });
+  }
+  return correction;
 }
 
 export async function finishGame(gameId: string): Promise<SoloResult> {

@@ -175,6 +175,11 @@ mais sont inaccessibles. Aucun planificateur distant n'est ajouté.
 ### Partie pédagogique
 Contenu majoritairement statique (chapitres, cartes) : pages Next.js générées et mises en cache, donc rapides et peu coûteuses. Le mode « se tester » réutilise le moteur solo filtré sur un chapitre ; « affronter ses camarades » réutilise le lobby, avec un code de salon à partager en classe.
 
+### Indicateurs de réussite
+Journal durable `kpi_games` (trigger sur `games`, survit à la purge des anonymes), vues `kpi_*`
+réservées à `admin_indicateurs()` et page `/admin/indicateurs` pour les comptes de `admins`.
+Détails : [Indicateurs](indicateurs.md).
+
 ## 6. Organisation du code et travail à deux
 
 ```

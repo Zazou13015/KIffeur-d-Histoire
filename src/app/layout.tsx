@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Atkinson_Hyperlegible, Big_Shoulders, JetBrains_Mono, Young_Serif } from "next/font/google";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
 import AccountHeader from "@/components/AccountHeader";
 
 // Polices de la charte : titres, texte courant, dates, étiquettes techniques.
@@ -21,7 +22,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="fr"
       className={`${titre.variable} ${texte.variable} ${date.variable} ${mono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col"><AccountHeader />{children}</body>
+      <body className="min-h-full flex flex-col">
+        <AccountHeader />
+        {children}
+        {/* Pages vues et visiteurs (#26), sans cookie ; à activer dans l'onglet Analytics de Vercel. */}
+        <Analytics />
+      </body>
     </html>
   );
 }

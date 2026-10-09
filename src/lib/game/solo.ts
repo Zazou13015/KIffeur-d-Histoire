@@ -14,6 +14,8 @@ export type SoloFilters = {
   /** Test d'un chapitre : le serveur ne tire que parmi les événements de ses cartes pédagogiques. */
   chapterTest?: boolean;
 };
+/** Façon dont une réponse datée a été donnée (indicateurs #26). Pas de calendrier en V1. */
+export type MethodeSaisie = "frise" | "clavier" | "calendrier";
 export type SoloDate = { year: number; month?: number | null; day?: number | null };
 export type SoloGame = {
   game_id: string;

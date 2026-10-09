@@ -79,3 +79,28 @@
 .outilsBas { right: 8px; background: var(--color-blanc-cartel); }
 .outilsBas > div { flex-direction: row; }
 .outilsBas button { width: 36px; height: 36px; font-size: 18px; }
+
+/* ---------- Téléphone et tablette (#28) ---------- */
+/* Au doigt, le losange de la réponse se saisit sur une zone plus large que son dessin. */
+.losange::before { content: ""; position: absolute; inset: -12px; }
+.outilsBas button { width: 44px; height: 44px; }
+
+/* Téléphone debout : Quitter à gauche et le zoom à droite sur une rangée, la question dessous sur toute la largeur. */
+@media (max-width: 600px) {
+  .zoneScene { padding: 58px 12px 0; }
+  .outilsScene { top: 6px; right: 12px; }
+  .outilsScene > div { flex-direction: row; }
+  .zoneSous { padding: 0 12px; }
+  .zoneBas { padding: 8px 12px 10px; }
+}
+
+/* Écran bas (téléphone couché) : la question sur une ligne entre Quitter et le zoom,
+   la bande des époques et la réponse côte à côte en bas. */
+@media (max-height: 500px) and (min-width: 601px) {
+  .zoneScene { padding: 6px 118px 0 92px; }
+  .outilsScene { top: 6px; right: 12px; }
+  .outilsScene > div { flex-direction: row; }
+  .zoneBasScene { display: flex; align-items: flex-end; gap: 10px; padding: 0 12px 8px; }
+  .zoneSous { flex: 1 1 0; min-width: 230px; padding: 0; }
+  .zoneBas { flex: 1.6 1 0; min-width: 0; padding: 0; }
+}

@@ -13,6 +13,7 @@ import { BandeEpoques } from "./BandeEpoques";
 import { useSaisieFrise } from "@/components/saisie/useSaisieFrise";
 import { ChronoCirculaire } from "@/components/ui/ChronoCirculaire";
 import { SaisieDate } from "./SaisieDate";
+import { useSaisieVisible } from "./useSaisieVisible";
 import s from "./partie.module.css";
 
 // Ce que le navigateur sait d'une question : jamais la date attendue, ni la description avant la réponse.
@@ -68,6 +69,8 @@ export function EcranPartie({ question, corriger, chrono, suivante, bornes }: Pr
   const { champs, reponse, methode, complete, setEnSaisie, enSaisie, changerChamps, poserSurFrise, reinitialiser } = useSaisieFrise(precision, controle);
   const enCours = useRef(false);
   const expireTente = useRef(false);
+  const ecran = useRef<HTMLElement>(null);
+  useSaisieVisible(ecran);
 
   async function envoyer(rep: HistoricDate | null) {
     if (enCours.current) return;
@@ -169,7 +172,7 @@ export function EcranPartie({ question, corriger, chrono, suivante, bornes }: Pr
           <strong>{question.titre}</strong>
         </div>
       </div>
-      <div data-superposition className={`${s.boite} ${s.colonneSaisie}`}>
+      <div data-superposition data-corrige={correction ? "" : undefined} className={`${s.boite} ${s.colonneSaisie}`}>
         <SaisieDate
           precision={precision}
           champs={champs}
@@ -222,7 +225,7 @@ export function EcranPartie({ question, corriger, chrono, suivante, bornes }: Pr
   );
 
   return (
-    <section className={s.jeu} aria-label="Écran de partie">
+    <section ref={ecran} className={s.jeu} aria-label="Écran de partie">
       <Frise
         precision={precision}
         controle={controle}

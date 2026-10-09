@@ -10,6 +10,7 @@ import { Frise } from "@/components/frise/Frise";
 import { useVue } from "@/components/frise/useVue";
 import { ChronoCirculaire } from "@/components/ui/ChronoCirculaire";
 import { BandeEpoques } from "./BandeEpoques";
+import { useSaisieVisible } from "./useSaisieVisible";
 import s from "./partie.module.css";
 
 // Mode inversé : la date est donnée (en grand et sur la frise), le joueur écrit l'événement.
@@ -47,6 +48,8 @@ export function EcranInverse({ question, corriger, chrono, suivante, bornes }: P
   const [restant, setRestant] = useState(chrono ? chrono.totalMs / 1000 : 0);
   const enCours = useRef(false);
   const expireTente = useRef(false);
+  const ecran = useRef<HTMLElement>(null);
+  useSaisieVisible(ecran);
 
   async function envoyer(rep: string | null) {
     if (enCours.current) return;
@@ -219,7 +222,7 @@ export function EcranInverse({ question, corriger, chrono, suivante, bornes }: P
   );
 
   return (
-    <section className={s.jeu} aria-label="Écran de partie, mode inversé">
+    <section ref={ecran} className={s.jeu} aria-label="Écran de partie, mode inversé">
       <Frise
         precision={precision}
         mode="lecture"

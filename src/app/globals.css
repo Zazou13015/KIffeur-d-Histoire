@@ -120,6 +120,15 @@ button {
   min-width: 44px;
 }
 
+/* Écran tactile (téléphone, tablette) : chaque commande se touche au doigt, 44 px de haut au moins (#28).
+   Les liens dans le texte restent en ligne (min-height ne s'applique pas à eux). */
+@media (pointer: coarse) {
+  button, select, [role="button"],
+  input:not([type="checkbox"], [type="radio"], [type="hidden"], [type="range"]) {
+    min-height: 44px;
+  }
+}
+
 /* Les animations de transition sont coupées pour qui le demande */
 @media (prefers-reduced-motion: reduce) {
   *,

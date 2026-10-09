@@ -29,7 +29,7 @@ function disposition(EPOQUES: Epoque[], etroit: boolean) {
   return { poids, position };
 }
 
-const ETROIT = "(max-width: 600px)";
+const ETROIT = "(max-width: 600px), (max-height: 500px)";
 function useEtroit() {
   return useSyncExternalStore(
     (rappel) => {
@@ -84,8 +84,9 @@ export function BandeEpoques({ vue, animer, bornes = VUE_DE_BASE }: { vue: Vue; 
         })}
         <div className={s.fenetre} style={{ left: `${l}%`, width: `${Math.max(0.4, r - l)}%` }} />
       </div>
-      <button type="button" className={tout ? `${s.tout} ${s.active}` : s.tout} onClick={() => animer(bornes.debut, bornes.fin)}>
-        {periode ? "Toute la période" : "Toute l\u2019histoire"}
+      <button type="button" className={tout ? `${s.tout} ${s.active}` : s.tout} aria-label={periode ? "Toute la période" : "Toute l\u2019histoire"} onClick={() => animer(bornes.debut, bornes.fin)}>
+        <span className={s.long}>{periode ? "Toute la période" : "Toute l\u2019histoire"}</span>
+        <span className={s.court}>Tout</span>
       </button>
     </div>
   );

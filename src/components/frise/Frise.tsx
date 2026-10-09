@@ -104,6 +104,8 @@ export function Frise({
   const [hauteur, setHauteur] = useState(0);
   const [hautHaut, setHautHaut] = useState(0);
   const [hautBas, setHautBas] = useState(0);
+  // Hauteur disponible autour de la frise (l'écran de jeu) : sur un petit écran, l'axe se rapproche des boîtes.
+  const [ecran, setEcran] = useState(0);
   const refHaut = useRef<HTMLDivElement>(null);
   const refBas = useRef<HTMLDivElement>(null);
   const [fantome, setFantome] = useState<{ x: number; date: HistoricDate } | null>(null);
@@ -136,12 +138,14 @@ export function Frise({
       setHauteur(el.clientHeight);
       setHautHaut(refHaut.current?.offsetHeight ?? 0);
       setHautBas(refBas.current?.offsetHeight ?? 0);
+      setEcran(el.parentElement?.clientHeight ?? 0);
     };
     mesurer();
     const ro = new ResizeObserver(mesurer);
     ro.observe(el);
     if (refHaut.current) ro.observe(refHaut.current);
     if (refBas.current) ro.observe(refBas.current);
+    if (el.parentElement) ro.observe(el.parentElement);
     return () => ro.disconnect();
   }, []);
 
@@ -202,7 +206,8 @@ export function Frise({
     const g = glisse.current;
     if (!g) return;
     const dx = e.clientX - g.x;
-    if (Math.abs(dx) > 4) {
+    // Au doigt, un appui bouge toujours un peu : on tolère davantage avant de parler de glissement.
+    if (Math.abs(dx) > (e.pointerType === "mouse" ? 4 : 10)) {
       g.bouge = true;
       setFantome(null);
     }
@@ -220,6 +225,10 @@ export function Frise({
     if (pointeurs.current.size === 0) {
       glisse.current = null;
       pincement.current = null;
+    } else if (pincement.current && pointeurs.current.size === 1) {
+      // Fin d'un pincement : le doigt restant reprend le glissement d'où il est, sans saut ni réponse posée.
+      const [x] = [...pointeurs.current.values()];
+      glisse.current = { x, vue: vueRef.current, bouge: true, losange: false };
     }
   }
 
@@ -264,9 +273,18 @@ export function Frise({
   const scene = remplir || haut != null || bas != null || sous != null;
   // La frise remplit l'écran : l'axe descend au-dessus des boîtes du bas, le ciel du décor occupe tout l'espace au-dessus.
   const ciel = hautHaut + 16;
+  // Place gardée au-dessus de l'axe (décor, bandeau des époques) et dessous (graduations, étiquettes des réponses).
+  // Écran trop petit pour la place habituelle (téléphone, tablette en paysage) : la frise se resserre au lieu de défiler.
+  const serre = ecran > 0 && ecran < ciel + hautBas + 200 + 140;
+  const paysage = serre && ecran < 420;
+  const cielMin = serre ? (paysage ? 52 : 110) : 200;
+  const sousAxe = serre ? 118 : 140;
   // Sans boîte en bas (`remplir`), l'axe descend jusqu'aux graduations.
-  const axeY = !scene ? 210 : remplir && bas == null && sous == null ? Math.max(ciel + 150, hauteur - 54) : Math.max(ciel + 200, hauteur - hautBas - 140);
+  const axeY = !scene ? 210 : remplir && bas == null && sous == null ? Math.max(ciel + 150, hauteur - 54) : Math.max(ciel + cielMin, hauteur - hautBas - sousAxe);
   const decalage = axeY - 210;
+  // Étiquette de la bonne réponse : sous la boîte du haut ; sans assez de ciel, la correction du bas suffit.
+  const hautPuce = scene ? Math.max(12, ciel - decalage) : 12;
+  const avecPuce = hautPuce <= 110;
   const echelleDecor = scene ? clamp((axeY - ciel) / 220, 1, 1.7) : 1;
   const placerMotif = (haut: number, taille: number) => {
     if (!scene) return { top: haut, taille };
@@ -303,7 +321,7 @@ export function Frise({
       <div
         ref={ref}
         className={`${selection ? s.frise : `${s.frise} ${s.lecture}`}${scene ? ` ${s.scene}` : ""}`}
-        style={scene ? { minHeight: remplir && bas == null && sous == null ? hautHaut + 240 : hautHaut + hautBas + 380 } : undefined}
+        style={scene ? { minHeight: remplir && bas == null && sous == null ? hautHaut + 240 : ciel + cielMin + sousAxe + hautBas } : undefined}
         aria-label={
           selection
             ? "Frise chronologique : molette pour zoomer, glisser pour se déplacer, cliquer pour placer sa réponse"
@@ -360,7 +378,7 @@ export function Frise({
         <div className={s.axe} />
         {rappel && <div className={`${s.rappel} date`}>{rappel}</div>}
 
-        {!aDesMarqueurs && decor(vue, largeur, scene ? 90 : 34).map((m) => {
+        {!aDesMarqueurs && !paysage && decor(vue, largeur, scene ? 90 : 34).map((m) => {
           const { top, taille } = placerMotif(m.haut, m.taille);
           return (
             <div
@@ -422,11 +440,15 @@ export function Frise({
 
         {correction && bonne && (
           <>
-            <div className={s.tige} style={{ left: xBonne }} />
-            <div className={s.puce} style={{ left: clamp(xBonne, largeurPuce / 2 + 2, largeur - largeurPuce / 2 - 2) }}>
-              <span className="date">{dateCourte(bonne)}</span>
-              {correction.titre}
-            </div>
+            {avecPuce && (
+              <>
+                <div className={s.tige} style={{ left: xBonne, top: hautPuce + 56, height: 124 - hautPuce }} />
+                <div className={s.puce} style={{ left: clamp(xBonne, largeurPuce / 2 + 2, largeur - largeurPuce / 2 - 2), top: hautPuce }}>
+                  <span className="date">{dateCourte(bonne)}</span>
+                  {correction.titre}
+                </div>
+              </>
+            )}
             {reponse && <div className={s.ecart} style={{ left: Math.min(xReponse, xBonne), width: Math.abs(xReponse - xBonne) }} />}
             <div className={s.bonne} style={{ left: xBonne }} />
             <div className={s.bonneEtiquette} style={{ left: clamp(xBonne, 110, largeur - 110) }}>
@@ -437,7 +459,7 @@ export function Frise({
 
         {dateDonnee && !correction && (
           <>
-            <div className={s.tige} style={{ left: xDonnee }} />
+            <div className={s.tige} style={{ left: xDonnee, top: Math.max(68, hautPuce), height: 180 - Math.max(68, hautPuce) }} />
             <div className={s.bonne} style={{ left: xDonnee }} />
             <div className={s.bonneEtiquette} style={{ left: clamp(xDonnee, 110, largeur - 110) }}>
               Date donnée <b>{dateCourte(dateDonnee)}</b>
@@ -485,7 +507,7 @@ export function Frise({
         </div>
         {scene && (
           <div ref={refBas} className={s.zoneBasScene}>
-            {sous != null && <div data-superposition className={s.zoneSous}>{sous}</div>}
+            {sous != null && <div data-superposition data-sous className={s.zoneSous}>{sous}</div>}
             {bas != null && <div className={s.zoneBas}>{bas}</div>}
           </div>
         )}

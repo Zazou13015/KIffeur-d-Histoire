@@ -9,10 +9,10 @@ import { comptesDe, DIFFICULTES, ecrireChoix, QUESTIONS, type Choix } from "@/li
 import s from "./apprendre.module.css";
 
 // « Me tester sur ce chapitre » : une partie solo scolaire sur ce seul chapitre, lancée par le même chemin que /scolaire.
-// Un chapitre peut compter peu d'événements jouables : le test s'adapte (5 questions au minimum), le serveur tranche.
+// Le test ne porte que sur les cartes du chapitre (ce qu'on vient d'apprendre) : il compte autant de questions que de cartes jouables, 10 au plus et 5 au minimum.
 export function TesterChapitre({ chapitre }: { chapitre: string }) {
   const idSelect = useId();
-  const comptes = comptesDe({ mode: "scolaire", chapitres: [chapitre] });
+  const comptes = comptesDe({ mode: "scolaire", chapitres: [chapitre], test: true });
   const possible = (d: SoloDifficulty) => comptes == null || comptes[d] >= QUESTIONS_MIN_TEST;
   const [difficulte, setDifficulte] = useState<SoloDifficulty>("YEAR");
   const jouable = possible(difficulte) ? difficulte : (DIFFICULTES.find((d) => possible(d.valeur))?.valeur ?? null);
@@ -22,7 +22,7 @@ export function TesterChapitre({ chapitre }: { chapitre: string }) {
   if (!choix) {
     return <div className={s.tester}>
       <Bouton disabled aria-describedby="test-indisponible">Me tester sur ce chapitre</Bouton>
-      <small id="test-indisponible">Ce chapitre compte trop peu de dates pour un test.</small>
+      <small id="test-indisponible">Ce chapitre compte trop peu de cartes pour un test.</small>
     </div>;
   }
   return <form action={lancer} className={s.tester}>
@@ -37,6 +37,6 @@ export function TesterChapitre({ chapitre }: { chapitre: string }) {
       </select>
       <Bouton type="submit">Me tester sur ce chapitre</Bouton>
     </div>
-    <small>{questions} questions sur les dates de ce chapitre</small>
+    <small>{questions} questions sur les cartes de ce chapitre</small>
   </form>;
 }

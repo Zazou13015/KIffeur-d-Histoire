@@ -88,30 +88,36 @@ it("annonce l'échec d'enregistrement sans détail technique", async () => {
 });
 
 it("lance un test d'un seul chapitre, avec autant de questions que le chapitre en compte (10 au plus)", () => {
-  const { unmount } = render(<TesterChapitre chapitre="THM-003" />);
+  const { unmount } = render(<TesterChapitre chapitre="THM-016" />);
   const form = screen.getByRole("button", { name: "Me tester sur ce chapitre" }).closest("form")!;
-  expect(form.querySelector<HTMLInputElement>('input[name="c"]')!.value).toBe("mode=scolaire&difficulte=YEAR&chapitres=THM-003&test=chapitre");
-  expect(screen.getByText("10 questions sur les dates de ce chapitre")).toBeTruthy();
+  expect(form.querySelector<HTMLInputElement>('input[name="c"]')!.value).toBe("mode=scolaire&difficulte=YEAR&chapitres=THM-016&test=chapitre");
+  // THM-016 : 11 cartes jouables, le test est plafonné à 10 questions.
+  expect(screen.getByText("10 questions sur les cartes de ce chapitre")).toBeTruthy();
   unmount();
-  // THM-004 : 5 événements jouables à l'année, aucun au mois ni au jour.
-  render(<TesterChapitre chapitre="THM-004" />);
-  expect(screen.getByText("5 questions sur les dates de ce chapitre")).toBeTruthy();
+  // THM-006 : 8 cartes jouables à l'année, trop peu au mois et au jour : seul Facile est proposé.
+  render(<TesterChapitre chapitre="THM-006" />);
+  expect(screen.getByText("8 questions sur les cartes de ce chapitre")).toBeTruthy();
   const options = within(screen.getByRole("combobox", { name: "Difficulté du test" })).getAllByRole("option") as HTMLOptionElement[];
   expect(options.map((o) => [o.value, o.disabled])).toEqual([["YEAR", false], ["MONTH", true], ["DAY", true]]);
 });
 
 it("le choix de test est validé : un seul chapitre, jeu de dates, assez de dates jouables", () => {
   const lire = (q: string) => lireChoix(new URLSearchParams(q));
-  const test = lire("mode=scolaire&difficulte=YEAR&chapitres=THM-004&test=chapitre")!;
+  const test = lire("mode=scolaire&difficulte=YEAR&chapitres=THM-006&test=chapitre")!;
   expect(test.test).toBe(true);
-  expect(ecrireChoix(test)).toBe("mode=scolaire&difficulte=YEAR&chapitres=THM-004&test=chapitre");
-  expect(filtresDepuis(test)).toMatchObject({ chapterIds: ["THM-004"], questionCount: comptesDe(test)!.YEAR });
-  expect(filtresDepuis(lire("mode=scolaire&difficulte=YEAR&chapitres=THM-003&test=chapitre")!).questionCount).toBe(10);
-  expect(lire("mode=scolaire&difficulte=MONTH&chapitres=THM-004&test=chapitre")).toBeNull();
-  expect(lire("mode=scolaire&difficulte=YEAR&chapitres=THM-003,THM-004&test=chapitre")!.test).toBeUndefined();
-  expect(lire("mode=scolaire&difficulte=YEAR&chapitres=THM-003&sens=inverse&test=chapitre")!.test).toBeUndefined();
+  expect(ecrireChoix(test)).toBe("mode=scolaire&difficulte=YEAR&chapitres=THM-006&test=chapitre");
+  // Le test ne compte que les cartes du chapitre (THM-006 : 8), pas tous ses événements.
+  expect(comptesDe(test)!.YEAR).toBe(8);
+  expect(filtresDepuis(test)).toMatchObject({ chapterIds: ["THM-006"], chapterTest: true, questionCount: 8 });
+  expect(filtresDepuis(lire("mode=scolaire&difficulte=YEAR&chapitres=THM-016&test=chapitre")!).questionCount).toBe(10);
+  expect(lire("mode=scolaire&difficulte=MONTH&chapitres=THM-006&test=chapitre")).toBeNull();
+  expect(lire("mode=scolaire&difficulte=YEAR&chapitres=THM-016,THM-006&test=chapitre")!.test).toBeUndefined();
+  expect(lire("mode=scolaire&difficulte=YEAR&chapitres=THM-016&sens=inverse&test=chapitre")!.test).toBeUndefined();
   expect(lire("mode=general&difficulte=YEAR&test=chapitre")!.test).toBeUndefined();
-  expect(filtresDepuis(lire("mode=scolaire&difficulte=YEAR&chapitres=THM-003")!).questionCount).toBe(10);
+  expect(lire("mode=scolaire&difficulte=YEAR&chapitres=THM-004&test=chapitre")).toBeNull(); // 4 cartes jouables seulement
+  const scolaire = filtresDepuis(lire("mode=scolaire&difficulte=YEAR&chapitres=THM-016")!);
+  expect(scolaire.questionCount).toBe(10);
+  expect(scolaire.chapterTest).toBeUndefined();
 });
 
 it("lit les lignes du compte sans accepter un chapitre hors catalogue ni une valeur invalide", () => {

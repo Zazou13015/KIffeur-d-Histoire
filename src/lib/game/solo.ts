@@ -11,6 +11,8 @@ export type SoloFilters = {
   chapterIds?: string[];
   difficulty?: SoloDifficulty;
   questionCount?: number;
+  /** Test d'un chapitre : le serveur ne tire que parmi les événements de ses cartes pédagogiques. */
+  chapterTest?: boolean;
 };
 export type SoloDate = { year: number; month?: number | null; day?: number | null };
 export type SoloGame = {

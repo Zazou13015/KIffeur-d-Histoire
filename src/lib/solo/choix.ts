@@ -90,7 +90,7 @@ export function lireChoix(champs: URLSearchParams): Choix | null {
     choix.chapitres = chapitres;
     // Test de chapitre : un seul chapitre, jeu de dates, assez de questions jouables pour que la précision veuille dire quelque chose.
     if (champs.get("test") === "chapitre" && chapitres.length === 1 && !choix.sens) {
-      const jouables = comptesDe(choix)?.[difficulte];
+      const jouables = comptesDe({ ...choix, test: true })?.[difficulte];
       if (jouables != null && jouables < QUESTIONS_MIN_TEST) return null;
       choix.test = true;
     }
@@ -126,8 +126,11 @@ export function filtresDepuis(choix: Choix): SoloFilters {
   if (choix.mode === "pack") f.packId = choix.pack;
   if (choix.mode === "theme") f.tagId = choix.theme;
   if (choix.mode === "scolaire") f.chapterIds = choix.chapitres;
-  // Un chapitre peut compter moins de 10 événements jouables : le test s'adapte (5 questions au minimum).
-  if (choix.test) f.questionCount = Math.min(QUESTIONS, comptesDe(choix)?.[choix.difficulte] ?? QUESTIONS);
+  // Un chapitre peut compter moins de 10 cartes jouables : le test s'adapte (5 questions au minimum).
+  if (choix.test) {
+    f.chapterTest = true;
+    f.questionCount = Math.min(QUESTIONS, comptesDe(choix)?.[choix.difficulte] ?? QUESTIONS);
+  }
   return f;
 }
 
@@ -135,7 +138,9 @@ export function filtresDepuis(choix: Choix): SoloFilters {
  * Nombre d'événements jouables par difficulté pour ce choix, d'après le dataset.
  * `null` quand on ne sait pas d'avance (période libre, chapitres) : le serveur tranchera.
  */
-export function comptesDe(choix: Pick<Choix, "mode" | "periode" | "pack" | "theme" | "chapitres">): Comptes | null {
+export function comptesDe(choix: Pick<Choix, "mode" | "periode" | "pack" | "theme" | "chapitres" | "test">): Comptes | null {
+  // Test de chapitre : seulement les événements des cartes apprises.
+  if (choix.test && choix.chapitres?.length === 1) return CHAPITRES_JOUABLES[choix.chapitres[0]]?.t ?? null;
   if (choix.mode === "general") return catalogue.general;
   if (choix.mode === "periode") return (catalogue.periodes as Record<string, Comptes>)[choix.periode ?? ""] ?? null;
   if (choix.mode === "pack") return PACKS.find((p) => p.id === choix.pack)?.n ?? null;
@@ -152,7 +157,8 @@ export function comptesDe(choix: Pick<Choix, "mode" | "periode" | "pack" | "them
   return null;
 }
 
-const CHAPITRES_JOUABLES = catalogue.chapitres as Record<string, { n: Comptes; b: number[] }>;
+// n/b : tous les événements du chapitre ; t/tb : ceux de ses cartes pédagogiques (le test de chapitre).
+const CHAPITRES_JOUABLES = catalogue.chapitres as Record<string, { n: Comptes; b: number[]; t: Comptes; tb: number[] }>;
 const versAstro = (annee: number) => (annee < 0 ? annee + 1 : annee);
 
 /**
@@ -167,7 +173,7 @@ export function bornesDe(choix: Choix): Vue | null {
   else if (choix.mode === "pack") b = PACKS.find((p) => p.id === choix.pack)?.b;
   else if (choix.mode === "theme") b = THEMES.find((t) => t.id === choix.theme)?.b;
   else if (choix.mode === "scolaire") {
-    const liste = (choix.chapitres ?? []).flatMap((id) => CHAPITRES_JOUABLES[id]?.b ?? []);
+    const liste = (choix.chapitres ?? []).flatMap((id) => (choix.test ? CHAPITRES_JOUABLES[id]?.tb : CHAPITRES_JOUABLES[id]?.b) ?? []);
     if (liste.length) b = [Math.min(...liste), Math.max(...liste)];
   }
   if (!b) return null;

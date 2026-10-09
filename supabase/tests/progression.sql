@@ -15,22 +15,25 @@ insert into auth.users(id) values ('00000000-0000-4000-8000-00000000000a'), ('00
 insert into histoire.games(id, user_id, difficulty, question_count, state, direction, finished_at, average_accuracy, total_points, context) values
  -- A : deux tests du chapitre THM-003 (70 % puis 90 % puis 60 %), un test inversé, une partie multichapitre, une partie en cours, un test trop court.
  ('00000000-0000-4000-8000-0000000000a1', '00000000-0000-4000-8000-00000000000a', 'YEAR', 10, 'finished', 'date', '2026-10-08T10:00:00Z', 70, 700,
-  '{"mode":"solo_scolaire","chapters":[{"key":"THM-003","label":"Thème 3","level":"CM2"}]}'),
+  '{"mode":"solo_scolaire","origin":"test_chapitre","chapters":[{"key":"THM-003","label":"Thème 3","level":"CM2"}]}'),
  ('00000000-0000-4000-8000-0000000000a2', '00000000-0000-4000-8000-00000000000a', 'MONTH', 10, 'finished', 'date', '2026-10-08T11:00:00Z', 90, 900,
-  '{"mode":"solo_scolaire","chapters":[{"key":"THM-003","label":"Thème 3","level":"CM2"}]}'),
+  '{"mode":"solo_scolaire","origin":"test_chapitre","chapters":[{"key":"THM-003","label":"Thème 3","level":"CM2"}]}'),
  ('00000000-0000-4000-8000-0000000000a3', '00000000-0000-4000-8000-00000000000a', 'YEAR', 10, 'finished', 'date', '2026-10-08T12:00:00Z', 60, 600,
-  '{"mode":"solo_scolaire","chapters":[{"key":"THM-003","label":"Thème 3","level":"CM2"}]}'),
+  '{"mode":"solo_scolaire","origin":"test_chapitre","chapters":[{"key":"THM-003","label":"Thème 3","level":"CM2"}]}'),
  ('00000000-0000-4000-8000-0000000000a4', '00000000-0000-4000-8000-00000000000a', 'DAY', 10, 'finished', 'inverse', '2026-10-08T12:00:00Z', 100, 1000,
-  '{"mode":"solo_scolaire","chapters":[{"key":"THM-003","label":"Thème 3","level":"CM2"}]}'),
+  '{"mode":"solo_scolaire","origin":"test_chapitre","chapters":[{"key":"THM-003","label":"Thème 3","level":"CM2"}]}'),
  ('00000000-0000-4000-8000-0000000000a5', '00000000-0000-4000-8000-00000000000a', 'YEAR', 10, 'finished', 'date', '2026-10-08T12:00:00Z', 100, 1000,
-  '{"mode":"solo_scolaire","chapters":[{"key":"THM-003","label":"a","level":"CM2"},{"key":"THM-005","label":"b","level":"6e"}]}'),
+  '{"mode":"solo_scolaire","origin":"test_chapitre","chapters":[{"key":"THM-003","label":"a","level":"CM2"},{"key":"THM-005","label":"b","level":"6e"}]}'),
  ('00000000-0000-4000-8000-0000000000a6', '00000000-0000-4000-8000-00000000000a', 'YEAR', 10, 'playing', 'date', null, null, null,
-  '{"mode":"solo_scolaire","chapters":[{"key":"THM-003","label":"Thème 3","level":"CM2"}]}'),
+  '{"mode":"solo_scolaire","origin":"test_chapitre","chapters":[{"key":"THM-003","label":"Thème 3","level":"CM2"}]}'),
  ('00000000-0000-4000-8000-0000000000a7', '00000000-0000-4000-8000-00000000000a', 'YEAR', 3, 'finished', 'date', '2026-10-08T12:00:00Z', 100, 300,
-  '{"mode":"solo_scolaire","chapters":[{"key":"THM-003","label":"Thème 3","level":"CM2"}]}'),
+  '{"mode":"solo_scolaire","origin":"test_chapitre","chapters":[{"key":"THM-003","label":"Thème 3","level":"CM2"}]}'),
  ('00000000-0000-4000-8000-0000000000a8', '00000000-0000-4000-8000-00000000000a', 'YEAR', 10, 'finished', 'date', '2026-10-08T12:00:00Z', 100, 1000, null),
+ -- Partie scolaire d'un seul chapitre lancée depuis /scolaire : pas un test de chapitre.
+ ('00000000-0000-4000-8000-0000000000a9', '00000000-0000-4000-8000-00000000000a', 'YEAR', 10, 'finished', 'date', '2026-10-08T12:00:00Z', 100, 1000,
+  '{"mode":"solo_scolaire","chapters":[{"key":"THM-003","label":"Thème 3","level":"CM2"}]}'),
  ('00000000-0000-4000-8000-0000000000b1', '00000000-0000-4000-8000-00000000000b', 'YEAR', 10, 'finished', 'date', '2026-10-08T12:00:00Z', 100, 1000,
-  '{"mode":"solo_scolaire","chapters":[{"key":"THM-003","label":"Thème 3","level":"CM2"}]}');
+  '{"mode":"solo_scolaire","origin":"test_chapitre","chapters":[{"key":"THM-003","label":"Thème 3","level":"CM2"}]}');
 
 -- Visiteur sans identité : tout est refusé, aucune lecture.
 set local role authenticated;
@@ -68,6 +71,7 @@ select pg_temp.refuser($q$select histoire.record_chapter_test('00000000-0000-400
 select pg_temp.refuser($q$select histoire.record_chapter_test('00000000-0000-4000-8000-0000000000a6')$q$, '42501');
 select pg_temp.refuser($q$select histoire.record_chapter_test('00000000-0000-4000-8000-0000000000a7')$q$, '22023');
 select pg_temp.refuser($q$select histoire.record_chapter_test('00000000-0000-4000-8000-0000000000a8')$q$, '22023');
+select pg_temp.refuser($q$select histoire.record_chapter_test('00000000-0000-4000-8000-0000000000a9')$q$, '22023');
 select pg_temp.refuser($q$select histoire.record_chapter_test('00000000-0000-4000-8000-0000000000b1')$q$, '42501');
 select pg_temp.refuser($q$select histoire.record_chapter_test(null)$q$, '42501');
 

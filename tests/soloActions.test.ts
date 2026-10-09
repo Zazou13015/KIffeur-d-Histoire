@@ -147,3 +147,17 @@ it("le texte connecté utilise la session et les erreurs du correcteur restent g
     p_year: null, p_month: null, p_day: null, p_answer_text: "Autre événement",
   });
 });
+it("un test de chapitre passe par la fonction dédiée, sans filtre libre, et garde le cookie d'une partie anonyme", async () => {
+  mocks.account.mockResolvedValue(null);
+  mocks.rpc.mockResolvedValue({ data: { game_id: gameId, anonymous: true, question_count: 8 }, error: null });
+  await startGame({ chapterTest: true, chapterIds: ["THM-006"], difficulty: "MONTH", questionCount: 8 });
+  const [nom, args] = gameCalls()[0];
+  expect(nom).toBe("start_chapter_test");
+  expect(args).toMatchObject({ p_chapter_id: "THM-006", p_difficulty: "MONTH", p_question_count: 8 });
+  expect(Object.keys(args)).toEqual(["p_token", "p_chapter_id", "p_difficulty", "p_question_count"]);
+  expect(mocks.set).toHaveBeenCalledOnce();
+  // Sans le marqueur, ou avec plusieurs chapitres, c'est le tirage habituel.
+  await startGame({ chapterIds: ["THM-006"] });
+  await startGame({ chapterTest: true, chapterIds: ["THM-006", "THM-001"] });
+  expect(gameCalls().slice(1).map(([n]) => n)).toEqual(["start_game", "start_game"]);
+});

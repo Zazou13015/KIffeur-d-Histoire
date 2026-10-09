@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { CONTACT_EMAIL } from "@/lib/legal";
 
 export const metadata = { title: "Mentions légales · Kiffeurs d’Histoire" };
 
@@ -15,7 +14,7 @@ export default function MentionsLegales() {
           Antonin, les créateurs de KFFR Contrée. Conformément à l’article 6 de la loi pour la confiance dans
           l’économie numérique, leur identité a été communiquée à l’hébergeur.
         </p>
-        <p>Contact : <a href={`mailto:${CONTACT_EMAIL}`} className="underline">{CONTACT_EMAIL}</a></p>
+        <p>Contact : directement auprès de Maxou ou d’Antonin, sur les réseaux de KFFR.</p>
 
         <h2 className="font-titre text-xl">Hébergement</h2>
         <p>
@@ -28,7 +27,7 @@ export default function MentionsLegales() {
         <h2 className="font-titre text-xl">Contenus</h2>
         <p>
           Les événements, dates, explications et illustrations sont rédigés par les éditeurs à partir des programmes
-          d’histoire de l’Éducation nationale et de sources publiques. Une erreur ? Écrivez-nous, nous corrigeons.
+          d’histoire de l’Éducation nationale et de sources publiques. Une erreur ? Dites-le-nous, nous corrigeons.
         </p>
 
         <h2 className="font-titre text-xl">Données personnelles</h2>

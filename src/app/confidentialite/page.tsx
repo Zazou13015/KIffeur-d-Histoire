@@ -1,10 +1,8 @@
 import Link from "next/link";
-import { CONTACT_EMAIL } from "@/lib/legal";
 
 export const metadata = { title: "Confidentialité · Kiffeurs d’Histoire" };
 
 export default function Confidentialite() {
-  const contact = <a href={`mailto:${CONTACT_EMAIL}`} className="underline">{CONTACT_EMAIL}</a>;
   return (
     <main className="conteneur flex-1 py-8">
       <article className="max-w-2xl space-y-4">
@@ -44,7 +42,7 @@ export default function Confidentialite() {
         <h2 className="font-titre text-xl">Moins de 15 ans</h2>
         <p>
           Le jeu est pensé pour les collégiens et les lycéens. Avant 15 ans, demande l’accord d’un parent pour créer
-          un compte. Un parent peut nous écrire pour faire supprimer le compte de son enfant.
+          un compte. Un parent peut nous demander de supprimer le compte de son enfant.
         </p>
 
         <h2 className="font-titre text-xl">Qui voit tes données</h2>
@@ -55,8 +53,8 @@ export default function Confidentialite() {
 
         <h2 className="font-titre text-xl">Tes droits</h2>
         <p>
-          Tu peux demander à voir, corriger ou supprimer tes données, ou ton compte, en écrivant à {contact}. On répond
-          sous un mois. Tu peux aussi saisir la CNIL (cnil.fr).
+          Tu peux demander à voir, corriger ou supprimer tes données, ou ton compte, en le demandant directement à Maxou ou à
+          Antonin, sur les réseaux de KFFR. On répond sous un mois. Tu peux aussi saisir la CNIL (cnil.fr).
         </p>
       </article>
     </main>

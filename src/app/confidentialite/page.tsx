@@ -53,7 +53,7 @@ export default function Confidentialite() {
 
         <h2 className="font-titre text-xl">Tes droits</h2>
         <p>
-          Tu peux demander à voir, corriger ou supprimer tes données, ou ton compte, en le demandant directement à Maxou ou à
+          Pour voir, corriger ou supprimer tes données, ou ton compte, demande-le directement à Maxou ou à
           Antonin, sur les réseaux de KFFR. On répond sous un mois. Tu peux aussi saisir la CNIL (cnil.fr).
         </p>
       </article>

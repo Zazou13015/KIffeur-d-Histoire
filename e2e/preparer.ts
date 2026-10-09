@@ -1,0 +1,56 @@
+// Prépare la pile Supabase LOCALE des tests de bout en bout (#27) : jamais KFFR.
+// Prérequis : `npx supabase start` (migrations + seed appliqués).
+// 1. Simule la table public.profiles de KFFR contrée (fixture hors migrations, base jetable seulement).
+// 2. Importe le dataset v18 et les cartes pédagogiques.
+// 3. Crée le compte de test du parcours « connexion puis statistiques ».
+import { execFileSync } from "node:child_process";
+import { readFileSync } from "node:fs";
+import { createClient } from "@supabase/supabase-js";
+import { chargerCartes, estUrlLocale, importerCartesLocales } from "../scripts/import-cartes";
+import { COMPTE_TEST, CONTENEUR_DB, statutLocal } from "./local";
+
+function psql(sql: string) {
+  return execFileSync("docker", ["exec", "-i", CONTENEUR_DB, "psql", "-U", "postgres", "-v", "ON_ERROR_STOP=1", "-qtA", "-f", "-"], {
+    input: sql,
+    encoding: "utf8",
+  }).trim();
+}
+
+async function main() {
+  const statut = statutLocal();
+  if (!estUrlLocale(statut.API_URL)) throw new Error("URL Supabase non locale : arrêt avant toute écriture");
+
+  // Contrat de KFFR contrée simulé, comme dans scripts/tests-sql.sh, sans les faux comptes du simulateur SQL.
+  if (psql("select to_regclass('public.profiles') is null") === "t") {
+    const fixture = readFileSync("supabase/fixtures/kffr_profiles.sql", "utf8").split("-- Faux comptes")[0];
+    psql(fixture);
+    console.log("Table public.profiles simulée (LOCAL).");
+  }
+
+  execFileSync(process.execPath, ["node_modules/tsx/dist/cli.mjs", "scripts/import-dataset.ts", "--dossier", "content/dataset-v18"], {
+    env: { ...process.env, SUPABASE_URL: statut.API_URL, SUPABASE_SERVICE_ROLE_KEY: statut.SERVICE_ROLE_KEY },
+    stdio: ["ignore", "ignore", "inherit"],
+  });
+  console.log("Dataset v18 importé (LOCAL).");
+  await importerCartesLocales(chargerCartes(), statut.API_URL, statut.SERVICE_ROLE_KEY);
+
+  // Compte de test : e-mail confirmé et pseudo KFFR déjà choisi, comme un joueur de Contrée.
+  const admin = createClient(statut.API_URL, statut.SERVICE_ROLE_KEY, { auth: { persistSession: false } });
+  const { data: liste, error: erreurListe } = await admin.auth.admin.listUsers();
+  if (erreurListe) throw erreurListe;
+  let id = liste.users.find((u) => u.email === COMPTE_TEST.email)?.id;
+  if (!id) {
+    const { data, error } = await admin.auth.admin.createUser({ email: COMPTE_TEST.email, password: COMPTE_TEST.motDePasse, email_confirm: true });
+    if (error) throw error;
+    id = data.user.id;
+  }
+  psql(`insert into public.profiles (id, username) values ('${id}', '${COMPTE_TEST.pseudo}') on conflict (id) do update set username = excluded.username;`);
+  // Chaque lancement repart d'un historique vide pour ce compte.
+  psql(`delete from histoire.games where user_id = '${id}'; delete from histoire.learning_progress where user_id = '${id}';`);
+  console.log(`Compte de test prêt : ${COMPTE_TEST.email} (LOCAL).`);
+}
+
+main().catch((e) => {
+  console.error(e instanceof Error ? e.message : e);
+  process.exit(1);
+});

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Motif } from "@/components/charte/Motif";
+import LiensLegaux from "@/components/LiensLegaux";
 import { getAccount } from "@/lib/account";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
 import styles from "@/components/choix/choix.module.css";
@@ -45,6 +46,7 @@ export default async function Accueil() {
             <Link href="/connexion" className="cible inline-flex items-center border border-encre px-4 py-2 font-bold text-encre">Se connecter</Link>
           </div>
         )}
+        <LiensLegaux />
       </div>
     </main>
   );

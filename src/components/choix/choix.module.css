@@ -9,7 +9,7 @@
 .titre { display: grid; gap: 6px; }
 .titre h1 { font-size: clamp(30px, 5vw, 44px); line-height: 1.05; }
 .titre p { margin: 0; color: var(--color-encre-douce); max-width: 62ch; }
-.retour { font-size: 14px; color: var(--color-encre-douce); text-decoration: underline; text-underline-offset: 3px; justify-self: start; }
+.retour { display: inline-flex; align-items: center; min-height: 44px; font-size: 14px; color: var(--color-encre-douce); text-decoration: underline; text-underline-offset: 3px; justify-self: start; }
 
 /* Étapes numérotées */
 .etape { display: grid; gap: 10px; }

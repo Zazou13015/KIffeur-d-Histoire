@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Atkinson_Hyperlegible, Big_Shoulders, JetBrains_Mono, Young_Serif } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
@@ -14,6 +14,15 @@ const mono = JetBrains_Mono({ variable: "--police-mono", subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Kiffeurs d'Histoire",
   description: "Place les grands événements de l'Histoire sur la frise.",
+  appleWebApp: { title: "Kiffeurs", statusBarStyle: "default" },
+};
+
+// Téléphone : le clavier virtuel réduit la page au lieu de la recouvrir, la saisie reste visible au-dessus.
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  interactiveWidget: "resizes-content",
+  themeColor: "#1d2a3a",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

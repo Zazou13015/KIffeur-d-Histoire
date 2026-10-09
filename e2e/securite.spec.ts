@@ -53,7 +53,8 @@ const anneeEnDonnee = (q: QuestionEnBase) => new RegExp(`"[a-z_]*(?:year|annee)[
 function secretsDate(q: QuestionEnBase) {
   const [ligne] = lireSql<{ date_text: string | null }[]>(`select date_text from histoire.event_answers where event_id = '${q.event_id.replace(/'/g, "")}'`);
   const textes = [ligne?.date_text, q.correction_description?.slice(0, 60)].filter((t): t is string => !!t && t.length >= 8);
-  return { annee: anneeEnDonnee(q), textes: textes.map(simple) };
+  // Une explication qui commence par le titre de l'événement ne trahit rien : le titre est la question affichée.
+  return { annee: anneeEnDonnee(q), textes: textes.map(simple).filter((t) => !simple(q.title).includes(t)) };
 }
 
 function secretsInverse(q: QuestionEnBase) {

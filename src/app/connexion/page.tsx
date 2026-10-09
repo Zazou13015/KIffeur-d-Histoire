@@ -37,8 +37,8 @@ export default async function ConnexionPage({ searchParams }: PageProps<"/connex
           Se connecter
         </button>
       </form>
-      <Link href={`/inscription?next=${encodeURIComponent(nextPath)}`}>Créer un compte KFFR</Link>
-      <Link href="/mot-de-passe-oublie">Mot de passe oublié</Link>
+      <Link href={`/inscription?next=${encodeURIComponent(nextPath)}`} className="cible inline-flex items-center self-start">Créer un compte KFFR</Link>
+      <Link href="/mot-de-passe-oublie" className="cible inline-flex items-center self-start">Mot de passe oublié</Link>
     </main>
   );
 }

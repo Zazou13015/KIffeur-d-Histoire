@@ -3,10 +3,10 @@
 
 /* Écran de jeu en plein écran, comme une appli : l'en-tête du site s'efface, la frise prend toute la place. */
 .jeu { position: fixed; inset: 0; z-index: 50; display: flex; flex-direction: column; overflow-y: auto; background: var(--color-blanc-cartel); }
-.quitter { position: absolute; left: 16px; top: 14px; font-size: 13px; color: var(--color-encre-douce); text-decoration: underline; text-underline-offset: 3px; }
+.quitter { position: absolute; left: 16px; top: 2px; min-height: 44px; display: inline-flex; align-items: center; font-size: 13px; color: var(--color-encre-douce); text-decoration: underline; text-underline-offset: 3px; }
 
 /* ---------- Carte de question (boîte du haut, à l'horizontale) ---------- */
-.carteH { display: flex; align-items: center; justify-content: center; gap: 20px; padding: 4px 0; max-width: 820px; margin-inline: auto; }
+.carteH { display: flex; align-items: center; justify-content: safe center; gap: 20px; padding: 4px 0; max-width: 820px; margin-inline: auto; }
 .carteH .illustration { width: 150px; flex: none; }
 .carteH .carteTexte { min-width: 0; text-align: left; }
 .illustration { background: #e9e6da; border: 1px solid #d6d2c4; padding: 8px; color: var(--color-encre); align-self: stretch; display: grid; place-items: center; min-height: 96px; }
@@ -137,3 +137,86 @@
 }
 .tapee { color: var(--color-encre-douce); font-size: 13px; overflow-wrap: anywhere; }
 .rangeeInverse:has(> :only-child) { grid-template-columns: minmax(0, 1fr); }
+
+/* ---------- Téléphone et tablette (#28) ---------- */
+.libelleCache { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.tout .court { display: none; }
+
+/* Téléphone debout : tout tient sur l'écran, les commandes se touchent au doigt (44 px). */
+@media (max-width: 600px) {
+  .quitter { left: 12px; }
+  .carteH { flex-wrap: nowrap; gap: 10px; align-items: flex-start; padding: 0; }
+  .carteH .illustration { width: 60px; min-height: 0; padding: 4px; align-self: flex-start; }
+  .carteH .carteTexte { flex: 1; }
+  /* Le chrono monte dans la rangée du haut, entre Quitter et le zoom : la question garde toute la largeur. */
+  .carteH > [role="timer"] { position: absolute; top: 4px; left: 50%; transform: translateX(-50%) scale(0.7); transform-origin: top center; }
+  .titreMoyen .carteTexte h2, .titreLong .carteTexte h2 { font-size: 18px; }
+  .consigne { font-size: 13px; }
+  .epoques { grid-template-columns: minmax(0, 1fr) auto; gap: 6px; }
+  .piste button { min-height: 44px; }
+  .tout { min-height: 44px; padding: 4px 10px; }
+  .tout .long { display: none; }
+  .tout .court { display: inline; }
+  /* Correction : l'explication prend toute la largeur sous les points, la bande des époques s'efface. */
+  .resultat .points { grid-row: 2; }
+  .resultat .explication { grid-column: 1 / -1; }
+  .jeu:has(.resultat) [data-sous] { display: none; }
+}
+
+/* Saisie resserrée : téléphone debout ou couché. */
+@media (max-width: 600px), (max-height: 500px) {
+  .boite { padding: 10px 12px; }
+  .colonneSaisie { gap: 6px; }
+  .saisie { display: flex; flex-wrap: wrap; gap: 6px; align-items: flex-end; }
+  .consigneSaisie, .saisie .aideSaisie { display: none; }
+  .cases { flex: 1 1 0; }
+  .case { grid-template-columns: minmax(0, 1fr); }
+  .caseAnnee { min-width: 88px; }
+  .case label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .case input { font-size: 34px; padding: 4px 6px 2px; }
+  .ere { flex: 1 0 128px; }
+  .ere button { flex: 1; min-height: 44px; padding: 2px 4px; font-size: 13px; }
+  .colonneAction > .valider { min-height: 52px; font-size: 17px; }
+  .resultat .valider { min-height: 48px; }
+  /* Après la correction, la saisie verrouillée laisse sa place : la frise montre déjà la réponse donnée. */
+  .colonneSaisie[data-corrige] { display: none; }
+  .rangee:has(> .colonneSaisie[data-corrige]) { grid-template-columns: minmax(0, 1fr); }
+  .champTexte { font-size: 20px; min-height: 48px; }
+}
+
+/* Écran bas (téléphone couché) : la question tient sur une ligne, la réponse à côté de la bande des époques. */
+@media (max-height: 500px) and (min-width: 601px) {
+  .quitter { left: 12px; }
+  .carteH { gap: 12px; padding: 0; justify-content: safe center; }
+  .carteH .illustration { display: none; }
+  .carteTexte { gap: 0; }
+  .carteTexte h2, .titreMoyen .carteTexte h2, .titreLong .carteTexte h2 { font-size: 18px; line-height: 1.15; }
+  .carteTexte .dateGrande { font-size: 30px; }
+  .consigne { font-size: 12px; }
+  .epoques { grid-template-columns: minmax(0, 1fr) auto; gap: 6px; }
+  .piste button { min-height: 44px; padding-block: 2px; }
+  .piste button small, .long { display: none; }
+  .court { display: inline; }
+  .piste button b { font-size: 11px; }
+  .tout { min-height: 44px; padding: 4px 10px; max-width: none; }
+  .tout .long { display: none; }
+  .tout .court { display: inline; }
+  .rangee, .rangeeInverse { grid-template-columns: minmax(0, 1fr) minmax(104px, 0.5fr); gap: 10px; }
+  .case { width: 44px; }
+  .ere { flex: 0 0 auto; }
+  .ere button { flex: none; width: 44px; white-space: normal; line-height: 1.15; font-size: 12px; padding: 2px; }
+  .carteBas { display: none; }
+  .case input { font-size: 26px; padding-inline: 4px; }
+  .colonneAction > .valider { min-height: 48px; font-size: 16px; }
+  .aideSaisie { display: none; }
+  .colonneSaisie .aideSaisie { display: none; }
+  /* Correction : les points, l'explication et le bouton sur une seule rangée. */
+  .resultat { grid-template-columns: auto minmax(0, 1fr) auto; padding: 8px 12px; }
+  .resultat > :first-child { grid-column: 2; }
+  .resultat .points { grid-row: 1 / span 3; }
+  /* Pendant la correction, la bande des époques laisse toute la largeur à l'explication. */
+  .jeu:has(.resultat) [data-sous] { display: none; }
+  .resultat .points { font-size: 30px; }
+  .resultat .valider { grid-column: 3; grid-row: 1 / span 3; margin-top: 0; align-self: center; }
+  .resultat .explication { font-size: 12px; }
+}

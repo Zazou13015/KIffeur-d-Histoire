@@ -72,7 +72,8 @@ export function FriseBilan({ reponses, selection, choisir, inverse }: {
         const active = g.indices.includes(selection);
         const next = active ? g.indices[(g.indices.indexOf(selection) + 1) % g.indices.length] : g.indices[0];
         const pos = Math.max(50, Math.min(largeur - 50, x(g.t)));
-        return <button key={g.indices.join("-")} type="button" style={{ left: `${pos / largeur * 100}%` }}
+        // La cible reste dans le cadre dès le HTML initial, avant ResizeObserver.
+        return <button key={g.indices.join("-")} type="button" style={{ left: `clamp(50px, ${pos / largeur * 100}%, calc(100% - 50px))` }}
           aria-pressed={active} aria-controls="reponse-bilan" onClick={() => choisir(next)}
           aria-label={`Repère : ${g.indices.map((i) => `question ${reponses[i].position}`).join(", ")}${g.indices.length > 1 ? ". Cliquez à nouveau pour parcourir le groupe." : ""}`}>
           <strong>{g.indices.length === 1 ? String(reponses[g.indices[0]].position).padStart(2, "0") : `${g.indices.length} repères`}</strong>

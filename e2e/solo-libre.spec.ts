@@ -29,8 +29,8 @@ test("solo libre sans compte : 10 questions, à la frise et au clavier, jusqu'au
     }
   }
 
-  const { points, precision } = await lireBilan(page);
-  await expect(page.getByText("sur 1000")).toBeVisible();
+  const { bilan, points, precision } = await lireBilan(page);
+  await expect(bilan.getByRole("img", { name: `${points} points sur 1000` })).toBeVisible();
 
   // La base a bien noté les dix réponses, avec la façon de répondre, et le même score que l'écran.
   const questions = questionsEnBase(gameId);

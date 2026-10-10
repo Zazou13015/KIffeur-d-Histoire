@@ -92,8 +92,16 @@ async function main() {
         await page.goto(route());
         await page.getByRole("region", { name: "Fin de la partie" }).waitFor();
         await page.evaluate(() => document.fonts.ready);
+        // Le carnet est dans le HTML serveur ; la frise mesure sa largeur à l'hydratation.
+        await page.waitForFunction(() => {
+          const svg = document.querySelector<SVGSVGElement>(".timeline-svg svg");
+          return svg && Math.abs(svg.viewBox.baseVal.width - svg.getBoundingClientRect().width) < 1;
+        });
         const size = await page.evaluate(() => ({ viewport: innerWidth, document: document.documentElement.scrollWidth, replayBottom: document.querySelector(".replay")!.getBoundingClientRect().bottom, detailBottom: document.querySelector(".answer-navigation")!.getBoundingClientRect().bottom }));
-        assert.equal(size.document, width, `Débordement ${cas} à ${width}`);
+        if (size.document !== width) {
+          const debordements = await page.locator("body *").evaluateAll((els) => els.filter((el) => { const r = el.getBoundingClientRect(); return r.width > 0 && (r.left < -.5 || r.right > innerWidth + .5); }).slice(-12).map((el) => ({ element: el.tagName, classe: el.getAttribute("class"), texte: el.textContent?.slice(0, 80), droite: el.getBoundingClientRect().right })));
+          assert.fail(`Débordement ${cas} à ${width} : ${JSON.stringify(debordements)}`);
+        }
         if (width <= 390) assert(size.replayBottom <= height, `Rejouer hors écran ${cas} ${width}`);
         if (width >= 1024 && cas === "classique") assert(size.detailBottom <= height, `Carnet hors écran ${width}`);
         measurements.push({ cas, width, height, ...size });
@@ -126,6 +134,15 @@ async function main() {
     cas = "classique";
     await page.emulateMedia({ reducedMotion: "reduce" });
     assert.equal(await page.locator('.hero').evaluate((el) => getComputedStyle(el).animationName), "none");
+    // Régression du cadrage initial : même avant l'hydratation, aucune cible ne déborde.
+    const sansJs = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 320, height: 568 } });
+    await authentifier(sansJs);
+    const htmlInitial = await sansJs.newPage();
+    cas = "trois";
+    await htmlInitial.goto(route());
+    assert.equal(await htmlInitial.evaluate(() => document.documentElement.scrollWidth), 320);
+    await sansJs.close();
+    cas = "classique";
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto(route(`mode=scolaire&difficulte=YEAR&chapitres=${CHAPITRES[0].id}&test=chapitre`));
     await page.getByText(/Nouveau meilleur test de ce chapitre/).waitFor();

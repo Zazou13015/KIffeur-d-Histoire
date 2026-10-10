@@ -4,6 +4,10 @@ export type SoloDirection = "date" | "inverse";
 /** Niveau de la partie : 1 Débutant, 2 Intermédiaire (niveaux 1 et 2), 3 Expert (tous les événements). */
 export type SoloNiveau = 1 | 2 | 3;
 export type SoloFilters = {
+  /** Tirage mystère, ou relance du gagnant si packId/tagId est fourni. */
+  mystery?: boolean;
+  /** Libellé de l'instantané serveur, rendu seulement au bilan. */
+  mysteryLabel?: string;
   direction?: SoloDirection;
   packId?: string;
   tagId?: string;
@@ -23,6 +27,7 @@ export type SoloFilters = {
 export type MethodeSaisie = "frise" | "clavier" | "calendrier";
 export type SoloDate = { year: number; month?: number | null; day?: number | null };
 export type SoloGame = {
+  mystery?: { winner: MysteryTheme; candidates: MysteryTheme[] };
   game_id: string;
   question_count: number;
   difficulty: SoloDifficulty;
@@ -30,6 +35,7 @@ export type SoloGame = {
   state: "playing";
   anonymous: boolean;
 };
+export type MysteryTheme = { mode: "pack" | "theme"; id: string; titre: string };
 type QuestionTiming = {
   /** Longueur réelle en base ; optionnelle pour les anciennes réponses RPC. */
   question_count?: number;

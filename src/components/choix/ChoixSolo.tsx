@@ -6,6 +6,7 @@ import { DIFFICULTES, ecrireChoix, lireChoix, nombreQuestions, NIVEAU_PAR_DEFAUT
 import type { SoloDifficulty, SoloNiveau } from "@/lib/game/solo";
 import { BarreLancer, ChoixDifficulte, ChoixNiveau, difficulteJouable, ecrireMemoire, Etape, lireMemoire } from "./communs";
 import { LongueurPartie, useDisponibilite } from "./LongueurPartie";
+import { BoutonMystere } from "./BoutonMystere";
 import styles from "./choix.module.css";
 
 const MEMOIRE = "histoire-choix-solo";
@@ -39,17 +40,21 @@ function versChamps(e: Etat, inverse: boolean) {
 
 function depuisMemoire(c: Choix): Etat | null {
   if (c.mode === "scolaire") return null;
+  // Un gagnant récemment importé peut manquer aux tuiles statiques : garder
+  // ses réglages sans bloquer le formulaire sur une tuile inexistante.
+  const packConnu = PACKS.some((p) => p.id === c.pack);
+  const themeConnu = THEMES.some((t) => t.id === c.theme);
   return {
     ...DEPART,
-    mode: c.mode,
+    mode: (c.mode === "pack" && !packConnu) || (c.mode === "theme" && !themeConnu) ? "general" : c.mode,
     difficulte: c.difficulte,
     longueur: c.longueur ?? 10,
     niveau: c.niveau ?? NIVEAU_PAR_DEFAUT,
     periode: c.periode ?? DEPART.periode,
     de: c.de != null ? String(c.de) : "",
     a: c.a != null ? String(c.a) : "",
-    pack: c.pack ?? DEPART.pack,
-    theme: c.theme ?? DEPART.theme,
+    pack: packConnu ? c.pack! : DEPART.pack,
+    theme: themeConnu ? c.theme! : DEPART.theme,
   };
 }
 
@@ -184,6 +189,9 @@ export function ChoixSolo({ inverse = false }: { inverse?: boolean }) {
         <LongueurPartie valeur={etat.longueur} disponibles={disponibles} erreur={disponibilite.erreur}
           reessayer={disponibilite.reessayer} onChange={(longueur) => maj({ longueur })} />
       </Etape>
+      <BoutonMystere choix={ecrireChoix({ mode: "general", difficulte: inverse ? "DAY" : difficulte ?? etat.difficulte,
+        niveau: etat.niveau, longueur: etat.longueur, ...(inverse ? { sens: "inverse" as const } : {}) })}
+        memoriser={(c) => ecrireMemoire(memoire, c)} />
       <BarreLancer
         pret={choix != null && nombre !== null}
         resume={

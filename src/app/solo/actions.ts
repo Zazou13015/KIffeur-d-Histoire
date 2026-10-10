@@ -65,7 +65,14 @@ export async function startGame(filters: SoloFilters = {}): Promise<SoloGame> {
   if (account && !account.username) throw new Error("Choisis ton pseudo KFFR dans le profil avant de lancer une partie connectée.");
   const token = randomBytes(32).toString("hex");
   // Test de chapitre : fonction dédiée, qui ne tire que parmi les événements des cartes du chapitre.
-  const game = filters.chapterTest && filters.chapterIds?.length === 1
+  const game = filters.mystery
+    ? await rpc<SoloGame>("start_mystery_game", {
+      p_token: token, p_niveau: filters.niveau ?? 1,
+      p_difficulty: filters.difficulty ?? "YEAR", p_direction: filters.direction ?? "date",
+      p_question_count: filters.questionCount ?? 10,
+      p_pack_id: filters.packId ?? null, p_tag_id: filters.tagId ?? null,
+    })
+    : filters.chapterTest && filters.chapterIds?.length === 1
     ? await rpc<SoloGame>("start_chapter_test", {
       p_token: token,
       p_chapter_id: filters.chapterIds[0],

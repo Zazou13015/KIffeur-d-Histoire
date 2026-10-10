@@ -1,0 +1,32 @@
+.action { display: grid; gap: 8px; min-width: 0; }
+.action small { color: var(--color-encre-douce); }
+.bouton, .passer { min-height: 44px; padding: 12px 20px; border: 1px solid var(--color-laiton); border-radius: 8px; font-weight: 700; }
+.bouton { background: var(--color-fond-resultat); color: var(--color-encre); }
+.bouton span { color: var(--color-oxyde); margin-right: 8px; }
+.bouton:disabled, .passer:disabled { cursor: default; opacity: .65; }
+.bouton:focus-visible, .passer:focus-visible { outline: 3px solid var(--color-laiton); outline-offset: 3px; }
+.dialog { width: min(760px, calc(100vw - 24px)); max-width: calc(100vw - 24px); padding: 24px 0; border: 1px solid var(--color-laiton); border-radius: 14px; background: var(--color-papier); color: var(--color-encre); text-align: center; box-shadow: var(--shadow-cartel); }
+.dialog::backdrop { background: rgb(29 42 58 / .8); }
+.dialog h2 { margin: 8px 16px; font-size: clamp(28px, 5vw, 40px); }
+.cartel { margin: 0 16px; font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: var(--color-oxyde); }
+.aide { margin: 0 16px 20px; color: var(--color-encre-douce); }
+.fenetre { position: relative; overflow: hidden; height: 200px; border-block: 1px solid var(--color-filet); background: var(--color-vert-de-gris); contain: layout paint; }
+.repere { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; transform: translateX(-50%); background: var(--color-oxyde); z-index: 1; }
+.repere::before { content: ""; position: absolute; top: 0; left: -7px; border-inline: 8px solid transparent; border-top: 12px solid var(--color-oxyde); }
+.bande { position: absolute; left: 50%; top: 16px; display: flex; gap: 12px; width: max-content; transform: translate3d(var(--arrivee), 0, 0); animation: defiler 4s both; will-change: transform; }
+.carte { box-sizing: border-box; width: 164px; height: 166px; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; padding: 12px; border: 1px solid var(--color-filet); border-radius: 8px; background: var(--color-blanc-cartel); box-shadow: var(--shadow-cartel); }
+.carte small { color: var(--color-encre-douce); font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; }
+.carte b { font-family: var(--font-titre); font-size: 16px; line-height: 1.2; overflow-wrap: anywhere; }
+.motif { width: 38px; height: 38px; flex-shrink: 0; color: var(--color-laiton); }
+.fenetre[data-arretee="true"] .bande { animation: none; will-change: auto; }
+.carte[data-gagnante="true"] { border: 2px solid var(--color-laiton); background: var(--color-fond-resultat); }
+.annonce { min-height: 48px; margin: 20px 16px 12px; font-family: var(--font-titre); font-size: 22px; overflow-wrap: anywhere; }
+.passer { background: var(--color-encre); color: var(--color-papier); }
+@keyframes defiler {
+  0% { transform: translate3d(-82px, 0, 0); animation-timing-function: cubic-bezier(.12,.65,.2,1); }
+  88% { transform: translate3d(var(--rebond-avant), 0, 0); animation-timing-function: ease-out; }
+  95% { transform: translate3d(var(--rebond-apres), 0, 0); animation-timing-function: ease-in-out; }
+  100% { transform: translate3d(var(--arrivee), 0, 0); }
+}
+@media (prefers-reduced-motion: reduce) { .bande { animation: none; } }
+@media (max-width: 420px) { .dialog { padding-block: 20px; } .aide { font-size: 14px; } }

@@ -13,6 +13,10 @@ const mocks = vi.hoisted(() => ({ preparer: vi.fn(), push: vi.fn(), lancer: vi.f
 vi.mock("@/app/solo/mystere", () => ({ preparerMystere: mocks.preparer }));
 vi.mock("@/app/solo/disponibilite", () => ({ compterQuestions: mocks.compter }));
 vi.mock("@/app/partie/actions", () => ({ lancer: mocks.lancer }));
+// Bilan importe ces actions via SaveGame et EnregistrerTest, même lorsque leurs
+// composants ne sont pas affichés. Garder la frontière serveur hors de jsdom.
+vi.mock("@/app/solo/actions", () => ({ claimGame: vi.fn() }));
+vi.mock("@/app/apprendre/actions", () => ({ enregistrerTestChapitre: vi.fn() }));
 const router = { push: mocks.push };
 vi.mock("next/navigation", () => ({ useRouter: () => router }));
 const tirage: TirageMystere = { gagnant: { mode: "pack", id: "M95-PACK", titre: "Cabinet surprise" },

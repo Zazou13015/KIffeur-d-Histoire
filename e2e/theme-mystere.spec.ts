@@ -73,6 +73,7 @@ test("mouvement réduit, bilan A+, rejouer puis relancer et rouvrir sans URL", a
   await expect(bilan.getByRole("button", { name: /Rejouer ce thème/ })).toBeVisible();
   await expect(bilan.getByRole("img", { name: /points sur 500$/ })).toBeVisible();
   await bilan.getByRole("button", { name: /Rejouer ce thème/ }).click();
+  await expect.poll(() => idPartie(page)).not.toBe(premier);
   expect(await attendreQuestion(page, 1)).toBe(5);
   const rejoue = contexte(idPartie(page)).replay_filters;
   expect(rejoue.packId).toBe(gagnant.packId); expect(rejoue.tagId).toBe(gagnant.tagId);
@@ -81,9 +82,14 @@ test("mouvement réduit, bilan A+, rejouer puis relancer et rouvrir sans URL", a
   await page.goto(`/partie/${premier}`);
   await page.getByRole("button", { name: /Relancer la roulette/ }).click();
   await expect(page.getByRole("dialog").getByRole("status")).toContainText("C'est parti :");
+  // L'ancienne URL est déjà /partie/... pendant les 900 ms d'annonce.
+  // Attendre la navigation effective, sans délai arbitraire.
+  await expect.poll(() => idPartie(page)).not.toBe(premier);
   await expect(page).toHaveURL(/\/partie\//);
   expect(idPartie(page)).not.toBe(premier);
   expect(await attendreQuestion(page, 1)).toBe(5);
   const relance = contexte(idPartie(page)).replay_filters;
   expect(relance.niveau).toBe(gagnant.niveau); expect(relance.questionCount).toBe(5);
+  expect(relance.difficulty).toBe(gagnant.difficulty); expect(relance.direction).toBe(gagnant.direction);
+  expect(relance.mystery).toBe(true);
 });

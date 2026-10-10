@@ -48,7 +48,7 @@ export function RouletteMystere({ tirage, terminer }: { tirage: TirageMystere; t
       <div className={styles.bande} style={variables} onAnimationEnd={() => { if (!saute.current) arreter(); }}>
         {bande.map((carte, i) => <div key={i} className={styles.carte} data-gagnante={terminee && i === INDEX_GAGNANT}>
           <Motif nom={MOTIFS[i % MOTIFS.length]} className={styles.motif} />
-          <small>{carte.mode === "pack" ? "Pack" : "Thème"}</small><b>{carte.titre}</b>
+          <b>{carte.titre}</b>
         </div>)}
       </div>
     </div>

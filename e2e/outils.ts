@@ -86,9 +86,10 @@ export async function validerEtContinuer(page: Page, valider: "bouton" | "entree
 export async function lireBilan(page: Page) {
   const bilan = page.getByRole("region", { name: "Fin de la partie" });
   await expect(bilan).toBeVisible();
-  const titre = (await bilan.getByRole("heading", { level: 1 }).textContent())!;
-  const points = Number(titre.replace(/\s/g, "").match(/^(\d+)points/)![1]);
-  const precision = Number((await bilan.getByText(/Précision moyenne/).textContent())!.match(/(\d+(?:[.,]\d+)?)\s*%/)![1].replace(",", "."));
+  const score = await bilan.getByRole("img", { name: /^\d+ points sur/ }).getAttribute("aria-label");
+  const points = Number(score!.match(/^(\d+) points/)![1]);
+  const moyenne = await bilan.getByRole("img", { name: /^Précision moyenne/ }).getAttribute("aria-label");
+  const precision = Number(moyenne!.match(/(\d+(?:[.,]\d+)?)\s*%/)![1].replace(",", "."));
   return { bilan, points, precision };
 }
 

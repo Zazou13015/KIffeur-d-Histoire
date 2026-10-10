@@ -1,0 +1,501 @@
+{
+  "measurements": [
+    {
+      "cas": "classique",
+      "width": 320,
+      "height": 568,
+      "viewport": 320,
+      "document": 320,
+      "replayBottom": 411.9486999511719,
+      "detailBottom": 1419.77685546875
+    },
+    {
+      "cas": "inverse",
+      "width": 320,
+      "height": 568,
+      "viewport": 320,
+      "document": 320,
+      "replayBottom": 412.9266357421875,
+      "detailBottom": 1403.9578857421875
+    },
+    {
+      "cas": "zero",
+      "width": 320,
+      "height": 568,
+      "viewport": 320,
+      "document": 320,
+      "replayBottom": 412.9281311035156,
+      "detailBottom": 1420.7562255859375
+    },
+    {
+      "cas": "maximum",
+      "width": 320,
+      "height": 568,
+      "viewport": 320,
+      "document": 320,
+      "replayBottom": 443.4268493652344,
+      "detailBottom": 1434.4580078125
+    },
+    {
+      "cas": "absente",
+      "width": 320,
+      "height": 568,
+      "viewport": 320,
+      "document": 320,
+      "replayBottom": 412.92791748046875,
+      "detailBottom": 1403.959228515625
+    },
+    {
+      "cas": "eloignee",
+      "width": 320,
+      "height": 568,
+      "viewport": 320,
+      "document": 320,
+      "replayBottom": 412.92755126953125,
+      "detailBottom": 1420.755615234375
+    },
+    {
+      "cas": "trois",
+      "width": 320,
+      "height": 568,
+      "viewport": 320,
+      "document": 320,
+      "replayBottom": 443.42718505859375,
+      "detailBottom": 1399.25537109375
+    },
+    {
+      "cas": "jour",
+      "width": 320,
+      "height": 568,
+      "viewport": 320,
+      "document": 320,
+      "replayBottom": 412.9278869628906,
+      "detailBottom": 1455.7559814453125
+    },
+    {
+      "cas": "mois",
+      "width": 320,
+      "height": 568,
+      "viewport": 320,
+      "document": 320,
+      "replayBottom": 412.926513671875,
+      "detailBottom": 1455.754638671875
+    },
+    {
+      "cas": "classique",
+      "width": 390,
+      "height": 844,
+      "viewport": 390,
+      "document": 390,
+      "replayBottom": 429.0682373046875,
+      "detailBottom": 1401.5057373046875
+    },
+    {
+      "cas": "inverse",
+      "width": 390,
+      "height": 844,
+      "viewport": 390,
+      "document": 390,
+      "replayBottom": 429.067626953125,
+      "detailBottom": 1400.098876953125
+    },
+    {
+      "cas": "zero",
+      "width": 390,
+      "height": 844,
+      "viewport": 390,
+      "document": 390,
+      "replayBottom": 429.0689697265625,
+      "detailBottom": 1401.5064697265625
+    },
+    {
+      "cas": "maximum",
+      "width": 390,
+      "height": 844,
+      "viewport": 390,
+      "document": 390,
+      "replayBottom": 462.0044860839844,
+      "detailBottom": 1417.64501953125
+    },
+    {
+      "cas": "absente",
+      "width": 390,
+      "height": 844,
+      "viewport": 390,
+      "document": 390,
+      "replayBottom": 429.0685119628906,
+      "detailBottom": 1384.709228515625
+    },
+    {
+      "cas": "eloignee",
+      "width": 390,
+      "height": 844,
+      "viewport": 390,
+      "document": 390,
+      "replayBottom": 429.4375,
+      "detailBottom": 1401.875
+    },
+    {
+      "cas": "trois",
+      "width": 390,
+      "height": 844,
+      "viewport": 390,
+      "document": 390,
+      "replayBottom": 462.0057678222656,
+      "detailBottom": 1382.4432373046875
+    },
+    {
+      "cas": "jour",
+      "width": 390,
+      "height": 844,
+      "viewport": 390,
+      "document": 390,
+      "replayBottom": 429.06689453125,
+      "detailBottom": 1436.50439453125
+    },
+    {
+      "cas": "mois",
+      "width": 390,
+      "height": 844,
+      "viewport": 390,
+      "document": 390,
+      "replayBottom": 429.0677795410156,
+      "detailBottom": 1436.5052490234375
+    },
+    {
+      "cas": "classique",
+      "width": 768,
+      "height": 1024,
+      "viewport": 768,
+      "document": 768,
+      "replayBottom": 165.86395263671875,
+      "detailBottom": 777.8170776367188
+    },
+    {
+      "cas": "inverse",
+      "width": 768,
+      "height": 1024,
+      "viewport": 768,
+      "document": 768,
+      "replayBottom": 173.66168212890625,
+      "detailBottom": 776.6148071289062
+    },
+    {
+      "cas": "zero",
+      "width": 768,
+      "height": 1024,
+      "viewport": 768,
+      "document": 768,
+      "replayBottom": 160.47418212890625,
+      "detailBottom": 767.0366821289062
+    },
+    {
+      "cas": "maximum",
+      "width": 768,
+      "height": 1024,
+      "viewport": 768,
+      "document": 768,
+      "replayBottom": 173.662353515625,
+      "detailBottom": 776.615478515625
+    },
+    {
+      "cas": "absente",
+      "width": 768,
+      "height": 1024,
+      "viewport": 768,
+      "document": 768,
+      "replayBottom": 165.86456298828125,
+      "detailBottom": 761.0208129882812
+    },
+    {
+      "cas": "eloignee",
+      "width": 768,
+      "height": 1024,
+      "viewport": 768,
+      "document": 768,
+      "replayBottom": 165.8651123046875,
+      "detailBottom": 777.8182373046875
+    },
+    {
+      "cas": "trois",
+      "width": 768,
+      "height": 1024,
+      "viewport": 768,
+      "document": 768,
+      "replayBottom": 165.86453247070312,
+      "detailBottom": 777.817626953125
+    },
+    {
+      "cas": "jour",
+      "width": 768,
+      "height": 1024,
+      "viewport": 768,
+      "document": 768,
+      "replayBottom": 165.86444091796875,
+      "detailBottom": 777.8175659179688
+    },
+    {
+      "cas": "mois",
+      "width": 768,
+      "height": 1024,
+      "viewport": 768,
+      "document": 768,
+      "replayBottom": 165.86502075195312,
+      "detailBottom": 777.818115234375
+    },
+    {
+      "cas": "classique",
+      "width": 1024,
+      "height": 768,
+      "viewport": 1024,
+      "document": 1024,
+      "replayBottom": 145.94300842285156,
+      "detailBottom": 721.1617431640625
+    },
+    {
+      "cas": "inverse",
+      "width": 1024,
+      "height": 768,
+      "viewport": 1024,
+      "document": 1024,
+      "replayBottom": 145.94342041015625,
+      "detailBottom": 721.1621704101562
+    },
+    {
+      "cas": "zero",
+      "width": 1024,
+      "height": 768,
+      "viewport": 1024,
+      "document": 1024,
+      "replayBottom": 145.94210815429688,
+      "detailBottom": 721.160888671875
+    },
+    {
+      "cas": "maximum",
+      "width": 1024,
+      "height": 768,
+      "viewport": 1024,
+      "document": 1024,
+      "replayBottom": 145.94219970703125,
+      "detailBottom": 721.1609497070312
+    },
+    {
+      "cas": "absente",
+      "width": 1024,
+      "height": 768,
+      "viewport": 1024,
+      "document": 1024,
+      "replayBottom": 145.94200134277344,
+      "detailBottom": 721.1607666015625
+    },
+    {
+      "cas": "eloignee",
+      "width": 1024,
+      "height": 768,
+      "viewport": 1024,
+      "document": 1024,
+      "replayBottom": 145.94204711914062,
+      "detailBottom": 721.1607666015625
+    },
+    {
+      "cas": "trois",
+      "width": 1024,
+      "height": 768,
+      "viewport": 1024,
+      "document": 1024,
+      "replayBottom": 145.94232177734375,
+      "detailBottom": 721.1610717773438
+    },
+    {
+      "cas": "jour",
+      "width": 1024,
+      "height": 768,
+      "viewport": 1024,
+      "document": 1024,
+      "replayBottom": 145.94264221191406,
+      "detailBottom": 721.161376953125
+    },
+    {
+      "cas": "mois",
+      "width": 1024,
+      "height": 768,
+      "viewport": 1024,
+      "document": 1024,
+      "replayBottom": 145.94342041015625,
+      "detailBottom": 721.1621704101562
+    },
+    {
+      "cas": "classique",
+      "width": 1366,
+      "height": 768,
+      "viewport": 1366,
+      "document": 1366,
+      "replayBottom": 154.03660583496094,
+      "detailBottom": 719.86474609375
+    },
+    {
+      "cas": "inverse",
+      "width": 1366,
+      "height": 768,
+      "viewport": 1366,
+      "document": 1366,
+      "replayBottom": 154.03759765625,
+      "detailBottom": 719.86572265625
+    },
+    {
+      "cas": "zero",
+      "width": 1366,
+      "height": 768,
+      "viewport": 1366,
+      "document": 1366,
+      "replayBottom": 154.03634643554688,
+      "detailBottom": 719.864501953125
+    },
+    {
+      "cas": "maximum",
+      "width": 1366,
+      "height": 768,
+      "viewport": 1366,
+      "document": 1366,
+      "replayBottom": 154.03555297851562,
+      "detailBottom": 719.8636474609375
+    },
+    {
+      "cas": "absente",
+      "width": 1366,
+      "height": 768,
+      "viewport": 1366,
+      "document": 1366,
+      "replayBottom": 154.03628540039062,
+      "detailBottom": 719.8643798828125
+    },
+    {
+      "cas": "eloignee",
+      "width": 1366,
+      "height": 768,
+      "viewport": 1366,
+      "document": 1366,
+      "replayBottom": 154.03582763671875,
+      "detailBottom": 719.8639526367188
+    },
+    {
+      "cas": "trois",
+      "width": 1366,
+      "height": 768,
+      "viewport": 1366,
+      "document": 1366,
+      "replayBottom": 154.03652954101562,
+      "detailBottom": 719.8646240234375
+    },
+    {
+      "cas": "jour",
+      "width": 1366,
+      "height": 768,
+      "viewport": 1366,
+      "document": 1366,
+      "replayBottom": 154.03570556640625,
+      "detailBottom": 719.8638305664062
+    },
+    {
+      "cas": "mois",
+      "width": 1366,
+      "height": 768,
+      "viewport": 1366,
+      "document": 1366,
+      "replayBottom": 154.03598022460938,
+      "detailBottom": 719.8641357421875
+    },
+    {
+      "cas": "classique",
+      "width": 1920,
+      "height": 1080,
+      "viewport": 1920,
+      "document": 1920,
+      "replayBottom": 154.0361785888672,
+      "detailBottom": 719.8643188476562
+    },
+    {
+      "cas": "inverse",
+      "width": 1920,
+      "height": 1080,
+      "viewport": 1920,
+      "document": 1920,
+      "replayBottom": 154.03639221191406,
+      "detailBottom": 719.864501953125
+    },
+    {
+      "cas": "zero",
+      "width": 1920,
+      "height": 1080,
+      "viewport": 1920,
+      "document": 1920,
+      "replayBottom": 154.03590393066406,
+      "detailBottom": 719.864013671875
+    },
+    {
+      "cas": "maximum",
+      "width": 1920,
+      "height": 1080,
+      "viewport": 1920,
+      "document": 1920,
+      "replayBottom": 154.037109375,
+      "detailBottom": 719.865234375
+    },
+    {
+      "cas": "absente",
+      "width": 1920,
+      "height": 1080,
+      "viewport": 1920,
+      "document": 1920,
+      "replayBottom": 154.03555297851562,
+      "detailBottom": 719.8636474609375
+    },
+    {
+      "cas": "eloignee",
+      "width": 1920,
+      "height": 1080,
+      "viewport": 1920,
+      "document": 1920,
+      "replayBottom": 154.03640747070312,
+      "detailBottom": 719.864501953125
+    },
+    {
+      "cas": "trois",
+      "width": 1920,
+      "height": 1080,
+      "viewport": 1920,
+      "document": 1920,
+      "replayBottom": 154.0364990234375,
+      "detailBottom": 719.8646240234375
+    },
+    {
+      "cas": "jour",
+      "width": 1920,
+      "height": 1080,
+      "viewport": 1920,
+      "document": 1920,
+      "replayBottom": 152.03416442871094,
+      "detailBottom": 717.8623046875
+    },
+    {
+      "cas": "mois",
+      "width": 1920,
+      "height": 1080,
+      "viewport": 1920,
+      "document": 1920,
+      "replayBottom": 153.3656005859375,
+      "detailBottom": 719.1937255859375
+    }
+  ],
+  "errors": [],
+  "checks": [
+    "navigation clavier et numéros",
+    "frise synchronisée",
+    "écart et retour global",
+    "sauvegarde et erreur",
+    "rattachement unique",
+    "test pédagogique unique",
+    "relance avec sélection",
+    "invité"
+  ]
+}

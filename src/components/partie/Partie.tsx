@@ -51,7 +51,7 @@ export function Partie({ gameId, total, question: premiere, actions, connecte, a
 
   if (resultat) {
     return (
-      <div className="conteneur grid flex-1 grid-cols-1 content-start py-8">
+      <div className="flex flex-1 flex-col">
         <Bilan resultat={resultat} connecte={connecte} anonyme={anonyme} relance={relance} />
       </div>
     );

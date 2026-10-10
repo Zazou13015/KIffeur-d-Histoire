@@ -90,7 +90,7 @@ export default async function PartiePage({ params, searchParams }: PageProps<"/p
     return <Indisponible titre="Bilan indisponible" texte="Cette partie est inaccessible ou expirée." />;
   }
   return (
-    <main className="conteneur grid flex-1 grid-cols-1 content-start gap-6 py-8">
+    <main className="flex flex-1 flex-col">
       <Bilan resultat={resultat} connecte={Boolean(account)} anonyme={anonyme} relance={relance} />
     </main>
   );

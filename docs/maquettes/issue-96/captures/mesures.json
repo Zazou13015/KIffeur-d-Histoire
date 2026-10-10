@@ -1,0 +1,285 @@
+{
+  "mesures": [
+    {
+      "proposition": "cabinet",
+      "largeur": 1366,
+      "hauteur": 768,
+      "largeurDocument": 1366,
+      "hauteurDocument": 768,
+      "score": {
+        "top": 256.1875,
+        "bottom": 378.578125,
+        "left": 51,
+        "right": 217.953125,
+        "height": 122.390625
+      },
+      "rejouer": {
+        "top": 458.578125,
+        "bottom": 506.578125,
+        "left": 51,
+        "right": 202.390625,
+        "height": 48
+      },
+      "changer": {
+        "top": 458.578125,
+        "bottom": 506.578125,
+        "left": 214.390625,
+        "right": 381.203125,
+        "height": 48
+      }
+    },
+    {
+      "proposition": "cabinet",
+      "largeur": 1024,
+      "hauteur": 768,
+      "largeurDocument": 1024,
+      "hauteurDocument": 768,
+      "score": {
+        "top": 245.046875,
+        "bottom": 371.046875,
+        "left": 28,
+        "right": 199.859375,
+        "height": 126
+      },
+      "rejouer": {
+        "top": 451.046875,
+        "bottom": 499.046875,
+        "left": 28,
+        "right": 144.390625,
+        "height": 48
+      },
+      "changer": {
+        "top": 451.046875,
+        "bottom": 499.046875,
+        "left": 156.390625,
+        "right": 313.203125,
+        "height": 48
+      }
+    },
+    {
+      "proposition": "cabinet",
+      "largeur": 390,
+      "hauteur": 844,
+      "largeurDocument": 390,
+      "hauteurDocument": 1343,
+      "score": {
+        "top": 242.484375,
+        "bottom": 357.671875,
+        "left": 20,
+        "right": 177.125,
+        "height": 115.1875
+      },
+      "rejouer": {
+        "top": 433.671875,
+        "bottom": 484.3125,
+        "left": 20,
+        "right": 370,
+        "height": 50.640625
+      },
+      "changer": {
+        "top": 493.3125,
+        "bottom": 541.3125,
+        "left": 20,
+        "right": 370,
+        "height": 48
+      }
+    },
+    {
+      "proposition": "cabinet",
+      "largeur": 375,
+      "hauteur": 667,
+      "largeurDocument": 375,
+      "hauteurDocument": 1367,
+      "score": {
+        "top": 242.484375,
+        "bottom": 357.671875,
+        "left": 20,
+        "right": 177.125,
+        "height": 115.1875
+      },
+      "rejouer": {
+        "top": 433.671875,
+        "bottom": 484.3125,
+        "left": 20,
+        "right": 355,
+        "height": 50.640625
+      },
+      "changer": {
+        "top": 493.3125,
+        "bottom": 541.3125,
+        "left": 20,
+        "right": 355,
+        "height": 48
+      }
+    },
+    {
+      "proposition": "cabinet",
+      "largeur": 320,
+      "hauteur": 568,
+      "largeurDocument": 320,
+      "hauteurDocument": 1416,
+      "score": {
+        "top": 238.875,
+        "bottom": 354.0625,
+        "left": 16,
+        "right": 173.125,
+        "height": 115.1875
+      },
+      "rejouer": {
+        "top": 430.0625,
+        "bottom": 480.703125,
+        "left": 16,
+        "right": 304,
+        "height": 50.640625
+      },
+      "changer": {
+        "top": 489.703125,
+        "bottom": 537.703125,
+        "left": 16,
+        "right": 304,
+        "height": 48
+      }
+    },
+    {
+      "proposition": "immersif",
+      "largeur": 1366,
+      "hauteur": 768,
+      "largeurDocument": 1366,
+      "hauteurDocument": 768,
+      "score": {
+        "top": 301.078125,
+        "bottom": 445.078125,
+        "left": 51,
+        "right": 247.40625,
+        "height": 144
+      },
+      "rejouer": {
+        "top": 531.078125,
+        "bottom": 579.078125,
+        "left": 51,
+        "right": 202.390625,
+        "height": 48
+      },
+      "changer": {
+        "top": 531.078125,
+        "bottom": 579.078125,
+        "left": 214.390625,
+        "right": 381.203125,
+        "height": 48
+      }
+    },
+    {
+      "proposition": "immersif",
+      "largeur": 1024,
+      "hauteur": 768,
+      "largeurDocument": 1024,
+      "hauteurDocument": 768,
+      "score": {
+        "top": 301.078125,
+        "bottom": 427.078125,
+        "left": 28,
+        "right": 199.859375,
+        "height": 126
+      },
+      "rejouer": {
+        "top": 513.078125,
+        "bottom": 561.078125,
+        "left": 28,
+        "right": 144.390625,
+        "height": 48
+      },
+      "changer": {
+        "top": 513.078125,
+        "bottom": 561.078125,
+        "left": 156.390625,
+        "right": 313.203125,
+        "height": 48
+      }
+    },
+    {
+      "proposition": "immersif",
+      "largeur": 390,
+      "hauteur": 844,
+      "largeurDocument": 390,
+      "hauteurDocument": 1402,
+      "score": {
+        "top": 287.46875,
+        "bottom": 417.0625,
+        "left": 20,
+        "right": 196.765625,
+        "height": 129.59375
+      },
+      "rejouer": {
+        "top": 493.0625,
+        "bottom": 543.703125,
+        "left": 20,
+        "right": 370,
+        "height": 50.640625
+      },
+      "changer": {
+        "top": 552.703125,
+        "bottom": 600.703125,
+        "left": 20,
+        "right": 370,
+        "height": 48
+      }
+    },
+    {
+      "proposition": "immersif",
+      "largeur": 375,
+      "hauteur": 667,
+      "largeurDocument": 375,
+      "hauteurDocument": 1402,
+      "score": {
+        "top": 287.46875,
+        "bottom": 417.0625,
+        "left": 20,
+        "right": 196.765625,
+        "height": 129.59375
+      },
+      "rejouer": {
+        "top": 493.0625,
+        "bottom": 543.703125,
+        "left": 20,
+        "right": 355,
+        "height": 50.640625
+      },
+      "changer": {
+        "top": 552.703125,
+        "bottom": 600.703125,
+        "left": 20,
+        "right": 355,
+        "height": 48
+      }
+    },
+    {
+      "proposition": "immersif",
+      "largeur": 320,
+      "hauteur": 568,
+      "largeurDocument": 320,
+      "hauteurDocument": 1445,
+      "score": {
+        "top": 280.25,
+        "bottom": 409.84375,
+        "left": 16,
+        "right": 192.765625,
+        "height": 129.59375
+      },
+      "rejouer": {
+        "top": 485.84375,
+        "bottom": 536.484375,
+        "left": 16,
+        "right": 304,
+        "height": 50.640625
+      },
+      "changer": {
+        "top": 545.484375,
+        "bottom": 593.484375,
+        "left": 16,
+        "right": 304,
+        "height": 48
+      }
+    }
+  ],
+  "erreurs": []
+}

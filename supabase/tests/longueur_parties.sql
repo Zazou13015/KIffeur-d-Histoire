@@ -85,16 +85,16 @@ select pg_temp.verifier((select bool_and(g.context->'replay_filters'->>'question
   from tirages t join histoire.games g on g.id=t.id), 'choix de longueur enregistré');
 -- Terminer un vrai tirage de cent questions par le correcteur existant (test local uniquement).
 set local request.jwt.claim.sub='';
-do $$ declare id uuid; q jsonb; correction record; resultat jsonb; begin
-  select t.id into id from tirages t where t.attendu=100 limit 1;
+do $$ declare v_game_id uuid; q jsonb; correction record; resultat jsonb; begin
+  select t.id into v_game_id from tirages t where t.attendu=100 limit 1;
   for i in 1..100 loop
-    q := histoire.next_question(id,repeat('e',64));
+    q := histoire.next_question(v_game_id,repeat('e',64));
     perform pg_temp.verifier(not q ? 'replay_filters', 'aucun filtre de bilan avant correction');
-    select * into correction from histoire.game_questions where game_id=id and position=i;
-    perform histoire.submit_answer(p_game_id=>id,p_question_id=>(q->>'question_id')::uuid,
+    select gq.* into correction from histoire.game_questions gq where gq.game_id=v_game_id and gq.position=i;
+    perform histoire.submit_answer(p_game_id=>v_game_id,p_question_id=>(q->>'question_id')::uuid,
       p_year=>correction.expected_year,p_month=>correction.expected_month,p_day=>correction.expected_day,p_token=>repeat('e',64));
   end loop;
-  resultat := histoire.finish_game(id,repeat('e',64));
+  resultat := histoire.finish_game(v_game_id,repeat('e',64));
   perform pg_temp.verifier(resultat->>'question_count'='100' and jsonb_array_length(resultat->'questions')=100, 'bilan complet à cent questions');
   perform pg_temp.verifier(resultat->'replay_filters' is not null and not (resultat->'replay_filters') ? 'p_token', 'relance disponible au bilan, sans secret');
 end $$;

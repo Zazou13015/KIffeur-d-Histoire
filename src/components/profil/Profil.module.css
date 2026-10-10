@@ -187,10 +187,14 @@
     width: 34%;
   }
   .table th[scope="col"] {
-    white-space: nowrap;
+    white-space: normal;
   }
   .table td {
-    white-space: nowrap;
+    white-space: normal;
+  }
+  .metric {
+    min-width: 0;
+    overflow-wrap: anywhere;
   }
   .chart text {
     font-size: 20px;

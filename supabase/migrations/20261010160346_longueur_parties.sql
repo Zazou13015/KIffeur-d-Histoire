@@ -1,4 +1,6 @@
 -- #93 : PRÉPARÉE UNIQUEMENT. Autorisation d'Antonin requise avant KFFR et fusion.
+-- BLOQUANT SÉCURITÉ : décompte exact + bornes libres = oracle des années cachées.
+-- Ne pas appliquer en production : décision produit/protection requise, docs/audit-decompte-93.md.
 -- Aucun score enregistré, schéma public/auth, budget ou test pédagogique modifié.
 begin;
 set local lock_timeout = '5s';
@@ -38,6 +40,7 @@ revoke all on function histoire.solo_candidates(integer, text, text, integer, in
   from public, anon, authenticated;
 
 -- Seuls trois nombres sortent. Aucun candidat, date, titre, alias ou identifiant privé.
+-- Cela ne suffit PAS à garantir la confidentialité : répétition des intervalles => inférence.
 create function histoire.available_questions(
   p_niveau integer default null, p_pack_id text default null, p_tag_id text default null,
   p_year_min integer default null, p_year_max integer default null,

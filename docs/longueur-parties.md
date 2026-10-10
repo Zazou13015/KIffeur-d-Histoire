@@ -34,6 +34,8 @@ Les valeurs sont arrondies à deux décimales seulement dans les agrégats renvo
 
 ## Migration à autoriser — fusion bloquée
 
+**Blocage supplémentaire : [audit du décompte public](audit-decompte-93.md).** Les intervalles libres et comptes exacts permettent d'inférer des années privées. Ne pas appliquer la migration ni fusionner avant résolution de cette incompatibilité et décision produit explicite ; une limitation de débit seule ne résout pas la fuite. Les fonctionnalités restent préparées pour revue, sans validation de confidentialité en production.
+
 `supabase/migrations/20261010160346_longueur_parties.sql` a été créée avec la CLI puis préparée, **sans application distante ou locale**. Elle reste dans histoire et dans son registre. Elle ajoute le helper interne et la RPC de décompte, remplace les deux start_game (mêmes signatures/ACL), étend next_question/finish_game et ajoute les agrégats normalisés à player_stats. Pas de colonne nouvelle ni de modification de public/auth, RLS, tables de réponses, correcteur ou actions de compte.
 
 La transaction possède des délais de verrou/exécution bornés et recharge le cache PostgREST. Les RPC privées gardent l'identité contrôlée et le search_path vide ; le décompte public ne rend que trois nombres. Les scores historiques ne font l'objet d'aucun UPDATE de migration.
@@ -50,3 +52,9 @@ Avant toute fusion : résultats de CI à examiner, revue SQL, puis **GO explicit
 - Relecture A+ existante étendue à 20 et 100 : onze résultats × six formats, navigation par séries et clavier ; aucune capture nouvelle n'est prétendue validée avant exécution.
 
 GitHub Actions exécutera automatiquement les suites à l'ouverture de la PR. Leurs résultats ne sont pas consultés dans cette session ; une CI verte n'est donc pas revendiquée.
+
+## Corrections après lecture de la CI du 10 octobre
+
+Les fixtures de longueur créent désormais un niveau et trois chapitres propres à leur transaction ; elles ne dépendent plus des THM du dataset absent du Postgres minimal. Toutes leurs références, contraintes et assertions de déduplication restent actives. Le sélecteur E2E vise explicitement Terminale générale, car Terminale HGGSP porte aussi le préfixe Terminale.
+
+Les cellules/en-têtes du profil retrouvent les retours à la ligne sur mobile et les métriques peuvent couper les longues valeurs. Le contrôle d'absence de débordement est conservé et complété par un diagnostic des cellules. Un contrôle navigateur isolé du tableau, avec le CSS réel et une police système, a mesuré 387 px avant / 375 px après à un viewport de 375 px, avec les mêmes mesures desktop avant/après à 1440 px. Ce contrôle court ne remplace pas la relecture de la page complète avec ses polices ; aucune suite longue, aucun build, aucun test SQL local n'est lancé pour cette correction. La CI complète corrigée n'est pas attendue.

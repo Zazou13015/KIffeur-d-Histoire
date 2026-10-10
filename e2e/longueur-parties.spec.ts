@@ -6,7 +6,7 @@ for (const chemin of ["/solo", "/scolaire", "/inverse", "/inverse?type=scolaire"
   for (const longueur of [5, 10, 20, "tout"] as const) {
     test(`${chemin} : longueur ${longueur}, tirage réel et rechargement sans n`, async ({ page }) => {
       await page.goto(chemin);
-      if (chemin.includes("scolaire")) await page.getByRole("button", { name: /^Terminale/ }).click();
+      if (chemin.includes("scolaire")) await page.getByRole("button", { name: /^Terminale générale\b/ }).click();
       const longueurs = page.getByRole("group", { name: "Longueur de la partie" });
       const bouton = longueurs.getByRole("button", { name: longueur === "tout" ? /^Tout/ : new RegExp(`^${longueur} questions`) });
       // Un programme peut réellement contenir moins de vingt dates exactes.

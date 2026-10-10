@@ -11,6 +11,13 @@ language plpgsql as $$ begin
   raise exception 'ÉCHEC : requête acceptée';
 end $$;
 
+-- Références autonomes : aucun chapitre du dataset complet n'est supposé importé.
+insert into histoire.levels(id,name,cycle,position)
+values ('LONG-93','Niveau longueur de test','lycee',30093);
+insert into histoire.chapters(id,level_id,school_year,program_scope,title) values
+  ('LONG-93-CH1','LONG-93','2026-2027','Tronc commun','Chapitre commun A'),
+  ('LONG-93-CH2','LONG-93','2026-2027','Tronc commun','Chapitre commun B'),
+  ('LONG-93-CH3','LONG-93','2026-2027','Tronc commun','Chapitre complet');
 insert into histoire.events(id,title,event_type,precision,date_status,playable,playable_mode,importance,difficulty,niveau)
 select 'EVT-' || (9800+i), 'Événement longueur ' || i, 'POINT', 'DAY', 'EXACT', true, 'DAY', 1, 1,
   case when i <= 30 then 1 when i <= 60 then 2 else 3 end from generate_series(1,120) i;
@@ -19,11 +26,13 @@ select 'EVT-' || (9800+i), 1800+(i-1)/2, 1, 1 from generate_series(1,120) i;
 insert into histoire.packs(id,slug,title) values ('LONG-93','long-93','Longueurs de test');
 insert into histoire.pack_events(pack_id,event_id,position)
 select 'LONG-93','EVT-' || (9800+i),i from generate_series(1,120) i;
+insert into histoire.event_levels(event_id,level_id)
+select 'EVT-' || (9800+i),'LONG-93' from generate_series(1,120) i;
 -- Chaque événement est lié à deux chapitres : EXISTS doit le compter une fois.
 insert into histoire.event_chapters(event_id,chapter_id)
-select 'EVT-' || (9800+i),c from generate_series(1,3) i cross join unnest(array['THM-001','THM-002']) c;
+select 'EVT-' || (9800+i),c from generate_series(1,3) i cross join unnest(array['LONG-93-CH1','LONG-93-CH2']) c;
 insert into histoire.event_chapters(event_id,chapter_id)
-select 'EVT-' || (9800+i),'THM-003' from generate_series(1,120) i;
+select 'EVT-' || (9800+i),'LONG-93-CH3' from generate_series(1,120) i;
 create temporary table tirages(id uuid, attendu integer, sens text);
 grant all on tirages to anon;
 set local role anon;
@@ -34,7 +43,8 @@ do $$ declare r jsonb; c jsonb; n integer; begin
     = '{"YEAR":60,"MONTH":60,"DAY":60}'::jsonb, 'déduplication des dates inversées');
   perform pg_temp.verifier(histoire.available_questions(p_niveau=>1,p_pack_id=>'LONG-93')->>'YEAR'='30', 'niveau');
   perform pg_temp.verifier(histoire.available_questions(p_pack_id=>'LONG-93',p_year_min=>1800,p_year_max=>1800)->>'YEAR'='2', 'période libre exacte');
-  perform pg_temp.verifier(histoire.available_questions(p_pack_id=>'LONG-93',p_chapter_ids=>array['THM-001','THM-002','THM-001'])->>'YEAR'='3', 'chapitres et identifiants répétés sans doublons');
+  perform pg_temp.verifier(histoire.available_questions(p_pack_id=>'LONG-93',p_chapter_ids=>array['LONG-93-CH1','LONG-93-CH2','LONG-93-CH1'])->>'YEAR'='3', 'chapitres et identifiants répétés sans doublons');
+  perform pg_temp.verifier(histoire.available_questions(p_pack_id=>'LONG-93',p_level_id=>'LONG-93',p_chapter_ids=>array['LONG-93-CH3'])->>'YEAR'='120', 'niveau et chapitre de test valides');
   perform pg_temp.verifier((select array_agg(k order by k) from jsonb_object_keys(c) k)=array['DAY','MONTH','YEAR'], 'trois nombres seulement');
   perform pg_temp.refuser('select * from histoire.solo_candidates(null,null,null,null,null,null,null,''YEAR'')', '42501');
   perform pg_temp.refuser('select * from histoire.event_answers', '42501');
@@ -50,15 +60,15 @@ do $$ declare r jsonb; c jsonb; n integer; begin
   insert into tirages values ((r->>'game_id')::uuid,60,'inverse');
   r := histoire.start_game(p_niveau=>1,p_token=>repeat('e',64),p_pack_id=>'LONG-93',p_question_count=>0);
   insert into tirages values ((r->>'game_id')::uuid,30,'date');
-  r := histoire.start_game(p_token=>repeat('e',64),p_pack_id=>'LONG-93',p_chapter_ids=>array['THM-003'],p_question_count=>20);
+  r := histoire.start_game(p_token=>repeat('e',64),p_pack_id=>'LONG-93',p_chapter_ids=>array['LONG-93-CH3'],p_question_count=>20);
   insert into tirages values ((r->>'game_id')::uuid,20,'date');
-  r := histoire.start_game(p_token=>repeat('e',64),p_pack_id=>'LONG-93',p_chapter_ids=>array['THM-003'],p_question_count=>20,p_direction=>'inverse',p_difficulty=>'DAY');
+  r := histoire.start_game(p_token=>repeat('e',64),p_pack_id=>'LONG-93',p_chapter_ids=>array['LONG-93-CH3'],p_question_count=>20,p_direction=>'inverse',p_difficulty=>'DAY');
   insert into tirages values ((r->>'game_id')::uuid,20,'inverse');
   -- Ancienne signature/choix sans longueur : dix questions.
   r := histoire.start_game(p_token=>repeat('e',64),p_pack_id=>'LONG-93');
   perform pg_temp.verifier(r->>'question_count'='10', 'défaut historique');
   -- Tout avec moins de cinq événements ; les longueurs fixes restent refusées.
-  r := histoire.start_game(p_token=>repeat('e',64),p_pack_id=>'LONG-93',p_chapter_ids=>array['THM-001','THM-002'],p_question_count=>0);
+  r := histoire.start_game(p_token=>repeat('e',64),p_pack_id=>'LONG-93',p_chapter_ids=>array['LONG-93-CH1','LONG-93-CH2'],p_question_count=>0);
   perform pg_temp.verifier(r->>'question_count'='3', 'petite sélection Tout');
   perform pg_temp.verifier(histoire.next_question((r->>'game_id')::uuid,repeat('e',64))->>'question_count'='3', 'progression réelle sans URL');
   perform pg_temp.refuser('select histoire.start_game(p_token=>repeat(''e'',64),p_pack_id=>''LONG-93'',p_year_min=>1800,p_year_max=>1800,p_question_count=>5)', '22023');

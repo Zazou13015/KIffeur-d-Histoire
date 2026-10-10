@@ -58,7 +58,7 @@ test("admin : lien depuis les indicateurs, retrait, audit, refresh et réintégr
   await page.getByRole("navigation", { name: "Packs" }).getByRole("link", { name: /Pack relecture E2E87/ }).click();
   const row = page.getByRole("row", { name: /Question relecture E2E87/ });
   await expect(row).toContainText("2 janvier 9876");
-  await page.getByLabel("Niveau", { exact: true }).selectOption("2");
+  await page.getByRole("combobox", { name: "Niveau", exact: true }).selectOption("2");
   await page.getByLabel("Rechercher par titre").fill("relecture");
   await row.getByRole("button", { name: "Retirer" }).click();
   const dialog = page.getByRole("dialog", { name: "Retirer cette question du pack ?" });

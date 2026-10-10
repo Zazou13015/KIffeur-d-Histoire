@@ -180,13 +180,17 @@ Journal durable `kpi_games` (trigger sur `games`, survit à la purge des anonyme
 réservées à `admin_indicateurs()` et page `/admin/indicateurs` pour les comptes de `admins`.
 Détails : [Indicateurs](indicateurs.md).
 
-### Administration des packs (#87)
+### Administration des packs (#87, #104)
 
 `/admin/packs` réutilise `histoire.admins` et des RPC réservées aux administrateurs.
 L’état privé par association et l’audit conservent les retraits/réintégrations.
 Le helper de candidats et la roulette filtrent les seules associations retirées ;
-les autres thèmes et chapitres restent disponibles. Migration préparée sans
-application sur KFFR : [Administration des packs](admin-packs.md).
+les autres thèmes et chapitres restent disponibles. #87 est appliquée et #103
+fusionnée. #104 ajoute les corrections globales titre/niveau, des surcharges
+par champ préservées par un trigger d’import, et un audit complet privé.
+Les titres affichés et réponses inversées acceptées sont figés par question
+pour préserver les parties existantes. Migration #104 préparée, non appliquée
+sur KFFR : [Administration des packs](admin-packs.md).
 
 ## 6. Organisation du code et travail à deux
 

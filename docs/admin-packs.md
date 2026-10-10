@@ -1,7 +1,8 @@
-# Administration des packs — #87
+# Administration des packs — #87 et corrections éditoriales #104
 
 `/admin/packs` permet à Maxou et Antonin de relire les packs existants et de retirer
-ou remettre leurs questions. Le lien se trouve sur `/admin/indicateurs`.
+ou remettre leurs questions. #104 ajoute la correction globale du titre et du
+niveau, avec historique complet. Le lien se trouve sur `/admin/indicateurs`.
 Les comptes autorisés restent exclusivement ceux de `histoire.admins` ; aucune
 nouvelle liste de comptes ni permission fondée sur les métadonnées du navigateur.
 
@@ -25,8 +26,8 @@ nouvelle liste de comptes ni permission fondée sur les métadonnées du navigat
    conservé en base, même après réintégration ; cette issue ne crée pas de CMS
    ni d’écran général d’historique.
 7. Cliquer « Remettre » pour annuler un retrait. Une question globalement non
-   jouable ne devient pas jouable par cette action. Les titres, dates, niveaux
-   et packs ne sont pas éditables dans cette interface.
+   jouable ne devient pas jouable par cette action. Les dates et les packs ne
+   sont pas éditables. La correction des titres et niveaux est décrite ci-dessous.
 
 En cas d’erreur, la page garde l’état précédemment confirmé et propose de
 réessayer. Le motif reste dans la confirmation. Une coupure après validation SQL
@@ -62,7 +63,8 @@ reste inchangé. Les retraits ne touchent pas les apprentissages ni progressions
 
 ## SQL, sécurité et coût
 
-Migration préparée : `20261010210813_admin_packs.sql`, créée avec `npm run db:new`.
+Migration #87 : `20261010210813_admin_packs.sql`, appliquée sur KFFR selon la
+confirmation d’Antonin. #103 est fusionnée. Elle a été créée avec `npm run db:new`.
 Elle dépend des fichiers #93 et #95, ne modifie aucune ancienne migration et
 s’inscrit dans `histoire.migrations_appliquees` dans sa transaction.
 
@@ -93,10 +95,77 @@ s’inscrit dans `histoire.migrations_appliquees` dans sa transaction.
   Les scans de candidats sont groupés ; l’audit récent utilise un index par
   association. Pas d’appel par ligne, ni de recalcul sur la saisie des filtres.
 
-## Mise en service : décisions humaines
+## Corriger le titre et le niveau — #104
 
-**Migration non appliquée. Aucun SQL distant exécuté.** Antonin doit donner un GO
-explicite séparé, après revue et vérification des migrations #93/#95 nécessaires.
+Cliquer « Modifier » sur une question, y compris retirée. Le formulaire reprend
+son titre canonique et son niveau (Débutant, Intermédiaire, Expert). Le titre est
+obligatoire, limité à 500 caractères ; le motif est facultatif, limité à 1 000.
+« Annuler » et Échap ferment sans écrire, puis rendent le focus au bouton.
+« Enregistrer » bloque les doubles clics pendant la requête. Un succès actualise
+la liste et les décomptes de tous les packs ; les filtres continuent à s’appliquer.
+Si une question quitte le niveau filtré, elle disparaît de cette sélection.
+
+Le titre et le niveau sont les propriétés globales de l’événement. La correction
+vaut dans tous ses packs et dans les nouveaux tirages généraux, classiques,
+inversés et mystère. Le scolaire et les tests pédagogiques utilisent ce titre,
+mais leur sélection reste fondée sur les chapitres, indépendamment du niveau
+éditorial. Les cartes pédagogiques ont leurs propres titres et textes rédigés :
+ils ne sont pas réécrits par cette action. Dates, descriptions, illustrations,
+alias explicites, retraits, programmes et indicateurs restent inchangés.
+
+Le titre classique avant réponse reste masqué (chiffres, mois, siècles). Après
+correction du titre canonique, l’ancien `titre_question` importé est écarté afin
+de ne pas afficher un libellé rédigé devenu incohérent. Les nouvelles parties
+inversées acceptent le nouveau titre et les alias explicites du dataset, avec le
+seuil habituel 0,75. L’ancien titre n’est pas ajouté automatiquement aux alias.
+
+« Historique » charge à la demande toutes les corrections de cet événement,
+récentes en premier : compte administrateur, date/heure Europe/Paris, titre et
+niveau avant/après, motif. Il est également accessible dans le formulaire.
+Cet historique global est distinct de « Dernière modification », qui reste
+l’audit du retrait ou de la remise dans le pack sélectionné.
+
+### Persistence, atomicité et parties existantes
+
+- `event_editorial_overrides` conserve les surcharges humaines par champ.
+  Corriger seulement le niveau laisse le titre importable, et réciproquement.
+  Le trigger privé BEFORE INSERT/UPDATE sur `events` réapplique ces surcharges,
+  y compris pendant l’upsert de `scripts/import-dataset.ts`. Les futurs imports
+  actualisent les autres champs sans créer de faux audits administrateur.
+  Aucune modification du CSV ni procédure manuelle après chaque import.
+- `admin_edit_event` vérifie réellement `auth.uid()` dans `admins`, puis verrouille
+  l’événement global avec `FOR UPDATE`. État, surcharge et audit sont écrits dans
+  la même transaction. La réponse renvoie questions/décomptes/historique ensemble.
+  Aucun administrateur ni horodatage n’est fourni par le navigateur.
+- Les valeurs attendues du formulaire détectent un onglet devenu obsolète :
+  la correction est refusée et demande de recharger, sans perdre la saisie.
+  Un retry dont les valeurs sont déjà enregistrées confirme l’état sans nouvelle
+  écriture ni audit. Aucun audit lorsqu’aucun champ ne change réellement.
+- `event_editorial_audit` conserve toutes les valeurs avant/après, indexées par
+  événement et id décroissant ; pas de suppression en cascade du journal.
+  `admin_event_history` impose la même autorisation SQL à chaque consultation.
+- `game_question_editorial_snapshots` fige dès le tirage le titre masqué/rédigé et,
+  pour le sens inverse seulement, le titre canonique et les alias acceptés.
+  Le backfill couvre les parties encore en cours à l’application de #104.
+  `next_question` et `submit_answer` lisent ces instantanés, avec les mêmes
+  signatures, verrous de session, chronos et règles de score. Aucune question,
+  réponse, date, description ou score existant n’est réécrit. Les instantanés
+  sont purgés en cascade avec les questions, selon la rétention existante.
+- Les trois nouvelles tables sont privées, RLS active sans policy API ni droits
+  anon/authenticated. Les helpers/triggers n’ont aucun EXECUTE API. Les deux
+  RPC sont accordées uniquement à authenticated avec contrôle administrateur.
+  `search_path` vide, aucune clé service_role dans l’application.
+- Aucun appel par ligne ni polling. Un historique n’est lu qu’à son ouverture ;
+  une sauvegarde prend un aller-retour. Les accès aux surcharges et instantanés
+  utilisent leurs clés primaires ; les alias sont copiés uniquement en inverse.
+
+## Mise en service de #104 : GO SQL séparé
+
+**Migration #104 non appliquée : `20261010232237_corrections_editoriales.sql`.**
+Créée avec `npm run db:new`, transaction et registre `histoire.migrations_appliquees`.
+Aucun SQL distant exécuté. Antonin doit donner un GO explicite séparé après revue
+et CI verte. Le backfill lit les questions des parties actives et leurs alias ;
+le volume et la durée restent à vérifier avant application (timeout SQL 60 s).
 Ne pas fusionner avant cette étape ; ne pas utiliser `db push`/`apply_migration`.
 
 Le dépôt contient déjà [l’audit du décompte public](audit-decompte-93.md) : les
@@ -109,7 +178,7 @@ signifie pas que l’inférence a été corrigée. Les nouvelles dates/RPC
 administrateur restent réservées aux comptes autorisés.
 
 Maxou et Antonin devront tester avec leurs vrais comptes sur l’aperçu après le
-GO SQL, puis réaliser la relecture éditoriale des 24 packs (#88).
+GO SQL #104, puis réaliser la relecture éditoriale des 24 packs (#88).
 
 ## Vérifications
 
@@ -134,3 +203,24 @@ modifiés, `tsc --noEmit` et `git diff --check`. Pas de suite longue, build,
 pile SQL locale ou test distant ; pas
 d’attente de GitHub Actions/Vercel. Les résultats complets restent à relire avant
 mise en service ; leur réussite n’est pas présumée.
+
+Pour #104 : `supabase/tests/corrections_editoriales.sql` couvre titre/niveau,
+validation, refus anon/joueur, accès direct privé refusé, audit complet, no-op,
+conflits, upsert avec surcharges partielles, deux sens et 5/10/20/Tout,
+roulette, scolaire, pédagogique, retrait/remise et scores existants intacts.
+Les fixtures `corrections_avant_migration.sql` / `corrections_apres_migration.sql`
+sont exécutées autour de la nouvelle migration par le simulateur CI vide :
+elles prouvent le backfill d’une partie créée avant les nouveaux triggers.
+`scripts/tests-corrections-concurrence.sh` confronte deux corrections réelles,
+une seule validée et auditée, l’autre refusée pour conflit. Ces scripts sont
+réservés au Postgres local du simulateur, jamais à KFFR.
+
+Les parcours Playwright admin existants restent actifs, complétés par édition,
+annulation/focus, niveau, motif, historique, autre pack, rechargement, no-op et
+reprise réseau sur ordinateur/mobile. Vitest couvre ces composants et les
+actions serveur : 22 tests ciblés réussis. SQL, E2E et suites longues non lancés
+localement ; la CI reste à exécuter et relire, sans attente automatique.
+Lint ciblé, `tsc --noEmit` et `git diff --check` passent. Une vérification Chromium
+isolée des vrais composants, avec actions simulées et 250 questions, passe à
+1280×800, 375×812 et 320×568 : édition, Échap, retour du focus et historique.
+Elle ne remplace pas les E2E de la vraie route et de Supabase préparés pour la CI.

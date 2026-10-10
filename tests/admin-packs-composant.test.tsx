@@ -4,8 +4,9 @@ import { afterEach, beforeEach, expect, it, vi } from "vitest";
 import AdministrationPacks from "@/components/admin/AdministrationPacks";
 import type { AdminPack, PackQuestion } from "@/lib/admin-packs/types";
 
-const mocks = vi.hoisted(() => ({ modifier: vi.fn() }));
-vi.mock("@/app/admin/packs/actions", () => ({ modifierQuestion: mocks.modifier }));
+const mocks = vi.hoisted(() => ({ modifier: vi.fn(), correction: vi.fn(), history: vi.fn() }));
+vi.mock("@/app/admin/packs/actions", () => ({ modifierQuestion: mocks.modifier,
+  enregistrerCorrection: mocks.correction, consulterHistorique: mocks.history }));
 const packs: AdminPack[] = [{ id: "A87", title: "Antiquité", active: true, total: 2, retired: 1, playable: 1 }];
 const question: PackQuestion = { id: "e1", title: "César", niveau: 1, date_text: null, start_year: -44,
   start_month: 3, start_day: 15, end_year: null, end_month: null, end_day: null, removed: false, playable: true, last_change: null };
@@ -14,6 +15,7 @@ const modalInitial = Object.getOwnPropertyDescriptor(HTMLDialogElement.prototype
 const closeInitial = Object.getOwnPropertyDescriptor(HTMLDialogElement.prototype, "close");
 beforeEach(() => {
   mocks.modifier.mockReset();
+  mocks.correction.mockReset(); mocks.history.mockReset().mockResolvedValue({ ok: true, history: [] });
   vi.stubGlobal("ResizeObserver", class { observe() {} disconnect() {} });
   Object.defineProperty(HTMLDialogElement.prototype, "showModal", { configurable: true,
     value: function (this: HTMLDialogElement) { this.setAttribute("open", ""); } });
@@ -85,4 +87,69 @@ it("remet une question et gère une coupure réseau sans changer l'état local",
   await act(async () => fireEvent.click(screen.getByRole("button", { name: "Remettre" })));
   expect(screen.getByText("2 jouables · 0 retirées · 2 au total")).toBeTruthy();
   expect(screen.queryByText("Retirée")).toBeNull();
+});
+
+function editer() {
+  afficher(); fireEvent.click(screen.getAllByRole("button", { name: "Modifier" })[0]);
+  return screen.getByRole("dialog", { name: "Modifier la question" });
+}
+it("préremplit les champs accessibles et annule sans écriture ni chargement d'historique", () => {
+  const dialog = editer();
+  expect((within(dialog).getByLabelText("Titre de la question") as HTMLInputElement).value).toBe("César");
+  expect((within(dialog).getByRole("combobox", { name: "Niveau de la question" }) as HTMLSelectElement).value).toBe("1");
+  fireEvent.click(within(dialog).getByRole("button", { name: "Annuler" }));
+  expect(screen.queryByRole("dialog")).toBeNull(); expect(mocks.correction).not.toHaveBeenCalled();
+  expect(mocks.history).not.toHaveBeenCalled();
+  fireEvent.click(screen.getAllByRole("button", { name: "Modifier" })[0]);
+  fireEvent(screen.getByRole("dialog"), new Event("cancel", { bubbles: true, cancelable: true }));
+  expect(screen.queryByRole("dialog")).toBeNull();
+});
+it("enregistre titre/niveau/motif une seule fois et actualise liste et décomptes", async () => {
+  let resolve!: (value: unknown) => void;
+  mocks.correction.mockImplementation(() => new Promise((r) => { resolve = r; }));
+  const dialog = editer();
+  fireEvent.change(within(dialog).getByLabelText("Titre de la question"), { target: { value: "Mort de César" } });
+  fireEvent.change(within(dialog).getByRole("combobox", { name: "Niveau de la question" }), { target: { value: "2" } });
+  fireEvent.change(within(dialog).getByLabelText("Motif de modification facultatif"), { target: { value: "Précision" } });
+  fireEvent.submit(dialog.querySelector("form")!); fireEvent.submit(dialog.querySelector("form")!);
+  expect(mocks.correction).toHaveBeenCalledExactlyOnceWith("A87", "e1", "Mort de César", 2, "Précision", "César", 1);
+  const cancel = new Event("cancel", { bubbles: true, cancelable: true }); fireEvent(dialog, cancel);
+  expect(cancel.defaultPrevented).toBe(true);
+  await act(async () => resolve({ ok: true, data: { changed: true, history: [], packs: [{ ...packs[0], playable: 0 }],
+    questions: [{ ...question, title: "Mort de César", niveau: 2, playable: false }, questions[1]] } }));
+  expect(screen.queryByRole("dialog")).toBeNull(); expect(screen.getByText("Mort de César")).toBeTruthy();
+  expect(screen.getByText("0 jouables · 1 retirées · 2 au total")).toBeTruthy();
+  expect(screen.getByRole("status").textContent).toContain("tous les packs");
+});
+it("garde la saisie après erreur ou conflit ; un retry sans changement affiche sa confirmation", async () => {
+  mocks.correction.mockResolvedValue({ ok: false, conflict: true, message: "Rechargez la page" });
+  const dialog = editer();
+  fireEvent.change(within(dialog).getByLabelText("Titre de la question"), { target: { value: "Titre à garder" } });
+  await act(async () => fireEvent.submit(dialog.querySelector("form")!));
+  expect(within(dialog).getByRole("alert").textContent).toContain("Rechargez");
+  expect((within(dialog).getByLabelText("Titre de la question") as HTMLInputElement).value).toBe("Titre à garder");
+  mocks.correction.mockRejectedValue(new Error("réseau"));
+  await act(async () => fireEvent.submit(dialog.querySelector("form")!));
+  expect(within(dialog).getByRole("alert").textContent).toContain("connexion");
+  mocks.correction.mockResolvedValue({ ok: true, data: { changed: false, packs, questions, history: [] } });
+  await act(async () => fireEvent.submit(dialog.querySelector("form")!));
+  expect(screen.getByRole("status").textContent).toContain("Aucun changement");
+});
+it("consulte l'historique complet avec les valeurs avant/après et permet de réessayer", async () => {
+  mocks.history.mockResolvedValueOnce({ ok: false, message: "Historique indisponible" });
+  afficher();
+  await act(async () => fireEvent.click(screen.getAllByRole("button", { name: "Historique" })[0]));
+  const dialog = screen.getByRole("dialog", { name: "Historique des corrections" });
+  expect(mocks.history).toHaveBeenCalledExactlyOnceWith("e1");
+  expect(within(dialog).getByRole("alert").textContent).toContain("indisponible");
+  const change = { id: 1, event_id: "e1", admin_id: "admin-104", occurred_at: "2026-10-11T10:00:00Z",
+    old_title: "César", new_title: "Mort de César", old_niveau: 1, new_niveau: 2, reason: "Précision historique" };
+  mocks.history.mockResolvedValue({ ok: true, history: [change, { ...change, id: 2, reason: null }] });
+  await act(async () => fireEvent.click(within(dialog).getByRole("button", { name: "Réessayer l’historique" })));
+  expect(within(dialog).getAllByRole("listitem")).toHaveLength(2);
+  expect(within(dialog).getByText(/Précision historique/)).toBeTruthy();
+  expect(within(dialog).getByText(/Non renseigné/)).toBeTruthy();
+  expect(within(dialog).getAllByText(/Débutant → Intermédiaire/)).toHaveLength(2);
+  fireEvent.click(within(dialog).getByRole("button", { name: "Fermer" }));
+  expect(screen.queryByRole("dialog")).toBeNull();
 });

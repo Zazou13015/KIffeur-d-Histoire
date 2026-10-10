@@ -27,6 +27,12 @@
 .dialog { margin: auto; width: min(32rem, calc(100% - 2rem)); max-height: 90vh; overflow: auto; padding: 1.5rem; border: 1px solid var(--color-laiton); border-radius: .25rem; background: var(--color-blanc-cartel); color: var(--color-encre); box-shadow: var(--shadow-cartel); }
 .dialog::backdrop { background: rgb(29 42 58 / .55); }
 .dialogActions { display: flex; justify-content: flex-end; gap: .75rem; margin-top: 1rem; }
+.rowActions { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem; min-width: 7rem; }
+.historyButton { min-height: 44px; padding: .4rem; color: var(--color-oxyde); text-decoration: underline; }
+.editForm { display: grid; gap: .4rem; }
+.editForm input, .editForm select, .editForm textarea { width: 100%; padding: .6rem; border: 1px solid var(--color-filet); border-radius: .2rem; background: var(--color-papier); }
+.history { display: grid; gap: 1rem; margin-top: .5rem; overflow-wrap: anywhere; }
+.history li { padding-top: .75rem; border-top: 1px solid var(--color-filet); }
 /* Deux panneaux sur ordinateur ; le haut du panneau droit reste hors du défilement. */
 @media (min-width: 851px) and (min-height: 650px) {
   .layout { height: calc(100dvh - var(--panel-top, 18rem) - 2rem); }

@@ -37,7 +37,14 @@ psql_q -f supabase/fixtures/kffr_profiles.sql
 
 for f in supabase/migrations/*.sql supabase/seed.sql; do
   echo "→ $f"
+  # Vérifier une vraie partie antérieure au backfill #104, dans ce simulateur vide uniquement.
+  if [[ $f == supabase/migrations/20261010232237_corrections_editoriales.sql ]]; then
+    psql_q -f supabase/fixtures/corrections_avant_migration.sql
+  fi
   psql_q -f "$f"
+  if [[ $f == supabase/migrations/20261010232237_corrections_editoriales.sql ]]; then
+    psql_q -f supabase/fixtures/corrections_apres_migration.sql
+  fi
 done
 
 for f in supabase/tests/*.sql; do
@@ -47,3 +54,4 @@ done
 
 bash scripts/tests-solo-concurrence.sh
 bash scripts/tests-admin-packs-concurrence.sh
+bash scripts/tests-corrections-concurrence.sh

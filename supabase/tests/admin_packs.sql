@@ -89,25 +89,25 @@ select pg_temp.verifier((select count(*)=1 and min(reason)='Hors thème'
 -- Les deux signatures du moteur, dates/inverse, longueurs et relances utilisent l'état actuel.
 set local request.jwt.claim.sub = '';
 set local role anon;
-do $$ declare sens text; n integer; r jsonb; begin
-  foreach sens in array array['date','inverse'] loop
-    perform pg_temp.verifier(histoire.available_questions(p_pack_id=>'A87',p_direction=>sens)
-      = '{"YEAR":19,"MONTH":19,"DAY":19}'::jsonb,'décompte exact ' || sens);
-    perform pg_temp.verifier(histoire.available_questions(p_niveau=>1,p_pack_id=>'A87',p_direction=>sens)->>'YEAR'='5','niveau après retrait');
-    foreach n in array array[5,10,0] loop
-      r := histoire.start_game(p_token=>repeat('a',64),p_pack_id=>'A87',p_question_count=>n,p_direction=>sens,p_difficulty=>'DAY');
-      perform pg_temp.verifier((r->>'question_count')::integer=case when n=0 then 19 else n end,'longueur réelle');
-      insert into tirages values ((r->>'game_id')::uuid,'A87',sens);
-      r := histoire.start_game(p_niveau=>3,p_token=>repeat('a',64),p_pack_id=>'A87',p_question_count=>n,p_direction=>sens,p_difficulty=>'DAY');
-      insert into tirages values ((r->>'game_id')::uuid,'A87',sens);
+do $$ declare v_direction text; v_question_count integer; r jsonb; begin
+  foreach v_direction in array array['date','inverse'] loop
+    perform pg_temp.verifier(histoire.available_questions(p_pack_id=>'A87',p_direction=>v_direction)
+      = '{"YEAR":19,"MONTH":19,"DAY":19}'::jsonb,'décompte exact ' || v_direction);
+    perform pg_temp.verifier(histoire.available_questions(p_niveau=>1,p_pack_id=>'A87',p_direction=>v_direction)->>'YEAR'='5','niveau après retrait');
+    foreach v_question_count in array array[5,10,0] loop
+      r := histoire.start_game(p_token=>repeat('a',64),p_pack_id=>'A87',p_question_count=>v_question_count,p_direction=>v_direction,p_difficulty=>'DAY');
+      perform pg_temp.verifier((r->>'question_count')::integer=case when v_question_count=0 then 19 else v_question_count end,'longueur réelle');
+      insert into tirages values ((r->>'game_id')::uuid,'A87',v_direction);
+      r := histoire.start_game(p_niveau=>3,p_token=>repeat('a',64),p_pack_id=>'A87',p_question_count=>v_question_count,p_direction=>v_direction,p_difficulty=>'DAY');
+      insert into tirages values ((r->>'game_id')::uuid,'A87',v_direction);
     end loop;
-    perform pg_temp.refuser(format('select histoire.start_game(p_token=>repeat(''a'',64),p_pack_id=>''A87'',p_question_count=>20,p_direction=>%L)',sens),'22023');
-    r := histoire.start_mystery_game(p_token=>repeat('a',64),p_niveau=>3,p_question_count=>20,p_direction=>sens);
+    perform pg_temp.refuser(format('select histoire.start_game(p_token=>repeat(''a'',64),p_pack_id=>''A87'',p_question_count=>20,p_direction=>%L)',v_direction),'22023');
+    r := histoire.start_mystery_game(p_token=>repeat('a',64),p_niveau=>3,p_question_count=>20,p_direction=>v_direction);
     perform pg_temp.verifier(not exists (select 1 from jsonb_array_elements(r->'mystery'->'candidates') x
       where x->>'id'='A87'),'roulette exclut pack insuffisant');
-    perform pg_temp.refuser(format('select histoire.start_mystery_game(p_token=>repeat(''a'',64),p_niveau=>3,p_pack_id=>''A87'',p_question_count=>20,p_direction=>%L)',sens),'22023');
-    r := histoire.start_mystery_game(p_token=>repeat('a',64),p_niveau=>3,p_pack_id=>'A87',p_question_count=>0,p_direction=>sens);
-    insert into tirages values ((r->>'game_id')::uuid,'A87',sens);
+    perform pg_temp.refuser(format('select histoire.start_mystery_game(p_token=>repeat(''a'',64),p_niveau=>3,p_pack_id=>''A87'',p_question_count=>20,p_direction=>%L)',v_direction),'22023');
+    r := histoire.start_mystery_game(p_token=>repeat('a',64),p_niveau=>3,p_pack_id=>'A87',p_question_count=>0,p_direction=>v_direction);
+    insert into tirages values ((r->>'game_id')::uuid,'A87',v_direction);
   end loop;
   perform pg_temp.verifier(histoire.available_questions(p_pack_id=>'B87')->>'YEAR'='20','disponible dans un autre pack');
   perform pg_temp.verifier(histoire.available_questions(p_tag_id=>'T87')->>'YEAR'='20','disponible dans un thème');
@@ -116,7 +116,7 @@ do $$ declare sens text; n integer; r jsonb; begin
   insert into tirages values ((r->>'game_id')::uuid,'scolaire','date');
   r := histoire.start_chapter_test(p_token=>repeat('a',64),p_chapter_id=>'C87',p_question_count=>10);
   insert into tirages values ((r->>'game_id')::uuid,'pedagogique','date');
-  r := histoire.next_question((select id from tirages where pack='A87' and sens='date' limit 1),repeat('a',64));
+  r := histoire.next_question((select t.id from tirages t where t.pack='A87' and t.sens='date' order by t.id limit 1),repeat('a',64));
   perform pg_temp.verifier(not (r ?| array['date','start_year','expected_year','event_id','last_change']),'aucune date privée avant correction classique');
   perform pg_temp.refuser('select * from histoire.solo_candidates(null,''A87'',null,null,null,null,null,''YEAR'')','42501');
 end $$;

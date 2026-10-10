@@ -1,6 +1,9 @@
 import { expect, test } from "@playwright/test";
 import { COMPTE_TEST, executerSql, lireSql } from "./local";
 
+// Une interaction bloquée doit échouer à sa ligne, sans attendre le timeout du job.
+test.use({ actionTimeout: 15_000 });
+
 // Le compte existe déjà dans la pile locale : aucun compte Auth supplémentaire.
 test.beforeEach(() => {
   executerSql(`

@@ -101,10 +101,12 @@ Ne pas fusionner avant cette étape ; ne pas utiliser `db push`/`apply_migration
 
 Le dépôt contient déjà [l’audit du décompte public](audit-decompte-93.md) : les
 décomptes exacts avec bornes libres et les refus de lancement peuvent permettre
-d’inférer les années. Cette PR protège ses nouvelles dates/RPC mais ne résout pas
-ce contrat public préexistant. La confidentialité globale ne doit pas être
-déclarée validée avant une décision produit et une correction de ce sujet.
-Cela reste un prérequis de production, même si #101 et #102 sont fusionnées.
+d’inférer les années. Antonin a explicitement accepté ce risque résiduel le
+10 octobre 2026 pour ce jeu sans cashprize. Cette décision ne bloque donc pas
+la fusion de #103 et aucune refonte de sécurité n’est ajoutée à cette issue.
+L’audit reste conservé comme référence du risque connu ; son acceptation ne
+signifie pas que l’inférence a été corrigée. Les nouvelles dates/RPC
+administrateur restent réservées aux comptes autorisés.
 
 Maxou et Antonin devront tester avec leurs vrais comptes sur l’aperçu après le
 GO SQL, puis réaliser la relecture éditoriale des 24 packs (#88).

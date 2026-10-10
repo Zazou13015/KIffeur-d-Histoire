@@ -22,8 +22,8 @@ export function Statistiques({ data, progression = null }: { data: DonneesStatis
             [
               ["Parties terminées", nombre(data.games)],
               ["Précision moyenne", pourcentage(data.average_accuracy)],
-              ["Score moyen", nombre(data.average_score)],
-              ["Meilleur score", nombre(data.best_score)],
+              ["Score moyen par question", nombre(data.average_points_per_question ?? null)],
+              ["Meilleur score par question", nombre(data.best_points_per_question ?? null)],
             ] as const
           ).map(([label, value]) => (
             <div className={styles.metric} key={label}>
@@ -33,8 +33,9 @@ export function Statistiques({ data, progression = null }: { data: DonneesStatis
           ))}
         </dl>
         <p className={`${styles.muted} mt-4`}>
-          Chaque partie compte autant dans la précision moyenne. Les scores sont
-          en points ; ils dépendent aussi du nombre de questions et du chrono.
+          Chaque partie compte autant. On compare son total divisé par son nombre
+          de questions, sur 100 points par question : une partie longue ne gagne
+          pas grâce à sa longueur. Le chrono et la précision restent pris en compte.
         </p>
         {!data.games && (
           <div className={styles.empty}>
@@ -77,15 +78,15 @@ export function Statistiques({ data, progression = null }: { data: DonneesStatis
                     </dd>
                   </div>
                   <div>
-                    <dt className={styles.muted}>Meilleur score</dt>
+                    <dt className={styles.muted}>Meilleur score par question</dt>
                     <dd className="date text-2xl">
-                      {nombre(mode.best_score)}{" "}
-                      <span className="text-base font-normal">points</span>
+                      {nombre(mode.best_points_per_question ?? null)}{" "}
+                      <span className="text-base font-normal">points / question</span>
                     </dd>
                   </div>
                   <div>
-                    <dt className={styles.muted}>Score moyen</dt>
-                    <dd>{nombre(mode.average_score)} points</dd>
+                    <dt className={styles.muted}>Score moyen par question</dt>
+                    <dd>{nombre(mode.average_points_per_question ?? null)} points / question</dd>
                   </div>
                 </dl>
               </article>
@@ -136,7 +137,7 @@ export function Statistiques({ data, progression = null }: { data: DonneesStatis
                     </th>
                     <th scope="col">Parties</th>
                     <th scope="col">Précision</th>
-                    <th scope="col">Record</th>
+                    <th scope="col">Record / question</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -152,7 +153,7 @@ export function Statistiques({ data, progression = null }: { data: DonneesStatis
                       </th>
                       <td>{nombre(c.games)}</td>
                       <td>{pourcentage(c.average_accuracy)}</td>
-                      <td>{nombre(c.best_score)} pts</td>
+                      <td>{nombre(c.best_points_per_question ?? null)} pts / question</td>
                     </tr>
                   ))}
                 </tbody>

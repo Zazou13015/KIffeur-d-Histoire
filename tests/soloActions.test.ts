@@ -52,6 +52,13 @@ it("un claim refusé garde le cookie et masque les détails SQL", async () => {
 });
 afterEach(() => vi.unstubAllEnvs());
 
+it.each([5, 10, 20, 100, 0])("transmet la longueur %s sans la recalculer, y compris Tout", async (n) => {
+  mocks.rpc.mockResolvedValue({ data: { game_id: gameId, question_count: n || 100, anonymous: false }, error: null });
+  const resultat = await startGame({ questionCount: n, direction: "inverse", niveau: 2 });
+  expect(gameCalls()[0][1]).toMatchObject({ p_question_count: n, p_direction: "inverse", p_niveau: 2 });
+  expect(resultat.question_count).toBe(n || 100);
+});
+
 it("génère un secret distinct pour chaque partie et le garde en cookie httpOnly de session", async () => {
   vi.stubEnv("NODE_ENV", "production");
   const game = { game_id: gameId, anonymous: true, question_count: 10, difficulty: "YEAR", state: "playing" };

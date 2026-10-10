@@ -169,8 +169,13 @@ async function main() {
         const size = await page.evaluate(() => ({
           viewport: innerWidth,
           document: document.documentElement.scrollWidth,
+          debordements: Array.from(document.querySelectorAll("main th, main td, main dt, main dd"))
+            .filter((el) => el.scrollWidth > el.clientWidth + 1)
+            .map((el) => ({ texte: el.textContent, largeur: el.clientWidth, contenu: el.scrollWidth,
+              whiteSpace: getComputedStyle(el).whiteSpace })),
         }));
-        assert.equal(size.document, width, `Débordement ${tab} à ${width}px`);
+        assert.equal(size.document, width, `Débordement ${tab} à ${width}px : ${JSON.stringify(size.debordements)}`);
+        assert.deepEqual(size.debordements, [], `Contenu statistique débordant à ${width}px`);
         measurements.push({ tab, width, ...size });
         await page.screenshot({
           path: `${output}/${tab}-${width}.png`,

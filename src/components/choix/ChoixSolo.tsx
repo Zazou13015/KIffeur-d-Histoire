@@ -2,15 +2,16 @@
 
 import { useEffect, useState } from "react";
 import { lancer } from "@/app/partie/actions";
-import { comptesDe, DIFFICULTES, ecrireChoix, lireChoix, NIVEAU_PAR_DEFAUT, NIVEAUX, PACKS, PERIODES, QUESTIONS, THEMES, type Choix } from "@/lib/solo/choix";
+import { DIFFICULTES, ecrireChoix, lireChoix, nombreQuestions, NIVEAU_PAR_DEFAUT, NIVEAUX, PACKS, PERIODES, THEMES, type Choix, type Longueur } from "@/lib/solo/choix";
 import type { SoloDifficulty, SoloNiveau } from "@/lib/game/solo";
-import { BarreLancer, ChoixDifficulte, ChoixNiveau, difficulteJouable, ecrireMemoire, Etape, lireMemoire, niveauJouable } from "./communs";
+import { BarreLancer, ChoixDifficulte, ChoixNiveau, difficulteJouable, ecrireMemoire, Etape, lireMemoire } from "./communs";
+import { LongueurPartie, useDisponibilite } from "./LongueurPartie";
 import styles from "./choix.module.css";
 
 const MEMOIRE = "histoire-choix-solo";
 const MEMOIRE_INVERSE = "histoire-choix-inverse";
 type ModeSolo = "general" | "periode" | "pack" | "theme";
-type Etat = { mode: ModeSolo; periode: string; de: string; a: string; pack: string; theme: string; niveau: SoloNiveau; difficulte: SoloDifficulty };
+type Etat = { mode: ModeSolo; periode: string; de: string; a: string; pack: string; theme: string; niveau: SoloNiveau; difficulte: SoloDifficulty; longueur: Longueur };
 
 const ONGLETS: { mode: ModeSolo; titre: string }[] = [
   { mode: "general", titre: "Général" },
@@ -19,10 +20,10 @@ const ONGLETS: { mode: ModeSolo; titre: string }[] = [
   { mode: "theme", titre: "Thème" },
 ];
 
-const DEPART: Etat = { mode: "general", periode: PERIODES[0].id, de: "", a: "", pack: PACKS[0].id, theme: THEMES[0].id, niveau: NIVEAU_PAR_DEFAUT, difficulte: "YEAR" };
+const DEPART: Etat = { mode: "general", periode: PERIODES[0].id, de: "", a: "", pack: PACKS[0].id, theme: THEMES[0].id, niveau: NIVEAU_PAR_DEFAUT, difficulte: "YEAR", longueur: 10 };
 
 function versChamps(e: Etat, inverse: boolean) {
-  const p = new URLSearchParams({ mode: e.mode, difficulte: e.difficulte, niveau: String(e.niveau) });
+  const p = new URLSearchParams({ mode: e.mode, difficulte: e.difficulte, niveau: String(e.niveau), longueur: String(e.longueur) });
   if (inverse) p.set("sens", "inverse");
   if (e.mode === "periode") {
     p.set("periode", e.periode);
@@ -42,6 +43,7 @@ function depuisMemoire(c: Choix): Etat | null {
     ...DEPART,
     mode: c.mode,
     difficulte: c.difficulte,
+    longueur: c.longueur ?? 10,
     niveau: c.niveau ?? NIVEAU_PAR_DEFAUT,
     periode: c.periode ?? DEPART.periode,
     de: c.de != null ? String(c.de) : "",
@@ -79,11 +81,15 @@ export function ChoixSolo({ inverse = false }: { inverse?: boolean }) {
   const contenu = { mode: etat.mode, periode: etat.periode, pack: etat.pack, theme: etat.theme };
   // Inversé : toujours la date exacte, sans choix de précision.
   const precisions: SoloDifficulty[] = inverse ? ["DAY"] : ["YEAR", "MONTH", "DAY"];
-  const niveau = niveauJouable(contenu, etat.niveau, precisions);
-  const comptes = niveau ? comptesDe({ ...contenu, niveau }) : null;
-  const difficulte = !niveau ? null : inverse ? (difficulteJouable(comptes, "DAY") === "DAY" ? "DAY" : null) : difficulteJouable(comptes, etat.difficulte);
+  const niveau = etat.niveau;
+  const selection = lireChoix(versChamps(etat, inverse));
+  const disponibilite = useDisponibilite(selection);
+  const comptes = disponibilite.comptes;
+  const difficulte = inverse ? (comptes === null || comptes.DAY > 0 ? "DAY" : null) : difficulteJouable(comptes, etat.difficulte, 1);
   const choix = niveau && difficulte ? lireChoix(versChamps({ ...etat, niveau, difficulte }, inverse)) : null;
-  const libreInvalide = etat.mode === "periode" && etat.periode === "libre" && !choix && (etat.de !== "" || etat.a !== "");
+  const disponibles = difficulte ? comptes?.[difficulte] ?? null : comptes ? 0 : null;
+  const nombre = nombreQuestions(etat.longueur, disponibles);
+  const libreInvalide = etat.mode === "periode" && etat.periode === "libre" && !selection && (etat.de !== "" || etat.a !== "");
 
   return (
     <form action={lancer} onSubmit={() => choix && ecrireMemoire(memoire, ecrireChoix(choix))} className="grid gap-[22px]">
@@ -143,7 +149,7 @@ export function ChoixSolo({ inverse = false }: { inverse?: boolean }) {
               <li key={p.id}>
                 <button type="button" className={styles.tuile} aria-pressed={etat.pack === p.id} onClick={() => maj({ pack: p.id })}>
                   <b>{p.titre}</b>
-                  <small>{p.n[2].YEAR < QUESTIONS ? `Pas encore assez de questions (${p.n[2].YEAR}) : il arrive bientôt.` : p.description}</small>
+                  <small>{p.description}</small>
                 </button>
               </li>
             ))}
@@ -156,7 +162,7 @@ export function ChoixSolo({ inverse = false }: { inverse?: boolean }) {
               <li key={t.id}>
                 <button type="button" className={styles.tuile} aria-pressed={etat.theme === t.id} onClick={() => maj({ theme: t.id })}>
                   <b>{t.nom}</b>
-                  <small>{t.n[2].YEAR} événements</small>
+                  <small>{t.n[2].YEAR} événements au catalogue</small>
                 </button>
               </li>
             ))}
@@ -165,20 +171,24 @@ export function ChoixSolo({ inverse = false }: { inverse?: boolean }) {
       </Etape>
 
       <Etape numero={2} titre="Niveau">
-        <ChoixNiveau contenu={contenu} precisions={precisions} valeur={niveau} onChange={(n) => maj({ niveau: n })} />
+        <ChoixNiveau contenu={contenu} precisions={precisions} valeur={niveau} onChange={(n) => maj({ niveau: n })} verifierCatalogue={false} />
       </Etape>
 
       {!inverse && (
         <Etape numero={3} titre="Précision">
-          <ChoixDifficulte comptes={comptes} valeur={difficulte} onChange={(d) => maj({ difficulte: d })} />
+          <ChoixDifficulte comptes={comptes} valeur={difficulte} onChange={(d) => maj({ difficulte: d })} minimum={1} />
         </Etape>
       )}
 
+      <Etape numero={inverse ? 3 : 4} titre="Longueur de la partie">
+        <LongueurPartie valeur={etat.longueur} disponibles={disponibles} erreur={disponibilite.erreur}
+          reessayer={disponibilite.reessayer} onChange={(longueur) => maj({ longueur })} />
+      </Etape>
       <BarreLancer
-        pret={choix != null}
+        pret={choix != null && nombre !== null}
         resume={
-          choix ? <><b>{QUESTIONS} questions</b> · {libelle(choix)} · {NIVEAUX.find((n) => n.valeur === choix.niveau)?.titre} {inverse ? " · date exacte" : <> · {DIFFICULTES.find((d) => d.valeur === choix.difficulte)?.titre.toLowerCase()}</>}</>
-            : difficulte ? "Termine ton choix pour jouer." : "Pas assez de questions pour ce choix : choisis-en un autre."
+          choix && nombre !== null ? <><b>{nombre} question{nombre > 1 ? "s" : ""}</b> · {libelle(choix)} · {NIVEAUX.find((n) => n.valeur === choix.niveau)?.titre} {inverse ? " · date exacte" : <> · {DIFFICULTES.find((d) => d.valeur === choix.difficulte)?.titre.toLowerCase()}</>}</>
+            : disponibles !== null && disponibles > 0 ? "Choisis une longueur disponible pour jouer." : "Termine ton choix et vérifie les questions disponibles."
         }
       />
     </form>

@@ -8,12 +8,15 @@ import { QUESTIONS_MIN_TEST } from "@/lib/progression/types";
 // Ce que le joueur choisit avant de lancer une partie (accueil, /solo, /scolaire, « Rejouer »).
 // Le même choix voyage dans un formulaire, dans l'URL de la partie et dans le stockage local du navigateur.
 export type Mode = "general" | "periode" | "pack" | "theme" | "scolaire";
+export type Longueur = 5 | 10 | 20 | "tout";
 export type Choix = {
   /** `inverse` : le jeu donne la date, le joueur écrit l'événement. Absent = jeu de dates classique. */
   sens?: "inverse";
   mode: Mode;
   /** Précision demandée : l'année, le mois et l'année, ou le jour exact. */
   difficulte: SoloDifficulty;
+  /** Absente dans les anciens choix : dix questions. Tout est résolu par le moteur. */
+  longueur?: Longueur;
   /** Niveau des événements tirés (absent en mode scolaire, qui suit le programme). */
   niveau?: SoloNiveau;
   periode?: string;
@@ -64,6 +67,11 @@ export function lireChoix(champs: URLSearchParams): Choix | null {
   const difficulte = champs.get("difficulte");
   if (!MODES.includes(mode) || !estDifficulte(difficulte)) return null;
   const choix: Choix = { mode, difficulte };
+  const longueur = champs.get("longueur");
+  if (longueur !== null) {
+    if (!["5", "10", "20", "tout"].includes(longueur)) return null;
+    choix.longueur = longueur === "tout" ? "tout" : Number(longueur) as 5 | 10 | 20;
+  }
   if (mode !== "scolaire") {
     const niveau = champs.get("niveau");
     if (niveau == null) choix.niveau = NIVEAU_PAR_DEFAUT;
@@ -118,6 +126,7 @@ export function lireChoix(champs: URLSearchParams): Choix | null {
 /** Forme compacte du choix, pour l'URL de la partie (bouton « Rejouer ») et le stockage local. */
 export function ecrireChoix(choix: Choix): string {
   const p = new URLSearchParams({ mode: choix.mode, difficulte: choix.difficulte });
+  if (choix.longueur !== undefined) p.set("longueur", String(choix.longueur));
   if (choix.sens) p.set("sens", choix.sens);
   if (choix.niveau) p.set("niveau", String(choix.niveau));
   if (choix.periode) p.set("periode", choix.periode);
@@ -132,7 +141,7 @@ export function ecrireChoix(choix: Choix): string {
 
 /** Filtres passés à la RPC `start_game`. */
 export function filtresDepuis(choix: Choix): SoloFilters {
-  const f: SoloFilters = { difficulty: choix.difficulte, questionCount: QUESTIONS };
+  const f: SoloFilters = { difficulty: choix.difficulte, questionCount: choix.longueur === "tout" ? 0 : choix.longueur ?? QUESTIONS };
   if (choix.sens === "inverse") f.direction = "inverse";
   if (choix.niveau) f.niveau = choix.niveau;
   if (choix.mode === "periode") {
@@ -216,4 +225,29 @@ export function niveauPossible(choix: Pick<Choix, "mode" | "periode" | "pack" | 
 /** Une difficulté est proposée s'il y a de quoi remplir une partie (ou si on ne peut pas le savoir). */
 export function difficultePossible(comptes: Comptes | null, d: SoloDifficulty): boolean {
   return comptes == null || comptes[d] >= QUESTIONS;
+}
+
+/** Décompte exact fourni par la RPC, jamais une somme du catalogue. */
+export function nombreQuestions(longueur: Longueur, disponibles: number | null): number | null {
+  if (disponibles === null) return null;
+  if (longueur === "tout") return disponibles > 0 ? Math.min(100, disponibles) : null;
+  return disponibles >= longueur ? longueur : null;
+}
+
+/** Filtres enregistrés par le moteur, pour un bilan rouvert sans URL de lancement. */
+export function relanceEnregistree(f: SoloFilters | null | undefined): string | null {
+  if (!f) return null;
+  const longueur: Longueur = f.questionCount === 0 ? "tout"
+    : f.questionCount === 5 || f.questionCount === 20 ? f.questionCount
+    : f.questionCount === 100 ? "tout" : 10;
+  const mode: Mode = f.chapterIds?.length ? "scolaire" : f.packId ? "pack"
+    : f.tagId ? "theme" : f.yearMin != null || f.yearMax != null ? "periode" : "general";
+  const choix: Choix = { mode, difficulte: f.difficulty ?? "YEAR", longueur,
+    ...(mode !== "scolaire" ? { niveau: f.niveau ?? 3 } : {}),
+    ...(f.direction === "inverse" ? { sens: "inverse" } : {}),
+    ...(mode === "periode" ? { periode: "libre", de: f.yearMin, a: f.yearMax } : {}),
+    ...(f.packId ? { pack: f.packId } : {}), ...(f.tagId ? { theme: f.tagId } : {}),
+    ...(f.chapterIds ? { chapitres: f.chapterIds } : {}), ...(f.chapterTest ? { test: true } : {}) };
+  const valide = lireChoix(new URLSearchParams(ecrireChoix(choix)));
+  return valide ? ecrireChoix(valide) : null;
 }

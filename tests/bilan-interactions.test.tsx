@@ -57,12 +57,36 @@ it("affiche un maximum et une navigation dynamiques, sans dix questions imposée
   fireEvent.keyDown(question(3), { key: "Home" }); expect(question(1).getAttribute("aria-pressed")).toBe("true");
   fireEvent.keyDown(question(1), { key: "End" }); expect(question(3).getAttribute("aria-pressed")).toBe("true");
 });
+it("garde dix numéros à l'écran et atteint la centième réponse au clavier et par séries", async () => {
+  bilan("cent");
+  expect(screen.getByRole("img", { name: "10000 points sur 10000" })).toBeTruthy();
+  expect(within(screen.getByRole("navigation", { name: "Choisir une réponse" })).getAllByRole("button")).toHaveLength(10);
+  fireEvent.keyDown(question(3), { key: "End" });
+  await waitFor(() => expect(document.activeElement).toBe(question(100)));
+  expect(question(100).getAttribute("aria-pressed")).toBe("true");
+  fireEvent.click(screen.getByRole("button", { name: "← Dix précédentes" }));
+  expect(question(81).getAttribute("aria-pressed")).toBe("true");
+  fireEvent.keyDown(question(81), { key: "Home" });
+  expect(question(1).getAttribute("aria-pressed")).toBe("true");
+});
 it("préserve le choix de relance et le lien de rattachement sans compte", () => {
   const relance = "mode=general&difficulte=MONTH&niveau=2";
   const { container } = bilan("classique", false, true, relance);
   expect((container.querySelector('input[name="c"]') as HTMLInputElement).value).toBe(relance);
   expect(screen.getByRole("link", { name: "Se connecter pour la sauvegarder" }).getAttribute("href")).toBe(`/connexion?next=${encodeURIComponent(`/partie/${partieBilan.game_id}`)}`);
   expect(screen.getByRole("link", { name: "Changer de mode" }).getAttribute("href")).toBe("/");
+});
+it("un bilan rouvert du profil reprend les filtres de sa partie de cent questions", () => {
+  const resultat = { ...fixtureBilan("cent"), replay_filters: { difficulty: "YEAR" as const, niveau: 3 as const, questionCount: 0 } };
+  const { container } = render(<Bilan resultat={resultat} connecte anonyme={false} />);
+  const choix = new URLSearchParams((container.querySelector('input[name="c"]') as HTMLInputElement).value);
+  expect(choix.get("longueur")).toBe("tout"); expect(choix.get("niveau")).toBe("3");
+});
+it("rouvrir un ancien test du profil n'enregistre pas à nouveau sa progression", () => {
+  const resultat = { ...fixtureBilan("classique"), replay_filters: { difficulty: "YEAR" as const, chapterTest: true, chapterIds: [CHAPITRES[0].id] } };
+  render(<Bilan resultat={resultat} connecte anonyme={false} />);
+  expect(screen.getByRole("link", { name: "Revoir le chapitre" })).toBeTruthy();
+  expect(mocks.test).not.toHaveBeenCalled();
 });
 it("ne rattache qu'une fois, même en naviguant, puis rafraîchit à la réussite", async () => {
   let finir!: (v: { saved: boolean }) => void;

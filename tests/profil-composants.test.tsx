@@ -8,8 +8,9 @@ import { historique, statistiques, statistiquesVides } from "./fixtures/profil";
 afterEach(cleanup);
 it("affiche les valeurs connues, les répartitions et les contextes sans faux progrès pédagogique", () => {
   render(<Statistiques data={statistiques} progression={{ connecte: true, chapitres: {} }} />);
-  expect(screen.getByText("720")).toBeTruthy();
-  expect(screen.getAllByText("900").length).toBeGreaterThan(0);
+  expect(screen.getByText("72")).toBeTruthy();
+  expect(screen.getAllByText("90").length).toBeGreaterThan(0);
+  expect(screen.queryByText("720")).toBeNull();
   expect(screen.getAllByText("80 %")).toHaveLength(2);
   expect(screen.getByText("Grands repères")).toBeTruthy();
   expect(screen.getByText("Révolutions")).toBeTruthy();

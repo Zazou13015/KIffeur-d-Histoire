@@ -1,5 +1,12 @@
 # Partie solo et inversée côté serveur (issues #13 et #14)
 
+> Extension #93 préparée : choix 5/10/20/Tout, décompte réel partagé avec le tirage,
+> longueur réelle dans les questions et filtres de relance seulement au bilan.
+> `p_question_count = 0` demande Tout (stockage réel 1 à 100), les anciens appels
+> restent à dix par défaut. [Contrat et migration non appliquée](longueur-parties.md).
+> Le texte historique ci-dessous décrit le contrat initial ; la fusion de #93
+> attend l'autorisation d'application de sa migration.
+
 Migrations : `20261006214244_solo_server.sql` (moteur), après celle du score de #12,
 puis `20261006220620_solo_anonymous_retention.sql` (rétention/budget anonyme).
 Le mode inversé ajoute `20261006225007_inverse_server.sql`, sans modifier les

@@ -88,7 +88,7 @@ async function main() {
     const formats = [[320, 568], [390, 844], [768, 1024], [1024, 768], [1366, 768], [1920, 1080]];
     for (const [width, height] of formats) {
       await page.setViewportSize({ width, height });
-      for (cas of ["classique", "inverse", "zero", "maximum", "absente", "eloignee", "trois", "jour", "mois"]) {
+      for (cas of ["classique", "inverse", "zero", "maximum", "absente", "eloignee", "trois", "jour", "mois", "vingt", "cent"]) {
         await page.goto(route());
         await page.getByRole("region", { name: "Fin de la partie" }).waitFor();
         await page.evaluate(() => document.fonts.ready);
@@ -106,7 +106,7 @@ async function main() {
         if (width >= 1024 && cas === "classique") assert(size.detailBottom <= height, `Carnet hors écran ${width}`);
         measurements.push({ cas, width, height, ...size });
         const tabs = page.getByRole("navigation", { name: "Choisir une réponse" }).getByRole("button");
-        assert.equal(await tabs.count(), cas === "trois" ? 3 : 10);
+        assert.equal(await tabs.count(), Math.min(10, fixtureBilan(cas).question_count));
         await tabs.first().click();
         assert.equal(await tabs.first().getAttribute("aria-pressed"), "true");
         await tabs.first().press("ArrowRight");
@@ -123,6 +123,12 @@ async function main() {
         assert(boutons.every((r, i) => i === 0 || r.left >= boutons[i - 1].right), `Étiquettes superposées ${cas} ${width}`);
         const repere = page.getByRole("button", { name: /^Repère :/ }).first();
         await repere.click(); assert.equal(await repere.getAttribute("aria-pressed"), "true");
+        if (cas === "cent") {
+          await tabs.first().press("End");
+          assert.equal(await page.getByRole("button", { name: /^Question 100 :/ }).getAttribute("aria-pressed"), "true");
+          await page.getByRole("button", { name: "← Dix précédentes" }).click();
+          await page.getByRole("button", { name: /^Question 81 :/ }).waitFor();
+        }
         if (cas === "classique" && [390, 1366].includes(width)) {
           await tabs.nth(2).click();
           await page.screenshot({ path: `${output}/bilan-${width}.png`, fullPage: true });

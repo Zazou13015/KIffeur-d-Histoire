@@ -3,7 +3,7 @@ import { lancer } from "@/app/partie/actions";
 import SaveGame from "@/app/partie/[id]/SaveGame";
 import type { SoloResult } from "@/lib/game/solo";
 import { cheminChapitre } from "@/lib/apprendre/catalogue";
-import { CHAPITRES, lireChoix } from "@/lib/solo/choix";
+import { CHAPITRES, lireChoix, relanceEnregistree } from "@/lib/solo/choix";
 import { EnregistrerTest } from "@/components/pedagogie/EnregistrerTest";
 import { BilanInteractif } from "./bilan/BilanInteractif";
 
@@ -19,8 +19,8 @@ type Props = {
 export function Bilan({ resultat, connecte, anonyme, relance }: Props) {
   const { game_id: id, questions, average_accuracy: precision } = resultat;
   const suite = `/partie/${id}`;
-  const choix = relance ?? `mode=general&difficulte=${questions[0]?.unit ?? "YEAR"}`;
-  const origine = relance ? lireChoix(new URLSearchParams(relance)) : null;
+  const choix = relance ?? relanceEnregistree(resultat.replay_filters) ?? `mode=general&difficulte=${questions[0]?.unit ?? "YEAR"}`;
+  const origine = lireChoix(new URLSearchParams(choix));
   const chapitreTeste = origine?.test ? CHAPITRES.find((c) => c.id === origine.chapitres?.[0]) : undefined;
   const unite = questions[0]?.unit === "DAY" ? "JOUR" : questions[0]?.unit === "MONTH" ? "MOIS" : "ANNÉE";
   const contexte = chapitreTeste ? `Test du chapitre · ${chapitreTeste.titre}`
@@ -36,7 +36,8 @@ export function Bilan({ resultat, connecte, anonyme, relance }: Props) {
       {!connecte ? <p>Tu as joué sans compte : cette partie ne sera pas sauvegardée. <Link href={`/connexion?next=${encodeURIComponent(suite)}`} className="font-bold underline underline-offset-4">Se connecter pour la sauvegarder</Link></p>
         : anonyme ? <SaveGame gameId={id} /> : <p role="status">✓ Partie sauvegardée dans ton compte KFFR.</p>}
     </div>
-    {chapitreTeste && origine && <div className="chapter-status"><EnregistrerTest chapitre={chapitreTeste.id} partie={id} precision={precision}
+    {/* Comme avant, la simple relecture depuis le profil ne réenregistre pas un test. */}
+    {chapitreTeste && origine && relance && <div className="chapter-status"><EnregistrerTest chapitre={chapitreTeste.id} partie={id} precision={precision}
       difficulte={origine.difficulte} connecte={connecte} anonyme={anonyme} /></div>}
   </div>;
   return <BilanInteractif resultat={resultat} contexte={contexte} actions={actions} />;

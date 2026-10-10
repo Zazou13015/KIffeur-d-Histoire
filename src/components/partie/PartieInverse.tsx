@@ -30,6 +30,7 @@ export function PartieInverse({ gameId, total, question: premiere, actions, conn
   const [question, setQuestion] = useState(premiere);
   const [chrono, setChrono] = useState(() => chronoDepuis(premiere, Date.now()));
   const [resultat, setResultat] = useState<SoloResult | null>(null);
+  const nombre = question.question_count ?? total;
 
   async function suivante() {
     const q = await actions.suivante(gameId);
@@ -64,13 +65,13 @@ export function PartieInverse({ gameId, total, question: premiere, actions, conn
         chrono={chrono}
         bornes={bornes}
         corriger={async (questionId, reponse) => correctionInverseDepuis(await actions.soumettre(gameId, questionId, reponse))}
-        suivante={{ libelle: question.position >= total ? "Voir le bilan" : "Question suivante", action: suivante }}
+        suivante={{ libelle: question.position >= nombre ? "Voir le bilan" : "Question suivante", action: suivante }}
         question={{
           id: question.question_id,
           date: dateDepuis(question.date),
           precision: precisionDepuis(question.date_precision),
           numero: question.position,
-          total,
+          total: nombre,
         }}
       />
     </div>

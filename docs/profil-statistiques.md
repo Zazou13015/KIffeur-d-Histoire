@@ -13,9 +13,12 @@ Le compte sans session revient à `/connexion` avec sa destination conservée.
 - `histoire.player_stats()` : nombre de parties terminées, moyenne arithmétique
   des précisions de partie, moyenne des points, meilleur total de points, mêmes
   agrégats par mode ; nombre/précision/record par contexte enregistré.
-- Les scores sont des points bruts et peuvent concerner des longueurs ou des
-  difficultés différentes. L’historique donne le nombre de questions et le
-  maximum possible. L’interface explique cette limite de comparaison.
+- Depuis #93, les comparaisons utilisent les points par question : moyenne des
+  ratios `total_points / question_count` et maximum de ces ratios, sur 100. Chaque
+  partie compte une fois ; les scores enregistrés restent intacts. Les champs
+  bruts de la RPC restent compatibles et l'historique conserve le total et son
+  maximum. La normalisation neutralise la longueur, pas le chrono ou la difficulté.
+  [Méthode, migration à autoriser et tests préparés](longueur-parties.md).
 - Courbe SVG : les 12 derniers mois **avec des parties**, moyenne par partie,
   mois calculés en Europe/Paris. L’axe horizontal respecte les intervalles
   calendaires ; un mois sans partie ne devient jamais un zéro. Alternative

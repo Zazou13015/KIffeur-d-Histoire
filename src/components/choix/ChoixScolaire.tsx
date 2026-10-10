@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 import { lancer } from "@/app/partie/actions";
 import { NIVEAUX } from "@/lib/apprendre/catalogue";
-import { CHAPITRES, comptesDe, DIFFICULTES, ecrireChoix, lireChoix, QUESTIONS } from "@/lib/solo/choix";
+import { CHAPITRES, DIFFICULTES, ecrireChoix, lireChoix, nombreQuestions, type Longueur } from "@/lib/solo/choix";
+import { LongueurPartie, useDisponibilite } from "./LongueurPartie";
 import type { SoloDifficulty } from "@/lib/game/solo";
 import { BarreLancer, ChoixDifficulte, difficulteJouable, ecrireMemoire, Etape, lireMemoire } from "./communs";
 import styles from "./choix.module.css";
@@ -18,6 +19,7 @@ export function ChoixScolaire({ inverse = false }: { inverse?: boolean }) {
   const [coches, setCoches] = useState<string[]>([]);
   // Difficulté proposée par défaut : l'année seule, comme dans les manuels.
   const [difficulte, setDifficulte] = useState<SoloDifficulty>("YEAR");
+  const [longueur, setLongueur] = useState<Longueur>(10);
 
   // Reprend le dernier choix du joueur, connu seulement du navigateur.
   useEffect(() => {
@@ -29,6 +31,7 @@ export function ChoixScolaire({ inverse = false }: { inverse?: boolean }) {
     setNiveau(premier.niveauSlug);
     setCoches(choix.chapitres.filter((id) => CHAPITRES.find((c) => c.id === id)?.niveauSlug === premier.niveauSlug));
     setDifficulte(choix.difficulte);
+    setLongueur(choix.longueur ?? 10);
   }, [memoire]);
 
   const choisirNiveau = (slug: string) => {
@@ -38,10 +41,14 @@ export function ChoixScolaire({ inverse = false }: { inverse?: boolean }) {
   const basculer = (id: string) => setCoches((l) => (l.includes(id) ? l.filter((x) => x !== id) : [...l, id]));
 
   const chapitres = niveau ? duNiveau(niveau) : [];
-  const comptes = coches.length ? comptesDe({ mode: "scolaire", chapitres: coches }) : null;
+  const selection = lireChoix(new URLSearchParams({ mode: "scolaire", difficulte, chapitres: coches.join(","), longueur: String(longueur), ...(inverse ? { sens: "inverse" } : {}) }));
+  const disponibilite = useDisponibilite(selection);
+  const comptes = disponibilite.comptes;
   // Inversé : toujours la date exacte, sans choix de difficulté.
-  const jouable = inverse ? (difficulteJouable(comptes, "DAY") === "DAY" ? "DAY" : null) : difficulteJouable(comptes, difficulte);
-  const choix = jouable ? lireChoix(new URLSearchParams({ mode: "scolaire", difficulte: jouable, chapitres: coches.join(","), ...(inverse ? { sens: "inverse" } : {}) })) : null;
+  const jouable = inverse ? (comptes === null || comptes.DAY > 0 ? "DAY" : null) : difficulteJouable(comptes, difficulte, 1);
+  const choix = selection && jouable ? { ...selection, difficulte: jouable } : null;
+  const disponibles = jouable ? comptes?.[jouable] ?? null : comptes ? 0 : null;
+  const nombre = nombreQuestions(longueur, disponibles);
   const nomNiveau = NIVEAUX.find((n) => n.slug === niveau)?.nom;
 
   return (
@@ -83,16 +90,20 @@ export function ChoixScolaire({ inverse = false }: { inverse?: boolean }) {
 
       {niveau && !inverse && (
         <Etape numero={3} titre="Difficulté">
-          <ChoixDifficulte comptes={comptes} valeur={jouable} onChange={setDifficulte} />
+          <ChoixDifficulte comptes={comptes} valeur={jouable} onChange={setDifficulte} minimum={1} />
         </Etape>
       )}
 
+      {niveau && <Etape numero={inverse ? 3 : 4} titre="Longueur de la partie">
+        <LongueurPartie valeur={longueur} disponibles={disponibles} erreur={disponibilite.erreur}
+          reessayer={disponibilite.reessayer} onChange={setLongueur} />
+      </Etape>}
       <BarreLancer
-        pret={choix != null}
+        pret={choix != null && nombre !== null}
         resume={
-          choix ? (
-            <><b>{QUESTIONS} questions</b> · {nomNiveau}, {coches.length} chapitre{coches.length > 1 ? "s" : ""} {inverse ? " · date exacte" : <> · {DIFFICULTES.find((d) => d.valeur === jouable)?.titre}</>}</>
-          ) : !niveau ? "Choisis ton niveau." : !coches.length ? "Coche au moins un chapitre." : "Pas assez de questions : coche d'autres chapitres."
+          choix && nombre !== null ? (
+            <><b>{nombre} question{nombre > 1 ? "s" : ""}</b> · {nomNiveau}, {coches.length} chapitre{coches.length > 1 ? "s" : ""} {inverse ? " · date exacte" : <> · {DIFFICULTES.find((d) => d.valeur === jouable)?.titre}</>}</>
+          ) : !niveau ? "Choisis ton niveau." : !coches.length ? "Coche au moins un chapitre." : "Choisis une longueur disponible pour jouer."
         }
       />
     </form>

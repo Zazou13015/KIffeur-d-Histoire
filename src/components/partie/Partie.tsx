@@ -34,6 +34,7 @@ export function Partie({ gameId, total, question: premiere, actions, connecte, a
   const [question, setQuestion] = useState(premiere);
   const [chrono, setChrono] = useState(() => chronoDepuis(premiere, Date.now()));
   const [resultat, setResultat] = useState<SoloResult | null>(null);
+  const nombre = question.question_count ?? total;
 
   async function corriger(questionId: string, reponse: HistoricDate | null, methode?: MethodeSaisie | null): Promise<Correction> {
     return correctionDepuis(await actions.soumettre(gameId, questionId, reponse, methode));
@@ -72,13 +73,13 @@ export function Partie({ gameId, total, question: premiere, actions, connecte, a
         corriger={corriger}
         chrono={chrono}
         bornes={bornes}
-        suivante={{ libelle: question.position >= total ? "Voir le bilan" : "Question suivante", action: suivante }}
+        suivante={{ libelle: question.position >= nombre ? "Voir le bilan" : "Question suivante", action: suivante }}
         question={{
           id: question.question_id,
           titre: capitaliser(question.title),
           precision: precisionDepuis(question.difficulty),
           numero: question.position,
-          total,
+          total: nombre,
           illustrationUrl: urlIllustration(question.image_path) ?? undefined,
         }}
       />

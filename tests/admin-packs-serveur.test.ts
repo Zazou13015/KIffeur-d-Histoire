@@ -1,6 +1,6 @@
 import { beforeEach, expect, it, vi } from "vitest";
 import { chargerPacks, chargerQuestions } from "@/lib/admin-packs/serveur";
-import { modifierQuestion } from "@/app/admin/packs/actions";
+import { consulterHistorique, enregistrerCorrection, modifierQuestion } from "@/app/admin/packs/actions";
 
 const mocks = vi.hoisted(() => ({ rpc: vi.fn(), client: vi.fn(), schema: vi.fn() }));
 vi.mock("server-only", () => ({}));
@@ -56,4 +56,41 @@ it("masque les erreurs SQL, le défaut de migration et les exceptions réseau", 
   mocks.client.mockRejectedValue(new Error("adresse privée du serveur"));
   await expect(chargerQuestions("A87")).rejects.toThrow("momentanément indisponible");
   expect(JSON.stringify(await modifierQuestion("A87", "A87-E1", false))).not.toContain("adresse privée");
+});
+
+it("corrige les propriétés globales avec l'état attendu ; lit l'historique à la demande", async () => {
+  const data = { changed: true, packs: [], questions: [], history: [] };
+  mocks.rpc.mockResolvedValueOnce({ data, error: null }).mockResolvedValueOnce({ data: [], error: null });
+  expect(await enregistrerCorrection("A104", "e1", "  Nouveau titre  ", 3, "  Relecture  ", "Ancien titre", 1))
+    .toEqual({ ok: true, data });
+  expect(mocks.rpc).toHaveBeenLastCalledWith("admin_edit_event", {
+    p_pack_id: "A104", p_event_id: "e1", p_title: "Nouveau titre", p_niveau: 3, p_reason: "Relecture",
+    p_expected_title: "Ancien titre", p_expected_niveau: 1,
+  });
+  expect(await consulterHistorique("e1")).toEqual({ ok: true, history: [] });
+  expect(mocks.rpc).toHaveBeenLastCalledWith("admin_event_history", { p_event_id: "e1" });
+});
+
+it("valide les corrections et l'historique avant tout appel SQL", async () => {
+  const valid = ["A104", "e1", "Titre", 1, "", "Ancien", 1] as const;
+  for (const [index, value] of [[0, null], [1, ""], [2, "  "], [2, "x".repeat(501)], [2, "Titre\nprivé"],
+    [3, 4], [3, 1.5], [3, "1"], [4, "x".repeat(1001)], [5, {}], [6, 0]] as const) {
+    const args: unknown[] = [...valid]; args[index] = value;
+    expect((await enregistrerCorrection(...args as Parameters<typeof enregistrerCorrection>)).ok).toBe(false);
+  }
+  expect((await consulterHistorique("")).ok).toBe(false);
+  expect(mocks.rpc).not.toHaveBeenCalled();
+});
+
+it("réautorise chaque correction et lecture ; masque les erreurs sauf le conflit explicite", async () => {
+  const save = () => enregistrerCorrection("A104", "e1", "Nouveau titre", 2, "", "Ancien", 1);
+  mocks.rpc.mockResolvedValue({ data: { private: "secret" }, error: { code: "42501" } });
+  expect((await save()).ok).toBe(false); expect((await consulterHistorique("e1")).ok).toBe(false);
+  mocks.rpc.mockResolvedValue({ data: null, error: { code: "40001", message: "secret SQL" } });
+  expect(await save()).toMatchObject({ ok: false, conflict: true, message: expect.stringContaining("Rechargez") });
+  mocks.rpc.mockResolvedValue({ data: null, error: { code: "PGRST202", message: "secret SQL" } });
+  expect(JSON.stringify(await save())).not.toContain("secret");
+  expect(JSON.stringify(await consulterHistorique("e1"))).not.toContain("secret");
+  mocks.client.mockRejectedValue(new Error("secret réseau"));
+  expect((await save()).ok).toBe(false);
 });

@@ -238,9 +238,12 @@ uniquement le correcteur avec 0,75 : la migration déjà appliquée
 `20261006084353_modele_dataset_v18.sql` et `normalize_answer` restent inchangés.
 Le correcteur conserve `SECURITY DEFINER`, `search_path = ''` et l'interdiction
 d'EXECUTE pour `PUBLIC`, `anon` et `authenticated`.
-Les alias acceptés restent ceux du catalogue
-au moment de répondre ; date, titre affiché à la correction et description
-restent les instantanés du tirage comme en #13.
+Avec la migration préparée #104 (GO SQL séparé), les titres classiques affichés
+et les libellés acceptés en inverse sont aussi figés au tirage, dans une table
+privée. Une correction éditoriale ou un import ne modifie donc pas une partie
+déjà lancée. Les parties encore actives à l’application sont couvertes par un
+backfill, sans réécrire leurs questions/réponses/scores. Date, titre canonique
+affiché à la correction et description restent les instantanés de #13.
 
 ## Vérifications du moteur commun
 

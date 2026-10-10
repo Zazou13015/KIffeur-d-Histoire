@@ -6,6 +6,7 @@ import { modifierQuestion } from "@/app/admin/packs/actions";
 import type { AdminPack, PackQuestion } from "@/lib/admin-packs/types";
 import { formatHistoricDate } from "@/lib/game/dates";
 import styles from "./packs.module.css";
+import CorrectionQuestion from "./CorrectionQuestion";
 
 const NIVEAUX = { 1: "Débutant", 2: "Intermédiaire", 3: "Expert" } as const;
 
@@ -29,6 +30,7 @@ export default function AdministrationPacks({ initialPacks, selectedId, initialQ
   const [confirmation, setConfirmation] = useState<PackQuestion | null>(null);
   const [reason, setReason] = useState("");
   const [pending, setPending] = useState(false);
+  const [editor, setEditor] = useState<{ question: PackQuestion; mode: "edition" | "historique" } | null>(null);
   const busy = useRef(false);
   const dialog = useRef<HTMLDialogElement>(null);
   const workspace = useRef<HTMLDivElement>(null);
@@ -141,15 +143,26 @@ export default function AdministrationPacks({ initialPacks, selectedId, initialQ
               <td className="font-date">{dateQuestion(q)}</td><td>{NIVEAUX[q.niveau]}</td>
               <td><span className={q.removed ? styles.retired : styles.badge}>
                 {q.removed ? "Retirée" : q.playable ? "Jouable" : "Non jouable"}</span></td>
-              <td><button disabled={pending} className={styles.action} onClick={() => {
+              <td><div className={styles.rowActions}><button disabled={pending} className={styles.action} onClick={() => {
                 if (q.removed) void modifier(q, false);
                 else { setReason(""); setNotice(null); setConfirmation(q); }
-              }}>{q.removed ? "Remettre" : "Retirer"}</button></td>
+              }}>{q.removed ? "Remettre" : "Retirer"}</button>
+                <button disabled={pending} className={styles.action}
+                  onClick={() => setEditor({ question: q, mode: "edition" })}>Modifier</button>
+                <button disabled={pending} className={styles.historyButton}
+                  onClick={() => setEditor({ question: q, mode: "historique" })}>Historique</button>
+              </div></td>
             </tr>)}</tbody>
           </table>
         </div>}
       </section>
     </div>}
+    {editor && selectedId && <CorrectionQuestion key={`${editor.question.id}-${editor.mode}`}
+      question={editor.question} packId={selectedId} mode={editor.mode} onClose={() => setEditor(null)}
+      onSaved={(data) => {
+        setPacks(data.packs); setQuestions(data.questions); setEditor(null);
+        setNotice({ error: false, text: data.changed ? "Correction enregistrée pour tous les packs concernés." : "Aucun changement : la question est à jour." });
+      }} />}
     <dialog ref={dialog} aria-labelledby="retrait-title" className={styles.dialog}
       onCancel={(e) => { if (pending) e.preventDefault(); else setConfirmation(null); }}>
       <h2 id="retrait-title" className="font-titre text-2xl">Retirer cette question du pack ?</h2>

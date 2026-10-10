@@ -4,6 +4,9 @@ Les six indicateurs du PRD se lisent sur **`/admin/indicateurs`**, sur 7 et 30 j
 La page n'existe que pour les comptes listés dans `histoire.admins` (Maxou, Antonin) :
 `histoire.admin_indicateurs()` vérifie le compte en SQL et refuse tous les autres (404 côté site).
 
+Le lien « Relire les packs et gérer les questions » ouvre `/admin/packs`, protégé
+par la même liste d’administrateurs. Voir [Administration des packs](admin-packs.md).
+
 ## Données
 
 - **Journal durable** `histoire.kpi_games` : une ligne par partie, tenue par un trigger sur

@@ -53,7 +53,8 @@ jobs:
   # Parcours V1 joués dans un vrai navigateur (#27), sur une pile Supabase locale jetable.
   tests-bout-en-bout:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    # Préparation Docker/Chromium + 82 scénarios ; les délais individuels restent bornés.
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

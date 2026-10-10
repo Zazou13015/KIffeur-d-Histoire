@@ -1,4 +1,5 @@
 import { notFound, redirect } from "next/navigation";
+import Link from "next/link";
 import { getAccount } from "@/lib/account";
 import { chargerIndicateurs, type Indicateurs } from "@/lib/indicateurs";
 
@@ -19,6 +20,7 @@ export default async function IndicateursPage() {
     <main className="conteneur flex-1 py-8">
       <p className="inventaire">Cabinet de l’équipe</p>
       <h1 className="font-titre text-3xl">Indicateurs de réussite</h1>
+      <p><Link href="/admin/packs" className="text-oxyde underline">Relire les packs et gérer les questions</Link></p>
       <p className="mb-6 max-w-2xl text-encre-douce">
         Les six mesures du PRD, sur les 7 et les 30 derniers jours. Un joueur est un compte, ou un navigateur
         anonyme. Calculé le {new Date(kpi.calcule_le).toLocaleString("fr-FR", { timeZone: "Europe/Paris" })}.

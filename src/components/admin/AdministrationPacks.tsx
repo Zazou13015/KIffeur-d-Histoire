@@ -1,0 +1,152 @@
+"use client";
+
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import { modifierQuestion } from "@/app/admin/packs/actions";
+import type { AdminPack, PackQuestion } from "@/lib/admin-packs/types";
+import { formatHistoricDate } from "@/lib/game/dates";
+import styles from "./packs.module.css";
+
+const NIVEAUX = { 1: "Débutant", 2: "Intermédiaire", 3: "Expert" } as const;
+
+function dateQuestion(q: PackQuestion): string {
+  if (q.date_text) return q.date_text;
+  if (q.start_year == null) return "Date non renseignée";
+  const debut = formatHistoricDate({ year: q.start_year, month: q.start_month, day: q.start_day }, "jour");
+  if (q.end_year == null) return debut;
+  return `${debut} – ${formatHistoricDate({ year: q.end_year, month: q.end_month, day: q.end_day }, "jour")}`;
+}
+
+export default function AdministrationPacks({ initialPacks, selectedId, initialQuestions }: {
+  initialPacks: AdminPack[]; selectedId: string | null; initialQuestions: PackQuestion[];
+}) {
+  const [packs, setPacks] = useState(initialPacks);
+  const [questions, setQuestions] = useState(initialQuestions);
+  const [search, setSearch] = useState("");
+  const [niveau, setNiveau] = useState("");
+  const [status, setStatus] = useState("");
+  const [notice, setNotice] = useState<{ error: boolean; text: string } | null>(null);
+  const [confirmation, setConfirmation] = useState<PackQuestion | null>(null);
+  const [reason, setReason] = useState("");
+  const [pending, setPending] = useState(false);
+  const busy = useRef(false);
+  const dialog = useRef<HTMLDialogElement>(null);
+  const selected = packs.find((p) => p.id === selectedId);
+
+  useEffect(() => {
+    if (confirmation && !dialog.current?.open) dialog.current?.showModal();
+    if (!confirmation && dialog.current?.open) dialog.current?.close();
+  }, [confirmation]);
+
+  // Recherche et filtres sont locaux : aucun appel supplémentaire à Supabase.
+  const needle = search.trim().toLocaleLowerCase("fr-FR");
+  const visible = questions.filter((q) => q.title.toLocaleLowerCase("fr-FR").includes(needle)
+    && (!niveau || String(q.niveau) === niveau)
+    && (!status || (status === "removed" ? q.removed : q.playable)));
+
+  async function modifier(q: PackQuestion, removed: boolean, motif = "") {
+    if (!selectedId || busy.current) return;
+    busy.current = true;
+    setPending(true);
+    setNotice(null);
+    try {
+      const result = await modifierQuestion(selectedId, q.id, removed, motif);
+      if (!result.ok) {
+        setNotice({ error: true, text: result.message });
+        return;
+      }
+      setPacks(result.data.packs);
+      setQuestions(result.data.questions);
+      setConfirmation(null);
+      setReason("");
+      setNotice({ error: false, text: result.data.changed
+        ? `${q.title} : ${removed ? "question retirée du pack. Vous pouvez la remettre." : "question remise dans le pack."}`
+        : "Cette action avait déjà été effectuée. La liste est à jour." });
+    } catch {
+      setNotice({ error: true, text: "La connexion a été interrompue. Réessayez pour confirmer l’état de la question." });
+    } finally {
+      busy.current = false;
+      setPending(false);
+    }
+  }
+
+  return <main className="conteneur flex-1 py-8">
+    <p className="inventaire">Cabinet de l’équipe · Inventaire des packs</p>
+    <div className={styles.heading}>
+      <h1 className="font-titre text-3xl">Relire les packs</h1>
+      <Link href="/admin/indicateurs" className="text-oxyde underline">Indicateurs de réussite</Link>
+    </div>
+    <p className="mb-6 max-w-3xl text-encre-douce">Choisissez un pack pour en relire les questions.
+      Un retrait concerne ce pack uniquement ; la question reste disponible dans ses autres contenus.</p>
+    {packs.length === 0 ? <p>Aucun pack disponible.</p> : <div className={styles.layout}>
+      <nav aria-label="Packs" className={styles.packs}>
+        <h2 className="inventaire">{packs.length} packs</h2>
+        {packs.map((p) => <Link key={p.id} href={`/admin/packs?pack=${encodeURIComponent(p.id)}`}
+          prefetch={false} aria-current={p.id === selectedId ? "page" : undefined}
+          aria-disabled={pending || undefined} tabIndex={pending ? -1 : undefined}
+          onClick={(e) => { if (busy.current) e.preventDefault(); }} className={styles.pack}>
+          <span className="font-titre">{p.title}</span>
+          <span className="text-sm text-encre-douce">{p.playable} jouables · {p.retired} retirées · {p.total} au total</span>
+          {!p.active && <span className="inventaire">Pack inactif</span>}
+        </Link>)}
+      </nav>
+      <section aria-label="Questions du pack" className={styles.content} aria-busy={pending}>
+        <h2 className="font-titre text-2xl">{selected?.title}</h2>
+        <p className="text-sm text-encre-douce">{selected?.playable} questions jouables à l’année, tous niveaux.
+          La disponibilité en partie dépend aussi de la précision et du niveau choisis.</p>
+        <div className={styles.filters}>
+          <label>Rechercher par titre<input type="search" value={search}
+            onChange={(e) => setSearch(e.target.value)} placeholder="Titre d’une question" /></label>
+          <label>Niveau<select value={niveau} onChange={(e) => setNiveau(e.target.value)}>
+            <option value="">Tous les niveaux</option>
+            {Object.entries(NIVEAUX).map(([n, label]) => <option key={n} value={n}>{label}</option>)}
+          </select></label>
+          <label>Statut<select value={status} onChange={(e) => setStatus(e.target.value)}>
+            <option value="">Tous les statuts</option><option value="playable">Jouables</option>
+            <option value="removed">Retirées</option>
+          </select></label>
+        </div>
+        {notice && <p role={notice.error ? "alert" : "status"} className={notice.error ? "text-oxyde" : "text-encre"}>{notice.text}</p>}
+        <p className="inventaire">{visible.length} sur {questions.length} questions</p>
+        {visible.length === 0 ? <p>Aucune question pour cette sélection.</p> : <div className={styles.tableScroll}>
+          <table className={styles.table}>
+            <caption className="sr-only">Questions, dates et actions pour {selected?.title}</caption>
+            <thead><tr><th scope="col">Question</th><th scope="col">Date</th><th scope="col">Niveau</th>
+              <th scope="col">Statut</th><th scope="col">Action</th></tr></thead>
+            <tbody>{visible.map((q) => <tr key={q.id} data-removed={q.removed || undefined}>
+              <th scope="row"><span className="font-titre">{q.title}</span><small className={styles.eventId}>{q.id}</small>
+                {q.last_change && <details className={styles.detail}><summary>Dernière modification</summary>
+                  <p>{q.last_change.operation === "retirer" ? "Retrait" : "Réintégration"} le {new Date(q.last_change.occurred_at)
+                    .toLocaleString("fr-FR", { timeZone: "Europe/Paris" })}<br />
+                    Administrateur : {q.last_change.admin_id}<br />Motif : {q.last_change.reason || "Non renseigné"}</p>
+                </details>}
+              </th>
+              <td className="font-date">{dateQuestion(q)}</td><td>{NIVEAUX[q.niveau]}</td>
+              <td><span className={q.removed ? styles.retired : styles.badge}>
+                {q.removed ? "Retirée" : q.playable ? "Jouable" : "Non jouable"}</span></td>
+              <td><button disabled={pending} className={styles.action} onClick={() => {
+                if (q.removed) void modifier(q, false);
+                else { setReason(""); setNotice(null); setConfirmation(q); }
+              }}>{q.removed ? "Remettre" : "Retirer"}</button></td>
+            </tr>)}</tbody>
+          </table>
+        </div>}
+      </section>
+    </div>}
+    <dialog ref={dialog} aria-labelledby="retrait-title" className={styles.dialog}
+      onCancel={(e) => { if (pending) e.preventDefault(); else setConfirmation(null); }}>
+      <h2 id="retrait-title" className="font-titre text-2xl">Retirer cette question du pack ?</h2>
+      <p>{confirmation?.title}</p>
+      <p className="text-sm text-encre-douce">Vous pourrez la remettre à tout moment. Les parties déjà lancées gardent leur tirage.</p>
+      <form onSubmit={(e) => { e.preventDefault(); if (confirmation) void modifier(confirmation, true, reason); }}>
+        <label className={styles.reason}>Motif facultatif<textarea maxLength={1000} value={reason} disabled={pending}
+          onChange={(e) => setReason(e.target.value)} rows={3} /></label>
+        {notice?.error && <p role="alert" className="text-oxyde">{notice.text}</p>}
+        <div className={styles.dialogActions}>
+          <button type="button" className={styles.action} disabled={pending} onClick={() => setConfirmation(null)}>Annuler</button>
+          <button type="submit" className={styles.confirm} disabled={pending}>{pending ? "Enregistrement…" : "Confirmer le retrait"}</button>
+        </div>
+      </form>
+    </dialog>
+  </main>;
+}

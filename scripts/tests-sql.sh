@@ -46,3 +46,4 @@ for f in supabase/tests/*.sql; do
 done
 
 bash scripts/tests-solo-concurrence.sh
+bash scripts/tests-admin-packs-concurrence.sh

@@ -8,6 +8,8 @@ import { statistiques } from "./fixtures/profil";
 const mocks = vi.hoisted(() => ({ compter: vi.fn(), lancer: vi.fn() }));
 vi.mock("@/app/solo/disponibilite", () => ({ compterQuestions: mocks.compter }));
 vi.mock("@/app/partie/actions", () => ({ lancer: mocks.lancer }));
+vi.mock("next/navigation", () => ({ useRouter: () => ({ push: vi.fn() }) }));
+vi.mock("@/app/solo/mystere", () => ({ preparerMystere: vi.fn() }));
 beforeEach(() => { localStorage.clear(); mocks.compter.mockReset().mockResolvedValue({ YEAR: 42, MONTH: 8, DAY: 3 }); });
 afterEach(() => { cleanup(); vi.clearAllMocks(); });
 const longueurs = () => within(screen.getByRole("group", { name: "Longueur de la partie" }));

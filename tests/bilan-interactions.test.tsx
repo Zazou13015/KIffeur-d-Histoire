@@ -9,6 +9,7 @@ import { lireProgressionSession } from "@/lib/progression/session";
 const mocks = vi.hoisted(() => ({ claim: vi.fn(), test: vi.fn(), refresh: vi.fn(), lancer: vi.fn() }));
 vi.mock("@/app/partie/actions", () => ({ lancer: mocks.lancer }));
 vi.mock("@/app/solo/actions", () => ({ claimGame: mocks.claim }));
+vi.mock("@/app/solo/mystere", () => ({ preparerMystere: vi.fn() }));
 vi.mock("@/app/apprendre/actions", () => ({ enregistrerTestChapitre: mocks.test }));
 const router = { refresh: mocks.refresh };
 vi.mock("next/navigation", () => ({ useRouter: () => router }));

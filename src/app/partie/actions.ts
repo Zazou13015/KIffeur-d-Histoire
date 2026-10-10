@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { startGame } from "@/app/solo/actions";
 import { cheminChapitre } from "@/lib/apprendre/catalogue";
 import { CHAPITRES, ecrireChoix, filtresDepuis, lireChoix } from "@/lib/solo/choix";
+import { choixGagnant } from "@/lib/solo/mystere";
 
 // Lance une partie solo depuis /solo, /scolaire ou le bouton « Rejouer » du bilan, puis ouvre l'écran de partie.
 // Le choix est relu et validé ici : le formulaire ne fait jamais foi.
@@ -25,7 +26,8 @@ export async function lancer(formData: FormData) {
   let destination: string;
   try {
     const game = await startGame(filtresDepuis(choix));
-    destination = `/partie/${game.game_id}?n=${game.question_count}&c=${encodeURIComponent(ecrireChoix(choix))}`;
+    const resolu = game.mystery ? choixGagnant(choix, game.mystery.winner) : choix;
+    destination = `/partie/${game.game_id}?n=${game.question_count}&c=${encodeURIComponent(ecrireChoix(resolu))}`;
   } catch (e) {
     const message = e instanceof Error ? e.message : "";
     destination = message.includes("pseudo")

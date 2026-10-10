@@ -59,6 +59,20 @@ it.each([5, 10, 20, 100, 0])("transmet la longueur %s sans la recalculer, y comp
   expect(resultat.question_count).toBe(n || 100);
 });
 
+it("une roulette ou sa relance n'ajoute qu'une RPC métier et garde le secret serveur", async () => {
+  const winner = { mode: "pack", id: "M95-PACK", titre: "Le gagnant" };
+  const game = { game_id: gameId, question_count: 20, anonymous: true,
+    mystery: { winner, candidates: [winner] } };
+  mocks.rpc.mockResolvedValue({ data: game, error: null });
+  expect(await startGame({ mystery: true, niveau: 2, direction: "inverse", difficulty: "DAY",
+    questionCount: 20, packId: winner.id })).toEqual(game);
+  expect(gameCalls()).toHaveLength(1);
+  expect(gameCalls()[0]).toEqual(["start_mystery_game", { p_token: expect.stringMatching(/^[a-f0-9]{64}$/),
+    p_niveau: 2, p_difficulty: "DAY", p_direction: "inverse", p_question_count: 20, p_pack_id: winner.id, p_tag_id: null }]);
+  expect(soloCookies()[0][2]).toMatchObject({ httpOnly: true, sameSite: "strict" });
+  expect(JSON.stringify(game)).not.toContain(gameCalls()[0][1].p_token);
+});
+
 it("génère un secret distinct pour chaque partie et le garde en cookie httpOnly de session", async () => {
   vi.stubEnv("NODE_ENV", "production");
   const game = { game_id: gameId, anonymous: true, question_count: 10, difficulty: "YEAR", state: "playing" };

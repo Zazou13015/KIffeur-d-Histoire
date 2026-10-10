@@ -10,6 +10,8 @@ import { QUESTIONS_MIN_TEST } from "@/lib/progression/types";
 export type Mode = "general" | "periode" | "pack" | "theme" | "scolaire";
 export type Longueur = 5 | 10 | 20 | "tout";
 export type Choix = {
+  /** Le pack/thème résolu vient d'une roulette ; sa relance peut le conserver. */
+  mystere?: true;
   /** `inverse` : le jeu donne la date, le joueur écrit l'événement. Absent = jeu de dates classique. */
   sens?: "inverse";
   mode: Mode;
@@ -67,6 +69,10 @@ export function lireChoix(champs: URLSearchParams): Choix | null {
   const difficulte = champs.get("difficulte");
   if (!MODES.includes(mode) || !estDifficulte(difficulte)) return null;
   const choix: Choix = { mode, difficulte };
+  if (champs.get("mystere") === "1") {
+    if (!["general", "pack", "theme"].includes(mode)) return null;
+    choix.mystere = true;
+  }
   const longueur = champs.get("longueur");
   if (longueur !== null) {
     if (!["5", "10", "20", "tout"].includes(longueur)) return null;
@@ -100,12 +106,12 @@ export function lireChoix(champs: URLSearchParams): Choix | null {
   }
   if (mode === "pack") {
     const pack = champs.get("pack");
-    if (!PACKS.some((p) => p.id === pack)) return null;
+    if (!PACKS.some((p) => p.id === pack) && !(choix.mystere && pack && /^[\w-]{1,80}$/.test(pack))) return null;
     choix.pack = pack!;
   }
   if (mode === "theme") {
     const theme = champs.get("theme");
-    if (!THEMES.some((t) => t.id === theme)) return null;
+    if (!THEMES.some((t) => t.id === theme) && !(choix.mystere && theme && /^[\w-]{1,80}$/.test(theme))) return null;
     choix.theme = theme!;
   }
   if (mode === "scolaire") {
@@ -126,6 +132,7 @@ export function lireChoix(champs: URLSearchParams): Choix | null {
 /** Forme compacte du choix, pour l'URL de la partie (bouton « Rejouer ») et le stockage local. */
 export function ecrireChoix(choix: Choix): string {
   const p = new URLSearchParams({ mode: choix.mode, difficulte: choix.difficulte });
+  if (choix.mystere) p.set("mystere", "1");
   if (choix.longueur !== undefined) p.set("longueur", String(choix.longueur));
   if (choix.sens) p.set("sens", choix.sens);
   if (choix.niveau) p.set("niveau", String(choix.niveau));
@@ -142,6 +149,7 @@ export function ecrireChoix(choix: Choix): string {
 /** Filtres passés à la RPC `start_game`. */
 export function filtresDepuis(choix: Choix): SoloFilters {
   const f: SoloFilters = { difficulty: choix.difficulte, questionCount: choix.longueur === "tout" ? 0 : choix.longueur ?? QUESTIONS };
+  if (choix.mystere) f.mystery = true;
   if (choix.sens === "inverse") f.direction = "inverse";
   if (choix.niveau) f.niveau = choix.niveau;
   if (choix.mode === "periode") {
@@ -243,6 +251,7 @@ export function relanceEnregistree(f: SoloFilters | null | undefined): string | 
   const mode: Mode = f.chapterIds?.length ? "scolaire" : f.packId ? "pack"
     : f.tagId ? "theme" : f.yearMin != null || f.yearMax != null ? "periode" : "general";
   const choix: Choix = { mode, difficulte: f.difficulty ?? "YEAR", longueur,
+    ...(f.mystery && (mode === "pack" || mode === "theme") ? { mystere: true as const } : {}),
     ...(mode !== "scolaire" ? { niveau: f.niveau ?? 3 } : {}),
     ...(f.direction === "inverse" ? { sens: "inverse" } : {}),
     ...(mode === "periode" ? { periode: "libre", de: f.yearMin, a: f.yearMax } : {}),

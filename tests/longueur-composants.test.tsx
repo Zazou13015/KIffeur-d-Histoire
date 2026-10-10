@@ -32,7 +32,7 @@ it("reprend une mémoire historique avec dix questions et désactive les longueu
   fireEvent.click(within(screen.getByRole("group", { name: "Précision" })).getByRole("button", { name: /^Jour/ }));
   for (const n of [5, 10, 20]) expect((longueurs().getByRole("button", { name: new RegExp(`^${n} questions`) }) as HTMLButtonElement).disabled).toBe(true);
   fireEvent.click(longueurs().getByRole("button", { name: /^Tout/ }));
-  expect((screen.getByRole("button", { name: "Jouer", exact: true }) as HTMLButtonElement).disabled).toBe(false);
+  expect((screen.getByRole("button", { name: /^Jouer$/ }) as HTMLButtonElement).disabled).toBe(false);
 });
 it("oublie immédiatement le décompte du niveau précédent et ignore une réponse réseau périmée", async () => {
   let terminer!: (c: { YEAR: number; MONTH: number; DAY: number }) => void;

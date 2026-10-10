@@ -84,6 +84,9 @@ end $$;
 
 create temporary table contexte(kind text primary key, game_id uuid, active_id uuid, future_id uuid, snapshot jsonb);
 grant all on contexte to anon, authenticated;
+-- Capture avec les droits API ; comparaison au stockage après RESET ROLE, uniquement en test local.
+create temporary table longueurs_lues(game_id uuid, position integer, question_count integer not null);
+grant insert on longueurs_lues to anon, authenticated;
 create function pg_temp.partie_complete(token text) returns uuid language plpgsql as $$
 declare g jsonb; q jsonb; r jsonb; id uuid; begin
   g := histoire.start_game(p_token=>token,p_direction=>'inverse',p_pack_id=>'INV-TEST',p_tag_id=>'INV-THEME',
@@ -93,7 +96,10 @@ declare g jsonb; q jsonb; r jsonb; id uuid; begin
   for i in 1..10 loop
     q := histoire.next_question(id,token);
     perform pg_temp.verifier((select array_agg(k order by k) from jsonb_object_keys(q) k) =
-      array['asked_at','date','date_label','date_precision','deadline','difficulty','position','question_id','server_time'], 'liste blanche inverse exacte, sans titre/alias/image/event_id');
+      array['asked_at','date','date_label','date_precision','deadline','difficulty','position','question_count','question_id','server_time'], 'liste blanche inverse exacte, sans titre/alias/image/event_id');
+    perform pg_temp.verifier(jsonb_typeof(q->'question_count')='number'
+      and q->>'question_count'=g->>'question_count', 'longueur inverse cohérente avec le lancement');
+    insert into longueurs_lues values (id,i,(q->>'question_count')::integer);
     perform pg_temp.verifier(q->>'date_precision'='DAY' and (q->>'position')::int=i
       and extract(epoch from ((q->>'deadline')::timestamptz-(q->>'asked_at')::timestamptz))=30, 'ordre et chrono communs');
     perform pg_temp.verifier(histoire.next_question(id,token)->>'deadline'=q->>'deadline', 'chrono stable');
@@ -179,6 +185,10 @@ select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-000000000014'
 set local role authenticated;
 insert into contexte(kind,game_id) values ('complete-connected',pg_temp.partie_complete(null));
 reset role;
+select pg_temp.verifier((select count(*)=20 and count(distinct l.game_id)=2
+  and bool_and(l.question_count is not distinct from g.question_count)
+  from longueurs_lues l left join histoire.games g on g.id=l.game_id),
+  'longueur de chaque question inverse égale au stockage, anonyme et connectée');
 select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-000000000015',true);
 set local role authenticated;
 do $$ declare id uuid := (select game_id from contexte where kind='complete-connected'); begin

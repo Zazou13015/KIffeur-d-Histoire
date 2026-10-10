@@ -15,6 +15,7 @@ export type SoloFilters = {
   /** Absent : aucun filtre de niveau (mode scolaire). */
   niveau?: SoloNiveau;
   questionCount?: number;
+  // questionCount = 0 : « Tout », résolu atomiquement en 1 à 100 par start_game (#93).
   /** Test d'un chapitre : le serveur ne tire que parmi les événements de ses cartes pédagogiques. */
   chapterTest?: boolean;
 };
@@ -30,6 +31,8 @@ export type SoloGame = {
   anonymous: boolean;
 };
 type QuestionTiming = {
+  /** Longueur réelle en base ; optionnelle pour les anciennes réponses RPC. */
+  question_count?: number;
   question_id: string;
   position: number;
   difficulty: SoloDifficulty;
@@ -59,6 +62,8 @@ export type SoloDateCorrection = CorrectionDetails & { direction?: "date" };
 export type SoloInverseCorrection = CorrectionDetails & { direction: "inverse"; title: string; correct: boolean };
 export type SoloCorrection = SoloDateCorrection | SoloInverseCorrection;
 type ResultDetails = {
+  /** Instantané privé de lancement, disponible seulement au bilan (#93). Anciens jeux : null. */
+  replay_filters?: SoloFilters | null;
   game_id: string;
   state: "finished";
   question_count: number;

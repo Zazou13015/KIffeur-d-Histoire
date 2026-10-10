@@ -14,7 +14,7 @@ export default async function Solo({ searchParams }: PageProps<"/solo">) {
         <Link href="/" className={styles.retour}>← Accueil</Link>
         <header className={styles.titre}>
           <h1>Solo libre</h1>
-          <p>Choisis ce que tu veux jouer, puis la précision demandée. Dix questions à placer sur la frise.</p>
+          <p>Choisis ce que tu veux jouer, la précision et la longueur de ta traversée.</p>
         </header>
         <ErreurLancement code={erreur} />
         <ChoixSolo />

@@ -26,6 +26,15 @@ export const partieBilan: Extract<SoloResult, { direction: "date" }> = {
 
 export function fixtureBilan(cas: string): SoloResult {
   const result = structuredClone(partieBilan);
+  if (cas === "vingt" || cas === "cent") {
+    const n = cas === "cent" ? 100 : 20;
+    return { ...result, question_count: n, total_points: n * 100, average_accuracy: 100,
+      questions: Array.from({ length: n }, (_, i) => {
+        const q = result.questions[i % result.questions.length];
+        return { ...q, question_id: `longue-q${i + 1}`, position: i + 1, expired: false,
+          answer: { year: q.correct_date.year, month: null, day: null }, gap: 0, points: 100, accuracy: 100 };
+      }) };
+  }
   if (cas === "inverse") return {
     ...result, direction: "inverse", questions: result.questions.map((q, i) => ({
       ...q, direction: "inverse", correct: i % 2 === 0, gap: null,

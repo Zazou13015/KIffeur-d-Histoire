@@ -3,6 +3,8 @@ export const statistiques: Statistiques = {
   games: 3,
   average_accuracy: 80,
   average_score: 720,
+  average_points_per_question: 72,
+  best_points_per_question: 90,
   best_score: 900,
   games_without_context: 1,
   modes: [
@@ -11,6 +13,8 @@ export const statistiques: Statistiques = {
       games: 2,
       average_accuracy: 90,
       average_score: 850,
+      average_points_per_question: 85,
+      best_points_per_question: 90,
       best_score: 900,
     },
     {
@@ -18,6 +22,8 @@ export const statistiques: Statistiques = {
       games: 1,
       average_accuracy: 60,
       average_score: 460,
+      average_points_per_question: 46,
+      best_points_per_question: 46,
       best_score: 460,
     },
   ],
@@ -29,6 +35,7 @@ export const statistiques: Statistiques = {
       games: 2,
       average_accuracy: 90,
       best_score: 900,
+      best_points_per_question: 90,
     },
     {
       kind: "theme",
@@ -37,6 +44,7 @@ export const statistiques: Statistiques = {
       games: 1,
       average_accuracy: 100,
       best_score: 900,
+      best_points_per_question: 90,
     },
     {
       kind: "chapter",
@@ -45,6 +53,7 @@ export const statistiques: Statistiques = {
       games: 1,
       average_accuracy: 80,
       best_score: 800,
+      best_points_per_question: 80,
     },
   ],
   accuracy_over_time: [
@@ -56,6 +65,8 @@ export const statistiquesVides: Statistiques = {
   games: 0,
   average_accuracy: null,
   average_score: null,
+  average_points_per_question: null,
+  best_points_per_question: null,
   best_score: null,
   modes: [],
   contexts: [],

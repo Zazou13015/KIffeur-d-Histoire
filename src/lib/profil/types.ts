@@ -23,6 +23,8 @@ export type PerformanceMode = {
   average_accuracy: number;
   average_score: number;
   best_score: number;
+  average_points_per_question?: number;
+  best_points_per_question?: number;
 };
 export type PerformanceContexte = {
   kind: "pack" | "theme" | "chapter";
@@ -31,6 +33,7 @@ export type PerformanceContexte = {
   games: number;
   average_accuracy: number;
   best_score: number;
+  best_points_per_question?: number;
 };
 export type PointPrecision = {
   month: string;
@@ -42,6 +45,8 @@ export type Statistiques = {
   average_accuracy: number | null;
   average_score: number | null;
   best_score: number | null;
+  average_points_per_question?: number | null;
+  best_points_per_question?: number | null;
   modes: PerformanceMode[];
   contexts: PerformanceContexte[];
   accuracy_over_time: PointPrecision[];

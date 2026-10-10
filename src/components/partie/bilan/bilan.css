@@ -229,6 +229,9 @@
 }
 @media(max-width:360px) { .bilan-cabinet .score { font-size:97px; } }
 .bilan-cabinet .eyebrow { text-transform:uppercase; }
+.bilan-cabinet .score-seal[data-large="true"] .score { font-size:90px; }
+.bilan-cabinet .range-picker { display:flex; align-items:center; justify-content:flex-end; flex-wrap:wrap; gap:12px; margin-top:8px; }
+@media(max-width:760px) { .bilan-cabinet .score-seal[data-large="true"] .score { font-size:70px; } }
 .bilan-cabinet .hero, .bilan-cabinet .journey, .bilan-cabinet .review { animation:bilan-apparition 220ms ease-out both; }
 .bilan-cabinet button, .bilan-cabinet .change-mode { transition:background-color 120ms ease-out; }
 @keyframes bilan-apparition { from { opacity:0; transform:translateY(3px); } to { opacity:1; transform:translateY(0); } }

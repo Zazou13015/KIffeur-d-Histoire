@@ -17,7 +17,7 @@ export default async function Inverse({ searchParams }: PageProps<"/inverse">) {
         <Link href="/" className={styles.retour}>← Accueil</Link>
         <header className={styles.titre}>
           <h1>Mode inversé</h1>
-          <p>On te donne une date : à toi d&apos;écrire l&apos;événement qui s&apos;est passé ce jour-là. Dix questions.</p>
+          <p>On te donne une date : à toi d&apos;écrire l&apos;événement qui s&apos;est passé ce jour-là. Choisis aussi la longueur de ta partie.</p>
         </header>
         <nav className={styles.onglets} style={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} aria-label="Type de partie">
           <Link href="/inverse" aria-current={scolaire ? undefined : "page"} className={styles.ongletLien}>Solo libre</Link>

@@ -5,7 +5,7 @@ export function ScoreBilan({ resultat, reponses, contexte }: { resultat: SoloRes
   const maximum = resultat.question_count * 100;
   const exactes = reponses.filter((q) => q.exacte).length;
   return <>
-    <div className="score-seal" role="img" aria-label={`${resultat.total_points} points sur ${maximum}`}>
+    <div className="score-seal" data-large={resultat.total_points >= 10000} role="img" aria-label={`${resultat.total_points} points sur ${maximum}`}>
       <span className="score-overline" aria-hidden="true">VOTRE SCORE</span>
       <span className="score" aria-hidden="true">{resultat.total_points}</span>
       <span className="score-base" aria-hidden="true">SUR <b>{maximum.toLocaleString("fr-FR")}</b> POINTS</span>

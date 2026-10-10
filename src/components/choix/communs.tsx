@@ -1,7 +1,7 @@
 "use client";
 
 import { useFormStatus } from "react-dom";
-import { DIFFICULTES, difficultePossible, NIVEAUX, niveauPossible, type Choix, type Comptes } from "@/lib/solo/choix";
+import { DIFFICULTES, NIVEAUX, niveauPossible, type Choix, type Comptes } from "@/lib/solo/choix";
 import type { SoloDifficulty, SoloNiveau } from "@/lib/game/solo";
 import styles from "./choix.module.css";
 
@@ -24,9 +24,10 @@ export function ecrireMemoire(cle: string, valeur: string) {
 }
 
 /** Première difficulté jouable, en partant de celle demandée. */
-export function difficulteJouable(comptes: Comptes | null, voulue: SoloDifficulty): SoloDifficulty | null {
-  if (difficultePossible(comptes, voulue)) return voulue;
-  return DIFFICULTES.find((d) => difficultePossible(comptes, d.valeur))?.valeur ?? null;
+export function difficulteJouable(comptes: Comptes | null, voulue: SoloDifficulty, minimum = 10): SoloDifficulty | null {
+  const possible = (d: SoloDifficulty) => comptes === null || comptes[d] >= minimum;
+  if (possible(voulue)) return voulue;
+  return DIFFICULTES.find((d) => possible(d.valeur))?.valeur ?? null;
 }
 
 type Contenu = Pick<Choix, "mode" | "periode" | "pack" | "theme">;
@@ -37,11 +38,11 @@ export function niveauJouable(contenu: Contenu, voulu: SoloNiveau, precisions: S
   return ordre.find((n) => niveauPossible(contenu, n, precisions)) ?? null;
 }
 
-export function ChoixNiveau({ contenu, precisions, valeur, onChange }: { contenu: Contenu; precisions: SoloDifficulty[]; valeur: SoloNiveau | null; onChange: (n: SoloNiveau) => void }) {
+export function ChoixNiveau({ contenu, precisions, valeur, onChange, verifierCatalogue = true }: { contenu: Contenu; precisions: SoloDifficulty[]; valeur: SoloNiveau | null; onChange: (n: SoloNiveau) => void; verifierCatalogue?: boolean }) {
   return (
     <div className={styles.difficultes} role="group" aria-label="Niveau">
       {NIVEAUX.map((n) => {
-        const possible = niveauPossible(contenu, n.valeur, precisions);
+        const possible = !verifierCatalogue || niveauPossible(contenu, n.valeur, precisions);
         return (
           <button key={n.valeur} type="button" className={styles.difficulte} aria-pressed={valeur === n.valeur} disabled={!possible} onClick={() => onChange(n.valeur)}>
             <b>{n.titre}</b>
@@ -53,11 +54,11 @@ export function ChoixNiveau({ contenu, precisions, valeur, onChange }: { contenu
   );
 }
 
-export function ChoixDifficulte({ comptes, valeur, onChange }: { comptes: Comptes | null; valeur: SoloDifficulty | null; onChange: (d: SoloDifficulty) => void }) {
+export function ChoixDifficulte({ comptes, valeur, onChange, minimum = 10 }: { comptes: Comptes | null; valeur: SoloDifficulty | null; onChange: (d: SoloDifficulty) => void; minimum?: number }) {
   return (
     <div className={styles.difficultes} role="group" aria-label="Précision">
       {DIFFICULTES.map((d) => {
-        const possible = difficultePossible(comptes, d.valeur);
+        const possible = comptes === null || comptes[d.valeur] >= minimum;
         return (
           <button key={d.valeur} type="button" className={styles.difficulte} aria-pressed={valeur === d.valeur} disabled={!possible} onClick={() => onChange(d.valeur)}>
             <b>{d.titre}</b>

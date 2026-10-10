@@ -31,13 +31,13 @@ test("connexion puis statistiques : la partie jouée apparaît dans le carnet", 
   const { points } = await lireBilan(page);
   expect(questionsEnBase(gameId).reduce((s, q) => s + (q.points ?? 0), 0)).toBe(points);
 
-  // Le carnet : une partie, et son score comme meilleur score.
+  // Le carnet : une partie, et son score par question comme meilleur score normalisé.
   await page.goto("/profil");
   await page.getByRole("link", { name: "Statistiques" }).click();
   await expect(page).toHaveURL(/onglet=statistiques/);
   const valeur = (libelle: string) => page.locator("dt", { hasText: libelle }).first().locator("xpath=following-sibling::dd[1]");
   await expect(valeur("Parties terminées")).toHaveText("1");
-  await expect(valeur("Meilleur score")).toHaveText(new RegExp(`^${String(points).replace(/\B(?=(\d{3})+(?!\d))/g, "\\s?")}$`));
+  await expect(valeur("Meilleur score par question")).toHaveText(new Intl.NumberFormat("fr-FR", { maximumFractionDigits: 2 }).format(points / total));
 
   // Le même carnet n'est jamais lisible sans être connecté.
   await page.context().clearCookies();

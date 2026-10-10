@@ -61,7 +61,7 @@ begin
     q := histoire.next_question(game_id, token);
     -- Ensemble EXACT des clés autorisées avant réponse.
     perform pg_temp.verifier((select array_agg(k order by k) from jsonb_object_keys(q) k) =
-      array['asked_at','deadline','difficulty','image_path','position','question_id','server_time','title'], 'liste blanche avant réponse');
+      array['asked_at','deadline','difficulty','image_path','position','question_count','question_id','server_time','title'], 'liste blanche avant réponse');
     perform pg_temp.verifier(not q ? 'description' and (q->>'position')::int = i,
       'description privée absente et ordre séquentiel');
     perform pg_temp.verifier(extract(epoch from ((q->>'deadline')::timestamptz - (q->>'asked_at')::timestamptz)) = 30, 'chrono 30 secondes');
@@ -97,7 +97,7 @@ do $$ begin
   perform pg_temp.refuser('select histoire.lock_solo_game(null,null)', '42501');
   perform pg_temp.refuser('select histoire.start_game()', '22023');
   perform pg_temp.refuser('select histoire.start_game(p_token => ''weak'')', '22023');
-  perform pg_temp.refuser('select histoire.start_game(p_token => repeat(''a'',64), p_question_count => 0)', '22023');
+  perform pg_temp.refuser('select histoire.start_game(p_token => repeat(''a'',64), p_question_count => -1)', '22023');
   perform pg_temp.refuser('select histoire.start_game(p_token => repeat(''a'',64), p_question_count => 101)', '22023');
   perform pg_temp.refuser('select histoire.start_game(p_token => repeat(''a'',64), p_difficulty => ''BAD'')', '22023');
   perform pg_temp.refuser('select histoire.start_game(p_token => repeat(''a'',64), p_year_min => 2002, p_year_max => 2001)', '22023');

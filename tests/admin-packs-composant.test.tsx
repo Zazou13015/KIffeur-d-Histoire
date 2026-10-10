@@ -14,6 +14,7 @@ const modalInitial = Object.getOwnPropertyDescriptor(HTMLDialogElement.prototype
 const closeInitial = Object.getOwnPropertyDescriptor(HTMLDialogElement.prototype, "close");
 beforeEach(() => {
   mocks.modifier.mockReset();
+  vi.stubGlobal("ResizeObserver", class { observe() {} disconnect() {} });
   Object.defineProperty(HTMLDialogElement.prototype, "showModal", { configurable: true,
     value: function (this: HTMLDialogElement) { this.setAttribute("open", ""); } });
   Object.defineProperty(HTMLDialogElement.prototype, "close", { configurable: true,
@@ -21,6 +22,7 @@ beforeEach(() => {
 });
 afterEach(() => {
   cleanup();
+  vi.unstubAllGlobals();
   if (modalInitial) Object.defineProperty(HTMLDialogElement.prototype, "showModal", modalInitial);
   else Reflect.deleteProperty(HTMLDialogElement.prototype, "showModal");
   if (closeInitial) Object.defineProperty(HTMLDialogElement.prototype, "close", closeInitial);

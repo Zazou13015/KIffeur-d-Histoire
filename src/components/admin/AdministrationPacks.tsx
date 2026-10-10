@@ -31,12 +31,28 @@ export default function AdministrationPacks({ initialPacks, selectedId, initialQ
   const [pending, setPending] = useState(false);
   const busy = useRef(false);
   const dialog = useRef<HTMLDialogElement>(null);
+  const workspace = useRef<HTMLDivElement>(null);
   const selected = packs.find((p) => p.id === selectedId);
 
   useEffect(() => {
     if (confirmation && !dialog.current?.open) dialog.current?.showModal();
     if (!confirmation && dialog.current?.open) dialog.current?.close();
   }, [confirmation]);
+
+  useEffect(() => {
+    const element = workspace.current;
+    if (!element) return;
+    // Tenir compte de la vraie hauteur de l'en-tête et des textes, même au zoom.
+    const mesurer = () => {
+      const top = `${element.getBoundingClientRect().top + window.scrollY}px`;
+      if (element.style.getPropertyValue("--panel-top") !== top) element.style.setProperty("--panel-top", top);
+    };
+    mesurer();
+    const observer = new ResizeObserver(mesurer);
+    if (element.parentElement) observer.observe(element.parentElement);
+    window.addEventListener("resize", mesurer);
+    return () => { observer.disconnect(); window.removeEventListener("resize", mesurer); };
+  }, []);
 
   // Recherche et filtres sont locaux : aucun appel supplémentaire à Supabase.
   const needle = search.trim().toLocaleLowerCase("fr-FR");
@@ -78,8 +94,8 @@ export default function AdministrationPacks({ initialPacks, selectedId, initialQ
     </div>
     <p className="mb-6 max-w-3xl text-encre-douce">Choisissez un pack pour en relire les questions.
       Un retrait concerne ce pack uniquement ; la question reste disponible dans ses autres contenus.</p>
-    {packs.length === 0 ? <p>Aucun pack disponible.</p> : <div className={styles.layout}>
-      <nav aria-label="Packs" className={styles.packs}>
+    {packs.length === 0 ? <p>Aucun pack disponible.</p> : <div ref={workspace} className={styles.layout}>
+      <nav aria-label="Packs" className={styles.packs} tabIndex={0}>
         <h2 className="inventaire">{packs.length} packs</h2>
         {packs.map((p) => <Link key={p.id} href={`/admin/packs?pack=${encodeURIComponent(p.id)}`}
           prefetch={false} aria-current={p.id === selectedId ? "page" : undefined}
@@ -108,7 +124,8 @@ export default function AdministrationPacks({ initialPacks, selectedId, initialQ
         </div>
         {notice && <p role={notice.error ? "alert" : "status"} className={notice.error ? "text-oxyde" : "text-encre"}>{notice.text}</p>}
         <p className="inventaire">{visible.length} sur {questions.length} questions</p>
-        {visible.length === 0 ? <p>Aucune question pour cette sélection.</p> : <div className={styles.tableScroll}>
+        {visible.length === 0 ? <p>Aucune question pour cette sélection.</p> : <div key={selectedId}
+          className={styles.tableScroll} role="region" aria-label="Liste des questions" tabIndex={0}>
           <table className={styles.table}>
             <caption className="sr-only">Questions, dates et actions pour {selected?.title}</caption>
             <thead><tr><th scope="col">Question</th><th scope="col">Date</th><th scope="col">Niveau</th>

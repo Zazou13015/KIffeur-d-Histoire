@@ -1,6 +1,6 @@
 .heading { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
 .layout { display: grid; grid-template-columns: 17rem minmax(0, 1fr); gap: 1.5rem; align-items: start; }
-.packs { display: grid; gap: .5rem; max-height: 78vh; overflow: auto; padding: .25rem; }
+.packs { display: grid; align-content: start; gap: .5rem; max-height: min(16rem, 35dvh); overflow: auto; padding: .25rem; }
 .pack { display: grid; gap: .3rem; padding: .85rem; border: 1px solid var(--color-filet); border-radius: .25rem; background: var(--color-blanc-cartel); }
 .pack[aria-current="page"] { border-color: var(--color-laiton); box-shadow: inset 3px 0 var(--color-laiton); background: var(--color-fond-resultat); }
 .pack[aria-disabled="true"] { opacity: .65; }
@@ -9,8 +9,8 @@
 .filters label, .reason { display: grid; gap: .35rem; font-size: .875rem; }
 .filters label:first-child { flex: 1; min-width: 12rem; }
 .filters input, .filters select, .reason textarea { width: 100%; border: 1px solid var(--color-filet); border-radius: .2rem; padding: .6rem; background: var(--color-papier); color: var(--color-encre); }
-.tableScroll { overflow: auto; }
-.table { width: 100%; border-collapse: collapse; text-align: left; font-size: .875rem; }
+.tableScroll { overflow: auto; scroll-padding-top: 3rem; }
+.table { width: 100%; border-collapse: separate; border-spacing: 0; text-align: left; font-size: .875rem; }
 .table td, .table th { padding: .8rem .5rem; border-bottom: 1px solid var(--color-filet); vertical-align: top; }
 .table thead th { font-weight: 500; color: var(--color-encre-douce); }
 .table tbody th { min-width: 12rem; font-weight: 400; }
@@ -27,8 +27,16 @@
 .dialog { margin: auto; width: min(32rem, calc(100% - 2rem)); max-height: 90vh; overflow: auto; padding: 1.5rem; border: 1px solid var(--color-laiton); border-radius: .25rem; background: var(--color-blanc-cartel); color: var(--color-encre); box-shadow: var(--shadow-cartel); }
 .dialog::backdrop { background: rgb(29 42 58 / .55); }
 .dialogActions { display: flex; justify-content: flex-end; gap: .75rem; margin-top: 1rem; }
+/* Deux panneaux sur ordinateur ; le haut du panneau droit reste hors du défilement. */
+@media (min-width: 851px) and (min-height: 650px) {
+  .layout { height: calc(100dvh - var(--panel-top, 18rem) - 2rem); }
+  .packs { max-height: 100%; overscroll-behavior-y: contain; scrollbar-gutter: stable; }
+  .content { display: flex; flex-direction: column; height: 100%; min-height: 0; }
+  .content > :not(.tableScroll) { flex-shrink: 0; }
+  .tableScroll { flex: 1; min-height: 0; overscroll-behavior: contain; scrollbar-gutter: stable; }
+  .table thead th { position: sticky; top: 0; z-index: 1; background: var(--color-blanc-cartel); }
+}
 @media (max-width: 850px) {
   .layout { grid-template-columns: minmax(0, 1fr); }
-  .packs { max-height: 16rem; }
   .content { padding: .8rem; }
 }

@@ -1,0 +1,2058 @@
+{
+  "mesures": [
+    {
+      "cas": "classique",
+      "largeur": 1366,
+      "hauteur": 768,
+      "largeurDocument": 1366,
+      "hauteurDocument": 768,
+      "score": {
+        "top": 145.703125,
+        "bottom": 257.296875,
+        "left": 76.09375,
+        "right": 233.890625
+      },
+      "rejouer": {
+        "top": 137.40625,
+        "bottom": 188.40625,
+        "left": 1070,
+        "right": 1324
+      },
+      "changer": {
+        "top": 196.40625,
+        "bottom": 242.40625,
+        "left": 1070,
+        "right": 1324
+      },
+      "maximum": {
+        "top": 260.296875,
+        "bottom": 273.296875,
+        "left": 102.09375,
+        "right": 207.90625
+      },
+      "ornement": {
+        "top": 277.40625,
+        "bottom": 297,
+        "left": 149,
+        "right": 166.4375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "vue ecart",
+      "largeur": 1366,
+      "hauteur": 768,
+      "largeurDocument": 1366,
+      "hauteurDocument": 768,
+      "score": {
+        "top": 145.703125,
+        "bottom": 257.296875,
+        "left": 76.09375,
+        "right": 233.890625
+      },
+      "rejouer": {
+        "top": 137.40625,
+        "bottom": 188.40625,
+        "left": 1070,
+        "right": 1324
+      },
+      "changer": {
+        "top": 196.40625,
+        "bottom": 242.40625,
+        "left": 1070,
+        "right": 1324
+      },
+      "maximum": {
+        "top": 260.296875,
+        "bottom": 273.296875,
+        "left": 102.09375,
+        "right": 207.90625
+      },
+      "ornement": {
+        "top": 277.40625,
+        "bottom": 297,
+        "left": 149,
+        "right": 166.4375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "expiration",
+      "largeur": 1366,
+      "hauteur": 768,
+      "largeurDocument": 1366,
+      "hauteurDocument": 768,
+      "score": {
+        "top": 145.703125,
+        "bottom": 257.296875,
+        "left": 76.09375,
+        "right": 233.890625
+      },
+      "rejouer": {
+        "top": 137.40625,
+        "bottom": 188.40625,
+        "left": 1070,
+        "right": 1324
+      },
+      "changer": {
+        "top": 196.40625,
+        "bottom": 242.40625,
+        "left": 1070,
+        "right": 1324
+      },
+      "maximum": {
+        "top": 260.296875,
+        "bottom": 273.296875,
+        "left": 102.09375,
+        "right": 207.90625
+      },
+      "ornement": {
+        "top": 277.40625,
+        "bottom": 297,
+        "left": 149,
+        "right": 166.4375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "inverse",
+      "largeur": 1366,
+      "hauteur": 768,
+      "largeurDocument": 1366,
+      "hauteurDocument": 768,
+      "score": {
+        "top": 145.703125,
+        "bottom": 257.296875,
+        "left": 74.640625,
+        "right": 235.359375
+      },
+      "rejouer": {
+        "top": 137.40625,
+        "bottom": 188.40625,
+        "left": 1070,
+        "right": 1324
+      },
+      "changer": {
+        "top": 196.40625,
+        "bottom": 242.40625,
+        "left": 1070,
+        "right": 1324
+      },
+      "maximum": {
+        "top": 260.296875,
+        "bottom": 273.296875,
+        "left": 102.09375,
+        "right": 207.90625
+      },
+      "ornement": {
+        "top": 277.40625,
+        "bottom": 297,
+        "left": 149,
+        "right": 166.4375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "zero",
+      "largeur": 1366,
+      "hauteur": 768,
+      "largeurDocument": 1366,
+      "hauteurDocument": 768,
+      "score": {
+        "top": 145.703125,
+        "bottom": 257.296875,
+        "left": 127.625,
+        "right": 182.375
+      },
+      "rejouer": {
+        "top": 137.40625,
+        "bottom": 188.40625,
+        "left": 1070,
+        "right": 1324
+      },
+      "changer": {
+        "top": 196.40625,
+        "bottom": 242.40625,
+        "left": 1070,
+        "right": 1324
+      },
+      "maximum": {
+        "top": 260.296875,
+        "bottom": 273.296875,
+        "left": 102.09375,
+        "right": 207.90625
+      },
+      "ornement": {
+        "top": 277.40625,
+        "bottom": 297,
+        "left": 149,
+        "right": 166.4375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "pedagogique",
+      "largeur": 1366,
+      "hauteur": 768,
+      "largeurDocument": 1366,
+      "hauteurDocument": 768,
+      "score": {
+        "top": 145.703125,
+        "bottom": 257.296875,
+        "left": 76.09375,
+        "right": 233.890625
+      },
+      "rejouer": {
+        "top": 126.703125,
+        "bottom": 177.703125,
+        "left": 1070,
+        "right": 1324
+      },
+      "changer": {
+        "top": 185.703125,
+        "bottom": 229.703125,
+        "left": 1070,
+        "right": 1193
+      },
+      "maximum": {
+        "top": 260.296875,
+        "bottom": 273.296875,
+        "left": 102.09375,
+        "right": 207.90625
+      },
+      "ornement": {
+        "top": 277.40625,
+        "bottom": 297,
+        "left": 149,
+        "right": 166.4375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "invite",
+      "largeur": 1366,
+      "hauteur": 768,
+      "largeurDocument": 1366,
+      "hauteurDocument": 768,
+      "score": {
+        "top": 145.703125,
+        "bottom": 257.296875,
+        "left": 76.09375,
+        "right": 233.890625
+      },
+      "rejouer": {
+        "top": 129.3125,
+        "bottom": 180.3125,
+        "left": 1070,
+        "right": 1324
+      },
+      "changer": {
+        "top": 188.3125,
+        "bottom": 234.3125,
+        "left": 1070,
+        "right": 1324
+      },
+      "maximum": {
+        "top": 260.296875,
+        "bottom": 273.296875,
+        "left": 102.09375,
+        "right": 207.90625
+      },
+      "ornement": {
+        "top": 277.40625,
+        "bottom": 297,
+        "left": 149,
+        "right": 166.4375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "rattachement",
+      "largeur": 1366,
+      "hauteur": 768,
+      "largeurDocument": 1366,
+      "hauteurDocument": 768,
+      "score": {
+        "top": 145.703125,
+        "bottom": 257.296875,
+        "left": 76.09375,
+        "right": 233.890625
+      },
+      "rejouer": {
+        "top": 137.40625,
+        "bottom": 188.40625,
+        "left": 1070,
+        "right": 1324
+      },
+      "changer": {
+        "top": 196.40625,
+        "bottom": 242.40625,
+        "left": 1070,
+        "right": 1324
+      },
+      "maximum": {
+        "top": 260.296875,
+        "bottom": 273.296875,
+        "left": 102.09375,
+        "right": 207.90625
+      },
+      "ornement": {
+        "top": 277.40625,
+        "bottom": 297,
+        "left": 149,
+        "right": 166.4375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "erreur",
+      "largeur": 1366,
+      "hauteur": 768,
+      "largeurDocument": 1366,
+      "hauteurDocument": 768,
+      "score": {
+        "top": 145.703125,
+        "bottom": 257.296875,
+        "left": 76.09375,
+        "right": 233.890625
+      },
+      "rejouer": {
+        "top": 137.40625,
+        "bottom": 188.40625,
+        "left": 1070,
+        "right": 1324
+      },
+      "changer": {
+        "top": 196.40625,
+        "bottom": 242.40625,
+        "left": 1070,
+        "right": 1324
+      },
+      "maximum": {
+        "top": 260.296875,
+        "bottom": 273.296875,
+        "left": 102.09375,
+        "right": 207.90625
+      },
+      "ornement": {
+        "top": 277.40625,
+        "bottom": 297,
+        "left": 149,
+        "right": 166.4375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "classique",
+      "largeur": 1024,
+      "hauteur": 768,
+      "largeurDocument": 1024,
+      "hauteurDocument": 768,
+      "score": {
+        "top": 148.40625,
+        "bottom": 254.59375,
+        "left": 54.921875,
+        "right": 205.078125
+      },
+      "rejouer": {
+        "top": 129.3125,
+        "bottom": 180.3125,
+        "left": 786,
+        "right": 996
+      },
+      "changer": {
+        "top": 188.3125,
+        "bottom": 234.3125,
+        "left": 786,
+        "right": 996
+      },
+      "maximum": {
+        "top": 257.59375,
+        "bottom": 270.59375,
+        "left": 77.09375,
+        "right": 182.90625
+      },
+      "ornement": {
+        "top": 277.40625,
+        "bottom": 297,
+        "left": 124,
+        "right": 141.4375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "vue ecart",
+      "largeur": 1024,
+      "hauteur": 768,
+      "largeurDocument": 1024,
+      "hauteurDocument": 768,
+      "score": {
+        "top": 148.40625,
+        "bottom": 254.59375,
+        "left": 54.921875,
+        "right": 205.078125
+      },
+      "rejouer": {
+        "top": 129.3125,
+        "bottom": 180.3125,
+        "left": 786,
+        "right": 996
+      },
+      "changer": {
+        "top": 188.3125,
+        "bottom": 234.3125,
+        "left": 786,
+        "right": 996
+      },
+      "maximum": {
+        "top": 257.59375,
+        "bottom": 270.59375,
+        "left": 77.09375,
+        "right": 182.90625
+      },
+      "ornement": {
+        "top": 277.40625,
+        "bottom": 297,
+        "left": 124,
+        "right": 141.4375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "expiration",
+      "largeur": 1024,
+      "hauteur": 768,
+      "largeurDocument": 1024,
+      "hauteurDocument": 768,
+      "score": {
+        "top": 148.40625,
+        "bottom": 254.59375,
+        "left": 54.921875,
+        "right": 205.078125
+      },
+      "rejouer": {
+        "top": 129.3125,
+        "bottom": 180.3125,
+        "left": 786,
+        "right": 996
+      },
+      "changer": {
+        "top": 188.3125,
+        "bottom": 234.3125,
+        "left": 786,
+        "right": 996
+      },
+      "maximum": {
+        "top": 257.59375,
+        "bottom": 270.59375,
+        "left": 77.09375,
+        "right": 182.90625
+      },
+      "ornement": {
+        "top": 277.40625,
+        "bottom": 297,
+        "left": 124,
+        "right": 141.4375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "inverse",
+      "largeur": 1024,
+      "hauteur": 768,
+      "largeurDocument": 1024,
+      "hauteurDocument": 768,
+      "score": {
+        "top": 148.40625,
+        "bottom": 254.59375,
+        "left": 53.53125,
+        "right": 206.46875
+      },
+      "rejouer": {
+        "top": 129.3125,
+        "bottom": 180.3125,
+        "left": 786,
+        "right": 996
+      },
+      "changer": {
+        "top": 188.3125,
+        "bottom": 234.3125,
+        "left": 786,
+        "right": 996
+      },
+      "maximum": {
+        "top": 257.59375,
+        "bottom": 270.59375,
+        "left": 77.09375,
+        "right": 182.90625
+      },
+      "ornement": {
+        "top": 277.40625,
+        "bottom": 297,
+        "left": 124,
+        "right": 141.4375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "zero",
+      "largeur": 1024,
+      "hauteur": 768,
+      "largeurDocument": 1024,
+      "hauteurDocument": 768,
+      "score": {
+        "top": 148.40625,
+        "bottom": 254.59375,
+        "left": 103.9375,
+        "right": 156.046875
+      },
+      "rejouer": {
+        "top": 129.3125,
+        "bottom": 180.3125,
+        "left": 786,
+        "right": 996
+      },
+      "changer": {
+        "top": 188.3125,
+        "bottom": 234.3125,
+        "left": 786,
+        "right": 996
+      },
+      "maximum": {
+        "top": 257.59375,
+        "bottom": 270.59375,
+        "left": 77.09375,
+        "right": 182.90625
+      },
+      "ornement": {
+        "top": 277.40625,
+        "bottom": 297,
+        "left": 124,
+        "right": 141.4375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "pedagogique",
+      "largeur": 1024,
+      "hauteur": 768,
+      "largeurDocument": 1024,
+      "hauteurDocument": 768,
+      "score": {
+        "top": 149.96875,
+        "bottom": 256.15625,
+        "left": 54.921875,
+        "right": 205.078125
+      },
+      "rejouer": {
+        "top": 116,
+        "bottom": 167,
+        "left": 786,
+        "right": 996
+      },
+      "changer": {
+        "top": 175,
+        "bottom": 227.375,
+        "left": 786,
+        "right": 887
+      },
+      "maximum": {
+        "top": 259.15625,
+        "bottom": 272.15625,
+        "left": 77.09375,
+        "right": 182.90625
+      },
+      "ornement": {
+        "top": 278.96875,
+        "bottom": 298.5625,
+        "left": 124,
+        "right": 141.4375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "invite",
+      "largeur": 1024,
+      "hauteur": 768,
+      "largeurDocument": 1024,
+      "hauteurDocument": 768,
+      "score": {
+        "top": 148.40625,
+        "bottom": 254.59375,
+        "left": 54.921875,
+        "right": 205.078125
+      },
+      "rejouer": {
+        "top": 129.3125,
+        "bottom": 180.3125,
+        "left": 786,
+        "right": 996
+      },
+      "changer": {
+        "top": 188.3125,
+        "bottom": 234.3125,
+        "left": 786,
+        "right": 996
+      },
+      "maximum": {
+        "top": 257.59375,
+        "bottom": 270.59375,
+        "left": 77.09375,
+        "right": 182.90625
+      },
+      "ornement": {
+        "top": 277.40625,
+        "bottom": 297,
+        "left": 124,
+        "right": 141.4375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "rattachement",
+      "largeur": 1024,
+      "hauteur": 768,
+      "largeurDocument": 1024,
+      "hauteurDocument": 768,
+      "score": {
+        "top": 148.40625,
+        "bottom": 254.59375,
+        "left": 54.921875,
+        "right": 205.078125
+      },
+      "rejouer": {
+        "top": 137.40625,
+        "bottom": 188.40625,
+        "left": 786,
+        "right": 996
+      },
+      "changer": {
+        "top": 196.40625,
+        "bottom": 242.40625,
+        "left": 786,
+        "right": 996
+      },
+      "maximum": {
+        "top": 257.59375,
+        "bottom": 270.59375,
+        "left": 77.09375,
+        "right": 182.90625
+      },
+      "ornement": {
+        "top": 277.40625,
+        "bottom": 297,
+        "left": 124,
+        "right": 141.4375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "erreur",
+      "largeur": 1024,
+      "hauteur": 768,
+      "largeurDocument": 1024,
+      "hauteurDocument": 768,
+      "score": {
+        "top": 148.40625,
+        "bottom": 254.59375,
+        "left": 54.921875,
+        "right": 205.078125
+      },
+      "rejouer": {
+        "top": 137.40625,
+        "bottom": 188.40625,
+        "left": 786,
+        "right": 996
+      },
+      "changer": {
+        "top": 196.40625,
+        "bottom": 242.40625,
+        "left": 786,
+        "right": 996
+      },
+      "maximum": {
+        "top": 257.59375,
+        "bottom": 270.59375,
+        "left": 77.09375,
+        "right": 182.90625
+      },
+      "ornement": {
+        "top": 277.40625,
+        "bottom": 297,
+        "left": 124,
+        "right": 141.4375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "classique",
+      "largeur": 736,
+      "hauteur": 900,
+      "largeurDocument": 736,
+      "hauteurDocument": 1356,
+      "score": {
+        "top": 217.1875,
+        "bottom": 311.6875,
+        "left": 41.6875,
+        "right": 175.3125
+      },
+      "rejouer": {
+        "top": 357.4375,
+        "bottom": 409.4375,
+        "left": 20,
+        "right": 716
+      },
+      "changer": {
+        "top": 417.4375,
+        "bottom": 461.4375,
+        "left": 20,
+        "right": 716
+      },
+      "maximum": {
+        "top": 314.6875,
+        "bottom": 324.6875,
+        "left": 66.15625,
+        "right": 150.828125
+      },
+      "ornement": {
+        "top": 329.84375,
+        "bottom": 349.4375,
+        "left": 102.5,
+        "right": 119.9375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "vue ecart",
+      "largeur": 736,
+      "hauteur": 900,
+      "largeurDocument": 736,
+      "hauteurDocument": 1356,
+      "score": {
+        "top": 217.1875,
+        "bottom": 311.6875,
+        "left": 41.6875,
+        "right": 175.3125
+      },
+      "rejouer": {
+        "top": 357.4375,
+        "bottom": 409.4375,
+        "left": 20,
+        "right": 716
+      },
+      "changer": {
+        "top": 417.4375,
+        "bottom": 461.4375,
+        "left": 20,
+        "right": 716
+      },
+      "maximum": {
+        "top": 314.6875,
+        "bottom": 324.6875,
+        "left": 66.15625,
+        "right": 150.828125
+      },
+      "ornement": {
+        "top": 329.84375,
+        "bottom": 349.4375,
+        "left": 102.5,
+        "right": 119.9375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "expiration",
+      "largeur": 736,
+      "hauteur": 900,
+      "largeurDocument": 736,
+      "hauteurDocument": 1356,
+      "score": {
+        "top": 217.1875,
+        "bottom": 311.6875,
+        "left": 41.6875,
+        "right": 175.3125
+      },
+      "rejouer": {
+        "top": 357.4375,
+        "bottom": 409.4375,
+        "left": 20,
+        "right": 716
+      },
+      "changer": {
+        "top": 417.4375,
+        "bottom": 461.4375,
+        "left": 20,
+        "right": 716
+      },
+      "maximum": {
+        "top": 314.6875,
+        "bottom": 324.6875,
+        "left": 66.15625,
+        "right": 150.828125
+      },
+      "ornement": {
+        "top": 329.84375,
+        "bottom": 349.4375,
+        "left": 102.5,
+        "right": 119.9375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "inverse",
+      "largeur": 736,
+      "hauteur": 900,
+      "largeurDocument": 736,
+      "hauteurDocument": 1341,
+      "score": {
+        "top": 217.1875,
+        "bottom": 311.6875,
+        "left": 40.453125,
+        "right": 176.546875
+      },
+      "rejouer": {
+        "top": 357.4375,
+        "bottom": 409.4375,
+        "left": 20,
+        "right": 716
+      },
+      "changer": {
+        "top": 417.4375,
+        "bottom": 461.4375,
+        "left": 20,
+        "right": 716
+      },
+      "maximum": {
+        "top": 314.6875,
+        "bottom": 324.6875,
+        "left": 66.15625,
+        "right": 150.828125
+      },
+      "ornement": {
+        "top": 329.84375,
+        "bottom": 349.4375,
+        "left": 102.5,
+        "right": 119.9375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "zero",
+      "largeur": 736,
+      "hauteur": 900,
+      "largeurDocument": 736,
+      "hauteurDocument": 1292,
+      "score": {
+        "top": 217.1875,
+        "bottom": 311.6875,
+        "left": 85.3125,
+        "right": 131.671875
+      },
+      "rejouer": {
+        "top": 357.4375,
+        "bottom": 409.4375,
+        "left": 20,
+        "right": 716
+      },
+      "changer": {
+        "top": 417.4375,
+        "bottom": 461.4375,
+        "left": 20,
+        "right": 716
+      },
+      "maximum": {
+        "top": 314.6875,
+        "bottom": 324.6875,
+        "left": 66.15625,
+        "right": 150.828125
+      },
+      "ornement": {
+        "top": 329.84375,
+        "bottom": 349.4375,
+        "left": 102.5,
+        "right": 119.9375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "pedagogique",
+      "largeur": 736,
+      "hauteur": 900,
+      "largeurDocument": 736,
+      "hauteurDocument": 1432,
+      "score": {
+        "top": 217.1875,
+        "bottom": 311.6875,
+        "left": 41.6875,
+        "right": 175.3125
+      },
+      "rejouer": {
+        "top": 357.4375,
+        "bottom": 409.4375,
+        "left": 20,
+        "right": 716
+      },
+      "changer": {
+        "top": 417.4375,
+        "bottom": 461.4375,
+        "left": 20,
+        "right": 716
+      },
+      "maximum": {
+        "top": 314.6875,
+        "bottom": 324.6875,
+        "left": 66.15625,
+        "right": 150.828125
+      },
+      "ornement": {
+        "top": 329.84375,
+        "bottom": 349.4375,
+        "left": 102.5,
+        "right": 119.9375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "invite",
+      "largeur": 736,
+      "hauteur": 900,
+      "largeurDocument": 736,
+      "hauteurDocument": 1356,
+      "score": {
+        "top": 217.1875,
+        "bottom": 311.6875,
+        "left": 41.6875,
+        "right": 175.3125
+      },
+      "rejouer": {
+        "top": 357.4375,
+        "bottom": 409.4375,
+        "left": 20,
+        "right": 716
+      },
+      "changer": {
+        "top": 417.4375,
+        "bottom": 461.4375,
+        "left": 20,
+        "right": 716
+      },
+      "maximum": {
+        "top": 314.6875,
+        "bottom": 324.6875,
+        "left": 66.15625,
+        "right": 150.828125
+      },
+      "ornement": {
+        "top": 329.84375,
+        "bottom": 349.4375,
+        "left": 102.5,
+        "right": 119.9375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "rattachement",
+      "largeur": 736,
+      "hauteur": 900,
+      "largeurDocument": 736,
+      "hauteurDocument": 1356,
+      "score": {
+        "top": 217.1875,
+        "bottom": 311.6875,
+        "left": 41.6875,
+        "right": 175.3125
+      },
+      "rejouer": {
+        "top": 357.4375,
+        "bottom": 409.4375,
+        "left": 20,
+        "right": 716
+      },
+      "changer": {
+        "top": 417.4375,
+        "bottom": 461.4375,
+        "left": 20,
+        "right": 716
+      },
+      "maximum": {
+        "top": 314.6875,
+        "bottom": 324.6875,
+        "left": 66.15625,
+        "right": 150.828125
+      },
+      "ornement": {
+        "top": 329.84375,
+        "bottom": 349.4375,
+        "left": 102.5,
+        "right": 119.9375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "erreur",
+      "largeur": 736,
+      "hauteur": 900,
+      "largeurDocument": 736,
+      "hauteurDocument": 1356,
+      "score": {
+        "top": 217.1875,
+        "bottom": 311.6875,
+        "left": 41.6875,
+        "right": 175.3125
+      },
+      "rejouer": {
+        "top": 357.4375,
+        "bottom": 409.4375,
+        "left": 20,
+        "right": 716
+      },
+      "changer": {
+        "top": 417.4375,
+        "bottom": 461.4375,
+        "left": 20,
+        "right": 716
+      },
+      "maximum": {
+        "top": 314.6875,
+        "bottom": 324.6875,
+        "left": 66.15625,
+        "right": 150.828125
+      },
+      "ornement": {
+        "top": 329.84375,
+        "bottom": 349.4375,
+        "left": 102.5,
+        "right": 119.9375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "classique",
+      "largeur": 390,
+      "hauteur": 844,
+      "largeurDocument": 390,
+      "hauteurDocument": 1385,
+      "score": {
+        "top": 217.1875,
+        "bottom": 311.6875,
+        "left": 41.6875,
+        "right": 175.3125
+      },
+      "rejouer": {
+        "top": 357.4375,
+        "bottom": 409.4375,
+        "left": 20,
+        "right": 370
+      },
+      "changer": {
+        "top": 417.4375,
+        "bottom": 461.4375,
+        "left": 20,
+        "right": 370
+      },
+      "maximum": {
+        "top": 314.6875,
+        "bottom": 324.6875,
+        "left": 66.15625,
+        "right": 150.828125
+      },
+      "ornement": {
+        "top": 329.84375,
+        "bottom": 349.4375,
+        "left": 102.5,
+        "right": 119.9375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "vue ecart",
+      "largeur": 390,
+      "hauteur": 844,
+      "largeurDocument": 390,
+      "hauteurDocument": 1385,
+      "score": {
+        "top": 217.1875,
+        "bottom": 311.6875,
+        "left": 41.6875,
+        "right": 175.3125
+      },
+      "rejouer": {
+        "top": 357.4375,
+        "bottom": 409.4375,
+        "left": 20,
+        "right": 370
+      },
+      "changer": {
+        "top": 417.4375,
+        "bottom": 461.4375,
+        "left": 20,
+        "right": 370
+      },
+      "maximum": {
+        "top": 314.6875,
+        "bottom": 324.6875,
+        "left": 66.15625,
+        "right": 150.828125
+      },
+      "ornement": {
+        "top": 329.84375,
+        "bottom": 349.4375,
+        "left": 102.5,
+        "right": 119.9375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "expiration",
+      "largeur": 390,
+      "hauteur": 844,
+      "largeurDocument": 390,
+      "hauteurDocument": 1411,
+      "score": {
+        "top": 217.1875,
+        "bottom": 311.6875,
+        "left": 41.6875,
+        "right": 175.3125
+      },
+      "rejouer": {
+        "top": 357.4375,
+        "bottom": 409.4375,
+        "left": 20,
+        "right": 370
+      },
+      "changer": {
+        "top": 417.4375,
+        "bottom": 461.4375,
+        "left": 20,
+        "right": 370
+      },
+      "maximum": {
+        "top": 314.6875,
+        "bottom": 324.6875,
+        "left": 66.15625,
+        "right": 150.828125
+      },
+      "ornement": {
+        "top": 329.84375,
+        "bottom": 349.4375,
+        "left": 102.5,
+        "right": 119.9375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "inverse",
+      "largeur": 390,
+      "hauteur": 844,
+      "largeurDocument": 390,
+      "hauteurDocument": 1389,
+      "score": {
+        "top": 217.1875,
+        "bottom": 311.6875,
+        "left": 40.453125,
+        "right": 176.546875
+      },
+      "rejouer": {
+        "top": 357.4375,
+        "bottom": 409.4375,
+        "left": 20,
+        "right": 370
+      },
+      "changer": {
+        "top": 417.4375,
+        "bottom": 461.4375,
+        "left": 20,
+        "right": 370
+      },
+      "maximum": {
+        "top": 314.6875,
+        "bottom": 324.6875,
+        "left": 66.15625,
+        "right": 150.828125
+      },
+      "ornement": {
+        "top": 329.84375,
+        "bottom": 349.4375,
+        "left": 102.5,
+        "right": 119.9375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "zero",
+      "largeur": 390,
+      "hauteur": 844,
+      "largeurDocument": 390,
+      "hauteurDocument": 1321,
+      "score": {
+        "top": 217.1875,
+        "bottom": 311.6875,
+        "left": 85.3125,
+        "right": 131.671875
+      },
+      "rejouer": {
+        "top": 357.4375,
+        "bottom": 409.4375,
+        "left": 20,
+        "right": 370
+      },
+      "changer": {
+        "top": 417.4375,
+        "bottom": 461.4375,
+        "left": 20,
+        "right": 370
+      },
+      "maximum": {
+        "top": 314.6875,
+        "bottom": 324.6875,
+        "left": 66.15625,
+        "right": 150.828125
+      },
+      "ornement": {
+        "top": 329.84375,
+        "bottom": 349.4375,
+        "left": 102.5,
+        "right": 119.9375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "pedagogique",
+      "largeur": 390,
+      "hauteur": 844,
+      "largeurDocument": 390,
+      "hauteurDocument": 1460,
+      "score": {
+        "top": 217.1875,
+        "bottom": 311.6875,
+        "left": 41.6875,
+        "right": 175.3125
+      },
+      "rejouer": {
+        "top": 357.4375,
+        "bottom": 409.4375,
+        "left": 20,
+        "right": 370
+      },
+      "changer": {
+        "top": 417.4375,
+        "bottom": 461.4375,
+        "left": 20,
+        "right": 370
+      },
+      "maximum": {
+        "top": 314.6875,
+        "bottom": 324.6875,
+        "left": 66.15625,
+        "right": 150.828125
+      },
+      "ornement": {
+        "top": 329.84375,
+        "bottom": 349.4375,
+        "left": 102.5,
+        "right": 119.9375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "invite",
+      "largeur": 390,
+      "hauteur": 844,
+      "largeurDocument": 390,
+      "hauteurDocument": 1385,
+      "score": {
+        "top": 217.1875,
+        "bottom": 311.6875,
+        "left": 41.6875,
+        "right": 175.3125
+      },
+      "rejouer": {
+        "top": 357.4375,
+        "bottom": 409.4375,
+        "left": 20,
+        "right": 370
+      },
+      "changer": {
+        "top": 417.4375,
+        "bottom": 461.4375,
+        "left": 20,
+        "right": 370
+      },
+      "maximum": {
+        "top": 314.6875,
+        "bottom": 324.6875,
+        "left": 66.15625,
+        "right": 150.828125
+      },
+      "ornement": {
+        "top": 329.84375,
+        "bottom": 349.4375,
+        "left": 102.5,
+        "right": 119.9375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "rattachement",
+      "largeur": 390,
+      "hauteur": 844,
+      "largeurDocument": 390,
+      "hauteurDocument": 1385,
+      "score": {
+        "top": 217.1875,
+        "bottom": 311.6875,
+        "left": 41.6875,
+        "right": 175.3125
+      },
+      "rejouer": {
+        "top": 357.4375,
+        "bottom": 409.4375,
+        "left": 20,
+        "right": 370
+      },
+      "changer": {
+        "top": 417.4375,
+        "bottom": 461.4375,
+        "left": 20,
+        "right": 370
+      },
+      "maximum": {
+        "top": 314.6875,
+        "bottom": 324.6875,
+        "left": 66.15625,
+        "right": 150.828125
+      },
+      "ornement": {
+        "top": 329.84375,
+        "bottom": 349.4375,
+        "left": 102.5,
+        "right": 119.9375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "erreur",
+      "largeur": 390,
+      "hauteur": 844,
+      "largeurDocument": 390,
+      "hauteurDocument": 1385,
+      "score": {
+        "top": 217.1875,
+        "bottom": 311.6875,
+        "left": 41.6875,
+        "right": 175.3125
+      },
+      "rejouer": {
+        "top": 357.4375,
+        "bottom": 409.4375,
+        "left": 20,
+        "right": 370
+      },
+      "changer": {
+        "top": 417.4375,
+        "bottom": 461.4375,
+        "left": 20,
+        "right": 370
+      },
+      "maximum": {
+        "top": 314.6875,
+        "bottom": 324.6875,
+        "left": 66.15625,
+        "right": 150.828125
+      },
+      "ornement": {
+        "top": 329.84375,
+        "bottom": 349.4375,
+        "left": 102.5,
+        "right": 119.9375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "classique",
+      "largeur": 375,
+      "hauteur": 667,
+      "largeurDocument": 375,
+      "hauteurDocument": 1400,
+      "score": {
+        "top": 217.1875,
+        "bottom": 311.6875,
+        "left": 41.6875,
+        "right": 175.3125
+      },
+      "rejouer": {
+        "top": 357.4375,
+        "bottom": 409.4375,
+        "left": 20,
+        "right": 355
+      },
+      "changer": {
+        "top": 417.4375,
+        "bottom": 461.4375,
+        "left": 20,
+        "right": 355
+      },
+      "maximum": {
+        "top": 314.6875,
+        "bottom": 324.6875,
+        "left": 66.15625,
+        "right": 150.828125
+      },
+      "ornement": {
+        "top": 329.84375,
+        "bottom": 349.4375,
+        "left": 102.5,
+        "right": 119.9375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "vue ecart",
+      "largeur": 375,
+      "hauteur": 667,
+      "largeurDocument": 375,
+      "hauteurDocument": 1385,
+      "score": {
+        "top": 217.1875,
+        "bottom": 311.6875,
+        "left": 41.6875,
+        "right": 175.3125
+      },
+      "rejouer": {
+        "top": 357.4375,
+        "bottom": 409.4375,
+        "left": 20,
+        "right": 355
+      },
+      "changer": {
+        "top": 417.4375,
+        "bottom": 461.4375,
+        "left": 20,
+        "right": 355
+      },
+      "maximum": {
+        "top": 314.6875,
+        "bottom": 324.6875,
+        "left": 66.15625,
+        "right": 150.828125
+      },
+      "ornement": {
+        "top": 329.84375,
+        "bottom": 349.4375,
+        "left": 102.5,
+        "right": 119.9375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "expiration",
+      "largeur": 375,
+      "hauteur": 667,
+      "largeurDocument": 375,
+      "hauteurDocument": 1411,
+      "score": {
+        "top": 217.1875,
+        "bottom": 311.6875,
+        "left": 41.6875,
+        "right": 175.3125
+      },
+      "rejouer": {
+        "top": 357.4375,
+        "bottom": 409.4375,
+        "left": 20,
+        "right": 355
+      },
+      "changer": {
+        "top": 417.4375,
+        "bottom": 461.4375,
+        "left": 20,
+        "right": 355
+      },
+      "maximum": {
+        "top": 314.6875,
+        "bottom": 324.6875,
+        "left": 66.15625,
+        "right": 150.828125
+      },
+      "ornement": {
+        "top": 329.84375,
+        "bottom": 349.4375,
+        "left": 102.5,
+        "right": 119.9375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "inverse",
+      "largeur": 375,
+      "hauteur": 667,
+      "largeurDocument": 375,
+      "hauteurDocument": 1427,
+      "score": {
+        "top": 217.1875,
+        "bottom": 311.6875,
+        "left": 40.453125,
+        "right": 176.546875
+      },
+      "rejouer": {
+        "top": 357.4375,
+        "bottom": 409.4375,
+        "left": 20,
+        "right": 355
+      },
+      "changer": {
+        "top": 417.4375,
+        "bottom": 461.4375,
+        "left": 20,
+        "right": 355
+      },
+      "maximum": {
+        "top": 314.6875,
+        "bottom": 324.6875,
+        "left": 66.15625,
+        "right": 150.828125
+      },
+      "ornement": {
+        "top": 329.84375,
+        "bottom": 349.4375,
+        "left": 102.5,
+        "right": 119.9375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "zero",
+      "largeur": 375,
+      "hauteur": 667,
+      "largeurDocument": 375,
+      "hauteurDocument": 1336,
+      "score": {
+        "top": 217.1875,
+        "bottom": 311.6875,
+        "left": 85.3125,
+        "right": 131.671875
+      },
+      "rejouer": {
+        "top": 357.4375,
+        "bottom": 409.4375,
+        "left": 20,
+        "right": 355
+      },
+      "changer": {
+        "top": 417.4375,
+        "bottom": 461.4375,
+        "left": 20,
+        "right": 355
+      },
+      "maximum": {
+        "top": 314.6875,
+        "bottom": 324.6875,
+        "left": 66.15625,
+        "right": 150.828125
+      },
+      "ornement": {
+        "top": 329.84375,
+        "bottom": 349.4375,
+        "left": 102.5,
+        "right": 119.9375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "pedagogique",
+      "largeur": 375,
+      "hauteur": 667,
+      "largeurDocument": 375,
+      "hauteurDocument": 1476,
+      "score": {
+        "top": 217.1875,
+        "bottom": 311.6875,
+        "left": 41.6875,
+        "right": 175.3125
+      },
+      "rejouer": {
+        "top": 357.4375,
+        "bottom": 409.4375,
+        "left": 20,
+        "right": 355
+      },
+      "changer": {
+        "top": 417.4375,
+        "bottom": 461.4375,
+        "left": 20,
+        "right": 355
+      },
+      "maximum": {
+        "top": 314.6875,
+        "bottom": 324.6875,
+        "left": 66.15625,
+        "right": 150.828125
+      },
+      "ornement": {
+        "top": 329.84375,
+        "bottom": 349.4375,
+        "left": 102.5,
+        "right": 119.9375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "invite",
+      "largeur": 375,
+      "hauteur": 667,
+      "largeurDocument": 375,
+      "hauteurDocument": 1400,
+      "score": {
+        "top": 217.1875,
+        "bottom": 311.6875,
+        "left": 41.6875,
+        "right": 175.3125
+      },
+      "rejouer": {
+        "top": 357.4375,
+        "bottom": 409.4375,
+        "left": 20,
+        "right": 355
+      },
+      "changer": {
+        "top": 417.4375,
+        "bottom": 461.4375,
+        "left": 20,
+        "right": 355
+      },
+      "maximum": {
+        "top": 314.6875,
+        "bottom": 324.6875,
+        "left": 66.15625,
+        "right": 150.828125
+      },
+      "ornement": {
+        "top": 329.84375,
+        "bottom": 349.4375,
+        "left": 102.5,
+        "right": 119.9375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "rattachement",
+      "largeur": 375,
+      "hauteur": 667,
+      "largeurDocument": 375,
+      "hauteurDocument": 1400,
+      "score": {
+        "top": 217.1875,
+        "bottom": 311.6875,
+        "left": 41.6875,
+        "right": 175.3125
+      },
+      "rejouer": {
+        "top": 357.4375,
+        "bottom": 409.4375,
+        "left": 20,
+        "right": 355
+      },
+      "changer": {
+        "top": 417.4375,
+        "bottom": 461.4375,
+        "left": 20,
+        "right": 355
+      },
+      "maximum": {
+        "top": 314.6875,
+        "bottom": 324.6875,
+        "left": 66.15625,
+        "right": 150.828125
+      },
+      "ornement": {
+        "top": 329.84375,
+        "bottom": 349.4375,
+        "left": 102.5,
+        "right": 119.9375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "erreur",
+      "largeur": 375,
+      "hauteur": 667,
+      "largeurDocument": 375,
+      "hauteurDocument": 1400,
+      "score": {
+        "top": 217.1875,
+        "bottom": 311.6875,
+        "left": 41.6875,
+        "right": 175.3125
+      },
+      "rejouer": {
+        "top": 357.4375,
+        "bottom": 409.4375,
+        "left": 20,
+        "right": 355
+      },
+      "changer": {
+        "top": 417.4375,
+        "bottom": 461.4375,
+        "left": 20,
+        "right": 355
+      },
+      "maximum": {
+        "top": 314.6875,
+        "bottom": 324.6875,
+        "left": 66.15625,
+        "right": 150.828125
+      },
+      "ornement": {
+        "top": 329.84375,
+        "bottom": 349.4375,
+        "left": 102.5,
+        "right": 119.9375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "classique",
+      "largeur": 320,
+      "hauteur": 568,
+      "largeurDocument": 320,
+      "hauteurDocument": 1404,
+      "score": {
+        "top": 210,
+        "bottom": 297.296875,
+        "left": 32.78125,
+        "right": 156.21875
+      },
+      "rejouer": {
+        "top": 341.296875,
+        "bottom": 393.296875,
+        "left": 16,
+        "right": 304
+      },
+      "changer": {
+        "top": 401.296875,
+        "bottom": 445.296875,
+        "left": 16,
+        "right": 304
+      },
+      "maximum": {
+        "top": 300.296875,
+        "bottom": 310.296875,
+        "left": 52.15625,
+        "right": 136.828125
+      },
+      "ornement": {
+        "top": 313.703125,
+        "bottom": 333.296875,
+        "left": 88.5,
+        "right": 105.9375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "vue ecart",
+      "largeur": 320,
+      "hauteur": 568,
+      "largeurDocument": 320,
+      "hauteurDocument": 1389,
+      "score": {
+        "top": 210,
+        "bottom": 297.296875,
+        "left": 32.78125,
+        "right": 156.21875
+      },
+      "rejouer": {
+        "top": 341.296875,
+        "bottom": 393.296875,
+        "left": 16,
+        "right": 304
+      },
+      "changer": {
+        "top": 401.296875,
+        "bottom": 445.296875,
+        "left": 16,
+        "right": 304
+      },
+      "maximum": {
+        "top": 300.296875,
+        "bottom": 310.296875,
+        "left": 52.15625,
+        "right": 136.828125
+      },
+      "ornement": {
+        "top": 313.703125,
+        "bottom": 333.296875,
+        "left": 88.5,
+        "right": 105.9375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "expiration",
+      "largeur": 320,
+      "hauteur": 568,
+      "largeurDocument": 320,
+      "hauteurDocument": 1431,
+      "score": {
+        "top": 210,
+        "bottom": 297.296875,
+        "left": 32.78125,
+        "right": 156.21875
+      },
+      "rejouer": {
+        "top": 341.296875,
+        "bottom": 393.296875,
+        "left": 16,
+        "right": 304
+      },
+      "changer": {
+        "top": 401.296875,
+        "bottom": 445.296875,
+        "left": 16,
+        "right": 304
+      },
+      "maximum": {
+        "top": 300.296875,
+        "bottom": 310.296875,
+        "left": 52.15625,
+        "right": 136.828125
+      },
+      "ornement": {
+        "top": 313.703125,
+        "bottom": 333.296875,
+        "left": 88.5,
+        "right": 105.9375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "inverse",
+      "largeur": 320,
+      "hauteur": 568,
+      "largeurDocument": 320,
+      "hauteurDocument": 1431,
+      "score": {
+        "top": 210,
+        "bottom": 297.296875,
+        "left": 31.640625,
+        "right": 157.359375
+      },
+      "rejouer": {
+        "top": 341.296875,
+        "bottom": 393.296875,
+        "left": 16,
+        "right": 304
+      },
+      "changer": {
+        "top": 401.296875,
+        "bottom": 445.296875,
+        "left": 16,
+        "right": 304
+      },
+      "maximum": {
+        "top": 300.296875,
+        "bottom": 310.296875,
+        "left": 52.15625,
+        "right": 136.828125
+      },
+      "ornement": {
+        "top": 313.703125,
+        "bottom": 333.296875,
+        "left": 88.5,
+        "right": 105.9375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "zero",
+      "largeur": 320,
+      "hauteur": 568,
+      "largeurDocument": 320,
+      "hauteurDocument": 1340,
+      "score": {
+        "top": 210,
+        "bottom": 297.296875,
+        "left": 73.078125,
+        "right": 115.90625
+      },
+      "rejouer": {
+        "top": 341.296875,
+        "bottom": 393.296875,
+        "left": 16,
+        "right": 304
+      },
+      "changer": {
+        "top": 401.296875,
+        "bottom": 445.296875,
+        "left": 16,
+        "right": 304
+      },
+      "maximum": {
+        "top": 300.296875,
+        "bottom": 310.296875,
+        "left": 52.15625,
+        "right": 136.828125
+      },
+      "ornement": {
+        "top": 313.703125,
+        "bottom": 333.296875,
+        "left": 88.5,
+        "right": 105.9375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "pedagogique",
+      "largeur": 320,
+      "hauteur": 568,
+      "largeurDocument": 320,
+      "hauteurDocument": 1480,
+      "score": {
+        "top": 210,
+        "bottom": 297.296875,
+        "left": 32.78125,
+        "right": 156.21875
+      },
+      "rejouer": {
+        "top": 341.296875,
+        "bottom": 393.296875,
+        "left": 16,
+        "right": 304
+      },
+      "changer": {
+        "top": 401.296875,
+        "bottom": 445.296875,
+        "left": 16,
+        "right": 304
+      },
+      "maximum": {
+        "top": 300.296875,
+        "bottom": 310.296875,
+        "left": 52.15625,
+        "right": 136.828125
+      },
+      "ornement": {
+        "top": 313.703125,
+        "bottom": 333.296875,
+        "left": 88.5,
+        "right": 105.9375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "invite",
+      "largeur": 320,
+      "hauteur": 568,
+      "largeurDocument": 320,
+      "hauteurDocument": 1419,
+      "score": {
+        "top": 210,
+        "bottom": 297.296875,
+        "left": 32.78125,
+        "right": 156.21875
+      },
+      "rejouer": {
+        "top": 341.296875,
+        "bottom": 393.296875,
+        "left": 16,
+        "right": 304
+      },
+      "changer": {
+        "top": 401.296875,
+        "bottom": 445.296875,
+        "left": 16,
+        "right": 304
+      },
+      "maximum": {
+        "top": 300.296875,
+        "bottom": 310.296875,
+        "left": 52.15625,
+        "right": 136.828125
+      },
+      "ornement": {
+        "top": 313.703125,
+        "bottom": 333.296875,
+        "left": 88.5,
+        "right": 105.9375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "rattachement",
+      "largeur": 320,
+      "hauteur": 568,
+      "largeurDocument": 320,
+      "hauteurDocument": 1404,
+      "score": {
+        "top": 210,
+        "bottom": 297.296875,
+        "left": 32.78125,
+        "right": 156.21875
+      },
+      "rejouer": {
+        "top": 341.296875,
+        "bottom": 393.296875,
+        "left": 16,
+        "right": 304
+      },
+      "changer": {
+        "top": 401.296875,
+        "bottom": 445.296875,
+        "left": 16,
+        "right": 304
+      },
+      "maximum": {
+        "top": 300.296875,
+        "bottom": 310.296875,
+        "left": 52.15625,
+        "right": 136.828125
+      },
+      "ornement": {
+        "top": 313.703125,
+        "bottom": 333.296875,
+        "left": 88.5,
+        "right": 105.9375
+      },
+      "fond": "rgb(243, 242, 236)"
+    },
+    {
+      "cas": "erreur",
+      "largeur": 320,
+      "hauteur": 568,
+      "largeurDocument": 320,
+      "hauteurDocument": 1404,
+      "score": {
+        "top": 210,
+        "bottom": 297.296875,
+        "left": 32.78125,
+        "right": 156.21875
+      },
+      "rejouer": {
+        "top": 341.296875,
+        "bottom": 393.296875,
+        "left": 16,
+        "right": 304
+      },
+      "changer": {
+        "top": 401.296875,
+        "bottom": 445.296875,
+        "left": 16,
+        "right": 304
+      },
+      "maximum": {
+        "top": 300.296875,
+        "bottom": 310.296875,
+        "left": 52.15625,
+        "right": 136.828125
+      },
+      "ornement": {
+        "top": 313.703125,
+        "bottom": 333.296875,
+        "left": 88.5,
+        "right": 105.9375
+      },
+      "fond": "rgb(243, 242, 236)"
+    }
+  ],
+  "erreurs": [],
+  "requetesDistantes": []
+}

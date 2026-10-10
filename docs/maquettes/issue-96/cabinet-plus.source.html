@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cabinet de curiosités · Bilan A+ · Kiffeurs d’Histoire</title>
+  <!-- STYLES_EMBARQUES -->
+  <style>body { margin: 0; background: #f3f2ec; }</style>
+</head>
+<body>
+<div id="bilan-cabinet-plus" class="cabinet-plus" aria-label="Bilan de partie · Cabinet de curiosités A+">
+  <div class="demo-bar"><span>MAQUETTE A+ <span class="demo-long">· DONNÉES DE DÉMONSTRATION</span></span><label>Cas <select data-scenario aria-label="Cas de démonstration"><option value="classique">Partie classique</option><option value="inverse">Mode inversé</option><option value="zero">Score nul</option><option value="pedagogique">Test pédagogique</option><option value="invite">Sans compte</option><option value="rattachement">Sauvegarde en cours</option><option value="erreur">Sauvegarde indisponible</option></select></label></div>
+  <div class="cabinet-shell">
+    <header class="cabinet-header"><span class="brand"><span class="seal" aria-hidden="true">KH</span>Kiffeurs <em>d’</em>Histoire</span><span class="edition">LE CABINET · CARNET DE PARTIE</span><button class="plain-action" data-action="profil">Antonin · Profil</button></header>
+    <main>
+      <section class="hero" aria-label="Votre résultat">
+        <div class="score-seal" role="img" data-score-block aria-label="726 points sur 1 000">
+          <span class="score-overline" aria-hidden="true">VOTRE SCORE</span><span class="score" data-score aria-hidden="true">726</span><span class="score-base" aria-hidden="true">SUR <b data-max>1 000</b> POINTS</span>
+          <span class="score-ornament" aria-hidden="true">✦</span>
+        </div>
+        <div class="hero-story"><span class="eyebrow" data-mode>SOLO LIBRE · PRÉCISION ANNÉE</span><h1 data-appreciation>Une belle traversée.</h1><p class="intro" data-intro>Dix dates. Une nouvelle page de votre Histoire.</p>
+          <div class="performance"><div class="accuracy"><strong data-accuracy>82<span>%</span></strong><span data-accuracy-label>de précision<br>moyenne</span></div><span class="performance-rule" aria-hidden="true"></span><div class="exact"><strong data-exact-count>3</strong><span data-exact-label>dates exactes<br>sur 10 questions</span></div></div>
+        </div>
+        <div class="hero-actions"><button class="replay" data-action="rejouer">Rejouer <span aria-hidden="true">↗</span></button><button class="change-mode" data-action="mode">Changer de mode</button><button class="chapter-action" data-action="chapitre" hidden>Revoir le chapitre</button><div class="save" data-save role="status">✓ Partie sauvegardée dans votre compte KFFR.</div><div class="chapter-status" data-chapter-status hidden role="status"></div></div>
+      </section>
+      <section class="journey" aria-label="Explorer la frise de votre partie">
+        <div class="journey-header"><div><span class="eyebrow">DIX REPÈRES, UNE TRAVERSÉE</span><h2>Votre parcours dans l’Histoire.</h2></div><div class="view-picker" role="group" aria-label="Vue de la frise"><button data-view="parcours" aria-pressed="true">Tout le parcours</button><button data-view="ecart" aria-pressed="false">Voir l’écart</button></div></div>
+        <div class="timeline-meta"><span data-frise-caption>Les dates proches sont regroupées. Choisissez un repère pour le revoir.</span><span class="timeline-legend" data-legend><span>● Date attendue</span><span>◇ Votre réponse</span></span></div>
+        <div class="timeline-scene"><div class="timeline-svg" data-timeline></div><div class="timeline-hotspots" data-hotspots></div></div>
+        <div class="journey-footer"><span class="folio" data-view-caption>VUE D’ENSEMBLE · 52 AV. J.-C. — 1989</span><button class="best-answer" data-action="meilleure"><span>VOTRE MEILLEURE RÉPONSE</span><strong data-best-title>Chute du mur de Berlin</strong><b data-best-points>95 pts ↗</b></button></div>
+      </section>
+      <section class="review" aria-label="Détail et navigation des réponses">
+        <div class="review-header"><div class="review-label"><span class="eyebrow">VOTRE CARNET DE RÉPONSES</span><span class="quiet">Choisissez une question</span></div><nav class="question-tabs" data-picks aria-label="Choisir une réponse"></nav></div>
+        <article class="answer-sheet" data-detail aria-live="polite"></article>
+        <div class="answer-navigation"><button class="plain-action" data-action="precedente">← Question précédente</button><span class="folio" data-position>QUESTION 03 SUR 10</span><button class="plain-action" data-action="suivante">Question suivante →</button></div>
+      </section>
+      <div class="demo-notice" data-notice role="status" hidden></div>
+    </main>
+  </div>
+</div>
+<!-- SCRIPT_EMBARQUE -->
+</body>
+</html>

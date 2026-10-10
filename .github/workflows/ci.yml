@@ -32,6 +32,7 @@ jobs:
       - run: npx tsx scripts/verifier-apprendre.ts
       - run: npx playwright install --with-deps chromium
       - run: npm run test:profil-browser
+      - run: npm run test:bilan-browser
 
   tests-cartes-local:
     runs-on: ubuntu-latest

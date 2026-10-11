@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { cleanup, fireEvent, render, screen, within } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import { afterEach, beforeEach, expect, it, vi } from "vitest";
 import { ChoixSolo } from "@/components/choix/ChoixSolo";
 import type { PackJouable } from "@/lib/solo/packs";
@@ -41,6 +41,48 @@ it.each([false,true])("restaure un sous-pack dynamique et sa longueur en mémoir
   expect(choix).toContain("pack=C89"); expect(choix).toContain("longueur=tout");
   expect(screen.getByRole("button", { name: "Jouer" }).hasAttribute("disabled")).toBe(false);
   expect(mocks.packs).toHaveBeenCalledWith(2, inverse);
+});
+it.each([false,true])("retour depuis le sous-pack mémorisé puis restauration au rechargement, inverse=%s", async (inverse) => {
+  const memoire = inverse ? "histoire-choix-inverse" : "histoire-choix-solo";
+  const initial = `mode=pack&pack=C89&difficulte=DAY&niveau=2&longueur=5${inverse ? "&sens=inverse" : ""}`;
+  localStorage.setItem(memoire, initial);
+  const { unmount } = render(<ChoixSolo inverse={inverse} />);
+  await screen.findByRole("button", { name: /^Conflits du XXe/ });
+  fireEvent.click(screen.getByRole("button", { name: /Tous les packs/ }));
+  expect(screen.getByRole("heading", { name: "Packs disponibles" })).toBe(document.activeElement);
+  expect(screen.queryByRole("button", { name: /^Conflits du XXe/ })).toBeNull();
+  expect(localStorage.getItem(memoire)).toBe(initial);
+  unmount(); render(<ChoixSolo inverse={inverse} />);
+  await screen.findByRole("button", { name: /^Conflits du XXe/ });
+  expect(screen.getByRole("button", { name: /^Conflits du XXe/ }).getAttribute("aria-pressed")).toBe("true");
+});
+it.each([[0, "tout"], [3, "5"]])("garde un sous-pack présent avec %s questions, désactive Jouer et permet le retour", async (n, longueur) => {
+  mocks.packs.mockResolvedValue(packs.map((p) => p.id === "V89" ? pack("V89", "Vide", "P89", Number(n)) : p));
+  localStorage.setItem("histoire-choix-solo", `mode=pack&pack=V89&difficulte=YEAR&niveau=2&longueur=${longueur}`);
+  render(<ChoixSolo />);
+  await screen.findByRole("button", { name: /^Vide/ });
+  expect(screen.queryByText(/Ce pack n’est plus disponible/)).toBeNull();
+  expect(screen.getByRole("button", { name: /^Vide/ }).getAttribute("aria-pressed")).toBe("true");
+  expect(screen.getByRole("button", { name: "Jouer" }).hasAttribute("disabled")).toBe(true);
+  if (Number(n) > 0) {
+    fireEvent.click(within(screen.getByRole("group", { name: "Longueur de la partie" })).getByRole("button", { name: /^Tout/ }));
+    expect(screen.getByRole("button", { name: "Jouer" }).hasAttribute("disabled")).toBe(false);
+    expect(screen.getByRole("button", { name: /^Vide/ }).getAttribute("aria-pressed")).toBe("true");
+  }
+  fireEvent.click(screen.getByRole("button", { name: /Tous les packs/ }));
+  fireEvent.click(screen.getByRole("button", { name: /^Pack plat/ }));
+  await waitFor(() => expect(screen.getByRole("button", { name: "Jouer" }).hasAttribute("disabled")).toBe(false));
+});
+it("ne confond pas une panne avec un pack supprimé et conserve le choix pendant Réessayer", async () => {
+  localStorage.setItem("histoire-choix-solo", "mode=pack&pack=C89&difficulte=DAY&niveau=2&longueur=5");
+  mocks.packs.mockRejectedValueOnce(new Error("Réseau"));
+  const { container } = render(<ChoixSolo />);
+  await screen.findByRole("alert");
+  expect(container.querySelector<HTMLInputElement>('input[name="c"]')!.value).toContain("pack=C89");
+  expect(screen.getByRole("button", { name: "Jouer" }).hasAttribute("disabled")).toBe(true);
+  fireEvent.click(screen.getByRole("button", { name: "Réessayer" }));
+  await screen.findByRole("button", { name: /^Conflits du XXe/ });
+  expect(screen.getByRole("button", { name: "Jouer" }).hasAttribute("disabled")).toBe(false);
 });
 it("actualise les décomptes avec le niveau et ne promet rien pendant une erreur", async () => {
   mocks.packs.mockRejectedValueOnce(new Error("Réseau"));

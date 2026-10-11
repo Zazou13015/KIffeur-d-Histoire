@@ -52,6 +52,8 @@ for (const inverse of [false, true]) {
     expect(new URLSearchParams(new URL(page.url()).searchParams.get("c")!).get("pack")).toBe("E2E89-moderne");
     await page.goto(inverse ? "/inverse" : "/solo");
     await expect(page.getByRole("button", { name: /^Conflits depuis 1800/ })).toHaveAttribute("aria-pressed", "true");
+    await page.reload();
+    await expect(page.getByRole("button", { name: /^Conflits depuis 1800/ })).toHaveAttribute("aria-pressed", "true");
     await page.getByRole("button", { name: /Tous les packs/ }).click();
     await expect(page.getByRole("heading", { name: "Packs disponibles" })).toBeFocused();
     const largeur = await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth);

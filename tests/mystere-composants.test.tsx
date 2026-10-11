@@ -9,9 +9,10 @@ import { ChoixScolaire } from "@/components/choix/ChoixScolaire";
 import { partieBilan } from "./fixtures/bilan";
 import type { TirageMystere } from "@/lib/solo/mystere";
 
-const mocks = vi.hoisted(() => ({ preparer: vi.fn(), push: vi.fn(), lancer: vi.fn(), compter: vi.fn() }));
+const mocks = vi.hoisted(() => ({ preparer: vi.fn(), push: vi.fn(), lancer: vi.fn(), compter: vi.fn(), packs: vi.fn() }));
 vi.mock("@/app/solo/mystere", () => ({ preparerMystere: mocks.preparer }));
 vi.mock("@/app/solo/disponibilite", () => ({ compterQuestions: mocks.compter }));
+vi.mock("@/app/solo/packs", () => ({ chargerPacksJouables: mocks.packs }));
 vi.mock("@/app/partie/actions", () => ({ lancer: mocks.lancer }));
 // Bilan importe ces actions via SaveGame et EnregistrerTest, même lorsque leurs
 // composants ne sont pas affichés. Garder la frontière serveur hors de jsdom.
@@ -30,6 +31,7 @@ beforeEach(() => {
   vi.useFakeTimers(); localStorage.clear(); reduite = false; changements.clear();
   mocks.preparer.mockReset().mockResolvedValue({ tirage });
   mocks.push.mockReset(); mocks.compter.mockReset().mockResolvedValue({ YEAR: 42, MONTH: 30, DAY: 25 });
+  mocks.packs.mockReset().mockResolvedValue([]);
   Object.defineProperty(HTMLDialogElement.prototype, "showModal", { configurable: true,
     value: function (this: HTMLDialogElement) { this.setAttribute("open", ""); } });
   Object.defineProperty(HTMLDialogElement.prototype, "close", { configurable: true,
@@ -114,11 +116,32 @@ it("le bouton du choix garde les réglages bruts même si le pack courant est in
   expect(screen.queryByRole("button", { name: /Thème mystère/ })).toBeNull();
 });
 
-it("reprend les réglages d'un gagnant absent des tuiles sans bloquer le choix", async () => {
+it("reprend les réglages d'un gagnant absent du catalogue vivant sans bloquer le choix", async () => {
   localStorage.setItem("histoire-choix-solo", tirage.choix);
   const { container } = render(<ChoixSolo />);
+  await act(async () => { vi.advanceTimersByTime(200); });
+  // Le retour en Général déclenche son propre décompte après la validation du catalogue.
   await act(async () => { vi.advanceTimersByTime(200); });
   const c = new URLSearchParams(container.querySelector<HTMLInputElement>('input[name="c"]')!.value);
   expect(c.get("mode")).toBe("general"); expect(c.get("niveau")).toBe("2");
   expect(c.get("difficulte")).toBe("MONTH"); expect(c.get("longueur")).toBe("tout");
+  expect(mocks.packs).toHaveBeenCalledWith(2, false);
+  expect(screen.getByText(/Ce pack n’est plus disponible/)).toBeTruthy();
+  expect(screen.getByRole("button", { name: "Jouer" }).hasAttribute("disabled")).toBe(false);
+});
+it("conserve un gagnant dynamique confirmé et ses réglages pour la roulette", async () => {
+  mocks.packs.mockResolvedValue([{ id: "M95-PACK", titre: "Cabinet surprise", description: "", parent_id: null,
+    comptes: { YEAR: 42, MONTH: 30, DAY: 25 }, b: [1800, 2000] }]);
+  localStorage.setItem("histoire-choix-solo", tirage.choix);
+  const { container } = render(<ChoixSolo />);
+  await act(async () => { vi.advanceTimersByTime(200); });
+  const c = new URLSearchParams(container.querySelector<HTMLInputElement>('input[name="c"]')!.value);
+  expect(c.get("mode")).toBe("pack"); expect(c.get("pack")).toBe("M95-PACK");
+  expect(screen.queryByText(/Ce pack n’est plus disponible/)).toBeNull();
+  expect(screen.getByRole("button", { name: "Jouer" }).hasAttribute("disabled")).toBe(false);
+  await act(async () => { fireEvent.click(screen.getByRole("button", { name: /Thème mystère/ })); });
+  const mystere = new URLSearchParams(mocks.preparer.mock.calls[0][0]);
+  expect(mystere.get("mode")).toBe("general"); expect(mystere.get("pack")).toBeNull();
+  expect(mystere.get("niveau")).toBe("2"); expect(mystere.get("difficulte")).toBe("MONTH");
+  expect(mystere.get("longueur")).toBe("tout");
 });

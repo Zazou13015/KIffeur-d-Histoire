@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { lancer } from "@/app/partie/actions";
 import { DIFFICULTES, ecrireChoix, lireChoix, nombreQuestions, NIVEAU_PAR_DEFAUT, NIVEAUX, PACKS, PERIODES, THEMES, type Choix, type Longueur } from "@/lib/solo/choix";
 import type { SoloDifficulty, SoloNiveau } from "@/lib/game/solo";
@@ -43,8 +43,8 @@ function versChamps(e: Etat, inverse: boolean) {
 
 function depuisMemoire(c: Choix): Etat | null {
   if (c.mode === "scolaire") return null;
-  // Un gagnant récemment importé peut manquer aux tuiles statiques : garder
-  // ses réglages sans bloquer le formulaire sur une tuile inexistante.
+  // Un pack récemment importé peut manquer aux tuiles statiques : conserver
+  // son identifiant jusqu'à la validation du catalogue vivant.
   const packConnu = Boolean(c.pack);
   const themeConnu = THEMES.some((t) => t.id === c.theme);
   return {
@@ -76,17 +76,23 @@ export function ChoixSolo({ inverse = false }: { inverse?: boolean }) {
   const memoire = inverse ? MEMOIRE_INVERSE : MEMOIRE;
   const [etat, setEtat] = useState<Etat>(DEPART);
   const [ouvert, ouvrir] = useState<string | null>(null);
+  const [packAbsent, signalerPackAbsent] = useState(false);
+  const packMemorise = useRef<string | null>(null);
   const [catalogue, setCatalogue] = useState<{ cle: string; packs?: PackJouable[]; erreur?: boolean }>();
   const [tentative, reessayerPacks] = useState(0);
   const clePacks = `${etat.niveau}:${inverse}`;
   const packs = catalogue?.cle === clePacks ? catalogue.packs ?? [] : [];
-  const maj = (partiel: Partial<Etat>) => setEtat((e) => ({ ...e, ...partiel }));
+  const maj = (partiel: Partial<Etat>) => {
+    if (partiel.mode !== undefined || partiel.pack !== undefined) signalerPackAbsent(false);
+    setEtat((e) => ({ ...e, ...partiel }));
+  };
 
   // Le dernier choix n'est connu que dans le navigateur : on le reprend après le premier affichage.
   useEffect(() => {
     const memorise = lireMemoire(memoire);
     const choix = memorise && lireChoix(memorise);
     const repris = choix && depuisMemoire(choix);
+    packMemorise.current = choix?.mode === "pack" ? choix.pack ?? null : null;
     // eslint-disable-next-line react-hooks/set-state-in-effect -- reprise unique du stockage local
     if (repris) setEtat(repris);
   }, [memoire]);
@@ -95,10 +101,20 @@ export function ChoixSolo({ inverse = false }: { inverse?: boolean }) {
     if (etat.mode !== "pack") return;
     let actif = true;
     chargerPacksJouables(etat.niveau, inverse).then((packs) => {
-      if (actif) setCatalogue({ cle: clePacks, packs });
+      if (!actif) return;
+      setCatalogue({ cle: clePacks, packs });
+      // Une absence confirmée (suppression/inactivation) diffère d'un pack
+      // présent mais insuffisant, ou d'une lecture réseau qui a échoué.
+      if (etat.pack && !packs.some((p) => p.id === etat.pack)) {
+        const memorise = packMemorise.current === etat.pack;
+        setEtat((courant) => courant.mode === "pack" && courant.pack === etat.pack
+          ? { ...courant, ...(memorise ? { mode: "general" as const } : {}), pack: "" } : courant);
+        ouvrir(null);
+        signalerPackAbsent(memorise);
+      }
     }).catch(() => { if (actif) setCatalogue({ cle: clePacks, erreur: true }); });
     return () => { actif = false; };
-  }, [etat.mode, etat.niveau, inverse, clePacks, tentative]);
+  }, [etat.mode, etat.niveau, etat.pack, inverse, clePacks, tentative]);
 
   // Restaurer le contexte de navigation du pack mémorisé, même s'il vient d'un import récent.
   const choisi = packs.find((p) => p.id === etat.pack);
@@ -122,6 +138,9 @@ export function ChoixSolo({ inverse = false }: { inverse?: boolean }) {
     <form action={lancer} onSubmit={() => choix && ecrireMemoire(memoire, ecrireChoix(choix))}
       className={etat.mode === "pack" ? `${styles.soloPacks} grid gap-[22px]` : "grid gap-[22px]"}>
       {choix && <input type="hidden" name="c" value={ecrireChoix(choix)} />}
+      {packAbsent && etat.mode === "general" && <p role="status" className="m-0 text-encre-douce">
+        Ce pack n’est plus disponible. Tes réglages sont conservés pour jouer en Général ou choisir un autre pack.
+      </p>}
 
       <Etape numero={1} titre="Ce que tu veux réviser">
         <div className={styles.onglets} role="group" aria-label="Type de partie">

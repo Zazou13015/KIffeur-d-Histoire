@@ -14,6 +14,12 @@ Les précisions et longueurs réutilisent les comptes déjà lus. Le moteur reva
 au lancement : une modification concurrente peut rendre un choix insuffisant.
 Les anciens packs restent plats (`parent_id = null`). Aucun pack Sport créé.
 
+La restauration valide le pack mémorisé dans le catalogue vivant : s’il est
+supprimé ou inactif, retour en Général avec les réglages conservés et un message.
+Un pack présent mais insuffisant reste sélectionné, avec Jouer désactivé ; une
+panne de lecture garde le choix et propose Réessayer. Retour vers Tous les packs
+ne réécrit pas la mémoire : un rechargement reprend le dernier choix lancé.
+
 ## Contrat SQL
 
 Migration préparée : `20261010235740_sous_packs.sql`, exclusivement `histoire`,

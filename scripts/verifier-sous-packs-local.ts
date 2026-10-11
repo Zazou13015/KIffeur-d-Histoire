@@ -13,8 +13,12 @@ const require = createRequire(import.meta.url);
 const cartes = chargerCartes().map(cartePublique);
 const pack = (id: string,titre: string,parent_id: string | null,n: number): PackJouable =>
   ({ id,titre,parent_id,description: "",comptes: { YEAR:n,MONTH:n,DAY:n },b:[1800,2000] });
-const packs = [pack("COL-0069","Guerres et batailles",null,25),pack("C89","Conflits du XXe siècle","COL-0069",20),
-  pack("V89","Sous-pack vide","COL-0069",0),...Array.from({length:23},(_,i)=>pack(`F89-${i}`,`Pack indépendant ${i+1}`,null,10))];
+// Même nombre de lignes et mêmes titres sur deux lignes que le cas réel échoué en CI.
+const packs = [pack("COL-0069","Guerres et batailles",null,203),
+  pack("W89","Première Guerre mondiale","COL-0069",30),
+  pack("A89","Conflits avant 1800 (démo)","COL-0069",52),
+  pack("C89","Conflits depuis 1800 (démo)","COL-0069",137),
+  pack("V89","Sous-pack vide (démo)","COL-0069",0),...Array.from({length:23},(_,i)=>pack(`F89-${i}`,`Pack indépendant ${i+1}`,null,10))];
 const api = createServer(async (req,res) => {
   const url = new URL(req.url!,"http://127.0.0.1");
   res.setHeader("Content-Type","application/json");
@@ -44,19 +48,23 @@ try {
     catch { if(i===39) throw new Error("Serveur Next absent"); await new Promise(r=>setTimeout(r,250)); }
   }
   browser=await chromium.launch({headless:true});
-  const output="docs/captures/issue-89"; mkdirSync(output,{recursive:true});
+  const output=process.env.KFFR_SOUS_PACKS_CAPTURES ?? "docs/captures/issue-89"; mkdirSync(output,{recursive:true});
   const mesures=[];
   for(const [width,height] of [[1280,800],[1366,768],[375,812]]) {
     for(const inverse of [false,true]) {
       const page=await browser.newPage({viewport:{width,height}});
       const errors: string[]=[]; page.on("pageerror",e=>errors.push(e.message));
       await page.goto(`http://127.0.0.1:${port}/${inverse?"inverse":"solo"}`);
+      await page.getByRole("group",{name:"Niveau"}).getByRole("button",{name:/^Expert/}).click();
+      await page.getByRole("group",{name:"Longueur de la partie"}).getByRole("button",{name:/^5 questions/}).click();
       await page.getByRole("button",{name:"Pack",exact:true}).click();
       const parent=page.getByRole("button",{name:/^Guerres et batailles/});
       await parent.focus(); await page.keyboard.press("Enter");
       await expect(page.getByRole("heading",{name:"Guerres et batailles",exact:true})).toBeFocused();
       await expect(page.getByRole("button",{name:/^Sous-pack vide/})).toBeDisabled();
-      await page.getByRole("button",{name:/^Conflits du XXe/}).click();
+      // Mesurer aussi avant toute sélection, quand le statut et les longueurs sont en attente.
+      if(width>=1000) assert(await page.evaluate(()=>document.documentElement.scrollHeight)<=height+2,"Défilement PC avant sélection");
+      await page.getByRole("button",{name:/^Conflits depuis 1800/}).click();
       await expect(page.getByRole("button",{name:"Jouer",exact:true})).toBeEnabled();
       await page.evaluate(()=>document.fonts.ready);
       const mesure=await page.evaluate(()=>({largeur:innerWidth,hauteur:innerHeight,documentLargeur:document.documentElement.scrollWidth,

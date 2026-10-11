@@ -100,7 +100,8 @@ a.entree:hover { box-shadow: inset 0 0 0 2px var(--color-laiton); }
   .soloPacks .etape > h2 { line-height: 1.2; }
   .soloPacks > section:first-of-type { grid-row: span 4; min-height: 0; }
   .soloPacks .listePacks { max-height: min(320px, calc(100dvh - 460px)); overflow-y: auto; align-content: start; }
-  .ecran:has(.colonne > nav.onglets) .soloPacks .listePacks { max-height: min(240px, calc(100dvh - 560px)); }
+  /* Réserver une ligne supplémentaire aux titres longs et au statut du décompte en inversé. */
+  .ecran:has(.colonne > nav.onglets) .soloPacks .listePacks { max-height: min(224px, calc(100dvh - 576px)); }
   .soloPacks .difficulte { padding: 8px 10px; }
   .soloPacks .difficulte b { font-size: 22px; }
   .soloPacks .difficulte small { font-size: 12px; line-height: 1.25; }

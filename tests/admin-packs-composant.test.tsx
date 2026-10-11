@@ -13,6 +13,15 @@ const question: PackQuestion = { id: "e1", title: "César", niveau: 1, date_text
 const questions: PackQuestion[] = [question, { ...question, id: "e2", title: "Rome", niveau: 3, removed: true, playable: false }];
 const modalInitial = Object.getOwnPropertyDescriptor(HTMLDialogElement.prototype, "showModal");
 const closeInitial = Object.getOwnPropertyDescriptor(HTMLDialogElement.prototype, "close");
+it("distingue les questions directes de l'union et affiche la parenté sans déplacer les actions", () => {
+  render(<AdministrationPacks initialPacks={[{ ...packs[0], scope_playable: 20 },
+    { ...packs[0], id: "C89", title: "Batailles romaines", parent_id: "A87" }]}
+    selectedId="A87" initialQuestions={questions} />);
+  expect(screen.getByText("20 jouables avec les sous-packs")).toBeTruthy();
+  expect(screen.getByText("Sous-pack de Antiquité")).toBeTruthy();
+  expect(screen.getByText(/ouvrez le sous-pack correspondant/)).toBeTruthy();
+  expect(screen.getAllByRole("button", { name: "Modifier" })).toHaveLength(2);
+});
 beforeEach(() => {
   mocks.modifier.mockReset();
   mocks.correction.mockReset(); mocks.history.mockReset().mockResolvedValue({ ok: true, history: [] });

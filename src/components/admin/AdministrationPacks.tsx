@@ -95,7 +95,8 @@ export default function AdministrationPacks({ initialPacks, selectedId, initialQ
       <Link href="/admin/indicateurs" className="text-oxyde underline">Indicateurs de réussite</Link>
     </div>
     <p className="mb-6 max-w-3xl text-encre-douce">Choisissez un pack pour en relire les questions.
-      Un retrait concerne ce pack uniquement ; la question reste disponible dans ses autres contenus.</p>
+      Les questions listées sont celles directement associées au pack. Un retrait du parent s’applique aussi
+      à son union ; un retrait du sous-pack reste limité à sa branche.</p>
     {packs.length === 0 ? <p>Aucun pack disponible.</p> : <div ref={workspace} className={styles.layout}>
       <nav aria-label="Packs" className={styles.packs} tabIndex={0}>
         <h2 className="inventaire">{packs.length} packs</h2>
@@ -104,12 +105,16 @@ export default function AdministrationPacks({ initialPacks, selectedId, initialQ
           aria-disabled={pending || undefined} tabIndex={pending ? -1 : undefined}
           onClick={(e) => { if (busy.current) e.preventDefault(); }} className={styles.pack}>
           <span className="font-titre">{p.title}</span>
+          {p.parent_id && <small>Sous-pack de {packs.find((parent) => parent.id === p.parent_id)?.title ?? p.parent_id}</small>}
           <span className="text-sm text-encre-douce">{p.playable} jouables · {p.retired} retirées · {p.total} au total</span>
+          {packs.some((c) => c.parent_id === p.id) && <small>{p.scope_playable} jouables avec les sous-packs</small>}
           {!p.active && <span className="inventaire">Pack inactif</span>}
         </Link>)}
       </nav>
       <section aria-label="Questions du pack" className={styles.content} aria-busy={pending}>
         <h2 className="font-titre text-2xl">{selected?.title}</h2>
+        {packs.some((c) => c.parent_id === selectedId) && <p className="text-sm text-encre-douce">
+          Pour les questions propres aux sous-packs, ouvrez le sous-pack correspondant dans la liste.</p>}
         <p className="text-sm text-encre-douce">{selected?.playable} questions jouables à l’année, tous niveaux.
           La disponibilité en partie dépend aussi de la précision et du niveau choisis.</p>
         <div className={styles.filters}>

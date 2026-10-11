@@ -19,7 +19,7 @@ describe("lireChoix", () => {
   it("refuse les modes, difficultés et identifiants inconnus", () => {
     expect(lire("mode=inconnu&difficulte=YEAR")).toBeNull();
     expect(lire("mode=general&difficulte=HOUR")).toBeNull();
-    expect(lire("mode=pack&difficulte=YEAR&pack=COL-9999")).toBeNull();
+    expect(lire("mode=pack&difficulte=YEAR&pack=../invalide")).toBeNull();
     expect(lire("mode=theme&difficulte=YEAR&theme=X")).toBeNull();
     expect(lire("mode=periode&difficulte=YEAR&periode=jurassique")).toBeNull();
     expect(lire("mode=scolaire&difficulte=YEAR&chapitres=THM-999")).toBeNull();

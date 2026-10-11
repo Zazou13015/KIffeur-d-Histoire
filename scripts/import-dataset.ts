@@ -306,6 +306,8 @@ async function importer() {
 
   // 5. Packs prêts à jouer.
   const existantsPk = new Set((await toutLire(db, "packs", "id", ["id"])).map((p) => p.id));
+  // parent_id est volontairement absent de cet upsert : préserver la hiérarchie
+  // éditoriale en base. Les associations des packs absents du CSV restent intactes.
   await upsert(
     db,
     "packs",

@@ -106,7 +106,9 @@ export function lireChoix(champs: URLSearchParams): Choix | null {
   }
   if (mode === "pack") {
     const pack = champs.get("pack");
-    if (!PACKS.some((p) => p.id === pack) && !(choix.mystere && pack && /^[\w-]{1,80}$/.test(pack))) return null;
+    // Le catalogue vivant peut contenir des sous-packs absents du dataset local.
+    // La base valide existence, activité et périmètre au décompte et au lancement.
+    if (!pack || !/^[\w-]{1,80}$/.test(pack)) return null;
     choix.pack = pack!;
   }
   if (mode === "theme") {

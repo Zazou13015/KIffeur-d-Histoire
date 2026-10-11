@@ -8,6 +8,7 @@ import { writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { lireCsv, type LigneCsv } from "./csv";
 import { PERIODES } from "../src/lib/solo/periodes";
+import { contenuPacksHierarchiques } from "./catalogue-packs";
 
 const dossier = join(import.meta.dirname, "..", "content", "dataset-v18");
 const csv = (nom: string) => lireCsv(join(dossier, `kiffeurs-${nom}-v18.csv`));
@@ -49,9 +50,12 @@ function bornes(liste: LigneCsv[]): [number, number] {
 
 const contenuPacks = new Map<string, string[]>();
 for (const r of csv("ready-collection-events")) contenuPacks.set(r.collection_id, [...(contenuPacks.get(r.collection_id) ?? []), r.event_id]);
-const packs = csv("ready-collections")
-  .filter((p) => p.active === "TRUE" && p.ready_to_play === "TRUE")
-  .map((p) => ({ id: p.collection_id, titre: p.title, description: p.description, n: deListe(contenuPacks.get(p.collection_id) ?? []), b: bornes(deIds(contenuPacks.get(p.collection_id) ?? [])) }));
+const packsSource = csv("ready-collections");
+const packsActifs = packsSource.filter((p) => p.active === "TRUE" && p.ready_to_play === "TRUE");
+const unionsPacks = contenuPacksHierarchiques(packsSource, contenuPacks);
+const packs = packsActifs.map((p) => ({ id: p.collection_id, titre: p.title, description: p.description,
+  ...(p.parent_id ? { parent_id: p.parent_id } : {}),
+  n: deListe(unionsPacks.get(p.collection_id) ?? []), b: bornes(deIds(unionsPacks.get(p.collection_id) ?? [])) }));
 
 const tagsEvenements = new Map<string, string[]>();
 for (const r of csv("event-tags")) tagsEvenements.set(r.tag_id, [...(tagsEvenements.get(r.tag_id) ?? []), r.event_id]);

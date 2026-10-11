@@ -55,3 +55,4 @@ done
 bash scripts/tests-solo-concurrence.sh
 bash scripts/tests-admin-packs-concurrence.sh
 bash scripts/tests-corrections-concurrence.sh
+bash scripts/tests-sous-packs-concurrence.sh

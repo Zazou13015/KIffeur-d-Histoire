@@ -8,6 +8,7 @@ import { PartieInverse } from "@/components/partie/PartieInverse";
 import { getAccount } from "@/lib/account";
 import { estInverse } from "@/lib/game/partie";
 import { bornesDe, lireChoix } from "@/lib/solo/choix";
+import { chargerPacksJouables } from "@/app/solo/packs";
 
 function Indisponible({ titre, texte }: { titre: string; texte: string }) {
   return (
@@ -31,7 +32,18 @@ export default async function PartiePage({ params, searchParams }: PageProps<"/p
   const relance = typeof c === "string" ? c : undefined;
   // La frise se limite à la période du choix (pack, thème, chapitres…), à 10 ans près.
   const choix = relance ? lireChoix(new URLSearchParams(relance)) : null;
-  const bornes = choix ? bornesDe(choix) : null;
+  let bornes = choix ? bornesDe(choix) : null;
+  if (choix?.mode === "pack" && choix.pack) {
+    try {
+      const [pack] = await chargerPacksJouables(choix.niveau ?? 1, Boolean(choix.sens), choix.pack);
+      if (pack?.b) {
+        const [debut, fin] = pack.b;
+        const milieu = (debut + fin) / 2;
+        bornes = fin - debut >= 30 ? { debut, fin }
+          : { debut: Math.max(-3500, milieu - 15), fin: Math.min(2030, milieu + 15) };
+      }
+    } catch { /* Une lecture du catalogue échouée ne bloque pas la reprise de partie. */ }
+  }
   const requete = new URLSearchParams();
   if (typeof n === "string") requete.set("n", n);
   if (relance) requete.set("c", relance);

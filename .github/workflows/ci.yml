@@ -33,6 +33,7 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - run: npm run test:profil-browser
       - run: npm run test:bilan-browser
+      - run: npm run test:sous-packs-browser
 
   tests-cartes-local:
     runs-on: ubuntu-latest

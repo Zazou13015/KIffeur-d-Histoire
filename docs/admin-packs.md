@@ -1,5 +1,11 @@
 # Administration des packs — #87 et corrections éditoriales #104
 
+#89 préparée ajoute la parenté dans la liste et un total de questions incluant
+les descendants. L’inventaire direct et ses actions restent inchangés ; ouvrir
+un enfant pour gérer ses associations. Un retrait dans le parent masque aussi
+son union, un retrait enfant reste limité à sa branche. Contrat et fixtures :
+[Sous-packs jouables](sous-packs.md). Aucun SQL #89 appliqué pendant la livraison.
+
 `/admin/packs` permet à Maxou et Antonin de relire les packs existants et de retirer
 ou remettre leurs questions. #104 ajoute la correction globale du titre et du
 niveau, avec historique complet. Le lien se trouve sur `/admin/indicateurs`.

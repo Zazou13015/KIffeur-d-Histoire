@@ -33,7 +33,7 @@ it("rouvrir depuis le profil garde le vrai gagnant et relancer enlève son filtr
   expect(filtresDepuis(choixMystere(choix))).toEqual({ mystery: true, difficulty: "MONTH", niveau: 2, questionCount: 0 });
 });
 it("préserve les validations et les liens classiques, scolaires et pédagogiques", () => {
-  expect(lireChoix(new URLSearchParams("mode=pack&pack=INCONNU&difficulte=YEAR"))).toBeNull();
+  expect(lireChoix(new URLSearchParams("mode=pack&pack=../INCONNU&difficulte=YEAR"))).toBeNull();
   expect(lireChoix(new URLSearchParams("mode=pack&pack=bad%2Fid&mystere=1&difficulte=YEAR"))).toBeNull();
   expect(lireChoix(new URLSearchParams("mode=periode&periode=libre&de=1800&mystere=1&difficulte=YEAR"))).toBeNull();
   expect(filtresDepuis(lireChoix(new URLSearchParams("mode=general&difficulte=YEAR"))!))

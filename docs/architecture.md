@@ -98,6 +98,9 @@ Les identifiants et les codes du dataset sont repris tels quels (`EVT-0173`, `TH
 | `tags`, `event_tags` | Tags de thème, géographie, siècle, série (JO, Coupes du monde…) | lisible, **sauf les tags de siècle sur un événement** (ils donnent presque la réponse) |
 
 Règles :
+- #89 préparée : `packs.parent_id` et union récursive active sans doublon,
+  commune aux deux sens et à Thème mystère. Retraits par branche, catalogue
+  vivant sans réponses privées ; [contrat des sous-packs](sous-packs.md).
 - On stocke **année/mois/jour en entiers** plutôt qu'un type `date` Postgres : plus simple pour les dates av. J.-C., les dates connues seulement à l'année, et le calcul d'écart.
 - Tout ce qui donne la réponse vit dans `event_answers` et `event_aliases` : RLS active, aucune policy, aucun droit pour `anon` ni `authenticated`. Seules des fonctions SQL `security definer` les lisent : `check_event_answer(id, réponse)` aujourd'hui (mode inversé), la correction des dates et l'affichage de la description après réponse avec le moteur de jeu (étape 2.1).
 - Les autres tables ont la RLS active avec une lecture publique.

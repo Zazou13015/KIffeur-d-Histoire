@@ -1,12 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { lancer } from "@/app/partie/actions";
 import { DIFFICULTES, ecrireChoix, lireChoix, nombreQuestions, NIVEAU_PAR_DEFAUT, NIVEAUX, PACKS, PERIODES, THEMES, type Choix, type Longueur } from "@/lib/solo/choix";
 import type { SoloDifficulty, SoloNiveau } from "@/lib/game/solo";
 import { BarreLancer, ChoixDifficulte, ChoixNiveau, difficulteJouable, ecrireMemoire, Etape, lireMemoire } from "./communs";
 import { LongueurPartie, useDisponibilite } from "./LongueurPartie";
 import { BoutonMystere } from "./BoutonMystere";
+import { chargerPacksJouables } from "@/app/solo/packs";
+import type { PackJouable } from "@/lib/solo/packs";
+import { SelectionPacks } from "./SelectionPacks";
 import styles from "./choix.module.css";
 
 const MEMOIRE = "histoire-choix-solo";
@@ -40,9 +43,9 @@ function versChamps(e: Etat, inverse: boolean) {
 
 function depuisMemoire(c: Choix): Etat | null {
   if (c.mode === "scolaire") return null;
-  // Un gagnant récemment importé peut manquer aux tuiles statiques : garder
-  // ses réglages sans bloquer le formulaire sur une tuile inexistante.
-  const packConnu = PACKS.some((p) => p.id === c.pack);
+  // Un pack récemment importé peut manquer aux tuiles statiques : conserver
+  // son identifiant jusqu'à la validation du catalogue vivant.
+  const packConnu = Boolean(c.pack);
   const themeConnu = THEMES.some((t) => t.id === c.theme);
   return {
     ...DEPART,
@@ -58,13 +61,13 @@ function depuisMemoire(c: Choix): Etat | null {
   };
 }
 
-function libelle(c: Choix) {
+function libelle(c: Choix, packs: PackJouable[]) {
   if (c.mode === "periode") {
     const p = PERIODES.find((x) => x.id === c.periode);
     if (p) return p.nom;
     return `de ${c.de ?? "…"} à ${c.a ?? "aujourd'hui"}`;
   }
-  if (c.mode === "pack") return `pack « ${PACKS.find((p) => p.id === c.pack)?.titre} »`;
+  if (c.mode === "pack") return `pack « ${packs.find((p) => p.id === c.pack)?.titre ?? c.pack} »`;
   if (c.mode === "theme") return `thème « ${THEMES.find((t) => t.id === c.theme)?.nom} »`;
   return "toute l'Histoire";
 }
@@ -72,24 +75,59 @@ function libelle(c: Choix) {
 export function ChoixSolo({ inverse = false }: { inverse?: boolean }) {
   const memoire = inverse ? MEMOIRE_INVERSE : MEMOIRE;
   const [etat, setEtat] = useState<Etat>(DEPART);
-  const maj = (partiel: Partial<Etat>) => setEtat((e) => ({ ...e, ...partiel }));
+  const [ouvert, ouvrir] = useState<string | null>(null);
+  const [packAbsent, signalerPackAbsent] = useState(false);
+  const packMemorise = useRef<string | null>(null);
+  const [catalogue, setCatalogue] = useState<{ cle: string; packs?: PackJouable[]; erreur?: boolean }>();
+  const [tentative, reessayerPacks] = useState(0);
+  const clePacks = `${etat.niveau}:${inverse}`;
+  const packs = catalogue?.cle === clePacks ? catalogue.packs ?? [] : [];
+  const maj = (partiel: Partial<Etat>) => {
+    if (partiel.mode !== undefined || partiel.pack !== undefined) signalerPackAbsent(false);
+    setEtat((e) => ({ ...e, ...partiel }));
+  };
 
   // Le dernier choix n'est connu que dans le navigateur : on le reprend après le premier affichage.
   useEffect(() => {
     const memorise = lireMemoire(memoire);
     const choix = memorise && lireChoix(memorise);
     const repris = choix && depuisMemoire(choix);
+    packMemorise.current = choix?.mode === "pack" ? choix.pack ?? null : null;
     // eslint-disable-next-line react-hooks/set-state-in-effect -- reprise unique du stockage local
     if (repris) setEtat(repris);
   }, [memoire]);
+
+  useEffect(() => {
+    if (etat.mode !== "pack") return;
+    let actif = true;
+    chargerPacksJouables(etat.niveau, inverse).then((packs) => {
+      if (!actif) return;
+      setCatalogue({ cle: clePacks, packs });
+      // Une absence confirmée (suppression/inactivation) diffère d'un pack
+      // présent mais insuffisant, ou d'une lecture réseau qui a échoué.
+      if (etat.pack && !packs.some((p) => p.id === etat.pack)) {
+        const memorise = packMemorise.current === etat.pack;
+        setEtat((courant) => courant.mode === "pack" && courant.pack === etat.pack
+          ? { ...courant, ...(memorise ? { mode: "general" as const } : {}), pack: "" } : courant);
+        ouvrir(null);
+        signalerPackAbsent(memorise);
+      }
+    }).catch(() => { if (actif) setCatalogue({ cle: clePacks, erreur: true }); });
+    return () => { actif = false; };
+  }, [etat.mode, etat.niveau, etat.pack, inverse, clePacks, tentative]);
+
+  // Restaurer le contexte de navigation du pack mémorisé, même s'il vient d'un import récent.
+  const choisi = packs.find((p) => p.id === etat.pack);
+  const contextePack = ouvert ?? choisi?.parent_id ??
+    (packs.some((p) => p.parent_id === choisi?.id) ? choisi?.id ?? null : null);
 
   const contenu = { mode: etat.mode, periode: etat.periode, pack: etat.pack, theme: etat.theme };
   // Inversé : toujours la date exacte, sans choix de précision.
   const precisions: SoloDifficulty[] = inverse ? ["DAY"] : ["YEAR", "MONTH", "DAY"];
   const niveau = etat.niveau;
   const selection = lireChoix(versChamps(etat, inverse));
-  const disponibilite = useDisponibilite(selection);
-  const comptes = disponibilite.comptes;
+  const disponibilite = useDisponibilite(etat.mode === "pack" ? null : selection);
+  const comptes = etat.mode === "pack" ? choisi?.comptes ?? null : disponibilite.comptes;
   const difficulte = inverse ? (comptes === null || comptes.DAY > 0 ? "DAY" : null) : difficulteJouable(comptes, etat.difficulte, 1);
   const choix = niveau && difficulte ? lireChoix(versChamps({ ...etat, niveau, difficulte }, inverse)) : null;
   const disponibles = difficulte ? comptes?.[difficulte] ?? null : comptes ? 0 : null;
@@ -97,8 +135,12 @@ export function ChoixSolo({ inverse = false }: { inverse?: boolean }) {
   const libreInvalide = etat.mode === "periode" && etat.periode === "libre" && !selection && (etat.de !== "" || etat.a !== "");
 
   return (
-    <form action={lancer} onSubmit={() => choix && ecrireMemoire(memoire, ecrireChoix(choix))} className="grid gap-[22px]">
+    <form action={lancer} onSubmit={() => choix && ecrireMemoire(memoire, ecrireChoix(choix))}
+      className={etat.mode === "pack" ? `${styles.soloPacks} grid gap-[22px]` : "grid gap-[22px]"}>
       {choix && <input type="hidden" name="c" value={ecrireChoix(choix)} />}
+      {packAbsent && etat.mode === "general" && <p role="status" className="m-0 text-encre-douce">
+        Ce pack n’est plus disponible. Tes réglages sont conservés pour jouer en Général ou choisir un autre pack.
+      </p>}
 
       <Etape numero={1} titre="Ce que tu veux réviser">
         <div className={styles.onglets} role="group" aria-label="Type de partie">
@@ -148,18 +190,14 @@ export function ChoixSolo({ inverse = false }: { inverse?: boolean }) {
           </>
         )}
 
-        {etat.mode === "pack" && (
-          <ul className={styles.tuiles}>
-            {PACKS.map((p) => (
-              <li key={p.id}>
-                <button type="button" className={styles.tuile} aria-pressed={etat.pack === p.id} onClick={() => maj({ pack: p.id })}>
-                  <b>{p.titre}</b>
-                  <small>{p.description}</small>
-                </button>
-              </li>
-            ))}
-          </ul>
-        )}
+        {etat.mode === "pack" && (catalogue?.cle === clePacks && catalogue.erreur
+          ? <p role="alert">Les packs sont indisponibles. <button type="button" className="underline"
+            onClick={() => reessayerPacks((n) => n + 1)}>Réessayer</button></p>
+          : catalogue?.cle !== clePacks || !catalogue.packs ? <p role="status">Chargement des packs…</p>
+          : <SelectionPacks packs={packs} ouvert={contextePack} selection={etat.pack}
+            precision={inverse ? "DAY" : difficulte ?? etat.difficulte} longueur={etat.longueur}
+            onOuvrir={(id) => { ouvrir(id); maj({ pack: "" }); }}
+            onChoisir={(pack) => maj({ pack })} />)}
 
         {etat.mode === "theme" && (
           <ul className={`${styles.tuiles} ${styles.petites}`}>
@@ -195,7 +233,7 @@ export function ChoixSolo({ inverse = false }: { inverse?: boolean }) {
       <BarreLancer
         pret={choix != null && nombre !== null}
         resume={
-          choix && nombre !== null ? <><b>{nombre} question{nombre > 1 ? "s" : ""}</b> · {libelle(choix)} · {NIVEAUX.find((n) => n.valeur === choix.niveau)?.titre} {inverse ? " · date exacte" : <> · {DIFFICULTES.find((d) => d.valeur === choix.difficulte)?.titre.toLowerCase()}</>}</>
+          choix && nombre !== null ? <><b>{nombre} question{nombre > 1 ? "s" : ""}</b> · {libelle(choix, packs)} · {NIVEAUX.find((n) => n.valeur === choix.niveau)?.titre} {inverse ? " · date exacte" : <> · {DIFFICULTES.find((d) => d.valeur === choix.difficulte)?.titre.toLowerCase()}</>}</>
             : disponibles !== null && disponibles > 0 ? "Choisis une longueur disponible pour jouer." : "Termine ton choix et vérifie les questions disponibles."
         }
       />

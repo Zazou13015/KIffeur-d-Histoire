@@ -11,6 +11,7 @@
     "test": "vitest run && tsx --test scripts/import-descriptions.test.ts",
     "test:profil-browser": "tsx scripts/verifier-profil-local.ts",
     "test:bilan-browser": "tsx scripts/verifier-bilan-local.ts",
+    "test:sous-packs-browser": "tsx scripts/verifier-sous-packs-local.ts",
     "test:e2e": "tsx e2e/preparer.ts && playwright test",
     "db:start": "supabase start",
     "db:stop": "supabase stop",

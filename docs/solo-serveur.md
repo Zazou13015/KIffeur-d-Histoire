@@ -116,6 +116,12 @@ question active et de la deadline. Aucune RPC n'accepte un `event_id` à corrige
 
 ## Contrat RPC et actions
 
+#89 ajoute les sous-packs via `pack_scope_events` interne : `p_pack_id` désigne
+le périmètre choisi, parent ou enfant. Les signatures de lancement, compte,
+correction et relance restent identiques. La RPC publique `playable_packs`
+fournit parenté, comptes et bornes arrondies, sans réponses par événement.
+Migration préparée uniquement, GO SQL séparé : [Sous-packs](sous-packs.md).
+
 Les exports de `src/app/solo/actions.ts` servent de point d'intégration pour la
 future interface #18. Aucune page ni aucun composant graphique n'est ajouté.
 

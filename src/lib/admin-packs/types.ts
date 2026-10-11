@@ -5,6 +5,8 @@ export type AdminPack = {
   total: number;
   retired: number;
   playable: number;
+  parent_id?: string | null;
+  scope_playable?: number;
 };
 
 export type PackQuestion = {
